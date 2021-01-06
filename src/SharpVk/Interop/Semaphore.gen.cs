@@ -22,36 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// Opaque handle to a semaphore object.
+    ///     Opaque handle to a semaphore object.
     /// </summary>
     public struct Semaphore
     {
-        internal ulong handle; 
-        
+        internal ulong Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public Semaphore(ulong handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public Semaphore Null => new Semaphore(default(ulong));
-        
+        public Semaphore Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle;
+            return Handle;
         }
     }
 }

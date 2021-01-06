@@ -22,44 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineCacheCreateInfo
+    public unsafe struct PipelineCacheCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineCacheCreateFlags Flags; 
-        
+        public PipelineCacheCreateFlags Flags;
+
         /// <summary>
-        /// The number of bytes in pInitialData. If initialDataSize is zero,
-        /// the pipeline cache will initially be empty.
+        ///     The number of bytes in pInitialData. If initialDataSize is zero,
+        ///     the pipeline cache will initially be empty.
         /// </summary>
-        public HostSize InitialDataSize; 
-        
+        public HostSize InitialDataSize;
+
         /// <summary>
-        /// A pointer to previously retrieved pipeline cache data. If the
-        /// pipeline cache data is incompatible (as defined below) with the
-        /// device, the pipeline cache will be initially empty. If
-        /// initialDataSize is zero, pInitialData is ignored.
+        ///     A pointer to previously retrieved pipeline cache data. If the
+        ///     pipeline cache data is incompatible (as defined below) with the
+        ///     device, the pipeline cache will be initially empty. If
+        ///     initialDataSize is zero, pInitialData is ignored.
         /// </summary>
-        public byte* InitialData; 
+        public byte* InitialData;
     }
 }

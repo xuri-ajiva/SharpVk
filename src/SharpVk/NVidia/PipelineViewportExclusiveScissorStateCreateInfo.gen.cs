@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineViewportExclusiveScissorStateCreateInfo
+    public struct PipelineViewportExclusiveScissorStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Rect2D[] ExclusiveScissors
+        public Rect2D[] ExclusiveScissors
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportExclusiveScissorStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PipelineViewportExclusiveScissorStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportExclusiveScissorStateCreateInfo;
             pointer->Next = null;
-            pointer->ExclusiveScissorCount = (uint)(Interop.HeapUtil.GetLength(this.ExclusiveScissors));
-            if (this.ExclusiveScissors != null)
+            pointer->ExclusiveScissorCount = HeapUtil.GetLength(ExclusiveScissors);
+            if (ExclusiveScissors != null)
             {
-                var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.ExclusiveScissors.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ExclusiveScissors.Length); index++)
-                {
-                    fieldPointer[index] = this.ExclusiveScissors[index];
-                }
+                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(ExclusiveScissors.Length).ToPointer();
+                for (var index = 0; index < (uint)ExclusiveScissors.Length; index++) fieldPointer[index] = ExclusiveScissors[index];
                 pointer->ExclusiveScissors = fieldPointer;
             }
             else

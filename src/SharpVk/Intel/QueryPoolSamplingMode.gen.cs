@@ -25,13 +25,11 @@
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum QueryPoolSamplingMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        Manual = 0, 
+        Manual = 0
     }
 }

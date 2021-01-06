@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDeviceUpdateDescriptorSetWithTemplateDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DescriptorSet descriptorSet, SharpVk.Interop.DescriptorUpdateTemplate descriptorUpdateTemplate, void* data);
+    public unsafe delegate void VkDeviceUpdateDescriptorSetWithTemplateDelegate(Device device, DescriptorSet descriptorSet, DescriptorUpdateTemplate descriptorUpdateTemplate, void* data);
 }

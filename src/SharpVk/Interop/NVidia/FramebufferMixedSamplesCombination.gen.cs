@@ -22,51 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct FramebufferMixedSamplesCombination
+    public unsafe struct FramebufferMixedSamplesCombination
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Specifies the coverage reduction mode and is of type
-        /// VkCoverageReductionModeNV.
+        ///     Specifies the coverage reduction mode and is of type
+        ///     VkCoverageReductionModeNV.
         /// </summary>
-        public SharpVk.NVidia.CoverageReductionMode CoverageReductionMode; 
-        
+        public CoverageReductionMode CoverageReductionMode;
+
         /// <summary>
-        /// Specifies the number of rasterization samples in the supported
-        /// combination.
+        ///     Specifies the number of rasterization samples in the supported
+        ///     combination.
         /// </summary>
-        public SharpVk.SampleCountFlags RasterizationSamples; 
-        
+        public SampleCountFlags RasterizationSamples;
+
         /// <summary>
-        /// Specifies the number of samples in the depth stencil attachment in
-        /// the supported combination. A value of 0 indicates the combination
-        /// does not have a depth stencil attachment.
+        ///     Specifies the number of samples in the depth stencil attachment in
+        ///     the supported combination. A value of 0 indicates the combination
+        ///     does not have a depth stencil attachment.
         /// </summary>
-        public SharpVk.SampleCountFlags DepthStencilSamples; 
-        
+        public SampleCountFlags DepthStencilSamples;
+
         /// <summary>
-        /// Specifies the number of color samples in a color attachment in the
-        /// supported combination. A value of 0 indicates the combination does
-        /// not have a color attachment.
+        ///     Specifies the number of color samples in a color attachment in the
+        ///     supported combination. A value of 0 indicates the combination does
+        ///     not have a color attachment.
         /// </summary>
-        public SharpVk.SampleCountFlags ColorSamples; 
+        public SampleCountFlags ColorSamples;
     }
 }

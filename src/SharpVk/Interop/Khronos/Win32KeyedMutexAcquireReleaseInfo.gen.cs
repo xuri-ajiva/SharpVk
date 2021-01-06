@@ -22,60 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct Win32KeyedMutexAcquireReleaseInfo
+    public unsafe struct Win32KeyedMutexAcquireReleaseInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint AcquireCount; 
-        
+        public uint AcquireCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.DeviceMemory* AcquireSyncs; 
-        
+        public DeviceMemory* AcquireSyncs;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong* AcquireKeys; 
-        
+        public ulong* AcquireKeys;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* AcquireTimeouts; 
-        
+        public uint* AcquireTimeouts;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ReleaseCount; 
-        
+        public uint ReleaseCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.DeviceMemory* ReleaseSyncs; 
-        
+        public DeviceMemory* ReleaseSyncs;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong* ReleaseKeys; 
+        public ulong* ReleaseKeys;
     }
 }

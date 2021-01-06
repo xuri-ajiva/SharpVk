@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceBindAccelerationStructureMemoryDelegate(SharpVk.Interop.Device device, uint bindInfoCount, SharpVk.Interop.NVidia.BindAccelerationStructureMemoryInfo* bindInfos);
+    public unsafe delegate Result VkDeviceBindAccelerationStructureMemoryDelegate(Device device, uint bindInfoCount, BindAccelerationStructureMemoryInfo* bindInfos);
 }

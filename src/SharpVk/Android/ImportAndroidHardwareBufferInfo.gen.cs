@@ -24,35 +24,33 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportAndroidHardwareBufferInfo
+    public struct ImportAndroidHardwareBufferInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Android.ImportAndroidHardwareBufferInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Android.ImportAndroidHardwareBufferInfo* pointer)
         {
             pointer->SType = StructureType.ImportAndroidHardwareBufferInfo;
             pointer->Next = null;
-            pointer->Buffer = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-            *pointer->Buffer = this.Buffer;
+            pointer->Buffer = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+            *pointer->Buffer = Buffer;
         }
     }
 }

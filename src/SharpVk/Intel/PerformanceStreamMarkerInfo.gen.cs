@@ -22,37 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Structure specifying stream performance markers
+    ///     Structure specifying stream performance markers
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PerformanceStreamMarkerInfo
+    public struct PerformanceStreamMarkerInfo
     {
         /// <summary>
-        /// The marker value that will be recorded into the reports consumed by
-        /// an external application.
+        ///     The marker value that will be recorded into the reports consumed by
+        ///     an external application.
         /// </summary>
         public uint Marker
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceStreamMarkerInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.PerformanceStreamMarkerInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceStreamMarkerInfo;
             pointer->Next = null;
-            pointer->Marker = this.Marker;
+            pointer->Marker = Marker;
         }
     }
 }

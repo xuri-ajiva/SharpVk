@@ -22,46 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ConformanceVersion
+    public struct ConformanceVersion
     {
         /// <summary>
-        /// 
         /// </summary>
         public ConformanceVersion(byte major, byte minor, byte subminor, byte patch)
         {
-            this.Major = major;
-            this.Minor = minor;
-            this.Subminor = subminor;
-            this.Patch = patch;
+            Major = major;
+            Minor = minor;
+            Subminor = subminor;
+            Patch = patch;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte Major; 
-        
+        public byte Major;
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte Minor; 
-        
+        public byte Minor;
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte Subminor; 
-        
+        public byte Subminor;
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte Patch; 
+        public byte Patch;
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceImportSemaphoreFileDescriptorDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.ImportSemaphoreFileDescriptorInfo* importSemaphoreFileDescriptorInfo);
+    public unsafe delegate Result VkDeviceImportSemaphoreFileDescriptorDelegate(Device device, ImportSemaphoreFileDescriptorInfo* importSemaphoreFileDescriptorInfo);
 }

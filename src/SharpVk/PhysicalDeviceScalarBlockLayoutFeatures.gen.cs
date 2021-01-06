@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceScalarBlockLayoutFeatures
+    public struct PhysicalDeviceScalarBlockLayoutFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ScalarBlockLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceScalarBlockLayoutFeaturesVersion;
             pointer->Next = null;
-            pointer->ScalarBlockLayout = this.ScalarBlockLayout;
+            pointer->ScalarBlockLayout = ScalarBlockLayout;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceScalarBlockLayoutFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
+        internal static unsafe PhysicalDeviceScalarBlockLayoutFeatures MarshalFrom(Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
         {
-            PhysicalDeviceScalarBlockLayoutFeatures result = default(PhysicalDeviceScalarBlockLayoutFeatures);
+            var result = default(PhysicalDeviceScalarBlockLayoutFeatures);
             result.ScalarBlockLayout = pointer->ScalarBlockLayout;
             return result;
         }

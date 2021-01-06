@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceEnumerateDeviceExtensionPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, byte* layerName, uint* propertyCount, SharpVk.Interop.ExtensionProperties* properties);
+    public unsafe delegate Result VkPhysicalDeviceEnumerateDeviceExtensionPropertiesDelegate(PhysicalDevice physicalDevice, byte* layerName, uint* propertyCount, ExtensionProperties* properties);
 }

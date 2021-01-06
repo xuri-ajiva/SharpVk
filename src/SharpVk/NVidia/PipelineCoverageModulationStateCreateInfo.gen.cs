@@ -22,96 +22,78 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineCoverageModulationStateCreateInfo
+    public struct PipelineCoverageModulationStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.PipelineCoverageModulationStateCreateFlags? Flags
+        public PipelineCoverageModulationStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.CoverageModulationMode CoverageModulationMode
+        public CoverageModulationMode CoverageModulationMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool CoverageModulationTableEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint? CoverageModulationTableCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float[] CoverageModulationTable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineCoverageModulationStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PipelineCoverageModulationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCoverageModulationStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.NVidia.PipelineCoverageModulationStateCreateFlags);
-            }
-            pointer->CoverageModulationMode = this.CoverageModulationMode;
-            pointer->CoverageModulationTableEnable = this.CoverageModulationTableEnable;
-            if (this.CoverageModulationTableCount != null)
-            {
-                pointer->CoverageModulationTableCount = this.CoverageModulationTableCount.Value;
-            }
+                pointer->Flags = default;
+            pointer->CoverageModulationMode = CoverageModulationMode;
+            pointer->CoverageModulationTableEnable = CoverageModulationTableEnable;
+            if (CoverageModulationTableCount != null)
+                pointer->CoverageModulationTableCount = CoverageModulationTableCount.Value;
             else
+                pointer->CoverageModulationTableCount = HeapUtil.GetLength(CoverageModulationTable);
+            if (CoverageModulationTable != null)
             {
-                pointer->CoverageModulationTableCount = (uint)(Interop.HeapUtil.GetLength(this.CoverageModulationTable));
-            }
-            if (this.CoverageModulationTable != null)
-            {
-                var fieldPointer = (float*)(Interop.HeapUtil.AllocateAndClear<float>(this.CoverageModulationTable.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.CoverageModulationTable.Length); index++)
-                {
-                    fieldPointer[index] = this.CoverageModulationTable[index];
-                }
+                var fieldPointer = (float*)HeapUtil.AllocateAndClear<float>(CoverageModulationTable.Length).ToPointer();
+                for (var index = 0; index < (uint)CoverageModulationTable.Length; index++) fieldPointer[index] = CoverageModulationTable[index];
                 pointer->CoverageModulationTable = fieldPointer;
             }
             else

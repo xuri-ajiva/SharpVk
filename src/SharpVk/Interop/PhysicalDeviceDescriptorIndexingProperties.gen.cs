@@ -22,140 +22,115 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceDescriptorIndexingProperties
+    public unsafe struct PhysicalDeviceDescriptorIndexingProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxUpdateAfterBindDescriptorsInAllPools; 
-        
+        public uint MaxUpdateAfterBindDescriptorsInAllPools;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderUniformBufferArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderUniformBufferArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSampledImageArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderSampledImageArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageBufferArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderStorageBufferArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderStorageImageArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderInputAttachmentArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderInputAttachmentArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 RobustBufferAccessUpdateAfterBind; 
-        
+        public Bool32 RobustBufferAccessUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 QuadDivergentImplicitLod; 
-        
+        public Bool32 QuadDivergentImplicitLod;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindSamplers; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindSamplers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindUniformBuffers; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindUniformBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindStorageBuffers; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindStorageBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindSampledImages; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindSampledImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindStorageImages; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindStorageImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindInputAttachments; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindInputAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageUpdateAfterBindResources; 
-        
+        public uint MaxPerStageUpdateAfterBindResources;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindSamplers; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindSamplers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindUniformBuffers; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindUniformBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindStorageBuffers; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindStorageBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindSampledImages; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindSampledImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindStorageImages; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindStorageImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindInputAttachments; 
+        public uint MaxDescriptorSetUpdateAfterBindInputAttachments;
     }
 }

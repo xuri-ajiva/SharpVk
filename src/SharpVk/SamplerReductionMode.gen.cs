@@ -25,23 +25,19 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum SamplerReductionMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        WeightedAverage = 0, 
-        
+        WeightedAverage = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Min = 1, 
-        
+        Min = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Max = 2, 
+        Max = 2
     }
 }

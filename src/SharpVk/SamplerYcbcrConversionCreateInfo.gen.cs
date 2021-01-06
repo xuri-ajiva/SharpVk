@@ -22,106 +22,95 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SamplerYcbcrConversionCreateInfo
+    public struct SamplerYcbcrConversionCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format
+        public Format Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrModelConversion YcbcrModel
+        public SamplerYcbcrModelConversion YcbcrModel
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrRange YcbcrRange
+        public SamplerYcbcrRange YcbcrRange
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ComponentMapping Components
+        public ComponentMapping Components
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation XChromaOffset
+        public ChromaLocation XChromaOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation YChromaOffset
+        public ChromaLocation YChromaOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Filter ChromaFilter
+        public Filter ChromaFilter
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ForceExplicitReconstruction
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SamplerYcbcrConversionCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SamplerYcbcrConversionCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerYcbcrConversionCreateInfoVersion;
             pointer->Next = null;
-            pointer->Format = this.Format;
-            pointer->YcbcrModel = this.YcbcrModel;
-            pointer->YcbcrRange = this.YcbcrRange;
-            pointer->Components = this.Components;
-            pointer->XChromaOffset = this.XChromaOffset;
-            pointer->YChromaOffset = this.YChromaOffset;
-            pointer->ChromaFilter = this.ChromaFilter;
-            pointer->ForceExplicitReconstruction = this.ForceExplicitReconstruction;
+            pointer->Format = Format;
+            pointer->YcbcrModel = YcbcrModel;
+            pointer->YcbcrRange = YcbcrRange;
+            pointer->Components = Components;
+            pointer->XChromaOffset = XChromaOffset;
+            pointer->YChromaOffset = YChromaOffset;
+            pointer->ChromaFilter = ChromaFilter;
+            pointer->ForceExplicitReconstruction = ForceExplicitReconstruction;
         }
     }
 }

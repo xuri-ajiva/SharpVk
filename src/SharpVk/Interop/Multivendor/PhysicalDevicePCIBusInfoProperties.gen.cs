@@ -22,45 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDevicePCIBusInfoProperties
+    public unsafe struct PhysicalDevicePciBusInfoProperties
     {
         /// <summary>
-        /// The type of this structure
+        ///     The type of this structure
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or a pointer to an extension-specific structure
+        ///     Null or a pointer to an extension-specific structure
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The PCI bus domain
+        ///     The PCI bus domain
         /// </summary>
-        public uint PciDomain; 
-        
+        public uint PciDomain;
+
         /// <summary>
-        /// The PCI bus identifier
+        ///     The PCI bus identifier
         /// </summary>
-        public uint PciBus; 
-        
+        public uint PciBus;
+
         /// <summary>
-        /// The PCI device identifier
+        ///     The PCI device identifier
         /// </summary>
-        public uint PciDevice; 
-        
+        public uint PciDevice;
+
         /// <summary>
-        /// The PCI device function identifier
+        ///     The PCI device function identifier
         /// </summary>
-        public uint PciFunction; 
+        public uint PciFunction;
     }
 }

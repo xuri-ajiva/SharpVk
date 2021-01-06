@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Fuchsia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateImagePipeSurfaceDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Khronos.Surface* surface);
+    public unsafe delegate Result VkInstanceCreateImagePipeSurfaceDelegate(Instance instance, ImagePipeSurfaceCreateInfo* createInfo, AllocationCallbacks* allocator, Surface* surface);
 }

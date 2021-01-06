@@ -22,132 +22,110 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Win32KeyedMutexAcquireReleaseInfo
+    public struct Win32KeyedMutexAcquireReleaseInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DeviceMemory[] AcquireSyncs
+        public DeviceMemory[] AcquireSyncs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong[] AcquireKeys
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint[] AcquireTimeouts
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DeviceMemory[] ReleaseSyncs
+        public DeviceMemory[] ReleaseSyncs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong[] ReleaseKeys
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Win32KeyedMutexAcquireReleaseInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.Win32KeyedMutexAcquireReleaseInfo* pointer)
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoKhr;
             pointer->Next = null;
-            pointer->AcquireCount = (uint)(Interop.HeapUtil.GetLength(this.AcquireSyncs));
-            if (this.AcquireSyncs != null)
+            pointer->AcquireCount = HeapUtil.GetLength(AcquireSyncs);
+            if (AcquireSyncs != null)
             {
-                var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(this.AcquireSyncs.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.AcquireSyncs.Length); index++)
-                {
-                    fieldPointer[index] = this.AcquireSyncs[index]?.handle ?? default(SharpVk.Interop.DeviceMemory);
-                }
+                var fieldPointer = (Interop.DeviceMemory*)HeapUtil.AllocateAndClear<Interop.DeviceMemory>(AcquireSyncs.Length).ToPointer();
+                for (var index = 0; index < (uint)AcquireSyncs.Length; index++) fieldPointer[index] = AcquireSyncs[index]?.Handle ?? default(Interop.DeviceMemory);
                 pointer->AcquireSyncs = fieldPointer;
             }
             else
             {
                 pointer->AcquireSyncs = null;
             }
-            if (this.AcquireKeys != null)
+            if (AcquireKeys != null)
             {
-                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.AcquireKeys.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.AcquireKeys.Length); index++)
-                {
-                    fieldPointer[index] = this.AcquireKeys[index];
-                }
+                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(AcquireKeys.Length).ToPointer();
+                for (var index = 0; index < (uint)AcquireKeys.Length; index++) fieldPointer[index] = AcquireKeys[index];
                 pointer->AcquireKeys = fieldPointer;
             }
             else
             {
                 pointer->AcquireKeys = null;
             }
-            if (this.AcquireTimeouts != null)
+            if (AcquireTimeouts != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.AcquireTimeouts.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.AcquireTimeouts.Length); index++)
-                {
-                    fieldPointer[index] = this.AcquireTimeouts[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(AcquireTimeouts.Length).ToPointer();
+                for (var index = 0; index < (uint)AcquireTimeouts.Length; index++) fieldPointer[index] = AcquireTimeouts[index];
                 pointer->AcquireTimeouts = fieldPointer;
             }
             else
             {
                 pointer->AcquireTimeouts = null;
             }
-            pointer->ReleaseCount = (uint)(Interop.HeapUtil.GetLength(this.ReleaseSyncs));
-            if (this.ReleaseSyncs != null)
+            pointer->ReleaseCount = HeapUtil.GetLength(ReleaseSyncs);
+            if (ReleaseSyncs != null)
             {
-                var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(this.ReleaseSyncs.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ReleaseSyncs.Length); index++)
-                {
-                    fieldPointer[index] = this.ReleaseSyncs[index]?.handle ?? default(SharpVk.Interop.DeviceMemory);
-                }
+                var fieldPointer = (Interop.DeviceMemory*)HeapUtil.AllocateAndClear<Interop.DeviceMemory>(ReleaseSyncs.Length).ToPointer();
+                for (var index = 0; index < (uint)ReleaseSyncs.Length; index++) fieldPointer[index] = ReleaseSyncs[index]?.Handle ?? default(Interop.DeviceMemory);
                 pointer->ReleaseSyncs = fieldPointer;
             }
             else
             {
                 pointer->ReleaseSyncs = null;
             }
-            if (this.ReleaseKeys != null)
+            if (ReleaseKeys != null)
             {
-                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.ReleaseKeys.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ReleaseKeys.Length); index++)
-                {
-                    fieldPointer[index] = this.ReleaseKeys[index];
-                }
+                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(ReleaseKeys.Length).ToPointer();
+                for (var index = 0; index < (uint)ReleaseKeys.Length; index++) fieldPointer[index] = ReleaseKeys[index];
                 pointer->ReleaseKeys = fieldPointer;
             }
             else

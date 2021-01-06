@@ -22,52 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineVertexInputStateCreateInfo
+    public unsafe struct PipelineVertexInputStateCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineVertexInputStateCreateFlags Flags; 
-        
+        public PipelineVertexInputStateCreateFlags Flags;
+
         /// <summary>
-        /// The number of vertex binding descriptions provided in
-        /// pVertexBindingDescriptions.
+        ///     The number of vertex binding descriptions provided in
+        ///     pVertexBindingDescriptions.
         /// </summary>
-        public uint VertexBindingDescriptionCount; 
-        
+        public uint VertexBindingDescriptionCount;
+
         /// <summary>
-        /// An array of VertexInputBindingDescription structures.
+        ///     An array of VertexInputBindingDescription structures.
         /// </summary>
-        public SharpVk.VertexInputBindingDescription* VertexBindingDescriptions; 
-        
+        public VertexInputBindingDescription* VertexBindingDescriptions;
+
         /// <summary>
-        /// The number of vertex attribute descriptions provided in
-        /// pVertexAttributeDescriptions.
+        ///     The number of vertex attribute descriptions provided in
+        ///     pVertexAttributeDescriptions.
         /// </summary>
-        public uint VertexAttributeDescriptionCount; 
-        
+        public uint VertexAttributeDescriptionCount;
+
         /// <summary>
-        /// An array of VertexInputAttributeDescription structures.
+        ///     An array of VertexInputAttributeDescription structures.
         /// </summary>
-        public SharpVk.VertexInputAttributeDescription* VertexAttributeDescriptions; 
+        public VertexInputAttributeDescription* VertexAttributeDescriptions;
     }
 }

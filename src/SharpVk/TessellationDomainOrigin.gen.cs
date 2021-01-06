@@ -25,18 +25,15 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum TessellationDomainOrigin
     {
         /// <summary>
-        /// 
         /// </summary>
-        UpperLeft = 0, 
-        
+        UpperLeft = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        LowerLeft = 1, 
+        LowerLeft = 1
     }
 }

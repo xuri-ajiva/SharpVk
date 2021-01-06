@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateShaderModuleDelegate(SharpVk.Interop.Device device, SharpVk.Interop.ShaderModuleCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.ShaderModule* shaderModule);
+    public unsafe delegate Result VkDeviceCreateShaderModuleDelegate(Device device, ShaderModuleCreateInfo* createInfo, AllocationCallbacks* allocator, ShaderModule* shaderModule);
 }

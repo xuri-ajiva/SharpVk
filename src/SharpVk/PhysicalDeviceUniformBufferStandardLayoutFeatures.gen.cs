@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceUniformBufferStandardLayoutFeatures
+    public struct PhysicalDeviceUniformBufferStandardLayoutFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool UniformBufferStandardLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceUniformBufferStandardLayoutFeaturesVersion;
             pointer->Next = null;
-            pointer->UniformBufferStandardLayout = this.UniformBufferStandardLayout;
+            pointer->UniformBufferStandardLayout = UniformBufferStandardLayout;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceUniformBufferStandardLayoutFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* pointer)
+        internal static unsafe PhysicalDeviceUniformBufferStandardLayoutFeatures MarshalFrom(Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* pointer)
         {
-            PhysicalDeviceUniformBufferStandardLayoutFeatures result = default(PhysicalDeviceUniformBufferStandardLayoutFeatures);
+            var result = default(PhysicalDeviceUniformBufferStandardLayoutFeatures);
             result.UniformBufferStandardLayout = pointer->UniformBufferStandardLayout;
             return result;
         }

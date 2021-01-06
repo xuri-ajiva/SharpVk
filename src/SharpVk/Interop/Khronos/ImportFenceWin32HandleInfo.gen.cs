@@ -28,44 +28,38 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImportFenceWin32HandleInfo
+    public unsafe struct ImportFenceWin32HandleInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Fence Fence; 
-        
+        public Fence Fence;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.FenceImportFlags Flags; 
-        
+        public FenceImportFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalFenceHandleTypeFlags HandleType; 
-        
+        public ExternalFenceHandleTypeFlags HandleType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public IntPtr Handle; 
-        
+        public IntPtr Handle;
+
         /// <summary>
-        /// 
         /// </summary>
-        public IntPtr Name; 
+        public IntPtr Name;
     }
 }

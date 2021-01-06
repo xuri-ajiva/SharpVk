@@ -28,96 +28,91 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// Structure containing callback function pointers for memory allocation.
+    ///     Structure containing callback function pointers for memory allocation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AllocationCallbacks
+    public struct AllocationCallbacks
     {
         /// <summary>
-        /// A value to be interpreted by the implementation of the callbacks.
-        /// When any of the callbacks in AllocationCallbacks are called, the
-        /// Vulkan implementation will pass this value as the first parameter
-        /// to the callback. This value can vary each time an allocator is
-        /// passed into a command, even when the same object takes an allocator
-        /// in multiple commands.
+        ///     A value to be interpreted by the implementation of the callbacks.
+        ///     When any of the callbacks in AllocationCallbacks are called, the
+        ///     Vulkan implementation will pass this value as the first parameter
+        ///     to the callback. This value can vary each time an allocator is
+        ///     passed into a command, even when the same object takes an allocator
+        ///     in multiple commands.
         /// </summary>
         public IntPtr? UserData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An application-defined memory allocation function of type
-        /// AllocationFunction.
+        ///     An application-defined memory allocation function of type
+        ///     AllocationFunction.
         /// </summary>
-        public SharpVk.AllocationFunctionDelegate Allocation
+        public AllocationFunctionDelegate Allocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An application-defined memory reallocation function of type
-        /// ReallocationFunction.
+        ///     An application-defined memory reallocation function of type
+        ///     ReallocationFunction.
         /// </summary>
-        public SharpVk.ReallocationFunctionDelegate Reallocation
+        public ReallocationFunctionDelegate Reallocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An application-defined memory free function of type FreeFunction.
+        ///     An application-defined memory free function of type FreeFunction.
         /// </summary>
-        public SharpVk.FreeFunctionDelegate Free
+        public FreeFunctionDelegate Free
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An application-defined function that is called by the
-        /// implementation when the implementation makes internal allocations,
-        /// and it is of type InternalAllocationNotification.
+        ///     An application-defined function that is called by the
+        ///     implementation when the implementation makes internal allocations,
+        ///     and it is of type InternalAllocationNotification.
         /// </summary>
-        public SharpVk.InternalAllocationNotificationDelegate InternalAllocation
+        public InternalAllocationNotificationDelegate InternalAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An application-defined function that is called by the
-        /// implementation when the implementation frees internal allocations,
-        /// and it is of type InternalFreeNotification.
+        ///     An application-defined function that is called by the
+        ///     implementation when the implementation frees internal allocations,
+        ///     and it is of type InternalFreeNotification.
         /// </summary>
-        public SharpVk.InternalFreeNotificationDelegate InternalFree
+        public InternalFreeNotificationDelegate InternalFree
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.AllocationCallbacks* pointer)
+        internal unsafe void MarshalTo(Interop.AllocationCallbacks* pointer)
         {
-            if (this.UserData != null)
-            {
-                pointer->UserData = this.UserData.Value.ToPointer();
-            }
+            if (UserData != null)
+                pointer->UserData = UserData.Value.ToPointer();
             else
-            {
-                pointer->UserData = default(void*);
-            }
-            pointer->Allocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Allocation);
-            pointer->Reallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Reallocation);
-            pointer->Free = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Free);
-            pointer->InternalAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.InternalAllocation);
-            pointer->InternalFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.InternalFree);
+                pointer->UserData = default;
+            pointer->Allocation = Marshal.GetFunctionPointerForDelegate(Allocation);
+            pointer->Reallocation = Marshal.GetFunctionPointerForDelegate(Reallocation);
+            pointer->Free = Marshal.GetFunctionPointerForDelegate(Free);
+            pointer->InternalAllocation = Marshal.GetFunctionPointerForDelegate(InternalAllocation);
+            pointer->InternalFree = Marshal.GetFunctionPointerForDelegate(InternalFree);
         }
     }
 }

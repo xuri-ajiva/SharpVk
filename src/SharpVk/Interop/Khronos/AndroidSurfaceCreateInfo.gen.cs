@@ -24,33 +24,33 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct AndroidSurfaceCreateInfo
+    public unsafe struct AndroidSurfaceCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Khronos.AndroidSurfaceCreateFlags Flags; 
-        
+        public AndroidSurfaceCreateFlags Flags;
+
         /// <summary>
-        /// A pointer to the ANativeWindow to associate the surface with.
+        ///     A pointer to the ANativeWindow to associate the surface with.
         /// </summary>
-        public IntPtr* Window; 
+        public IntPtr* Window;
     }
 }

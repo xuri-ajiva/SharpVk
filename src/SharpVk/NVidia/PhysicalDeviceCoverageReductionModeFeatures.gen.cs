@@ -22,48 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Structure describing the coverage reduction mode features that can be
-    /// supported by an implementation
+    ///     Structure describing the coverage reduction mode features that can be
+    ///     supported by an implementation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceCoverageReductionModeFeatures
+    public struct PhysicalDeviceCoverageReductionModeFeatures
     {
         /// <summary>
-        /// Indicates whether the implementation supports coverage reduction
-        /// modes.
+        ///     Indicates whether the implementation supports coverage reduction
+        ///     modes.
         /// </summary>
         public bool CoverageReductionMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCoverageReductionModeFeatures;
             pointer->Next = null;
-            pointer->CoverageReductionMode = this.CoverageReductionMode;
+            pointer->CoverageReductionMode = CoverageReductionMode;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceCoverageReductionModeFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
+        internal static unsafe PhysicalDeviceCoverageReductionModeFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
         {
-            PhysicalDeviceCoverageReductionModeFeatures result = default(PhysicalDeviceCoverageReductionModeFeatures);
+            var result = default(PhysicalDeviceCoverageReductionModeFeatures);
             result.CoverageReductionMode = pointer->CoverageReductionMode;
             return result;
         }

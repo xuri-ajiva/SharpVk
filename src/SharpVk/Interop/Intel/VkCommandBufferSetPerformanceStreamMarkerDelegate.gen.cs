@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkCommandBufferSetPerformanceStreamMarkerDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Intel.PerformanceStreamMarkerInfo* markerInfo);
+    public unsafe delegate Result VkCommandBufferSetPerformanceStreamMarkerDelegate(CommandBuffer commandBuffer, PerformanceStreamMarkerInfo* markerInfo);
 }

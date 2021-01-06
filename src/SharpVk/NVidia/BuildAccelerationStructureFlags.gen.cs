@@ -22,42 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum BuildAccelerationStructureFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        AllowUpdate = 1 << 0, 
-        
+        AllowUpdate = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        AllowCompaction = 1 << 1, 
-        
+        AllowCompaction = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        PreferFastTrace = 1 << 2, 
-        
+        PreferFastTrace = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        PreferFastBuild = 1 << 3, 
-        
+        PreferFastBuild = 1 << 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        LowMemory = 1 << 4, 
+        LowMemory = 1 << 4
     }
 }

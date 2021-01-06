@@ -22,52 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure providing information about a queue family.
+    ///     Structure providing information about a queue family.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct QueueFamilyProperties
+    public struct QueueFamilyProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public QueueFamilyProperties(SharpVk.QueueFlags queueFlags, uint queueCount, uint timestampValidBits, SharpVk.Extent3D minImageTransferGranularity)
+        public QueueFamilyProperties(QueueFlags queueFlags, uint queueCount, uint timestampValidBits, Extent3D minImageTransferGranularity)
         {
-            this.QueueFlags = queueFlags;
-            this.QueueCount = queueCount;
-            this.TimestampValidBits = timestampValidBits;
-            this.MinImageTransferGranularity = minImageTransferGranularity;
+            QueueFlags = queueFlags;
+            QueueCount = queueCount;
+            TimestampValidBits = timestampValidBits;
+            MinImageTransferGranularity = minImageTransferGranularity;
         }
-        
+
         /// <summary>
-        /// queueFlags contains flags indicating the capabilities of the queues
-        /// in this queue family.
+        ///     queueFlags contains flags indicating the capabilities of the queues
+        ///     in this queue family.
         /// </summary>
-        public SharpVk.QueueFlags QueueFlags; 
-        
+        public QueueFlags QueueFlags;
+
         /// <summary>
-        /// The unsigned integer count of queues in this queue family.
+        ///     The unsigned integer count of queues in this queue family.
         /// </summary>
-        public uint QueueCount; 
-        
+        public uint QueueCount;
+
         /// <summary>
-        /// The unsigned integer count of meaningful bits in the timestamps
-        /// written via CommandBuffer.WriteTimestamp. The valid range for the
-        /// count is 36..64 bits, or a value of 0, indicating no support for
-        /// timestamps. Bits outside the valid range are guaranteed to be
-        /// zeros.
+        ///     The unsigned integer count of meaningful bits in the timestamps
+        ///     written via CommandBuffer.WriteTimestamp. The valid range for the
+        ///     count is 36..64 bits, or a value of 0, indicating no support for
+        ///     timestamps. Bits outside the valid range are guaranteed to be
+        ///     zeros.
         /// </summary>
-        public uint TimestampValidBits; 
-        
+        public uint TimestampValidBits;
+
         /// <summary>
-        /// The minimum granularity supported for image transfer operations on
-        /// the queues in this queue family.
+        ///     The minimum granularity supported for image transfer operations on
+        ///     the queues in this queue family.
         /// </summary>
-        public SharpVk.Extent3D MinImageTransferGranularity; 
+        public Extent3D MinImageTransferGranularity;
     }
 }

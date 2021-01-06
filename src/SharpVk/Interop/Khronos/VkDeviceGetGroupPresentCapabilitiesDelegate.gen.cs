@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetGroupPresentCapabilitiesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.DeviceGroupPresentCapabilities* deviceGroupPresentCapabilities);
+    public unsafe delegate Result VkDeviceGetGroupPresentCapabilitiesDelegate(Device device, DeviceGroupPresentCapabilities* deviceGroupPresentCapabilities);
 }

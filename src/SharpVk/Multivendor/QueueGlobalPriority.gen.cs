@@ -25,28 +25,23 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum QueueGlobalPriority
     {
         /// <summary>
-        /// 
         /// </summary>
-        Low = 128, 
-        
+        Low = 128,
+
         /// <summary>
-        /// 
         /// </summary>
-        Medium = 256, 
-        
+        Medium = 256,
+
         /// <summary>
-        /// 
         /// </summary>
-        High = 512, 
-        
+        High = 512,
+
         /// <summary>
-        /// 
         /// </summary>
-        Realtime = 1024, 
+        Realtime = 1024
     }
 }

@@ -25,19 +25,17 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specify how commands in the first subpass of a render pass are
-    /// provided.
+    ///     Specify how commands in the first subpass of a render pass are
+    ///     provided.
     /// </summary>
     public enum SubpassContents
     {
         /// <summary>
-        /// 
         /// </summary>
-        Inline = 0, 
-        
+        Inline = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        SecondaryCommandBuffers = 1, 
+        SecondaryCommandBuffers = 1
     }
 }

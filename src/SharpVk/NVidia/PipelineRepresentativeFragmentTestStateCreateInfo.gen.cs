@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineRepresentativeFragmentTestStateCreateInfo
+    public struct PipelineRepresentativeFragmentTestStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool RepresentativeFragmentTestEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineRepresentativeFragmentTestStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PipelineRepresentativeFragmentTestStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineRepresentativeFragmentTestStateCreateInfo;
             pointer->Next = null;
-            pointer->RepresentativeFragmentTestEnable = this.RepresentativeFragmentTestEnable;
+            pointer->RepresentativeFragmentTestEnable = RepresentativeFragmentTestEnable;
         }
     }
 }

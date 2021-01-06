@@ -22,51 +22,49 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DeviceQueueCreateInfo
+    public unsafe struct DeviceQueueCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.DeviceQueueCreateFlags Flags; 
-        
+        public DeviceQueueCreateFlags Flags;
+
         /// <summary>
-        /// An unsigned integer indicating the index of the queue family to
-        /// create on this device. This index corresponds to the index of an
-        /// element of the pQueueFamilyProperties array that was returned by
-        /// fname:vkGetPhysicalDeviceQueueFamilyProperties.
+        ///     An unsigned integer indicating the index of the queue family to
+        ///     create on this device. This index corresponds to the index of an
+        ///     element of the pQueueFamilyProperties array that was returned by
+        ///     fname:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
-        public uint QueueFamilyIndex; 
-        
+        public uint QueueFamilyIndex;
+
         /// <summary>
-        /// An unsigned integer specifying the number of queues to create in
-        /// the queue family indicated by queueFamilyIndex.
+        ///     An unsigned integer specifying the number of queues to create in
+        ///     the queue family indicated by queueFamilyIndex.
         /// </summary>
-        public uint QueueCount; 
-        
+        public uint QueueCount;
+
         /// <summary>
-        /// An array of queueCount normalized floating point values, specifying
-        /// priorities of work that will be submitted to each created queue.
-        /// See Queue Priority for more information.
+        ///     An array of queueCount normalized floating point values, specifying
+        ///     priorities of work that will be submitted to each created queue.
+        ///     See Queue Priority for more information.
         /// </summary>
-        public float* QueuePriorities; 
+        public float* QueuePriorities;
     }
 }

@@ -22,53 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportMemoryFileDescriptorInfo
+    public struct ImportMemoryFileDescriptorInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.ExternalMemoryHandleTypeFlags? HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int FileDescriptor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportMemoryFileDescriptorInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.ImportMemoryFileDescriptorInfo* pointer)
         {
             pointer->SType = StructureType.ImportMemoryFileDescriptorInfo;
             pointer->Next = null;
-            if (this.HandleType != null)
-            {
-                pointer->HandleType = this.HandleType.Value;
-            }
+            if (HandleType != null)
+                pointer->HandleType = HandleType.Value;
             else
-            {
-                pointer->HandleType = default(SharpVk.ExternalMemoryHandleTypeFlags);
-            }
-            pointer->FileDescriptor = this.FileDescriptor;
+                pointer->HandleType = default;
+            pointer->FileDescriptor = FileDescriptor;
         }
     }
 }

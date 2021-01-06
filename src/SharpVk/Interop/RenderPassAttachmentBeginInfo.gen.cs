@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct RenderPassAttachmentBeginInfo
+    public unsafe struct RenderPassAttachmentBeginInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The number of attachments.
+        ///     The number of attachments.
         /// </summary>
-        public uint AttachmentCount; 
-        
+        public uint AttachmentCount;
+
         /// <summary>
-        /// An array of ImageView handles, each of which will be used as the
-        /// corresponding attachment in the render pass instance.
+        ///     An array of ImageView handles, each of which will be used as the
+        ///     corresponding attachment in the render pass instance.
         /// </summary>
-        public SharpVk.Interop.ImageView* Attachments; 
+        public ImageView* Attachments;
     }
 }

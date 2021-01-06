@@ -22,31 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct FenceCreateInfo
+    public unsafe struct FenceCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// flags defines the initial state and behavior of the fence. Bits
-        /// which can be set include: + --
+        ///     flags defines the initial state and behavior of the fence. Bits
+        ///     which can be set include: + --
         /// </summary>
-        public SharpVk.FenceCreateFlags Flags; 
+        public FenceCreateFlags Flags;
     }
 }

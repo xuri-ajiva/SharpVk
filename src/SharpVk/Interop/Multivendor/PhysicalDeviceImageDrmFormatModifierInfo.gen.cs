@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceImageDrmFormatModifierInfo
+    public unsafe struct PhysicalDeviceImageDrmFormatModifierInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong DrmFormatModifier; 
-        
+        public ulong DrmFormatModifier;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SharingMode SharingMode; 
-        
+        public SharingMode SharingMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint QueueFamilyIndexCount; 
-        
+        public uint QueueFamilyIndexCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* QueueFamilyIndices; 
+        public uint* QueueFamilyIndices;
     }
 }

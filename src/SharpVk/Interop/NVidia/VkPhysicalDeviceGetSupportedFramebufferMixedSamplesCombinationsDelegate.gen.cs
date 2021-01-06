@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetSupportedFramebufferMixedSamplesCombinationsDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint* combinationCount, SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination* combinations);
+    public unsafe delegate Result VkPhysicalDeviceGetSupportedFramebufferMixedSamplesCombinationsDelegate(PhysicalDevice physicalDevice, uint* combinationCount, FramebufferMixedSamplesCombination* combinations);
 }

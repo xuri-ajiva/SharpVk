@@ -24,33 +24,33 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct MetalSurfaceCreateInfo
+    public unsafe struct MetalSurfaceCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Multivendor.MetalSurfaceCreateFlags Flags; 
-        
+        public MetalSurfaceCreateFlags Flags;
+
         /// <summary>
-        /// A CAMetalLayer object that represents a renderable surface.
+        ///     A CAMetalLayer object that represents a renderable surface.
         /// </summary>
-        public IntPtr* Layer; 
+        public IntPtr* Layer;
     }
 }

@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageSwapchainCreateInfo
+    public struct ImageSwapchainCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.Swapchain Swapchain
+        public Swapchain Swapchain
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImageSwapchainCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.ImageSwapchainCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageSwapchainCreateInfo;
             pointer->Next = null;
-            pointer->Swapchain = this.Swapchain?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
+            pointer->Swapchain = Swapchain?.Handle ?? default(Interop.Khronos.Swapchain);
         }
     }
 }

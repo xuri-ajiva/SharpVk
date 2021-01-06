@@ -22,47 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying vertex input attribute description.
+    ///     Structure specifying vertex input attribute description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct VertexInputAttributeDescription
+    public struct VertexInputAttributeDescription
     {
         /// <summary>
-        /// 
         /// </summary>
-        public VertexInputAttributeDescription(uint location, uint binding, SharpVk.Format format, uint offset)
+        public VertexInputAttributeDescription(uint location, uint binding, Format format, uint offset)
         {
-            this.Location = location;
-            this.Binding = binding;
-            this.Format = format;
-            this.Offset = offset;
+            Location = location;
+            Binding = binding;
+            Format = format;
+            Offset = offset;
         }
-        
+
         /// <summary>
-        /// The shader binding location number for this attribute.
+        ///     The shader binding location number for this attribute.
         /// </summary>
-        public uint Location; 
-        
+        public uint Location;
+
         /// <summary>
-        /// The binding number which this attribute takes its data from.
+        ///     The binding number which this attribute takes its data from.
         /// </summary>
-        public uint Binding; 
-        
+        public uint Binding;
+
         /// <summary>
-        /// The size and type of the vertex attribute data.
+        ///     The size and type of the vertex attribute data.
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// A byte offset of this attribute relative to the start of an element
-        /// in the vertex input binding.
+        ///     A byte offset of this attribute relative to the start of an element
+        ///     in the vertex input binding.
         /// </summary>
-        public uint Offset; 
+        public uint Offset;
     }
 }

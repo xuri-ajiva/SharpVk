@@ -22,20 +22,19 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
+using SharpVk.Khronos;
 
 namespace SharpVk.Fuchsia
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class InstanceExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Instance handle to extend.
+        ///     The Instance handle to extend.
         /// </param>
         /// <param name="flags">
         /// </param>
@@ -43,50 +42,43 @@ namespace SharpVk.Fuchsia
         /// </param>
         /// <param name="allocator">
         /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateImagePipeSurface(this SharpVk.Instance extendedHandle, uint imagePipeHandle, SharpVk.Fuchsia.ImagePipeSurfaceCreateFlags? flags = default(SharpVk.Fuchsia.ImagePipeSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe Surface CreateImagePipeSurface(this Instance extendedHandle, uint imagePipeHandle, ImagePipeSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo*);
-                void* vkImagePipeSurfaceCreateInfoFUCHSIANextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo>());
+                var result = default(Surface);
+                var commandCache = default(CommandCache);
+                var marshalledCreateInfo = default(Interop.Fuchsia.ImagePipeSurfaceCreateInfo*);
+                var vkImagePipeSurfaceCreateInfoFuchsiaNextPointer = default(void*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                var marshalledSurface = default(Interop.Khronos.Surface);
+                commandCache = extendedHandle.CommandCache;
+                marshalledCreateInfo = (Interop.Fuchsia.ImagePipeSurfaceCreateInfo*)HeapUtil.Allocate<Interop.Fuchsia.ImagePipeSurfaceCreateInfo>();
                 marshalledCreateInfo->SType = StructureType.ImagepipeSurfaceCreateInfo;
-                marshalledCreateInfo->Next = vkImagePipeSurfaceCreateInfoFUCHSIANextPointer;
+                marshalledCreateInfo->Next = vkImagePipeSurfaceCreateInfoFuchsiaNextPointer;
                 if (flags != null)
-                {
                     marshalledCreateInfo->Flags = flags.Value;
-                }
                 else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.Fuchsia.ImagePipeSurfaceCreateFlags);
-                }
+                    marshalledCreateInfo->Flags = default;
                 marshalledCreateInfo->ImagePipeHandle = imagePipeHandle;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.Fuchsia.VkInstanceCreateImagePipeSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateImagePipeSurfaceFUCHSIA;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                var commandDelegate = commandCache.Cache.VkCreateImagePipeSurfaceFuchsia;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(extendedHandle, marshalledSurface);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

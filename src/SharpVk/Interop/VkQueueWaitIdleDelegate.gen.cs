@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkQueueWaitIdleDelegate(SharpVk.Interop.Queue queue);
+    public delegate Result VkQueueWaitIdleDelegate(Queue queue);
 }

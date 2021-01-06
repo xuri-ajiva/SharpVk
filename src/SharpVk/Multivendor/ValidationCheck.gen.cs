@@ -25,18 +25,16 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Specify validation checks to disable.
+    ///     Specify validation checks to disable.
     /// </summary>
     public enum ValidationCheck
     {
         /// <summary>
-        /// 
         /// </summary>
-        All = 0, 
-        
+        All = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Shaders = 1, 
+        Shaders = 1
     }
 }

@@ -22,236 +22,212 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceDescriptorIndexingFeatures
+    public struct PhysicalDeviceDescriptorIndexingFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderInputAttachmentArrayDynamicIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderUniformTexelBufferArrayDynamicIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderStorageTexelBufferArrayDynamicIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderUniformBufferArrayNonUniformIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderSampledImageArrayNonUniformIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderStorageBufferArrayNonUniformIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderStorageImageArrayNonUniformIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderInputAttachmentArrayNonUniformIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderUniformTexelBufferArrayNonUniformIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderStorageTexelBufferArrayNonUniformIndexing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingUniformBufferUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingSampledImageUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingStorageImageUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingStorageBufferUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingUniformTexelBufferUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingStorageTexelBufferUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingUpdateUnusedWhilePending
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingPartiallyBound
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingVariableDescriptorCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool RuntimeDescriptorArray
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceDescriptorIndexingFeaturesVersion;
             pointer->Next = null;
-            pointer->ShaderInputAttachmentArrayDynamicIndexing = this.ShaderInputAttachmentArrayDynamicIndexing;
-            pointer->ShaderUniformTexelBufferArrayDynamicIndexing = this.ShaderUniformTexelBufferArrayDynamicIndexing;
-            pointer->ShaderStorageTexelBufferArrayDynamicIndexing = this.ShaderStorageTexelBufferArrayDynamicIndexing;
-            pointer->ShaderUniformBufferArrayNonUniformIndexing = this.ShaderUniformBufferArrayNonUniformIndexing;
-            pointer->ShaderSampledImageArrayNonUniformIndexing = this.ShaderSampledImageArrayNonUniformIndexing;
-            pointer->ShaderStorageBufferArrayNonUniformIndexing = this.ShaderStorageBufferArrayNonUniformIndexing;
-            pointer->ShaderStorageImageArrayNonUniformIndexing = this.ShaderStorageImageArrayNonUniformIndexing;
-            pointer->ShaderInputAttachmentArrayNonUniformIndexing = this.ShaderInputAttachmentArrayNonUniformIndexing;
-            pointer->ShaderUniformTexelBufferArrayNonUniformIndexing = this.ShaderUniformTexelBufferArrayNonUniformIndexing;
-            pointer->ShaderStorageTexelBufferArrayNonUniformIndexing = this.ShaderStorageTexelBufferArrayNonUniformIndexing;
-            pointer->DescriptorBindingUniformBufferUpdateAfterBind = this.DescriptorBindingUniformBufferUpdateAfterBind;
-            pointer->DescriptorBindingSampledImageUpdateAfterBind = this.DescriptorBindingSampledImageUpdateAfterBind;
-            pointer->DescriptorBindingStorageImageUpdateAfterBind = this.DescriptorBindingStorageImageUpdateAfterBind;
-            pointer->DescriptorBindingStorageBufferUpdateAfterBind = this.DescriptorBindingStorageBufferUpdateAfterBind;
-            pointer->DescriptorBindingUniformTexelBufferUpdateAfterBind = this.DescriptorBindingUniformTexelBufferUpdateAfterBind;
-            pointer->DescriptorBindingStorageTexelBufferUpdateAfterBind = this.DescriptorBindingStorageTexelBufferUpdateAfterBind;
-            pointer->DescriptorBindingUpdateUnusedWhilePending = this.DescriptorBindingUpdateUnusedWhilePending;
-            pointer->DescriptorBindingPartiallyBound = this.DescriptorBindingPartiallyBound;
-            pointer->DescriptorBindingVariableDescriptorCount = this.DescriptorBindingVariableDescriptorCount;
-            pointer->RuntimeDescriptorArray = this.RuntimeDescriptorArray;
+            pointer->ShaderInputAttachmentArrayDynamicIndexing = ShaderInputAttachmentArrayDynamicIndexing;
+            pointer->ShaderUniformTexelBufferArrayDynamicIndexing = ShaderUniformTexelBufferArrayDynamicIndexing;
+            pointer->ShaderStorageTexelBufferArrayDynamicIndexing = ShaderStorageTexelBufferArrayDynamicIndexing;
+            pointer->ShaderUniformBufferArrayNonUniformIndexing = ShaderUniformBufferArrayNonUniformIndexing;
+            pointer->ShaderSampledImageArrayNonUniformIndexing = ShaderSampledImageArrayNonUniformIndexing;
+            pointer->ShaderStorageBufferArrayNonUniformIndexing = ShaderStorageBufferArrayNonUniformIndexing;
+            pointer->ShaderStorageImageArrayNonUniformIndexing = ShaderStorageImageArrayNonUniformIndexing;
+            pointer->ShaderInputAttachmentArrayNonUniformIndexing = ShaderInputAttachmentArrayNonUniformIndexing;
+            pointer->ShaderUniformTexelBufferArrayNonUniformIndexing = ShaderUniformTexelBufferArrayNonUniformIndexing;
+            pointer->ShaderStorageTexelBufferArrayNonUniformIndexing = ShaderStorageTexelBufferArrayNonUniformIndexing;
+            pointer->DescriptorBindingUniformBufferUpdateAfterBind = DescriptorBindingUniformBufferUpdateAfterBind;
+            pointer->DescriptorBindingSampledImageUpdateAfterBind = DescriptorBindingSampledImageUpdateAfterBind;
+            pointer->DescriptorBindingStorageImageUpdateAfterBind = DescriptorBindingStorageImageUpdateAfterBind;
+            pointer->DescriptorBindingStorageBufferUpdateAfterBind = DescriptorBindingStorageBufferUpdateAfterBind;
+            pointer->DescriptorBindingUniformTexelBufferUpdateAfterBind = DescriptorBindingUniformTexelBufferUpdateAfterBind;
+            pointer->DescriptorBindingStorageTexelBufferUpdateAfterBind = DescriptorBindingStorageTexelBufferUpdateAfterBind;
+            pointer->DescriptorBindingUpdateUnusedWhilePending = DescriptorBindingUpdateUnusedWhilePending;
+            pointer->DescriptorBindingPartiallyBound = DescriptorBindingPartiallyBound;
+            pointer->DescriptorBindingVariableDescriptorCount = DescriptorBindingVariableDescriptorCount;
+            pointer->RuntimeDescriptorArray = RuntimeDescriptorArray;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDescriptorIndexingFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
+        internal static unsafe PhysicalDeviceDescriptorIndexingFeatures MarshalFrom(Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
         {
-            PhysicalDeviceDescriptorIndexingFeatures result = default(PhysicalDeviceDescriptorIndexingFeatures);
+            var result = default(PhysicalDeviceDescriptorIndexingFeatures);
             result.ShaderInputAttachmentArrayDynamicIndexing = pointer->ShaderInputAttachmentArrayDynamicIndexing;
             result.ShaderUniformTexelBufferArrayDynamicIndexing = pointer->ShaderUniformTexelBufferArrayDynamicIndexing;
             result.ShaderStorageTexelBufferArrayDynamicIndexing = pointer->ShaderStorageTexelBufferArrayDynamicIndexing;

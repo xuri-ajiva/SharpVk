@@ -25,18 +25,15 @@
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class IntelExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string ShaderIntegerFunctions2 = "VK_INTEL_shader_integer_functions2"; 
-        
+        public const string ShaderIntegerFunctions2 = "VK_INTEL_shader_integer_functions2";
+
         /// <summary>
-        /// 
         /// </summary>
-        public const string PerformanceQuery = "VK_INTEL_performance_query"; 
+        public const string PerformanceQuery = "VK_INTEL_performance_query";
     }
 }

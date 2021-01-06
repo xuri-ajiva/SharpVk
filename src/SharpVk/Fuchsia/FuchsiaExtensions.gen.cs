@@ -25,13 +25,11 @@
 namespace SharpVk.Fuchsia
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class FuchsiaExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string ImagepipeSurface = "VK_FUCHSIA_imagepipe_surface"; 
+        public const string ImagepipeSurface = "VK_FUCHSIA_imagepipe_surface";
     }
 }

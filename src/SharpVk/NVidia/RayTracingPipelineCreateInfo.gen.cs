@@ -22,129 +22,110 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RayTracingPipelineCreateInfo
+    public struct RayTracingPipelineCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineCreateFlags? Flags
+        public PipelineCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineShaderStageCreateInfo[] Stages
+        public PipelineShaderStageCreateInfo[] Stages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.RayTracingShaderGroupCreateInfo[] Groups
+        public RayTracingShaderGroupCreateInfo[] Groups
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxRecursionDepth
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineLayout Layout
+        public PipelineLayout Layout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Pipeline BasePipelineHandle
+        public Pipeline BasePipelineHandle
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int BasePipelineIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.RayTracingPipelineCreateInfo* pointer)
         {
             pointer->SType = StructureType.RayTracingPipelineCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->StageCount = HeapUtil.GetLength(Stages);
+            if (Stages != null)
             {
-                pointer->Flags = default(SharpVk.PipelineCreateFlags);
-            }
-            pointer->StageCount = (uint)(Interop.HeapUtil.GetLength(this.Stages));
-            if (this.Stages != null)
-            {
-                var fieldPointer = (SharpVk.Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Stages.Length); index++)
-                {
-                    this.Stages[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.PipelineShaderStageCreateInfo*)HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>(Stages.Length).ToPointer();
+                for (var index = 0; index < (uint)Stages.Length; index++) Stages[index].MarshalTo(&fieldPointer[index]);
                 pointer->Stages = fieldPointer;
             }
             else
             {
                 pointer->Stages = null;
             }
-            pointer->GroupCount = (uint)(Interop.HeapUtil.GetLength(this.Groups));
-            if (this.Groups != null)
+            pointer->GroupCount = HeapUtil.GetLength(Groups);
+            if (Groups != null)
             {
-                var fieldPointer = (SharpVk.Interop.NVidia.RayTracingShaderGroupCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.NVidia.RayTracingShaderGroupCreateInfo>(this.Groups.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Groups.Length); index++)
-                {
-                    this.Groups[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.NVidia.RayTracingShaderGroupCreateInfo*)HeapUtil.AllocateAndClear<Interop.NVidia.RayTracingShaderGroupCreateInfo>(Groups.Length).ToPointer();
+                for (var index = 0; index < (uint)Groups.Length; index++) Groups[index].MarshalTo(&fieldPointer[index]);
                 pointer->Groups = fieldPointer;
             }
             else
             {
                 pointer->Groups = null;
             }
-            pointer->MaxRecursionDepth = this.MaxRecursionDepth;
-            pointer->Layout = this.Layout?.handle ?? default(SharpVk.Interop.PipelineLayout);
-            pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(SharpVk.Interop.Pipeline);
-            pointer->BasePipelineIndex = this.BasePipelineIndex;
+            pointer->MaxRecursionDepth = MaxRecursionDepth;
+            pointer->Layout = Layout?.Handle ?? default(Interop.PipelineLayout);
+            pointer->BasePipelineHandle = BasePipelineHandle?.Handle ?? default(Interop.Pipeline);
+            pointer->BasePipelineIndex = BasePipelineIndex;
         }
     }
 }

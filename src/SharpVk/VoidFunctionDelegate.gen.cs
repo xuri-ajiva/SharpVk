@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public delegate void VoidFunctionDelegate();
 }

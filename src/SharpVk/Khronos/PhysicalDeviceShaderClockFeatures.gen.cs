@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderClockFeatures
+    public struct PhysicalDeviceShaderClockFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderSubgroupClock
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderDeviceClock
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderClockFeatures;
             pointer->Next = null;
-            pointer->ShaderSubgroupClock = this.ShaderSubgroupClock;
-            pointer->ShaderDeviceClock = this.ShaderDeviceClock;
+            pointer->ShaderSubgroupClock = ShaderSubgroupClock;
+            pointer->ShaderDeviceClock = ShaderDeviceClock;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderClockFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
+        internal static unsafe PhysicalDeviceShaderClockFeatures MarshalFrom(Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
         {
-            PhysicalDeviceShaderClockFeatures result = default(PhysicalDeviceShaderClockFeatures);
+            var result = default(PhysicalDeviceShaderClockFeatures);
             result.ShaderSubgroupClock = pointer->ShaderSubgroupClock;
             result.ShaderDeviceClock = pointer->ShaderDeviceClock;
             return result;

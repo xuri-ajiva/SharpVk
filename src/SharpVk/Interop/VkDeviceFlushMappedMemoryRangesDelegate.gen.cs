@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceFlushMappedMemoryRangesDelegate(SharpVk.Interop.Device device, uint memoryRangeCount, SharpVk.Interop.MappedMemoryRange* memoryRanges);
+    public unsafe delegate Result VkDeviceFlushMappedMemoryRangesDelegate(Device device, uint memoryRangeCount, MappedMemoryRange* memoryRanges);
 }

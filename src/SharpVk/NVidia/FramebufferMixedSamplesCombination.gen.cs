@@ -22,67 +22,65 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Structure specifying a supported sample count combination
+    ///     Structure specifying a supported sample count combination
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct FramebufferMixedSamplesCombination
+    public struct FramebufferMixedSamplesCombination
     {
         /// <summary>
-        /// Specifies the coverage reduction mode and is of type
-        /// VkCoverageReductionModeNV.
+        ///     Specifies the coverage reduction mode and is of type
+        ///     VkCoverageReductionModeNV.
         /// </summary>
-        public SharpVk.NVidia.CoverageReductionMode CoverageReductionMode
+        public CoverageReductionMode CoverageReductionMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Specifies the number of rasterization samples in the supported
-        /// combination.
+        ///     Specifies the number of rasterization samples in the supported
+        ///     combination.
         /// </summary>
-        public SharpVk.SampleCountFlags RasterizationSamples
+        public SampleCountFlags RasterizationSamples
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Specifies the number of samples in the depth stencil attachment in
-        /// the supported combination. A value of 0 indicates the combination
-        /// does not have a depth stencil attachment.
+        ///     Specifies the number of samples in the depth stencil attachment in
+        ///     the supported combination. A value of 0 indicates the combination
+        ///     does not have a depth stencil attachment.
         /// </summary>
-        public SharpVk.SampleCountFlags DepthStencilSamples
+        public SampleCountFlags DepthStencilSamples
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Specifies the number of color samples in a color attachment in the
-        /// supported combination. A value of 0 indicates the combination does
-        /// not have a color attachment.
+        ///     Specifies the number of color samples in a color attachment in the
+        ///     supported combination. A value of 0 indicates the combination does
+        ///     not have a color attachment.
         /// </summary>
-        public SharpVk.SampleCountFlags ColorSamples
+        public SampleCountFlags ColorSamples
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe FramebufferMixedSamplesCombination MarshalFrom(SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination* pointer)
+        internal static unsafe FramebufferMixedSamplesCombination MarshalFrom(Interop.NVidia.FramebufferMixedSamplesCombination* pointer)
         {
-            FramebufferMixedSamplesCombination result = default(FramebufferMixedSamplesCombination);
+            var result = default(FramebufferMixedSamplesCombination);
             result.CoverageReductionMode = pointer->CoverageReductionMode;
             result.RasterizationSamples = pointer->RasterizationSamples;
             result.DepthStencilSamples = pointer->DepthStencilSamples;

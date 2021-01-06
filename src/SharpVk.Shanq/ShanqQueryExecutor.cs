@@ -1,23 +1,23 @@
-﻿using Remotion.Linq;
-using Remotion.Linq.Clauses;
-using SharpVk.Spirv;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Remotion.Linq;
+using Remotion.Linq.Clauses;
+using SharpVk.Spirv;
 
 namespace SharpVk.Shanq
 {
     public class ShanqQueryExecutor
         : IQueryExecutor
     {
+        private readonly string entryPointName;
         private readonly ExecutionModel model;
         private readonly Stream outputStream;
         private readonly IVectorTypeLibrary vectorLibrary;
-        private readonly string entryPointName;
 
         public ShanqQueryExecutor(ExecutionModel model, Stream outputStream, IVectorTypeLibrary vectorLibrary, string entryPointName)
         {
@@ -33,15 +33,15 @@ namespace SharpVk.Shanq
 
             file.AddHeaderStatement(Op.OpCapability, Capability.Shader);
             file.AddHeaderStatement(file.GetNextResultId(), Op.OpExtInstImport, "GLSL.std.450");
-            file.AddHeaderStatement(Op.OpMemoryModel, AddressingModel.Logical, MemoryModel.GLSL450);
+            file.AddHeaderStatement(Op.OpMemoryModel, AddressingModel.Logical, MemoryModel.Glsl450);
 
-            var expressionVisitor = new ShanqExpressionVisitor(file, this.vectorLibrary);
+            var expressionVisitor = new ShanqExpressionVisitor(file, vectorLibrary);
 
-            ResultId voidId = expressionVisitor.Visit(Expression.Constant(typeof(void)));
-            ResultId actionId = expressionVisitor.Visit(Expression.Constant(typeof(Action)));
+            var voidId = expressionVisitor.Visit(Expression.Constant(typeof(void)));
+            var actionId = expressionVisitor.Visit(Expression.Constant(typeof(Action)));
 
-            ResultId entryPointerFunctionId = file.GetNextResultId();
-            ResultId entryPointerLabelId = file.GetNextResultId();
+            var entryPointerFunctionId = file.GetNextResultId();
+            var entryPointerLabelId = file.GetNextResultId();
 
             file.AddFunctionStatement(entryPointerFunctionId, Op.OpFunction, voidId, FunctionControl.None, actionId);
             file.AddFunctionStatement(entryPointerLabelId, Op.OpLabel);
@@ -52,7 +52,7 @@ namespace SharpVk.Shanq
 
             var executionModes = new List<ExecutionMode>();
 
-            bool hasBuiltInOutput = false;
+            var hasBuiltInOutput = false;
 
             var resultType = typeof(T);
 
@@ -61,8 +61,8 @@ namespace SharpVk.Shanq
                 if (field.GetCustomAttribute<LocationAttribute>() != null)
                 {
                     var pointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
-                    ResultId outputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
-                    ResultId outputVariableId = file.GetNextResultId();
+                    var outputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                    var outputVariableId = file.GetNextResultId();
 
                     file.AddGlobalStatement(outputVariableId, Op.OpVariable, outputPointerId, StorageClass.Output);
 
@@ -73,14 +73,14 @@ namespace SharpVk.Shanq
 
                 hasBuiltInOutput |= builtInAttr != null;
 
-                if (builtInAttr?.BuiltIn == BuiltIn.FragDepth)
-                {
-                    executionModes.Add(ExecutionMode.DepthReplacing);
-                }
+                if (builtInAttr?.BuiltIn == BuiltIn.FragDepth) executionModes.Add(ExecutionMode.DepthReplacing);
             }
 
-            var fromClauses = new FromClauseBase[] { queryModel.MainFromClause }
-                                    .Concat(queryModel.BodyClauses.OfType<AdditionalFromClause>());
+            var fromClauses = new FromClauseBase[]
+                {
+                    queryModel.MainFromClause
+                }
+                .Concat(queryModel.BodyClauses.OfType<AdditionalFromClause>());
 
             var inputTypes = new List<Type>();
             var bindingTypes = new List<(Type, int, int)>();
@@ -105,12 +105,11 @@ namespace SharpVk.Shanq
             }
 
             foreach (var field in inputTypes.SelectMany(type => type.GetFields()))
-            {
                 if (field.GetCustomAttribute<LocationAttribute>() != null || field.GetCustomAttribute<BuiltInAttribute>() != null)
                 {
                     var pointerType = typeof(InputPointer<>).MakeGenericType(field.FieldType);
-                    ResultId inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
-                    ResultId inputVariableId = file.GetNextResultId();
+                    var inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                    var inputVariableId = file.GetNextResultId();
 
                     file.AddGlobalStatement(inputVariableId, Op.OpVariable, inputPointerId, StorageClass.Input);
 
@@ -118,27 +117,26 @@ namespace SharpVk.Shanq
 
                     expressionVisitor.AddInputMapping(field, inputVariableId);
                 }
-            }
 
             foreach (var (type, binding, descriptorSet) in bindingTypes)
             {
-                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
+                var structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
                 var pointerType = typeof(UniformPointer<>).MakeGenericType(type);
-                ResultId uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
-                ResultId uniformVariableId = file.GetNextResultId();
+                var uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                var uniformVariableId = file.GetNextResultId();
 
                 file.AddGlobalStatement(uniformVariableId, Op.OpVariable, uniformPointerId, StorageClass.Uniform);
                 file.AddAnnotationStatement(Op.OpDecorate, structureTypeId, Decoration.Block);
                 file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.DescriptorSet, descriptorSet);
                 file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.Binding, binding);
 
-                int fieldIndex = 0;
+                var fieldIndex = 0;
 
                 foreach (var field in type.GetFieldsByOffset())
                 {
                     expressionVisitor.AddBinding(field, Tuple.Create(uniformVariableId, fieldIndex));
 
-                    if (this.vectorLibrary.IsMatrixType(field.FieldType))
+                    if (vectorLibrary.IsMatrixType(field.FieldType))
                     {
                         //HACK Should adapt to different matrix formats
                         file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, fieldIndex, Decoration.ColMajor);
@@ -154,10 +152,10 @@ namespace SharpVk.Shanq
             {
                 var type = clause.ItemType;
 
-                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
+                var structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
                 var pointerType = typeof(UniformConstantPointer<>).MakeGenericType(type);
-                ResultId uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
-                ResultId uniformVariableId = file.GetNextResultId();
+                var uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                var uniformVariableId = file.GetNextResultId();
 
                 file.AddGlobalStatement(uniformVariableId, Op.OpVariable, uniformPointerId, StorageClass.UniformConstant);
                 file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.DescriptorSet, descriptorSet);
@@ -170,21 +168,30 @@ namespace SharpVk.Shanq
 
             if (hasBuiltInOutput)
             {
-                var builtInFields = resultType.GetFieldsByOffset().Select(x => new { Field = x, x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn })
-                                                            .Where(x => x.BuiltIn != null);
+                var builtInFields = resultType.GetFieldsByOffset().Select(x => new
+                    {
+                        Field = x,
+                        x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn
+                    })
+                    .Where(x => x.BuiltIn != null);
 
                 var structureType = GetTupleType(builtInFields.Count()).MakeGenericType(builtInFields.Select(x => x.Field.FieldType).ToArray());
-                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(structureType));
+                var structureTypeId = expressionVisitor.Visit(Expression.Constant(structureType));
 
                 var structurePointerType = typeof(OutputPointer<>).MakeGenericType(structureType);
-                ResultId structurePointerId = expressionVisitor.Visit(Expression.Constant(structurePointerType));
-                ResultId outputVariableId = file.GetNextResultId();
+                var structurePointerId = expressionVisitor.Visit(Expression.Constant(structurePointerType));
+                var outputVariableId = file.GetNextResultId();
 
                 file.AddGlobalStatement(outputVariableId, Op.OpVariable, structurePointerId, StorageClass.Output);
 
                 file.AddAnnotationStatement(Op.OpDecorate, structureTypeId, Decoration.Block);
 
-                foreach (var field in builtInFields.Select((x, y) => new { Index = y, x.Field, x.BuiltIn.Value }))
+                foreach (var field in builtInFields.Select((x, y) => new
+                {
+                    Index = y,
+                    x.Field,
+                    x.BuiltIn.Value
+                }))
                 {
                     file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, field.Index, Decoration.BuiltIn, field.Value);
                     builtinList.Add(field.Field, Tuple.Create(structurePointerId, outputVariableId, field.Index));
@@ -193,18 +200,14 @@ namespace SharpVk.Shanq
                 entryPointParameters.Add(outputVariableId);
             }
 
-            file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, this.entryPointName }.Concat(entryPointParameters.Cast<object>()).ToArray());
-            if (this.model == ExecutionModel.Fragment)
+            file.AddHeaderStatement(Op.OpEntryPoint, new object[]
             {
-                executionModes.Add(ExecutionMode.OriginUpperLeft);
-            }
-            foreach (var mode in executionModes)
-            {
-                file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, mode);
-            }
+                model, entryPointerFunctionId, entryPointName
+            }.Concat(entryPointParameters.Cast<object>()).ToArray());
+            if (model == ExecutionModel.Fragment) executionModes.Add(ExecutionMode.OriginUpperLeft);
+            foreach (var mode in executionModes) file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, mode);
 
             foreach (var mapping in fieldMapping)
-            {
                 if (mapping.Key.GetCustomAttribute<LocationAttribute>() != null)
                 {
                     var attribute = mapping.Key.GetCustomAttribute<LocationAttribute>();
@@ -217,7 +220,6 @@ namespace SharpVk.Shanq
 
                     file.AddAnnotationStatement(Op.OpDecorate, mapping.Value, Decoration.BuiltIn, attribute.BuiltIn);
                 }
-            }
 
             var selector = queryModel.SelectClause.Selector;
 
@@ -228,7 +230,7 @@ namespace SharpVk.Shanq
                     {
                         var fieldValue = field.GetValue(((ConstantExpression)queryModel.SelectClause.Selector).Value);
 
-                        ResultId valueId = expressionVisitor.Visit(Expression.Constant(fieldValue, field.FieldType));
+                        var valueId = expressionVisitor.Visit(Expression.Constant(fieldValue, field.FieldType));
 
                         file.AddFunctionStatement(Op.OpStore, fieldMapping[field], valueId);
                     }
@@ -240,7 +242,7 @@ namespace SharpVk.Shanq
                     {
                         var fieldValue = ((MemberAssignment)binding).Expression;
 
-                        ResultId valueId = expressionVisitor.Visit(fieldValue);
+                        var valueId = expressionVisitor.Visit(fieldValue);
 
                         var field = (FieldInfo)binding.Member;
 
@@ -250,11 +252,11 @@ namespace SharpVk.Shanq
                         }
                         else if (builtinList.ContainsKey(field))
                         {
-                            ResultId constantIndex = expressionVisitor.Visit(Expression.Constant(builtinList[field].Item3));
-                            ResultId fieldId = file.GetNextResultId();
+                            var constantIndex = expressionVisitor.Visit(Expression.Constant(builtinList[field].Item3));
+                            var fieldId = file.GetNextResultId();
 
                             var fieldPointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
-                            ResultId fieldPointerTypeId = expressionVisitor.Visit(Expression.Constant(fieldPointerType));
+                            var fieldPointerTypeId = expressionVisitor.Visit(Expression.Constant(fieldPointerType));
 
                             file.AddFunctionStatement(fieldId, Op.OpAccessChain, fieldPointerTypeId, builtinList[field].Item2, constantIndex);
                             file.AddFunctionStatement(Op.OpStore, fieldId, valueId);
@@ -268,18 +270,25 @@ namespace SharpVk.Shanq
             file.AddFunctionStatement(Op.OpReturn);
             file.AddFunctionStatement(Op.OpFunctionEnd);
 
-            int bound = file.Entries.Select(x => x.ResultId)
-                                        .Where(x => x.HasValue)
-                                        .Max(x => x.Value.Id) + 1;
+            var bound = file.Entries.Select(x => x.ResultId)
+                .Where(x => x.HasValue)
+                .Max(x => x.Value.Id) + 1;
 
-            var sink = new BinarySink(this.outputStream, bound);
+            var sink = new BinarySink(outputStream, bound);
 
-            foreach (var entry in file.Entries)
-            {
-                sink.AddStatement(entry.ResultId, entry.Statement);
-            }
+            foreach (var entry in file.Entries) sink.AddStatement(entry.ResultId, entry.Statement);
 
             return Enumerable.Empty<T>();
+        }
+
+        public T ExecuteScalar<T>(QueryModel queryModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ExecuteSingle<T>(QueryModel queryModel, bool returnDefaultWhenEmpty)
+        {
+            throw new NotImplementedException();
         }
 
         private static Type GetTupleType(int count)
@@ -305,16 +314,6 @@ namespace SharpVk.Shanq
                 default:
                     throw new NotSupportedException();
             }
-        }
-
-        public T ExecuteScalar<T>(QueryModel queryModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public T ExecuteSingle<T>(QueryModel queryModel, bool returnDefaultWhenEmpty)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkRenderPassDestroyDelegate(SharpVk.Interop.Device device, SharpVk.Interop.RenderPass renderPass, SharpVk.Interop.AllocationCallbacks* allocator);
+    public unsafe delegate void VkRenderPassDestroyDelegate(Device device, RenderPass renderPass, AllocationCallbacks* allocator);
 }

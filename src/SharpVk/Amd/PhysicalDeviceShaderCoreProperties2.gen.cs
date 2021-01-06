@@ -22,43 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderCoreProperties2
+    public struct PhysicalDeviceShaderCoreProperties2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Amd.ShaderCorePropertiesFlags ShaderCoreFeatures
+        public ShaderCorePropertiesFlags ShaderCoreFeatures
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ActiveComputeUnitCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderCoreProperties2 MarshalFrom(SharpVk.Interop.Amd.PhysicalDeviceShaderCoreProperties2* pointer)
+        internal static unsafe PhysicalDeviceShaderCoreProperties2 MarshalFrom(Interop.Amd.PhysicalDeviceShaderCoreProperties2* pointer)
         {
-            PhysicalDeviceShaderCoreProperties2 result = default(PhysicalDeviceShaderCoreProperties2);
+            var result = default(PhysicalDeviceShaderCoreProperties2);
             result.ShaderCoreFeatures = pointer->ShaderCoreFeatures;
             result.ActiveComputeUnitCount = pointer->ActiveComputeUnitCount;
             return result;

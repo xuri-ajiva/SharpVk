@@ -24,120 +24,120 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying physical device properties.
+    ///     Structure specifying physical device properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceProperties
+    public struct PhysicalDeviceProperties
     {
         /// <summary>
-        /// The version of Vulkan supported by the device, encoded as described
-        /// in the API Version Numbers and Semantics section.
+        ///     The version of Vulkan supported by the device, encoded as described
+        ///     in the API Version Numbers and Semantics section.
         /// </summary>
         public Version ApiVersion
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The vendor-specified version of the driver.
+        ///     The vendor-specified version of the driver.
         /// </summary>
         public Version DriverVersion
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A unique identifier for the _vendor_ (see below) of the physical
-        /// device.
+        ///     A unique identifier for the _vendor_ (see below) of the physical
+        ///     device.
         /// </summary>
-        public uint VendorID
+        public uint VendorId
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A unique identifier for the physical device among devices available
-        /// from the vendor.
+        ///     A unique identifier for the physical device among devices available
+        ///     from the vendor.
         /// </summary>
-        public uint DeviceID
+        public uint DeviceId
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A PhysicalDeviceType specifying the type of device.
+        ///     A PhysicalDeviceType specifying the type of device.
         /// </summary>
-        public SharpVk.PhysicalDeviceType DeviceType
+        public PhysicalDeviceType DeviceType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A string containing the name of the device.
+        ///     A string containing the name of the device.
         /// </summary>
         public string DeviceName
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of size VK_UUID_SIZE, containing 8-bit values that
-        /// represent a universally unique identifier for the device.
+        ///     An array of size VK_UUID_SIZE, containing 8-bit values that
+        ///     represent a universally unique identifier for the device.
         /// </summary>
-        public Guid PipelineCacheUUID
+        public Guid PipelineCacheUuid
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The PhysicalDeviceLimits structure which specifies device-specific
-        /// limits of the physical device. See Limits for details.
+        ///     The PhysicalDeviceLimits structure which specifies device-specific
+        ///     limits of the physical device. See Limits for details.
         /// </summary>
-        public SharpVk.PhysicalDeviceLimits Limits
+        public PhysicalDeviceLimits Limits
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The PhysicalDeviceSparseProperties structure which specifies
-        /// various sparse related properties of the physical device. See
-        /// Sparse Properties for details.
+        ///     The PhysicalDeviceSparseProperties structure which specifies
+        ///     various sparse related properties of the physical device. See
+        ///     Sparse Properties for details.
         /// </summary>
-        public SharpVk.PhysicalDeviceSparseProperties SparseProperties
+        public PhysicalDeviceSparseProperties SparseProperties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceProperties* pointer)
+        internal static unsafe PhysicalDeviceProperties MarshalFrom(Interop.PhysicalDeviceProperties* pointer)
         {
-            PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
-            result.ApiVersion = (Version)(pointer->ApiVersion);
-            result.DriverVersion = (Version)(pointer->DriverVersion);
-            result.VendorID = pointer->VendorID;
-            result.DeviceID = pointer->DeviceID;
+            var result = default(PhysicalDeviceProperties);
+            result.ApiVersion = pointer->ApiVersion;
+            result.DriverVersion = pointer->DriverVersion;
+            result.VendorId = pointer->VendorID;
+            result.DeviceId = pointer->DeviceID;
             result.DeviceType = pointer->DeviceType;
-            result.DeviceName = Interop.HeapUtil.MarshalStringFrom(pointer->DeviceName, Constants.MaxPhysicalDeviceNameSize, true);
-            result.PipelineCacheUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->PipelineCacheUUID, Constants.UuidSize));
-            result.Limits = SharpVk.PhysicalDeviceLimits.MarshalFrom(&pointer->Limits);
-            result.SparseProperties = SharpVk.PhysicalDeviceSparseProperties.MarshalFrom(&pointer->SparseProperties);
+            result.DeviceName = HeapUtil.MarshalStringFrom(pointer->DeviceName, Constants.MaxPhysicalDeviceNameSize, true);
+            result.PipelineCacheUuid = new(HeapUtil.MarshalFrom(pointer->PipelineCacheUUID, Constants.UuidSize));
+            result.Limits = PhysicalDeviceLimits.MarshalFrom(&pointer->Limits);
+            result.SparseProperties = PhysicalDeviceSparseProperties.MarshalFrom(&pointer->SparseProperties);
             return result;
         }
     }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceAcquireProfilingLockDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.AcquireProfilingLockInfo* info);
+    public unsafe delegate Result VkDeviceAcquireProfilingLockDelegate(Device device, AcquireProfilingLockInfo* info);
 }

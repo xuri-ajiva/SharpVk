@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderImageFootprintFeatures
+    public struct PhysicalDeviceShaderImageFootprintFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ImageFootprint
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderImageFootprintFeatures;
             pointer->Next = null;
-            pointer->ImageFootprint = this.ImageFootprint;
+            pointer->ImageFootprint = ImageFootprint;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderImageFootprintFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures* pointer)
+        internal static unsafe PhysicalDeviceShaderImageFootprintFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures* pointer)
         {
-            PhysicalDeviceShaderImageFootprintFeatures result = default(PhysicalDeviceShaderImageFootprintFeatures);
+            var result = default(PhysicalDeviceShaderImageFootprintFeatures);
             result.ImageFootprint = pointer->ImageFootprint;
             return result;
         }

@@ -4,8 +4,8 @@ namespace SharpVk.Emit
 {
     public class MemberInitBuilder
     {
-        private IndentedTextWriter writer;
-        private bool hasFirstBinding = false;
+        private bool hasFirstBinding;
+        private readonly IndentedTextWriter writer;
 
         public MemberInitBuilder(IndentedTextWriter writer)
         {
@@ -14,19 +14,19 @@ namespace SharpVk.Emit
 
         public void EmitMember(string memberName, Action<ExpressionBuilder> expression)
         {
-            if (this.hasFirstBinding)
+            if (hasFirstBinding)
             {
-                this.writer.WriteLine(",");
+                writer.WriteLine(",");
             }
             else
             {
-                this.writer.WriteLine();
+                writer.WriteLine();
 
-                this.hasFirstBinding = true;
+                hasFirstBinding = true;
             }
 
-            this.writer.Write($"{memberName} = ");
-            expression(new ExpressionBuilder(this.writer.GetSubWriter()));
+            writer.Write($"{memberName} = ");
+            expression(new ExpressionBuilder(writer.GetSubWriter()));
         }
     }
 }

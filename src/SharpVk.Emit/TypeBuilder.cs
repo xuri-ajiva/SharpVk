@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Text;
 
 namespace SharpVk.Emit
@@ -11,7 +9,7 @@ namespace SharpVk.Emit
     {
         private readonly string name;
 
-        private bool hasFirstMember = false;
+        private bool hasFirstMember;
 
         public TypeBuilder(IndentedTextWriter writer, string name)
             : base(writer)
@@ -20,183 +18,165 @@ namespace SharpVk.Emit
         }
 
         public void EmitField(string type,
-                                string name,
-                                AccessModifier accessModifier = AccessModifier.Private,
-                                MemberModifier methodModifers = MemberModifier.None,
-                                Action<ExpressionBuilder> initialiser = null,
-                                int? fixedLength = null,
-                                IEnumerable<string> summary = null,
-                                Action<DocBuilder> docs = null,
-                                IEnumerable<string> attributes = null)
+            string name,
+            AccessModifier accessModifier = AccessModifier.Private,
+            MemberModifier methodModifers = MemberModifier.None,
+            Action<ExpressionBuilder> initialiser = null,
+            int? fixedLength = null,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null,
+            IEnumerable<string> attributes = null)
         {
-            this.EmitMemberSpacing();
+            EmitMemberSpacing();
 
-            this.EmitMemberComments(accessModifier, summary, docs);
+            EmitMemberComments(accessModifier, summary, docs);
 
             if (attributes != null)
-            {
                 foreach (var attributeName in attributes)
-                {
-                    this.writer.WriteLine($"[{attributeName}]");
-                }
-            }
+                    Writer.WriteLine($"[{attributeName}]");
 
-            string fixedLengthSuffix = fixedLength.HasValue ? $"[{fixedLength.Value}]" : "";
+            var fixedLengthSuffix = fixedLength.HasValue ? $"[{fixedLength.Value}]" : "";
 
-            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}{fixedLengthSuffix}");
+            Writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}{fixedLengthSuffix}");
             if (initialiser != null)
             {
-                writer.Write(" = ");
-                initialiser(new ExpressionBuilder(this.writer.GetSubWriter()));
+                Writer.Write(" = ");
+                initialiser(new ExpressionBuilder(Writer.GetSubWriter()));
             }
-            this.writer.WriteLine("; ");
+            Writer.WriteLine("; ");
         }
 
         public void EmitConstructor(Action<CodeBlockBuilder> methodBody,
-                                    Action<ParameterBuilder> parameters,
-                                    AccessModifier accessModifier = AccessModifier.Private,
-                                    MemberModifier methodModifers = MemberModifier.None,
-                                    IEnumerable<Action<ExpressionBuilder>> baseArguments = null,
-                                    IEnumerable<string> summary = null,
-                                    Action<DocBuilder> docs = null,
-                                    IEnumerable<string> attributes = null)
+            Action<ParameterBuilder> parameters,
+            AccessModifier accessModifier = AccessModifier.Private,
+            MemberModifier methodModifers = MemberModifier.None,
+            IEnumerable<Action<ExpressionBuilder>> baseArguments = null,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null,
+            IEnumerable<string> attributes = null)
         {
-            this.EmitMemberSpacing();
+            EmitMemberSpacing();
 
-            this.EmitMemberComments(accessModifier, summary, docs);
+            EmitMemberComments(accessModifier, summary, docs);
 
             if (attributes != null)
-            {
                 foreach (var attributeName in attributes)
-                {
-                    this.writer.WriteLine($"[{attributeName}]");
-                }
-            }
+                    Writer.WriteLine($"[{attributeName}]");
 
-            string parameterList = parameters != null
-                                    ? ParameterBuilder.Apply(parameters)
-                                    : "";
+            var parameterList = parameters != null
+                ? ParameterBuilder.Apply(parameters)
+                : "";
 
-            this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{this.name}({parameterList})");
+            Writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{name}({parameterList})");
 
             if (baseArguments != null)
             {
-                this.writer.IncreaseIndent();
-                this.writer.Write(": base(");
-                ExpressionBuilder.EmitArguments(this.writer, baseArguments);
-                this.writer.WriteLine(")");
-                this.writer.DecreaseIndent();
+                Writer.IncreaseIndent();
+                Writer.Write(": base(");
+                ExpressionBuilder.EmitArguments(Writer, baseArguments);
+                Writer.WriteLine(")");
+                Writer.DecreaseIndent();
             }
 
-            using (var bodyEmitter = new CodeBlockBuilder(this.writer.GetSubWriter()))
+            using (var bodyEmitter = new CodeBlockBuilder(Writer.GetSubWriter()))
             {
                 methodBody(bodyEmitter);
             }
         }
 
         public void EmitMethod(string returnType,
-                                string name,
-                                Action<CodeBlockBuilder> methodBody,
-                                Action<ParameterBuilder> parameters,
-                                AccessModifier accessModifier = AccessModifier.Private,
-                                MemberModifier methodModifers = MemberModifier.None,
-                                IEnumerable<string> summary = null,
-                                Action<DocBuilder> docs = null,
-                                IEnumerable<string> attributes = null)
+            string name,
+            Action<CodeBlockBuilder> methodBody,
+            Action<ParameterBuilder> parameters,
+            AccessModifier accessModifier = AccessModifier.Private,
+            MemberModifier methodModifers = MemberModifier.None,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null,
+            IEnumerable<string> attributes = null)
         {
-            this.EmitMemberSpacing();
+            EmitMemberSpacing();
 
-            this.EmitMemberComments(accessModifier, summary, docs);
+            EmitMemberComments(accessModifier, summary, docs);
 
             if (attributes != null)
-            {
                 foreach (var attributeName in attributes)
-                {
-                    this.writer.WriteLine($"[{attributeName}]");
-                }
-            }
+                    Writer.WriteLine($"[{attributeName}]");
 
-            string parameterList = parameters != null
-                                    ? ParameterBuilder.Apply(parameters)
-                                    : "";
+            var parameterList = parameters != null
+                ? ParameterBuilder.Apply(parameters)
+                : "";
 
-            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{returnType} {name}({parameterList})");
+            Writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{returnType} {name}({parameterList})");
 
             if (methodBody == null)
             {
-                this.writer.WriteLine(";");
+                Writer.WriteLine(";");
             }
             else
             {
-                this.writer.WriteLine();
+                Writer.WriteLine();
 
-                using (var bodyEmitter = new CodeBlockBuilder(this.writer.GetSubWriter()))
+                using (var bodyEmitter = new CodeBlockBuilder(Writer.GetSubWriter()))
                 {
                     methodBody(bodyEmitter);
                 }
             }
         }
-        
+
         public void EmitProperty(string type,
-                                    string name,
-                                    AccessModifier accessModifier = AccessModifier.Private,
-                                    MemberModifier methodModifers = MemberModifier.None,
-                                    AccessModifier? getter = null,
-                                    AccessModifier? setter = null,
-                                    IEnumerable<string> summary = null,
-                                    Action<DocBuilder> docs = null)
+            string name,
+            AccessModifier accessModifier = AccessModifier.Private,
+            MemberModifier methodModifers = MemberModifier.None,
+            AccessModifier? getter = null,
+            AccessModifier? setter = null,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null)
         {
-            this.EmitMemberSpacing();
+            EmitMemberSpacing();
 
-            this.EmitMemberComments(accessModifier, summary, docs);
+            EmitMemberComments(accessModifier, summary, docs);
 
-            this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
-            this.writer.WriteLine("{");
-            this.writer.IncreaseIndent();
+            Writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
+            Writer.WriteLine("{");
+            Writer.IncreaseIndent();
 
             if (getter != null)
             {
-                if (getter.HasValue && getter.Value != accessModifier)
-                {
-                    this.writer.Write(getter.Value.Emit() + " ");
-                }
-                this.writer.WriteLine("get;");
+                if (getter.HasValue && getter.Value != accessModifier) Writer.Write(getter.Value.Emit() + " ");
+                Writer.WriteLine("get;");
             }
 
             if (setter != null)
             {
-                if (setter.HasValue && setter.Value != accessModifier)
-                {
-                    this.writer.Write(setter.Value.Emit() + " ");
-                }
-                this.writer.WriteLine("set;");
+                if (setter.HasValue && setter.Value != accessModifier) Writer.Write(setter.Value.Emit() + " ");
+                Writer.WriteLine("set;");
             }
 
-            this.writer.DecreaseIndent();
-            this.writer.WriteLine("}");
+            Writer.DecreaseIndent();
+            Writer.WriteLine("}");
         }
 
         public void EmitProperty(string type,
-                                    string name,
-                                    AccessModifier accessModifier = AccessModifier.Private,
-                                    MemberModifier methodModifers = MemberModifier.None,
-                                    Action<CodeBlockBuilder> getter = null,
-                                    Action<CodeBlockBuilder> setter = null,
-                                    IEnumerable<string> summary = null,
-                                    Action<DocBuilder> docs = null)
+            string name,
+            AccessModifier accessModifier = AccessModifier.Private,
+            MemberModifier methodModifers = MemberModifier.None,
+            Action<CodeBlockBuilder> getter = null,
+            Action<CodeBlockBuilder> setter = null,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null)
         {
-            this.EmitMemberSpacing();
+            EmitMemberSpacing();
 
-            this.EmitMemberComments(accessModifier, summary, docs);
+            EmitMemberComments(accessModifier, summary, docs);
 
-            this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
-            this.writer.WriteLine("{");
-            this.writer.IncreaseIndent();
+            Writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
+            Writer.WriteLine("{");
+            Writer.IncreaseIndent();
 
             if (getter != null)
             {
-                this.writer.WriteLine("get");
-                using (var getBuilder = new CodeBlockBuilder(this.writer))
+                Writer.WriteLine("get");
+                using (var getBuilder = new CodeBlockBuilder(Writer))
                 {
                     getter(getBuilder);
                 }
@@ -204,39 +184,39 @@ namespace SharpVk.Emit
 
             if (setter != null)
             {
-                this.writer.WriteLine("set");
-                using (var setBuilder = new CodeBlockBuilder(this.writer))
+                Writer.WriteLine("set");
+                using (var setBuilder = new CodeBlockBuilder(Writer))
                 {
                     setter(setBuilder);
                 }
             }
 
-            this.writer.DecreaseIndent();
-            this.writer.WriteLine("}");
+            Writer.DecreaseIndent();
+            Writer.WriteLine("}");
         }
 
         public void EmitProperty(string type,
-                                    string name,
-                                    Action<ExpressionBuilder> getter,
-                                    AccessModifier accessModifier = AccessModifier.Private,
-                                    MemberModifier methodModifers = MemberModifier.None,
-                                    IEnumerable<string> summary = null,
-                                    Action<DocBuilder> docs = null)
+            string name,
+            Action<ExpressionBuilder> getter,
+            AccessModifier accessModifier = AccessModifier.Private,
+            MemberModifier methodModifers = MemberModifier.None,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null)
         {
-            this.EmitMemberSpacing();
+            EmitMemberSpacing();
 
-            this.EmitMemberComments(accessModifier, summary, docs);
+            EmitMemberComments(accessModifier, summary, docs);
 
-            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name} => ");
-            getter(new ExpressionBuilder(this.writer.GetSubWriter()));
-            this.writer.WriteLine(";");
+            Writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name} => ");
+            getter(new ExpressionBuilder(Writer.GetSubWriter()));
+            Writer.WriteLine(";");
         }
 
         private void EmitMemberComments(AccessModifier accessModifier, IEnumerable<string> summary, Action<DocBuilder> docs)
         {
             if (accessModifier == AccessModifier.Public || summary != null || docs != null)
             {
-                var docBuilder = new DocBuilder(this.writer.GetSubWriter(), summary);
+                var docBuilder = new DocBuilder(Writer.GetSubWriter(), summary);
 
                 docs?.Invoke(docBuilder);
             }
@@ -247,26 +227,18 @@ namespace SharpVk.Emit
             var builder = new StringBuilder();
 
             foreach (MemberModifier value in Enum.GetValues(typeof(MemberModifier)))
-            {
                 if (value != MemberModifier.None && modifiers.HasFlag(value))
-                {
                     builder.Append(value.ToString().ToLowerInvariant() + " ");
-                }
-            }
 
             return builder.ToString();
         }
 
         private void EmitMemberSpacing()
         {
-            if (this.hasFirstMember)
-            {
-                this.writer.WriteLine();
-            }
+            if (hasFirstMember)
+                Writer.WriteLine();
             else
-            {
-                this.hasFirstMember = true;
-            }
+                hasFirstMember = true;
         }
     }
 }

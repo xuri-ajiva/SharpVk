@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceAcquireNextImage2Delegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.AcquireNextImageInfo* acquireInfo, uint* imageIndex);
+    public unsafe delegate Result VkDeviceAcquireNextImage2Delegate(Device device, AcquireNextImageInfo* acquireInfo, uint* imageIndex);
 }

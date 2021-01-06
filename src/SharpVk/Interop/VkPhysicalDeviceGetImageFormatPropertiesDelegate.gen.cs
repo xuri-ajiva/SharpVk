@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetImageFormatPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags flags, SharpVk.ImageFormatProperties* imageFormatProperties);
+    public unsafe delegate Result VkPhysicalDeviceGetImageFormatPropertiesDelegate(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ImageFormatProperties* imageFormatProperties);
 }

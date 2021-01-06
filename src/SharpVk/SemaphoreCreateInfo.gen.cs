@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created semaphore.
+    ///     Structure specifying parameters of a newly created semaphore.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SemaphoreCreateInfo
+    public struct SemaphoreCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.SemaphoreCreateFlags? Flags
+        public SemaphoreCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SemaphoreCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SemaphoreCreateInfo* pointer)
         {
             pointer->SType = StructureType.SemaphoreCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.SemaphoreCreateFlags);
-            }
+                pointer->Flags = default;
         }
     }
 }

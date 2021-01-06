@@ -22,45 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMemoryBudgetProperties
+    public struct PhysicalDeviceMemoryBudgetProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong[] HeapBudget
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong[] HeapUsage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMemoryBudgetProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryBudgetProperties* pointer)
+        internal static unsafe PhysicalDeviceMemoryBudgetProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceMemoryBudgetProperties* pointer)
         {
-            PhysicalDeviceMemoryBudgetProperties result = default(PhysicalDeviceMemoryBudgetProperties);
-            result.HeapBudget = Interop.HeapUtil.MarshalFrom(pointer->HeapBudget, Constants.MaxMemoryHeaps);
-            result.HeapUsage = Interop.HeapUtil.MarshalFrom(pointer->HeapUsage, Constants.MaxMemoryHeaps);
+            var result = default(PhysicalDeviceMemoryBudgetProperties);
+            result.HeapBudget = HeapUtil.MarshalFrom(pointer->HeapBudget, Constants.MaxMemoryHeaps);
+            result.HeapUsage = HeapUtil.MarshalFrom(pointer->HeapUsage, Constants.MaxMemoryHeaps);
             return result;
         }
     }

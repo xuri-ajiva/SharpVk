@@ -22,85 +22,69 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceVulkan11Features
+    public unsafe struct PhysicalDeviceVulkan11Features
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StorageBuffer16BitAccess; 
-        
+        public Bool32 StorageBuffer16BitAccess;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 UniformAndStorageBuffer16BitAccess; 
-        
+        public Bool32 UniformAndStorageBuffer16BitAccess;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StoragePushConstant16; 
-        
+        public Bool32 StoragePushConstant16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StorageInputOutput16; 
-        
+        public Bool32 StorageInputOutput16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 Multiview; 
-        
+        public Bool32 Multiview;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 MultiviewGeometryShader; 
-        
+        public Bool32 MultiviewGeometryShader;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 MultiviewTessellationShader; 
-        
+        public Bool32 MultiviewTessellationShader;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VariablePointersStorageBuffer; 
-        
+        public Bool32 VariablePointersStorageBuffer;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VariablePointers; 
-        
+        public Bool32 VariablePointers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ProtectedMemory; 
-        
+        public Bool32 ProtectedMemory;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SamplerYcbcrConversion; 
-        
+        public Bool32 SamplerYcbcrConversion;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderDrawParameters; 
+        public Bool32 ShaderDrawParameters;
     }
 }

@@ -22,45 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineRasterizationLineStateCreateInfo
+    public unsafe struct PipelineRasterizationLineStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.LineRasterizationMode LineRasterizationMode; 
-        
+        public LineRasterizationMode LineRasterizationMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StippledLineEnable; 
-        
+        public Bool32 StippledLineEnable;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint LineStippleFactor; 
-        
+        public uint LineStippleFactor;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ushort LineStipplePattern; 
+        public ushort LineStipplePattern;
     }
 }

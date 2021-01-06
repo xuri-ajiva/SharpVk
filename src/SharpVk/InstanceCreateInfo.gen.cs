@@ -22,89 +22,84 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created instance.
+    ///     Structure specifying parameters of a newly created instance.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct InstanceCreateInfo
+    public struct InstanceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.InstanceCreateFlags? Flags
+        public InstanceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Null or an instance of ApplicationInfo. If not Null, this
-        /// information helps implementations recognize behavior inherent to
-        /// classes of applications. ApplicationInfo is defined in detail
-        /// below.
+        ///     Null or an instance of ApplicationInfo. If not Null, this
+        ///     information helps implementations recognize behavior inherent to
+        ///     classes of applications. ApplicationInfo is defined in detail
+        ///     below.
         /// </summary>
-        public SharpVk.ApplicationInfo? ApplicationInfo
+        public ApplicationInfo? ApplicationInfo
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of enabledLayerCount strings containing the names of
-        /// layers to enable for the created instance. See the Layers section
-        /// for further details.
+        ///     An array of enabledLayerCount strings containing the names of
+        ///     layers to enable for the created instance. See the Layers section
+        ///     for further details.
         /// </summary>
         public ArrayProxy<string> EnabledLayerNames
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of enabledExtensionCount strings containing the names of
-        /// extensions to enable.
+        ///     An array of enabledExtensionCount strings containing the names of
+        ///     extensions to enable.
         /// </summary>
         public ArrayProxy<string> EnabledExtensionNames
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.InstanceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.InstanceCreateInfo* pointer)
         {
             pointer->SType = StructureType.InstanceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
+            else
+                pointer->Flags = default;
+            if (ApplicationInfo != null)
             {
-                pointer->Flags = this.Flags.Value;
+                pointer->ApplicationInfo = (Interop.ApplicationInfo*)HeapUtil.Allocate<Interop.ApplicationInfo>();
+                ApplicationInfo.Value.MarshalTo(pointer->ApplicationInfo);
             }
             else
             {
-                pointer->Flags = default(SharpVk.InstanceCreateFlags);
+                pointer->ApplicationInfo = default;
             }
-            if (this.ApplicationInfo != null)
-            {
-                pointer->ApplicationInfo = (SharpVk.Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ApplicationInfo>());
-                this.ApplicationInfo.Value.MarshalTo(pointer->ApplicationInfo);
-            }
-            else
-            {
-                pointer->ApplicationInfo = default(SharpVk.Interop.ApplicationInfo*);
-            }
-            pointer->EnabledLayerCount = (uint)(Interop.HeapUtil.GetLength(this.EnabledLayerNames));
-            pointer->EnabledLayerNames = Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-            pointer->EnabledExtensionCount = (uint)(Interop.HeapUtil.GetLength(this.EnabledExtensionNames));
-            pointer->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
+            pointer->EnabledLayerCount = HeapUtil.GetLength(EnabledLayerNames);
+            pointer->EnabledLayerNames = HeapUtil.MarshalTo(EnabledLayerNames);
+            pointer->EnabledExtensionCount = HeapUtil.GetLength(EnabledExtensionNames);
+            pointer->EnabledExtensionNames = HeapUtil.MarshalTo(EnabledExtensionNames);
         }
     }
 }

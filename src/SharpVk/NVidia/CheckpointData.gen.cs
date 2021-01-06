@@ -28,39 +28,35 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CheckpointData
+    public struct CheckpointData
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineStageFlags Stage
+        public PipelineStageFlags Stage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr CheckpointMarker
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe CheckpointData MarshalFrom(SharpVk.Interop.NVidia.CheckpointData* pointer)
+        internal static unsafe CheckpointData MarshalFrom(Interop.NVidia.CheckpointData* pointer)
         {
-            CheckpointData result = default(CheckpointData);
+            var result = default(CheckpointData);
             result.Stage = pointer->Stage;
-            result.CheckpointMarker = new IntPtr(pointer->CheckpointMarker);
+            result.CheckpointMarker = new(pointer->CheckpointMarker);
             return result;
         }
     }

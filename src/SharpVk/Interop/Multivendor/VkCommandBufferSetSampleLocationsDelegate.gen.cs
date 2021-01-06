@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetSampleLocationsDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Multivendor.SampleLocationsInfo* sampleLocationsInfo);
+    public unsafe delegate void VkCommandBufferSetSampleLocationsDelegate(CommandBuffer commandBuffer, SampleLocationsInfo* sampleLocationsInfo);
 }

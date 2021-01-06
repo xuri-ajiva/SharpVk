@@ -22,46 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure describing display mode properties.
+    ///     Structure describing display mode properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayModeProperties
+    public struct DisplayModeProperties
     {
         /// <summary>
-        /// A handle to the display mode described in this structure. This
-        /// handle will be valid for the lifetime of the Vulkan instance.
+        ///     A handle to the display mode described in this structure. This
+        ///     handle will be valid for the lifetime of the Vulkan instance.
         /// </summary>
-        public SharpVk.Khronos.DisplayMode DisplayMode
+        public DisplayMode DisplayMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A DisplayModeParametersKHR structure describing the display
-        /// parameters associated with displayMode.
+        ///     A DisplayModeParametersKHR structure describing the display
+        ///     parameters associated with displayMode.
         /// </summary>
-        public SharpVk.Khronos.DisplayModeParameters Parameters
+        public DisplayModeParameters Parameters
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayModeProperties MarshalFrom(SharpVk.Interop.Khronos.DisplayModeProperties* pointer)
+        internal static unsafe DisplayModeProperties MarshalFrom(Interop.Khronos.DisplayModeProperties* pointer)
         {
-            DisplayModeProperties result = default(DisplayModeProperties);
-            result.DisplayMode = new SharpVk.Khronos.DisplayMode(default(SharpVk.PhysicalDevice), pointer->DisplayMode);
+            var result = default(DisplayModeProperties);
+            result.DisplayMode = new(default, pointer->DisplayMode);
             result.Parameters = pointer->Parameters;
             return result;
         }

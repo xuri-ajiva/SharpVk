@@ -22,53 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Fuchsia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImagePipeSurfaceCreateInfo
+    public struct ImagePipeSurfaceCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Fuchsia.ImagePipeSurfaceCreateFlags? Flags
+        public ImagePipeSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ImagePipeHandle
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Fuchsia.ImagePipeSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImagepipeSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Fuchsia.ImagePipeSurfaceCreateFlags);
-            }
-            pointer->ImagePipeHandle = this.ImagePipeHandle;
+                pointer->Flags = default;
+            pointer->ImagePipeHandle = ImagePipeHandle;
         }
     }
 }

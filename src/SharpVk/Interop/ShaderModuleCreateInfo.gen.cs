@@ -22,42 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ShaderModuleCreateInfo
+    public unsafe struct ShaderModuleCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.ShaderModuleCreateFlags Flags; 
-        
+        public ShaderModuleCreateFlags Flags;
+
         /// <summary>
-        /// The size, in bytes, of the code.
+        ///     The size, in bytes, of the code.
         /// </summary>
-        public HostSize CodeSize; 
-        
+        public HostSize CodeSize;
+
         /// <summary>
-        /// Points to code that is used to create the shader module. The type
-        /// and format of the code is determined from the content of the memory
-        /// addressed.
+        ///     Points to code that is used to create the shader module. The type
+        ///     and format of the code is determined from the content of the memory
+        ///     addressed.
         /// </summary>
-        public uint* Code; 
+        public uint* Code;
     }
 }

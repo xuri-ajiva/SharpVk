@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceTimelineSemaphoreProperties
+    public struct PhysicalDeviceTimelineSemaphoreProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong MaxTimelineSemaphoreValueDifference
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTimelineSemaphoreProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreProperties* pointer)
+        internal static unsafe PhysicalDeviceTimelineSemaphoreProperties MarshalFrom(Interop.PhysicalDeviceTimelineSemaphoreProperties* pointer)
         {
-            PhysicalDeviceTimelineSemaphoreProperties result = default(PhysicalDeviceTimelineSemaphoreProperties);
+            var result = default(PhysicalDeviceTimelineSemaphoreProperties);
             result.MaxTimelineSemaphoreValueDifference = pointer->MaxTimelineSemaphoreValueDifference;
             return result;
         }

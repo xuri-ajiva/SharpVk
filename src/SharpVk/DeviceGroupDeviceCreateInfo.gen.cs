@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGroupDeviceCreateInfo
+    public struct DeviceGroupDeviceCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PhysicalDevice[] PhysicalDevices
+        public PhysicalDevice[] PhysicalDevices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupDeviceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DeviceGroupDeviceCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupDeviceCreateInfoVersion;
             pointer->Next = null;
-            pointer->PhysicalDeviceCount = (uint)(Interop.HeapUtil.GetLength(this.PhysicalDevices));
-            if (this.PhysicalDevices != null)
+            pointer->PhysicalDeviceCount = HeapUtil.GetLength(PhysicalDevices);
+            if (PhysicalDevices != null)
             {
-                var fieldPointer = (SharpVk.Interop.PhysicalDevice*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PhysicalDevice>(this.PhysicalDevices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.PhysicalDevices.Length); index++)
-                {
-                    fieldPointer[index] = this.PhysicalDevices[index]?.handle ?? default(SharpVk.Interop.PhysicalDevice);
-                }
+                var fieldPointer = (Interop.PhysicalDevice*)HeapUtil.AllocateAndClear<Interop.PhysicalDevice>(PhysicalDevices.Length).ToPointer();
+                for (var index = 0; index < (uint)PhysicalDevices.Length; index++) fieldPointer[index] = PhysicalDevices[index]?.Handle ?? default(Interop.PhysicalDevice);
                 pointer->PhysicalDevices = fieldPointer;
             }
             else

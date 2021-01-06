@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevicePresentationProperties
+    public struct PhysicalDevicePresentationProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool SharedImage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Android.PhysicalDevicePresentationProperties* pointer)
+        internal unsafe void MarshalTo(Interop.Android.PhysicalDevicePresentationProperties* pointer)
         {
             pointer->SType = StructureType.PhysicalDevicePresentationProperties;
             pointer->Next = null;
-            pointer->SharedImage = this.SharedImage;
+            pointer->SharedImage = SharedImage;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePresentationProperties MarshalFrom(SharpVk.Interop.Android.PhysicalDevicePresentationProperties* pointer)
+        internal static unsafe PhysicalDevicePresentationProperties MarshalFrom(Interop.Android.PhysicalDevicePresentationProperties* pointer)
         {
-            PhysicalDevicePresentationProperties result = default(PhysicalDevicePresentationProperties);
+            var result = default(PhysicalDevicePresentationProperties);
             result.SharedImage = pointer->SharedImage;
             return result;
         }

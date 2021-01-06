@@ -25,18 +25,16 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a command buffer level.
+    ///     Structure specifying a command buffer level.
     /// </summary>
     public enum CommandBufferLevel
     {
         /// <summary>
-        /// 
         /// </summary>
-        Primary = 0, 
-        
+        Primary = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Secondary = 1, 
+        Secondary = 1
     }
 }

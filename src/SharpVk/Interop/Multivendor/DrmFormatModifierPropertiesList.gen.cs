@@ -22,35 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DrmFormatModifierPropertiesList
+    public unsafe struct DrmFormatModifierPropertiesList
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DrmFormatModifierCount; 
-        
+        public uint DrmFormatModifierCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DrmFormatModifierProperties* DrmFormatModifierProperties; 
+        public DrmFormatModifierProperties* DrmFormatModifierProperties;
     }
 }

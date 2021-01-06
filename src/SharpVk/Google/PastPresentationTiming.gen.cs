@@ -22,57 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Google
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PastPresentationTiming
+    public struct PastPresentationTiming
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static PastPresentationTiming Zero => new PastPresentationTiming();
-        
+        public static PastPresentationTiming Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public PastPresentationTiming(uint presentID, ulong desiredPresentTime, ulong actualPresentTime, ulong earliestPresentTime, ulong presentMargin)
+        public PastPresentationTiming(uint presentId, ulong desiredPresentTime, ulong actualPresentTime, ulong earliestPresentTime, ulong presentMargin)
         {
-            this.PresentID = presentID;
-            this.DesiredPresentTime = desiredPresentTime;
-            this.ActualPresentTime = actualPresentTime;
-            this.EarliestPresentTime = earliestPresentTime;
-            this.PresentMargin = presentMargin;
+            PresentID = presentId;
+            DesiredPresentTime = desiredPresentTime;
+            ActualPresentTime = actualPresentTime;
+            EarliestPresentTime = earliestPresentTime;
+            PresentMargin = presentMargin;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PresentID; 
-        
+        public uint PresentID;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong DesiredPresentTime; 
-        
+        public ulong DesiredPresentTime;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong ActualPresentTime; 
-        
+        public ulong ActualPresentTime;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong EarliestPresentTime; 
-        
+        public ulong EarliestPresentTime;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong PresentMargin; 
+        public ulong PresentMargin;
     }
 }

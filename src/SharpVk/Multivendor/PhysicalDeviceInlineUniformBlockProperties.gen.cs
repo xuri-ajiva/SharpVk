@@ -22,70 +22,62 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceInlineUniformBlockProperties
+    public struct PhysicalDeviceInlineUniformBlockProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxInlineUniformBlockSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorInlineUniformBlocks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindInlineUniformBlocks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetInlineUniformBlocks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindInlineUniformBlocks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceInlineUniformBlockProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockProperties* pointer)
+        internal static unsafe PhysicalDeviceInlineUniformBlockProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceInlineUniformBlockProperties* pointer)
         {
-            PhysicalDeviceInlineUniformBlockProperties result = default(PhysicalDeviceInlineUniformBlockProperties);
+            var result = default(PhysicalDeviceInlineUniformBlockProperties);
             result.MaxInlineUniformBlockSize = pointer->MaxInlineUniformBlockSize;
             result.MaxPerStageDescriptorInlineUniformBlocks = pointer->MaxPerStageDescriptorInlineUniformBlocks;
             result.MaxPerStageDescriptorUpdateAfterBindInlineUniformBlocks = pointer->MaxPerStageDescriptorUpdateAfterBindInlineUniformBlocks;

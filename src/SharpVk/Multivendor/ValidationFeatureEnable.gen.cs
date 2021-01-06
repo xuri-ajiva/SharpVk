@@ -25,23 +25,19 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum ValidationFeatureEnable
     {
         /// <summary>
-        /// 
         /// </summary>
-        GpuAssisted = 0, 
-        
+        GpuAssisted = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        GpuAssistedReserveBindingSlot = 1, 
-        
+        GpuAssistedReserveBindingSlot = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        BestPractices = 2, 
+        BestPractices = 2
     }
 }

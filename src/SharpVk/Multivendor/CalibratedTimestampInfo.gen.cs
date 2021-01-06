@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CalibratedTimestampInfo
+    public struct CalibratedTimestampInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.TimeDomain TimeDomain
+        public TimeDomain TimeDomain
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.CalibratedTimestampInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.CalibratedTimestampInfo* pointer)
         {
             pointer->SType = StructureType.CalibratedTimestampInfo;
             pointer->Next = null;
-            pointer->TimeDomain = this.TimeDomain;
+            pointer->TimeDomain = TimeDomain;
         }
     }
 }

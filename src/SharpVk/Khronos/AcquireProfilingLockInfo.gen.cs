@@ -22,53 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AcquireProfilingLockInfo
+    public struct AcquireProfilingLockInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.AcquireProfilingLockFlags? Flags
+        public AcquireProfilingLockFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong Timeout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.AcquireProfilingLockInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.AcquireProfilingLockInfo* pointer)
         {
             pointer->SType = StructureType.AcquireProfilingLockInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Khronos.AcquireProfilingLockFlags);
-            }
-            pointer->Timeout = this.Timeout;
+                pointer->Flags = default;
+            pointer->Timeout = Timeout;
         }
     }
 }

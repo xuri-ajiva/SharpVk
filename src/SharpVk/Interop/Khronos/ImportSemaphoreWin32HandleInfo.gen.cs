@@ -28,44 +28,38 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImportSemaphoreWin32HandleInfo
+    public unsafe struct ImportSemaphoreWin32HandleInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Semaphore Semaphore; 
-        
+        public Semaphore Semaphore;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SemaphoreImportFlags Flags; 
-        
+        public SemaphoreImportFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreHandleTypeFlags HandleType; 
-        
+        public ExternalSemaphoreHandleTypeFlags HandleType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public IntPtr Handle; 
-        
+        public IntPtr Handle;
+
         /// <summary>
-        /// 
         /// </summary>
-        public IntPtr Name; 
+        public IntPtr Name;
     }
 }

@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SamplerYcbcrConversionImageFormatProperties
+    public struct SamplerYcbcrConversionImageFormatProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint CombinedImageSamplerDescriptorCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SamplerYcbcrConversionImageFormatProperties MarshalFrom(SharpVk.Interop.SamplerYcbcrConversionImageFormatProperties* pointer)
+        internal static unsafe SamplerYcbcrConversionImageFormatProperties MarshalFrom(Interop.SamplerYcbcrConversionImageFormatProperties* pointer)
         {
-            SamplerYcbcrConversionImageFormatProperties result = default(SamplerYcbcrConversionImageFormatProperties);
+            var result = default(SamplerYcbcrConversionImageFormatProperties);
             result.CombinedImageSamplerDescriptorCount = pointer->CombinedImageSamplerDescriptorCount;
             return result;
         }

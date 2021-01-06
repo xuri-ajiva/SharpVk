@@ -22,37 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DedicatedAllocationMemoryAllocateInfo
+    public unsafe struct DedicatedAllocationMemoryAllocateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// image is null or a handle of an image which this memory will be
-        /// bound to.
+        ///     image is null or a handle of an image which this memory will be
+        ///     bound to.
         /// </summary>
-        public SharpVk.Interop.Image Image; 
-        
+        public Image Image;
+
         /// <summary>
-        /// buffer is null or a handle of a buffer which this memory will be
-        /// bound to.
+        ///     buffer is null or a handle of a buffer which this memory will be
+        ///     bound to.
         /// </summary>
-        public SharpVk.Interop.Buffer Buffer; 
+        public Buffer Buffer;
     }
 }

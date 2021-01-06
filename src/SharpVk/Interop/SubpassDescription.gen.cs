@@ -22,66 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SubpassDescription
+    public unsafe struct SubpassDescription
     {
         /// <summary>
-        /// A bitmask indicating usage of the subpass. Bits which can be set
-        /// include: + --
+        ///     A bitmask indicating usage of the subpass. Bits which can be set
+        ///     include: + --
         /// </summary>
-        public SharpVk.SubpassDescriptionFlags Flags; 
-        
+        public SubpassDescriptionFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint; 
-        
+        public PipelineBindPoint PipelineBindPoint;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint InputAttachmentCount; 
-        
+        public uint InputAttachmentCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference* InputAttachments; 
-        
+        public AttachmentReference* InputAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ColorAttachmentCount; 
-        
+        public uint ColorAttachmentCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference* ColorAttachments; 
-        
+        public AttachmentReference* ColorAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference* ResolveAttachments; 
-        
+        public AttachmentReference* ResolveAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference* DepthStencilAttachment; 
-        
+        public AttachmentReference* DepthStencilAttachment;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PreserveAttachmentCount; 
-        
+        public uint PreserveAttachmentCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* PreserveAttachments; 
+        public uint* PreserveAttachments;
     }
 }

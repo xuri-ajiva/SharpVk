@@ -22,36 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     public struct DescriptorUpdateTemplate
     {
-        internal ulong handle; 
-        
+        internal ulong Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public DescriptorUpdateTemplate(ulong handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public DescriptorUpdateTemplate Null => new DescriptorUpdateTemplate(default(ulong));
-        
+        public DescriptorUpdateTemplate Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle;
+            return Handle;
         }
     }
 }

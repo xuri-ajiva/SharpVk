@@ -22,36 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// Opaque handle to an indirect commands layout object.
+    ///     Opaque handle to an indirect commands layout object.
     /// </summary>
     public struct IndirectCommandsLayout
     {
-        internal ulong handle; 
-        
+        internal ulong Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public IndirectCommandsLayout(ulong handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public IndirectCommandsLayout Null => new IndirectCommandsLayout(default(ulong));
-        
+        public IndirectCommandsLayout Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle;
+            return Handle;
         }
     }
 }

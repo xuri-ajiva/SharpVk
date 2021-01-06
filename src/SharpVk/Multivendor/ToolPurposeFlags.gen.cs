@@ -22,52 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ToolPurposeFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Validation = 1 << 0, 
-        
+        Validation = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Profiling = 1 << 1, 
-        
+        Profiling = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Tracing = 1 << 2, 
-        
+        Tracing = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        AdditionalFeatures = 1 << 3, 
-        
+        AdditionalFeatures = 1 << 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        ModifyingFeatures = 1 << 4, 
-        
+        ModifyingFeatures = 1 << 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        DebugReporting = 1 << 5, 
-        
+        DebugReporting = 1 << 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        DebugMarkers = 1 << 6, 
+        DebugMarkers = 1 << 6
     }
 }

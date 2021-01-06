@@ -22,96 +22,86 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceLineRasterizationFeatures
+    public struct PhysicalDeviceLineRasterizationFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool RectangularLines
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool BresenhamLines
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool SmoothLines
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StippledRectangularLines
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StippledBresenhamLines
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StippledSmoothLines
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceLineRasterizationFeatures;
             pointer->Next = null;
-            pointer->RectangularLines = this.RectangularLines;
-            pointer->BresenhamLines = this.BresenhamLines;
-            pointer->SmoothLines = this.SmoothLines;
-            pointer->StippledRectangularLines = this.StippledRectangularLines;
-            pointer->StippledBresenhamLines = this.StippledBresenhamLines;
-            pointer->StippledSmoothLines = this.StippledSmoothLines;
+            pointer->RectangularLines = RectangularLines;
+            pointer->BresenhamLines = BresenhamLines;
+            pointer->SmoothLines = SmoothLines;
+            pointer->StippledRectangularLines = StippledRectangularLines;
+            pointer->StippledBresenhamLines = StippledBresenhamLines;
+            pointer->StippledSmoothLines = StippledSmoothLines;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceLineRasterizationFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
+        internal static unsafe PhysicalDeviceLineRasterizationFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
         {
-            PhysicalDeviceLineRasterizationFeatures result = default(PhysicalDeviceLineRasterizationFeatures);
+            var result = default(PhysicalDeviceLineRasterizationFeatures);
             result.RectangularLines = pointer->RectangularLines;
             result.BresenhamLines = pointer->BresenhamLines;
             result.SmoothLines = pointer->SmoothLines;

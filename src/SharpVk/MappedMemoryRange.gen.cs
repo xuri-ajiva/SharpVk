@@ -22,69 +22,66 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a mapped memory range.
+    ///     Structure specifying a mapped memory range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MappedMemoryRange
+    public struct MappedMemoryRange
     {
         /// <summary>
-        /// The memory object to which this range belongs.
+        ///     The memory object to which this range belongs.
         /// </summary>
-        public SharpVk.DeviceMemory Memory
+        public DeviceMemory Memory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The zero-based byte offset from the beginning of the memory object.
+        ///     The zero-based byte offset from the beginning of the memory object.
         /// </summary>
         public ulong Offset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// size is either the size of range, or Constants.WholeSize to affect
-        /// the range from offset to the end of the current mapping of the
-        /// allocation.
+        ///     size is either the size of range, or Constants.WholeSize to affect
+        ///     the range from offset to the end of the current mapping of the
+        ///     allocation.
         /// </summary>
         public ulong Size
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.MappedMemoryRange* pointer)
+        internal unsafe void MarshalTo(Interop.MappedMemoryRange* pointer)
         {
             pointer->SType = StructureType.MappedMemoryRange;
             pointer->Next = null;
-            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
-            pointer->Offset = this.Offset;
-            pointer->Size = this.Size;
+            pointer->Memory = Memory?.Handle ?? default(Interop.DeviceMemory);
+            pointer->Offset = Offset;
+            pointer->Size = Size;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MappedMemoryRange MarshalFrom(SharpVk.Interop.MappedMemoryRange* pointer)
+        internal static unsafe MappedMemoryRange MarshalFrom(Interop.MappedMemoryRange* pointer)
         {
-            MappedMemoryRange result = default(MappedMemoryRange);
-            result.Memory = new SharpVk.DeviceMemory(default(SharpVk.Device), pointer->Memory);
+            var result = default(MappedMemoryRange);
+            result.Memory = new(default, pointer->Memory);
             result.Offset = pointer->Offset;
             result.Size = pointer->Size;
             return result;

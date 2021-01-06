@@ -22,39 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct VertexInputBindingDivisorDescription
+    public struct VertexInputBindingDivisorDescription
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static VertexInputBindingDivisorDescription Zero => new VertexInputBindingDivisorDescription();
-        
+        public static VertexInputBindingDivisorDescription Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public VertexInputBindingDivisorDescription(uint binding, uint divisor)
         {
-            this.Binding = binding;
-            this.Divisor = divisor;
+            Binding = binding;
+            Divisor = divisor;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Binding; 
-        
+        public uint Binding;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Divisor; 
+        public uint Divisor;
     }
 }

@@ -23,70 +23,69 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     public partial class Surface
         : IDisposable
     {
-        internal readonly SharpVk.Interop.Khronos.Surface handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Instance parent; 
-        
-        internal Surface(SharpVk.Instance parent, SharpVk.Interop.Khronos.Surface handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Khronos.Surface Handle;
+
+        internal readonly Instance Parent;
+
+        internal Surface(Instance parent, Interop.Khronos.Surface handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Khronos.Surface RawHandle => this.handle;
-        
+        public Interop.Khronos.Surface RawHandle => Handle;
+
         /// <summary>
-        /// Destroy a SurfaceKHR object.
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
+        ///     Destroy a SurfaceKHR object.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.Khronos.VkSurfaceKHRDestroyDelegate commandDelegate = commandCache.Cache.vkDestroySurfaceKHR;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroySurfaceKhr;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

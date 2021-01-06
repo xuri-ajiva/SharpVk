@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineColorBlendAdvancedStateCreateInfo
+    public struct PipelineColorBlendAdvancedStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool SourcePremultiplied
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DestinationPremultiplied
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.BlendOverlap BlendOverlap
+        public BlendOverlap BlendOverlap
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineColorBlendAdvancedStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineColorBlendAdvancedStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineColorBlendAdvancedStateCreateInfo;
             pointer->Next = null;
-            pointer->SourcePremultiplied = this.SourcePremultiplied;
-            pointer->DestinationPremultiplied = this.DestinationPremultiplied;
-            pointer->BlendOverlap = this.BlendOverlap;
+            pointer->SourcePremultiplied = SourcePremultiplied;
+            pointer->DestinationPremultiplied = DestinationPremultiplied;
+            pointer->BlendOverlap = BlendOverlap;
         }
     }
 }

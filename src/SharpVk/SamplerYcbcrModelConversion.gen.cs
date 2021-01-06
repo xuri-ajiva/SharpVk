@@ -25,33 +25,27 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum SamplerYcbcrModelConversion
     {
         /// <summary>
-        /// 
         /// </summary>
-        RgbIdentity = 0, 
-        
+        RgbIdentity = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        YcbcrIdentity = 1, 
-        
+        YcbcrIdentity = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Ycbcr709 = 2, 
-        
+        Ycbcr709 = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Ycbcr601 = 3, 
-        
+        Ycbcr601 = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        Ycbcr2020 = 4, 
+        Ycbcr2020 = 4
     }
 }

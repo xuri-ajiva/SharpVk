@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SwapchainImageCreateInfo
+    public struct SwapchainImageCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Android.SwapchainImageUsageFlags Usage
+        public SwapchainImageUsageFlags Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Android.SwapchainImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Android.SwapchainImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainImageCreateInfo;
             pointer->Next = null;
-            pointer->Usage = this.Usage;
+            pointer->Usage = Usage;
         }
     }
 }

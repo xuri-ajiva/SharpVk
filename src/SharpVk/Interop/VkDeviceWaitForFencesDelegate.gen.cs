@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceWaitForFencesDelegate(SharpVk.Interop.Device device, uint fenceCount, SharpVk.Interop.Fence* fences, Bool32 waitAll, ulong timeout);
+    public unsafe delegate Result VkDeviceWaitForFencesDelegate(Device device, uint fenceCount, Fence* fences, Bool32 waitAll, ulong timeout);
 }

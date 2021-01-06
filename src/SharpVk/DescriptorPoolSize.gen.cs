@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying descriptor pool size.
+    ///     Structure specifying descriptor pool size.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorPoolSize
+    public struct DescriptorPoolSize
     {
         /// <summary>
-        /// 
         /// </summary>
-        public DescriptorPoolSize(SharpVk.DescriptorType type, uint descriptorCount)
+        public DescriptorPoolSize(DescriptorType type, uint descriptorCount)
         {
-            this.Type = type;
-            this.DescriptorCount = descriptorCount;
+            Type = type;
+            DescriptorCount = descriptorCount;
         }
-        
+
         /// <summary>
-        /// The type of descriptor.
+        ///     The type of descriptor.
         /// </summary>
-        public SharpVk.DescriptorType Type; 
-        
+        public DescriptorType Type;
+
         /// <summary>
-        /// The number of descriptors of that type to allocate.
+        ///     The number of descriptors of that type to allocate.
         /// </summary>
-        public uint DescriptorCount; 
+        public uint DescriptorCount;
     }
 }

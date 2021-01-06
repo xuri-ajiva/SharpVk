@@ -27,7 +27,6 @@ using System;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public delegate Bool32 DebugReportCallbackDelegate(SharpVk.Multivendor.DebugReportFlags flags, SharpVk.Multivendor.DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string pLayerPrefix, string pMessage, IntPtr pUserData);
+    public delegate Bool32 DebugReportCallbackDelegate(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string pLayerPrefix, string pMessage, IntPtr pUserData);
 }

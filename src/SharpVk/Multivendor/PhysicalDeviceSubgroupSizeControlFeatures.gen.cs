@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSubgroupSizeControlFeatures
+    public struct PhysicalDeviceSubgroupSizeControlFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool SubgroupSizeControl
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ComputeFullSubgroups
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSubgroupSizeControlFeatures;
             pointer->Next = null;
-            pointer->SubgroupSizeControl = this.SubgroupSizeControl;
-            pointer->ComputeFullSubgroups = this.ComputeFullSubgroups;
+            pointer->SubgroupSizeControl = SubgroupSizeControl;
+            pointer->ComputeFullSubgroups = ComputeFullSubgroups;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSubgroupSizeControlFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
+        internal static unsafe PhysicalDeviceSubgroupSizeControlFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
         {
-            PhysicalDeviceSubgroupSizeControlFeatures result = default(PhysicalDeviceSubgroupSizeControlFeatures);
+            var result = default(PhysicalDeviceSubgroupSizeControlFeatures);
             result.SubgroupSizeControl = pointer->SubgroupSizeControl;
             result.ComputeFullSubgroups = pointer->ComputeFullSubgroups;
             return result;

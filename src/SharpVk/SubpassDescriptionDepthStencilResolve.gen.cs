@@ -22,84 +22,74 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SubpassDescriptionDepthStencilResolve
+    public struct SubpassDescriptionDepthStencilResolve
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags DepthResolveMode
+        public ResolveModeFlags DepthResolveMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags StencilResolveMode
+        public ResolveModeFlags StencilResolveMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference2? DepthStencilResolveAttachment
+        public AttachmentReference2? DepthStencilResolveAttachment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescriptionDepthStencilResolve* pointer)
+        internal unsafe void MarshalTo(Interop.SubpassDescriptionDepthStencilResolve* pointer)
         {
             pointer->SType = StructureType.SubpassDescriptionDepthStencilResolveVersion;
             pointer->Next = null;
-            pointer->DepthResolveMode = this.DepthResolveMode;
-            pointer->StencilResolveMode = this.StencilResolveMode;
-            if (this.DepthStencilResolveAttachment != null)
+            pointer->DepthResolveMode = DepthResolveMode;
+            pointer->StencilResolveMode = StencilResolveMode;
+            if (DepthStencilResolveAttachment != null)
             {
-                pointer->DepthStencilResolveAttachment = (SharpVk.Interop.AttachmentReference2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AttachmentReference2>());
-                this.DepthStencilResolveAttachment.Value.MarshalTo(pointer->DepthStencilResolveAttachment);
+                pointer->DepthStencilResolveAttachment = (Interop.AttachmentReference2*)HeapUtil.Allocate<Interop.AttachmentReference2>();
+                DepthStencilResolveAttachment.Value.MarshalTo(pointer->DepthStencilResolveAttachment);
             }
             else
             {
-                pointer->DepthStencilResolveAttachment = default(SharpVk.Interop.AttachmentReference2*);
+                pointer->DepthStencilResolveAttachment = default;
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SubpassDescriptionDepthStencilResolve MarshalFrom(SharpVk.Interop.SubpassDescriptionDepthStencilResolve* pointer)
+        internal static unsafe SubpassDescriptionDepthStencilResolve MarshalFrom(Interop.SubpassDescriptionDepthStencilResolve* pointer)
         {
-            SubpassDescriptionDepthStencilResolve result = default(SubpassDescriptionDepthStencilResolve);
+            var result = default(SubpassDescriptionDepthStencilResolve);
             result.DepthResolveMode = pointer->DepthResolveMode;
             result.StencilResolveMode = pointer->StencilResolveMode;
             if (pointer->DepthStencilResolveAttachment != null)
-            {
-                result.DepthStencilResolveAttachment = SharpVk.AttachmentReference2.MarshalFrom(pointer->DepthStencilResolveAttachment);
-            }
+                result.DepthStencilResolveAttachment = AttachmentReference2.MarshalFrom(pointer->DepthStencilResolveAttachment);
             else
-            {
                 result.DepthStencilResolveAttachment = null;
-            }
             return result;
         }
     }

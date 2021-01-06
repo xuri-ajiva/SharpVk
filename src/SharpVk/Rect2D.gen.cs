@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a two-dimensional subregion.
+    ///     Structure specifying a two-dimensional subregion.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct Rect2D
     {
         /// <summary>
-        /// 
         /// </summary>
-        public Rect2D(SharpVk.Offset2D offset, SharpVk.Extent2D extent)
+        public Rect2D(Offset2D offset, Extent2D extent)
         {
-            this.Offset = offset;
-            this.Extent = extent;
+            Offset = offset;
+            Extent = extent;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Offset2D Offset; 
-        
+        public Offset2D Offset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D Extent; 
+        public Extent2D Extent;
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandPoolTrimDelegate(SharpVk.Interop.Device device, SharpVk.Interop.CommandPool commandPool, SharpVk.CommandPoolTrimFlags flags);
+    public delegate void VkCommandPoolTrimDelegate(Device device, CommandPool commandPool, CommandPoolTrimFlags flags);
 }

@@ -22,36 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// Opaque handle to an object table.
+    ///     Opaque handle to an object table.
     /// </summary>
     public struct ObjectTable
     {
-        internal ulong handle; 
-        
+        internal ulong Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public ObjectTable(ulong handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public ObjectTable Null => new ObjectTable(default(ulong));
-        
+        public ObjectTable Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle;
+            return Handle;
         }
     }
 }

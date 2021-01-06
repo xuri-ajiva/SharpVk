@@ -22,73 +22,62 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceQueueInfo2
+    public struct DeviceQueueInfo2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DeviceQueueCreateFlags? Flags
+        public DeviceQueueCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint QueueFamilyIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint QueueIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DeviceQueueInfo2* pointer)
+        internal unsafe void MarshalTo(Interop.DeviceQueueInfo2* pointer)
         {
             pointer->SType = StructureType.DeviceQueueInfo2;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.DeviceQueueCreateFlags);
-            }
-            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
-            pointer->QueueIndex = this.QueueIndex;
+                pointer->Flags = default;
+            pointer->QueueFamilyIndex = QueueFamilyIndex;
+            pointer->QueueIndex = QueueIndex;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DeviceQueueInfo2 MarshalFrom(SharpVk.Interop.DeviceQueueInfo2* pointer)
+        internal static unsafe DeviceQueueInfo2 MarshalFrom(Interop.DeviceQueueInfo2* pointer)
         {
-            DeviceQueueInfo2 result = default(DeviceQueueInfo2);
+            var result = default(DeviceQueueInfo2);
             result.Flags = pointer->Flags;
             result.QueueFamilyIndex = pointer->QueueFamilyIndex;
             result.QueueIndex = pointer->QueueIndex;

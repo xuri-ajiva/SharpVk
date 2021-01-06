@@ -22,36 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// Opaque handle to a descriptor set object.
+    ///     Opaque handle to a descriptor set object.
     /// </summary>
     public struct DescriptorSet
     {
-        internal ulong handle; 
-        
+        internal ulong Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public DescriptorSet(ulong handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public DescriptorSet Null => new DescriptorSet(default(ulong));
-        
+        public DescriptorSet Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle;
+            return Handle;
         }
     }
 }

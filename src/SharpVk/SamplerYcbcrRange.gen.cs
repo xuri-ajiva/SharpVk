@@ -25,18 +25,15 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum SamplerYcbcrRange
     {
         /// <summary>
-        /// 
         /// </summary>
-        ItuFull = 0, 
-        
+        ItuFull = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        ItuNarrow = 1, 
+        ItuNarrow = 1
     }
 }

@@ -22,63 +22,54 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created descriptor set
-    /// layout.
+    ///     Structure specifying parameters of a newly created descriptor set
+    ///     layout.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorSetLayoutCreateInfo
+    public struct DescriptorSetLayoutCreateInfo
     {
         /// <summary>
-        /// flags provides options for descriptor set layout creation, and is
-        /// of type DescriptorSetLayoutCreateFlags. Bits which can be set
-        /// include: + --
+        ///     flags provides options for descriptor set layout creation, and is
+        ///     of type DescriptorSetLayoutCreateFlags. Bits which can be set
+        ///     include: + --
         /// </summary>
-        public SharpVk.DescriptorSetLayoutCreateFlags? Flags
+        public DescriptorSetLayoutCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorSetLayoutBinding[] Bindings
+        public DescriptorSetLayoutBinding[] Bindings
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->BindingCount = HeapUtil.GetLength(Bindings);
+            if (Bindings != null)
             {
-                pointer->Flags = default(SharpVk.DescriptorSetLayoutCreateFlags);
-            }
-            pointer->BindingCount = (uint)(Interop.HeapUtil.GetLength(this.Bindings));
-            if (this.Bindings != null)
-            {
-                var fieldPointer = (SharpVk.Interop.DescriptorSetLayoutBinding*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayoutBinding>(this.Bindings.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Bindings.Length); index++)
-                {
-                    this.Bindings[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.DescriptorSetLayoutBinding*)HeapUtil.AllocateAndClear<Interop.DescriptorSetLayoutBinding>(Bindings.Length).ToPointer();
+                for (var index = 0; index < (uint)Bindings.Length; index++) Bindings[index].MarshalTo(&fieldPointer[index]);
                 pointer->Bindings = fieldPointer;
             }
             else

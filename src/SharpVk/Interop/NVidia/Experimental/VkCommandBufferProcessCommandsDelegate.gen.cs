@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferProcessCommandsDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo* processCommandsInfo);
+    public unsafe delegate void VkCommandBufferProcessCommandsDelegate(CommandBuffer commandBuffer, CommandProcessCommandsInfo* processCommandsInfo);
 }

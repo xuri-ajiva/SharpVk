@@ -22,22 +22,21 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum FenceImportFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Temporary = 1 << 0, 
+        Temporary = 1 << 0
     }
 }

@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PresentRegions
+    public struct PresentRegions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PresentRegion[] Regions
+        public PresentRegion[] Regions
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PresentRegions* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PresentRegions* pointer)
         {
             pointer->SType = StructureType.PresentRegions;
             pointer->Next = null;
-            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.Regions));
-            if (this.Regions != null)
+            pointer->SwapchainCount = HeapUtil.GetLength(Regions);
+            if (Regions != null)
             {
-                var fieldPointer = (SharpVk.Interop.Khronos.PresentRegion*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.PresentRegion>(this.Regions.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Regions.Length); index++)
-                {
-                    this.Regions[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.Khronos.PresentRegion*)HeapUtil.AllocateAndClear<Interop.Khronos.PresentRegion>(Regions.Length).ToPointer();
+                for (var index = 0; index < (uint)Regions.Length; index++) Regions[index].MarshalTo(&fieldPointer[index]);
                 pointer->Regions = fieldPointer;
             }
             else
@@ -66,22 +60,18 @@ namespace SharpVk.Khronos
                 pointer->Regions = null;
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PresentRegions MarshalFrom(SharpVk.Interop.Khronos.PresentRegions* pointer)
+        internal static unsafe PresentRegions MarshalFrom(Interop.Khronos.PresentRegions* pointer)
         {
-            PresentRegions result = default(PresentRegions);
+            var result = default(PresentRegions);
             if (pointer->Regions != null)
             {
-                var fieldPointer = new SharpVk.Khronos.PresentRegion[(uint)(pointer->SwapchainCount)];
-                for(int index = 0; index < (uint)(pointer->SwapchainCount); index++)
-                {
-                    fieldPointer[index] = SharpVk.Khronos.PresentRegion.MarshalFrom(&pointer->Regions[index]);
-                }
+                var fieldPointer = new PresentRegion[pointer->SwapchainCount];
+                for (var index = 0; index < pointer->SwapchainCount; index++) fieldPointer[index] = PresentRegion.MarshalFrom(&pointer->Regions[index]);
                 result.Regions = fieldPointer;
             }
             else

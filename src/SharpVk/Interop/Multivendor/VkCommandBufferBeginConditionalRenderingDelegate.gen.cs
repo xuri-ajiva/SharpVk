@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBeginConditionalRenderingDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Multivendor.ConditionalRenderingBeginInfo* conditionalRenderingBegin);
+    public unsafe delegate void VkCommandBufferBeginConditionalRenderingDelegate(CommandBuffer commandBuffer, ConditionalRenderingBeginInfo* conditionalRenderingBegin);
 }

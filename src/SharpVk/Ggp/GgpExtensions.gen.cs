@@ -25,18 +25,15 @@
 namespace SharpVk.Ggp
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class GgpExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string StreamDescriptorSurface = "VK_GGP_stream_descriptor_surface"; 
-        
+        public const string StreamDescriptorSurface = "VK_GGP_stream_descriptor_surface";
+
         /// <summary>
-        /// 
         /// </summary>
-        public const string FrameToken = "VK_GGP_frame_token"; 
+        public const string FrameToken = "VK_GGP_frame_token";
     }
 }

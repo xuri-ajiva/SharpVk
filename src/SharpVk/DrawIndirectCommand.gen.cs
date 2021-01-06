@@ -22,51 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a draw indirect command.
+    ///     Structure specifying a draw indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DrawIndirectCommand
+    public struct DrawIndirectCommand
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static DrawIndirectCommand Zero => new DrawIndirectCommand();
-        
+        public static DrawIndirectCommand Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public DrawIndirectCommand(uint vertexCount, uint instanceCount, uint firstVertex, uint firstInstance)
         {
-            this.VertexCount = vertexCount;
-            this.InstanceCount = instanceCount;
-            this.FirstVertex = firstVertex;
-            this.FirstInstance = firstInstance;
+            VertexCount = vertexCount;
+            InstanceCount = instanceCount;
+            FirstVertex = firstVertex;
+            FirstInstance = firstInstance;
         }
-        
+
         /// <summary>
-        /// The number of vertices to draw.
+        ///     The number of vertices to draw.
         /// </summary>
-        public uint VertexCount; 
-        
+        public uint VertexCount;
+
         /// <summary>
-        /// The number of instances to draw.
+        ///     The number of instances to draw.
         /// </summary>
-        public uint InstanceCount; 
-        
+        public uint InstanceCount;
+
         /// <summary>
-        /// The index of the first vertex to draw.
+        ///     The index of the first vertex to draw.
         /// </summary>
-        public uint FirstVertex; 
-        
+        public uint FirstVertex;
+
         /// <summary>
-        /// The instance ID of the first instance to draw.
+        ///     The instance ID of the first instance to draw.
         /// </summary>
-        public uint FirstInstance; 
+        public uint FirstInstance;
     }
 }

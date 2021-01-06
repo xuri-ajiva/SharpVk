@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetViewportShadingRatePaletteDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint firstViewport, uint viewportCount, SharpVk.Interop.NVidia.ShadingRatePalette* shadingRatePalettes);
+    public unsafe delegate void VkCommandBufferSetViewportShadingRatePaletteDelegate(CommandBuffer commandBuffer, uint firstViewport, uint viewportCount, ShadingRatePalette* shadingRatePalettes);
 }

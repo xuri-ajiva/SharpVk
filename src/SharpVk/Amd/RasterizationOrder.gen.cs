@@ -25,18 +25,15 @@
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum RasterizationOrder
     {
         /// <summary>
-        /// 
         /// </summary>
-        Strict = 0, 
-        
+        Strict = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Relaxed = 1, 
+        Relaxed = 1
     }
 }

@@ -22,106 +22,94 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceConservativeRasterizationProperties
+    public struct PhysicalDeviceConservativeRasterizationProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public float PrimitiveOverestimationSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MaxExtraPrimitiveOverestimationSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float ExtraPrimitiveOverestimationSizeGranularity
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool PrimitiveUnderestimation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ConservativePointAndLineRasterization
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DegenerateTrianglesRasterized
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DegenerateLinesRasterized
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool FullyCoveredFragmentShaderInputVariable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ConservativeRasterizationPostDepthCoverage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceConservativeRasterizationProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceConservativeRasterizationProperties* pointer)
+        internal static unsafe PhysicalDeviceConservativeRasterizationProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceConservativeRasterizationProperties* pointer)
         {
-            PhysicalDeviceConservativeRasterizationProperties result = default(PhysicalDeviceConservativeRasterizationProperties);
+            var result = default(PhysicalDeviceConservativeRasterizationProperties);
             result.PrimitiveOverestimationSize = pointer->PrimitiveOverestimationSize;
             result.MaxExtraPrimitiveOverestimationSize = pointer->MaxExtraPrimitiveOverestimationSize;
             result.ExtraPrimitiveOverestimationSizeGranularity = pointer->ExtraPrimitiveOverestimationSizeGranularity;

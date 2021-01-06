@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevicePipelineExecutablePropertiesFeatures
+    public struct PhysicalDevicePipelineExecutablePropertiesFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool PipelineExecutableInfo
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDevicePipelineExecutablePropertiesFeatures;
             pointer->Next = null;
-            pointer->PipelineExecutableInfo = this.PipelineExecutableInfo;
+            pointer->PipelineExecutableInfo = PipelineExecutableInfo;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePipelineExecutablePropertiesFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures* pointer)
+        internal static unsafe PhysicalDevicePipelineExecutablePropertiesFeatures MarshalFrom(Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures* pointer)
         {
-            PhysicalDevicePipelineExecutablePropertiesFeatures result = default(PhysicalDevicePipelineExecutablePropertiesFeatures);
+            var result = default(PhysicalDevicePipelineExecutablePropertiesFeatures);
             result.PipelineExecutableInfo = pointer->PipelineExecutableInfo;
             return result;
         }

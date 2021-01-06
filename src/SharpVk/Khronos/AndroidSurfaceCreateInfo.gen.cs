@@ -24,53 +24,49 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created Android surface
-    /// object.
+    ///     Structure specifying parameters of a newly created Android surface
+    ///     object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AndroidSurfaceCreateInfo
+    public struct AndroidSurfaceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Khronos.AndroidSurfaceCreateFlags? Flags
+        public AndroidSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A pointer to the ANativeWindow to associate the surface with.
+        ///     A pointer to the ANativeWindow to associate the surface with.
         /// </summary>
         public IntPtr Window
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.AndroidSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.AndroidSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags);
-            }
-            pointer->Window = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-            *pointer->Window = this.Window;
+                pointer->Flags = default;
+            pointer->Window = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+            *pointer->Window = Window;
         }
     }
 }

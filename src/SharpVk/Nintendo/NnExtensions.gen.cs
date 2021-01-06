@@ -25,13 +25,11 @@
 namespace SharpVk.Nintendo
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class NnExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string ViSurface = "VK_NN_vi_surface"; 
+        public const string ViSurface = "VK_NN_vi_surface";
     }
 }

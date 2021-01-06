@@ -22,57 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayPlaneInfo2
+    public struct DisplayPlaneInfo2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.DisplayMode Mode
+        public DisplayMode Mode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint PlaneIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplayPlaneInfo2* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.DisplayPlaneInfo2* pointer)
         {
             pointer->SType = StructureType.DisplayPlaneInfo2;
             pointer->Next = null;
-            pointer->Mode = this.Mode?.handle ?? default(SharpVk.Interop.Khronos.DisplayMode);
-            pointer->PlaneIndex = this.PlaneIndex;
+            pointer->Mode = Mode?.Handle ?? default(Interop.Khronos.DisplayMode);
+            pointer->PlaneIndex = PlaneIndex;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayPlaneInfo2 MarshalFrom(SharpVk.Interop.Khronos.DisplayPlaneInfo2* pointer)
+        internal static unsafe DisplayPlaneInfo2 MarshalFrom(Interop.Khronos.DisplayPlaneInfo2* pointer)
         {
-            DisplayPlaneInfo2 result = default(DisplayPlaneInfo2);
-            result.Mode = new SharpVk.Khronos.DisplayMode(default(SharpVk.PhysicalDevice), pointer->Mode);
+            var result = default(DisplayPlaneInfo2);
+            result.Mode = new(default, pointer->Mode);
             result.PlaneIndex = pointer->PlaneIndex;
             return result;
         }

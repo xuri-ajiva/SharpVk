@@ -3,9 +3,9 @@
     public partial class PhysicalDevice
     {
         /// <summary>
-        /// Returns properties of available physical device extensions.
+        ///     Returns properties of available physical device extensions.
         /// </summary>
-        public unsafe SharpVk.ExtensionProperties[] EnumerateDeviceExtensionProperties()
+        public ExtensionProperties[] EnumerateDeviceExtensionProperties()
         {
             return EnumerateDeviceExtensionProperties(null);
         }

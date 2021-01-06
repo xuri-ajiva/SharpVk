@@ -22,42 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a specialization map entry.
+    ///     Structure specifying a specialization map entry.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SpecializationMapEntry
+    public struct SpecializationMapEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SpecializationMapEntry(uint constantID, uint offset, HostSize size)
+        public SpecializationMapEntry(uint constantId, uint offset, HostSize size)
         {
-            this.ConstantID = constantID;
-            this.Offset = offset;
-            this.Size = size;
+            ConstantID = constantId;
+            Offset = offset;
+            Size = size;
         }
-        
+
         /// <summary>
-        /// The ID of the specialization constant in SPIR-V.
+        ///     The ID of the specialization constant in SPIR-V.
         /// </summary>
-        public uint ConstantID; 
-        
+        public uint ConstantID;
+
         /// <summary>
-        /// The byte offset of the specialization constant value within the
-        /// supplied data buffer.
+        ///     The byte offset of the specialization constant value within the
+        ///     supplied data buffer.
         /// </summary>
-        public uint Offset; 
-        
+        public uint Offset;
+
         /// <summary>
-        /// The byte size of the specialization constant value within the
-        /// supplied data buffer.
+        ///     The byte size of the specialization constant value within the
+        ///     supplied data buffer.
         /// </summary>
-        public HostSize Size; 
+        public HostSize Size;
     }
 }

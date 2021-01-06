@@ -22,116 +22,104 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct HdrMetadata
+    public struct HdrMetadata
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.XYColor DisplayPrimaryRed
+        public XyColor DisplayPrimaryRed
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.XYColor DisplayPrimaryGreen
+        public XyColor DisplayPrimaryGreen
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.XYColor DisplayPrimaryBlue
+        public XyColor DisplayPrimaryBlue
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.XYColor WhitePoint
+        public XyColor WhitePoint
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MaxLuminance
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MinLuminance
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MaxContentLightLevel
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MaxFrameAverageLightLevel
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.HdrMetadata* pointer)
         {
             pointer->SType = StructureType.HdrMetadata;
             pointer->Next = null;
-            pointer->DisplayPrimaryRed = this.DisplayPrimaryRed;
-            pointer->DisplayPrimaryGreen = this.DisplayPrimaryGreen;
-            pointer->DisplayPrimaryBlue = this.DisplayPrimaryBlue;
-            pointer->WhitePoint = this.WhitePoint;
-            pointer->MaxLuminance = this.MaxLuminance;
-            pointer->MinLuminance = this.MinLuminance;
-            pointer->MaxContentLightLevel = this.MaxContentLightLevel;
-            pointer->MaxFrameAverageLightLevel = this.MaxFrameAverageLightLevel;
+            pointer->DisplayPrimaryRed = DisplayPrimaryRed;
+            pointer->DisplayPrimaryGreen = DisplayPrimaryGreen;
+            pointer->DisplayPrimaryBlue = DisplayPrimaryBlue;
+            pointer->WhitePoint = WhitePoint;
+            pointer->MaxLuminance = MaxLuminance;
+            pointer->MinLuminance = MinLuminance;
+            pointer->MaxContentLightLevel = MaxContentLightLevel;
+            pointer->MaxFrameAverageLightLevel = MaxFrameAverageLightLevel;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe HdrMetadata MarshalFrom(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
+        internal static unsafe HdrMetadata MarshalFrom(Interop.Multivendor.HdrMetadata* pointer)
         {
-            HdrMetadata result = default(HdrMetadata);
+            var result = default(HdrMetadata);
             result.DisplayPrimaryRed = pointer->DisplayPrimaryRed;
             result.DisplayPrimaryGreen = pointer->DisplayPrimaryGreen;
             result.DisplayPrimaryBlue = pointer->DisplayPrimaryBlue;

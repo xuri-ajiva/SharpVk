@@ -22,20 +22,18 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class PipelineExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Pipeline handle to extend.
+        ///     The Pipeline handle to extend.
         /// </param>
         /// <param name="firstGroup">
         /// </param>
@@ -43,30 +41,24 @@ namespace SharpVk.NVidia
         /// </param>
         /// <param name="dataSize">
         /// </param>
-        public static unsafe byte[] GetRayTracingShaderGroupHandles(this SharpVk.Pipeline extendedHandle, uint firstGroup, uint groupCount, HostSize dataSize)
+        public static unsafe byte[] GetRayTracingShaderGroupHandles(this Pipeline extendedHandle, uint firstGroup, uint groupCount, HostSize dataSize)
         {
             try
             {
-                byte[] result = default(byte[]);
-                CommandCache commandCache = default(CommandCache);
-                HostSize marshalledDataSize = default(HostSize);
-                byte* marshalledData = default(byte*);
-                commandCache = extendedHandle.commandCache;
+                var result = default(byte[]);
+                var commandCache = default(CommandCache);
+                var marshalledDataSize = default(HostSize);
+                var marshalledData = default(byte*);
+                commandCache = extendedHandle.CommandCache;
                 marshalledDataSize = dataSize;
-                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(marshalledDataSize));
-                SharpVk.Interop.NVidia.VkPipelineGetRayTracingShaderGroupHandlesDelegate commandDelegate = commandCache.Cache.vkGetRayTracingShaderGroupHandlesNV;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, firstGroup, groupCount, marshalledDataSize, marshalledData);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                marshalledData = (byte*)HeapUtil.Allocate<byte>(marshalledDataSize);
+                var commandDelegate = commandCache.Cache.VkGetRayTracingShaderGroupHandlesNv;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, firstGroup, groupCount, marshalledDataSize, marshalledData);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 if (marshalledData != null)
                 {
-                    var fieldPointer = new byte[(uint)(marshalledDataSize)];
-                    for(int index = 0; index < (uint)(marshalledDataSize); index++)
-                    {
-                        fieldPointer[index] = marshalledData[index];
-                    }
+                    var fieldPointer = new byte[(uint)marshalledDataSize];
+                    for (var index = 0; index < (uint)marshalledDataSize; index++) fieldPointer[index] = marshalledData[index];
                     result = fieldPointer;
                 }
                 else
@@ -77,34 +69,30 @@ namespace SharpVk.NVidia
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Pipeline handle to extend.
+        ///     The Pipeline handle to extend.
         /// </param>
         /// <param name="shader">
         /// </param>
-        public static unsafe void CompileDeferred(this SharpVk.Pipeline extendedHandle, uint shader)
+        public static void CompileDeferred(this Pipeline extendedHandle, uint shader)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkPipelineCompileDeferredDelegate commandDelegate = commandCache.Cache.vkCompileDeferredNV;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, shader);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkCompileDeferredNv;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, shader);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

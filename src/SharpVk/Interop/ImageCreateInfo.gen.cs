@@ -22,104 +22,102 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImageCreateInfo
+    public unsafe struct ImageCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitmask describing additional parameters of the image. See
-        /// ImageCreateFlagBits below for a description of the supported bits.
+        ///     A bitmask describing additional parameters of the image. See
+        ///     ImageCreateFlagBits below for a description of the supported bits.
         /// </summary>
-        public SharpVk.ImageCreateFlags Flags; 
-        
+        public ImageCreateFlags Flags;
+
         /// <summary>
-        /// An ImageType specifying the basic dimensionality of the image, as
-        /// described below. Layers in array textures do not count as a
-        /// dimension for the purposes of the image type.
+        ///     An ImageType specifying the basic dimensionality of the image, as
+        ///     described below. Layers in array textures do not count as a
+        ///     dimension for the purposes of the image type.
         /// </summary>
-        public SharpVk.ImageType ImageType; 
-        
+        public ImageType ImageType;
+
         /// <summary>
-        /// A Format describing the format and type of the data elements that
-        /// will be contained in the image.
+        ///     A Format describing the format and type of the data elements that
+        ///     will be contained in the image.
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// A Extent3D describing the number of data elements in each dimension
-        /// of the base level.
+        ///     A Extent3D describing the number of data elements in each dimension
+        ///     of the base level.
         /// </summary>
-        public SharpVk.Extent3D Extent; 
-        
+        public Extent3D Extent;
+
         /// <summary>
-        /// mipLevels describes the number of levels of detail available for
-        /// minified sampling of the image.
+        ///     mipLevels describes the number of levels of detail available for
+        ///     minified sampling of the image.
         /// </summary>
-        public uint MipLevels; 
-        
+        public uint MipLevels;
+
         /// <summary>
-        /// The number of layers in the image.
+        ///     The number of layers in the image.
         /// </summary>
-        public uint ArrayLayers; 
-        
+        public uint ArrayLayers;
+
         /// <summary>
-        /// The number of sub-data element samples in the image as defined in
-        /// SampleCountFlagBits. See Multisampling.
+        ///     The number of sub-data element samples in the image as defined in
+        ///     SampleCountFlagBits. See Multisampling.
         /// </summary>
-        public SharpVk.SampleCountFlags Samples; 
-        
+        public SampleCountFlags Samples;
+
         /// <summary>
-        /// An ImageTiling specifying the tiling arrangement of the data
-        /// elements in memory, as described below.
+        ///     An ImageTiling specifying the tiling arrangement of the data
+        ///     elements in memory, as described below.
         /// </summary>
-        public SharpVk.ImageTiling Tiling; 
-        
+        public ImageTiling Tiling;
+
         /// <summary>
-        /// A bitmask describing the intended usage of the image. See
-        /// ImageUsageFlagBits below for a description of the supported bits.
+        ///     A bitmask describing the intended usage of the image. See
+        ///     ImageUsageFlagBits below for a description of the supported bits.
         /// </summary>
-        public SharpVk.ImageUsageFlags Usage; 
-        
+        public ImageUsageFlags Usage;
+
         /// <summary>
-        /// The sharing mode of the image when it will be accessed by multiple
-        /// queue families, and must be one of the values described for
-        /// SharingMode in the Resource Sharing section below.
+        ///     The sharing mode of the image when it will be accessed by multiple
+        ///     queue families, and must be one of the values described for
+        ///     SharingMode in the Resource Sharing section below.
         /// </summary>
-        public SharpVk.SharingMode SharingMode; 
-        
+        public SharingMode SharingMode;
+
         /// <summary>
-        /// The number of entries in the pQueueFamilyIndices array.
+        ///     The number of entries in the pQueueFamilyIndices array.
         /// </summary>
-        public uint QueueFamilyIndexCount; 
-        
+        public uint QueueFamilyIndexCount;
+
         /// <summary>
-        /// A list of queue families that will access this image (ignored if
-        /// sharingMode is not VK_SHARING_MODE_CONCURRENT).
+        ///     A list of queue families that will access this image (ignored if
+        ///     sharingMode is not VK_SHARING_MODE_CONCURRENT).
         /// </summary>
-        public uint* QueueFamilyIndices; 
-        
+        public uint* QueueFamilyIndices;
+
         /// <summary>
-        /// initialLayout selects the initial ImageLayout state of all image
-        /// subresources of the image. See Image Layouts. initialLayout must be
-        /// VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
+        ///     initialLayout selects the initial ImageLayout state of all image
+        ///     subresources of the image. See Image Layouts. initialLayout must be
+        ///     VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
         /// </summary>
-        public SharpVk.ImageLayout InitialLayout; 
+        public ImageLayout InitialLayout;
     }
 }

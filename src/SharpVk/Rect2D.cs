@@ -20,13 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-
 namespace SharpVk
 {
     public partial struct Rect2D
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extent"></param>
         public Rect2D(Extent2D extent)
@@ -35,23 +33,19 @@ namespace SharpVk
         }
 
         /// <summary>
-        /// 
         /// </summary>
-        public float Top => this.Offset.Y;
+        public float Top => Offset.Y;
 
         /// <summary>
-        /// 
         /// </summary>
-        public float Bottom => this.Offset.Y + this.Extent.Height;
+        public float Bottom => Offset.Y + Extent.Height;
 
         /// <summary>
-        /// 
         /// </summary>
-        public float Left => this.Offset.X;
+        public float Left => Offset.X;
 
         /// <summary>
-        /// 
         /// </summary>
-        public float Right => this.Offset.X + this.Extent.Width;        
+        public float Right => Offset.X + Extent.Width;
     }
 }

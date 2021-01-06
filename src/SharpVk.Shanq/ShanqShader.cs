@@ -1,8 +1,8 @@
-﻿using Remotion.Linq.Parsing.Structure;
-using SharpVk.Spirv;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using Remotion.Linq.Parsing.Structure;
+using SharpVk.Spirv;
 
 namespace SharpVk.Shanq
 {
@@ -12,7 +12,7 @@ namespace SharpVk.Shanq
 
         IQueryable<T> GetBinding<T>(int binding);
 
-        IQueryable<Sampler2d<T, V>> GetSampler2d<T, V>(int binding, int descriptorSet);
+        IQueryable<Sampler2d<T, TV>> GetSampler2d<T, TV>(int binding, int descriptorSet);
     }
 
     internal class ShanqFactory
@@ -22,22 +22,22 @@ namespace SharpVk.Shanq
 
         public ShanqFactory(ExecutionModel model, Stream outputStream, IVectorTypeLibrary vectorLibrary, string entryPointName)
         {
-            this.executor = new ShanqQueryExecutor(model, outputStream, vectorLibrary, entryPointName);
+            executor = new ShanqQueryExecutor(model, outputStream, vectorLibrary, entryPointName);
         }
 
         public IQueryable<T> GetBinding<T>(int binding)
         {
-            return new ShanqQueryable<T>(QueryableOrigin.Binding, QueryParser.CreateDefault(), this.executor, binding);
+            return new ShanqQueryable<T>(QueryableOrigin.Binding, QueryParser.CreateDefault(), executor, binding);
         }
 
         public IQueryable<T> GetInput<T>()
         {
-            return new ShanqQueryable<T>(QueryableOrigin.Input, QueryParser.CreateDefault(), this.executor);
+            return new ShanqQueryable<T>(QueryableOrigin.Input, QueryParser.CreateDefault(), executor);
         }
 
-        public IQueryable<Sampler2d<T, V>> GetSampler2d<T, V>(int binding, int descriptorSet)
+        public IQueryable<Sampler2d<T, TV>> GetSampler2d<T, TV>(int binding, int descriptorSet)
         {
-            return new ShanqQueryable<Sampler2d<T, V>>(QueryableOrigin.Sampler, QueryParser.CreateDefault(), this.executor, binding, descriptorSet);
+            return new ShanqQueryable<Sampler2d<T, TV>>(QueryableOrigin.Sampler, QueryParser.CreateDefault(), executor, binding, descriptorSet);
         }
     }
 
@@ -78,7 +78,7 @@ namespace SharpVk.Shanq
 
             Create(model, shaderStream, vectorLibrary, shaderFunction);
 
-            int shaderLength = (int)shaderStream.Length;
+            var shaderLength = (int)shaderStream.Length;
 
             var shaderBytes = shaderStream.GetBuffer();
 

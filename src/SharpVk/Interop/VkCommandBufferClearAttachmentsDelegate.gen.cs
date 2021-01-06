@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferClearAttachmentsDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint attachmentCount, SharpVk.ClearAttachment* attachments, uint rectCount, SharpVk.ClearRect* rects);
+    public unsafe delegate void VkCommandBufferClearAttachmentsDelegate(CommandBuffer commandBuffer, uint attachmentCount, ClearAttachment* attachments, uint rectCount, ClearRect* rects);
 }

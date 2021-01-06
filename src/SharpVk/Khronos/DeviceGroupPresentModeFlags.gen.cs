@@ -22,37 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum DeviceGroupPresentModeFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Local = 1 << 0, 
-        
+        Local = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Remote = 1 << 1, 
-        
+        Remote = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Sum = 1 << 2, 
-        
+        Sum = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        LocalMultiDevice = 1 << 3, 
+        LocalMultiDevice = 1 << 3
     }
 }

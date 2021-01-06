@@ -22,42 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct MappedMemoryRange
+    public unsafe struct MappedMemoryRange
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The memory object to which this range belongs.
+        ///     The memory object to which this range belongs.
         /// </summary>
-        public SharpVk.Interop.DeviceMemory Memory; 
-        
+        public DeviceMemory Memory;
+
         /// <summary>
-        /// The zero-based byte offset from the beginning of the memory object.
+        ///     The zero-based byte offset from the beginning of the memory object.
         /// </summary>
-        public ulong Offset; 
-        
+        public ulong Offset;
+
         /// <summary>
-        /// size is either the size of range, or Constants.WholeSize to affect
-        /// the range from offset to the end of the current mapping of the
-        /// allocation.
+        ///     size is either the size of range, or Constants.WholeSize to affect
+        ///     the range from offset to the end of the current mapping of the
+        ///     allocation.
         /// </summary>
-        public ulong Size; 
+        public ulong Size;
     }
 }

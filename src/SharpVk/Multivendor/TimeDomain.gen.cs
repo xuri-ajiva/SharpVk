@@ -25,28 +25,23 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum TimeDomain
     {
         /// <summary>
-        /// 
         /// </summary>
-        Device = 0, 
-        
+        Device = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        ClockMonotonic = 1, 
-        
+        ClockMonotonic = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        ClockMonotonicRaw = 2, 
-        
+        ClockMonotonicRaw = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        QueryPerformanceCounter = 3, 
+        QueryPerformanceCounter = 3
     }
 }

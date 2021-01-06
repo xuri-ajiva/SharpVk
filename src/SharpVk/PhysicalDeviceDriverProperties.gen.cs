@@ -22,64 +22,58 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceDriverProperties
+    public struct PhysicalDeviceDriverProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DriverId DriverID
+        public DriverId DriverId
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string DriverName
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string DriverInfo
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ConformanceVersion ConformanceVersion
+        public ConformanceVersion ConformanceVersion
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDriverProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDriverProperties* pointer)
+        internal static unsafe PhysicalDeviceDriverProperties MarshalFrom(Interop.PhysicalDeviceDriverProperties* pointer)
         {
-            PhysicalDeviceDriverProperties result = default(PhysicalDeviceDriverProperties);
-            result.DriverID = pointer->DriverID;
-            result.DriverName = Interop.HeapUtil.MarshalStringFrom(pointer->DriverName, Constants.MaxDriverNameSize, true);
-            result.DriverInfo = Interop.HeapUtil.MarshalStringFrom(pointer->DriverInfo, Constants.MaxDriverInfoSize, true);
+            var result = default(PhysicalDeviceDriverProperties);
+            result.DriverId = pointer->DriverID;
+            result.DriverName = HeapUtil.MarshalStringFrom(pointer->DriverName, Constants.MaxDriverNameSize, true);
+            result.DriverInfo = HeapUtil.MarshalStringFrom(pointer->DriverInfo, Constants.MaxDriverInfoSize, true);
             result.ConformanceVersion = pointer->ConformanceVersion;
             return result;
         }

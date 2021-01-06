@@ -22,133 +22,116 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AttachmentDescription2
+    public struct AttachmentDescription2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentDescriptionFlags? Flags
+        public AttachmentDescriptionFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format
+        public Format Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags Samples
+        public SampleCountFlags Samples
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentLoadOp LoadOp
+        public AttachmentLoadOp LoadOp
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentStoreOp StoreOp
+        public AttachmentStoreOp StoreOp
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentLoadOp StencilLoadOp
+        public AttachmentLoadOp StencilLoadOp
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentStoreOp StencilStoreOp
+        public AttachmentStoreOp StencilStoreOp
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout InitialLayout
+        public ImageLayout InitialLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout FinalLayout
+        public ImageLayout FinalLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.AttachmentDescription2* pointer)
+        internal unsafe void MarshalTo(Interop.AttachmentDescription2* pointer)
         {
             pointer->SType = StructureType.AttachmentDescription2Version;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.AttachmentDescriptionFlags);
-            }
-            pointer->Format = this.Format;
-            pointer->Samples = this.Samples;
-            pointer->LoadOp = this.LoadOp;
-            pointer->StoreOp = this.StoreOp;
-            pointer->StencilLoadOp = this.StencilLoadOp;
-            pointer->StencilStoreOp = this.StencilStoreOp;
-            pointer->InitialLayout = this.InitialLayout;
-            pointer->FinalLayout = this.FinalLayout;
+                pointer->Flags = default;
+            pointer->Format = Format;
+            pointer->Samples = Samples;
+            pointer->LoadOp = LoadOp;
+            pointer->StoreOp = StoreOp;
+            pointer->StencilLoadOp = StencilLoadOp;
+            pointer->StencilStoreOp = StencilStoreOp;
+            pointer->InitialLayout = InitialLayout;
+            pointer->FinalLayout = FinalLayout;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AttachmentDescription2 MarshalFrom(SharpVk.Interop.AttachmentDescription2* pointer)
+        internal static unsafe AttachmentDescription2 MarshalFrom(Interop.AttachmentDescription2* pointer)
         {
-            AttachmentDescription2 result = default(AttachmentDescription2);
+            var result = default(AttachmentDescription2);
             result.Flags = pointer->Flags;
             result.Format = pointer->Format;
             result.Samples = pointer->Samples;

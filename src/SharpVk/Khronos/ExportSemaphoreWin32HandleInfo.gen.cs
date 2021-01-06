@@ -24,62 +24,58 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExportSemaphoreWin32HandleInfo
+    public struct ExportSemaphoreWin32HandleInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public SecurityAttributes? Attributes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint DwAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr Name
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ExportSemaphoreWin32HandleInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.ExportSemaphoreWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ExportSemaphoreWin32HandleInfo;
             pointer->Next = null;
-            if (this.Attributes != null)
+            if (Attributes != null)
             {
-                pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
-                *pointer->Attributes = this.Attributes.Value;
+                pointer->Attributes = (SecurityAttributes*)HeapUtil.Allocate<SecurityAttributes>();
+                *pointer->Attributes = Attributes.Value;
             }
             else
             {
-                pointer->Attributes = default(SecurityAttributes*);
+                pointer->Attributes = default;
             }
-            pointer->DwAccess = this.DwAccess;
-            pointer->Name = this.Name;
+            pointer->DwAccess = DwAccess;
+            pointer->Name = Name;
         }
     }
 }

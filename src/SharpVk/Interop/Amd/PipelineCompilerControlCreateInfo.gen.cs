@@ -22,30 +22,26 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Amd;
 
 namespace SharpVk.Interop.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineCompilerControlCreateInfo
+    public unsafe struct PipelineCompilerControlCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Amd.PipelineCompilerControlFlags CompilerControlFlags; 
+        public PipelineCompilerControlFlags CompilerControlFlags;
     }
 }

@@ -22,92 +22,90 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct CommandProcessCommandsInfo
+    public unsafe struct CommandProcessCommandsInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The ObjectTableNVX to be used for the generation process. Only
-        /// registered objects at the time
-        /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
-        /// account for the reservation.
+        ///     The ObjectTableNVX to be used for the generation process. Only
+        ///     registered objects at the time
+        ///     flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
+        ///     account for the reservation.
         /// </summary>
-        public SharpVk.Interop.NVidia.Experimental.ObjectTable ObjectTable; 
-        
+        public ObjectTable ObjectTable;
+
         /// <summary>
-        /// The IndirectCommandsLayoutNVX that provides the command sequence to
-        /// generate.
+        ///     The IndirectCommandsLayoutNVX that provides the command sequence to
+        ///     generate.
         /// </summary>
-        public SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout IndirectCommandsLayout; 
-        
+        public IndirectCommandsLayout IndirectCommandsLayout;
+
         /// <summary>
-        /// indirectCommandsTokenCount defines the number of input tokens used.
+        ///     indirectCommandsTokenCount defines the number of input tokens used.
         /// </summary>
-        public uint IndirectCommandsTokenCount; 
-        
+        public uint IndirectCommandsTokenCount;
+
         /// <summary>
-        /// pIndirectCommandsTokens provides an array of
-        /// IndirectCommandsTokenNVX that reference the input data for each
-        /// token command.
+        ///     pIndirectCommandsTokens provides an array of
+        ///     IndirectCommandsTokenNVX that reference the input data for each
+        ///     token command.
         /// </summary>
-        public SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken* IndirectCommandsTokens; 
-        
+        public IndirectCommandsToken* IndirectCommandsTokens;
+
         /// <summary>
-        /// The maximum number of sequences for which command buffer space will
-        /// be reserved. If sequencesCountBuffer is null, this is also the
-        /// actual number of sequences generated.
+        ///     The maximum number of sequences for which command buffer space will
+        ///     be reserved. If sequencesCountBuffer is null, this is also the
+        ///     actual number of sequences generated.
         /// </summary>
-        public uint MaxSequencesCount; 
-        
+        public uint MaxSequencesCount;
+
         /// <summary>
-        /// targetCommandBuffer can be the secondary CommandBuffer in which the
-        /// commands should be recorded. If targetCommandBuffer is Null an
-        /// implicit reservation as well as execution takes place on the
-        /// processing CommandBuffer.
+        ///     targetCommandBuffer can be the secondary CommandBuffer in which the
+        ///     commands should be recorded. If targetCommandBuffer is Null an
+        ///     implicit reservation as well as execution takes place on the
+        ///     processing CommandBuffer.
         /// </summary>
-        public SharpVk.Interop.CommandBuffer TargetCommandBuffer; 
-        
+        public CommandBuffer TargetCommandBuffer;
+
         /// <summary>
-        /// sequencesCountBuffer can be Buffer from which the actual amount of
-        /// sequences is sourced from as ftext:uint32_t value.
+        ///     sequencesCountBuffer can be Buffer from which the actual amount of
+        ///     sequences is sourced from as ftext:uint32_t value.
         /// </summary>
-        public SharpVk.Interop.Buffer SequencesCountBuffer; 
-        
+        public Buffer SequencesCountBuffer;
+
         /// <summary>
-        /// The byte offset into sequencesCountBuffer where the count value is
-        /// stored.
+        ///     The byte offset into sequencesCountBuffer where the count value is
+        ///     stored.
         /// </summary>
-        public ulong SequencesCountOffset; 
-        
+        public ulong SequencesCountOffset;
+
         /// <summary>
-        /// sequencesIndexBuffer must be set if indirectCommandsLayout's
-        /// VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT is set and
-        /// provides the used sequence indices as ftext:uint32_t array.
-        /// Otherwise it must be null.
+        ///     sequencesIndexBuffer must be set if indirectCommandsLayout's
+        ///     VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT is set and
+        ///     provides the used sequence indices as ftext:uint32_t array.
+        ///     Otherwise it must be null.
         /// </summary>
-        public SharpVk.Interop.Buffer SequencesIndexBuffer; 
-        
+        public Buffer SequencesIndexBuffer;
+
         /// <summary>
-        /// The byte offset into sequencesIndexBuffer where the index values
-        /// start.
+        ///     The byte offset into sequencesIndexBuffer where the index values
+        ///     start.
         /// </summary>
-        public ulong SequencesIndexOffset; 
+        public ulong SequencesIndexOffset;
     }
 }

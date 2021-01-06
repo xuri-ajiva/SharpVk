@@ -25,28 +25,24 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Control polygon rasterization mode.
+    ///     Control polygon rasterization mode.
     /// </summary>
     public enum PolygonMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        Fill = 0, 
-        
+        Fill = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Line = 1, 
-        
+        Line = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Point = 2, 
-        
+        Point = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        FillRectangle = 1000153000, 
+        FillRectangle = 1000153000
     }
 }

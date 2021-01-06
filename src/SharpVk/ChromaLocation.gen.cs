@@ -25,18 +25,15 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum ChromaLocation
     {
         /// <summary>
-        /// 
         /// </summary>
-        CositedEven = 0, 
-        
+        CositedEven = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Midpoint = 1, 
+        Midpoint = 1
     }
 }

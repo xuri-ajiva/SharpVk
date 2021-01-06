@@ -22,45 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineExecutableStatistic
+    public unsafe struct PipelineExecutableStatistic
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Name[Constants.MaxDescriptionSize]; 
-        
+        public fixed byte Name[Constants.MaxDescriptionSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Description[Constants.MaxDescriptionSize]; 
-        
+        public fixed byte Description[Constants.MaxDescriptionSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PipelineExecutableStatisticFormat Format; 
-        
+        public PipelineExecutableStatisticFormat Format;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PipelineExecutableStatisticValue Value; 
+        public PipelineExecutableStatisticValue Value;
     }
 }

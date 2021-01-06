@@ -23,71 +23,77 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public partial class ValidationCache
+    public class ValidationCache
         : IDisposable
     {
-        internal readonly SharpVk.Interop.Multivendor.ValidationCache handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal ValidationCache(SharpVk.Device parent, SharpVk.Interop.Multivendor.ValidationCache handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Multivendor.ValidationCache Handle;
+
+        internal readonly Device Parent;
+
+        internal ValidationCache(Device parent, Interop.Multivendor.ValidationCache handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Multivendor.ValidationCache RawHandle => this.handle;
-        
+        public Interop.Multivendor.ValidationCache RawHandle => Handle;
+
         /// <summary>
-        /// 
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
         /// </summary>
         /// <param name="allocator">
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.Multivendor.VkValidationCacheEXTDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyValidationCacheEXT;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyValidationCacheExt;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sourceCaches">
         /// </param>
-        public unsafe void MergeValidationCaches(ArrayProxy<SharpVk.Multivendor.ValidationCache>? sourceCaches)
+        public unsafe void MergeValidationCaches(ArrayProxy<ValidationCache>? sourceCaches)
         {
             try
             {
-                SharpVk.Interop.Multivendor.ValidationCache* marshalledSourceCaches = default(SharpVk.Interop.Multivendor.ValidationCache*);
+                var marshalledSourceCaches = default(Interop.Multivendor.ValidationCache*);
                 if (sourceCaches.IsNull())
                 {
                     marshalledSourceCaches = null;
@@ -96,57 +102,44 @@ namespace SharpVk.Multivendor
                 {
                     if (sourceCaches.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledSourceCaches = (SharpVk.Interop.Multivendor.ValidationCache*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationCache>());
-                        *(SharpVk.Interop.Multivendor.ValidationCache*)(marshalledSourceCaches) = sourceCaches.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.Multivendor.ValidationCache);
+                        marshalledSourceCaches = (Interop.Multivendor.ValidationCache*)HeapUtil.Allocate<Interop.Multivendor.ValidationCache>();
+                        *marshalledSourceCaches = sourceCaches.Value.GetSingleValue()?.Handle ?? default(Interop.Multivendor.ValidationCache);
                     }
                     else
                     {
-                        var fieldPointer = (SharpVk.Interop.Multivendor.ValidationCache*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.ValidationCache>(Interop.HeapUtil.GetLength(sourceCaches.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(sourceCaches.Value)); index++)
-                        {
-                            fieldPointer[index] = sourceCaches.Value[index]?.handle ?? default(SharpVk.Interop.Multivendor.ValidationCache);
-                        }
+                        var fieldPointer = (Interop.Multivendor.ValidationCache*)HeapUtil.AllocateAndClear<Interop.Multivendor.ValidationCache>(HeapUtil.GetLength(sourceCaches.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(sourceCaches.Value); index++) fieldPointer[index] = sourceCaches.Value[index]?.Handle ?? default(Interop.Multivendor.ValidationCache);
                         marshalledSourceCaches = fieldPointer;
                     }
                 }
-                SharpVk.Interop.Multivendor.VkValidationCacheEXTMergeValidationCachesDelegate commandDelegate = commandCache.Cache.vkMergeValidationCachesEXT;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(sourceCaches)), marshalledSourceCaches);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandDelegate = CommandCache.Cache.VkMergeValidationCachesExt;
+                var methodResult = commandDelegate(Parent.Handle, Handle, HeapUtil.GetLength(sourceCaches), marshalledSourceCaches);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public unsafe byte[] GetData()
         {
             try
             {
-                byte[] result = default(byte[]);
-                HostSize marshalledDataSize = default(HostSize);
-                byte* marshalledData = default(byte*);
-                SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate commandDelegate = commandCache.Cache.vkGetValidationCacheDataEXT;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, &marshalledDataSize, marshalledData);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(marshalledDataSize)));
-                commandDelegate(this.parent.handle, this.handle, &marshalledDataSize, marshalledData);
+                var result = default(byte[]);
+                var marshalledDataSize = default(HostSize);
+                var marshalledData = default(byte*);
+                var commandDelegate = CommandCache.Cache.VkGetValidationCacheDataExt;
+                var methodResult = commandDelegate(Parent.Handle, Handle, &marshalledDataSize, marshalledData);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                marshalledData = (byte*)HeapUtil.Allocate<byte>((uint)marshalledDataSize);
+                commandDelegate(Parent.Handle, Handle, &marshalledDataSize, marshalledData);
                 if (marshalledData != null)
                 {
-                    var fieldPointer = new byte[(uint)(marshalledDataSize)];
-                    for(int index = 0; index < (uint)(marshalledDataSize); index++)
-                    {
-                        fieldPointer[index] = marshalledData[index];
-                    }
+                    var fieldPointer = new byte[(uint)marshalledDataSize];
+                    for (var index = 0; index < (uint)marshalledDataSize; index++) fieldPointer[index] = marshalledData[index];
                     result = fieldPointer;
                 }
                 else
@@ -157,17 +150,8 @@ namespace SharpVk.Multivendor
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

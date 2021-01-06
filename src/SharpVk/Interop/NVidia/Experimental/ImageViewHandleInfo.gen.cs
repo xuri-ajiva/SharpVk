@@ -22,41 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImageViewHandleInfo
+    public unsafe struct ImageViewHandleInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The image view to query.
+        ///     The image view to query.
         /// </summary>
-        public SharpVk.Interop.ImageView ImageView; 
-        
+        public ImageView ImageView;
+
         /// <summary>
-        /// The type of descriptor for which to query a handle.
+        ///     The type of descriptor for which to query a handle.
         /// </summary>
-        public SharpVk.DescriptorType DescriptorType; 
-        
+        public DescriptorType DescriptorType;
+
         /// <summary>
-        /// The sampler to combine with the image view when generating the
-        /// handle.
+        ///     The sampler to combine with the image view when generating the
+        ///     handle.
         /// </summary>
-        public SharpVk.Interop.Sampler Sampler; 
+        public Sampler Sampler;
     }
 }

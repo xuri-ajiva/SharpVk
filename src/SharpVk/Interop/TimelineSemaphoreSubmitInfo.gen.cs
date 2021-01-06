@@ -22,45 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct TimelineSemaphoreSubmitInfo
+    public unsafe struct TimelineSemaphoreSubmitInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint WaitSemaphoreValueCount; 
-        
+        public uint WaitSemaphoreValueCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong* WaitSemaphoreValues; 
-        
+        public ulong* WaitSemaphoreValues;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SignalSemaphoreValueCount; 
-        
+        public uint SignalSemaphoreValueCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong* SignalSemaphoreValues; 
+        public ulong* SignalSemaphoreValues;
     }
 }

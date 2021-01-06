@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferWriteTimestampDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineStageFlags pipelineStage, SharpVk.Interop.QueryPool queryPool, uint query);
+    public delegate void VkCommandBufferWriteTimestampDelegate(CommandBuffer commandBuffer, PipelineStageFlags pipelineStage, QueryPool queryPool, uint query);
 }

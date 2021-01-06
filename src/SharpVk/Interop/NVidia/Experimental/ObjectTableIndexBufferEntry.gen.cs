@@ -22,35 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia.Experimental;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ObjectTableIndexBufferEntry
+    public struct ObjectTableIndexBufferEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType Type; 
-        
+        public ObjectEntryType Type;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags Flags; 
-        
+        public ObjectEntryUsageFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Buffer Buffer; 
-        
+        public Buffer Buffer;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.IndexType IndexType; 
+        public IndexType IndexType;
     }
 }

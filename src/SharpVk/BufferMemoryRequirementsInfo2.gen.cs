@@ -22,47 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BufferMemoryRequirementsInfo2
+    public struct BufferMemoryRequirementsInfo2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BufferMemoryRequirementsInfo2* pointer)
+        internal unsafe void MarshalTo(Interop.BufferMemoryRequirementsInfo2* pointer)
         {
             pointer->SType = StructureType.BufferMemoryRequirementsInfo2Version;
             pointer->Next = null;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe BufferMemoryRequirementsInfo2 MarshalFrom(SharpVk.Interop.BufferMemoryRequirementsInfo2* pointer)
+        internal static unsafe BufferMemoryRequirementsInfo2 MarshalFrom(Interop.BufferMemoryRequirementsInfo2* pointer)
         {
-            BufferMemoryRequirementsInfo2 result = default(BufferMemoryRequirementsInfo2);
-            result.Buffer = new SharpVk.Buffer(default(SharpVk.Device), pointer->Buffer);
+            var result = default(BufferMemoryRequirementsInfo2);
+            result.Buffer = new(default, pointer->Buffer);
             return result;
         }
     }

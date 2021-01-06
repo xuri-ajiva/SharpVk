@@ -22,25 +22,21 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct GeometryData
+    public struct GeometryData
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.NVidia.GeometryTriangles Triangles; 
-        
+        public GeometryTriangles Triangles;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.NVidia.GeometryAABB Aabbs; 
+        public GeometryAabb Aabbs;
     }
 }

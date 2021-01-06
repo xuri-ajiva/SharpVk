@@ -25,18 +25,15 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum PointClippingBehavior
     {
         /// <summary>
-        /// 
         /// </summary>
-        AllClipPlanes = 0, 
-        
+        AllClipPlanes = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        UserClipPlanesOnly = 1, 
+        UserClipPlanesOnly = 1
     }
 }

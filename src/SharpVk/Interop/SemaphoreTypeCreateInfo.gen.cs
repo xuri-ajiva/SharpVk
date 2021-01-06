@@ -22,35 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SemaphoreTypeCreateInfo
+    public unsafe struct SemaphoreTypeCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SemaphoreType SemaphoreType; 
-        
+        public SemaphoreType SemaphoreType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong InitialValue; 
+        public ulong InitialValue;
     }
 }

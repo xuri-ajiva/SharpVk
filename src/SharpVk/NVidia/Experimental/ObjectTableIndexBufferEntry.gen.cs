@@ -22,77 +22,69 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ObjectTableIndexBufferEntry
+    public struct ObjectTableIndexBufferEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType Type
+        public ObjectEntryType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags Flags
+        public ObjectEntryUsageFlags Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.IndexType IndexType
+        public IndexType IndexType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTableIndexBufferEntry* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.ObjectTableIndexBufferEntry* pointer)
         {
-            pointer->Type = this.Type;
-            pointer->Flags = this.Flags;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->IndexType = this.IndexType;
+            pointer->Type = Type;
+            pointer->Flags = Flags;
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            pointer->IndexType = IndexType;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ObjectTableIndexBufferEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTableIndexBufferEntry* pointer)
+        internal static unsafe ObjectTableIndexBufferEntry MarshalFrom(Interop.NVidia.Experimental.ObjectTableIndexBufferEntry* pointer)
         {
-            ObjectTableIndexBufferEntry result = default(ObjectTableIndexBufferEntry);
+            var result = default(ObjectTableIndexBufferEntry);
             result.Type = pointer->Type;
             result.Flags = pointer->Flags;
-            result.Buffer = new SharpVk.Buffer(default(SharpVk.Device), pointer->Buffer);
+            result.Buffer = new(default, pointer->Buffer);
             result.IndexType = pointer->IndexType;
             return result;
         }

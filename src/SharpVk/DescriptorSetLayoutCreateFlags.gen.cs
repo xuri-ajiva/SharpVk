@@ -22,27 +22,26 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying descriptor set layout properties.
+    ///     Bitmask specifying descriptor set layout properties.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum DescriptorSetLayoutCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        UpdateAfterBindPool = 1 << 1, 
-        
+        UpdateAfterBindPool = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        PushDescriptor = 1 << 0, 
+        PushDescriptor = 1 << 0
     }
 }

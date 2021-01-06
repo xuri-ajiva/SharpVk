@@ -22,85 +22,81 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class QueueExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Queue handle to extend.
+        ///     The Queue handle to extend.
         /// </param>
         /// <param name="labelInfo">
         /// </param>
-        public static unsafe void BeginDebugUtilsLabel(this SharpVk.Queue extendedHandle, SharpVk.Multivendor.DebugUtilsLabel labelInfo)
+        public static unsafe void BeginDebugUtilsLabel(this Queue extendedHandle, DebugUtilsLabel labelInfo)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Multivendor.DebugUtilsLabel* marshalledLabelInfo = default(SharpVk.Interop.Multivendor.DebugUtilsLabel*);
-                commandCache = extendedHandle.commandCache;
-                marshalledLabelInfo = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsLabel>());
+                var commandCache = default(CommandCache);
+                var marshalledLabelInfo = default(Interop.Multivendor.DebugUtilsLabel*);
+                commandCache = extendedHandle.CommandCache;
+                marshalledLabelInfo = (Interop.Multivendor.DebugUtilsLabel*)HeapUtil.Allocate<Interop.Multivendor.DebugUtilsLabel>();
                 labelInfo.MarshalTo(marshalledLabelInfo);
-                SharpVk.Interop.Multivendor.VkQueueBeginDebugUtilsLabelDelegate commandDelegate = commandCache.Cache.vkQueueBeginDebugUtilsLabelEXT;
-                commandDelegate(extendedHandle.handle, marshalledLabelInfo);
+                var commandDelegate = commandCache.Cache.VkQueueBeginDebugUtilsLabelExt;
+                commandDelegate(extendedHandle.Handle, marshalledLabelInfo);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Queue handle to extend.
+        ///     The Queue handle to extend.
         /// </param>
-        public static unsafe void EndDebugUtilsLabel(this SharpVk.Queue extendedHandle)
+        public static void EndDebugUtilsLabel(this Queue extendedHandle)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkQueueEndDebugUtilsLabelDelegate commandDelegate = commandCache.Cache.vkQueueEndDebugUtilsLabelEXT;
-                commandDelegate(extendedHandle.handle);
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkQueueEndDebugUtilsLabelExt;
+                commandDelegate(extendedHandle.Handle);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Queue handle to extend.
+        ///     The Queue handle to extend.
         /// </param>
         /// <param name="labelInfo">
         /// </param>
-        public static unsafe void InsertDebugUtilsLabel(this SharpVk.Queue extendedHandle, SharpVk.Multivendor.DebugUtilsLabel labelInfo)
+        public static unsafe void InsertDebugUtilsLabel(this Queue extendedHandle, DebugUtilsLabel labelInfo)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Multivendor.DebugUtilsLabel* marshalledLabelInfo = default(SharpVk.Interop.Multivendor.DebugUtilsLabel*);
-                commandCache = extendedHandle.commandCache;
-                marshalledLabelInfo = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsLabel>());
+                var commandCache = default(CommandCache);
+                var marshalledLabelInfo = default(Interop.Multivendor.DebugUtilsLabel*);
+                commandCache = extendedHandle.CommandCache;
+                marshalledLabelInfo = (Interop.Multivendor.DebugUtilsLabel*)HeapUtil.Allocate<Interop.Multivendor.DebugUtilsLabel>();
                 labelInfo.MarshalTo(marshalledLabelInfo);
-                SharpVk.Interop.Multivendor.VkQueueInsertDebugUtilsLabelDelegate commandDelegate = commandCache.Cache.vkQueueInsertDebugUtilsLabelEXT;
-                commandDelegate(extendedHandle.handle, marshalledLabelInfo);
+                var commandDelegate = commandCache.Cache.VkQueueInsertDebugUtilsLabelExt;
+                commandDelegate(extendedHandle.Handle, marshalledLabelInfo);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

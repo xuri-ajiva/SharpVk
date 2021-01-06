@@ -22,44 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Specify the surface counters desired.
+    ///     Specify the surface counters desired.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SwapchainCounterCreateInfo
+    public struct SwapchainCounterCreateInfo
     {
         /// <summary>
-        /// A bitmask containing a bit set for each surface counter to enable
-        /// for the swapchain.
+        ///     A bitmask containing a bit set for each surface counter to enable
+        ///     for the swapchain.
         /// </summary>
-        public SharpVk.Multivendor.SurfaceCounterFlags? SurfaceCounters
+        public SurfaceCounterFlags? SurfaceCounters
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.SwapchainCounterCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainCounterCreateInfo;
             pointer->Next = null;
-            if (this.SurfaceCounters != null)
-            {
-                pointer->SurfaceCounters = this.SurfaceCounters.Value;
-            }
+            if (SurfaceCounters != null)
+                pointer->SurfaceCounters = SurfaceCounters.Value;
             else
-            {
-                pointer->SurfaceCounters = default(SharpVk.Multivendor.SurfaceCounterFlags);
-            }
+                pointer->SurfaceCounters = default;
         }
     }
 }

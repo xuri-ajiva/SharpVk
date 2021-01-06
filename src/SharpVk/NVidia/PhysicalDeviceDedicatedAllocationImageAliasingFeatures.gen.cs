@@ -22,48 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Structure describing dedicated allocation image aliasing features that
-    /// can be supported by an implementation
+    ///     Structure describing dedicated allocation image aliasing features that
+    ///     can be supported by an implementation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceDedicatedAllocationImageAliasingFeatures
+    public struct PhysicalDeviceDedicatedAllocationImageAliasingFeatures
     {
         /// <summary>
-        /// Indicates that the implementation supports aliasing of compatible
-        /// image objects on a dedicated allocation.
+        ///     Indicates that the implementation supports aliasing of compatible
+        ///     image objects on a dedicated allocation.
         /// </summary>
         public bool DedicatedAllocationImageAliasing
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceDedicatedAllocationImageAliasingFeatures;
             pointer->Next = null;
-            pointer->DedicatedAllocationImageAliasing = this.DedicatedAllocationImageAliasing;
+            pointer->DedicatedAllocationImageAliasing = DedicatedAllocationImageAliasing;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDedicatedAllocationImageAliasingFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures* pointer)
+        internal static unsafe PhysicalDeviceDedicatedAllocationImageAliasingFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures* pointer)
         {
-            PhysicalDeviceDedicatedAllocationImageAliasingFeatures result = default(PhysicalDeviceDedicatedAllocationImageAliasingFeatures);
+            var result = default(PhysicalDeviceDedicatedAllocationImageAliasingFeatures);
             result.DedicatedAllocationImageAliasing = pointer->DedicatedAllocationImageAliasing;
             return result;
         }

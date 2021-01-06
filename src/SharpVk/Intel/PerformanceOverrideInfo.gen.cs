@@ -22,56 +22,54 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Performance override info
+    ///     Performance override info
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PerformanceOverrideInfo
+    public struct PerformanceOverrideInfo
     {
         /// <summary>
-        /// The particular VkPerformanceOverrideTypeINTEL to set.
+        ///     The particular VkPerformanceOverrideTypeINTEL to set.
         /// </summary>
-        public SharpVk.Intel.PerformanceOverrideType Type
+        public PerformanceOverrideType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Whether the override is enabled.
+        ///     Whether the override is enabled.
         /// </summary>
         public bool Enable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A potential required parameter for the override.
+        ///     A potential required parameter for the override.
         /// </summary>
         public ulong Parameter
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceOverrideInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.PerformanceOverrideInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceOverrideInfo;
             pointer->Next = null;
-            pointer->Type = this.Type;
-            pointer->Enable = this.Enable;
-            pointer->Parameter = this.Parameter;
+            pointer->Type = Type;
+            pointer->Enable = Enable;
+            pointer->Parameter = Parameter;
         }
     }
 }

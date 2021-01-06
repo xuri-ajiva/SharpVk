@@ -22,22 +22,21 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ShaderModuleCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved0 = 1 << 0, 
+        Reserved0 = 1 << 0
     }
 }

@@ -22,50 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct BindAccelerationStructureMemoryInfo
+    public unsafe struct BindAccelerationStructureMemoryInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.NVidia.AccelerationStructure AccelerationStructure; 
-        
+        public AccelerationStructure AccelerationStructure;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.DeviceMemory Memory; 
-        
+        public DeviceMemory Memory;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MemoryOffset; 
-        
+        public ulong MemoryOffset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DeviceIndexCount; 
-        
+        public uint DeviceIndexCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* DeviceIndices; 
+        public uint* DeviceIndices;
     }
 }

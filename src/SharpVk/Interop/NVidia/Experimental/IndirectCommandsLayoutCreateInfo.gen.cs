@@ -22,49 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia.Experimental;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct IndirectCommandsLayoutCreateInfo
+    public unsafe struct IndirectCommandsLayoutCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The PipelineBindPoint that this layout targets.
+        ///     The PipelineBindPoint that this layout targets.
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint; 
-        
+        public PipelineBindPoint PipelineBindPoint;
+
         /// <summary>
-        /// A bitmask providing usage hints of this layout. See
-        /// IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
-        /// the supported bits.
+        ///     A bitmask providing usage hints of this layout. See
+        ///     IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
+        ///     the supported bits.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsLayoutUsageFlags Flags; 
-        
+        public IndirectCommandsLayoutUsageFlags Flags;
+
         /// <summary>
-        /// The length of the individual command sequnce.
+        ///     The length of the individual command sequnce.
         /// </summary>
-        public uint TokenCount; 
-        
+        public uint TokenCount;
+
         /// <summary>
-        /// An array describing each command token in detail. See
-        /// IndirectCommandsTokenTypeNVX and IndirectCommandsLayoutTokenNVX
-        /// below for details.
+        ///     An array describing each command token in detail. See
+        ///     IndirectCommandsTokenTypeNVX and IndirectCommandsLayoutTokenNVX
+        ///     below for details.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken* Tokens; 
+        public IndirectCommandsLayoutToken* Tokens;
     }
 }

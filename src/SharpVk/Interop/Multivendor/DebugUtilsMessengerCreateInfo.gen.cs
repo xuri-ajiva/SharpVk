@@ -24,48 +24,43 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DebugUtilsMessengerCreateInfo
+    public unsafe struct DebugUtilsMessengerCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessengerCreateFlags Flags; 
-        
+        public DebugUtilsMessengerCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessageSeverityFlags MessageSeverity; 
-        
+        public DebugUtilsMessageSeverityFlags MessageSeverity;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessageTypeFlags MessageType; 
-        
+        public DebugUtilsMessageTypeFlags MessageType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public IntPtr UserCallback; 
-        
+        public IntPtr UserCallback;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* UserData; 
+        public void* UserData;
     }
 }

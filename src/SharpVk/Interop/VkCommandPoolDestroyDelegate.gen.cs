@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandPoolDestroyDelegate(SharpVk.Interop.Device device, SharpVk.Interop.CommandPool commandPool, SharpVk.Interop.AllocationCallbacks* allocator);
+    public unsafe delegate void VkCommandPoolDestroyDelegate(Device device, CommandPool commandPool, AllocationCallbacks* allocator);
 }

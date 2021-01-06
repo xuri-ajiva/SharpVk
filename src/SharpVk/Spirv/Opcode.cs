@@ -25,26 +25,24 @@
 namespace SharpVk.Spirv
 {
     /// <summary>
-    /// 
     /// </summary>
     public partial struct OpCode
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpNop = new OpCode
+        public static readonly OpCode OpNop = new()
         {
             Op = Op.OpNop
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUndef = new OpCode
+        public static readonly OpCode OpUndef = new()
         {
             Op = Op.OpUndef,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -57,32 +55,32 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSourceContinued = new OpCode
+        public static readonly OpCode OpSourceContinued = new()
         {
             Op = Op.OpSourceContinued,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.LiteralString,
                     Quantifier = Quantifier.None,
                     Name = "'Continued Source'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSource = new OpCode
+        public static readonly OpCode OpSource = new()
         {
             Op = Op.OpSource,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.SourceLanguage,
                     Quantifier = Quantifier.None,
@@ -107,32 +105,32 @@ namespace SharpVk.Spirv
                     Name = "'Source'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSourceExtension = new OpCode
+        public static readonly OpCode OpSourceExtension = new()
         {
             Op = Op.OpSourceExtension,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.LiteralString,
                     Quantifier = Quantifier.None,
                     Name = "'Extension'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpName = new OpCode
+        public static readonly OpCode OpName = new()
         {
             Op = Op.OpName,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -145,16 +143,16 @@ namespace SharpVk.Spirv
                     Name = "'Name'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMemberName = new OpCode
+        public static readonly OpCode OpMemberName = new()
         {
             Op = Op.OpMemberName,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -173,16 +171,16 @@ namespace SharpVk.Spirv
                     Name = "'Name'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpString = new OpCode
+        public static readonly OpCode OpString = new()
         {
             Op = Op.OpString,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -195,16 +193,16 @@ namespace SharpVk.Spirv
                     Name = "'String'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLine = new OpCode
+        public static readonly OpCode OpLine = new()
         {
             Op = Op.OpLine,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -223,32 +221,32 @@ namespace SharpVk.Spirv
                     Name = "'Column'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpExtension = new OpCode
+        public static readonly OpCode OpExtension = new()
         {
             Op = Op.OpExtension,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.LiteralString,
                     Quantifier = Quantifier.None,
                     Name = "'Name'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpExtInstImport = new OpCode
+        public static readonly OpCode OpExtInstImport = new()
         {
             Op = Op.OpExtInstImport,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -261,16 +259,16 @@ namespace SharpVk.Spirv
                     Name = "'Name'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpExtInst = new OpCode
+        public static readonly OpCode OpExtInst = new()
         {
             Op = Op.OpExtInst,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -301,16 +299,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 1', +'Operand 2', +..."
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMemoryModel = new OpCode
+        public static readonly OpCode OpMemoryModel = new()
         {
             Op = Op.OpMemoryModel,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.AddressingModel,
                     Quantifier = Quantifier.None,
@@ -323,16 +321,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpEntryPoint = new OpCode
+        public static readonly OpCode OpEntryPoint = new()
         {
             Op = Op.OpEntryPoint,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.ExecutionModel,
                     Quantifier = Quantifier.None,
@@ -357,16 +355,16 @@ namespace SharpVk.Spirv
                     Name = "'Interface'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpExecutionMode = new OpCode
+        public static readonly OpCode OpExecutionMode = new()
         {
             Op = Op.OpExecutionMode,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -379,64 +377,64 @@ namespace SharpVk.Spirv
                     Name = "'Mode'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCapability = new OpCode
+        public static readonly OpCode OpCapability = new()
         {
             Op = Op.OpCapability,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.Capability,
                     Quantifier = Quantifier.None,
                     Name = "'Capability'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeVoid = new OpCode
+        public static readonly OpCode OpTypeVoid = new()
         {
             Op = Op.OpTypeVoid,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeBool = new OpCode
+        public static readonly OpCode OpTypeBool = new()
         {
             Op = Op.OpTypeBool,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeInt = new OpCode
+        public static readonly OpCode OpTypeInt = new()
         {
             Op = Op.OpTypeInt,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -455,16 +453,16 @@ namespace SharpVk.Spirv
                     Name = "'Signedness'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeFloat = new OpCode
+        public static readonly OpCode OpTypeFloat = new()
         {
             Op = Op.OpTypeFloat,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -477,16 +475,16 @@ namespace SharpVk.Spirv
                     Name = "'Width'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeVector = new OpCode
+        public static readonly OpCode OpTypeVector = new()
         {
             Op = Op.OpTypeVector,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -505,16 +503,16 @@ namespace SharpVk.Spirv
                     Name = "'Component Count'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeMatrix = new OpCode
+        public static readonly OpCode OpTypeMatrix = new()
         {
             Op = Op.OpTypeMatrix,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -533,16 +531,16 @@ namespace SharpVk.Spirv
                     Name = "'Column Count'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeImage = new OpCode
+        public static readonly OpCode OpTypeImage = new()
         {
             Op = Op.OpTypeImage,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -597,32 +595,32 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeSampler = new OpCode
+        public static readonly OpCode OpTypeSampler = new()
         {
             Op = Op.OpTypeSampler,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeSampledImage = new OpCode
+        public static readonly OpCode OpTypeSampledImage = new()
         {
             Op = Op.OpTypeSampledImage,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -635,16 +633,16 @@ namespace SharpVk.Spirv
                     Name = "'Image Type'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeArray = new OpCode
+        public static readonly OpCode OpTypeArray = new()
         {
             Op = Op.OpTypeArray,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -663,16 +661,16 @@ namespace SharpVk.Spirv
                     Name = "'Length'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeRuntimeArray = new OpCode
+        public static readonly OpCode OpTypeRuntimeArray = new()
         {
             Op = Op.OpTypeRuntimeArray,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -685,16 +683,16 @@ namespace SharpVk.Spirv
                     Name = "'Element Type'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeStruct = new OpCode
+        public static readonly OpCode OpTypeStruct = new()
         {
             Op = Op.OpTypeStruct,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -707,16 +705,16 @@ namespace SharpVk.Spirv
                     Name = "'Member 0 type', +'member 1 type', +..."
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeOpaque = new OpCode
+        public static readonly OpCode OpTypeOpaque = new()
         {
             Op = Op.OpTypeOpaque,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -729,16 +727,16 @@ namespace SharpVk.Spirv
                     Name = "The name of the opaque type."
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypePointer = new OpCode
+        public static readonly OpCode OpTypePointer = new()
         {
             Op = Op.OpTypePointer,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -757,16 +755,16 @@ namespace SharpVk.Spirv
                     Name = "'Type'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeFunction = new OpCode
+        public static readonly OpCode OpTypeFunction = new()
         {
             Op = Op.OpTypeFunction,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -785,80 +783,80 @@ namespace SharpVk.Spirv
                     Name = "'Parameter 0 Type', +'Parameter 1 Type', +..."
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeEvent = new OpCode
+        public static readonly OpCode OpTypeEvent = new()
         {
             Op = Op.OpTypeEvent,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeDeviceEvent = new OpCode
+        public static readonly OpCode OpTypeDeviceEvent = new()
         {
             Op = Op.OpTypeDeviceEvent,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeReserveId = new OpCode
+        public static readonly OpCode OpTypeReserveId = new()
         {
             Op = Op.OpTypeReserveId,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeQueue = new OpCode
+        public static readonly OpCode OpTypeQueue = new()
         {
             Op = Op.OpTypeQueue,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypePipe = new OpCode
+        public static readonly OpCode OpTypePipe = new()
         {
             Op = Op.OpTypePipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
@@ -871,16 +869,16 @@ namespace SharpVk.Spirv
                     Name = "'Qualifier'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeForwardPointer = new OpCode
+        public static readonly OpCode OpTypeForwardPointer = new()
         {
             Op = Op.OpTypeForwardPointer,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -893,16 +891,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConstantTrue = new OpCode
+        public static readonly OpCode OpConstantTrue = new()
         {
             Op = Op.OpConstantTrue,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -915,16 +913,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConstantFalse = new OpCode
+        public static readonly OpCode OpConstantFalse = new()
         {
             Op = Op.OpConstantFalse,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -937,16 +935,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConstant = new OpCode
+        public static readonly OpCode OpConstant = new()
         {
             Op = Op.OpConstant,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -965,16 +963,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConstantComposite = new OpCode
+        public static readonly OpCode OpConstantComposite = new()
         {
             Op = Op.OpConstantComposite,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -993,16 +991,16 @@ namespace SharpVk.Spirv
                     Name = "'Constituents'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConstantSampler = new OpCode
+        public static readonly OpCode OpConstantSampler = new()
         {
             Op = Op.OpConstantSampler,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1033,16 +1031,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConstantNull = new OpCode
+        public static readonly OpCode OpConstantNull = new()
         {
             Op = Op.OpConstantNull,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1055,16 +1053,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSpecConstantTrue = new OpCode
+        public static readonly OpCode OpSpecConstantTrue = new()
         {
             Op = Op.OpSpecConstantTrue,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1077,16 +1075,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSpecConstantFalse = new OpCode
+        public static readonly OpCode OpSpecConstantFalse = new()
         {
             Op = Op.OpSpecConstantFalse,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1099,16 +1097,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSpecConstant = new OpCode
+        public static readonly OpCode OpSpecConstant = new()
         {
             Op = Op.OpSpecConstant,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1127,16 +1125,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSpecConstantComposite = new OpCode
+        public static readonly OpCode OpSpecConstantComposite = new()
         {
             Op = Op.OpSpecConstantComposite,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1155,16 +1153,16 @@ namespace SharpVk.Spirv
                     Name = "'Constituents'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSpecConstantOp = new OpCode
+        public static readonly OpCode OpSpecConstantOp = new()
         {
             Op = Op.OpSpecConstantOp,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1183,16 +1181,16 @@ namespace SharpVk.Spirv
                     Name = "'Opcode'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFunction = new OpCode
+        public static readonly OpCode OpFunction = new()
         {
             Op = Op.OpFunction,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1217,16 +1215,16 @@ namespace SharpVk.Spirv
                     Name = "'Function Type'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFunctionParameter = new OpCode
+        public static readonly OpCode OpFunctionParameter = new()
         {
             Op = Op.OpFunctionParameter,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1239,24 +1237,23 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFunctionEnd = new OpCode
+        public static readonly OpCode OpFunctionEnd = new()
         {
             Op = Op.OpFunctionEnd
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFunctionCall = new OpCode
+        public static readonly OpCode OpFunctionCall = new()
         {
             Op = Op.OpFunctionCall,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1281,16 +1278,16 @@ namespace SharpVk.Spirv
                     Name = "'Argument 0', +'Argument 1', +..."
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpVariable = new OpCode
+        public static readonly OpCode OpVariable = new()
         {
             Op = Op.OpVariable,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1315,16 +1312,16 @@ namespace SharpVk.Spirv
                     Name = "'Initializer'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageTexelPointer = new OpCode
+        public static readonly OpCode OpImageTexelPointer = new()
         {
             Op = Op.OpImageTexelPointer,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1355,16 +1352,16 @@ namespace SharpVk.Spirv
                     Name = "'Sample'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLoad = new OpCode
+        public static readonly OpCode OpLoad = new()
         {
             Op = Op.OpLoad,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1389,16 +1386,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpStore = new OpCode
+        public static readonly OpCode OpStore = new()
         {
             Op = Op.OpStore,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -1417,16 +1414,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCopyMemory = new OpCode
+        public static readonly OpCode OpCopyMemory = new()
         {
             Op = Op.OpCopyMemory,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -1445,16 +1442,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCopyMemorySized = new OpCode
+        public static readonly OpCode OpCopyMemorySized = new()
         {
             Op = Op.OpCopyMemorySized,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -1479,16 +1476,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAccessChain = new OpCode
+        public static readonly OpCode OpAccessChain = new()
         {
             Op = Op.OpAccessChain,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1513,16 +1510,16 @@ namespace SharpVk.Spirv
                     Name = "'Indexes'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpInBoundsAccessChain = new OpCode
+        public static readonly OpCode OpInBoundsAccessChain = new()
         {
             Op = Op.OpInBoundsAccessChain,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1547,16 +1544,16 @@ namespace SharpVk.Spirv
                     Name = "'Indexes'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpPtrAccessChain = new OpCode
+        public static readonly OpCode OpPtrAccessChain = new()
         {
             Op = Op.OpPtrAccessChain,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1587,16 +1584,16 @@ namespace SharpVk.Spirv
                     Name = "'Indexes'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpArrayLength = new OpCode
+        public static readonly OpCode OpArrayLength = new()
         {
             Op = Op.OpArrayLength,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1621,16 +1618,16 @@ namespace SharpVk.Spirv
                     Name = "'Array member'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGenericPtrMemSemantics = new OpCode
+        public static readonly OpCode OpGenericPtrMemSemantics = new()
         {
             Op = Op.OpGenericPtrMemSemantics,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1649,16 +1646,16 @@ namespace SharpVk.Spirv
                     Name = "'Pointer'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpInBoundsPtrAccessChain = new OpCode
+        public static readonly OpCode OpInBoundsPtrAccessChain = new()
         {
             Op = Op.OpInBoundsPtrAccessChain,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1689,16 +1686,16 @@ namespace SharpVk.Spirv
                     Name = "'Indexes'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDecorate = new OpCode
+        public static readonly OpCode OpDecorate = new()
         {
             Op = Op.OpDecorate,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -1711,16 +1708,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMemberDecorate = new OpCode
+        public static readonly OpCode OpMemberDecorate = new()
         {
             Op = Op.OpMemberDecorate,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -1739,32 +1736,32 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDecorationGroup = new OpCode
+        public static readonly OpCode OpDecorationGroup = new()
         {
             Op = Op.OpDecorationGroup,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupDecorate = new OpCode
+        public static readonly OpCode OpGroupDecorate = new()
         {
             Op = Op.OpGroupDecorate,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -1777,16 +1774,16 @@ namespace SharpVk.Spirv
                     Name = "'Targets'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupMemberDecorate = new OpCode
+        public static readonly OpCode OpGroupMemberDecorate = new()
         {
             Op = Op.OpGroupMemberDecorate,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -1799,16 +1796,16 @@ namespace SharpVk.Spirv
                     Name = "'Targets'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpVectorExtractDynamic = new OpCode
+        public static readonly OpCode OpVectorExtractDynamic = new()
         {
             Op = Op.OpVectorExtractDynamic,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1833,16 +1830,16 @@ namespace SharpVk.Spirv
                     Name = "'Index'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpVectorInsertDynamic = new OpCode
+        public static readonly OpCode OpVectorInsertDynamic = new()
         {
             Op = Op.OpVectorInsertDynamic,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1873,16 +1870,16 @@ namespace SharpVk.Spirv
                     Name = "'Index'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpVectorShuffle = new OpCode
+        public static readonly OpCode OpVectorShuffle = new()
         {
             Op = Op.OpVectorShuffle,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1913,16 +1910,16 @@ namespace SharpVk.Spirv
                     Name = "'Components'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCompositeConstruct = new OpCode
+        public static readonly OpCode OpCompositeConstruct = new()
         {
             Op = Op.OpCompositeConstruct,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1941,16 +1938,16 @@ namespace SharpVk.Spirv
                     Name = "'Constituents'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCompositeExtract = new OpCode
+        public static readonly OpCode OpCompositeExtract = new()
         {
             Op = Op.OpCompositeExtract,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -1975,16 +1972,16 @@ namespace SharpVk.Spirv
                     Name = "'Indexes'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCompositeInsert = new OpCode
+        public static readonly OpCode OpCompositeInsert = new()
         {
             Op = Op.OpCompositeInsert,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2015,16 +2012,16 @@ namespace SharpVk.Spirv
                     Name = "'Indexes'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCopyObject = new OpCode
+        public static readonly OpCode OpCopyObject = new()
         {
             Op = Op.OpCopyObject,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2043,16 +2040,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTranspose = new OpCode
+        public static readonly OpCode OpTranspose = new()
         {
             Op = Op.OpTranspose,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2071,16 +2068,16 @@ namespace SharpVk.Spirv
                     Name = "'Matrix'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSampledImage = new OpCode
+        public static readonly OpCode OpSampledImage = new()
         {
             Op = Op.OpSampledImage,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2105,16 +2102,16 @@ namespace SharpVk.Spirv
                     Name = "'Sampler'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleImplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleImplicitLod = new()
         {
             Op = Op.OpImageSampleImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2145,16 +2142,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleExplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleExplicitLod = new()
         {
             Op = Op.OpImageSampleExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2185,16 +2182,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleDrefImplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleDrefImplicitLod = new()
         {
             Op = Op.OpImageSampleDrefImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2231,16 +2228,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleDrefExplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleDrefExplicitLod = new()
         {
             Op = Op.OpImageSampleDrefExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2277,16 +2274,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleProjImplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleProjImplicitLod = new()
         {
             Op = Op.OpImageSampleProjImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2317,16 +2314,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleProjExplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleProjExplicitLod = new()
         {
             Op = Op.OpImageSampleProjExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2357,16 +2354,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleProjDrefImplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleProjDrefImplicitLod = new()
         {
             Op = Op.OpImageSampleProjDrefImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2403,16 +2400,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSampleProjDrefExplicitLod = new OpCode
+        public static readonly OpCode OpImageSampleProjDrefExplicitLod = new()
         {
             Op = Op.OpImageSampleProjDrefExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2449,16 +2446,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageFetch = new OpCode
+        public static readonly OpCode OpImageFetch = new()
         {
             Op = Op.OpImageFetch,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2489,16 +2486,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageGather = new OpCode
+        public static readonly OpCode OpImageGather = new()
         {
             Op = Op.OpImageGather,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2535,16 +2532,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageDrefGather = new OpCode
+        public static readonly OpCode OpImageDrefGather = new()
         {
             Op = Op.OpImageDrefGather,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2581,16 +2578,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageRead = new OpCode
+        public static readonly OpCode OpImageRead = new()
         {
             Op = Op.OpImageRead,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2621,16 +2618,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageWrite = new OpCode
+        public static readonly OpCode OpImageWrite = new()
         {
             Op = Op.OpImageWrite,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -2655,16 +2652,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImage = new OpCode
+        public static readonly OpCode OpImage = new()
         {
             Op = Op.OpImage,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2683,16 +2680,16 @@ namespace SharpVk.Spirv
                     Name = "'Sampled Image'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageQueryFormat = new OpCode
+        public static readonly OpCode OpImageQueryFormat = new()
         {
             Op = Op.OpImageQueryFormat,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2711,16 +2708,16 @@ namespace SharpVk.Spirv
                     Name = "'Image'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageQueryOrder = new OpCode
+        public static readonly OpCode OpImageQueryOrder = new()
         {
             Op = Op.OpImageQueryOrder,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2739,16 +2736,16 @@ namespace SharpVk.Spirv
                     Name = "'Image'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageQuerySizeLod = new OpCode
+        public static readonly OpCode OpImageQuerySizeLod = new()
         {
             Op = Op.OpImageQuerySizeLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2773,16 +2770,16 @@ namespace SharpVk.Spirv
                     Name = "'Level of Detail'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageQuerySize = new OpCode
+        public static readonly OpCode OpImageQuerySize = new()
         {
             Op = Op.OpImageQuerySize,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2801,16 +2798,16 @@ namespace SharpVk.Spirv
                     Name = "'Image'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageQueryLod = new OpCode
+        public static readonly OpCode OpImageQueryLod = new()
         {
             Op = Op.OpImageQueryLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2835,16 +2832,16 @@ namespace SharpVk.Spirv
                     Name = "'Coordinate'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageQueryLevels = new OpCode
+        public static readonly OpCode OpImageQueryLevels = new()
         {
             Op = Op.OpImageQueryLevels,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2863,16 +2860,16 @@ namespace SharpVk.Spirv
                     Name = "'Image'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageQuerySamples = new OpCode
+        public static readonly OpCode OpImageQuerySamples = new()
         {
             Op = Op.OpImageQuerySamples,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2891,16 +2888,16 @@ namespace SharpVk.Spirv
                     Name = "'Image'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConvertFToU = new OpCode
+        public static readonly OpCode OpConvertFToU = new()
         {
             Op = Op.OpConvertFToU,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2919,16 +2916,16 @@ namespace SharpVk.Spirv
                     Name = "'Float Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConvertFToS = new OpCode
+        public static readonly OpCode OpConvertFToS = new()
         {
             Op = Op.OpConvertFToS,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2947,16 +2944,16 @@ namespace SharpVk.Spirv
                     Name = "'Float Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConvertSToF = new OpCode
+        public static readonly OpCode OpConvertSToF = new()
         {
             Op = Op.OpConvertSToF,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -2975,16 +2972,16 @@ namespace SharpVk.Spirv
                     Name = "'Signed Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConvertUToF = new OpCode
+        public static readonly OpCode OpConvertUToF = new()
         {
             Op = Op.OpConvertUToF,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3003,16 +3000,16 @@ namespace SharpVk.Spirv
                     Name = "'Unsigned Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUConvert = new OpCode
+        public static readonly OpCode OpUConvert = new()
         {
             Op = Op.OpUConvert,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3031,16 +3028,16 @@ namespace SharpVk.Spirv
                     Name = "'Unsigned Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSConvert = new OpCode
+        public static readonly OpCode OpSConvert = new()
         {
             Op = Op.OpSConvert,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3059,16 +3056,16 @@ namespace SharpVk.Spirv
                     Name = "'Signed Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFConvert = new OpCode
+        public static readonly OpCode OpFConvert = new()
         {
             Op = Op.OpFConvert,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3087,16 +3084,16 @@ namespace SharpVk.Spirv
                     Name = "'Float Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpQuantizeToF16 = new OpCode
+        public static readonly OpCode OpQuantizeToF16 = new()
         {
             Op = Op.OpQuantizeToF16,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3115,16 +3112,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConvertPtrToU = new OpCode
+        public static readonly OpCode OpConvertPtrToU = new()
         {
             Op = Op.OpConvertPtrToU,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3143,16 +3140,16 @@ namespace SharpVk.Spirv
                     Name = "'Pointer'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSatConvertSToU = new OpCode
+        public static readonly OpCode OpSatConvertSToU = new()
         {
             Op = Op.OpSatConvertSToU,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3171,16 +3168,16 @@ namespace SharpVk.Spirv
                     Name = "'Signed Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSatConvertUToS = new OpCode
+        public static readonly OpCode OpSatConvertUToS = new()
         {
             Op = Op.OpSatConvertUToS,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3199,16 +3196,16 @@ namespace SharpVk.Spirv
                     Name = "'Unsigned Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConvertUToPtr = new OpCode
+        public static readonly OpCode OpConvertUToPtr = new()
         {
             Op = Op.OpConvertUToPtr,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3227,16 +3224,16 @@ namespace SharpVk.Spirv
                     Name = "'Integer Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpPtrCastToGeneric = new OpCode
+        public static readonly OpCode OpPtrCastToGeneric = new()
         {
             Op = Op.OpPtrCastToGeneric,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3255,16 +3252,16 @@ namespace SharpVk.Spirv
                     Name = "'Pointer'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGenericCastToPtr = new OpCode
+        public static readonly OpCode OpGenericCastToPtr = new()
         {
             Op = Op.OpGenericCastToPtr,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3283,16 +3280,16 @@ namespace SharpVk.Spirv
                     Name = "'Pointer'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGenericCastToPtrExplicit = new OpCode
+        public static readonly OpCode OpGenericCastToPtrExplicit = new()
         {
             Op = Op.OpGenericCastToPtrExplicit,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3317,16 +3314,16 @@ namespace SharpVk.Spirv
                     Name = "'Storage'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitcast = new OpCode
+        public static readonly OpCode OpBitcast = new()
         {
             Op = Op.OpBitcast,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3345,16 +3342,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSNegate = new OpCode
+        public static readonly OpCode OpSNegate = new()
         {
             Op = Op.OpSNegate,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3373,16 +3370,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFNegate = new OpCode
+        public static readonly OpCode OpFNegate = new()
         {
             Op = Op.OpFNegate,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3401,16 +3398,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIAdd = new OpCode
+        public static readonly OpCode OpIAdd = new()
         {
             Op = Op.OpIAdd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3435,16 +3432,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFAdd = new OpCode
+        public static readonly OpCode OpFAdd = new()
         {
             Op = Op.OpFAdd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3469,16 +3466,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpISub = new OpCode
+        public static readonly OpCode OpISub = new()
         {
             Op = Op.OpISub,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3503,16 +3500,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFSub = new OpCode
+        public static readonly OpCode OpFSub = new()
         {
             Op = Op.OpFSub,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3537,16 +3534,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIMul = new OpCode
+        public static readonly OpCode OpIMul = new()
         {
             Op = Op.OpIMul,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3571,16 +3568,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFMul = new OpCode
+        public static readonly OpCode OpFMul = new()
         {
             Op = Op.OpFMul,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3605,16 +3602,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUDiv = new OpCode
+        public static readonly OpCode OpUDiv = new()
         {
             Op = Op.OpUDiv,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3639,16 +3636,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSDiv = new OpCode
+        public static readonly OpCode OpSDiv = new()
         {
             Op = Op.OpSDiv,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3673,16 +3670,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFDiv = new OpCode
+        public static readonly OpCode OpFDiv = new()
         {
             Op = Op.OpFDiv,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3707,16 +3704,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUMod = new OpCode
+        public static readonly OpCode OpUMod = new()
         {
             Op = Op.OpUMod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3741,16 +3738,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSRem = new OpCode
+        public static readonly OpCode OpSRem = new()
         {
             Op = Op.OpSRem,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3775,16 +3772,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSMod = new OpCode
+        public static readonly OpCode OpSMod = new()
         {
             Op = Op.OpSMod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3809,16 +3806,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFRem = new OpCode
+        public static readonly OpCode OpFRem = new()
         {
             Op = Op.OpFRem,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3843,16 +3840,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFMod = new OpCode
+        public static readonly OpCode OpFMod = new()
         {
             Op = Op.OpFMod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3877,16 +3874,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpVectorTimesScalar = new OpCode
+        public static readonly OpCode OpVectorTimesScalar = new()
         {
             Op = Op.OpVectorTimesScalar,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3911,16 +3908,16 @@ namespace SharpVk.Spirv
                     Name = "'Scalar'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMatrixTimesScalar = new OpCode
+        public static readonly OpCode OpMatrixTimesScalar = new()
         {
             Op = Op.OpMatrixTimesScalar,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3945,16 +3942,16 @@ namespace SharpVk.Spirv
                     Name = "'Scalar'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpVectorTimesMatrix = new OpCode
+        public static readonly OpCode OpVectorTimesMatrix = new()
         {
             Op = Op.OpVectorTimesMatrix,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -3979,16 +3976,16 @@ namespace SharpVk.Spirv
                     Name = "'Matrix'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMatrixTimesVector = new OpCode
+        public static readonly OpCode OpMatrixTimesVector = new()
         {
             Op = Op.OpMatrixTimesVector,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4013,16 +4010,16 @@ namespace SharpVk.Spirv
                     Name = "'Vector'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMatrixTimesMatrix = new OpCode
+        public static readonly OpCode OpMatrixTimesMatrix = new()
         {
             Op = Op.OpMatrixTimesMatrix,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4047,16 +4044,16 @@ namespace SharpVk.Spirv
                     Name = "'RightMatrix'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpOuterProduct = new OpCode
+        public static readonly OpCode OpOuterProduct = new()
         {
             Op = Op.OpOuterProduct,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4081,16 +4078,16 @@ namespace SharpVk.Spirv
                     Name = "'Vector 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDot = new OpCode
+        public static readonly OpCode OpDot = new()
         {
             Op = Op.OpDot,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4115,16 +4112,16 @@ namespace SharpVk.Spirv
                     Name = "'Vector 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIAddCarry = new OpCode
+        public static readonly OpCode OpIAddCarry = new()
         {
             Op = Op.OpIAddCarry,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4149,16 +4146,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpISubBorrow = new OpCode
+        public static readonly OpCode OpISubBorrow = new()
         {
             Op = Op.OpISubBorrow,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4183,16 +4180,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUMulExtended = new OpCode
+        public static readonly OpCode OpUMulExtended = new()
         {
             Op = Op.OpUMulExtended,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4217,16 +4214,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSMulExtended = new OpCode
+        public static readonly OpCode OpSMulExtended = new()
         {
             Op = Op.OpSMulExtended,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4251,16 +4248,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAny = new OpCode
+        public static readonly OpCode OpAny = new()
         {
             Op = Op.OpAny,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4279,16 +4276,16 @@ namespace SharpVk.Spirv
                     Name = "'Vector'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAll = new OpCode
+        public static readonly OpCode OpAll = new()
         {
             Op = Op.OpAll,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4307,16 +4304,16 @@ namespace SharpVk.Spirv
                     Name = "'Vector'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIsNan = new OpCode
+        public static readonly OpCode OpIsNan = new()
         {
             Op = Op.OpIsNan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4335,16 +4332,16 @@ namespace SharpVk.Spirv
                     Name = "'x'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIsInf = new OpCode
+        public static readonly OpCode OpIsInf = new()
         {
             Op = Op.OpIsInf,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4363,16 +4360,16 @@ namespace SharpVk.Spirv
                     Name = "'x'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIsFinite = new OpCode
+        public static readonly OpCode OpIsFinite = new()
         {
             Op = Op.OpIsFinite,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4391,16 +4388,16 @@ namespace SharpVk.Spirv
                     Name = "'x'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIsNormal = new OpCode
+        public static readonly OpCode OpIsNormal = new()
         {
             Op = Op.OpIsNormal,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4419,16 +4416,16 @@ namespace SharpVk.Spirv
                     Name = "'x'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSignBitSet = new OpCode
+        public static readonly OpCode OpSignBitSet = new()
         {
             Op = Op.OpSignBitSet,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4447,16 +4444,16 @@ namespace SharpVk.Spirv
                     Name = "'x'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLessOrGreater = new OpCode
+        public static readonly OpCode OpLessOrGreater = new()
         {
             Op = Op.OpLessOrGreater,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4481,16 +4478,16 @@ namespace SharpVk.Spirv
                     Name = "'y'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpOrdered = new OpCode
+        public static readonly OpCode OpOrdered = new()
         {
             Op = Op.OpOrdered,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4515,16 +4512,16 @@ namespace SharpVk.Spirv
                     Name = "'y'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUnordered = new OpCode
+        public static readonly OpCode OpUnordered = new()
         {
             Op = Op.OpUnordered,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4549,16 +4546,16 @@ namespace SharpVk.Spirv
                     Name = "'y'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLogicalEqual = new OpCode
+        public static readonly OpCode OpLogicalEqual = new()
         {
             Op = Op.OpLogicalEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4583,16 +4580,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLogicalNotEqual = new OpCode
+        public static readonly OpCode OpLogicalNotEqual = new()
         {
             Op = Op.OpLogicalNotEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4617,16 +4614,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLogicalOr = new OpCode
+        public static readonly OpCode OpLogicalOr = new()
         {
             Op = Op.OpLogicalOr,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4651,16 +4648,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLogicalAnd = new OpCode
+        public static readonly OpCode OpLogicalAnd = new()
         {
             Op = Op.OpLogicalAnd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4685,16 +4682,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLogicalNot = new OpCode
+        public static readonly OpCode OpLogicalNot = new()
         {
             Op = Op.OpLogicalNot,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4713,16 +4710,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSelect = new OpCode
+        public static readonly OpCode OpSelect = new()
         {
             Op = Op.OpSelect,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4753,16 +4750,16 @@ namespace SharpVk.Spirv
                     Name = "'Object 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIEqual = new OpCode
+        public static readonly OpCode OpIEqual = new()
         {
             Op = Op.OpIEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4787,16 +4784,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpINotEqual = new OpCode
+        public static readonly OpCode OpINotEqual = new()
         {
             Op = Op.OpINotEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4821,16 +4818,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUGreaterThan = new OpCode
+        public static readonly OpCode OpUGreaterThan = new()
         {
             Op = Op.OpUGreaterThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4855,16 +4852,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSGreaterThan = new OpCode
+        public static readonly OpCode OpSGreaterThan = new()
         {
             Op = Op.OpSGreaterThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4889,16 +4886,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUGreaterThanEqual = new OpCode
+        public static readonly OpCode OpUGreaterThanEqual = new()
         {
             Op = Op.OpUGreaterThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4923,16 +4920,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSGreaterThanEqual = new OpCode
+        public static readonly OpCode OpSGreaterThanEqual = new()
         {
             Op = Op.OpSGreaterThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4957,16 +4954,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpULessThan = new OpCode
+        public static readonly OpCode OpULessThan = new()
         {
             Op = Op.OpULessThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -4991,16 +4988,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSLessThan = new OpCode
+        public static readonly OpCode OpSLessThan = new()
         {
             Op = Op.OpSLessThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5025,16 +5022,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpULessThanEqual = new OpCode
+        public static readonly OpCode OpULessThanEqual = new()
         {
             Op = Op.OpULessThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5059,16 +5056,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSLessThanEqual = new OpCode
+        public static readonly OpCode OpSLessThanEqual = new()
         {
             Op = Op.OpSLessThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5093,16 +5090,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFOrdEqual = new OpCode
+        public static readonly OpCode OpFOrdEqual = new()
         {
             Op = Op.OpFOrdEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5127,16 +5124,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFUnordEqual = new OpCode
+        public static readonly OpCode OpFUnordEqual = new()
         {
             Op = Op.OpFUnordEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5161,16 +5158,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFOrdNotEqual = new OpCode
+        public static readonly OpCode OpFOrdNotEqual = new()
         {
             Op = Op.OpFOrdNotEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5195,16 +5192,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFUnordNotEqual = new OpCode
+        public static readonly OpCode OpFUnordNotEqual = new()
         {
             Op = Op.OpFUnordNotEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5229,16 +5226,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFOrdLessThan = new OpCode
+        public static readonly OpCode OpFOrdLessThan = new()
         {
             Op = Op.OpFOrdLessThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5263,16 +5260,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFUnordLessThan = new OpCode
+        public static readonly OpCode OpFUnordLessThan = new()
         {
             Op = Op.OpFUnordLessThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5297,16 +5294,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFOrdGreaterThan = new OpCode
+        public static readonly OpCode OpFOrdGreaterThan = new()
         {
             Op = Op.OpFOrdGreaterThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5331,16 +5328,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFUnordGreaterThan = new OpCode
+        public static readonly OpCode OpFUnordGreaterThan = new()
         {
             Op = Op.OpFUnordGreaterThan,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5365,16 +5362,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFOrdLessThanEqual = new OpCode
+        public static readonly OpCode OpFOrdLessThanEqual = new()
         {
             Op = Op.OpFOrdLessThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5399,16 +5396,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFUnordLessThanEqual = new OpCode
+        public static readonly OpCode OpFUnordLessThanEqual = new()
         {
             Op = Op.OpFUnordLessThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5433,16 +5430,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFOrdGreaterThanEqual = new OpCode
+        public static readonly OpCode OpFOrdGreaterThanEqual = new()
         {
             Op = Op.OpFOrdGreaterThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5467,16 +5464,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFUnordGreaterThanEqual = new OpCode
+        public static readonly OpCode OpFUnordGreaterThanEqual = new()
         {
             Op = Op.OpFUnordGreaterThanEqual,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5501,16 +5498,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpShiftRightLogical = new OpCode
+        public static readonly OpCode OpShiftRightLogical = new()
         {
             Op = Op.OpShiftRightLogical,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5535,16 +5532,16 @@ namespace SharpVk.Spirv
                     Name = "'Shift'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpShiftRightArithmetic = new OpCode
+        public static readonly OpCode OpShiftRightArithmetic = new()
         {
             Op = Op.OpShiftRightArithmetic,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5569,16 +5566,16 @@ namespace SharpVk.Spirv
                     Name = "'Shift'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpShiftLeftLogical = new OpCode
+        public static readonly OpCode OpShiftLeftLogical = new()
         {
             Op = Op.OpShiftLeftLogical,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5603,16 +5600,16 @@ namespace SharpVk.Spirv
                     Name = "'Shift'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitwiseOr = new OpCode
+        public static readonly OpCode OpBitwiseOr = new()
         {
             Op = Op.OpBitwiseOr,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5637,16 +5634,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitwiseXor = new OpCode
+        public static readonly OpCode OpBitwiseXor = new()
         {
             Op = Op.OpBitwiseXor,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5671,16 +5668,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitwiseAnd = new OpCode
+        public static readonly OpCode OpBitwiseAnd = new()
         {
             Op = Op.OpBitwiseAnd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5705,16 +5702,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand 2'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpNot = new OpCode
+        public static readonly OpCode OpNot = new()
         {
             Op = Op.OpNot,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5733,16 +5730,16 @@ namespace SharpVk.Spirv
                     Name = "'Operand'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitFieldInsert = new OpCode
+        public static readonly OpCode OpBitFieldInsert = new()
         {
             Op = Op.OpBitFieldInsert,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5779,16 +5776,16 @@ namespace SharpVk.Spirv
                     Name = "'Count'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitFieldSExtract = new OpCode
+        public static readonly OpCode OpBitFieldSExtract = new()
         {
             Op = Op.OpBitFieldSExtract,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5819,16 +5816,16 @@ namespace SharpVk.Spirv
                     Name = "'Count'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitFieldUExtract = new OpCode
+        public static readonly OpCode OpBitFieldUExtract = new()
         {
             Op = Op.OpBitFieldUExtract,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5859,16 +5856,16 @@ namespace SharpVk.Spirv
                     Name = "'Count'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitReverse = new OpCode
+        public static readonly OpCode OpBitReverse = new()
         {
             Op = Op.OpBitReverse,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5887,16 +5884,16 @@ namespace SharpVk.Spirv
                     Name = "'Base'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBitCount = new OpCode
+        public static readonly OpCode OpBitCount = new()
         {
             Op = Op.OpBitCount,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5915,16 +5912,16 @@ namespace SharpVk.Spirv
                     Name = "'Base'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDPdx = new OpCode
+        public static readonly OpCode OpDPdx = new()
         {
             Op = Op.OpDPdx,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5943,16 +5940,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDPdy = new OpCode
+        public static readonly OpCode OpDPdy = new()
         {
             Op = Op.OpDPdy,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5971,16 +5968,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFwidth = new OpCode
+        public static readonly OpCode OpFwidth = new()
         {
             Op = Op.OpFwidth,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -5999,16 +5996,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDPdxFine = new OpCode
+        public static readonly OpCode OpDPdxFine = new()
         {
             Op = Op.OpDPdxFine,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6027,16 +6024,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDPdyFine = new OpCode
+        public static readonly OpCode OpDPdyFine = new()
         {
             Op = Op.OpDPdyFine,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6055,16 +6052,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFwidthFine = new OpCode
+        public static readonly OpCode OpFwidthFine = new()
         {
             Op = Op.OpFwidthFine,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6083,16 +6080,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDPdxCoarse = new OpCode
+        public static readonly OpCode OpDPdxCoarse = new()
         {
             Op = Op.OpDPdxCoarse,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6111,16 +6108,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpDPdyCoarse = new OpCode
+        public static readonly OpCode OpDPdyCoarse = new()
         {
             Op = Op.OpDPdyCoarse,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6139,16 +6136,16 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpFwidthCoarse = new OpCode
+        public static readonly OpCode OpFwidthCoarse = new()
         {
             Op = Op.OpFwidthCoarse,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6167,64 +6164,62 @@ namespace SharpVk.Spirv
                     Name = "'P'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpEmitVertex = new OpCode
+        public static readonly OpCode OpEmitVertex = new()
         {
             Op = Op.OpEmitVertex
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpEndPrimitive = new OpCode
+        public static readonly OpCode OpEndPrimitive = new()
         {
             Op = Op.OpEndPrimitive
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpEmitStreamVertex = new OpCode
+        public static readonly OpCode OpEmitStreamVertex = new()
         {
             Op = Op.OpEmitStreamVertex,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
                     Name = "'Stream'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpEndStreamPrimitive = new OpCode
+        public static readonly OpCode OpEndStreamPrimitive = new()
         {
             Op = Op.OpEndStreamPrimitive,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
                     Name = "'Stream'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpControlBarrier = new OpCode
+        public static readonly OpCode OpControlBarrier = new()
         {
             Op = Op.OpControlBarrier,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdScope,
                     Quantifier = Quantifier.None,
@@ -6243,16 +6238,16 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMemoryBarrier = new OpCode
+        public static readonly OpCode OpMemoryBarrier = new()
         {
             Op = Op.OpMemoryBarrier,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdScope,
                     Quantifier = Quantifier.None,
@@ -6265,16 +6260,16 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicLoad = new OpCode
+        public static readonly OpCode OpAtomicLoad = new()
         {
             Op = Op.OpAtomicLoad,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6305,16 +6300,16 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicStore = new OpCode
+        public static readonly OpCode OpAtomicStore = new()
         {
             Op = Op.OpAtomicStore,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -6339,16 +6334,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicExchange = new OpCode
+        public static readonly OpCode OpAtomicExchange = new()
         {
             Op = Op.OpAtomicExchange,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6385,16 +6380,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicCompareExchange = new OpCode
+        public static readonly OpCode OpAtomicCompareExchange = new()
         {
             Op = Op.OpAtomicCompareExchange,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6443,16 +6438,16 @@ namespace SharpVk.Spirv
                     Name = "'Comparator'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicCompareExchangeWeak = new OpCode
+        public static readonly OpCode OpAtomicCompareExchangeWeak = new()
         {
             Op = Op.OpAtomicCompareExchangeWeak,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6501,16 +6496,16 @@ namespace SharpVk.Spirv
                     Name = "'Comparator'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicIIncrement = new OpCode
+        public static readonly OpCode OpAtomicIIncrement = new()
         {
             Op = Op.OpAtomicIIncrement,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6541,16 +6536,16 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicIDecrement = new OpCode
+        public static readonly OpCode OpAtomicIDecrement = new()
         {
             Op = Op.OpAtomicIDecrement,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6581,16 +6576,16 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicIAdd = new OpCode
+        public static readonly OpCode OpAtomicIAdd = new()
         {
             Op = Op.OpAtomicIAdd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6627,16 +6622,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicISub = new OpCode
+        public static readonly OpCode OpAtomicISub = new()
         {
             Op = Op.OpAtomicISub,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6673,16 +6668,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicSMin = new OpCode
+        public static readonly OpCode OpAtomicSMin = new()
         {
             Op = Op.OpAtomicSMin,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6719,16 +6714,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicUMin = new OpCode
+        public static readonly OpCode OpAtomicUMin = new()
         {
             Op = Op.OpAtomicUMin,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6765,16 +6760,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicSMax = new OpCode
+        public static readonly OpCode OpAtomicSMax = new()
         {
             Op = Op.OpAtomicSMax,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6811,16 +6806,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicUMax = new OpCode
+        public static readonly OpCode OpAtomicUMax = new()
         {
             Op = Op.OpAtomicUMax,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6857,16 +6852,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicAnd = new OpCode
+        public static readonly OpCode OpAtomicAnd = new()
         {
             Op = Op.OpAtomicAnd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6903,16 +6898,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicOr = new OpCode
+        public static readonly OpCode OpAtomicOr = new()
         {
             Op = Op.OpAtomicOr,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6949,16 +6944,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicXor = new OpCode
+        public static readonly OpCode OpAtomicXor = new()
         {
             Op = Op.OpAtomicXor,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -6995,16 +6990,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpPhi = new OpCode
+        public static readonly OpCode OpPhi = new()
         {
             Op = Op.OpPhi,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7023,16 +7018,16 @@ namespace SharpVk.Spirv
                     Name = "'Variable, Parent, ...'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLoopMerge = new OpCode
+        public static readonly OpCode OpLoopMerge = new()
         {
             Op = Op.OpLoopMerge,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -7051,16 +7046,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSelectionMerge = new OpCode
+        public static readonly OpCode OpSelectionMerge = new()
         {
             Op = Op.OpSelectionMerge,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -7073,48 +7068,48 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLabel = new OpCode
+        public static readonly OpCode OpLabel = new()
         {
             Op = Op.OpLabel,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBranch = new OpCode
+        public static readonly OpCode OpBranch = new()
         {
             Op = Op.OpBranch,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
                     Name = "'Target Label'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBranchConditional = new OpCode
+        public static readonly OpCode OpBranchConditional = new()
         {
             Op = Op.OpBranchConditional,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -7139,16 +7134,16 @@ namespace SharpVk.Spirv
                     Name = "'Branch weights'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSwitch = new OpCode
+        public static readonly OpCode OpSwitch = new()
         {
             Op = Op.OpSwitch,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -7167,56 +7162,53 @@ namespace SharpVk.Spirv
                     Name = "'Target'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpKill = new OpCode
+        public static readonly OpCode OpKill = new()
         {
             Op = Op.OpKill
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReturn = new OpCode
+        public static readonly OpCode OpReturn = new()
         {
             Op = Op.OpReturn
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReturnValue = new OpCode
+        public static readonly OpCode OpReturnValue = new()
         {
             Op = Op.OpReturnValue,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpUnreachable = new OpCode
+        public static readonly OpCode OpUnreachable = new()
         {
             Op = Op.OpUnreachable
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLifetimeStart = new OpCode
+        public static readonly OpCode OpLifetimeStart = new()
         {
             Op = Op.OpLifetimeStart,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -7229,16 +7221,16 @@ namespace SharpVk.Spirv
                     Name = "'Size'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpLifetimeStop = new OpCode
+        public static readonly OpCode OpLifetimeStop = new()
         {
             Op = Op.OpLifetimeStop,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -7251,16 +7243,16 @@ namespace SharpVk.Spirv
                     Name = "'Size'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupAsyncCopy = new OpCode
+        public static readonly OpCode OpGroupAsyncCopy = new()
         {
             Op = Op.OpGroupAsyncCopy,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7309,16 +7301,16 @@ namespace SharpVk.Spirv
                     Name = "'Event'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupWaitEvents = new OpCode
+        public static readonly OpCode OpGroupWaitEvents = new()
         {
             Op = Op.OpGroupWaitEvents,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdScope,
                     Quantifier = Quantifier.None,
@@ -7337,16 +7329,16 @@ namespace SharpVk.Spirv
                     Name = "'Events List'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupAll = new OpCode
+        public static readonly OpCode OpGroupAll = new()
         {
             Op = Op.OpGroupAll,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7371,16 +7363,16 @@ namespace SharpVk.Spirv
                     Name = "'Predicate'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupAny = new OpCode
+        public static readonly OpCode OpGroupAny = new()
         {
             Op = Op.OpGroupAny,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7405,16 +7397,16 @@ namespace SharpVk.Spirv
                     Name = "'Predicate'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupBroadcast = new OpCode
+        public static readonly OpCode OpGroupBroadcast = new()
         {
             Op = Op.OpGroupBroadcast,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7445,16 +7437,16 @@ namespace SharpVk.Spirv
                     Name = "'LocalId'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupIAdd = new OpCode
+        public static readonly OpCode OpGroupIAdd = new()
         {
             Op = Op.OpGroupIAdd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7485,16 +7477,16 @@ namespace SharpVk.Spirv
                     Name = "'X'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupFAdd = new OpCode
+        public static readonly OpCode OpGroupFAdd = new()
         {
             Op = Op.OpGroupFAdd,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7525,16 +7517,16 @@ namespace SharpVk.Spirv
                     Name = "'X'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupFMin = new OpCode
+        public static readonly OpCode OpGroupFMin = new()
         {
             Op = Op.OpGroupFMin,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7565,16 +7557,16 @@ namespace SharpVk.Spirv
                     Name = "X"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupUMin = new OpCode
+        public static readonly OpCode OpGroupUMin = new()
         {
             Op = Op.OpGroupUMin,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7605,16 +7597,16 @@ namespace SharpVk.Spirv
                     Name = "'X'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupSMin = new OpCode
+        public static readonly OpCode OpGroupSMin = new()
         {
             Op = Op.OpGroupSMin,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7645,16 +7637,16 @@ namespace SharpVk.Spirv
                     Name = "X"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupFMax = new OpCode
+        public static readonly OpCode OpGroupFMax = new()
         {
             Op = Op.OpGroupFMax,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7685,16 +7677,16 @@ namespace SharpVk.Spirv
                     Name = "X"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupUMax = new OpCode
+        public static readonly OpCode OpGroupUMax = new()
         {
             Op = Op.OpGroupUMax,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7725,16 +7717,16 @@ namespace SharpVk.Spirv
                     Name = "X"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupSMax = new OpCode
+        public static readonly OpCode OpGroupSMax = new()
         {
             Op = Op.OpGroupSMax,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7765,16 +7757,16 @@ namespace SharpVk.Spirv
                     Name = "X"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReadPipe = new OpCode
+        public static readonly OpCode OpReadPipe = new()
         {
             Op = Op.OpReadPipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7811,16 +7803,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpWritePipe = new OpCode
+        public static readonly OpCode OpWritePipe = new()
         {
             Op = Op.OpWritePipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7857,16 +7849,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReservedReadPipe = new OpCode
+        public static readonly OpCode OpReservedReadPipe = new()
         {
             Op = Op.OpReservedReadPipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7915,16 +7907,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReservedWritePipe = new OpCode
+        public static readonly OpCode OpReservedWritePipe = new()
         {
             Op = Op.OpReservedWritePipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -7973,16 +7965,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReserveReadPipePackets = new OpCode
+        public static readonly OpCode OpReserveReadPipePackets = new()
         {
             Op = Op.OpReserveReadPipePackets,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8019,16 +8011,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReserveWritePipePackets = new OpCode
+        public static readonly OpCode OpReserveWritePipePackets = new()
         {
             Op = Op.OpReserveWritePipePackets,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8065,16 +8057,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCommitReadPipe = new OpCode
+        public static readonly OpCode OpCommitReadPipe = new()
         {
             Op = Op.OpCommitReadPipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -8099,16 +8091,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCommitWritePipe = new OpCode
+        public static readonly OpCode OpCommitWritePipe = new()
         {
             Op = Op.OpCommitWritePipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -8133,16 +8125,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIsValidReserveId = new OpCode
+        public static readonly OpCode OpIsValidReserveId = new()
         {
             Op = Op.OpIsValidReserveId,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8161,16 +8153,16 @@ namespace SharpVk.Spirv
                     Name = "'Reserve Id'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetNumPipePackets = new OpCode
+        public static readonly OpCode OpGetNumPipePackets = new()
         {
             Op = Op.OpGetNumPipePackets,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8201,16 +8193,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetMaxPipePackets = new OpCode
+        public static readonly OpCode OpGetMaxPipePackets = new()
         {
             Op = Op.OpGetMaxPipePackets,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8241,16 +8233,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupReserveReadPipePackets = new OpCode
+        public static readonly OpCode OpGroupReserveReadPipePackets = new()
         {
             Op = Op.OpGroupReserveReadPipePackets,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8293,16 +8285,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupReserveWritePipePackets = new OpCode
+        public static readonly OpCode OpGroupReserveWritePipePackets = new()
         {
             Op = Op.OpGroupReserveWritePipePackets,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8345,16 +8337,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupCommitReadPipe = new OpCode
+        public static readonly OpCode OpGroupCommitReadPipe = new()
         {
             Op = Op.OpGroupCommitReadPipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdScope,
                     Quantifier = Quantifier.None,
@@ -8385,16 +8377,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGroupCommitWritePipe = new OpCode
+        public static readonly OpCode OpGroupCommitWritePipe = new()
         {
             Op = Op.OpGroupCommitWritePipe,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdScope,
                     Quantifier = Quantifier.None,
@@ -8425,16 +8417,16 @@ namespace SharpVk.Spirv
                     Name = "'Packet Alignment'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpEnqueueMarker = new OpCode
+        public static readonly OpCode OpEnqueueMarker = new()
         {
             Op = Op.OpEnqueueMarker,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8471,16 +8463,16 @@ namespace SharpVk.Spirv
                     Name = "'Ret Event'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpEnqueueKernel = new OpCode
+        public static readonly OpCode OpEnqueueKernel = new()
         {
             Op = Op.OpEnqueueKernel,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8559,16 +8551,16 @@ namespace SharpVk.Spirv
                     Name = "'Local Size'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetKernelNDrangeSubGroupCount = new OpCode
+        public static readonly OpCode OpGetKernelNDrangeSubGroupCount = new()
         {
             Op = Op.OpGetKernelNDrangeSubGroupCount,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8611,16 +8603,16 @@ namespace SharpVk.Spirv
                     Name = "'Param Align'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetKernelNDrangeMaxSubGroupSize = new OpCode
+        public static readonly OpCode OpGetKernelNDrangeMaxSubGroupSize = new()
         {
             Op = Op.OpGetKernelNDrangeMaxSubGroupSize,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8663,16 +8655,16 @@ namespace SharpVk.Spirv
                     Name = "'Param Align'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetKernelWorkGroupSize = new OpCode
+        public static readonly OpCode OpGetKernelWorkGroupSize = new()
         {
             Op = Op.OpGetKernelWorkGroupSize,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8709,16 +8701,16 @@ namespace SharpVk.Spirv
                     Name = "'Param Align'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetKernelPreferredWorkGroupSizeMultiple = new OpCode
+        public static readonly OpCode OpGetKernelPreferredWorkGroupSizeMultiple = new()
         {
             Op = Op.OpGetKernelPreferredWorkGroupSizeMultiple,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8755,48 +8747,48 @@ namespace SharpVk.Spirv
                     Name = "'Param Align'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpRetainEvent = new OpCode
+        public static readonly OpCode OpRetainEvent = new()
         {
             Op = Op.OpRetainEvent,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
                     Name = "'Event'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpReleaseEvent = new OpCode
+        public static readonly OpCode OpReleaseEvent = new()
         {
             Op = Op.OpReleaseEvent,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
                     Name = "'Event'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCreateUserEvent = new OpCode
+        public static readonly OpCode OpCreateUserEvent = new()
         {
             Op = Op.OpCreateUserEvent,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8809,16 +8801,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpIsValidEvent = new OpCode
+        public static readonly OpCode OpIsValidEvent = new()
         {
             Op = Op.OpIsValidEvent,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8837,16 +8829,16 @@ namespace SharpVk.Spirv
                     Name = "'Event'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSetUserEventStatus = new OpCode
+        public static readonly OpCode OpSetUserEventStatus = new()
         {
             Op = Op.OpSetUserEventStatus,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -8859,16 +8851,16 @@ namespace SharpVk.Spirv
                     Name = "'Status'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCaptureEventProfilingInfo = new OpCode
+        public static readonly OpCode OpCaptureEventProfilingInfo = new()
         {
             Op = Op.OpCaptureEventProfilingInfo,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -8887,16 +8879,16 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetDefaultQueue = new OpCode
+        public static readonly OpCode OpGetDefaultQueue = new()
         {
             Op = Op.OpGetDefaultQueue,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8909,16 +8901,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpBuildNDRange = new OpCode
+        public static readonly OpCode OpBuildNdRange = new()
         {
-            Op = Op.OpBuildNDRange,
-            Operands = new Operand[]
-            {new Operand
+            Op = Op.OpBuildNdRange,
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8949,16 +8941,16 @@ namespace SharpVk.Spirv
                     Name = "'GlobalWorkOffset'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleImplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleImplicitLod = new()
         {
             Op = Op.OpImageSparseSampleImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -8989,16 +8981,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleExplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleExplicitLod = new()
         {
             Op = Op.OpImageSparseSampleExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9029,16 +9021,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleDrefImplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleDrefImplicitLod = new()
         {
             Op = Op.OpImageSparseSampleDrefImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9075,16 +9067,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleDrefExplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleDrefExplicitLod = new()
         {
             Op = Op.OpImageSparseSampleDrefExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9121,16 +9113,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleProjImplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleProjImplicitLod = new()
         {
             Op = Op.OpImageSparseSampleProjImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9161,16 +9153,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleProjExplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleProjExplicitLod = new()
         {
             Op = Op.OpImageSparseSampleProjExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9201,16 +9193,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleProjDrefImplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleProjDrefImplicitLod = new()
         {
             Op = Op.OpImageSparseSampleProjDrefImplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9247,16 +9239,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseSampleProjDrefExplicitLod = new OpCode
+        public static readonly OpCode OpImageSparseSampleProjDrefExplicitLod = new()
         {
             Op = Op.OpImageSparseSampleProjDrefExplicitLod,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9293,16 +9285,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseFetch = new OpCode
+        public static readonly OpCode OpImageSparseFetch = new()
         {
             Op = Op.OpImageSparseFetch,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9333,16 +9325,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseGather = new OpCode
+        public static readonly OpCode OpImageSparseGather = new()
         {
             Op = Op.OpImageSparseGather,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9379,16 +9371,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseDrefGather = new OpCode
+        public static readonly OpCode OpImageSparseDrefGather = new()
         {
             Op = Op.OpImageSparseDrefGather,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9425,16 +9417,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseTexelsResident = new OpCode
+        public static readonly OpCode OpImageSparseTexelsResident = new()
         {
             Op = Op.OpImageSparseTexelsResident,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9453,24 +9445,23 @@ namespace SharpVk.Spirv
                     Name = "'Resident Code'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpNoLine = new OpCode
+        public static readonly OpCode OpNoLine = new()
         {
             Op = Op.OpNoLine
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicFlagTestAndSet = new OpCode
+        public static readonly OpCode OpAtomicFlagTestAndSet = new()
         {
             Op = Op.OpAtomicFlagTestAndSet,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9501,16 +9492,16 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpAtomicFlagClear = new OpCode
+        public static readonly OpCode OpAtomicFlagClear = new()
         {
             Op = Op.OpAtomicFlagClear,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -9529,16 +9520,16 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpImageSparseRead = new OpCode
+        public static readonly OpCode OpImageSparseRead = new()
         {
             Op = Op.OpImageSparseRead,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9569,16 +9560,16 @@ namespace SharpVk.Spirv
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSizeOf = new OpCode
+        public static readonly OpCode OpSizeOf = new()
         {
             Op = Op.OpSizeOf,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9597,32 +9588,32 @@ namespace SharpVk.Spirv
                     Name = "'Pointer'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypePipeStorage = new OpCode
+        public static readonly OpCode OpTypePipeStorage = new()
         {
             Op = Op.OpTypePipeStorage,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpConstantPipeStorage = new OpCode
+        public static readonly OpCode OpConstantPipeStorage = new()
         {
             Op = Op.OpConstantPipeStorage,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9653,16 +9644,16 @@ namespace SharpVk.Spirv
                     Name = "'Capacity'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpCreatePipeFromPipeStorage = new OpCode
+        public static readonly OpCode OpCreatePipeFromPipeStorage = new()
         {
             Op = Op.OpCreatePipeFromPipeStorage,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9681,16 +9672,16 @@ namespace SharpVk.Spirv
                     Name = "'Pipe Storage'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetKernelLocalSizeForSubgroupCount = new OpCode
+        public static readonly OpCode OpGetKernelLocalSizeForSubgroupCount = new()
         {
             Op = Op.OpGetKernelLocalSizeForSubgroupCount,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9733,16 +9724,16 @@ namespace SharpVk.Spirv
                     Name = "'Param Align'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpGetKernelMaxNumSubgroups = new OpCode
+        public static readonly OpCode OpGetKernelMaxNumSubgroups = new()
         {
             Op = Op.OpGetKernelMaxNumSubgroups,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9779,32 +9770,32 @@ namespace SharpVk.Spirv
                     Name = "'Param Align'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpTypeNamedBarrier = new OpCode
+        public static readonly OpCode OpTypeNamedBarrier = new()
         {
             Op = Op.OpTypeNamedBarrier,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResult,
                     Quantifier = Quantifier.None,
                     Name = ""
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpNamedBarrierInitialize = new OpCode
+        public static readonly OpCode OpNamedBarrierInitialize = new()
         {
             Op = Op.OpNamedBarrierInitialize,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9823,16 +9814,16 @@ namespace SharpVk.Spirv
                     Name = "'Subgroup Count'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpMemoryNamedBarrier = new OpCode
+        public static readonly OpCode OpMemoryNamedBarrier = new()
         {
             Op = Op.OpMemoryNamedBarrier,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdRef,
                     Quantifier = Quantifier.None,
@@ -9851,32 +9842,32 @@ namespace SharpVk.Spirv
                     Name = "'Semantics'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpModuleProcessed = new OpCode
+        public static readonly OpCode OpModuleProcessed = new()
         {
             Op = Op.OpModuleProcessed,
-            Operands = new Operand[]
-            {new Operand
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.LiteralString,
                     Quantifier = Quantifier.None,
                     Name = "'Process'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSubgroupBallotKHR = new OpCode
+        public static readonly OpCode OpSubgroupBallotKhr = new()
         {
-            Op = Op.OpSubgroupBallotKHR,
-            Operands = new Operand[]
-            {new Operand
+            Op = Op.OpSubgroupBallotKhr,
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9895,16 +9886,16 @@ namespace SharpVk.Spirv
                     Name = "'Predicate'"
                 }
             }
-        }; 
-        
+        };
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OpCode OpSubgroupFirstInvocationKHR = new OpCode
+        public static readonly OpCode OpSubgroupFirstInvocationKhr = new()
         {
-            Op = Op.OpSubgroupFirstInvocationKHR,
-            Operands = new Operand[]
-            {new Operand
+            Op = Op.OpSubgroupFirstInvocationKhr,
+            Operands = new[]
+            {
+                new Operand
                 {
                     Kind = OperandKind.IdResultType,
                     Quantifier = Quantifier.None,
@@ -9923,6 +9914,6 @@ namespace SharpVk.Spirv
                     Name = "'Value'"
                 }
             }
-        }; 
+        };
     }
 }

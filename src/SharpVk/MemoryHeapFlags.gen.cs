@@ -22,32 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying attribute flags for a heap.
+    ///     Bitmask specifying attribute flags for a heap.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum MemoryHeapFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceLocal = 1 << 0, 
-        
+        DeviceLocal = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        MultiInstance = 1 << 1, 
-        
+        MultiInstance = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved2 = 1 << 2, 
+        Reserved2 = 1 << 2
     }
 }

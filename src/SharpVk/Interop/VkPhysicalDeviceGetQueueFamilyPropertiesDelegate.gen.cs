@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkPhysicalDeviceGetQueueFamilyPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint* queueFamilyPropertyCount, SharpVk.QueueFamilyProperties* queueFamilyProperties);
+    public unsafe delegate void VkPhysicalDeviceGetQueueFamilyPropertiesDelegate(PhysicalDevice physicalDevice, uint* queueFamilyPropertyCount, QueueFamilyProperties* queueFamilyProperties);
 }

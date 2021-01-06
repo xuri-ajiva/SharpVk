@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceAcquirePerformanceConfigurationDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo* acquireInfo, SharpVk.Interop.Intel.PerformanceConfiguration* configuration);
+    public unsafe delegate Result VkDeviceAcquirePerformanceConfigurationDelegate(Device device, PerformanceConfigurationAcquireInfo* acquireInfo, PerformanceConfiguration* configuration);
 }

@@ -25,37 +25,37 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Hint values an application can specify affecting full-screen transition
-    /// behavior
+    ///     Hint values an application can specify affecting full-screen transition
+    ///     behavior
     /// </summary>
     public enum FullScreenExclusive
     {
         /// <summary>
-        /// Indicates the implementation should determine the appropriate
-        /// full-screen method by whatever means it deems appropriate.
+        ///     Indicates the implementation should determine the appropriate
+        ///     full-screen method by whatever means it deems appropriate.
         /// </summary>
-        Default = 0, 
-        
+        Default = 0,
+
         /// <summary>
-        /// Indicates the implementation may use full-screen exclusive
-        /// mechanisms when available. Such mechanisms may result in better
-        /// performance and/or the availability of different presentation
-        /// capabilities, but may require a more disruptive transition during
-        /// swapchain initialization, first presentation and/or destruction.
+        ///     Indicates the implementation may use full-screen exclusive
+        ///     mechanisms when available. Such mechanisms may result in better
+        ///     performance and/or the availability of different presentation
+        ///     capabilities, but may require a more disruptive transition during
+        ///     swapchain initialization, first presentation and/or destruction.
         /// </summary>
-        Allowed = 1, 
-        
+        Allowed = 1,
+
         /// <summary>
-        /// Indicates the implementation should avoid using full-screen
-        /// mechanisms which rely on disruptive transitions.
+        ///     Indicates the implementation should avoid using full-screen
+        ///     mechanisms which rely on disruptive transitions.
         /// </summary>
-        Disallowed = 2, 
-        
+        Disallowed = 2,
+
         /// <summary>
-        /// Indicates the application will manage full-screen exclusive mode by
-        /// using the vkAcquireFullScreenExclusiveModeEXT and
-        /// vkReleaseFullScreenExclusiveModeEXT commands.
+        ///     Indicates the application will manage full-screen exclusive mode by
+        ///     using the vkAcquireFullScreenExclusiveModeEXT and
+        ///     vkReleaseFullScreenExclusiveModeEXT commands.
         /// </summary>
-        ApplicationControlled = 3, 
+        ApplicationControlled = 3
     }
 }

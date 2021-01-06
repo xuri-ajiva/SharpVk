@@ -22,42 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DescriptorSetAllocateInfo
+    public unsafe struct DescriptorSetAllocateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The pool which the sets will be allocated from.
+        ///     The pool which the sets will be allocated from.
         /// </summary>
-        public SharpVk.Interop.DescriptorPool DescriptorPool; 
-        
+        public DescriptorPool DescriptorPool;
+
         /// <summary>
-        /// descriptorSetCount determines the number of descriptor sets to be
-        /// allocated from the pool.
+        ///     descriptorSetCount determines the number of descriptor sets to be
+        ///     allocated from the pool.
         /// </summary>
-        public uint DescriptorSetCount; 
-        
+        public uint DescriptorSetCount;
+
         /// <summary>
-        /// An array of descriptor set layouts, with each member specifying how
-        /// the corresponding descriptor set is allocated.
+        ///     An array of descriptor set layouts, with each member specifying how
+        ///     the corresponding descriptor set is allocated.
         /// </summary>
-        public SharpVk.Interop.DescriptorSetLayout* SetLayouts; 
+        public DescriptorSetLayout* SetLayouts;
     }
 }

@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineVertexInputDivisorStateCreateInfo
+    public struct PipelineVertexInputDivisorStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.VertexInputBindingDivisorDescription[] VertexBindingDivisors
+        public VertexInputBindingDivisorDescription[] VertexBindingDivisors
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineVertexInputDivisorStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineVertexInputDivisorStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineVertexInputDivisorStateCreateInfo;
             pointer->Next = null;
-            pointer->VertexBindingDivisorCount = (uint)(Interop.HeapUtil.GetLength(this.VertexBindingDivisors));
-            if (this.VertexBindingDivisors != null)
+            pointer->VertexBindingDivisorCount = HeapUtil.GetLength(VertexBindingDivisors);
+            if (VertexBindingDivisors != null)
             {
-                var fieldPointer = (SharpVk.Multivendor.VertexInputBindingDivisorDescription*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Multivendor.VertexInputBindingDivisorDescription>(this.VertexBindingDivisors.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.VertexBindingDivisors.Length); index++)
-                {
-                    fieldPointer[index] = this.VertexBindingDivisors[index];
-                }
+                var fieldPointer = (VertexInputBindingDivisorDescription*)HeapUtil.AllocateAndClear<VertexInputBindingDivisorDescription>(VertexBindingDivisors.Length).ToPointer();
+                for (var index = 0; index < (uint)VertexBindingDivisors.Length; index++) fieldPointer[index] = VertexBindingDivisors[index];
                 pointer->VertexBindingDivisors = fieldPointer;
             }
             else

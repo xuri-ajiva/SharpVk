@@ -22,40 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Intel;
 
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PerformanceOverrideInfo
+    public unsafe struct PerformanceOverrideInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The particular VkPerformanceOverrideTypeINTEL to set.
+        ///     The particular VkPerformanceOverrideTypeINTEL to set.
         /// </summary>
-        public SharpVk.Intel.PerformanceOverrideType Type; 
-        
+        public PerformanceOverrideType Type;
+
         /// <summary>
-        /// Whether the override is enabled.
+        ///     Whether the override is enabled.
         /// </summary>
-        public Bool32 Enable; 
-        
+        public Bool32 Enable;
+
         /// <summary>
-        /// A potential required parameter for the override.
+        ///     A potential required parameter for the override.
         /// </summary>
-        public ulong Parameter; 
+        public ulong Parameter;
     }
 }

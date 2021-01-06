@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created event.
+    ///     Structure specifying parameters of a newly created event.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct EventCreateInfo
+    public struct EventCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.EventCreateFlags? Flags
+        public EventCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.EventCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.EventCreateInfo* pointer)
         {
             pointer->SType = StructureType.EventCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.EventCreateFlags);
-            }
+                pointer->Flags = default;
         }
     }
 }

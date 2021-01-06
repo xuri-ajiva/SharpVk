@@ -22,77 +22,81 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Amd;
+using SharpVk.Intel;
+using SharpVk.Interop;
+using SharpVk.Khronos;
+using SharpVk.Multivendor;
+using SharpVk.NVidia;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Opaque handle to a physical device object.
+    ///     Opaque handle to a physical device object.
     /// </summary>
     public partial class PhysicalDevice
     {
-        internal readonly SharpVk.Interop.PhysicalDevice handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Instance parent; 
-        
-        internal PhysicalDevice(SharpVk.Instance parent, SharpVk.Interop.PhysicalDevice handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.PhysicalDevice Handle;
+
+        internal readonly Instance Parent;
+
+        internal PhysicalDevice(Instance parent, Interop.PhysicalDevice handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice RawHandle => this.handle;
-        
+        public Interop.PhysicalDevice RawHandle => Handle;
+
         /// <summary>
-        /// Reports capabilities of a physical device.
+        ///     Reports capabilities of a physical device.
         /// </summary>
-        public unsafe SharpVk.PhysicalDeviceFeatures GetFeatures()
+        public unsafe PhysicalDeviceFeatures GetFeatures()
         {
             try
             {
-                SharpVk.PhysicalDeviceFeatures result = default(SharpVk.PhysicalDeviceFeatures);
-                SharpVk.Interop.PhysicalDeviceFeatures marshalledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures);
-                SharpVk.Interop.VkPhysicalDeviceGetFeaturesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFeatures;
-                commandDelegate(this.handle, &marshalledFeatures);
-                result = SharpVk.PhysicalDeviceFeatures.MarshalFrom(&marshalledFeatures);
+                var result = default(PhysicalDeviceFeatures);
+                var marshalledFeatures = default(Interop.PhysicalDeviceFeatures);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceFeatures;
+                commandDelegate(Handle, &marshalledFeatures);
+                result = PhysicalDeviceFeatures.MarshalFrom(&marshalledFeatures);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Lists physical device's format capabilities.
+        ///     Lists physical device's format capabilities.
         /// </summary>
         /// <param name="format">
         /// </param>
-        public unsafe SharpVk.FormatProperties GetFormatProperties(SharpVk.Format format)
+        public unsafe FormatProperties GetFormatProperties(Format format)
         {
             try
             {
-                SharpVk.FormatProperties result = default(SharpVk.FormatProperties);
-                SharpVk.FormatProperties marshalledFormatProperties = default(SharpVk.FormatProperties);
-                SharpVk.Interop.VkPhysicalDeviceGetFormatPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFormatProperties;
-                commandDelegate(this.handle, format, &marshalledFormatProperties);
+                var result = default(FormatProperties);
+                var marshalledFormatProperties = default(FormatProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceFormatProperties;
+                commandDelegate(Handle, format, &marshalledFormatProperties);
                 result = marshalledFormatProperties;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Lists physical device's image format capabilities.
+        ///     Lists physical device's image format capabilities.
         /// </summary>
         /// <param name="format">
         /// </param>
@@ -104,77 +108,67 @@ namespace SharpVk
         /// </param>
         /// <param name="flags">
         /// </param>
-        public unsafe SharpVk.ImageFormatProperties GetImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?))
+        public unsafe ImageFormatProperties GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags? flags = default)
         {
             try
             {
-                SharpVk.ImageFormatProperties result = default(SharpVk.ImageFormatProperties);
-                SharpVk.ImageCreateFlags marshalledFlags = default(SharpVk.ImageCreateFlags);
-                SharpVk.ImageFormatProperties marshalledImageFormatProperties = default(SharpVk.ImageFormatProperties);
+                var result = default(ImageFormatProperties);
+                var marshalledFlags = default(ImageCreateFlags);
+                var marshalledImageFormatProperties = default(ImageFormatProperties);
                 if (flags != null)
-                {
                     marshalledFlags = flags.Value;
-                }
                 else
-                {
-                    marshalledFlags = default(SharpVk.ImageCreateFlags);
-                }
-                SharpVk.Interop.VkPhysicalDeviceGetImageFormatPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceImageFormatProperties;
-                Result methodResult = commandDelegate(this.handle, format, type, tiling, usage, marshalledFlags, &marshalledImageFormatProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                    marshalledFlags = default;
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceImageFormatProperties;
+                var methodResult = commandDelegate(Handle, format, type, tiling, usage, marshalledFlags, &marshalledImageFormatProperties);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 result = marshalledImageFormatProperties;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Returns properties of a physical device.
+        ///     Returns properties of a physical device.
         /// </summary>
-        public unsafe SharpVk.PhysicalDeviceProperties GetProperties()
+        public unsafe PhysicalDeviceProperties GetProperties()
         {
             try
             {
-                SharpVk.PhysicalDeviceProperties result = default(SharpVk.PhysicalDeviceProperties);
-                SharpVk.Interop.PhysicalDeviceProperties marshalledProperties = default(SharpVk.Interop.PhysicalDeviceProperties);
-                SharpVk.Interop.VkPhysicalDeviceGetPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceProperties;
-                commandDelegate(this.handle, &marshalledProperties);
-                result = SharpVk.PhysicalDeviceProperties.MarshalFrom(&marshalledProperties);
+                var result = default(PhysicalDeviceProperties);
+                var marshalledProperties = default(Interop.PhysicalDeviceProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceProperties;
+                commandDelegate(Handle, &marshalledProperties);
+                result = PhysicalDeviceProperties.MarshalFrom(&marshalledProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Reports properties of the queues of the specified physical device.
+        ///     Reports properties of the queues of the specified physical device.
         /// </summary>
-        public unsafe SharpVk.QueueFamilyProperties[] GetQueueFamilyProperties()
+        public unsafe QueueFamilyProperties[] GetQueueFamilyProperties()
         {
             try
             {
-                SharpVk.QueueFamilyProperties[] result = default(SharpVk.QueueFamilyProperties[]);
-                uint marshalledQueueFamilyPropertyCount = default(uint);
-                SharpVk.QueueFamilyProperties* marshalledQueueFamilyProperties = default(SharpVk.QueueFamilyProperties*);
-                SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceQueueFamilyProperties;
-                commandDelegate(this.handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
-                marshalledQueueFamilyProperties = (SharpVk.QueueFamilyProperties*)(Interop.HeapUtil.Allocate<SharpVk.QueueFamilyProperties>((uint)(marshalledQueueFamilyPropertyCount)));
-                commandDelegate(this.handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
+                var result = default(QueueFamilyProperties[]);
+                var marshalledQueueFamilyPropertyCount = default(uint);
+                var marshalledQueueFamilyProperties = default(QueueFamilyProperties*);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceQueueFamilyProperties;
+                commandDelegate(Handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
+                marshalledQueueFamilyProperties = (QueueFamilyProperties*)HeapUtil.Allocate<QueueFamilyProperties>(marshalledQueueFamilyPropertyCount);
+                commandDelegate(Handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
                 if (marshalledQueueFamilyProperties != null)
                 {
-                    var fieldPointer = new SharpVk.QueueFamilyProperties[(uint)(marshalledQueueFamilyPropertyCount)];
-                    for(int index = 0; index < (uint)(marshalledQueueFamilyPropertyCount); index++)
-                    {
-                        fieldPointer[index] = marshalledQueueFamilyProperties[index];
-                    }
+                    var fieldPointer = new QueueFamilyProperties[marshalledQueueFamilyPropertyCount];
+                    for (var index = 0; index < marshalledQueueFamilyPropertyCount; index++) fieldPointer[index] = marshalledQueueFamilyProperties[index];
                     result = fieldPointer;
                 }
                 else
@@ -185,723 +179,728 @@ namespace SharpVk
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Reports memory information for the specified physical device.
+        ///     Reports memory information for the specified physical device.
         /// </summary>
-        public unsafe SharpVk.PhysicalDeviceMemoryProperties GetMemoryProperties()
+        public unsafe PhysicalDeviceMemoryProperties GetMemoryProperties()
         {
             try
             {
-                SharpVk.PhysicalDeviceMemoryProperties result = default(SharpVk.PhysicalDeviceMemoryProperties);
-                SharpVk.Interop.PhysicalDeviceMemoryProperties marshalledMemoryProperties = default(SharpVk.Interop.PhysicalDeviceMemoryProperties);
-                SharpVk.Interop.VkPhysicalDeviceGetMemoryPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceMemoryProperties;
-                commandDelegate(this.handle, &marshalledMemoryProperties);
-                result = SharpVk.PhysicalDeviceMemoryProperties.MarshalFrom(&marshalledMemoryProperties);
+                var result = default(PhysicalDeviceMemoryProperties);
+                var marshalledMemoryProperties = default(Interop.PhysicalDeviceMemoryProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceMemoryProperties;
+                commandDelegate(Handle, &marshalledMemoryProperties);
+                result = PhysicalDeviceMemoryProperties.MarshalFrom(&marshalledMemoryProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Create a new device instance.
+        ///     Create a new device instance.
         /// </summary>
         /// <param name="flags">
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </param>
         /// <param name="queueCreateInfos">
         /// </param>
         /// <param name="enabledLayerNames">
-        /// ppEnabledLayerNames is deprecated and ignored.
+        ///     ppEnabledLayerNames is deprecated and ignored.
         /// </param>
         /// <param name="enabledExtensionNames">
-        /// An array of enabledExtensionCount strings containing the names of
-        /// extensions to enable for the created device.
+        ///     An array of enabledExtensionCount strings containing the names of
+        ///     extensions to enable for the created device.
         /// </param>
         /// <param name="enabledFeatures">
-        /// Null or a PhysicalDeviceFeatures structure that contains boolean
-        /// indicators of all the features to be enabled.
+        ///     Null or a PhysicalDeviceFeatures structure that contains boolean
+        ///     indicators of all the features to be enabled.
         /// </param>
         /// <param name="physicalDeviceFeatures2">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceVariablePointersFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceMultiviewFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="deviceGroupDeviceCreateInfo">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDevice16BitStorageFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderSubgroupExtendedTypesFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceSamplerYcbcrConversionFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceProtectedMemoryFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceBlendOperationAdvancedFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceInlineUniformBlockFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderDrawParametersFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderFloat16Int8Features">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceHostQueryResetFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceDescriptorIndexingFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceTimelineSemaphoreFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDevice8BitStorageFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceConditionalRenderingFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceVulkanMemoryModelFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderAtomicInt64Features">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceVertexAttributeDivisorFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
-        /// <param name="physicalDeviceASTCDecodeFeaturesExt">
-        /// Extension struct
+        /// <param name="physicalDeviceAstcDecodeFeaturesExt">
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceTransformFeedbackFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceRepresentativeFragmentTestFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceExclusiveScissorFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceCornerSampledImageFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceComputeShaderDerivativesFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceFragmentShaderBarycentricFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderImageFootprintFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceDedicatedAllocationImageAliasingFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShadingRateImageFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceMeshShaderFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="deviceMemoryOverallocationCreateInfoAmd">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceFragmentDensityMapFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceScalarBlockLayoutFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceUniformBufferStandardLayoutFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceDepthClipEnableFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceMemoryPriorityFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceBufferDeviceAddressFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceBufferDeviceAddressFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceImagelessFramebufferFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
-        /// <param name="physicalDeviceTextureCompressionASTCHDRFeaturesExt">
-        /// Extension struct
+        /// <param name="physicalDeviceTextureCompressionAstchdrFeaturesExt">
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceCooperativeMatrixFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceYcbcrImageArraysFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDevicePerformanceQueryFeaturesKhr">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceCoverageReductionModeFeaturesNv">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderIntegerFunctions2FeaturesIntel">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderClockFeaturesKhr">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceIndexTypeUint8FeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
-        /// <param name="physicalDeviceShaderSMBuiltinsFeaturesNv">
-        /// Extension struct
+        /// <param name="physicalDeviceShaderSmBuiltinsFeaturesNv">
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceFragmentShaderInterlockFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceSeparateDepthStencilLayoutsFeatures">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDevicePipelineExecutablePropertiesFeaturesKhr">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceShaderDemoteToHelperInvocationFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceTexelBufferAlignmentFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceSubgroupSizeControlFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceLineRasterizationFeaturesExt">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceVulkan11Features">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceVulkan12Features">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="physicalDeviceCoherentMemoryFeaturesAmd">
-        /// Extension struct
+        ///     Extension struct
         /// </param>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe SharpVk.Device CreateDevice(ArrayProxy<SharpVk.DeviceQueueCreateInfo>? queueCreateInfos, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.PhysicalDeviceFeatures2? physicalDeviceFeatures2 = null, SharpVk.PhysicalDeviceVariablePointersFeatures? physicalDeviceVariablePointersFeatures = null, SharpVk.PhysicalDeviceMultiviewFeatures? physicalDeviceMultiviewFeatures = null, SharpVk.DeviceGroupDeviceCreateInfo? deviceGroupDeviceCreateInfo = null, SharpVk.PhysicalDevice16BitStorageFeatures? physicalDevice16BitStorageFeatures = null, SharpVk.PhysicalDeviceShaderSubgroupExtendedTypesFeatures? physicalDeviceShaderSubgroupExtendedTypesFeatures = null, SharpVk.PhysicalDeviceSamplerYcbcrConversionFeatures? physicalDeviceSamplerYcbcrConversionFeatures = null, SharpVk.PhysicalDeviceProtectedMemoryFeatures? physicalDeviceProtectedMemoryFeatures = null, SharpVk.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures? physicalDeviceBlendOperationAdvancedFeaturesExt = null, SharpVk.Multivendor.PhysicalDeviceInlineUniformBlockFeatures? physicalDeviceInlineUniformBlockFeaturesExt = null, SharpVk.PhysicalDeviceShaderDrawParametersFeatures? physicalDeviceShaderDrawParametersFeatures = null, SharpVk.PhysicalDeviceShaderFloat16Int8Features? physicalDeviceShaderFloat16Int8Features = null, SharpVk.PhysicalDeviceHostQueryResetFeatures? physicalDeviceHostQueryResetFeatures = null, SharpVk.PhysicalDeviceDescriptorIndexingFeatures? physicalDeviceDescriptorIndexingFeatures = null, SharpVk.PhysicalDeviceTimelineSemaphoreFeatures? physicalDeviceTimelineSemaphoreFeatures = null, SharpVk.PhysicalDevice8BitStorageFeatures? physicalDevice8BitStorageFeatures = null, SharpVk.Multivendor.PhysicalDeviceConditionalRenderingFeatures? physicalDeviceConditionalRenderingFeaturesExt = null, SharpVk.PhysicalDeviceVulkanMemoryModelFeatures? physicalDeviceVulkanMemoryModelFeatures = null, SharpVk.PhysicalDeviceShaderAtomicInt64Features? physicalDeviceShaderAtomicInt64Features = null, SharpVk.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures? physicalDeviceVertexAttributeDivisorFeaturesExt = null, SharpVk.Multivendor.PhysicalDeviceASTCDecodeFeatures? physicalDeviceASTCDecodeFeaturesExt = null, SharpVk.Multivendor.PhysicalDeviceTransformFeedbackFeatures? physicalDeviceTransformFeedbackFeaturesExt = null, SharpVk.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures? physicalDeviceRepresentativeFragmentTestFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceExclusiveScissorFeatures? physicalDeviceExclusiveScissorFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceCornerSampledImageFeatures? physicalDeviceCornerSampledImageFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures? physicalDeviceComputeShaderDerivativesFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures? physicalDeviceFragmentShaderBarycentricFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceShaderImageFootprintFeatures? physicalDeviceShaderImageFootprintFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures? physicalDeviceDedicatedAllocationImageAliasingFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceShadingRateImageFeatures? physicalDeviceShadingRateImageFeaturesNv = null, SharpVk.NVidia.PhysicalDeviceMeshShaderFeatures? physicalDeviceMeshShaderFeaturesNv = null, SharpVk.Amd.DeviceMemoryOverallocationCreateInfo? deviceMemoryOverallocationCreateInfoAmd = null, SharpVk.Multivendor.PhysicalDeviceFragmentDensityMapFeatures? physicalDeviceFragmentDensityMapFeaturesExt = null, SharpVk.PhysicalDeviceScalarBlockLayoutFeatures? physicalDeviceScalarBlockLayoutFeatures = null, SharpVk.PhysicalDeviceUniformBufferStandardLayoutFeatures? physicalDeviceUniformBufferStandardLayoutFeatures = null, SharpVk.Multivendor.PhysicalDeviceDepthClipEnableFeatures? physicalDeviceDepthClipEnableFeaturesExt = null, SharpVk.Multivendor.PhysicalDeviceMemoryPriorityFeatures? physicalDeviceMemoryPriorityFeaturesExt = null, SharpVk.PhysicalDeviceBufferDeviceAddressFeatures? physicalDeviceBufferDeviceAddressFeatures = null, SharpVk.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures? physicalDeviceBufferDeviceAddressFeaturesExt = null, SharpVk.PhysicalDeviceImagelessFramebufferFeatures? physicalDeviceImagelessFramebufferFeatures = null, SharpVk.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures? physicalDeviceTextureCompressionASTCHDRFeaturesExt = null, SharpVk.NVidia.PhysicalDeviceCooperativeMatrixFeatures? physicalDeviceCooperativeMatrixFeaturesNv = null, SharpVk.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures? physicalDeviceYcbcrImageArraysFeaturesExt = null, SharpVk.Khronos.PhysicalDevicePerformanceQueryFeatures? physicalDevicePerformanceQueryFeaturesKhr = null, SharpVk.NVidia.PhysicalDeviceCoverageReductionModeFeatures? physicalDeviceCoverageReductionModeFeaturesNv = null, SharpVk.Intel.PhysicalDeviceShaderIntegerFunctions2Features? physicalDeviceShaderIntegerFunctions2FeaturesIntel = null, SharpVk.Khronos.PhysicalDeviceShaderClockFeatures? physicalDeviceShaderClockFeaturesKhr = null, SharpVk.Multivendor.PhysicalDeviceIndexTypeUint8Features? physicalDeviceIndexTypeUint8FeaturesExt = null, SharpVk.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures? physicalDeviceShaderSMBuiltinsFeaturesNv = null, SharpVk.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures? physicalDeviceFragmentShaderInterlockFeaturesExt = null, SharpVk.PhysicalDeviceSeparateDepthStencilLayoutsFeatures? physicalDeviceSeparateDepthStencilLayoutsFeatures = null, SharpVk.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures? physicalDevicePipelineExecutablePropertiesFeaturesKhr = null, SharpVk.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures? physicalDeviceShaderDemoteToHelperInvocationFeaturesExt = null, SharpVk.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures? physicalDeviceTexelBufferAlignmentFeaturesExt = null, SharpVk.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures? physicalDeviceSubgroupSizeControlFeaturesExt = null, SharpVk.Multivendor.PhysicalDeviceLineRasterizationFeatures? physicalDeviceLineRasterizationFeaturesExt = null, SharpVk.PhysicalDeviceVulkan11Features? physicalDeviceVulkan11Features = null, SharpVk.PhysicalDeviceVulkan12Features? physicalDeviceVulkan12Features = null, SharpVk.Amd.PhysicalDeviceCoherentMemoryFeatures? physicalDeviceCoherentMemoryFeaturesAmd = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe Device CreateDevice(ArrayProxy<DeviceQueueCreateInfo>? queueCreateInfos, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, DeviceCreateFlags? flags = default, PhysicalDeviceFeatures? enabledFeatures = default, PhysicalDeviceFeatures2? physicalDeviceFeatures2 = null, PhysicalDeviceVariablePointersFeatures? physicalDeviceVariablePointersFeatures = null, PhysicalDeviceMultiviewFeatures? physicalDeviceMultiviewFeatures = null, DeviceGroupDeviceCreateInfo? deviceGroupDeviceCreateInfo = null, PhysicalDevice16BitStorageFeatures? physicalDevice16BitStorageFeatures = null,
+            PhysicalDeviceShaderSubgroupExtendedTypesFeatures? physicalDeviceShaderSubgroupExtendedTypesFeatures = null, PhysicalDeviceSamplerYcbcrConversionFeatures? physicalDeviceSamplerYcbcrConversionFeatures = null, PhysicalDeviceProtectedMemoryFeatures? physicalDeviceProtectedMemoryFeatures = null, PhysicalDeviceBlendOperationAdvancedFeatures? physicalDeviceBlendOperationAdvancedFeaturesExt = null, PhysicalDeviceInlineUniformBlockFeatures? physicalDeviceInlineUniformBlockFeaturesExt = null, PhysicalDeviceShaderDrawParametersFeatures? physicalDeviceShaderDrawParametersFeatures = null,
+            PhysicalDeviceShaderFloat16Int8Features? physicalDeviceShaderFloat16Int8Features = null, PhysicalDeviceHostQueryResetFeatures? physicalDeviceHostQueryResetFeatures = null, PhysicalDeviceDescriptorIndexingFeatures? physicalDeviceDescriptorIndexingFeatures = null, PhysicalDeviceTimelineSemaphoreFeatures? physicalDeviceTimelineSemaphoreFeatures = null, PhysicalDevice8BitStorageFeatures? physicalDevice8BitStorageFeatures = null, PhysicalDeviceConditionalRenderingFeatures? physicalDeviceConditionalRenderingFeaturesExt = null, PhysicalDeviceVulkanMemoryModelFeatures? physicalDeviceVulkanMemoryModelFeatures = null,
+            PhysicalDeviceShaderAtomicInt64Features? physicalDeviceShaderAtomicInt64Features = null, PhysicalDeviceVertexAttributeDivisorFeatures? physicalDeviceVertexAttributeDivisorFeaturesExt = null, PhysicalDeviceAstcDecodeFeatures? physicalDeviceAstcDecodeFeaturesExt = null, PhysicalDeviceTransformFeedbackFeatures? physicalDeviceTransformFeedbackFeaturesExt = null, PhysicalDeviceRepresentativeFragmentTestFeatures? physicalDeviceRepresentativeFragmentTestFeaturesNv = null, PhysicalDeviceExclusiveScissorFeatures? physicalDeviceExclusiveScissorFeaturesNv = null,
+            PhysicalDeviceCornerSampledImageFeatures? physicalDeviceCornerSampledImageFeaturesNv = null, PhysicalDeviceComputeShaderDerivativesFeatures? physicalDeviceComputeShaderDerivativesFeaturesNv = null, PhysicalDeviceFragmentShaderBarycentricFeatures? physicalDeviceFragmentShaderBarycentricFeaturesNv = null, PhysicalDeviceShaderImageFootprintFeatures? physicalDeviceShaderImageFootprintFeaturesNv = null, PhysicalDeviceDedicatedAllocationImageAliasingFeatures? physicalDeviceDedicatedAllocationImageAliasingFeaturesNv = null, PhysicalDeviceShadingRateImageFeatures? physicalDeviceShadingRateImageFeaturesNv = null,
+            PhysicalDeviceMeshShaderFeatures? physicalDeviceMeshShaderFeaturesNv = null, DeviceMemoryOverallocationCreateInfo? deviceMemoryOverallocationCreateInfoAmd = null, PhysicalDeviceFragmentDensityMapFeatures? physicalDeviceFragmentDensityMapFeaturesExt = null, PhysicalDeviceScalarBlockLayoutFeatures? physicalDeviceScalarBlockLayoutFeatures = null, PhysicalDeviceUniformBufferStandardLayoutFeatures? physicalDeviceUniformBufferStandardLayoutFeatures = null, PhysicalDeviceDepthClipEnableFeatures? physicalDeviceDepthClipEnableFeaturesExt = null,
+            PhysicalDeviceMemoryPriorityFeatures? physicalDeviceMemoryPriorityFeaturesExt = null, PhysicalDeviceBufferDeviceAddressFeatures? physicalDeviceBufferDeviceAddressFeatures = null, Multivendor.PhysicalDeviceBufferDeviceAddressFeatures? physicalDeviceBufferDeviceAddressFeaturesExt = null, PhysicalDeviceImagelessFramebufferFeatures? physicalDeviceImagelessFramebufferFeatures = null, PhysicalDeviceTextureCompressionAstchdrFeatures? physicalDeviceTextureCompressionAstchdrFeaturesExt = null, PhysicalDeviceCooperativeMatrixFeatures? physicalDeviceCooperativeMatrixFeaturesNv = null,
+            PhysicalDeviceYcbcrImageArraysFeatures? physicalDeviceYcbcrImageArraysFeaturesExt = null, PhysicalDevicePerformanceQueryFeatures? physicalDevicePerformanceQueryFeaturesKhr = null, PhysicalDeviceCoverageReductionModeFeatures? physicalDeviceCoverageReductionModeFeaturesNv = null, PhysicalDeviceShaderIntegerFunctions2Features? physicalDeviceShaderIntegerFunctions2FeaturesIntel = null, PhysicalDeviceShaderClockFeatures? physicalDeviceShaderClockFeaturesKhr = null, PhysicalDeviceIndexTypeUint8Features? physicalDeviceIndexTypeUint8FeaturesExt = null,
+            PhysicalDeviceShaderSmBuiltinsFeatures? physicalDeviceShaderSmBuiltinsFeaturesNv = null, PhysicalDeviceFragmentShaderInterlockFeatures? physicalDeviceFragmentShaderInterlockFeaturesExt = null, PhysicalDeviceSeparateDepthStencilLayoutsFeatures? physicalDeviceSeparateDepthStencilLayoutsFeatures = null, PhysicalDevicePipelineExecutablePropertiesFeatures? physicalDevicePipelineExecutablePropertiesFeaturesKhr = null, PhysicalDeviceShaderDemoteToHelperInvocationFeatures? physicalDeviceShaderDemoteToHelperInvocationFeaturesExt = null,
+            PhysicalDeviceTexelBufferAlignmentFeatures? physicalDeviceTexelBufferAlignmentFeaturesExt = null, PhysicalDeviceSubgroupSizeControlFeatures? physicalDeviceSubgroupSizeControlFeaturesExt = null, PhysicalDeviceLineRasterizationFeatures? physicalDeviceLineRasterizationFeaturesExt = null, PhysicalDeviceVulkan11Features? physicalDeviceVulkan11Features = null, PhysicalDeviceVulkan12Features? physicalDeviceVulkan12Features = null, PhysicalDeviceCoherentMemoryFeatures? physicalDeviceCoherentMemoryFeaturesAmd = null, AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Device result = default(SharpVk.Device);
-                SharpVk.Interop.DeviceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.DeviceCreateInfo*);
-                void* vkDeviceCreateInfoNextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Device marshalledDevice = default(SharpVk.Interop.Device);
+                var result = default(Device);
+                var marshalledCreateInfo = default(Interop.DeviceCreateInfo*);
+                var vkDeviceCreateInfoNextPointer = default(void*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                var marshalledDevice = default(Interop.Device);
                 if (physicalDeviceFeatures2 != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceFeatures2* extensionPointer = default(SharpVk.Interop.PhysicalDeviceFeatures2*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceFeatures2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceFeatures2>());
+                    var extensionPointer = default(Interop.PhysicalDeviceFeatures2*);
+                    extensionPointer = (Interop.PhysicalDeviceFeatures2*)HeapUtil.Allocate<Interop.PhysicalDeviceFeatures2>();
                     physicalDeviceFeatures2.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceVariablePointersFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceVariablePointersFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceVariablePointersFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceVariablePointersFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceVariablePointersFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceVariablePointersFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceVariablePointersFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceVariablePointersFeatures>();
                     physicalDeviceVariablePointersFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceMultiviewFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceMultiviewFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceMultiviewFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceMultiviewFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceMultiviewFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceMultiviewFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceMultiviewFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceMultiviewFeatures>();
                     physicalDeviceMultiviewFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (deviceGroupDeviceCreateInfo != null)
                 {
-                    SharpVk.Interop.DeviceGroupDeviceCreateInfo* extensionPointer = default(SharpVk.Interop.DeviceGroupDeviceCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.DeviceGroupDeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceGroupDeviceCreateInfo>());
+                    var extensionPointer = default(Interop.DeviceGroupDeviceCreateInfo*);
+                    extensionPointer = (Interop.DeviceGroupDeviceCreateInfo*)HeapUtil.Allocate<Interop.DeviceGroupDeviceCreateInfo>();
                     deviceGroupDeviceCreateInfo.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDevice16BitStorageFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDevice16BitStorageFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDevice16BitStorageFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDevice16BitStorageFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDevice16BitStorageFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDevice16BitStorageFeatures*);
+                    extensionPointer = (Interop.PhysicalDevice16BitStorageFeatures*)HeapUtil.Allocate<Interop.PhysicalDevice16BitStorageFeatures>();
                     physicalDevice16BitStorageFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderSubgroupExtendedTypesFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures>();
                     physicalDeviceShaderSubgroupExtendedTypesFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceSamplerYcbcrConversionFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceSamplerYcbcrConversionFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceSamplerYcbcrConversionFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceSamplerYcbcrConversionFeatures>();
                     physicalDeviceSamplerYcbcrConversionFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceProtectedMemoryFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceProtectedMemoryFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceProtectedMemoryFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceProtectedMemoryFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceProtectedMemoryFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceProtectedMemoryFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceProtectedMemoryFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceProtectedMemoryFeatures>();
                     physicalDeviceProtectedMemoryFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceBlendOperationAdvancedFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures>();
                     physicalDeviceBlendOperationAdvancedFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceInlineUniformBlockFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures>();
                     physicalDeviceInlineUniformBlockFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderDrawParametersFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceShaderDrawParametersFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceShaderDrawParametersFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceShaderDrawParametersFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceShaderDrawParametersFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceShaderDrawParametersFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceShaderDrawParametersFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceShaderDrawParametersFeatures>();
                     physicalDeviceShaderDrawParametersFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderFloat16Int8Features != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceShaderFloat16Int8Features* extensionPointer = default(SharpVk.Interop.PhysicalDeviceShaderFloat16Int8Features*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceShaderFloat16Int8Features*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceShaderFloat16Int8Features>());
+                    var extensionPointer = default(Interop.PhysicalDeviceShaderFloat16Int8Features*);
+                    extensionPointer = (Interop.PhysicalDeviceShaderFloat16Int8Features*)HeapUtil.Allocate<Interop.PhysicalDeviceShaderFloat16Int8Features>();
                     physicalDeviceShaderFloat16Int8Features.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceHostQueryResetFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceHostQueryResetFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceHostQueryResetFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceHostQueryResetFeatures>();
                     physicalDeviceHostQueryResetFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceDescriptorIndexingFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceDescriptorIndexingFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceDescriptorIndexingFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceDescriptorIndexingFeatures>();
                     physicalDeviceDescriptorIndexingFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceTimelineSemaphoreFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceTimelineSemaphoreFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceTimelineSemaphoreFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceTimelineSemaphoreFeatures>();
                     physicalDeviceTimelineSemaphoreFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDevice8BitStorageFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDevice8BitStorageFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDevice8BitStorageFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDevice8BitStorageFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDevice8BitStorageFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDevice8BitStorageFeatures*);
+                    extensionPointer = (Interop.PhysicalDevice8BitStorageFeatures*)HeapUtil.Allocate<Interop.PhysicalDevice8BitStorageFeatures>();
                     physicalDevice8BitStorageFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceConditionalRenderingFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures>();
                     physicalDeviceConditionalRenderingFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceVulkanMemoryModelFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceVulkanMemoryModelFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceVulkanMemoryModelFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceVulkanMemoryModelFeatures>();
                     physicalDeviceVulkanMemoryModelFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderAtomicInt64Features != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceShaderAtomicInt64Features* extensionPointer = default(SharpVk.Interop.PhysicalDeviceShaderAtomicInt64Features*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceShaderAtomicInt64Features*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceShaderAtomicInt64Features>());
+                    var extensionPointer = default(Interop.PhysicalDeviceShaderAtomicInt64Features*);
+                    extensionPointer = (Interop.PhysicalDeviceShaderAtomicInt64Features*)HeapUtil.Allocate<Interop.PhysicalDeviceShaderAtomicInt64Features>();
                     physicalDeviceShaderAtomicInt64Features.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceVertexAttributeDivisorFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures>();
                     physicalDeviceVertexAttributeDivisorFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
-                if (physicalDeviceASTCDecodeFeaturesExt != null)
+                if (physicalDeviceAstcDecodeFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures>());
-                    physicalDeviceASTCDecodeFeaturesExt.Value.MarshalTo(extensionPointer);
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceAstcDecodeFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceAstcDecodeFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceAstcDecodeFeatures>();
+                    physicalDeviceAstcDecodeFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceTransformFeedbackFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures>();
                     physicalDeviceTransformFeedbackFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceRepresentativeFragmentTestFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures>();
                     physicalDeviceRepresentativeFragmentTestFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceExclusiveScissorFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures>();
                     physicalDeviceExclusiveScissorFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceCornerSampledImageFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures>();
                     physicalDeviceCornerSampledImageFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceComputeShaderDerivativesFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures>();
                     physicalDeviceComputeShaderDerivativesFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceFragmentShaderBarycentricFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceFragmentShaderBarycentricFeatures>();
                     physicalDeviceFragmentShaderBarycentricFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderImageFootprintFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures>();
                     physicalDeviceShaderImageFootprintFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceDedicatedAllocationImageAliasingFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures>();
                     physicalDeviceDedicatedAllocationImageAliasingFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShadingRateImageFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceShadingRateImageFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceShadingRateImageFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceShadingRateImageFeatures>();
                     physicalDeviceShadingRateImageFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceMeshShaderFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceMeshShaderFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceMeshShaderFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceMeshShaderFeatures>();
                     physicalDeviceMeshShaderFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (deviceMemoryOverallocationCreateInfoAmd != null)
                 {
-                    SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo>());
+                    var extensionPointer = default(Interop.Amd.DeviceMemoryOverallocationCreateInfo*);
+                    extensionPointer = (Interop.Amd.DeviceMemoryOverallocationCreateInfo*)HeapUtil.Allocate<Interop.Amd.DeviceMemoryOverallocationCreateInfo>();
                     deviceMemoryOverallocationCreateInfoAmd.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceFragmentDensityMapFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures>();
                     physicalDeviceFragmentDensityMapFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceScalarBlockLayoutFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceScalarBlockLayoutFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceScalarBlockLayoutFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceScalarBlockLayoutFeatures>();
                     physicalDeviceScalarBlockLayoutFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceUniformBufferStandardLayoutFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures>();
                     physicalDeviceUniformBufferStandardLayoutFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceDepthClipEnableFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures>();
                     physicalDeviceDepthClipEnableFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceMemoryPriorityFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures>();
                     physicalDeviceMemoryPriorityFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceBufferDeviceAddressFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceBufferDeviceAddressFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceBufferDeviceAddressFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceBufferDeviceAddressFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceBufferDeviceAddressFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceBufferDeviceAddressFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceBufferDeviceAddressFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceBufferDeviceAddressFeatures>();
                     physicalDeviceBufferDeviceAddressFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceBufferDeviceAddressFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures>();
                     physicalDeviceBufferDeviceAddressFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceImagelessFramebufferFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceImagelessFramebufferFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceImagelessFramebufferFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceImagelessFramebufferFeatures>();
                     physicalDeviceImagelessFramebufferFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
-                if (physicalDeviceTextureCompressionASTCHDRFeaturesExt != null)
+                if (physicalDeviceTextureCompressionAstchdrFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures>());
-                    physicalDeviceTextureCompressionASTCHDRFeaturesExt.Value.MarshalTo(extensionPointer);
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceTextureCompressionAstchdrFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceTextureCompressionAstchdrFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceTextureCompressionAstchdrFeatures>();
+                    physicalDeviceTextureCompressionAstchdrFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceCooperativeMatrixFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures>();
                     physicalDeviceCooperativeMatrixFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceYcbcrImageArraysFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures>();
                     physicalDeviceYcbcrImageArraysFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDevicePerformanceQueryFeaturesKhr != null)
                 {
-                    SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryFeatures* extensionPointer = default(SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryFeatures*);
-                    extensionPointer = (SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryFeatures>());
+                    var extensionPointer = default(Interop.Khronos.PhysicalDevicePerformanceQueryFeatures*);
+                    extensionPointer = (Interop.Khronos.PhysicalDevicePerformanceQueryFeatures*)HeapUtil.Allocate<Interop.Khronos.PhysicalDevicePerformanceQueryFeatures>();
                     physicalDevicePerformanceQueryFeaturesKhr.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceCoverageReductionModeFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures>());
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures>();
                     physicalDeviceCoverageReductionModeFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderIntegerFunctions2FeaturesIntel != null)
                 {
-                    SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* extensionPointer = default(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features*);
-                    extensionPointer = (SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features>());
+                    var extensionPointer = default(Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features*);
+                    extensionPointer = (Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features*)HeapUtil.Allocate<Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features>();
                     physicalDeviceShaderIntegerFunctions2FeaturesIntel.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderClockFeaturesKhr != null)
                 {
-                    SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures* extensionPointer = default(SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures*);
-                    extensionPointer = (SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures>());
+                    var extensionPointer = default(Interop.Khronos.PhysicalDeviceShaderClockFeatures*);
+                    extensionPointer = (Interop.Khronos.PhysicalDeviceShaderClockFeatures*)HeapUtil.Allocate<Interop.Khronos.PhysicalDeviceShaderClockFeatures>();
                     physicalDeviceShaderClockFeaturesKhr.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceIndexTypeUint8FeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features>();
                     physicalDeviceIndexTypeUint8FeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
-                if (physicalDeviceShaderSMBuiltinsFeaturesNv != null)
+                if (physicalDeviceShaderSmBuiltinsFeaturesNv != null)
                 {
-                    SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures* extensionPointer = default(SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures*);
-                    extensionPointer = (SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures>());
-                    physicalDeviceShaderSMBuiltinsFeaturesNv.Value.MarshalTo(extensionPointer);
+                    var extensionPointer = default(Interop.NVidia.PhysicalDeviceShaderSmBuiltinsFeatures*);
+                    extensionPointer = (Interop.NVidia.PhysicalDeviceShaderSmBuiltinsFeatures*)HeapUtil.Allocate<Interop.NVidia.PhysicalDeviceShaderSmBuiltinsFeatures>();
+                    physicalDeviceShaderSmBuiltinsFeaturesNv.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceFragmentShaderInterlockFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures>();
                     physicalDeviceFragmentShaderInterlockFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceSeparateDepthStencilLayoutsFeatures != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* extensionPointer = default(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures>());
+                    var extensionPointer = default(Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures*);
+                    extensionPointer = (Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures>();
                     physicalDeviceSeparateDepthStencilLayoutsFeatures.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDevicePipelineExecutablePropertiesFeaturesKhr != null)
                 {
-                    SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures* extensionPointer = default(SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures*);
-                    extensionPointer = (SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures>());
+                    var extensionPointer = default(Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures*);
+                    extensionPointer = (Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures*)HeapUtil.Allocate<Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures>();
                     physicalDevicePipelineExecutablePropertiesFeaturesKhr.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceShaderDemoteToHelperInvocationFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures>();
                     physicalDeviceShaderDemoteToHelperInvocationFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceTexelBufferAlignmentFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures>();
                     physicalDeviceTexelBufferAlignmentFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceSubgroupSizeControlFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures>();
                     physicalDeviceSubgroupSizeControlFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceLineRasterizationFeaturesExt != null)
                 {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures>());
+                    var extensionPointer = default(Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures*);
+                    extensionPointer = (Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures>();
                     physicalDeviceLineRasterizationFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceVulkan11Features != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceVulkan11Features* extensionPointer = default(SharpVk.Interop.PhysicalDeviceVulkan11Features*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceVulkan11Features*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceVulkan11Features>());
+                    var extensionPointer = default(Interop.PhysicalDeviceVulkan11Features*);
+                    extensionPointer = (Interop.PhysicalDeviceVulkan11Features*)HeapUtil.Allocate<Interop.PhysicalDeviceVulkan11Features>();
                     physicalDeviceVulkan11Features.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceVulkan12Features != null)
                 {
-                    SharpVk.Interop.PhysicalDeviceVulkan12Features* extensionPointer = default(SharpVk.Interop.PhysicalDeviceVulkan12Features*);
-                    extensionPointer = (SharpVk.Interop.PhysicalDeviceVulkan12Features*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceVulkan12Features>());
+                    var extensionPointer = default(Interop.PhysicalDeviceVulkan12Features*);
+                    extensionPointer = (Interop.PhysicalDeviceVulkan12Features*)HeapUtil.Allocate<Interop.PhysicalDeviceVulkan12Features>();
                     physicalDeviceVulkan12Features.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
                 if (physicalDeviceCoherentMemoryFeaturesAmd != null)
                 {
-                    SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures* extensionPointer = default(SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures*);
-                    extensionPointer = (SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures>());
+                    var extensionPointer = default(Interop.Amd.PhysicalDeviceCoherentMemoryFeatures*);
+                    extensionPointer = (Interop.Amd.PhysicalDeviceCoherentMemoryFeatures*)HeapUtil.Allocate<Interop.Amd.PhysicalDeviceCoherentMemoryFeatures>();
                     physicalDeviceCoherentMemoryFeaturesAmd.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkDeviceCreateInfoNextPointer;
                     vkDeviceCreateInfoNextPointer = extensionPointer;
                 }
-                marshalledCreateInfo = (SharpVk.Interop.DeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceCreateInfo>());
+                marshalledCreateInfo = (Interop.DeviceCreateInfo*)HeapUtil.Allocate<Interop.DeviceCreateInfo>();
                 marshalledCreateInfo->SType = StructureType.DeviceCreateInfo;
                 marshalledCreateInfo->Next = vkDeviceCreateInfoNextPointer;
                 if (flags != null)
-                {
                     marshalledCreateInfo->Flags = flags.Value;
-                }
                 else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.DeviceCreateFlags);
-                }
-                marshalledCreateInfo->QueueCreateInfoCount = (uint)(Interop.HeapUtil.GetLength(queueCreateInfos));
+                    marshalledCreateInfo->Flags = default;
+                marshalledCreateInfo->QueueCreateInfoCount = HeapUtil.GetLength(queueCreateInfos);
                 if (queueCreateInfos.IsNull())
                 {
                     marshalledCreateInfo->QueueCreateInfos = null;
@@ -910,83 +909,71 @@ namespace SharpVk
                 {
                     if (queueCreateInfos.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCreateInfo->QueueCreateInfos = (SharpVk.Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceQueueCreateInfo>());
-                        queueCreateInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.DeviceQueueCreateInfo*)(marshalledCreateInfo->QueueCreateInfos));
+                        marshalledCreateInfo->QueueCreateInfos = (Interop.DeviceQueueCreateInfo*)HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>();
+                        queueCreateInfos.Value.GetSingleValue().MarshalTo(&*marshalledCreateInfo->QueueCreateInfos);
                     }
                     else
                     {
-                        var fieldPointer = (SharpVk.Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceQueueCreateInfo>(Interop.HeapUtil.GetLength(queueCreateInfos.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(queueCreateInfos.Value)); index++)
-                        {
-                            queueCreateInfos.Value[index].MarshalTo(&fieldPointer[index]);
-                        }
+                        var fieldPointer = (Interop.DeviceQueueCreateInfo*)HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>(HeapUtil.GetLength(queueCreateInfos.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(queueCreateInfos.Value); index++) queueCreateInfos.Value[index].MarshalTo(&fieldPointer[index]);
                         marshalledCreateInfo->QueueCreateInfos = fieldPointer;
                     }
                 }
-                marshalledCreateInfo->EnabledLayerCount = (uint)(Interop.HeapUtil.GetLength(enabledLayerNames));
-                marshalledCreateInfo->EnabledLayerNames = Interop.HeapUtil.MarshalTo(enabledLayerNames);
-                marshalledCreateInfo->EnabledExtensionCount = (uint)(Interop.HeapUtil.GetLength(enabledExtensionNames));
-                marshalledCreateInfo->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(enabledExtensionNames);
+                marshalledCreateInfo->EnabledLayerCount = HeapUtil.GetLength(enabledLayerNames);
+                marshalledCreateInfo->EnabledLayerNames = HeapUtil.MarshalTo(enabledLayerNames);
+                marshalledCreateInfo->EnabledExtensionCount = HeapUtil.GetLength(enabledExtensionNames);
+                marshalledCreateInfo->EnabledExtensionNames = HeapUtil.MarshalTo(enabledExtensionNames);
                 if (enabledFeatures != null)
                 {
-                    marshalledCreateInfo->EnabledFeatures = (SharpVk.Interop.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceFeatures>());
+                    marshalledCreateInfo->EnabledFeatures = (Interop.PhysicalDeviceFeatures*)HeapUtil.Allocate<Interop.PhysicalDeviceFeatures>();
                     enabledFeatures.Value.MarshalTo(marshalledCreateInfo->EnabledFeatures);
                 }
                 else
                 {
-                    marshalledCreateInfo->EnabledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures*);
+                    marshalledCreateInfo->EnabledFeatures = default;
                 }
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.VkPhysicalDeviceCreateDeviceDelegate commandDelegate = commandCache.Cache.vkCreateDevice;
-                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Device(this, marshalledDevice);
+                var commandDelegate = CommandCache.Cache.VkCreateDevice;
+                var methodResult = commandDelegate(Handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(this, marshalledDevice);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Returns properties of available physical device extensions.
+        ///     Returns properties of available physical device extensions.
         /// </summary>
         /// <param name="layerName">
         /// </param>
-        public unsafe SharpVk.ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
+        public unsafe ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
         {
             try
             {
-                SharpVk.ExtensionProperties[] result = default(SharpVk.ExtensionProperties[]);
-                uint marshalledPropertyCount = default(uint);
-                SharpVk.Interop.ExtensionProperties* marshalledProperties = default(SharpVk.Interop.ExtensionProperties*);
-                SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceExtensionPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateDeviceExtensionProperties;
-                Result methodResult = commandDelegate(this.handle, Interop.HeapUtil.MarshalTo(layerName), &marshalledPropertyCount, marshalledProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledProperties = (SharpVk.Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ExtensionProperties>((uint)(marshalledPropertyCount)));
-                commandDelegate(this.handle, Interop.HeapUtil.MarshalTo(layerName), &marshalledPropertyCount, marshalledProperties);
+                var result = default(ExtensionProperties[]);
+                var marshalledPropertyCount = default(uint);
+                var marshalledProperties = default(Interop.ExtensionProperties*);
+                var commandDelegate = CommandCache.Cache.VkEnumerateDeviceExtensionProperties;
+                var methodResult = commandDelegate(Handle, HeapUtil.MarshalTo(layerName), &marshalledPropertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                marshalledProperties = (Interop.ExtensionProperties*)HeapUtil.Allocate<Interop.ExtensionProperties>(marshalledPropertyCount);
+                commandDelegate(Handle, HeapUtil.MarshalTo(layerName), &marshalledPropertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new SharpVk.ExtensionProperties[(uint)(marshalledPropertyCount)];
-                    for(int index = 0; index < (uint)(marshalledPropertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
-                    }
+                    var fieldPointer = new ExtensionProperties[marshalledPropertyCount];
+                    for (var index = 0; index < marshalledPropertyCount; index++) fieldPointer[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
                     result = fieldPointer;
                 }
                 else
@@ -997,35 +984,29 @@ namespace SharpVk
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Returns properties of available physical device layers.
+        ///     Returns properties of available physical device layers.
         /// </summary>
-        public unsafe SharpVk.LayerProperties[] EnumerateDeviceLayerProperties()
+        public unsafe LayerProperties[] EnumerateDeviceLayerProperties()
         {
             try
             {
-                SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
-                uint marshalledPropertyCount = default(uint);
-                SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
-                SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceLayerPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateDeviceLayerProperties;
-                Result methodResult = commandDelegate(this.handle, &marshalledPropertyCount, marshalledProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(marshalledPropertyCount)));
-                commandDelegate(this.handle, &marshalledPropertyCount, marshalledProperties);
+                var result = default(LayerProperties[]);
+                var marshalledPropertyCount = default(uint);
+                var marshalledProperties = default(Interop.LayerProperties*);
+                var commandDelegate = CommandCache.Cache.VkEnumerateDeviceLayerProperties;
+                var methodResult = commandDelegate(Handle, &marshalledPropertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                marshalledProperties = (Interop.LayerProperties*)HeapUtil.Allocate<Interop.LayerProperties>(marshalledPropertyCount);
+                commandDelegate(Handle, &marshalledPropertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new SharpVk.LayerProperties[(uint)(marshalledPropertyCount)];
-                    for(int index = 0; index < (uint)(marshalledPropertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.LayerProperties.MarshalFrom(&marshalledProperties[index]);
-                    }
+                    var fieldPointer = new LayerProperties[marshalledPropertyCount];
+                    for (var index = 0; index < marshalledPropertyCount; index++) fieldPointer[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
                     result = fieldPointer;
                 }
                 else
@@ -1036,12 +1017,12 @@ namespace SharpVk
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Retrieve properties of an image format applied to sparse images.
+        ///     Retrieve properties of an image format applied to sparse images.
         /// </summary>
         /// <param name="format">
         /// </param>
@@ -1053,24 +1034,21 @@ namespace SharpVk
         /// </param>
         /// <param name="tiling">
         /// </param>
-        public unsafe SharpVk.SparseImageFormatProperties[] GetSparseImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.SampleCountFlags samples, SharpVk.ImageUsageFlags usage, SharpVk.ImageTiling tiling)
+        public unsafe SparseImageFormatProperties[] GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
         {
             try
             {
-                SharpVk.SparseImageFormatProperties[] result = default(SharpVk.SparseImageFormatProperties[]);
-                uint marshalledPropertyCount = default(uint);
-                SharpVk.SparseImageFormatProperties* marshalledProperties = default(SharpVk.SparseImageFormatProperties*);
-                SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSparseImageFormatProperties;
-                commandDelegate(this.handle, format, type, samples, usage, tiling, &marshalledPropertyCount, marshalledProperties);
-                marshalledProperties = (SharpVk.SparseImageFormatProperties*)(Interop.HeapUtil.Allocate<SharpVk.SparseImageFormatProperties>((uint)(marshalledPropertyCount)));
-                commandDelegate(this.handle, format, type, samples, usage, tiling, &marshalledPropertyCount, marshalledProperties);
+                var result = default(SparseImageFormatProperties[]);
+                var marshalledPropertyCount = default(uint);
+                var marshalledProperties = default(SparseImageFormatProperties*);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceSparseImageFormatProperties;
+                commandDelegate(Handle, format, type, samples, usage, tiling, &marshalledPropertyCount, marshalledProperties);
+                marshalledProperties = (SparseImageFormatProperties*)HeapUtil.Allocate<SparseImageFormatProperties>(marshalledPropertyCount);
+                commandDelegate(Handle, format, type, samples, usage, tiling, &marshalledPropertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new SharpVk.SparseImageFormatProperties[(uint)(marshalledPropertyCount)];
-                    for(int index = 0; index < (uint)(marshalledPropertyCount); index++)
-                    {
-                        fieldPointer[index] = marshalledProperties[index];
-                    }
+                    var fieldPointer = new SparseImageFormatProperties[marshalledPropertyCount];
+                    for (var index = 0; index < marshalledPropertyCount; index++) fieldPointer[index] = marshalledProperties[index];
                     result = fieldPointer;
                 }
                 else
@@ -1081,122 +1059,111 @@ namespace SharpVk
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public unsafe SharpVk.PhysicalDeviceFeatures2 GetFeatures2()
+        public unsafe PhysicalDeviceFeatures2 GetFeatures2()
         {
             try
             {
-                SharpVk.PhysicalDeviceFeatures2 result = default(SharpVk.PhysicalDeviceFeatures2);
-                SharpVk.Interop.PhysicalDeviceFeatures2 marshalledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures2);
-                SharpVk.Interop.VkPhysicalDeviceGetFeatures2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFeatures2;
-                commandDelegate(this.handle, &marshalledFeatures);
-                result = SharpVk.PhysicalDeviceFeatures2.MarshalFrom(&marshalledFeatures);
+                var result = default(PhysicalDeviceFeatures2);
+                var marshalledFeatures = default(Interop.PhysicalDeviceFeatures2);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceFeatures2;
+                commandDelegate(Handle, &marshalledFeatures);
+                result = PhysicalDeviceFeatures2.MarshalFrom(&marshalledFeatures);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public unsafe SharpVk.PhysicalDeviceProperties2 GetProperties2()
+        public unsafe PhysicalDeviceProperties2 GetProperties2()
         {
             try
             {
-                SharpVk.PhysicalDeviceProperties2 result = default(SharpVk.PhysicalDeviceProperties2);
-                SharpVk.Interop.PhysicalDeviceProperties2 marshalledProperties = default(SharpVk.Interop.PhysicalDeviceProperties2);
-                SharpVk.Interop.VkPhysicalDeviceGetProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceProperties2;
-                commandDelegate(this.handle, &marshalledProperties);
-                result = SharpVk.PhysicalDeviceProperties2.MarshalFrom(&marshalledProperties);
+                var result = default(PhysicalDeviceProperties2);
+                var marshalledProperties = default(Interop.PhysicalDeviceProperties2);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceProperties2;
+                commandDelegate(Handle, &marshalledProperties);
+                result = PhysicalDeviceProperties2.MarshalFrom(&marshalledProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="format">
         /// </param>
-        public unsafe SharpVk.FormatProperties2 GetFormatProperties2(SharpVk.Format format)
+        public unsafe FormatProperties2 GetFormatProperties2(Format format)
         {
             try
             {
-                SharpVk.FormatProperties2 result = default(SharpVk.FormatProperties2);
-                SharpVk.Interop.FormatProperties2 marshalledFormatProperties = default(SharpVk.Interop.FormatProperties2);
-                SharpVk.Interop.VkPhysicalDeviceGetFormatProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFormatProperties2;
-                commandDelegate(this.handle, format, &marshalledFormatProperties);
-                result = SharpVk.FormatProperties2.MarshalFrom(&marshalledFormatProperties);
+                var result = default(FormatProperties2);
+                var marshalledFormatProperties = default(Interop.FormatProperties2);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceFormatProperties2;
+                commandDelegate(Handle, format, &marshalledFormatProperties);
+                result = FormatProperties2.MarshalFrom(&marshalledFormatProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="imageFormatInfo">
         /// </param>
-        public unsafe SharpVk.ImageFormatProperties2 GetImageFormatProperties2(SharpVk.PhysicalDeviceImageFormatInfo2 imageFormatInfo)
+        public unsafe ImageFormatProperties2 GetImageFormatProperties2(PhysicalDeviceImageFormatInfo2 imageFormatInfo)
         {
             try
             {
-                SharpVk.ImageFormatProperties2 result = default(SharpVk.ImageFormatProperties2);
-                SharpVk.Interop.PhysicalDeviceImageFormatInfo2* marshalledImageFormatInfo = default(SharpVk.Interop.PhysicalDeviceImageFormatInfo2*);
-                SharpVk.Interop.ImageFormatProperties2 marshalledImageFormatProperties = default(SharpVk.Interop.ImageFormatProperties2);
-                marshalledImageFormatInfo = (SharpVk.Interop.PhysicalDeviceImageFormatInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceImageFormatInfo2>());
+                var result = default(ImageFormatProperties2);
+                var marshalledImageFormatInfo = default(Interop.PhysicalDeviceImageFormatInfo2*);
+                var marshalledImageFormatProperties = default(Interop.ImageFormatProperties2);
+                marshalledImageFormatInfo = (Interop.PhysicalDeviceImageFormatInfo2*)HeapUtil.Allocate<Interop.PhysicalDeviceImageFormatInfo2>();
                 imageFormatInfo.MarshalTo(marshalledImageFormatInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetImageFormatProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceImageFormatProperties2;
-                Result methodResult = commandDelegate(this.handle, marshalledImageFormatInfo, &marshalledImageFormatProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = SharpVk.ImageFormatProperties2.MarshalFrom(&marshalledImageFormatProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceImageFormatProperties2;
+                var methodResult = commandDelegate(Handle, marshalledImageFormatInfo, &marshalledImageFormatProperties);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = ImageFormatProperties2.MarshalFrom(&marshalledImageFormatProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public unsafe SharpVk.QueueFamilyProperties2[] GetQueueFamilyProperties2()
+        public unsafe QueueFamilyProperties2[] GetQueueFamilyProperties2()
         {
             try
             {
-                SharpVk.QueueFamilyProperties2[] result = default(SharpVk.QueueFamilyProperties2[]);
-                uint marshalledQueueFamilyPropertyCount = default(uint);
-                SharpVk.Interop.QueueFamilyProperties2* marshalledQueueFamilyProperties = default(SharpVk.Interop.QueueFamilyProperties2*);
-                SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceQueueFamilyProperties2;
-                commandDelegate(this.handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
-                marshalledQueueFamilyProperties = (SharpVk.Interop.QueueFamilyProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.QueueFamilyProperties2>((uint)(marshalledQueueFamilyPropertyCount)));
-                commandDelegate(this.handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
+                var result = default(QueueFamilyProperties2[]);
+                var marshalledQueueFamilyPropertyCount = default(uint);
+                var marshalledQueueFamilyProperties = default(Interop.QueueFamilyProperties2*);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceQueueFamilyProperties2;
+                commandDelegate(Handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
+                marshalledQueueFamilyProperties = (Interop.QueueFamilyProperties2*)HeapUtil.Allocate<Interop.QueueFamilyProperties2>(marshalledQueueFamilyPropertyCount);
+                commandDelegate(Handle, &marshalledQueueFamilyPropertyCount, marshalledQueueFamilyProperties);
                 if (marshalledQueueFamilyProperties != null)
                 {
-                    var fieldPointer = new SharpVk.QueueFamilyProperties2[(uint)(marshalledQueueFamilyPropertyCount)];
-                    for(int index = 0; index < (uint)(marshalledQueueFamilyPropertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.QueueFamilyProperties2.MarshalFrom(&marshalledQueueFamilyProperties[index]);
-                    }
+                    var fieldPointer = new QueueFamilyProperties2[marshalledQueueFamilyPropertyCount];
+                    for (var index = 0; index < marshalledQueueFamilyPropertyCount; index++) fieldPointer[index] = QueueFamilyProperties2.MarshalFrom(&marshalledQueueFamilyProperties[index]);
                     result = fieldPointer;
                 }
                 else
@@ -1207,56 +1174,51 @@ namespace SharpVk
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public unsafe SharpVk.PhysicalDeviceMemoryProperties2 GetMemoryProperties2()
+        public unsafe PhysicalDeviceMemoryProperties2 GetMemoryProperties2()
         {
             try
             {
-                SharpVk.PhysicalDeviceMemoryProperties2 result = default(SharpVk.PhysicalDeviceMemoryProperties2);
-                SharpVk.Interop.PhysicalDeviceMemoryProperties2 marshalledMemoryProperties = default(SharpVk.Interop.PhysicalDeviceMemoryProperties2);
-                SharpVk.Interop.VkPhysicalDeviceGetMemoryProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceMemoryProperties2;
-                commandDelegate(this.handle, &marshalledMemoryProperties);
-                result = SharpVk.PhysicalDeviceMemoryProperties2.MarshalFrom(&marshalledMemoryProperties);
+                var result = default(PhysicalDeviceMemoryProperties2);
+                var marshalledMemoryProperties = default(Interop.PhysicalDeviceMemoryProperties2);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceMemoryProperties2;
+                commandDelegate(Handle, &marshalledMemoryProperties);
+                result = PhysicalDeviceMemoryProperties2.MarshalFrom(&marshalledMemoryProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="formatInfo">
         /// </param>
-        public unsafe SharpVk.SparseImageFormatProperties2[] GetSparseImageFormatProperties2(SharpVk.PhysicalDeviceSparseImageFormatInfo2 formatInfo)
+        public unsafe SparseImageFormatProperties2[] GetSparseImageFormatProperties2(PhysicalDeviceSparseImageFormatInfo2 formatInfo)
         {
             try
             {
-                SharpVk.SparseImageFormatProperties2[] result = default(SharpVk.SparseImageFormatProperties2[]);
-                uint marshalledPropertyCount = default(uint);
-                SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* marshalledFormatInfo = default(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2*);
-                SharpVk.Interop.SparseImageFormatProperties2* marshalledProperties = default(SharpVk.Interop.SparseImageFormatProperties2*);
-                marshalledFormatInfo = (SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2>());
+                var result = default(SparseImageFormatProperties2[]);
+                var marshalledPropertyCount = default(uint);
+                var marshalledFormatInfo = default(Interop.PhysicalDeviceSparseImageFormatInfo2*);
+                var marshalledProperties = default(Interop.SparseImageFormatProperties2*);
+                marshalledFormatInfo = (Interop.PhysicalDeviceSparseImageFormatInfo2*)HeapUtil.Allocate<Interop.PhysicalDeviceSparseImageFormatInfo2>();
                 formatInfo.MarshalTo(marshalledFormatInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSparseImageFormatProperties2;
-                commandDelegate(this.handle, marshalledFormatInfo, &marshalledPropertyCount, marshalledProperties);
-                marshalledProperties = (SharpVk.Interop.SparseImageFormatProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SparseImageFormatProperties2>((uint)(marshalledPropertyCount)));
-                commandDelegate(this.handle, marshalledFormatInfo, &marshalledPropertyCount, marshalledProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceSparseImageFormatProperties2;
+                commandDelegate(Handle, marshalledFormatInfo, &marshalledPropertyCount, marshalledProperties);
+                marshalledProperties = (Interop.SparseImageFormatProperties2*)HeapUtil.Allocate<Interop.SparseImageFormatProperties2>(marshalledPropertyCount);
+                commandDelegate(Handle, marshalledFormatInfo, &marshalledPropertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new SharpVk.SparseImageFormatProperties2[(uint)(marshalledPropertyCount)];
-                    for(int index = 0; index < (uint)(marshalledPropertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.SparseImageFormatProperties2.MarshalFrom(&marshalledProperties[index]);
-                    }
+                    var fieldPointer = new SparseImageFormatProperties2[marshalledPropertyCount];
+                    for (var index = 0; index < marshalledPropertyCount; index++) fieldPointer[index] = SparseImageFormatProperties2.MarshalFrom(&marshalledProperties[index]);
                     result = fieldPointer;
                 }
                 else
@@ -1267,82 +1229,79 @@ namespace SharpVk
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="externalBufferInfo">
         /// </param>
-        public unsafe SharpVk.ExternalBufferProperties GetExternalBufferProperties(SharpVk.PhysicalDeviceExternalBufferInfo externalBufferInfo)
+        public unsafe ExternalBufferProperties GetExternalBufferProperties(PhysicalDeviceExternalBufferInfo externalBufferInfo)
         {
             try
             {
-                SharpVk.ExternalBufferProperties result = default(SharpVk.ExternalBufferProperties);
-                SharpVk.Interop.PhysicalDeviceExternalBufferInfo* marshalledExternalBufferInfo = default(SharpVk.Interop.PhysicalDeviceExternalBufferInfo*);
-                SharpVk.Interop.ExternalBufferProperties marshalledExternalBufferProperties = default(SharpVk.Interop.ExternalBufferProperties);
-                marshalledExternalBufferInfo = (SharpVk.Interop.PhysicalDeviceExternalBufferInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceExternalBufferInfo>());
+                var result = default(ExternalBufferProperties);
+                var marshalledExternalBufferInfo = default(Interop.PhysicalDeviceExternalBufferInfo*);
+                var marshalledExternalBufferProperties = default(Interop.ExternalBufferProperties);
+                marshalledExternalBufferInfo = (Interop.PhysicalDeviceExternalBufferInfo*)HeapUtil.Allocate<Interop.PhysicalDeviceExternalBufferInfo>();
                 externalBufferInfo.MarshalTo(marshalledExternalBufferInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetExternalBufferPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceExternalBufferProperties;
-                commandDelegate(this.handle, marshalledExternalBufferInfo, &marshalledExternalBufferProperties);
-                result = SharpVk.ExternalBufferProperties.MarshalFrom(&marshalledExternalBufferProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceExternalBufferProperties;
+                commandDelegate(Handle, marshalledExternalBufferInfo, &marshalledExternalBufferProperties);
+                result = ExternalBufferProperties.MarshalFrom(&marshalledExternalBufferProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="externalFenceInfo">
         /// </param>
-        public unsafe SharpVk.ExternalFenceProperties GetExternalFenceProperties(SharpVk.PhysicalDeviceExternalFenceInfo externalFenceInfo)
+        public unsafe ExternalFenceProperties GetExternalFenceProperties(PhysicalDeviceExternalFenceInfo externalFenceInfo)
         {
             try
             {
-                SharpVk.ExternalFenceProperties result = default(SharpVk.ExternalFenceProperties);
-                SharpVk.Interop.PhysicalDeviceExternalFenceInfo* marshalledExternalFenceInfo = default(SharpVk.Interop.PhysicalDeviceExternalFenceInfo*);
-                SharpVk.Interop.ExternalFenceProperties marshalledExternalFenceProperties = default(SharpVk.Interop.ExternalFenceProperties);
-                marshalledExternalFenceInfo = (SharpVk.Interop.PhysicalDeviceExternalFenceInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceExternalFenceInfo>());
+                var result = default(ExternalFenceProperties);
+                var marshalledExternalFenceInfo = default(Interop.PhysicalDeviceExternalFenceInfo*);
+                var marshalledExternalFenceProperties = default(Interop.ExternalFenceProperties);
+                marshalledExternalFenceInfo = (Interop.PhysicalDeviceExternalFenceInfo*)HeapUtil.Allocate<Interop.PhysicalDeviceExternalFenceInfo>();
                 externalFenceInfo.MarshalTo(marshalledExternalFenceInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetExternalFencePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceExternalFenceProperties;
-                commandDelegate(this.handle, marshalledExternalFenceInfo, &marshalledExternalFenceProperties);
-                result = SharpVk.ExternalFenceProperties.MarshalFrom(&marshalledExternalFenceProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceExternalFenceProperties;
+                commandDelegate(Handle, marshalledExternalFenceInfo, &marshalledExternalFenceProperties);
+                result = ExternalFenceProperties.MarshalFrom(&marshalledExternalFenceProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="externalSemaphoreInfo">
         /// </param>
-        public unsafe SharpVk.ExternalSemaphoreProperties GetExternalSemaphoreProperties(SharpVk.PhysicalDeviceExternalSemaphoreInfo externalSemaphoreInfo)
+        public unsafe ExternalSemaphoreProperties GetExternalSemaphoreProperties(PhysicalDeviceExternalSemaphoreInfo externalSemaphoreInfo)
         {
             try
             {
-                SharpVk.ExternalSemaphoreProperties result = default(SharpVk.ExternalSemaphoreProperties);
-                SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo* marshalledExternalSemaphoreInfo = default(SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo*);
-                SharpVk.Interop.ExternalSemaphoreProperties marshalledExternalSemaphoreProperties = default(SharpVk.Interop.ExternalSemaphoreProperties);
-                marshalledExternalSemaphoreInfo = (SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo>());
+                var result = default(ExternalSemaphoreProperties);
+                var marshalledExternalSemaphoreInfo = default(Interop.PhysicalDeviceExternalSemaphoreInfo*);
+                var marshalledExternalSemaphoreProperties = default(Interop.ExternalSemaphoreProperties);
+                marshalledExternalSemaphoreInfo = (Interop.PhysicalDeviceExternalSemaphoreInfo*)HeapUtil.Allocate<Interop.PhysicalDeviceExternalSemaphoreInfo>();
                 externalSemaphoreInfo.MarshalTo(marshalledExternalSemaphoreInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceExternalSemaphoreProperties;
-                commandDelegate(this.handle, marshalledExternalSemaphoreInfo, &marshalledExternalSemaphoreProperties);
-                result = SharpVk.ExternalSemaphoreProperties.MarshalFrom(&marshalledExternalSemaphoreProperties);
+                var commandDelegate = CommandCache.Cache.VkGetPhysicalDeviceExternalSemaphoreProperties;
+                commandDelegate(Handle, marshalledExternalSemaphoreInfo, &marshalledExternalSemaphoreProperties);
+                result = ExternalSemaphoreProperties.MarshalFrom(&marshalledExternalSemaphoreProperties);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

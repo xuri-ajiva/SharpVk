@@ -22,73 +22,66 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
+using SharpVk.Khronos;
 
 namespace SharpVk.Ggp
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class InstanceExtensions
     {
         /// <summary>
-        /// Create a Surface object for a Google Games Platform stream
+        ///     Create a Surface object for a Google Games Platform stream
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Instance handle to extend.
+        ///     The Instance handle to extend.
         /// </param>
         /// <param name="flags">
         /// </param>
         /// <param name="streamDescriptor">
         /// </param>
         /// <param name="allocator">
-        /// The allocator used for host memory allocated for the surface object
-        /// when there is no more specific allocator available.
+        ///     The allocator used for host memory allocated for the surface object
+        ///     when there is no more specific allocator available.
         /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateStreamDescriptorSurface(this SharpVk.Instance extendedHandle, uint streamDescriptor, SharpVk.Ggp.StreamDescriptorSurfaceCreateFlags? flags = default(SharpVk.Ggp.StreamDescriptorSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe Surface CreateStreamDescriptorSurface(this Instance extendedHandle, uint streamDescriptor, StreamDescriptorSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo*);
-                void* vkStreamDescriptorSurfaceCreateInfoGGPNextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo>());
+                var result = default(Surface);
+                var commandCache = default(CommandCache);
+                var marshalledCreateInfo = default(Interop.Ggp.StreamDescriptorSurfaceCreateInfo*);
+                var vkStreamDescriptorSurfaceCreateInfoGgpNextPointer = default(void*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                var marshalledSurface = default(Interop.Khronos.Surface);
+                commandCache = extendedHandle.CommandCache;
+                marshalledCreateInfo = (Interop.Ggp.StreamDescriptorSurfaceCreateInfo*)HeapUtil.Allocate<Interop.Ggp.StreamDescriptorSurfaceCreateInfo>();
                 marshalledCreateInfo->SType = StructureType.StreamDescriptorSurfaceCreateInfo;
-                marshalledCreateInfo->Next = vkStreamDescriptorSurfaceCreateInfoGGPNextPointer;
+                marshalledCreateInfo->Next = vkStreamDescriptorSurfaceCreateInfoGgpNextPointer;
                 if (flags != null)
-                {
                     marshalledCreateInfo->Flags = flags.Value;
-                }
                 else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.Ggp.StreamDescriptorSurfaceCreateFlags);
-                }
+                    marshalledCreateInfo->Flags = default;
                 marshalledCreateInfo->StreamDescriptor = streamDescriptor;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.Ggp.VkInstanceCreateStreamDescriptorSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateStreamDescriptorSurfaceGGP;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                var commandDelegate = commandCache.Cache.VkCreateStreamDescriptorSurfaceGgp;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(extendedHandle, marshalledSurface);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

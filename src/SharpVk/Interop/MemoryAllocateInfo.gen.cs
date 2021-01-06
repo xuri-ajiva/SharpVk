@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct MemoryAllocateInfo
+    public unsafe struct MemoryAllocateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The size of the allocation in bytes
+        ///     The size of the allocation in bytes
         /// </summary>
-        public ulong AllocationSize; 
-        
+        public ulong AllocationSize;
+
         /// <summary>
-        /// The memory type index, which selects the properties of the memory
-        /// to be allocated, as well as the heap the memory will come from.
+        ///     The memory type index, which selects the properties of the memory
+        ///     to be allocated, as well as the heap the memory will come from.
         /// </summary>
-        public uint MemoryTypeIndex; 
+        public uint MemoryTypeIndex;
     }
 }

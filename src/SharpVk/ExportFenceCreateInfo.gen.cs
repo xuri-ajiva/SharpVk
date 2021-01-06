@@ -22,43 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExportFenceCreateInfo
+    public struct ExportFenceCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalFenceHandleTypeFlags? HandleTypes
+        public ExternalFenceHandleTypeFlags? HandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ExportFenceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ExportFenceCreateInfo* pointer)
         {
             pointer->SType = StructureType.ExportFenceCreateInfoVersion;
             pointer->Next = null;
-            if (this.HandleTypes != null)
-            {
-                pointer->HandleTypes = this.HandleTypes.Value;
-            }
+            if (HandleTypes != null)
+                pointer->HandleTypes = HandleTypes.Value;
             else
-            {
-                pointer->HandleTypes = default(SharpVk.ExternalFenceHandleTypeFlags);
-            }
+                pointer->HandleTypes = default;
         }
     }
 }

@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineInfo
+    public struct PipelineInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Pipeline Pipeline
+        public Pipeline Pipeline
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PipelineInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PipelineInfo* pointer)
         {
             pointer->SType = StructureType.PipelineInfo;
             pointer->Next = null;
-            pointer->Pipeline = this.Pipeline?.handle ?? default(SharpVk.Interop.Pipeline);
+            pointer->Pipeline = Pipeline?.Handle ?? default(Interop.Pipeline);
         }
     }
 }

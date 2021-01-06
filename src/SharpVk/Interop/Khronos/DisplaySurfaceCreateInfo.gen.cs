@@ -22,67 +22,65 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DisplaySurfaceCreateInfo
+    public unsafe struct DisplaySurfaceCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use, and must be zero.
+        ///     Reserved for future use, and must be zero.
         /// </summary>
-        public SharpVk.Khronos.DisplaySurfaceCreateFlags Flags; 
-        
+        public DisplaySurfaceCreateFlags Flags;
+
         /// <summary>
-        /// The mode to use when displaying this surface.
+        ///     The mode to use when displaying this surface.
         /// </summary>
-        public SharpVk.Interop.Khronos.DisplayMode DisplayMode; 
-        
+        public DisplayMode DisplayMode;
+
         /// <summary>
-        /// The plane on which this surface appears.
+        ///     The plane on which this surface appears.
         /// </summary>
-        public uint PlaneIndex; 
-        
+        public uint PlaneIndex;
+
         /// <summary>
-        /// The z-order of the plane.
+        ///     The z-order of the plane.
         /// </summary>
-        public uint PlaneStackIndex; 
-        
+        public uint PlaneStackIndex;
+
         /// <summary>
-        /// The transform to apply to the images as part of the scanout
-        /// operation.
+        ///     The transform to apply to the images as part of the scanout
+        ///     operation.
         /// </summary>
-        public SharpVk.Khronos.SurfaceTransformFlags Transform; 
-        
+        public SurfaceTransformFlags Transform;
+
         /// <summary>
-        /// The global alpha value. This value is ignored if alphaMode is not
-        /// VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
+        ///     The global alpha value. This value is ignored if alphaMode is not
+        ///     VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
         /// </summary>
-        public float GlobalAlpha; 
-        
+        public float GlobalAlpha;
+
         /// <summary>
-        /// The type of alpha blending to use.
+        ///     The type of alpha blending to use.
         /// </summary>
-        public SharpVk.Khronos.DisplayPlaneAlphaFlags AlphaMode; 
-        
+        public DisplayPlaneAlphaFlags AlphaMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D ImageExtent; 
+        public Extent2D ImageExtent;
     }
 }

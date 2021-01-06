@@ -22,116 +22,100 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorUpdateTemplateCreateInfo
+    public struct DescriptorUpdateTemplateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorUpdateTemplateCreateFlags? Flags
+        public DescriptorUpdateTemplateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorUpdateTemplateEntry[] DescriptorUpdateEntries
+        public DescriptorUpdateTemplateEntry[] DescriptorUpdateEntries
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorUpdateTemplateType TemplateType
+        public DescriptorUpdateTemplateType TemplateType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorSetLayout DescriptorSetLayout
+        public DescriptorSetLayout DescriptorSetLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint
+        public PipelineBindPoint PipelineBindPoint
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineLayout PipelineLayout
+        public PipelineLayout PipelineLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint Set
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorUpdateTemplateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DescriptorUpdateTemplateCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfoVersion;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->DescriptorUpdateEntryCount = HeapUtil.GetLength(DescriptorUpdateEntries);
+            if (DescriptorUpdateEntries != null)
             {
-                pointer->Flags = default(SharpVk.DescriptorUpdateTemplateCreateFlags);
-            }
-            pointer->DescriptorUpdateEntryCount = (uint)(Interop.HeapUtil.GetLength(this.DescriptorUpdateEntries));
-            if (this.DescriptorUpdateEntries != null)
-            {
-                var fieldPointer = (SharpVk.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.DescriptorUpdateTemplateEntry>(this.DescriptorUpdateEntries.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DescriptorUpdateEntries.Length); index++)
-                {
-                    fieldPointer[index] = this.DescriptorUpdateEntries[index];
-                }
+                var fieldPointer = (DescriptorUpdateTemplateEntry*)HeapUtil.AllocateAndClear<DescriptorUpdateTemplateEntry>(DescriptorUpdateEntries.Length).ToPointer();
+                for (var index = 0; index < (uint)DescriptorUpdateEntries.Length; index++) fieldPointer[index] = DescriptorUpdateEntries[index];
                 pointer->DescriptorUpdateEntries = fieldPointer;
             }
             else
             {
                 pointer->DescriptorUpdateEntries = null;
             }
-            pointer->TemplateType = this.TemplateType;
-            pointer->DescriptorSetLayout = this.DescriptorSetLayout?.handle ?? default(SharpVk.Interop.DescriptorSetLayout);
-            pointer->PipelineBindPoint = this.PipelineBindPoint;
-            pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
-            pointer->Set = this.Set;
+            pointer->TemplateType = TemplateType;
+            pointer->DescriptorSetLayout = DescriptorSetLayout?.Handle ?? default(Interop.DescriptorSetLayout);
+            pointer->PipelineBindPoint = PipelineBindPoint;
+            pointer->PipelineLayout = PipelineLayout?.Handle ?? default(Interop.PipelineLayout);
+            pointer->Set = Set;
         }
     }
 }

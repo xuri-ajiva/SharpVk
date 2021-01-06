@@ -22,17 +22,18 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Reserved for future use
+    ///     Reserved for future use
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum HeadlessSurfaceCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
+        None = 0
     }
 }

@@ -22,43 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DescriptorBufferInfo
+    public struct DescriptorBufferInfo
     {
         /// <summary>
-        /// The buffer resource.
+        ///     The buffer resource.
         /// </summary>
-        public SharpVk.Interop.Buffer Buffer; 
-        
+        public Buffer Buffer;
+
         /// <summary>
-        /// The offset in bytes from the start of buffer. Access to buffer
-        /// memory via this descriptor uses addressing that is relative to this
-        /// starting offset.
+        ///     The offset in bytes from the start of buffer. Access to buffer
+        ///     memory via this descriptor uses addressing that is relative to this
+        ///     starting offset.
         /// </summary>
-        public ulong Offset; 
-        
+        public ulong Offset;
+
         /// <summary>
-        /// The size in bytes that is used for this descriptor update, or
-        /// Constants.WholeSize to use the range from offset to the end of the
-        /// buffer. + -- [NOTE] .Note ==== When using Constants.WholeSize, the
-        /// effective range must not be larger than the maximum range for the
-        /// descriptor type (maxUniformBufferRange or maxStorageBufferRange).
-        /// This means that Constants.WholeSize is not typically useful in the
-        /// common case where uniform buffer descriptors are suballocated from
-        /// a buffer that is much larger than maxUniformBufferRange. ==== -- +
-        /// For DescriptorType.UniformBufferDynamic and
-        /// DescriptorType.StorageBufferDynamic descriptor types, offset is the
-        /// base offset from which the dynamic offset is applied and range is
-        /// the static size used for all dynamic offsets.
+        ///     The size in bytes that is used for this descriptor update, or
+        ///     Constants.WholeSize to use the range from offset to the end of the
+        ///     buffer. + -- [NOTE] .Note ==== When using Constants.WholeSize, the
+        ///     effective range must not be larger than the maximum range for the
+        ///     descriptor type (maxUniformBufferRange or maxStorageBufferRange).
+        ///     This means that Constants.WholeSize is not typically useful in the
+        ///     common case where uniform buffer descriptors are suballocated from
+        ///     a buffer that is much larger than maxUniformBufferRange. ==== -- +
+        ///     For DescriptorType.UniformBufferDynamic and
+        ///     DescriptorType.StorageBufferDynamic descriptor types, offset is the
+        ///     base offset from which the dynamic offset is applied and range is
+        ///     the static size used for all dynamic offsets.
         /// </summary>
-        public ulong Range; 
+        public ulong Range;
     }
 }

@@ -22,65 +22,63 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineColorBlendAttachmentState
+    public struct PipelineColorBlendAttachmentState
     {
         /// <summary>
-        /// blendEnable controls whether blending is enabled for the
-        /// corresponding color attachment. If blending is not enabled, the
-        /// source fragment's color for that attachment is passed through
-        /// unmodified.
+        ///     blendEnable controls whether blending is enabled for the
+        ///     corresponding color attachment. If blending is not enabled, the
+        ///     source fragment's color for that attachment is passed through
+        ///     unmodified.
         /// </summary>
-        public Bool32 BlendEnable; 
-        
+        public Bool32 BlendEnable;
+
         /// <summary>
-        /// srcColorBlendFactor selects which blend factor is used to determine
-        /// the source factors [eq]#(S~r~,S~g~,S~b~)#.
+        ///     srcColorBlendFactor selects which blend factor is used to determine
+        ///     the source factors [eq]#(S~r~,S~g~,S~b~)#.
         /// </summary>
-        public SharpVk.BlendFactor SourceColorBlendFactor; 
-        
+        public BlendFactor SourceColorBlendFactor;
+
         /// <summary>
-        /// dstColorBlendFactor selects which blend factor is used to determine
-        /// the destination factors [eq]#(D~r~,D~g~,D~b~)#.
+        ///     dstColorBlendFactor selects which blend factor is used to determine
+        ///     the destination factors [eq]#(D~r~,D~g~,D~b~)#.
         /// </summary>
-        public SharpVk.BlendFactor DestinationColorBlendFactor; 
-        
+        public BlendFactor DestinationColorBlendFactor;
+
         /// <summary>
-        /// colorBlendOp selects which blend operation is used to calculate the
-        /// RGB values to write to the color attachment.
+        ///     colorBlendOp selects which blend operation is used to calculate the
+        ///     RGB values to write to the color attachment.
         /// </summary>
-        public SharpVk.BlendOp ColorBlendOp; 
-        
+        public BlendOp ColorBlendOp;
+
         /// <summary>
-        /// srcAlphaBlendFactor selects which blend factor is used to determine
-        /// the source factor [eq]#S~a~#.
+        ///     srcAlphaBlendFactor selects which blend factor is used to determine
+        ///     the source factor [eq]#S~a~#.
         /// </summary>
-        public SharpVk.BlendFactor SourceAlphaBlendFactor; 
-        
+        public BlendFactor SourceAlphaBlendFactor;
+
         /// <summary>
-        /// dstAlphaBlendFactor selects which blend factor is used to determine
-        /// the destination factor [eq]#D~a~#.
+        ///     dstAlphaBlendFactor selects which blend factor is used to determine
+        ///     the destination factor [eq]#D~a~#.
         /// </summary>
-        public SharpVk.BlendFactor DestinationAlphaBlendFactor; 
-        
+        public BlendFactor DestinationAlphaBlendFactor;
+
         /// <summary>
-        /// alphaBlendOp selects which blend operation is use to calculate the
-        /// alpha values to write to the color attachment.
+        ///     alphaBlendOp selects which blend operation is use to calculate the
+        ///     alpha values to write to the color attachment.
         /// </summary>
-        public SharpVk.BlendOp AlphaBlendOp; 
-        
+        public BlendOp AlphaBlendOp;
+
         /// <summary>
-        /// A bitmask selecting which of the R, G, B, and/or A components are
-        /// enabled for writing, as described later in this chapter.
+        ///     A bitmask selecting which of the R, G, B, and/or A components are
+        ///     enabled for writing, as described later in this chapter.
         /// </summary>
-        public SharpVk.ColorComponentFlags ColorWriteMask; 
+        public ColorComponentFlags ColorWriteMask;
     }
 }

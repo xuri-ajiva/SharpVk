@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BindImagePlaneMemoryInfo
+    public struct BindImagePlaneMemoryInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageAspectFlags PlaneAspect
+        public ImageAspectFlags PlaneAspect
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BindImagePlaneMemoryInfo* pointer)
+        internal unsafe void MarshalTo(Interop.BindImagePlaneMemoryInfo* pointer)
         {
             pointer->SType = StructureType.BindImagePlaneMemoryInfoVersion;
             pointer->Next = null;
-            pointer->PlaneAspect = this.PlaneAspect;
+            pointer->PlaneAspect = PlaneAspect;
         }
     }
 }

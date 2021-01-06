@@ -22,12 +22,12 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Google;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Google
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkSwapchainKHRGetPastPresentationTimingDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Swapchain swapchain, uint* presentationTimingCount, SharpVk.Google.PastPresentationTiming* presentationTimings);
+    public unsafe delegate Result VkSwapchainKhrGetPastPresentationTimingDelegate(Device device, Swapchain swapchain, uint* presentationTimingCount, PastPresentationTiming* presentationTimings);
 }

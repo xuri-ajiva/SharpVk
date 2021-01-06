@@ -22,39 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class QueueExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Queue handle to extend.
+        ///     The Queue handle to extend.
         /// </param>
         /// <param name="configuration">
         /// </param>
-        public static unsafe void SetPerformanceConfiguration(this SharpVk.Queue extendedHandle, SharpVk.Intel.PerformanceConfiguration configuration)
+        public static void SetPerformanceConfiguration(this Queue extendedHandle, PerformanceConfiguration configuration)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Intel.VkQueueSetPerformanceConfigurationDelegate commandDelegate = commandCache.Cache.vkQueueSetPerformanceConfigurationINTEL;
-                Result methodResult = commandDelegate(extendedHandle.handle, configuration?.handle ?? default(SharpVk.Interop.Intel.PerformanceConfiguration));
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkQueueSetPerformanceConfigurationIntel;
+                var methodResult = commandDelegate(extendedHandle.Handle, configuration?.Handle ?? default(Interop.Intel.PerformanceConfiguration));
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

@@ -23,92 +23,89 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Opaque handle to a fence object.
+    ///     Opaque handle to a fence object.
     /// </summary>
     public partial class Fence
         : IDisposable
     {
-        internal readonly SharpVk.Interop.Fence handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal Fence(SharpVk.Device parent, SharpVk.Interop.Fence handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Fence Handle;
+
+        internal readonly Device Parent;
+
+        internal Fence(Device parent, Interop.Fence handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Fence RawHandle => this.handle;
-        
+        public Interop.Fence RawHandle => Handle;
+
         /// <summary>
-        /// Destroy a fence object.
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
+        ///     Destroy a fence object.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.VkFenceDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyFence;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyFence;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Return the status of a fence.
+        ///     Return the status of a fence.
         /// </summary>
-        public unsafe Result GetStatus()
+        public Result GetStatus()
         {
             try
             {
-                Result result = default(Result);
-                SharpVk.Interop.VkFenceGetStatusDelegate commandDelegate = commandCache.Cache.vkGetFenceStatus;
-                result = commandDelegate(this.parent.handle, this.handle);
-                if (SharpVkException.IsError(result))
-                {
-                    throw SharpVkException.Create(result);
-                }
+                var result = default(Result);
+                var commandDelegate = CommandCache.Cache.VkGetFenceStatus;
+                result = commandDelegate(Parent.Handle, Handle);
+                if (SharpVkException.IsError(result)) throw SharpVkException.Create(result);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

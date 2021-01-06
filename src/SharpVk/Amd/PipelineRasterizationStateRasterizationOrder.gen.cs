@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineRasterizationStateRasterizationOrder
+    public struct PipelineRasterizationStateRasterizationOrder
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Amd.RasterizationOrder RasterizationOrder
+        public RasterizationOrder RasterizationOrder
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
+        internal unsafe void MarshalTo(Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationStateRasterizationOrder;
             pointer->Next = null;
-            pointer->RasterizationOrder = this.RasterizationOrder;
+            pointer->RasterizationOrder = RasterizationOrder;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineRasterizationStateRasterizationOrder MarshalFrom(SharpVk.Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
+        internal static unsafe PipelineRasterizationStateRasterizationOrder MarshalFrom(Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
         {
-            PipelineRasterizationStateRasterizationOrder result = default(PipelineRasterizationStateRasterizationOrder);
+            var result = default(PipelineRasterizationStateRasterizationOrder);
             result.RasterizationOrder = pointer->RasterizationOrder;
             return result;
         }

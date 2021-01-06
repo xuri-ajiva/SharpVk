@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Amd;
 
 namespace SharpVk.Interop.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPipelineGetShaderInfoDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Pipeline pipeline, SharpVk.ShaderStageFlags shaderStage, SharpVk.Amd.ShaderInfoType infoType, HostSize* infoSize, void* info);
+    public unsafe delegate Result VkPipelineGetShaderInfoDelegate(Device device, Pipeline pipeline, ShaderStageFlags shaderStage, ShaderInfoType infoType, HostSize* infoSize, void* info);
 }

@@ -22,45 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a dispatch indirect command.
+    ///     Structure specifying a dispatch indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DispatchIndirectCommand
+    public struct DispatchIndirectCommand
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static DispatchIndirectCommand Zero => new DispatchIndirectCommand();
-        
+        public static DispatchIndirectCommand Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public DispatchIndirectCommand(uint x, uint y, uint z)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
-        
+
         /// <summary>
-        /// The number of local workgroups to dispatch in the X dimension.
+        ///     The number of local workgroups to dispatch in the X dimension.
         /// </summary>
-        public uint X; 
-        
+        public uint X;
+
         /// <summary>
-        /// The number of local workgroups to dispatch in the Y dimension.
+        ///     The number of local workgroups to dispatch in the Y dimension.
         /// </summary>
-        public uint Y; 
-        
+        public uint Y;
+
         /// <summary>
-        /// The number of local workgroups to dispatch in the Z dimension.
+        ///     The number of local workgroups to dispatch in the Z dimension.
         /// </summary>
-        public uint Z; 
+        public uint Z;
     }
 }

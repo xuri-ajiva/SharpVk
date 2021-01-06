@@ -22,39 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a two-dimensional offset.
+    ///     Structure specifying a two-dimensional offset.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Offset2D
+    public struct Offset2D
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static Offset2D Zero => new Offset2D();
-        
+        public static Offset2D Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public Offset2D(int x, int y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public int X; 
-        
+        public int X;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int Y; 
+        public int Y;
     }
 }

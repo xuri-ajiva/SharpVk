@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceExclusiveScissorFeatures
+    public struct PhysicalDeviceExclusiveScissorFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ExclusiveScissor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceExclusiveScissorFeatures;
             pointer->Next = null;
-            pointer->ExclusiveScissor = this.ExclusiveScissor;
+            pointer->ExclusiveScissor = ExclusiveScissor;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceExclusiveScissorFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
+        internal static unsafe PhysicalDeviceExclusiveScissorFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
         {
-            PhysicalDeviceExclusiveScissorFeatures result = default(PhysicalDeviceExclusiveScissorFeatures);
+            var result = default(PhysicalDeviceExclusiveScissorFeatures);
             result.ExclusiveScissor = pointer->ExclusiveScissor;
             return result;
         }

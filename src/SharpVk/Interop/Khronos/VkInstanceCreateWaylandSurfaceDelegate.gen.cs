@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateWaylandSurfaceDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Khronos.Surface* surface);
+    public unsafe delegate Result VkInstanceCreateWaylandSurfaceDelegate(Instance instance, WaylandSurfaceCreateInfo* createInfo, AllocationCallbacks* allocator, Surface* surface);
 }

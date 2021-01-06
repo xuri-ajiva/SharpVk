@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateFenceDelegate(SharpVk.Interop.Device device, SharpVk.Interop.FenceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Fence* fence);
+    public unsafe delegate Result VkDeviceCreateFenceDelegate(Device device, FenceCreateInfo* createInfo, AllocationCallbacks* allocator, Fence* fence);
 }

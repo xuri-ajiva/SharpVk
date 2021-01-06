@@ -22,54 +22,52 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SparseImageMemoryBind
+    public struct SparseImageMemoryBind
     {
         /// <summary>
-        /// The aspectMask and region of interest in the image.
+        ///     The aspectMask and region of interest in the image.
         /// </summary>
-        public SharpVk.ImageSubresource Subresource; 
-        
+        public ImageSubresource Subresource;
+
         /// <summary>
-        /// offset are the coordinates of the first texel within the image
-        /// subresource to bind.
+        ///     offset are the coordinates of the first texel within the image
+        ///     subresource to bind.
         /// </summary>
-        public SharpVk.Offset3D Offset; 
-        
+        public Offset3D Offset;
+
         /// <summary>
-        /// The size in texels of the region within the image subresource to
-        /// bind. The extent must be a multiple of the sparse image block
-        /// dimensions, except when binding sparse image blocks along the edge
-        /// of an image subresource it can instead be such that any coordinate
-        /// of [eq]#offset + extent# equals the corresponding dimensions of the
-        /// image subresource.
+        ///     The size in texels of the region within the image subresource to
+        ///     bind. The extent must be a multiple of the sparse image block
+        ///     dimensions, except when binding sparse image blocks along the edge
+        ///     of an image subresource it can instead be such that any coordinate
+        ///     of [eq]#offset + extent# equals the corresponding dimensions of the
+        ///     image subresource.
         /// </summary>
-        public SharpVk.Extent3D Extent; 
-        
+        public Extent3D Extent;
+
         /// <summary>
-        /// The DeviceMemory object that the sparse image blocks of the image
-        /// are bound to. If memory is null, the sparse image blocks are
-        /// unbound.
+        ///     The DeviceMemory object that the sparse image blocks of the image
+        ///     are bound to. If memory is null, the sparse image blocks are
+        ///     unbound.
         /// </summary>
-        public SharpVk.Interop.DeviceMemory Memory; 
-        
+        public DeviceMemory Memory;
+
         /// <summary>
-        /// An offset into DeviceMemory object. If memory is null, this value
-        /// is ignored.
+        ///     An offset into DeviceMemory object. If memory is null, this value
+        ///     is ignored.
         /// </summary>
-        public ulong MemoryOffset; 
-        
+        public ulong MemoryOffset;
+
         /// <summary>
-        /// flags are sparse memory binding flags.
+        ///     flags are sparse memory binding flags.
         /// </summary>
-        public SharpVk.SparseMemoryBindFlags Flags; 
+        public SparseMemoryBindFlags Flags;
     }
 }

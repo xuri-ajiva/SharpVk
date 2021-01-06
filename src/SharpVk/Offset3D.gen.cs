@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a three-dimensional offset.
+    ///     Structure specifying a three-dimensional offset.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Offset3D
+    public struct Offset3D
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static Offset3D Zero => new Offset3D();
-        
+        public static Offset3D Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public Offset3D(int x, int y, int z)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public int X; 
-        
+        public int X;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int Y; 
-        
+        public int Y;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int Z; 
+        public int Z;
     }
 }

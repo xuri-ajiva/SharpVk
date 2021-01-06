@@ -22,44 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGroupPresentCapabilities
+    public struct DeviceGroupPresentCapabilities
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint[] PresentMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.DeviceGroupPresentModeFlags Modes
+        public DeviceGroupPresentModeFlags Modes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(SharpVk.Interop.Khronos.DeviceGroupPresentCapabilities* pointer)
+        internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(Interop.Khronos.DeviceGroupPresentCapabilities* pointer)
         {
-            DeviceGroupPresentCapabilities result = default(DeviceGroupPresentCapabilities);
-            result.PresentMask = Interop.HeapUtil.MarshalFrom(pointer->PresentMask, Constants.MaxDeviceGroupSize);
+            var result = default(DeviceGroupPresentCapabilities);
+            result.PresentMask = HeapUtil.MarshalFrom(pointer->PresentMask, Constants.MaxDeviceGroupSize);
             result.Modes = pointer->Modes;
             return result;
         }

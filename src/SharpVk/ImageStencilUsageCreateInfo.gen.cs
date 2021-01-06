@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageStencilUsageCreateInfo
+    public struct ImageStencilUsageCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags StencilUsage
+        public ImageUsageFlags StencilUsage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ImageStencilUsageCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ImageStencilUsageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageStencilUsageCreateInfoVersion;
             pointer->Next = null;
-            pointer->StencilUsage = this.StencilUsage;
+            pointer->StencilUsage = StencilUsage;
         }
     }
 }

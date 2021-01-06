@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferPipelineBarrierDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.DependencyFlags dependencyFlags, uint memoryBarrierCount, SharpVk.Interop.MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, SharpVk.Interop.BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, SharpVk.Interop.ImageMemoryBarrier* imageMemoryBarriers);
+    public unsafe delegate void VkCommandBufferPipelineBarrierDelegate(CommandBuffer commandBuffer, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
 }

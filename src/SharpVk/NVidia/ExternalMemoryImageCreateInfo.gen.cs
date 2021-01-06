@@ -22,47 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Specify that an image may be backed by external memory.
+    ///     Specify that an image may be backed by external memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalMemoryImageCreateInfo
+    public struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
-        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
-        /// more external memory handle types. The types must all be compatible
-        /// with each other and the other image creation parameters, as
-        /// reported by
-        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
+        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
+        ///     more external memory handle types. The types must all be compatible
+        ///     with each other and the other image creation parameters, as
+        ///     reported by
+        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags? HandleTypes
+        public ExternalMemoryHandleTypeFlags? HandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.ExternalMemoryImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.ExternalMemoryImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ExternalMemoryImageCreateInfoNv;
             pointer->Next = null;
-            if (this.HandleTypes != null)
-            {
-                pointer->HandleTypes = this.HandleTypes.Value;
-            }
+            if (HandleTypes != null)
+                pointer->HandleTypes = HandleTypes.Value;
             else
-            {
-                pointer->HandleTypes = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags);
-            }
+                pointer->HandleTypes = default;
         }
     }
 }

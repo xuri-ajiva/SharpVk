@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct QueueFamilyCheckpointProperties
+    public struct QueueFamilyCheckpointProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineStageFlags CheckpointExecutionStageMask
+        public PipelineStageFlags CheckpointExecutionStageMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe QueueFamilyCheckpointProperties MarshalFrom(SharpVk.Interop.NVidia.QueueFamilyCheckpointProperties* pointer)
+        internal static unsafe QueueFamilyCheckpointProperties MarshalFrom(Interop.NVidia.QueueFamilyCheckpointProperties* pointer)
         {
-            QueueFamilyCheckpointProperties result = default(QueueFamilyCheckpointProperties);
+            var result = default(QueueFamilyCheckpointProperties);
             result.CheckpointExecutionStageMask = pointer->CheckpointExecutionStageMask;
             return result;
         }

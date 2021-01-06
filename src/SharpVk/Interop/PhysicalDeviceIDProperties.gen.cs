@@ -22,50 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceIDProperties
+    public unsafe struct PhysicalDeviceIdProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DeviceUUID[Constants.UuidSize]; 
-        
+        public fixed byte DeviceUUID[Constants.UuidSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DriverUUID[Constants.UuidSize]; 
-        
+        public fixed byte DriverUUID[Constants.UuidSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DeviceLUID[Constants.LuidSize]; 
-        
+        public fixed byte DeviceLUID[Constants.LuidSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DeviceNodeMask; 
-        
+        public uint DeviceNodeMask;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DeviceLUIDValid; 
+        public Bool32 DeviceLUIDValid;
     }
 }

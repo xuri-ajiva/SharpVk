@@ -22,39 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// Buffers represent linear arrays of data which are used for various
-    /// purposes by binding them to a graphics or compute pipeline via
-    /// descriptor sets or via certain commands, or by directly specifying them
-    /// as parameters to certain commands.
+    ///     Buffers represent linear arrays of data which are used for various
+    ///     purposes by binding them to a graphics or compute pipeline via
+    ///     descriptor sets or via certain commands, or by directly specifying them
+    ///     as parameters to certain commands.
     /// </summary>
     public struct Buffer
     {
-        internal ulong handle; 
-        
+        internal ulong Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public Buffer(ulong handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public Buffer Null => new Buffer(default(ulong));
-        
+        public Buffer Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle;
+            return Handle;
         }
     }
 }

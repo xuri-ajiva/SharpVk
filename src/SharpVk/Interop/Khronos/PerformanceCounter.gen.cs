@@ -22,45 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PerformanceCounter
+    public unsafe struct PerformanceCounter
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PerformanceCounterUnit Unit; 
-        
+        public PerformanceCounterUnit Unit;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PerformanceCounterScope Scope; 
-        
+        public PerformanceCounterScope Scope;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PerformanceCounterStorage Storage; 
-        
+        public PerformanceCounterStorage Storage;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Uuid[Constants.UuidSize]; 
+        public fixed byte Uuid[Constants.UuidSize];
     }
 }

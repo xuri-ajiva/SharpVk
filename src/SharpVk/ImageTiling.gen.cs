@@ -25,23 +25,20 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specifies the tiling arrangement of data in an image.
+    ///     Specifies the tiling arrangement of data in an image.
     /// </summary>
     public enum ImageTiling
     {
         /// <summary>
-        /// 
         /// </summary>
-        Optimal = 0, 
-        
+        Optimal = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Linear = 1, 
-        
+        Linear = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        DrmFormatModifier = 1000158000, 
+        DrmFormatModifier = 1000158000
     }
 }

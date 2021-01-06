@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceDriverProperties
+    public unsafe struct PhysicalDeviceDriverProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DriverId DriverID; 
-        
+        public DriverId DriverID;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DriverName[Constants.MaxDriverNameSize]; 
-        
+        public fixed byte DriverName[Constants.MaxDriverNameSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DriverInfo[Constants.MaxDriverInfoSize]; 
-        
+        public fixed byte DriverInfo[Constants.MaxDriverInfoSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ConformanceVersion ConformanceVersion; 
+        public ConformanceVersion ConformanceVersion;
     }
 }

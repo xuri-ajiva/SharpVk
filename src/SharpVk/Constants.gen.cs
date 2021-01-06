@@ -25,118 +25,95 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class Constants
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxPhysicalDeviceNameSize = 256; 
-        
+        public const int MaxPhysicalDeviceNameSize = 256;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int UuidSize = 16; 
-        
+        public const int UuidSize = 16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int LuidSize = 8; 
-        
+        public const int LuidSize = 8;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxExtensionNameSize = 256; 
-        
+        public const int MaxExtensionNameSize = 256;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxDescriptionSize = 256; 
-        
+        public const int MaxDescriptionSize = 256;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxMemoryTypes = 32; 
-        
+        public const int MaxMemoryTypes = 32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxMemoryHeaps = 16; 
-        
+        public const int MaxMemoryHeaps = 16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const float LodClampNone = 1000.0f; 
-        
+        public const float LodClampNone = 1000.0f;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint RemainingMipLevels = ~0U; 
-        
+        public const uint RemainingMipLevels = ~0U;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint RemainingArrayLayers = ~0U; 
-        
+        public const uint RemainingArrayLayers = ~0U;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const ulong WholeSize = ~0UL; 
-        
+        public const ulong WholeSize = ~0UL;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint AttachmentUnused = ~0U; 
-        
+        public const uint AttachmentUnused = ~0U;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint True = 1; 
-        
+        public const uint True = 1;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint False = 0; 
-        
+        public const uint False = 0;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint QueueFamilyIgnored = ~0U; 
-        
+        public const uint QueueFamilyIgnored = ~0U;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint QueueFamilyExternal = ~0U-1; 
-        
+        public const uint QueueFamilyExternal = ~0U - 1;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint QueueFamilyForeign = ~0U-2; 
-        
+        public const uint QueueFamilyForeign = ~0U - 2;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint SubpassExternal = ~0U; 
-        
+        public const uint SubpassExternal = ~0U;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxDeviceGroupSize = 32; 
-        
+        public const int MaxDeviceGroupSize = 32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxDriverNameSize = 256; 
-        
+        public const int MaxDriverNameSize = 256;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const int MaxDriverInfoSize = 256; 
-        
+        public const int MaxDriverInfoSize = 256;
+
         /// <summary>
-        /// 
         /// </summary>
-        public const uint ShaderUnused = ~0U; 
+        public const uint ShaderUnused = ~0U;
     }
 }

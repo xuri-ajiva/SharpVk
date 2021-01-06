@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferPushConstantsDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.PipelineLayout layout, SharpVk.ShaderStageFlags stageFlags, uint offset, uint size, void* values);
+    public unsafe delegate void VkCommandBufferPushConstantsDelegate(CommandBuffer commandBuffer, PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, uint size, void* values);
 }

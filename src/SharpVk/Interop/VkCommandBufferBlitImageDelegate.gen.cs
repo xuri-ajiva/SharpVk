@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBlitImageDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Interop.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, uint regionCount, SharpVk.Interop.ImageBlit* regions, SharpVk.Filter filter);
+    public unsafe delegate void VkCommandBufferBlitImageDelegate(CommandBuffer commandBuffer, Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, ImageBlit* regions, Filter filter);
 }

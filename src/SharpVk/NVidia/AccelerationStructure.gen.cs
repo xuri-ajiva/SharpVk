@@ -23,63 +23,69 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public partial class AccelerationStructure
+    public class AccelerationStructure
         : IDisposable
     {
-        internal readonly SharpVk.Interop.NVidia.AccelerationStructure handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal AccelerationStructure(SharpVk.Device parent, SharpVk.Interop.NVidia.AccelerationStructure handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.NVidia.AccelerationStructure Handle;
+
+        internal readonly Device Parent;
+
+        internal AccelerationStructure(Device parent, Interop.NVidia.AccelerationStructure handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.NVidia.AccelerationStructure RawHandle => this.handle;
-        
+        public Interop.NVidia.AccelerationStructure RawHandle => Handle;
+
         /// <summary>
-        /// 
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
         /// </summary>
         /// <param name="allocator">
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.NVidia.VkAccelerationStructureNVDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyAccelerationStructureNV;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyAccelerationStructureNv;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="dataSize">
         /// </param>
@@ -87,24 +93,18 @@ namespace SharpVk.NVidia
         {
             try
             {
-                byte[] result = default(byte[]);
-                HostSize marshalledDataSize = default(HostSize);
-                byte* marshalledData = default(byte*);
+                var result = default(byte[]);
+                var marshalledDataSize = default(HostSize);
+                var marshalledData = default(byte*);
                 marshalledDataSize = dataSize;
-                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(marshalledDataSize));
-                SharpVk.Interop.NVidia.VkAccelerationStructureNVGetHandleDelegate commandDelegate = commandCache.Cache.vkGetAccelerationStructureHandleNV;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, marshalledDataSize, marshalledData);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                marshalledData = (byte*)HeapUtil.Allocate<byte>(marshalledDataSize);
+                var commandDelegate = CommandCache.Cache.VkGetAccelerationStructureHandleNv;
+                var methodResult = commandDelegate(Parent.Handle, Handle, marshalledDataSize, marshalledData);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 if (marshalledData != null)
                 {
-                    var fieldPointer = new byte[(uint)(marshalledDataSize)];
-                    for(int index = 0; index < (uint)(marshalledDataSize); index++)
-                    {
-                        fieldPointer[index] = marshalledData[index];
-                    }
+                    var fieldPointer = new byte[(uint)marshalledDataSize];
+                    for (var index = 0; index < (uint)marshalledDataSize; index++) fieldPointer[index] = marshalledData[index];
                     result = fieldPointer;
                 }
                 else
@@ -115,17 +115,8 @@ namespace SharpVk.NVidia
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

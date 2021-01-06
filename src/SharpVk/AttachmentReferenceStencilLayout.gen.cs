@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AttachmentReferenceStencilLayout
+    public struct AttachmentReferenceStencilLayout
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout StencilLayout
+        public ImageLayout StencilLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.AttachmentReferenceStencilLayout* pointer)
+        internal unsafe void MarshalTo(Interop.AttachmentReferenceStencilLayout* pointer)
         {
             pointer->SType = StructureType.AttachmentReferenceStencilLayoutVersion;
             pointer->Next = null;
-            pointer->StencilLayout = this.StencilLayout;
+            pointer->StencilLayout = StencilLayout;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AttachmentReferenceStencilLayout MarshalFrom(SharpVk.Interop.AttachmentReferenceStencilLayout* pointer)
+        internal static unsafe AttachmentReferenceStencilLayout MarshalFrom(Interop.AttachmentReferenceStencilLayout* pointer)
         {
-            AttachmentReferenceStencilLayout result = default(AttachmentReferenceStencilLayout);
+            var result = default(AttachmentReferenceStencilLayout);
             result.StencilLayout = pointer->StencilLayout;
             return result;
         }

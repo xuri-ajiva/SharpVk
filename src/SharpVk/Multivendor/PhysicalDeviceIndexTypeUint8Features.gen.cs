@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceIndexTypeUint8Features
+    public struct PhysicalDeviceIndexTypeUint8Features
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool IndexTypeUint8
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceIndexTypeUint8Features;
             pointer->Next = null;
-            pointer->IndexTypeUint8 = this.IndexTypeUint8;
+            pointer->IndexTypeUint8 = IndexTypeUint8;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceIndexTypeUint8Features MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features* pointer)
+        internal static unsafe PhysicalDeviceIndexTypeUint8Features MarshalFrom(Interop.Multivendor.PhysicalDeviceIndexTypeUint8Features* pointer)
         {
-            PhysicalDeviceIndexTypeUint8Features result = default(PhysicalDeviceIndexTypeUint8Features);
+            var result = default(PhysicalDeviceIndexTypeUint8Features);
             result.IndexTypeUint8 = pointer->IndexTypeUint8;
             return result;
         }

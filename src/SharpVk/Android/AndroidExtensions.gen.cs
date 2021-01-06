@@ -25,13 +25,11 @@
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class AndroidExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string ExternalMemoryAndroidHardwareBuffer = "VK_ANDROID_external_memory_android_hardware_buffer"; 
+        public const string ExternalMemoryAndroidHardwareBuffer = "VK_ANDROID_external_memory_android_hardware_buffer";
     }
 }

@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImageBlit
+    public struct ImageBlit
     {
         /// <summary>
-        /// The subresource to blit from.
+        ///     The subresource to blit from.
         /// </summary>
-        public SharpVk.ImageSubresourceLayers SourceSubresource; 
-        
+        public ImageSubresourceLayers SourceSubresource;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Offset3D SourceOffsets_0; 
-        
+        public Offset3D SourceOffsets_0;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Offset3D SourceOffsets_1; 
-        
+        public Offset3D SourceOffsets_1;
+
         /// <summary>
-        /// The subresource to blit into.
+        ///     The subresource to blit into.
         /// </summary>
-        public SharpVk.ImageSubresourceLayers DestinationSubresource; 
-        
+        public ImageSubresourceLayers DestinationSubresource;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Offset3D DestinationOffsets_0; 
-        
+        public Offset3D DestinationOffsets_0;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Offset3D DestinationOffsets_1; 
+        public Offset3D DestinationOffsets_1;
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SharpVk.Emit
 {
     public class EnumBuilder
         : BlockBuilder
     {
-        private bool hasFirstMember = false;
+        private bool hasFirstMember;
 
         public EnumBuilder(IndentedTextWriter writer)
             : base(writer)
@@ -15,31 +14,27 @@ namespace SharpVk.Emit
         }
 
         public void EmitField(string name,
-                                Action<ExpressionBuilder> initialiser = null,
-                                IEnumerable<string> summary = null,
-                                Action<DocBuilder> docs = null,
-                                IEnumerable<string> attributes = null)
+            Action<ExpressionBuilder> initialiser = null,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null,
+            IEnumerable<string> attributes = null)
         {
-            if (this.hasFirstMember)
-            {
-                this.writer.WriteLine();
-            }
+            if (hasFirstMember)
+                Writer.WriteLine();
             else
-            {
-                this.hasFirstMember = true;
-            }
+                hasFirstMember = true;
 
-            var docBuilder = new DocBuilder(this.writer.GetSubWriter(), summary);
+            var docBuilder = new DocBuilder(Writer.GetSubWriter(), summary);
 
             docs?.Invoke(docBuilder);
 
-            this.writer.Write($"{name}");
+            Writer.Write($"{name}");
             if (initialiser != null)
             {
-                writer.Write(" = ");
-                initialiser(new ExpressionBuilder(this.writer.GetSubWriter()));
+                Writer.Write(" = ");
+                initialiser(new ExpressionBuilder(Writer.GetSubWriter()));
             }
-            this.writer.WriteLine(", ");
+            Writer.WriteLine(", ");
         }
     }
 }

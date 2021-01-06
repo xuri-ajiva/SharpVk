@@ -22,39 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DrawMeshTasksIndirectCommand
+    public struct DrawMeshTasksIndirectCommand
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static DrawMeshTasksIndirectCommand Zero => new DrawMeshTasksIndirectCommand();
-        
+        public static DrawMeshTasksIndirectCommand Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public DrawMeshTasksIndirectCommand(uint taskCount, uint firstTask)
         {
-            this.TaskCount = taskCount;
-            this.FirstTask = firstTask;
+            TaskCount = taskCount;
+            FirstTask = firstTask;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint TaskCount; 
-        
+        public uint TaskCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint FirstTask; 
+        public uint FirstTask;
     }
 }

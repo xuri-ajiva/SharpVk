@@ -22,115 +22,102 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceTransformFeedbackProperties
+    public struct PhysicalDeviceTransformFeedbackProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTransformFeedbackStreams
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTransformFeedbackBuffers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong MaxTransformFeedbackBufferSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTransformFeedbackStreamDataSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTransformFeedbackBufferDataSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTransformFeedbackBufferDataStride
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool TransformFeedbackQueries
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool TransformFeedbackStreamsLinesTriangles
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool TransformFeedbackRasterizationStreamSelect
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool TransformFeedbackDraw
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTransformFeedbackProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackProperties* pointer)
+        internal static unsafe PhysicalDeviceTransformFeedbackProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceTransformFeedbackProperties* pointer)
         {
-            PhysicalDeviceTransformFeedbackProperties result = default(PhysicalDeviceTransformFeedbackProperties);
+            var result = default(PhysicalDeviceTransformFeedbackProperties);
             result.MaxTransformFeedbackStreams = pointer->MaxTransformFeedbackStreams;
             result.MaxTransformFeedbackBuffers = pointer->MaxTransformFeedbackBuffers;
             result.MaxTransformFeedbackBufferSize = pointer->MaxTransformFeedbackBufferSize;

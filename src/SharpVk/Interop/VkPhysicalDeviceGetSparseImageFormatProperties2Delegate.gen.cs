@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkPhysicalDeviceGetSparseImageFormatProperties2Delegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* formatInfo, uint* propertyCount, SharpVk.Interop.SparseImageFormatProperties2* properties);
+    public unsafe delegate void VkPhysicalDeviceGetSparseImageFormatProperties2Delegate(PhysicalDevice physicalDevice, PhysicalDeviceSparseImageFormatInfo2* formatInfo, uint* propertyCount, SparseImageFormatProperties2* properties);
 }

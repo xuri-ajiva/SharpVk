@@ -22,86 +22,69 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineDiscardRectangleStateCreateInfo
+    public struct PipelineDiscardRectangleStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.PipelineDiscardRectangleStateCreateFlags? Flags
+        public PipelineDiscardRectangleStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DiscardRectangleMode DiscardRectangleMode
+        public DiscardRectangleMode DiscardRectangleMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint? DiscardRectangleCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Rect2D[] DiscardRectangles
+        public Rect2D[] DiscardRectangles
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineDiscardRectangleStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.PipelineDiscardRectangleStateCreateFlags);
-            }
-            pointer->DiscardRectangleMode = this.DiscardRectangleMode;
-            if (this.DiscardRectangleCount != null)
-            {
-                pointer->DiscardRectangleCount = this.DiscardRectangleCount.Value;
-            }
+                pointer->Flags = default;
+            pointer->DiscardRectangleMode = DiscardRectangleMode;
+            if (DiscardRectangleCount != null)
+                pointer->DiscardRectangleCount = DiscardRectangleCount.Value;
             else
+                pointer->DiscardRectangleCount = HeapUtil.GetLength(DiscardRectangles);
+            if (DiscardRectangles != null)
             {
-                pointer->DiscardRectangleCount = (uint)(Interop.HeapUtil.GetLength(this.DiscardRectangles));
-            }
-            if (this.DiscardRectangles != null)
-            {
-                var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.DiscardRectangles.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DiscardRectangles.Length); index++)
-                {
-                    fieldPointer[index] = this.DiscardRectangles[index];
-                }
+                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(DiscardRectangles.Length).ToPointer();
+                for (var index = 0; index < (uint)DiscardRectangles.Length; index++) fieldPointer[index] = DiscardRectangles[index];
                 pointer->DiscardRectangles = fieldPointer;
             }
             else

@@ -22,58 +22,56 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ApplicationInfo
+    public unsafe struct ApplicationInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A string containing the name of the application.
+        ///     A string containing the name of the application.
         /// </summary>
-        public byte* ApplicationName; 
-        
+        public byte* ApplicationName;
+
         /// <summary>
-        /// The developer-supplied version number of the application.
+        ///     The developer-supplied version number of the application.
         /// </summary>
-        public uint ApplicationVersion; 
-        
+        public uint ApplicationVersion;
+
         /// <summary>
-        /// Astring containing the name of the engine (if any) used to create
-        /// the application.
+        ///     Astring containing the name of the engine (if any) used to create
+        ///     the application.
         /// </summary>
-        public byte* EngineName; 
-        
+        public byte* EngineName;
+
         /// <summary>
-        /// The developer-supplied version number of the engine used to create
-        /// the application.
+        ///     The developer-supplied version number of the engine used to create
+        ///     the application.
         /// </summary>
-        public uint EngineVersion; 
-        
+        public uint EngineVersion;
+
         /// <summary>
-        /// The version of the Vulkan API against which the application expects
-        /// to run. If apiVersion is 0.0.0 the implementation must ignore it,
-        /// otherwise if the implementation does not support the requested
-        /// apiVersion it must throw IncompatibleDriverException. The patch
-        /// version number specified in apiVersion is ignored when creating an
-        /// instance object. Only the major and minor versions of the instance
-        /// must match those requested in apiVersion.
+        ///     The version of the Vulkan API against which the application expects
+        ///     to run. If apiVersion is 0.0.0 the implementation must ignore it,
+        ///     otherwise if the implementation does not support the requested
+        ///     apiVersion it must throw IncompatibleDriverException. The patch
+        ///     version number specified in apiVersion is ignored when creating an
+        ///     instance object. Only the major and minor versions of the instance
+        ///     must match those requested in apiVersion.
         /// </summary>
-        public uint ApiVersion; 
+        public uint ApiVersion;
     }
 }

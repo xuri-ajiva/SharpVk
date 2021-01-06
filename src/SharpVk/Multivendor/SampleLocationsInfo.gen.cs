@@ -22,70 +22,58 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SampleLocationsInfo
+    public struct SampleLocationsInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags? SampleLocationsPerPixel
+        public SampleCountFlags? SampleLocationsPerPixel
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D SampleLocationGridSize
+        public Extent2D SampleLocationGridSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.SampleLocation[] SampleLocations
+        public SampleLocation[] SampleLocations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SampleLocationsInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.SampleLocationsInfo* pointer)
         {
             pointer->SType = StructureType.SampleLocationsInfo;
             pointer->Next = null;
-            if (this.SampleLocationsPerPixel != null)
-            {
-                pointer->SampleLocationsPerPixel = this.SampleLocationsPerPixel.Value;
-            }
+            if (SampleLocationsPerPixel != null)
+                pointer->SampleLocationsPerPixel = SampleLocationsPerPixel.Value;
             else
+                pointer->SampleLocationsPerPixel = default;
+            pointer->SampleLocationGridSize = SampleLocationGridSize;
+            pointer->SampleLocationsCount = HeapUtil.GetLength(SampleLocations);
+            if (SampleLocations != null)
             {
-                pointer->SampleLocationsPerPixel = default(SharpVk.SampleCountFlags);
-            }
-            pointer->SampleLocationGridSize = this.SampleLocationGridSize;
-            pointer->SampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(this.SampleLocations));
-            if (this.SampleLocations != null)
-            {
-                var fieldPointer = (SharpVk.Multivendor.SampleLocation*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Multivendor.SampleLocation>(this.SampleLocations.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.SampleLocations.Length); index++)
-                {
-                    fieldPointer[index] = this.SampleLocations[index];
-                }
+                var fieldPointer = (SampleLocation*)HeapUtil.AllocateAndClear<SampleLocation>(SampleLocations.Length).ToPointer();
+                for (var index = 0; index < (uint)SampleLocations.Length; index++) fieldPointer[index] = SampleLocations[index];
                 pointer->SampleLocations = fieldPointer;
             }
             else

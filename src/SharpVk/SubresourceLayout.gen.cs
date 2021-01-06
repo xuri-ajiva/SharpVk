@@ -22,57 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying subresource layout.
+    ///     Structure specifying subresource layout.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SubresourceLayout
+    public struct SubresourceLayout
     {
         /// <summary>
-        /// 
         /// </summary>
         public SubresourceLayout(ulong offset, ulong size, ulong rowPitch, ulong arrayPitch, ulong depthPitch)
         {
-            this.Offset = offset;
-            this.Size = size;
-            this.RowPitch = rowPitch;
-            this.ArrayPitch = arrayPitch;
-            this.DepthPitch = depthPitch;
+            Offset = offset;
+            Size = size;
+            RowPitch = rowPitch;
+            ArrayPitch = arrayPitch;
+            DepthPitch = depthPitch;
         }
-        
+
         /// <summary>
-        /// The byte offset from the start of the image where the image
-        /// subresource begins.
+        ///     The byte offset from the start of the image where the image
+        ///     subresource begins.
         /// </summary>
-        public ulong Offset; 
-        
+        public ulong Offset;
+
         /// <summary>
-        /// The size in bytes of the image subresource. size includes any extra
-        /// memory that is required based on rowPitch.
+        ///     The size in bytes of the image subresource. size includes any extra
+        ///     memory that is required based on rowPitch.
         /// </summary>
-        public ulong Size; 
-        
+        public ulong Size;
+
         /// <summary>
-        /// rowPitch describes the number of bytes between each row of texels
-        /// in an image.
+        ///     rowPitch describes the number of bytes between each row of texels
+        ///     in an image.
         /// </summary>
-        public ulong RowPitch; 
-        
+        public ulong RowPitch;
+
         /// <summary>
-        /// arrayPitch describes the number of bytes between each array layer
-        /// of an image.
+        ///     arrayPitch describes the number of bytes between each array layer
+        ///     of an image.
         /// </summary>
-        public ulong ArrayPitch; 
-        
+        public ulong ArrayPitch;
+
         /// <summary>
-        /// depthPitch describes the number of bytes between each slice of 3D
-        /// image.
+        ///     depthPitch describes the number of bytes between each slice of 3D
+        ///     image.
         /// </summary>
-        public ulong DepthPitch; 
+        public ulong DepthPitch;
     }
 }

@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Google
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PresentTimesInfo
+    public struct PresentTimesInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Google.PresentTime[] Times
+        public PresentTime[] Times
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Google.PresentTimesInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Google.PresentTimesInfo* pointer)
         {
             pointer->SType = StructureType.PresentTimesInfo;
             pointer->Next = null;
-            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.Times));
-            if (this.Times != null)
+            pointer->SwapchainCount = HeapUtil.GetLength(Times);
+            if (Times != null)
             {
-                var fieldPointer = (SharpVk.Google.PresentTime*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Google.PresentTime>(this.Times.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Times.Length); index++)
-                {
-                    fieldPointer[index] = this.Times[index];
-                }
+                var fieldPointer = (PresentTime*)HeapUtil.AllocateAndClear<PresentTime>(Times.Length).ToPointer();
+                for (var index = 0; index < (uint)Times.Length; index++) fieldPointer[index] = Times[index];
                 pointer->Times = fieldPointer;
             }
             else

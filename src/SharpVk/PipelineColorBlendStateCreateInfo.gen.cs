@@ -22,102 +22,94 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created pipeline color blend
-    /// state.
+    ///     Structure specifying parameters of a newly created pipeline color blend
+    ///     state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineColorBlendStateCreateInfo
+    public struct PipelineColorBlendStateCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineColorBlendStateCreateFlags? Flags
+        public PipelineColorBlendStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// logicOpEnable controls whether to apply Logical Operations.
+        ///     logicOpEnable controls whether to apply Logical Operations.
         /// </summary>
         public bool LogicOpEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// logicOp selects which logical operation to apply.
+        ///     logicOp selects which logical operation to apply.
         /// </summary>
-        public SharpVk.LogicOp LogicOp
+        public LogicOp LogicOp
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// pAttachments: is array of per target attachment states.
+        ///     pAttachments: is array of per target attachment states.
         /// </summary>
-        public SharpVk.PipelineColorBlendAttachmentState[] Attachments
+        public PipelineColorBlendAttachmentState[] Attachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of four values used as the R, G, B, and A components of
-        /// the blend constant that are used in blending, depending on the
-        /// blend factor.
+        ///     An array of four values used as the R, G, B, and A components of
+        ///     the blend constant that are used in blending, depending on the
+        ///     blend factor.
         /// </summary>
         public (float, float, float, float) BlendConstants
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PipelineColorBlendStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PipelineColorBlendStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->LogicOpEnable = LogicOpEnable;
+            pointer->LogicOp = LogicOp;
+            pointer->AttachmentCount = HeapUtil.GetLength(Attachments);
+            if (Attachments != null)
             {
-                pointer->Flags = default(SharpVk.PipelineColorBlendStateCreateFlags);
-            }
-            pointer->LogicOpEnable = this.LogicOpEnable;
-            pointer->LogicOp = this.LogicOp;
-            pointer->AttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.Attachments));
-            if (this.Attachments != null)
-            {
-                var fieldPointer = (SharpVk.Interop.PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Attachments.Length); index++)
-                {
-                    this.Attachments[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.PipelineColorBlendAttachmentState*)HeapUtil.AllocateAndClear<Interop.PipelineColorBlendAttachmentState>(Attachments.Length).ToPointer();
+                for (var index = 0; index < (uint)Attachments.Length; index++) Attachments[index].MarshalTo(&fieldPointer[index]);
                 pointer->Attachments = fieldPointer;
             }
             else
             {
                 pointer->Attachments = null;
             }
-            pointer->BlendConstants[0] = this.BlendConstants.Item1;
-            pointer->BlendConstants[1] = this.BlendConstants.Item2;
-            pointer->BlendConstants[2] = this.BlendConstants.Item3;
-            pointer->BlendConstants[3] = this.BlendConstants.Item4;
+            pointer->BlendConstants[0] = BlendConstants.Item1;
+            pointer->BlendConstants[1] = BlendConstants.Item2;
+            pointer->BlendConstants[2] = BlendConstants.Item3;
+            pointer->BlendConstants[3] = BlendConstants.Item4;
         }
     }
 }

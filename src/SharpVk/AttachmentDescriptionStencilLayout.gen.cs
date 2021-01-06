@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AttachmentDescriptionStencilLayout
+    public struct AttachmentDescriptionStencilLayout
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout StencilInitialLayout
+        public ImageLayout StencilInitialLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout StencilFinalLayout
+        public ImageLayout StencilFinalLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.AttachmentDescriptionStencilLayout* pointer)
+        internal unsafe void MarshalTo(Interop.AttachmentDescriptionStencilLayout* pointer)
         {
             pointer->SType = StructureType.AttachmentDescriptionStencilLayoutVersion;
             pointer->Next = null;
-            pointer->StencilInitialLayout = this.StencilInitialLayout;
-            pointer->StencilFinalLayout = this.StencilFinalLayout;
+            pointer->StencilInitialLayout = StencilInitialLayout;
+            pointer->StencilFinalLayout = StencilFinalLayout;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AttachmentDescriptionStencilLayout MarshalFrom(SharpVk.Interop.AttachmentDescriptionStencilLayout* pointer)
+        internal static unsafe AttachmentDescriptionStencilLayout MarshalFrom(Interop.AttachmentDescriptionStencilLayout* pointer)
         {
-            AttachmentDescriptionStencilLayout result = default(AttachmentDescriptionStencilLayout);
+            var result = default(AttachmentDescriptionStencilLayout);
             result.StencilInitialLayout = pointer->StencilInitialLayout;
             result.StencilFinalLayout = pointer->StencilFinalLayout;
             return result;

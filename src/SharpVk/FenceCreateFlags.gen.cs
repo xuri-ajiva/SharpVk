@@ -22,22 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying initial state and behavior of a fence.
+    ///     Bitmask specifying initial state and behavior of a fence.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum FenceCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Signaled = 1 << 0, 
+        Signaled = 1 << 0
     }
 }

@@ -22,90 +22,79 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying the parameters of a newly created pipeline layout
-    /// object.
+    ///     Structure specifying the parameters of a newly created pipeline layout
+    ///     object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineLayoutCreateInfo
+    public struct PipelineLayoutCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineLayoutCreateFlags? Flags
+        public PipelineLayoutCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of DescriptorSetLayout objects.
+        ///     An array of DescriptorSetLayout objects.
         /// </summary>
-        public SharpVk.DescriptorSetLayout[] SetLayouts
+        public DescriptorSetLayout[] SetLayouts
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of PushConstantRange structures defining a set of push
-        /// constant ranges for use in a single pipeline layout. In addition to
-        /// descriptor set layouts, a pipeline layout also describes how many
-        /// push constants can be accessed by each stage of the pipeline. +
-        /// [NOTE] .Note ==== Push constants represent a high speed path to
-        /// modify constant data in pipelines that is expected to outperform
-        /// memory-backed resource updates. ====
+        ///     An array of PushConstantRange structures defining a set of push
+        ///     constant ranges for use in a single pipeline layout. In addition to
+        ///     descriptor set layouts, a pipeline layout also describes how many
+        ///     push constants can be accessed by each stage of the pipeline. +
+        ///     [NOTE] .Note ==== Push constants represent a high speed path to
+        ///     modify constant data in pipelines that is expected to outperform
+        ///     memory-backed resource updates. ====
         /// </summary>
-        public SharpVk.PushConstantRange[] PushConstantRanges
+        public PushConstantRange[] PushConstantRanges
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PipelineLayoutCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PipelineLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineLayoutCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->SetLayoutCount = HeapUtil.GetLength(SetLayouts);
+            if (SetLayouts != null)
             {
-                pointer->Flags = default(SharpVk.PipelineLayoutCreateFlags);
-            }
-            pointer->SetLayoutCount = (uint)(Interop.HeapUtil.GetLength(this.SetLayouts));
-            if (this.SetLayouts != null)
-            {
-                var fieldPointer = (SharpVk.Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.SetLayouts.Length); index++)
-                {
-                    fieldPointer[index] = this.SetLayouts[index]?.handle ?? default(SharpVk.Interop.DescriptorSetLayout);
-                }
+                var fieldPointer = (Interop.DescriptorSetLayout*)HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(SetLayouts.Length).ToPointer();
+                for (var index = 0; index < (uint)SetLayouts.Length; index++) fieldPointer[index] = SetLayouts[index]?.Handle ?? default(Interop.DescriptorSetLayout);
                 pointer->SetLayouts = fieldPointer;
             }
             else
             {
                 pointer->SetLayouts = null;
             }
-            pointer->PushConstantRangeCount = (uint)(Interop.HeapUtil.GetLength(this.PushConstantRanges));
-            if (this.PushConstantRanges != null)
+            pointer->PushConstantRangeCount = HeapUtil.GetLength(PushConstantRanges);
+            if (PushConstantRanges != null)
             {
-                var fieldPointer = (SharpVk.PushConstantRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.PushConstantRange>(this.PushConstantRanges.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.PushConstantRanges.Length); index++)
-                {
-                    fieldPointer[index] = this.PushConstantRanges[index];
-                }
+                var fieldPointer = (PushConstantRange*)HeapUtil.AllocateAndClear<PushConstantRange>(PushConstantRanges.Length).ToPointer();
+                for (var index = 0; index < (uint)PushConstantRanges.Length; index++) fieldPointer[index] = PushConstantRanges[index];
                 pointer->PushConstantRanges = fieldPointer;
             }
             else

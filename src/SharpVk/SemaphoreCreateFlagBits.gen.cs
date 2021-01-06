@@ -25,7 +25,6 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum SemaphoreCreateFlagBits
     {

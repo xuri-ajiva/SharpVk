@@ -22,39 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct FilterCubicImageViewImageFormatProperties
+    public unsafe struct FilterCubicImageViewImageFormatProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Tells if image format, image type and image view type can be used
-        /// with cubic filtering. This field is set by the implementation.
-        /// User-specified value is ignored.
+        ///     Tells if image format, image type and image view type can be used
+        ///     with cubic filtering. This field is set by the implementation.
+        ///     User-specified value is ignored.
         /// </summary>
-        public Bool32 FilterCubic; 
-        
+        public Bool32 FilterCubic;
+
         /// <summary>
-        /// Tells if image format, image type and image view type can be used
-        /// with cubic filtering and minmax filtering. This field is set by the
-        /// implementation. User-specified value is ignored.
+        ///     Tells if image format, image type and image view type can be used
+        ///     with cubic filtering and minmax filtering. This field is set by the
+        ///     implementation. User-specified value is ignored.
         /// </summary>
-        public Bool32 FilterCubicMinmax; 
+        public Bool32 FilterCubicMinmax;
     }
 }

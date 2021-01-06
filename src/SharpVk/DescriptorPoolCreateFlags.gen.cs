@@ -22,27 +22,26 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying certain supported operations on a descriptor pool.
+    ///     Bitmask specifying certain supported operations on a descriptor pool.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum DescriptorPoolCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        FreeDescriptorSet = 1 << 0, 
-        
+        FreeDescriptorSet = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        UpdateAfterBind = 1 << 1, 
+        UpdateAfterBind = 1 << 1
     }
 }

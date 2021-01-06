@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SurfaceFullScreenExclusiveInfo
+    public struct SurfaceFullScreenExclusiveInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.FullScreenExclusive FullScreenExclusive
+        public FullScreenExclusive FullScreenExclusive
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.SurfaceFullScreenExclusiveInfo* pointer)
         {
             pointer->SType = StructureType.SurfaceFullScreenExclusiveInfo;
             pointer->Next = null;
-            pointer->FullScreenExclusive = this.FullScreenExclusive;
+            pointer->FullScreenExclusive = FullScreenExclusive;
         }
     }
 }

@@ -27,7 +27,6 @@ using System;
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetSemaphoreWin32HandleDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.SemaphoreGetWin32HandleInfo* getWin32HandleInfo, IntPtr* handle);
+    public unsafe delegate Result VkDeviceGetSemaphoreWin32HandleDelegate(Device device, SemaphoreGetWin32HandleInfo* getWin32HandleInfo, IntPtr* handle);
 }

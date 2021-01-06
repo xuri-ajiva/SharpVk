@@ -22,32 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DeviceGeneratedCommandsFeatures
+    public unsafe struct DeviceGeneratedCommandsFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Indicates whether the ObjectTableNVX supports entries with
-        /// VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX bit set and
-        /// IndirectCommandsLayoutNVX supports VK_PIPELINE_BIND_POINT_COMPUTE.
+        ///     Indicates whether the ObjectTableNVX supports entries with
+        ///     VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX bit set and
+        ///     IndirectCommandsLayoutNVX supports VK_PIPELINE_BIND_POINT_COMPUTE.
         /// </summary>
-        public Bool32 ComputeBindingPointSupport; 
+        public Bool32 ComputeBindingPointSupport;
     }
 }

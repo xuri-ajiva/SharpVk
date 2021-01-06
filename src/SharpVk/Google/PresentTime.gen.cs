@@ -22,39 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Google
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PresentTime
+    public struct PresentTime
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static PresentTime Zero => new PresentTime();
-        
+        public static PresentTime Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public PresentTime(uint presentID, ulong desiredPresentTime)
+        public PresentTime(uint presentId, ulong desiredPresentTime)
         {
-            this.PresentID = presentID;
-            this.DesiredPresentTime = desiredPresentTime;
+            PresentID = presentId;
+            DesiredPresentTime = desiredPresentTime;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PresentID; 
-        
+        public uint PresentID;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong DesiredPresentTime; 
+        public ulong DesiredPresentTime;
     }
 }

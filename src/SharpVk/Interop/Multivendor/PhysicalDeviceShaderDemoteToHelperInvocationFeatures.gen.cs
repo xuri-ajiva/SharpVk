@@ -22,31 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures
+    public unsafe struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Sndicates whether the implementation supports the SPIR-V
-        /// DemoteToHelperInvocationEXT capability.
+        ///     Sndicates whether the implementation supports the SPIR-V
+        ///     DemoteToHelperInvocationEXT capability.
         /// </summary>
-        public Bool32 ShaderDemoteToHelperInvocation; 
+        public Bool32 ShaderDemoteToHelperInvocation;
     }
 }

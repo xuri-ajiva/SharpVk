@@ -22,38 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying an attachment reference.
+    ///     Structure specifying an attachment reference.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AttachmentReference
+    public struct AttachmentReference
     {
         /// <summary>
-        /// 
         /// </summary>
-        public AttachmentReference(uint attachment, SharpVk.ImageLayout layout)
+        public AttachmentReference(uint attachment, ImageLayout layout)
         {
-            this.Attachment = attachment;
-            this.Layout = layout;
+            Attachment = attachment;
+            Layout = layout;
         }
-        
+
         /// <summary>
-        /// The index of the attachment of the render pass, and corresponds to
-        /// the index of the corresponding element in the attachments array of
-        /// Device.CreateRenderPass. If any color or depth/stencil attachments
-        /// are Attachment.Unused, then no writes occur for those attachments.
+        ///     The index of the attachment of the render pass, and corresponds to
+        ///     the index of the corresponding element in the attachments array of
+        ///     Device.CreateRenderPass. If any color or depth/stencil attachments
+        ///     are Attachment.Unused, then no writes occur for those attachments.
         /// </summary>
-        public uint Attachment; 
-        
+        public uint Attachment;
+
         /// <summary>
-        /// An ImageLayout value specifying the layout the attachment uses
-        /// during the subpass.
+        ///     An ImageLayout value specifying the layout the attachment uses
+        ///     during the subpass.
         /// </summary>
-        public SharpVk.ImageLayout Layout; 
+        public ImageLayout Layout;
     }
 }

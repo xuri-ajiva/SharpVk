@@ -25,23 +25,19 @@
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class NvxExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string ImageViewHandle = "VK_NVX_image_view_handle"; 
-        
+        public const string ImageViewHandle = "VK_NVX_image_view_handle";
+
         /// <summary>
-        /// 
         /// </summary>
-        public const string DeviceGeneratedCommands = "VK_NVX_device_generated_commands"; 
-        
+        public const string DeviceGeneratedCommands = "VK_NVX_device_generated_commands";
+
         /// <summary>
-        /// 
         /// </summary>
-        public const string MultiviewPerViewAttributes = "VK_NVX_multiview_per_view_attributes"; 
+        public const string MultiviewPerViewAttributes = "VK_NVX_multiview_per_view_attributes";
     }
 }

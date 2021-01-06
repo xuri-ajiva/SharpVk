@@ -25,18 +25,15 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum SemaphoreType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Binary = 0, 
-        
+        Binary = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Timeline = 1, 
+        Timeline = 1
     }
 }

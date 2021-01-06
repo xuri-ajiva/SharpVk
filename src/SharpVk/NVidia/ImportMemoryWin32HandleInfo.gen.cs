@@ -28,54 +28,44 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Import Win32 memory created on the same physical device.
+    ///     Import Win32 memory created on the same physical device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportMemoryWin32HandleInfo
+    public struct ImportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// A flag specifying the type of memory handle in handle.
+        ///     A flag specifying the type of memory handle in handle.
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags? HandleType
+        public ExternalMemoryHandleTypeFlags? HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr? Handle
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.ImportMemoryWin32HandleInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.ImportMemoryWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ImportMemoryWin32HandleInfoNv;
             pointer->Next = null;
-            if (this.HandleType != null)
-            {
-                pointer->HandleType = this.HandleType.Value;
-            }
+            if (HandleType != null)
+                pointer->HandleType = HandleType.Value;
             else
-            {
-                pointer->HandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags);
-            }
-            if (this.Handle != null)
-            {
-                pointer->Handle = this.Handle.Value;
-            }
+                pointer->HandleType = default;
+            if (Handle != null)
+                pointer->Handle = Handle.Value;
             else
-            {
-                pointer->Handle = default(IntPtr);
-            }
+                pointer->Handle = default;
         }
     }
 }

@@ -25,13 +25,11 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum ValidationCacheHeaderVersion
     {
         /// <summary>
-        /// 
         /// </summary>
-        One = 1, 
+        One = 1
     }
 }

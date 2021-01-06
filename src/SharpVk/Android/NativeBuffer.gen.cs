@@ -28,81 +28,73 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct NativeBuffer
+    public struct NativeBuffer
     {
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr Handle
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int Stride
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Android.NativeBufferUsage2 Usage2
+        public NativeBufferUsage2 Usage2
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Android.NativeBuffer* pointer)
+        internal unsafe void MarshalTo(Interop.Android.NativeBuffer* pointer)
         {
             pointer->SType = StructureType.NativeBuffer;
             pointer->Next = null;
-            pointer->Handle = this.Handle.ToPointer();
-            pointer->Stride = this.Stride;
-            pointer->Format = this.Format;
-            pointer->Usage = this.Usage;
-            pointer->Usage2 = this.Usage2;
+            pointer->Handle = Handle.ToPointer();
+            pointer->Stride = Stride;
+            pointer->Format = Format;
+            pointer->Usage = Usage;
+            pointer->Usage2 = Usage2;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe NativeBuffer MarshalFrom(SharpVk.Interop.Android.NativeBuffer* pointer)
+        internal static unsafe NativeBuffer MarshalFrom(Interop.Android.NativeBuffer* pointer)
         {
-            NativeBuffer result = default(NativeBuffer);
-            result.Handle = new IntPtr(pointer->Handle);
+            var result = default(NativeBuffer);
+            result.Handle = new(pointer->Handle);
             result.Stride = pointer->Stride;
             result.Format = pointer->Format;
             result.Usage = pointer->Usage;

@@ -22,40 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Structure specifying a viewport.
+    ///     Structure specifying a viewport.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ViewportWScaling
+    public struct ViewportWScaling
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static ViewportWScaling Zero => new ViewportWScaling();
-        
+        public static ViewportWScaling Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public ViewportWScaling(float xcoeff, float ycoeff)
         {
-            this.Xcoeff = xcoeff;
-            this.Ycoeff = ycoeff;
+            Xcoeff = xcoeff;
+            Ycoeff = ycoeff;
         }
-        
+
         /// <summary>
-        /// xcoeff and ycoeff are the viewport's W scaling factor for x and y
-        /// respectively.
+        ///     xcoeff and ycoeff are the viewport's W scaling factor for x and y
+        ///     respectively.
         /// </summary>
-        public float Xcoeff; 
-        
+        public float Xcoeff;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float Ycoeff; 
+        public float Ycoeff;
     }
 }

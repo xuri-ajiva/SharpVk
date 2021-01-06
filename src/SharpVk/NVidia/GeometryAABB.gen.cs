@@ -22,78 +22,70 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct GeometryAABB
+    public struct GeometryAabb
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer AabbData
+        public Buffer AabbData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint NumAABBs
+        public uint NumAabBs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint Stride
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong Offset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.GeometryAABB* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.GeometryAabb* pointer)
         {
             pointer->SType = StructureType.GeometryAabb;
             pointer->Next = null;
-            pointer->AabbData = this.AabbData?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->NumAABBs = this.NumAABBs;
-            pointer->Stride = this.Stride;
-            pointer->Offset = this.Offset;
+            pointer->AabbData = AabbData?.Handle ?? default(Interop.Buffer);
+            pointer->NumAABBs = NumAabBs;
+            pointer->Stride = Stride;
+            pointer->Offset = Offset;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe GeometryAABB MarshalFrom(SharpVk.Interop.NVidia.GeometryAABB* pointer)
+        internal static unsafe GeometryAabb MarshalFrom(Interop.NVidia.GeometryAabb* pointer)
         {
-            GeometryAABB result = default(GeometryAABB);
-            result.AabbData = new SharpVk.Buffer(default(SharpVk.Device), pointer->AabbData);
-            result.NumAABBs = pointer->NumAABBs;
+            var result = default(GeometryAabb);
+            result.AabbData = new(default, pointer->AabbData);
+            result.NumAabBs = pointer->NumAABBs;
             result.Stride = pointer->Stride;
             result.Offset = pointer->Offset;
             return result;

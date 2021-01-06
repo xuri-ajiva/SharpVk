@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateDelegate(SharpVk.Interop.InstanceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Instance* instance);
+    public unsafe delegate Result VkInstanceCreateDelegate(InstanceCreateInfo* createInfo, AllocationCallbacks* allocator, Instance* instance);
 }

@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DisplayNativeHdrSurfaceCapabilities
+    public unsafe struct DisplayNativeHdrSurfaceCapabilities
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Specifies whether the surface supports local dimming. If this is
-        /// true, VkSwapchainDisplayNativeHdrCreateInfoAMD can be used to
-        /// explicitly enable or disable local dimming for the surface. Local
-        /// dimming may also be overriden by SetLocalDimming during the
-        /// lifetime of the swapchain.
+        ///     Specifies whether the surface supports local dimming. If this is
+        ///     true, VkSwapchainDisplayNativeHdrCreateInfoAMD can be used to
+        ///     explicitly enable or disable local dimming for the surface. Local
+        ///     dimming may also be overriden by SetLocalDimming during the
+        ///     lifetime of the swapchain.
         /// </summary>
-        public Bool32 LocalDimmingSupport; 
+        public Bool32 LocalDimmingSupport;
     }
 }

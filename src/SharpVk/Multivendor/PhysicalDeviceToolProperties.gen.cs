@@ -22,75 +22,68 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceToolProperties
+    public struct PhysicalDeviceToolProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public string Name
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string Version
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ToolPurposeFlags Purposes
+        public ToolPurposeFlags Purposes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string Description
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string Layer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceToolProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties* pointer)
+        internal static unsafe PhysicalDeviceToolProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceToolProperties* pointer)
         {
-            PhysicalDeviceToolProperties result = default(PhysicalDeviceToolProperties);
-            result.Name = Interop.HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxExtensionNameSize, true);
-            result.Version = Interop.HeapUtil.MarshalStringFrom(pointer->Version, Constants.MaxExtensionNameSize, true);
+            var result = default(PhysicalDeviceToolProperties);
+            result.Name = HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxExtensionNameSize, true);
+            result.Version = HeapUtil.MarshalStringFrom(pointer->Version, Constants.MaxExtensionNameSize, true);
             result.Purposes = pointer->Purposes;
-            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
-            result.Layer = Interop.HeapUtil.MarshalStringFrom(pointer->Layer, Constants.MaxExtensionNameSize, true);
+            result.Description = HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
+            result.Layer = HeapUtil.MarshalStringFrom(pointer->Layer, Constants.MaxExtensionNameSize, true);
             return result;
         }
     }

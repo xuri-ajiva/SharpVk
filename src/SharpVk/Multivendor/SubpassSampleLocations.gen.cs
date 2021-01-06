@@ -22,44 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SubpassSampleLocations
+    public struct SubpassSampleLocations
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint SubpassIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.SampleLocationsInfo SampleLocationsInfo
+        public SampleLocationsInfo SampleLocationsInfo
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SubpassSampleLocations* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.SubpassSampleLocations* pointer)
         {
-            pointer->SubpassIndex = this.SubpassIndex;
-            this.SampleLocationsInfo.MarshalTo(&pointer->SampleLocationsInfo);
+            pointer->SubpassIndex = SubpassIndex;
+            SampleLocationsInfo.MarshalTo(&pointer->SampleLocationsInfo);
         }
     }
 }

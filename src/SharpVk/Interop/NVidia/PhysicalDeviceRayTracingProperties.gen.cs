@@ -22,65 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceRayTracingProperties
+    public unsafe struct PhysicalDeviceRayTracingProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ShaderGroupHandleSize; 
-        
+        public uint ShaderGroupHandleSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxRecursionDepth; 
-        
+        public uint MaxRecursionDepth;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxShaderGroupStride; 
-        
+        public uint MaxShaderGroupStride;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ShaderGroupBaseAlignment; 
-        
+        public uint ShaderGroupBaseAlignment;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MaxGeometryCount; 
-        
+        public ulong MaxGeometryCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MaxInstanceCount; 
-        
+        public ulong MaxInstanceCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MaxTriangleCount; 
-        
+        public ulong MaxTriangleCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetAccelerationStructures; 
+        public uint MaxDescriptorSetAccelerationStructures;
     }
 }

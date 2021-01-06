@@ -22,55 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct RenderPassMultiviewCreateInfo
+    public unsafe struct RenderPassMultiviewCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SubpassCount; 
-        
+        public uint SubpassCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* ViewMasks; 
-        
+        public uint* ViewMasks;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DependencyCount; 
-        
+        public uint DependencyCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int* ViewOffsets; 
-        
+        public int* ViewOffsets;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint CorrelationMaskCount; 
-        
+        public uint CorrelationMaskCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* CorrelationMasks; 
+        public uint* CorrelationMasks;
     }
 }

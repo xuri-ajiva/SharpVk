@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SharedPresentSurfaceCapabilities
+    public struct SharedPresentSurfaceCapabilities
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags? SharedPresentSupportedUsageFlags
+        public ImageUsageFlags? SharedPresentSupportedUsageFlags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SharedPresentSurfaceCapabilities MarshalFrom(SharpVk.Interop.Khronos.SharedPresentSurfaceCapabilities* pointer)
+        internal static unsafe SharedPresentSurfaceCapabilities MarshalFrom(Interop.Khronos.SharedPresentSurfaceCapabilities* pointer)
         {
-            SharedPresentSurfaceCapabilities result = default(SharedPresentSurfaceCapabilities);
+            var result = default(SharedPresentSurfaceCapabilities);
             result.SharedPresentSupportedUsageFlags = pointer->SharedPresentSupportedUsageFlags;
             return result;
         }

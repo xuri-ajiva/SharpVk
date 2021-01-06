@@ -22,56 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public partial class DisplayMode
+    public class DisplayMode
     {
-        internal readonly SharpVk.Interop.Khronos.DisplayMode handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.PhysicalDevice parent; 
-        
-        internal DisplayMode(SharpVk.PhysicalDevice parent, SharpVk.Interop.Khronos.DisplayMode handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Khronos.DisplayMode Handle;
+
+        internal readonly PhysicalDevice Parent;
+
+        internal DisplayMode(PhysicalDevice parent, Interop.Khronos.DisplayMode handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Khronos.DisplayMode RawHandle => this.handle;
-        
+        public Interop.Khronos.DisplayMode RawHandle => Handle;
+
         /// <summary>
-        /// Query capabilities of a mode and plane combination.
+        ///     Query capabilities of a mode and plane combination.
         /// </summary>
         /// <param name="planeIndex">
         /// </param>
-        public unsafe SharpVk.Khronos.DisplayPlaneCapabilities GetDisplayPlaneCapabilities(uint planeIndex)
+        public unsafe DisplayPlaneCapabilities GetDisplayPlaneCapabilities(uint planeIndex)
         {
             try
             {
-                SharpVk.Khronos.DisplayPlaneCapabilities result = default(SharpVk.Khronos.DisplayPlaneCapabilities);
-                SharpVk.Khronos.DisplayPlaneCapabilities marshalledCapabilities = default(SharpVk.Khronos.DisplayPlaneCapabilities);
-                SharpVk.Interop.Khronos.VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate commandDelegate = commandCache.Cache.vkGetDisplayPlaneCapabilitiesKHR;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, planeIndex, &marshalledCapabilities);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var result = default(DisplayPlaneCapabilities);
+                var marshalledCapabilities = default(DisplayPlaneCapabilities);
+                var commandDelegate = CommandCache.Cache.VkGetDisplayPlaneCapabilitiesKhr;
+                var methodResult = commandDelegate(Parent.Handle, Handle, planeIndex, &marshalledCapabilities);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 result = marshalledCapabilities;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

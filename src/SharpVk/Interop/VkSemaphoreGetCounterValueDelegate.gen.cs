@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkSemaphoreGetCounterValueDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Semaphore semaphore, ulong* value);
+    public unsafe delegate Result VkSemaphoreGetCounterValueDelegate(Device device, Semaphore semaphore, ulong* value);
 }

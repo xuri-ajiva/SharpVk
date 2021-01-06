@@ -22,50 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Structure describing the texel buffer alignment features that can be
-    /// supported by an implementation
+    ///     Structure describing the texel buffer alignment features that can be
+    ///     supported by an implementation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceTexelBufferAlignmentFeatures
+    public struct PhysicalDeviceTexelBufferAlignmentFeatures
     {
         /// <summary>
-        /// Indicates whether the implementation uses more specific alignment
-        /// requirements advertised in
-        /// PhysicalDeviceTexelBufferAlignmentProperties rather than
-        /// PhysicalDeviceLimits.MinTexelBufferOffsetAlignment.
+        ///     Indicates whether the implementation uses more specific alignment
+        ///     requirements advertised in
+        ///     PhysicalDeviceTexelBufferAlignmentProperties rather than
+        ///     PhysicalDeviceLimits.MinTexelBufferOffsetAlignment.
         /// </summary>
         public bool TexelBufferAlignment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceTexelBufferAlignmentFeatures;
             pointer->Next = null;
-            pointer->TexelBufferAlignment = this.TexelBufferAlignment;
+            pointer->TexelBufferAlignment = TexelBufferAlignment;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTexelBufferAlignmentFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures* pointer)
+        internal static unsafe PhysicalDeviceTexelBufferAlignmentFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures* pointer)
         {
-            PhysicalDeviceTexelBufferAlignmentFeatures result = default(PhysicalDeviceTexelBufferAlignmentFeatures);
+            var result = default(PhysicalDeviceTexelBufferAlignmentFeatures);
             result.TexelBufferAlignment = pointer->TexelBufferAlignment;
             return result;
         }

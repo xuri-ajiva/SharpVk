@@ -22,35 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure describing display parameters associated with a display mode.
+    ///     Structure describing display parameters associated with a display mode.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayModeParameters
+    public struct DisplayModeParameters
     {
         /// <summary>
-        /// 
         /// </summary>
-        public DisplayModeParameters(SharpVk.Extent2D visibleRegion, uint refreshRate)
+        public DisplayModeParameters(Extent2D visibleRegion, uint refreshRate)
         {
-            this.VisibleRegion = visibleRegion;
-            this.RefreshRate = refreshRate;
+            VisibleRegion = visibleRegion;
+            RefreshRate = refreshRate;
         }
-        
+
         /// <summary>
-        /// The 2D extents of the visible region.
+        ///     The 2D extents of the visible region.
         /// </summary>
-        public SharpVk.Extent2D VisibleRegion; 
-        
+        public Extent2D VisibleRegion;
+
         /// <summary>
-        /// A UInt32 that is the number of times the display is refreshed each
-        /// second multiplied by 1000.
+        ///     A UInt32 that is the number of times the display is refreshed each
+        ///     second multiplied by 1000.
         /// </summary>
-        public uint RefreshRate; 
+        public uint RefreshRate;
     }
 }

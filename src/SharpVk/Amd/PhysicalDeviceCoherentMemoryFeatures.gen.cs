@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceCoherentMemoryFeatures
+    public struct PhysicalDeviceCoherentMemoryFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool DeviceCoherentMemory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Amd.PhysicalDeviceCoherentMemoryFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCoherentMemoryFeatures;
             pointer->Next = null;
-            pointer->DeviceCoherentMemory = this.DeviceCoherentMemory;
+            pointer->DeviceCoherentMemory = DeviceCoherentMemory;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceCoherentMemoryFeatures MarshalFrom(SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures* pointer)
+        internal static unsafe PhysicalDeviceCoherentMemoryFeatures MarshalFrom(Interop.Amd.PhysicalDeviceCoherentMemoryFeatures* pointer)
         {
-            PhysicalDeviceCoherentMemoryFeatures result = default(PhysicalDeviceCoherentMemoryFeatures);
+            var result = default(PhysicalDeviceCoherentMemoryFeatures);
             result.DeviceCoherentMemory = pointer->DeviceCoherentMemory;
             return result;
         }

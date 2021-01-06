@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDeviceGetAccelerationStructureMemoryRequirementsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.NVidia.AccelerationStructureMemoryRequirementsInfo* info, SharpVk.Interop.MemoryRequirements2* memoryRequirements);
+    public unsafe delegate void VkDeviceGetAccelerationStructureMemoryRequirementsDelegate(Device device, AccelerationStructureMemoryRequirementsInfo* info, MemoryRequirements2* memoryRequirements);
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPipelineCacheMergePipelineCachesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.PipelineCache destinationCache, uint sourceCacheCount, SharpVk.Interop.PipelineCache* sourceCaches);
+    public unsafe delegate Result VkPipelineCacheMergePipelineCachesDelegate(Device device, PipelineCache destinationCache, uint sourceCacheCount, PipelineCache* sourceCaches);
 }

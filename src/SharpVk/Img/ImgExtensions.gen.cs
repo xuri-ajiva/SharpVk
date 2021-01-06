@@ -25,18 +25,15 @@
 namespace SharpVk.Img
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class ImgExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string FilterCubic = "VK_IMG_filter_cubic"; 
-        
+        public const string FilterCubic = "VK_IMG_filter_cubic";
+
         /// <summary>
-        /// 
         /// </summary>
-        public const string FormatPvrtc = "VK_IMG_format_pvrtc"; 
+        public const string FormatPvrtc = "VK_IMG_format_pvrtc";
     }
 }

@@ -22,35 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure describing push descriptor limits that can be supported by an
-    /// implementation.
+    ///     Structure describing push descriptor limits that can be supported by an
+    ///     implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevicePushDescriptorProperties
+    public struct PhysicalDevicePushDescriptorProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPushDescriptors
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePushDescriptorProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePushDescriptorProperties* pointer)
+        internal static unsafe PhysicalDevicePushDescriptorProperties MarshalFrom(Interop.Khronos.PhysicalDevicePushDescriptorProperties* pointer)
         {
-            PhysicalDevicePushDescriptorProperties result = default(PhysicalDevicePushDescriptorProperties);
+            var result = default(PhysicalDevicePushDescriptorProperties);
             result.MaxPushDescriptors = pointer->MaxPushDescriptors;
             return result;
         }

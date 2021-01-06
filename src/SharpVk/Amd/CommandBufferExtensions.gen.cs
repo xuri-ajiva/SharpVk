@@ -22,47 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class CommandBufferExtensions
     {
         /// <summary>
-        /// Execute a pipelined write of a marker value into a buffer.
+        ///     Execute a pipelined write of a marker value into a buffer.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The CommandBuffer handle to extend.
+        ///     The CommandBuffer handle to extend.
         /// </param>
         /// <param name="pipelineStage">
-        /// One of the PipelineStageFlags values, specifying the pipeline stage
-        /// whose completion triggers the marker write.
+        ///     One of the PipelineStageFlags values, specifying the pipeline stage
+        ///     whose completion triggers the marker write.
         /// </param>
         /// <param name="destinationBuffer">
-        /// The buffer where the marker will be written to.
+        ///     The buffer where the marker will be written to.
         /// </param>
         /// <param name="destinationOffset">
-        /// The byte offset into the buffer where the marker will be written
-        /// to.
+        ///     The byte offset into the buffer where the marker will be written
+        ///     to.
         /// </param>
         /// <param name="marker">
-        /// The 32-bit value of the marker.
+        ///     The 32-bit value of the marker.
         /// </param>
-        public static unsafe void WriteBufferMarker(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineStageFlags pipelineStage, SharpVk.Buffer destinationBuffer, ulong destinationOffset, uint marker)
+        public static void WriteBufferMarker(this CommandBuffer extendedHandle, PipelineStageFlags pipelineStage, Buffer destinationBuffer, ulong destinationOffset, uint marker)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkCommandBufferWriteBufferMarkerDelegate commandDelegate = commandCache.Cache.vkCmdWriteBufferMarkerAMD;
-                commandDelegate(extendedHandle.handle, pipelineStage, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, marker);
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkCmdWriteBufferMarkerAmd;
+                commandDelegate(extendedHandle.Handle, pipelineStage, destinationBuffer?.Handle ?? default(Interop.Buffer), destinationOffset, marker);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

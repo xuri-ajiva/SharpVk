@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkPhysicalDeviceGetQueueFamilyPerformanceQueryPassesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.Khronos.QueryPoolPerformanceCreateInfo* performanceQueryCreateInfo, uint* numPasses);
+    public unsafe delegate void VkPhysicalDeviceGetQueueFamilyPerformanceQueryPassesDelegate(PhysicalDevice physicalDevice, QueryPoolPerformanceCreateInfo* performanceQueryCreateInfo, uint* numPasses);
 }

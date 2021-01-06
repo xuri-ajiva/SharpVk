@@ -22,25 +22,21 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct AttachmentSampleLocations
+    public struct AttachmentSampleLocations
     {
         /// <summary>
-        /// 
         /// </summary>
-        public uint AttachmentIndex; 
-        
+        public uint AttachmentIndex;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Multivendor.SampleLocationsInfo SampleLocationsInfo; 
+        public SampleLocationsInfo SampleLocationsInfo;
     }
 }

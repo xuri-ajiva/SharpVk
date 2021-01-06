@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderAtomicInt64Features
+    public struct PhysicalDeviceShaderAtomicInt64Features
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderBufferInt64Atomics
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderSharedInt64Atomics
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderAtomicInt64Features* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceShaderAtomicInt64Features* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderAtomicInt64FeaturesVersion;
             pointer->Next = null;
-            pointer->ShaderBufferInt64Atomics = this.ShaderBufferInt64Atomics;
-            pointer->ShaderSharedInt64Atomics = this.ShaderSharedInt64Atomics;
+            pointer->ShaderBufferInt64Atomics = ShaderBufferInt64Atomics;
+            pointer->ShaderSharedInt64Atomics = ShaderSharedInt64Atomics;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderAtomicInt64Features MarshalFrom(SharpVk.Interop.PhysicalDeviceShaderAtomicInt64Features* pointer)
+        internal static unsafe PhysicalDeviceShaderAtomicInt64Features MarshalFrom(Interop.PhysicalDeviceShaderAtomicInt64Features* pointer)
         {
-            PhysicalDeviceShaderAtomicInt64Features result = default(PhysicalDeviceShaderAtomicInt64Features);
+            var result = default(PhysicalDeviceShaderAtomicInt64Features);
             result.ShaderBufferInt64Atomics = pointer->ShaderBufferInt64Atomics;
             result.ShaderSharedInt64Atomics = pointer->ShaderSharedInt64Atomics;
             return result;

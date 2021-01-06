@@ -22,43 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying sparse image format properties.
+    ///     Structure specifying sparse image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SparseImageFormatProperties
+    public struct SparseImageFormatProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SparseImageFormatProperties(SharpVk.ImageAspectFlags aspectMask, SharpVk.Extent3D imageGranularity, SharpVk.SparseImageFormatFlags flags)
+        public SparseImageFormatProperties(ImageAspectFlags aspectMask, Extent3D imageGranularity, SparseImageFormatFlags flags)
         {
-            this.AspectMask = aspectMask;
-            this.ImageGranularity = imageGranularity;
-            this.Flags = flags;
+            AspectMask = aspectMask;
+            ImageGranularity = imageGranularity;
+            Flags = flags;
         }
-        
+
         /// <summary>
-        /// A bitmask of ImageAspectFlagBits specifying which aspects of the
-        /// image the properties apply to.
+        ///     A bitmask of ImageAspectFlagBits specifying which aspects of the
+        ///     image the properties apply to.
         /// </summary>
-        public SharpVk.ImageAspectFlags AspectMask; 
-        
+        public ImageAspectFlags AspectMask;
+
         /// <summary>
-        /// The width, height, and depth of the sparse image block in texels or
-        /// compressed texel blocks.
+        ///     The width, height, and depth of the sparse image block in texels or
+        ///     compressed texel blocks.
         /// </summary>
-        public SharpVk.Extent3D ImageGranularity; 
-        
+        public Extent3D ImageGranularity;
+
         /// <summary>
-        /// A bitmask specifying additional information about the sparse
-        /// resource. Bits which can be set include: + --
+        ///     A bitmask specifying additional information about the sparse
+        ///     resource. Bits which can be set include: + --
         /// </summary>
-        public SharpVk.SparseImageFormatFlags Flags; 
+        public SparseImageFormatFlags Flags;
     }
 }

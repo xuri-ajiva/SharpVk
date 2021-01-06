@@ -22,54 +22,52 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying capabilities of queues in a queue family.
+    ///     Bitmask specifying capabilities of queues in a queue family.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum QueueFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// The queues in this queue family support graphics operations.
+        ///     The queues in this queue family support graphics operations.
         /// </summary>
-        Graphics = 1 << 0, 
-        
+        Graphics = 1 << 0,
+
         /// <summary>
-        /// The queues in this queue family support compute operations.
+        ///     The queues in this queue family support compute operations.
         /// </summary>
-        Compute = 1 << 1, 
-        
+        Compute = 1 << 1,
+
         /// <summary>
-        /// The queues in this queue family support transfer operations.
+        ///     The queues in this queue family support transfer operations.
         /// </summary>
-        Transfer = 1 << 2, 
-        
+        Transfer = 1 << 2,
+
         /// <summary>
-        /// The queues in this queue family support sparse memory management
-        /// operations. If any of the sparse resource features are enabled,
-        /// then at least one queue family must support this bit.
+        ///     The queues in this queue family support sparse memory management
+        ///     operations. If any of the sparse resource features are enabled,
+        ///     then at least one queue family must support this bit.
         /// </summary>
-        SparseBinding = 1 << 3, 
-        
+        SparseBinding = 1 << 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        Protected = 1 << 4, 
-        
+        Protected = 1 << 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved6 = 1 << 6, 
-        
+        Reserved6 = 1 << 6,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved5 = 1 << 5, 
+        Reserved5 = 1 << 5
     }
 }

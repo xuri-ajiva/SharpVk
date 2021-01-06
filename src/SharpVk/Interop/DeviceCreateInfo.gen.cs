@@ -22,68 +22,66 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DeviceCreateInfo
+    public unsafe struct DeviceCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.DeviceCreateFlags Flags; 
-        
+        public DeviceCreateFlags Flags;
+
         /// <summary>
-        /// The unsigned integer size of the pQueueCreateInfos array.
+        ///     The unsigned integer size of the pQueueCreateInfos array.
         /// </summary>
-        public uint QueueCreateInfoCount; 
-        
+        public uint QueueCreateInfoCount;
+
         /// <summary>
-        /// An array of DeviceQueueCreateInfo structures describing the queues
-        /// that are requested to be created along with the logical device.
+        ///     An array of DeviceQueueCreateInfo structures describing the queues
+        ///     that are requested to be created along with the logical device.
         /// </summary>
-        public SharpVk.Interop.DeviceQueueCreateInfo* QueueCreateInfos; 
-        
+        public DeviceQueueCreateInfo* QueueCreateInfos;
+
         /// <summary>
-        /// enabledLayerCount is deprecated and ignored.
+        ///     enabledLayerCount is deprecated and ignored.
         /// </summary>
-        public uint EnabledLayerCount; 
-        
+        public uint EnabledLayerCount;
+
         /// <summary>
-        /// ppEnabledLayerNames is deprecated and ignored.
+        ///     ppEnabledLayerNames is deprecated and ignored.
         /// </summary>
-        public byte** EnabledLayerNames; 
-        
+        public byte** EnabledLayerNames;
+
         /// <summary>
-        /// The number of device extensions to enable.
+        ///     The number of device extensions to enable.
         /// </summary>
-        public uint EnabledExtensionCount; 
-        
+        public uint EnabledExtensionCount;
+
         /// <summary>
-        /// An array of enabledExtensionCount strings containing the names of
-        /// extensions to enable for the created device.
+        ///     An array of enabledExtensionCount strings containing the names of
+        ///     extensions to enable for the created device.
         /// </summary>
-        public byte** EnabledExtensionNames; 
-        
+        public byte** EnabledExtensionNames;
+
         /// <summary>
-        /// Null or a PhysicalDeviceFeatures structure that contains boolean
-        /// indicators of all the features to be enabled.
+        ///     Null or a PhysicalDeviceFeatures structure that contains boolean
+        ///     indicators of all the features to be enabled.
         /// </summary>
-        public SharpVk.Interop.PhysicalDeviceFeatures* EnabledFeatures; 
+        public PhysicalDeviceFeatures* EnabledFeatures;
     }
 }

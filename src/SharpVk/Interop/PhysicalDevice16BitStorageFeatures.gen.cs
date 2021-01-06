@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDevice16BitStorageFeatures
+    public unsafe struct PhysicalDevice16BitStorageFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StorageBuffer16BitAccess; 
-        
+        public Bool32 StorageBuffer16BitAccess;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 UniformAndStorageBuffer16BitAccess; 
-        
+        public Bool32 UniformAndStorageBuffer16BitAccess;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StoragePushConstant16; 
-        
+        public Bool32 StoragePushConstant16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StorageInputOutput16; 
+        public Bool32 StorageInputOutput16;
     }
 }

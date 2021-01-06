@@ -8,7 +8,7 @@ namespace SharpVk.Emit
     public class NamespaceBuilder
         : BlockBuilder
     {
-        private bool hasFirstElement = false;
+        private bool hasFirstElement;
 
         public NamespaceBuilder(IndentedTextWriter writer)
             : base(writer)
@@ -16,61 +16,61 @@ namespace SharpVk.Emit
         }
 
         public void EmitType(TypeKind kind,
-                                string name,
-                                Action<TypeBuilder> @type,
-                                AccessModifier accessModifier = AccessModifier.Internal,
-                                IEnumerable<string> baseTypes = null,
-                                TypeModifier modifiers = TypeModifier.None,
-                                IEnumerable<string> summary = null,
-                                Action<DocBuilder> docs = null,
-                                IEnumerable<string> attributes = null)
+            string name,
+            Action<TypeBuilder> type,
+            AccessModifier accessModifier = AccessModifier.Internal,
+            IEnumerable<string> baseTypes = null,
+            TypeModifier modifiers = TypeModifier.None,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null,
+            IEnumerable<string> attributes = null)
         {
-            this.EmitTypePreamble(summary, docs, attributes);
+            EmitTypePreamble(summary, docs, attributes);
 
-            this.writer.WriteLine($"{accessModifier.Emit()} {RenderTypeModifiers(modifiers)}{kind.ToString().ToLowerInvariant()} {name}");
+            Writer.WriteLine($"{accessModifier.Emit()} {RenderTypeModifiers(modifiers)}{kind.ToString().ToLowerInvariant()} {name}");
 
             if (baseTypes != null && baseTypes.Any())
             {
-                this.writer.IncreaseIndent();
-                this.writer.WriteLine($": {string.Join(", ", baseTypes)}");
-                this.writer.DecreaseIndent();
+                Writer.IncreaseIndent();
+                Writer.WriteLine($": {string.Join(", ", baseTypes)}");
+                Writer.DecreaseIndent();
             }
 
-            using (var builder = new TypeBuilder(this.writer.GetSubWriter(), name))
+            using (var builder = new TypeBuilder(Writer.GetSubWriter(), name))
             {
-                @type(builder);
+                type(builder);
             }
         }
 
         public void EmitDelegate(string type,
-                                    string name,
-                                    AccessModifier accessModifier = AccessModifier.Internal,
-                                    TypeModifier modifiers = TypeModifier.None,
-                                    Action<ParameterBuilder> parameters = null,
-                                    IEnumerable<string> summary = null,
-                                    Action<DocBuilder> docs = null,
-                                    IEnumerable<string> attributes = null)
+            string name,
+            AccessModifier accessModifier = AccessModifier.Internal,
+            TypeModifier modifiers = TypeModifier.None,
+            Action<ParameterBuilder> parameters = null,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null,
+            IEnumerable<string> attributes = null)
         {
-            this.EmitTypePreamble(summary, docs, attributes);
+            EmitTypePreamble(summary, docs, attributes);
 
-            string parameterList = parameters != null
-                                    ? ParameterBuilder.Apply(parameters)
-                                    : "";
+            var parameterList = parameters != null
+                ? ParameterBuilder.Apply(parameters)
+                : "";
 
-            this.writer.WriteLine($"{accessModifier.Emit()} {RenderTypeModifiers(modifiers)}delegate {type} {name}({parameterList});");
+            Writer.WriteLine($"{accessModifier.Emit()} {RenderTypeModifiers(modifiers)}delegate {type} {name}({parameterList});");
         }
 
         public void EmitEnum(string name,
-                                Action<EnumBuilder> @enum,
-                                AccessModifier accessModifier = AccessModifier.Internal,
-                                IEnumerable<string> summary = null,
-                                Action<DocBuilder> docs = null,
-                                IEnumerable<string> attributes = null)
+            Action<EnumBuilder> @enum,
+            AccessModifier accessModifier = AccessModifier.Internal,
+            IEnumerable<string> summary = null,
+            Action<DocBuilder> docs = null,
+            IEnumerable<string> attributes = null)
         {
-            this.EmitTypePreamble(summary, docs, attributes);
+            EmitTypePreamble(summary, docs, attributes);
 
-            this.writer.WriteLine($"{accessModifier.Emit()} enum {name}");
-            using (var builder = new EnumBuilder(this.writer.GetSubWriter()))
+            Writer.WriteLine($"{accessModifier.Emit()} enum {name}");
+            using (var builder = new EnumBuilder(Writer.GetSubWriter()))
             {
                 @enum(builder);
             }
@@ -78,26 +78,18 @@ namespace SharpVk.Emit
 
         private void EmitTypePreamble(IEnumerable<string> summary, Action<DocBuilder> docs, IEnumerable<string> attributes)
         {
-            if (this.hasFirstElement)
-            {
-                this.writer.WriteLine();
-            }
+            if (hasFirstElement)
+                Writer.WriteLine();
             else
-            {
-                this.hasFirstElement = true;
-            }
+                hasFirstElement = true;
 
-            var docsBuilder = new DocBuilder(this.writer.GetSubWriter(), summary);
+            var docsBuilder = new DocBuilder(Writer.GetSubWriter(), summary);
 
             docs?.Invoke(docsBuilder);
 
             if (attributes != null)
-            {
                 foreach (var attributeName in attributes)
-                {
-                    this.writer.WriteLine($"[{attributeName}]");
-                }
-            }
+                    Writer.WriteLine($"[{attributeName}]");
         }
 
         private string RenderTypeModifiers(TypeModifier modifiers)
@@ -105,12 +97,8 @@ namespace SharpVk.Emit
             var builder = new StringBuilder();
 
             foreach (TypeModifier value in Enum.GetValues(typeof(TypeModifier)))
-            {
                 if (value != TypeModifier.None && modifiers.HasFlag(value))
-                {
                     builder.Append(value.ToString().ToLowerInvariant() + " ");
-                }
-            }
 
             return builder.ToString();
         }

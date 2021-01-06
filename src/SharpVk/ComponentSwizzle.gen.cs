@@ -25,46 +25,46 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specify how a component is swizzled.
+    ///     Specify how a component is swizzled.
     /// </summary>
     public enum ComponentSwizzle
     {
         /// <summary>
-        /// The component is set to the identity swizzle.
+        ///     The component is set to the identity swizzle.
         /// </summary>
-        Identity = 0, 
-        
+        Identity = 0,
+
         /// <summary>
-        /// The component is set to zero.
+        ///     The component is set to zero.
         /// </summary>
-        Zero = 1, 
-        
+        Zero = 1,
+
         /// <summary>
-        /// The component is set to either 1 or 1.0 depending on whether the
-        /// type of the image view format is integer or floating-point
-        /// respectively, as determined by the Format Definition section for
-        /// each Format.
+        ///     The component is set to either 1 or 1.0 depending on whether the
+        ///     type of the image view format is integer or floating-point
+        ///     respectively, as determined by the Format Definition section for
+        ///     each Format.
         /// </summary>
-        One = 2, 
-        
+        One = 2,
+
         /// <summary>
-        /// The component is set to the value of the R component of the image.
+        ///     The component is set to the value of the R component of the image.
         /// </summary>
-        R = 3, 
-        
+        R = 3,
+
         /// <summary>
-        /// The component is set to the value of the G component of the image.
+        ///     The component is set to the value of the G component of the image.
         /// </summary>
-        G = 4, 
-        
+        G = 4,
+
         /// <summary>
-        /// The component is set to the value of the B component of the image.
+        ///     The component is set to the value of the B component of the image.
         /// </summary>
-        B = 5, 
-        
+        B = 5,
+
         /// <summary>
-        /// The component is set to the value of the A component of the image.
+        ///     The component is set to the value of the A component of the image.
         /// </summary>
-        A = 6, 
+        A = 6
     }
 }

@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalBufferProperties
+    public struct ExternalBufferProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryProperties ExternalMemoryProperties
+        public ExternalMemoryProperties ExternalMemoryProperties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ExternalBufferProperties MarshalFrom(SharpVk.Interop.ExternalBufferProperties* pointer)
+        internal static unsafe ExternalBufferProperties MarshalFrom(Interop.ExternalBufferProperties* pointer)
         {
-            ExternalBufferProperties result = default(ExternalBufferProperties);
+            var result = default(ExternalBufferProperties);
             result.ExternalMemoryProperties = pointer->ExternalMemoryProperties;
             return result;
         }

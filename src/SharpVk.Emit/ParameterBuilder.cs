@@ -6,7 +6,7 @@ namespace SharpVk.Emit
 {
     public class ParameterBuilder
     {
-        private List<string> parameters = new List<string>();
+        private readonly List<string> parameters = new List<string>();
 
         public void EmitParam(string type, string name, bool isOut = false, Action<ExpressionBuilder> defaultValue = null)
         {
@@ -14,12 +14,12 @@ namespace SharpVk.Emit
             var defaultExpression = new ExpressionBuilder(new IndentedTextWriter(writer));
             defaultValue?.Invoke(defaultExpression);
 
-            this.parameters.Add($"{(isOut ? "out " : "")}{type} {name}{(defaultValue != null ? " = " + writer.ToString() : "")}");
+            parameters.Add($"{(isOut ? "out " : "")}{type} {name}{(defaultValue != null ? " = " + writer : "")}");
         }
 
         public override string ToString()
         {
-            return string.Join(", ", this.parameters);
+            return string.Join(", ", parameters);
         }
 
         public static string Apply(Action<ParameterBuilder> parametersAction)

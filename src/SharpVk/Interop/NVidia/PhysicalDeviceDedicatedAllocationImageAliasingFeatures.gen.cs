@@ -22,31 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceDedicatedAllocationImageAliasingFeatures
+    public unsafe struct PhysicalDeviceDedicatedAllocationImageAliasingFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Indicates that the implementation supports aliasing of compatible
-        /// image objects on a dedicated allocation.
+        ///     Indicates that the implementation supports aliasing of compatible
+        ///     image objects on a dedicated allocation.
         /// </summary>
-        public Bool32 DedicatedAllocationImageAliasing; 
+        public Bool32 DedicatedAllocationImageAliasing;
     }
 }

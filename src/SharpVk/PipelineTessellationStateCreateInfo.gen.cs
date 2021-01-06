@@ -22,54 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created pipeline
-    /// tessellation state.
+    ///     Structure specifying parameters of a newly created pipeline
+    ///     tessellation state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineTessellationStateCreateInfo
+    public struct PipelineTessellationStateCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineTessellationStateCreateFlags? Flags
+        public PipelineTessellationStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// patchControlPoints number of control points per patch.
+        ///     patchControlPoints number of control points per patch.
         /// </summary>
         public uint PatchControlPoints
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PipelineTessellationStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PipelineTessellationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineTessellationStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.PipelineTessellationStateCreateFlags);
-            }
-            pointer->PatchControlPoints = this.PatchControlPoints;
+                pointer->Flags = default;
+            pointer->PatchControlPoints = PatchControlPoints;
         }
     }
 }

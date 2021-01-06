@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetBlendConstantsDelegate(SharpVk.Interop.CommandBuffer commandBuffer, float blendConstants);
+    public delegate void VkCommandBufferSetBlendConstantsDelegate(CommandBuffer commandBuffer, float blendConstants);
 }

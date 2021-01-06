@@ -1,7 +1,7 @@
-﻿using Remotion.Linq;
-using Remotion.Linq.Parsing.Structure;
-using System.Linq;
+﻿using System.Linq;
 using System.Linq.Expressions;
+using Remotion.Linq;
+using Remotion.Linq.Parsing.Structure;
 
 namespace SharpVk.Shanq
 {
@@ -13,34 +13,31 @@ namespace SharpVk.Shanq
         public ShanqQueryable(IQueryProvider provider, Expression expression)
             : base(provider, expression)
         {
-            this.executor = (ShanqQueryExecutor)((QueryProviderBase)provider).Executor;
+            executor = (ShanqQueryExecutor)((QueryProviderBase)provider).Executor;
         }
 
         public ShanqQueryable(QueryableOrigin origin, IQueryParser queryParser, IQueryExecutor executor, int binding = 0, int descriptorSet = 0)
             : base(new DefaultQueryProvider(typeof(ShanqQueryable<>), queryParser, executor))
         {
-            this.Origin = origin;
-            this.Binding = binding;
-            this.DescriptorSet = descriptorSet;
+            Origin = origin;
+            Binding = binding;
+            DescriptorSet = descriptorSet;
             this.executor = (ShanqQueryExecutor)executor;
         }
 
         public QueryableOrigin Origin
         {
             get;
-            private set;
         }
 
         public int Binding
         {
             get;
-            private set;
         }
 
         public int DescriptorSet
         {
             get;
-            private set;
         }
     }
 

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBindPipelineDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.Interop.Pipeline pipeline);
+    public delegate void VkCommandBufferBindPipelineDelegate(CommandBuffer commandBuffer, PipelineBindPoint pipelineBindPoint, Pipeline pipeline);
 }

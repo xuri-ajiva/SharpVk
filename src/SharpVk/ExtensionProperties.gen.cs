@@ -22,46 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a extension properties.
+    ///     Structure specifying a extension properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExtensionProperties
+    public struct ExtensionProperties
     {
         /// <summary>
-        /// A string specifying the name of the extension.
+        ///     A string specifying the name of the extension.
         /// </summary>
         public string ExtensionName
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The version of this extension. It is an integer, incremented with
-        /// backward compatible changes.
+        ///     The version of this extension. It is an integer, incremented with
+        ///     backward compatible changes.
         /// </summary>
         public Version SpecVersion
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ExtensionProperties MarshalFrom(SharpVk.Interop.ExtensionProperties* pointer)
+        internal static unsafe ExtensionProperties MarshalFrom(Interop.ExtensionProperties* pointer)
         {
-            ExtensionProperties result = default(ExtensionProperties);
-            result.ExtensionName = Interop.HeapUtil.MarshalStringFrom(pointer->ExtensionName, Constants.MaxExtensionNameSize, true);
-            result.SpecVersion = (Version)(pointer->SpecVersion);
+            var result = default(ExtensionProperties);
+            result.ExtensionName = HeapUtil.MarshalStringFrom(pointer->ExtensionName, Constants.MaxExtensionNameSize, true);
+            result.SpecVersion = pointer->SpecVersion;
             return result;
         }
     }

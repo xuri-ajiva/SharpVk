@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineTessellationDomainOriginStateCreateInfo
+    public struct PipelineTessellationDomainOriginStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.TessellationDomainOrigin DomainOrigin
+        public TessellationDomainOrigin DomainOrigin
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PipelineTessellationDomainOriginStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PipelineTessellationDomainOriginStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineTessellationDomainOriginStateCreateInfoVersion;
             pointer->Next = null;
-            pointer->DomainOrigin = this.DomainOrigin;
+            pointer->DomainOrigin = DomainOrigin;
         }
     }
 }

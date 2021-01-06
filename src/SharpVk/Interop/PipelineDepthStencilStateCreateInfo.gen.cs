@@ -22,77 +22,73 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineDepthStencilStateCreateInfo
+    public unsafe struct PipelineDepthStencilStateCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineDepthStencilStateCreateFlags Flags; 
-        
+        public PipelineDepthStencilStateCreateFlags Flags;
+
         /// <summary>
-        /// depthTestEnable controls whether depth testing is enabled.
+        ///     depthTestEnable controls whether depth testing is enabled.
         /// </summary>
-        public Bool32 DepthTestEnable; 
-        
+        public Bool32 DepthTestEnable;
+
         /// <summary>
-        /// depthWriteEnable controls whether depth writes are enabled.
+        ///     depthWriteEnable controls whether depth writes are enabled.
         /// </summary>
-        public Bool32 DepthWriteEnable; 
-        
+        public Bool32 DepthWriteEnable;
+
         /// <summary>
-        /// The comparison operator used in the depth test.
+        ///     The comparison operator used in the depth test.
         /// </summary>
-        public SharpVk.CompareOp DepthCompareOp; 
-        
+        public CompareOp DepthCompareOp;
+
         /// <summary>
-        /// depthBoundsTestEnable controls whether depth bounds testing is
-        /// enabled.
+        ///     depthBoundsTestEnable controls whether depth bounds testing is
+        ///     enabled.
         /// </summary>
-        public Bool32 DepthBoundsTestEnable; 
-        
+        public Bool32 DepthBoundsTestEnable;
+
         /// <summary>
-        /// stencilTestEnable controls whether stencil testing is enabled.
+        ///     stencilTestEnable controls whether stencil testing is enabled.
         /// </summary>
-        public Bool32 StencilTestEnable; 
-        
+        public Bool32 StencilTestEnable;
+
         /// <summary>
-        /// front and back control the parameters of the stencil test.
+        ///     front and back control the parameters of the stencil test.
         /// </summary>
-        public SharpVk.StencilOpState Front; 
-        
+        public StencilOpState Front;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StencilOpState Back; 
-        
+        public StencilOpState Back;
+
         /// <summary>
-        /// minDepthBounds and maxDepthBounds define the range of values used
-        /// in the depth bounds test.
+        ///     minDepthBounds and maxDepthBounds define the range of values used
+        ///     in the depth bounds test.
         /// </summary>
-        public float MinDepthBounds; 
-        
+        public float MinDepthBounds;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float MaxDepthBounds; 
+        public float MaxDepthBounds;
     }
 }

@@ -22,38 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DisplayModeCreateInfo
+    public unsafe struct DisplayModeCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use, and must be zero.
+        ///     Reserved for future use, and must be zero.
         /// </summary>
-        public SharpVk.Khronos.DisplayModeCreateFlags Flags; 
-        
+        public DisplayModeCreateFlags Flags;
+
         /// <summary>
-        /// A DisplayModeParametersKHR structure describing the display
-        /// parameters to use in creating the new mode. If the parameters are
-        /// not compatible with the specified display, the implementation must
-        /// return Result.ErrorINITIALIZATION_FAILED.
+        ///     A DisplayModeParametersKHR structure describing the display
+        ///     parameters to use in creating the new mode. If the parameters are
+        ///     not compatible with the specified display, the implementation must
+        ///     return Result.ErrorINITIALIZATION_FAILED.
         /// </summary>
-        public SharpVk.Khronos.DisplayModeParameters Parameters; 
+        public DisplayModeParameters Parameters;
     }
 }

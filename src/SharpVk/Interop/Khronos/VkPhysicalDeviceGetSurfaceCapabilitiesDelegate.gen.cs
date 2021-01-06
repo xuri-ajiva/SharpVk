@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetSurfaceCapabilitiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.Khronos.Surface surface, SharpVk.Khronos.SurfaceCapabilities* surfaceCapabilities);
+    public unsafe delegate Result VkPhysicalDeviceGetSurfaceCapabilitiesDelegate(PhysicalDevice physicalDevice, Surface surface, SurfaceCapabilities* surfaceCapabilities);
 }

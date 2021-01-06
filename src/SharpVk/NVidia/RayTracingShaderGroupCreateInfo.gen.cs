@@ -22,76 +22,68 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RayTracingShaderGroupCreateInfo
+    public struct RayTracingShaderGroupCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.RayTracingShaderGroupType Type
+        public RayTracingShaderGroupType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint GeneralShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ClosestHitShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint AnyHitShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint IntersectionShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.RayTracingShaderGroupCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.RayTracingShaderGroupCreateInfo* pointer)
         {
             pointer->SType = StructureType.RayTracingShaderGroupCreateInfo;
             pointer->Next = null;
-            pointer->Type = this.Type;
-            pointer->GeneralShader = this.GeneralShader;
-            pointer->ClosestHitShader = this.ClosestHitShader;
-            pointer->AnyHitShader = this.AnyHitShader;
-            pointer->IntersectionShader = this.IntersectionShader;
+            pointer->Type = Type;
+            pointer->GeneralShader = GeneralShader;
+            pointer->ClosestHitShader = ClosestHitShader;
+            pointer->AnyHitShader = AnyHitShader;
+            pointer->IntersectionShader = IntersectionShader;
         }
     }
 }

@@ -25,63 +25,51 @@
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum PerformanceCounterUnit
     {
         /// <summary>
-        /// 
         /// </summary>
-        Generic = 0, 
-        
+        Generic = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Percentage = 1, 
-        
+        Percentage = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Nanoseconds = 2, 
-        
+        Nanoseconds = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Bytes = 3, 
-        
+        Bytes = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        BytesPerSecond = 4, 
-        
+        BytesPerSecond = 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        Kelvin = 5, 
-        
+        Kelvin = 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        Watts = 6, 
-        
+        Watts = 6,
+
         /// <summary>
-        /// 
         /// </summary>
-        Volts = 7, 
-        
+        Volts = 7,
+
         /// <summary>
-        /// 
         /// </summary>
-        Amps = 8, 
-        
+        Amps = 8,
+
         /// <summary>
-        /// 
         /// </summary>
-        Hertz = 9, 
-        
+        Hertz = 9,
+
         /// <summary>
-        /// 
         /// </summary>
-        Cycles = 10, 
+        Cycles = 10
     }
 }

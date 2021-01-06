@@ -22,66 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMultiviewFeatures
+    public struct PhysicalDeviceMultiviewFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool Multiview
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool MultiviewGeometryShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool MultiviewTessellationShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceMultiviewFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceMultiviewFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMultiviewFeaturesVersion;
             pointer->Next = null;
-            pointer->Multiview = this.Multiview;
-            pointer->MultiviewGeometryShader = this.MultiviewGeometryShader;
-            pointer->MultiviewTessellationShader = this.MultiviewTessellationShader;
+            pointer->Multiview = Multiview;
+            pointer->MultiviewGeometryShader = MultiviewGeometryShader;
+            pointer->MultiviewTessellationShader = MultiviewTessellationShader;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMultiviewFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceMultiviewFeatures* pointer)
+        internal static unsafe PhysicalDeviceMultiviewFeatures MarshalFrom(Interop.PhysicalDeviceMultiviewFeatures* pointer)
         {
-            PhysicalDeviceMultiviewFeatures result = default(PhysicalDeviceMultiviewFeatures);
+            var result = default(PhysicalDeviceMultiviewFeatures);
             result.Multiview = pointer->Multiview;
             result.MultiviewGeometryShader = pointer->MultiviewGeometryShader;
             result.MultiviewTessellationShader = pointer->MultiviewTessellationShader;

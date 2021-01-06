@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineShaderStageRequiredSubgroupSizeCreateInfo
+    public struct PipelineShaderStageRequiredSubgroupSizeCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint RequiredSubgroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineShaderStageRequiredSubgroupSizeCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineShaderStageRequiredSubgroupSizeCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineShaderStageRequiredSubgroupSizeCreateInfo;
             pointer->Next = null;
-            pointer->RequiredSubgroupSize = this.RequiredSubgroupSize;
+            pointer->RequiredSubgroupSize = RequiredSubgroupSize;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineShaderStageRequiredSubgroupSizeCreateInfo MarshalFrom(SharpVk.Interop.Multivendor.PipelineShaderStageRequiredSubgroupSizeCreateInfo* pointer)
+        internal static unsafe PipelineShaderStageRequiredSubgroupSizeCreateInfo MarshalFrom(Interop.Multivendor.PipelineShaderStageRequiredSubgroupSizeCreateInfo* pointer)
         {
-            PipelineShaderStageRequiredSubgroupSizeCreateInfo result = default(PipelineShaderStageRequiredSubgroupSizeCreateInfo);
+            var result = default(PipelineShaderStageRequiredSubgroupSizeCreateInfo);
             result.RequiredSubgroupSize = pointer->RequiredSubgroupSize;
             return result;
         }

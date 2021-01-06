@@ -22,37 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Specify that an image is bound to a dedicated memory resource.
+    ///     Specify that an image is bound to a dedicated memory resource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DedicatedAllocationImageCreateInfo
+    public struct DedicatedAllocationImageCreateInfo
     {
         /// <summary>
-        /// Indicates whether the image will have a dedicated allocation bound
-        /// to it.
+        ///     Indicates whether the image will have a dedicated allocation bound
+        ///     to it.
         /// </summary>
         public bool DedicatedAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.DedicatedAllocationImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.DedicatedAllocationImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.DedicatedAllocationImageCreateInfo;
             pointer->Next = null;
-            pointer->DedicatedAllocation = this.DedicatedAllocation;
+            pointer->DedicatedAllocation = DedicatedAllocation;
         }
     }
 }

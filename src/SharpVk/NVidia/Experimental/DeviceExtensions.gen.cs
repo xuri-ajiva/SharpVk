@@ -22,79 +22,77 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class DeviceExtensions
     {
         /// <summary>
-        /// Get the handle for an image view for a specific descriptor type
+        ///     Get the handle for an image view for a specific descriptor type
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Device handle to extend.
+        ///     The Device handle to extend.
         /// </param>
         /// <param name="info">
-        /// Describes the image view to query and type of handle.
+        ///     Describes the image view to query and type of handle.
         /// </param>
-        public static unsafe void GetImageViewHandle(this SharpVk.Device extendedHandle, SharpVk.NVidia.Experimental.ImageViewHandleInfo info)
+        public static unsafe void GetImageViewHandle(this Device extendedHandle, ImageViewHandleInfo info)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo* marshalledInfo = default(SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo*);
-                commandCache = extendedHandle.commandCache;
-                marshalledInfo = (SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo>());
+                var commandCache = default(CommandCache);
+                var marshalledInfo = default(Interop.NVidia.Experimental.ImageViewHandleInfo*);
+                commandCache = extendedHandle.CommandCache;
+                marshalledInfo = (Interop.NVidia.Experimental.ImageViewHandleInfo*)HeapUtil.Allocate<Interop.NVidia.Experimental.ImageViewHandleInfo>();
                 info.MarshalTo(marshalledInfo);
-                SharpVk.Interop.NVidia.Experimental.VkDeviceGetImageViewHandleDelegate commandDelegate = commandCache.Cache.vkGetImageViewHandleNVX;
-                commandDelegate(extendedHandle.handle, marshalledInfo);
+                var commandDelegate = commandCache.Cache.VkGetImageViewHandleNvx;
+                commandDelegate(extendedHandle.Handle, marshalledInfo);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Device handle to extend.
+        ///     The Device handle to extend.
         /// </param>
         /// <param name="pipelineBindPoint">
-        /// The PipelineBindPoint that this layout targets.
+        ///     The PipelineBindPoint that this layout targets.
         /// </param>
         /// <param name="flags">
-        /// A bitmask providing usage hints of this layout. See
-        /// IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
-        /// the supported bits.
+        ///     A bitmask providing usage hints of this layout. See
+        ///     IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
+        ///     the supported bits.
         /// </param>
         /// <param name="tokens">
         /// </param>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public static unsafe SharpVk.NVidia.Experimental.IndirectCommandsLayout CreateIndirectCommandsLayout(this SharpVk.Device extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.NVidia.Experimental.IndirectCommandsLayoutUsageFlags flags, ArrayProxy<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>? tokens, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe IndirectCommandsLayout CreateIndirectCommandsLayout(this Device extendedHandle, PipelineBindPoint pipelineBindPoint, IndirectCommandsLayoutUsageFlags flags, ArrayProxy<IndirectCommandsLayoutToken>? tokens, AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.NVidia.Experimental.IndirectCommandsLayout result = default(SharpVk.NVidia.Experimental.IndirectCommandsLayout);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo*);
-                void* vkIndirectCommandsLayoutCreateInfoNVXNextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout marshalledIndirectCommandsLayout = default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo>());
+                var result = default(IndirectCommandsLayout);
+                var commandCache = default(CommandCache);
+                var marshalledCreateInfo = default(Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo*);
+                var vkIndirectCommandsLayoutCreateInfoNvxNextPointer = default(void*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                var marshalledIndirectCommandsLayout = default(Interop.NVidia.Experimental.IndirectCommandsLayout);
+                commandCache = extendedHandle.CommandCache;
+                marshalledCreateInfo = (Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo*)HeapUtil.Allocate<Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo>();
                 marshalledCreateInfo->SType = StructureType.IndirectCommandsLayoutCreateInfo;
-                marshalledCreateInfo->Next = vkIndirectCommandsLayoutCreateInfoNVXNextPointer;
+                marshalledCreateInfo->Next = vkIndirectCommandsLayoutCreateInfoNvxNextPointer;
                 marshalledCreateInfo->PipelineBindPoint = pipelineBindPoint;
                 marshalledCreateInfo->Flags = flags;
-                marshalledCreateInfo->TokenCount = (uint)(Interop.HeapUtil.GetLength(tokens));
+                marshalledCreateInfo->TokenCount = HeapUtil.GetLength(tokens);
                 if (tokens.IsNull())
                 {
                     marshalledCreateInfo->Tokens = null;
@@ -103,48 +101,41 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (tokens.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCreateInfo->Tokens = (SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>());
-                        *(SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(marshalledCreateInfo->Tokens) = tokens.Value.GetSingleValue();
+                        marshalledCreateInfo->Tokens = (IndirectCommandsLayoutToken*)HeapUtil.Allocate<IndirectCommandsLayoutToken>();
+                        *marshalledCreateInfo->Tokens = tokens.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>(Interop.HeapUtil.GetLength(tokens.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(tokens.Value)); index++)
-                        {
-                            fieldPointer[index] = tokens.Value[index];
-                        }
+                        var fieldPointer = (IndirectCommandsLayoutToken*)HeapUtil.AllocateAndClear<IndirectCommandsLayoutToken>(HeapUtil.GetLength(tokens.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(tokens.Value); index++) fieldPointer[index] = tokens.Value[index];
                         marshalledCreateInfo->Tokens = fieldPointer;
                     }
                 }
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.NVidia.Experimental.VkDeviceCreateIndirectCommandsLayoutDelegate commandDelegate = commandCache.Cache.vkCreateIndirectCommandsLayoutNVX;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledIndirectCommandsLayout);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.NVidia.Experimental.IndirectCommandsLayout(extendedHandle, marshalledIndirectCommandsLayout);
+                var commandDelegate = commandCache.Cache.VkCreateIndirectCommandsLayoutNvx;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledIndirectCommandsLayout);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(extendedHandle, marshalledIndirectCommandsLayout);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Device handle to extend.
+        ///     The Device handle to extend.
         /// </param>
         /// <param name="objectEntryTypes">
         /// </param>
@@ -153,49 +144,49 @@ namespace SharpVk.NVidia.Experimental
         /// <param name="objectEntryUsageFlags">
         /// </param>
         /// <param name="maxUniformBuffersPerDescriptor">
-        /// The maximum number of DescriptorType.UniformBuffer or
-        /// DescriptorType.UniformBufferDynamic used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.UniformBuffer or
+        ///     DescriptorType.UniformBufferDynamic used by any single registered
+        ///     DescriptorSet in this table.
         /// </param>
         /// <param name="maxStorageBuffersPerDescriptor">
-        /// The maximum number of DescriptorType.StorageBuffer or
-        /// DescriptorType.StorageBufferDynamic used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.StorageBuffer or
+        ///     DescriptorType.StorageBufferDynamic used by any single registered
+        ///     DescriptorSet in this table.
         /// </param>
         /// <param name="maxStorageImagesPerDescriptor">
-        /// The maximum number of DescriptorType.StorageImage or
-        /// DescriptorType.StorageTexelBuffer used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.StorageImage or
+        ///     DescriptorType.StorageTexelBuffer used by any single registered
+        ///     DescriptorSet in this table.
         /// </param>
         /// <param name="maxSampledImagesPerDescriptor">
-        /// The maximum number of DescriptorType.Sampler,
-        /// DescriptorType.CombinedImageSampler, DescriptorType.UniformTexelBuffer
-        /// or DescriptorType.InputAttachment used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.Sampler,
+        ///     DescriptorType.CombinedImageSampler, DescriptorType.UniformTexelBuffer
+        ///     or DescriptorType.InputAttachment used by any single registered
+        ///     DescriptorSet in this table.
         /// </param>
         /// <param name="maxPipelineLayouts">
-        /// The maximum number of unique PipelineLayout used by any registered
-        /// DescriptorSet or Pipeline in this table.
+        ///     The maximum number of unique PipelineLayout used by any registered
+        ///     DescriptorSet or Pipeline in this table.
         /// </param>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public static unsafe SharpVk.NVidia.Experimental.ObjectTable CreateObjectTable(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.NVidia.Experimental.ObjectEntryType>? objectEntryTypes, ArrayProxy<uint>? objectEntryCounts, ArrayProxy<SharpVk.NVidia.Experimental.ObjectEntryUsageFlags>? objectEntryUsageFlags, uint maxUniformBuffersPerDescriptor, uint maxStorageBuffersPerDescriptor, uint maxStorageImagesPerDescriptor, uint maxSampledImagesPerDescriptor, uint maxPipelineLayouts, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe ObjectTable CreateObjectTable(this Device extendedHandle, ArrayProxy<ObjectEntryType>? objectEntryTypes, ArrayProxy<uint>? objectEntryCounts, ArrayProxy<ObjectEntryUsageFlags>? objectEntryUsageFlags, uint maxUniformBuffersPerDescriptor, uint maxStorageBuffersPerDescriptor, uint maxStorageImagesPerDescriptor, uint maxSampledImagesPerDescriptor, uint maxPipelineLayouts, AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.NVidia.Experimental.ObjectTable result = default(SharpVk.NVidia.Experimental.ObjectTable);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo*);
-                void* vkObjectTableCreateInfoNVXNextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.NVidia.Experimental.ObjectTable marshalledObjectTable = default(SharpVk.Interop.NVidia.Experimental.ObjectTable);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo>());
+                var result = default(ObjectTable);
+                var commandCache = default(CommandCache);
+                var marshalledCreateInfo = default(Interop.NVidia.Experimental.ObjectTableCreateInfo*);
+                var vkObjectTableCreateInfoNvxNextPointer = default(void*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                var marshalledObjectTable = default(Interop.NVidia.Experimental.ObjectTable);
+                commandCache = extendedHandle.CommandCache;
+                marshalledCreateInfo = (Interop.NVidia.Experimental.ObjectTableCreateInfo*)HeapUtil.Allocate<Interop.NVidia.Experimental.ObjectTableCreateInfo>();
                 marshalledCreateInfo->SType = StructureType.ObjectTableCreateInfo;
-                marshalledCreateInfo->Next = vkObjectTableCreateInfoNVXNextPointer;
-                marshalledCreateInfo->ObjectCount = (uint)(Interop.HeapUtil.GetLength(objectEntryTypes));
+                marshalledCreateInfo->Next = vkObjectTableCreateInfoNvxNextPointer;
+                marshalledCreateInfo->ObjectCount = HeapUtil.GetLength(objectEntryTypes);
                 if (objectEntryTypes.IsNull())
                 {
                     marshalledCreateInfo->ObjectEntryTypes = null;
@@ -204,16 +195,13 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (objectEntryTypes.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCreateInfo->ObjectEntryTypes = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.ObjectEntryType>());
-                        *(SharpVk.NVidia.Experimental.ObjectEntryType*)(marshalledCreateInfo->ObjectEntryTypes) = objectEntryTypes.Value.GetSingleValue();
+                        marshalledCreateInfo->ObjectEntryTypes = (ObjectEntryType*)HeapUtil.Allocate<ObjectEntryType>();
+                        *marshalledCreateInfo->ObjectEntryTypes = objectEntryTypes.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryType>(Interop.HeapUtil.GetLength(objectEntryTypes.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectEntryTypes.Value)); index++)
-                        {
-                            fieldPointer[index] = objectEntryTypes.Value[index];
-                        }
+                        var fieldPointer = (ObjectEntryType*)HeapUtil.AllocateAndClear<ObjectEntryType>(HeapUtil.GetLength(objectEntryTypes.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectEntryTypes.Value); index++) fieldPointer[index] = objectEntryTypes.Value[index];
                         marshalledCreateInfo->ObjectEntryTypes = fieldPointer;
                     }
                 }
@@ -225,16 +213,13 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (objectEntryCounts.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCreateInfo->ObjectEntryCounts = (uint*)(Interop.HeapUtil.Allocate<uint>());
-                        *(uint*)(marshalledCreateInfo->ObjectEntryCounts) = objectEntryCounts.Value.GetSingleValue();
+                        marshalledCreateInfo->ObjectEntryCounts = (uint*)HeapUtil.Allocate<uint>();
+                        *marshalledCreateInfo->ObjectEntryCounts = objectEntryCounts.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(objectEntryCounts.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectEntryCounts.Value)); index++)
-                        {
-                            fieldPointer[index] = objectEntryCounts.Value[index];
-                        }
+                        var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(HeapUtil.GetLength(objectEntryCounts.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectEntryCounts.Value); index++) fieldPointer[index] = objectEntryCounts.Value[index];
                         marshalledCreateInfo->ObjectEntryCounts = fieldPointer;
                     }
                 }
@@ -246,16 +231,13 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (objectEntryUsageFlags.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCreateInfo->ObjectEntryUsageFlags = (SharpVk.NVidia.Experimental.ObjectEntryUsageFlags*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.ObjectEntryUsageFlags>());
-                        *(SharpVk.NVidia.Experimental.ObjectEntryUsageFlags*)(marshalledCreateInfo->ObjectEntryUsageFlags) = objectEntryUsageFlags.Value.GetSingleValue();
+                        marshalledCreateInfo->ObjectEntryUsageFlags = (ObjectEntryUsageFlags*)HeapUtil.Allocate<ObjectEntryUsageFlags>();
+                        *marshalledCreateInfo->ObjectEntryUsageFlags = objectEntryUsageFlags.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryUsageFlags*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryUsageFlags>(Interop.HeapUtil.GetLength(objectEntryUsageFlags.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectEntryUsageFlags.Value)); index++)
-                        {
-                            fieldPointer[index] = objectEntryUsageFlags.Value[index];
-                        }
+                        var fieldPointer = (ObjectEntryUsageFlags*)HeapUtil.AllocateAndClear<ObjectEntryUsageFlags>(HeapUtil.GetLength(objectEntryUsageFlags.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectEntryUsageFlags.Value); index++) fieldPointer[index] = objectEntryUsageFlags.Value[index];
                         marshalledCreateInfo->ObjectEntryUsageFlags = fieldPointer;
                     }
                 }
@@ -266,25 +248,22 @@ namespace SharpVk.NVidia.Experimental
                 marshalledCreateInfo->MaxPipelineLayouts = maxPipelineLayouts;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.NVidia.Experimental.VkDeviceCreateObjectTableDelegate commandDelegate = commandCache.Cache.vkCreateObjectTableNVX;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledObjectTable);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.NVidia.Experimental.ObjectTable(extendedHandle, marshalledObjectTable);
+                var commandDelegate = commandCache.Cache.VkCreateObjectTableNvx;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledObjectTable);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(extendedHandle, marshalledObjectTable);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

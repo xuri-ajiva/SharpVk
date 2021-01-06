@@ -22,27 +22,26 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DisplayModeProperties
+    public struct DisplayModeProperties
     {
         /// <summary>
-        /// A handle to the display mode described in this structure. This
-        /// handle will be valid for the lifetime of the Vulkan instance.
+        ///     A handle to the display mode described in this structure. This
+        ///     handle will be valid for the lifetime of the Vulkan instance.
         /// </summary>
-        public SharpVk.Interop.Khronos.DisplayMode DisplayMode; 
-        
+        public DisplayMode DisplayMode;
+
         /// <summary>
-        /// A DisplayModeParametersKHR structure describing the display
-        /// parameters associated with displayMode.
+        ///     A DisplayModeParametersKHR structure describing the display
+        ///     parameters associated with displayMode.
         /// </summary>
-        public SharpVk.Khronos.DisplayModeParameters Parameters; 
+        public DisplayModeParameters Parameters;
     }
 }

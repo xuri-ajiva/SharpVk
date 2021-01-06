@@ -23,11 +23,11 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetRandROutputDisplayDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, IntPtr* dpy, IntPtr rrOutput, SharpVk.Interop.Khronos.Display* display);
+    public unsafe delegate Result VkPhysicalDeviceGetRandROutputDisplayDelegate(PhysicalDevice physicalDevice, IntPtr* dpy, IntPtr rrOutput, Display* display);
 }

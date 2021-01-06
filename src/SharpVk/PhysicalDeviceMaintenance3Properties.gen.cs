@@ -22,43 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMaintenance3Properties
+    public struct PhysicalDeviceMaintenance3Properties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerSetDescriptors
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong MaxMemoryAllocationSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMaintenance3Properties MarshalFrom(SharpVk.Interop.PhysicalDeviceMaintenance3Properties* pointer)
+        internal static unsafe PhysicalDeviceMaintenance3Properties MarshalFrom(Interop.PhysicalDeviceMaintenance3Properties* pointer)
         {
-            PhysicalDeviceMaintenance3Properties result = default(PhysicalDeviceMaintenance3Properties);
+            var result = default(PhysicalDeviceMaintenance3Properties);
             result.MaxPerSetDescriptors = pointer->MaxPerSetDescriptors;
             result.MaxMemoryAllocationSize = pointer->MaxMemoryAllocationSize;
             return result;

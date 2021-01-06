@@ -22,40 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DrmFormatModifierProperties
+    public struct DrmFormatModifierProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public DrmFormatModifierProperties(ulong drmFormatModifier, uint drmFormatModifierPlaneCount, SharpVk.FormatFeatureFlags drmFormatModifierTilingFeatures)
+        public DrmFormatModifierProperties(ulong drmFormatModifier, uint drmFormatModifierPlaneCount, FormatFeatureFlags drmFormatModifierTilingFeatures)
         {
-            this.DrmFormatModifier = drmFormatModifier;
-            this.DrmFormatModifierPlaneCount = drmFormatModifierPlaneCount;
-            this.DrmFormatModifierTilingFeatures = drmFormatModifierTilingFeatures;
+            DrmFormatModifier = drmFormatModifier;
+            DrmFormatModifierPlaneCount = drmFormatModifierPlaneCount;
+            DrmFormatModifierTilingFeatures = drmFormatModifierTilingFeatures;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong DrmFormatModifier; 
-        
+        public ulong DrmFormatModifier;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DrmFormatModifierPlaneCount; 
-        
+        public uint DrmFormatModifierPlaneCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.FormatFeatureFlags DrmFormatModifierTilingFeatures; 
+        public FormatFeatureFlags DrmFormatModifierTilingFeatures;
     }
 }

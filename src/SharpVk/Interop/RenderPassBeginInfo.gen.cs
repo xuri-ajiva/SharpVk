@@ -22,58 +22,56 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct RenderPassBeginInfo
+    public unsafe struct RenderPassBeginInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The render pass to begin an instance of.
+        ///     The render pass to begin an instance of.
         /// </summary>
-        public SharpVk.Interop.RenderPass RenderPass; 
-        
+        public RenderPass RenderPass;
+
         /// <summary>
-        /// The framebuffer containing the attachments that are used with the
-        /// render pass.
+        ///     The framebuffer containing the attachments that are used with the
+        ///     render pass.
         /// </summary>
-        public SharpVk.Interop.Framebuffer Framebuffer; 
-        
+        public Framebuffer Framebuffer;
+
         /// <summary>
-        /// The render area that is affected by the render pass instance, and
-        /// is described in more detail below.
+        ///     The render area that is affected by the render pass instance, and
+        ///     is described in more detail below.
         /// </summary>
-        public SharpVk.Rect2D RenderArea; 
-        
+        public Rect2D RenderArea;
+
         /// <summary>
-        /// The number of elements in pClearValues.
+        ///     The number of elements in pClearValues.
         /// </summary>
-        public uint ClearValueCount; 
-        
+        public uint ClearValueCount;
+
         /// <summary>
-        /// An array of ClearValue structures that contains clear values for
-        /// each attachment, if the attachment uses a loadOp value of
-        /// VK_ATTACHMENT_LOAD_OP_CLEAR or if the attachment has a
-        /// depth/stencil format and uses a stencilLoadOp value of
-        /// VK_ATTACHMENT_LOAD_OP_CLEAR. The array is indexed by attachment
-        /// number. Only elements corresponding to cleared attachments are
-        /// used. Other elements of pClearValues are ignored.
+        ///     An array of ClearValue structures that contains clear values for
+        ///     each attachment, if the attachment uses a loadOp value of
+        ///     VK_ATTACHMENT_LOAD_OP_CLEAR or if the attachment has a
+        ///     depth/stencil format and uses a stencilLoadOp value of
+        ///     VK_ATTACHMENT_LOAD_OP_CLEAR. The array is indexed by attachment
+        ///     number. Only elements corresponding to cleared attachments are
+        ///     used. Other elements of pClearValues are ignored.
         /// </summary>
-        public SharpVk.ClearValue* ClearValues; 
+        public ClearValue* ClearValues;
     }
 }

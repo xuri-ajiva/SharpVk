@@ -22,26 +22,24 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ExtensionProperties
+    public unsafe struct ExtensionProperties
     {
         /// <summary>
-        /// A string specifying the name of the extension.
+        ///     A string specifying the name of the extension.
         /// </summary>
-        public fixed byte ExtensionName[Constants.MaxExtensionNameSize]; 
-        
+        public fixed byte ExtensionName[Constants.MaxExtensionNameSize];
+
         /// <summary>
-        /// The version of this extension. It is an integer, incremented with
-        /// backward compatible changes.
+        ///     The version of this extension. It is an integer, incremented with
+        ///     backward compatible changes.
         /// </summary>
-        public uint SpecVersion; 
+        public uint SpecVersion;
     }
 }

@@ -22,43 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMultiviewProperties
+    public struct PhysicalDeviceMultiviewProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxMultiviewViewCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxMultiviewInstanceIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceMultiviewProperties* pointer)
+        internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(Interop.PhysicalDeviceMultiviewProperties* pointer)
         {
-            PhysicalDeviceMultiviewProperties result = default(PhysicalDeviceMultiviewProperties);
+            var result = default(PhysicalDeviceMultiviewProperties);
             result.MaxMultiviewViewCount = pointer->MaxMultiviewViewCount;
             result.MaxMultiviewInstanceIndex = pointer->MaxMultiviewInstanceIndex;
             return result;

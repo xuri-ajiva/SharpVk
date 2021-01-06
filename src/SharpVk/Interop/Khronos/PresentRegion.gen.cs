@@ -22,25 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PresentRegion
+    public unsafe struct PresentRegion
     {
         /// <summary>
-        /// 
         /// </summary>
-        public uint RectangleCount; 
-        
+        public uint RectangleCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.RectLayer* Rectangles; 
+        public RectLayer* Rectangles;
     }
 }

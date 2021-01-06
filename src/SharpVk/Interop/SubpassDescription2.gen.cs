@@ -22,80 +22,67 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SubpassDescription2
+    public unsafe struct SubpassDescription2
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SubpassDescriptionFlags Flags; 
-        
+        public SubpassDescriptionFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint; 
-        
+        public PipelineBindPoint PipelineBindPoint;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ViewMask; 
-        
+        public uint ViewMask;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint InputAttachmentCount; 
-        
+        public uint InputAttachmentCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.AttachmentReference2* InputAttachments; 
-        
+        public AttachmentReference2* InputAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ColorAttachmentCount; 
-        
+        public uint ColorAttachmentCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.AttachmentReference2* ColorAttachments; 
-        
+        public AttachmentReference2* ColorAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.AttachmentReference2* ResolveAttachments; 
-        
+        public AttachmentReference2* ResolveAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.AttachmentReference2* DepthStencilAttachment; 
-        
+        public AttachmentReference2* DepthStencilAttachment;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PreserveAttachmentCount; 
-        
+        public uint PreserveAttachmentCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* PreserveAttachments; 
+        public uint* PreserveAttachments;
     }
 }

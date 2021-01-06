@@ -22,232 +22,206 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceDescriptorIndexingProperties
+    public struct PhysicalDeviceDescriptorIndexingProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxUpdateAfterBindDescriptorsInAllPools
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderUniformBufferArrayNonUniformIndexingNative
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderSampledImageArrayNonUniformIndexingNative
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderStorageBufferArrayNonUniformIndexingNative
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderStorageImageArrayNonUniformIndexingNative
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderInputAttachmentArrayNonUniformIndexingNative
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool RobustBufferAccessUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool QuadDivergentImplicitLod
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindSamplers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindUniformBuffers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindStorageBuffers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindSampledImages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindStorageImages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindInputAttachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxPerStageUpdateAfterBindResources
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindSamplers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindUniformBuffers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageBuffers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindSampledImages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageImages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindInputAttachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDescriptorIndexingProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDescriptorIndexingProperties* pointer)
+        internal static unsafe PhysicalDeviceDescriptorIndexingProperties MarshalFrom(Interop.PhysicalDeviceDescriptorIndexingProperties* pointer)
         {
-            PhysicalDeviceDescriptorIndexingProperties result = default(PhysicalDeviceDescriptorIndexingProperties);
+            var result = default(PhysicalDeviceDescriptorIndexingProperties);
             result.MaxUpdateAfterBindDescriptorsInAllPools = pointer->MaxUpdateAfterBindDescriptorsInAllPools;
             result.ShaderUniformBufferArrayNonUniformIndexingNative = pointer->ShaderUniformBufferArrayNonUniformIndexingNative;
             result.ShaderSampledImageArrayNonUniformIndexingNative = pointer->ShaderSampledImageArrayNonUniformIndexingNative;

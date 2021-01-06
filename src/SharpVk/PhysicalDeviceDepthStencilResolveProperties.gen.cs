@@ -22,61 +22,54 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceDepthStencilResolveProperties
+    public struct PhysicalDeviceDepthStencilResolveProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags SupportedDepthResolveModes
+        public ResolveModeFlags SupportedDepthResolveModes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags SupportedStencilResolveModes
+        public ResolveModeFlags SupportedStencilResolveModes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool IndependentResolveNone
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool IndependentResolve
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDepthStencilResolveProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDepthStencilResolveProperties* pointer)
+        internal static unsafe PhysicalDeviceDepthStencilResolveProperties MarshalFrom(Interop.PhysicalDeviceDepthStencilResolveProperties* pointer)
         {
-            PhysicalDeviceDepthStencilResolveProperties result = default(PhysicalDeviceDepthStencilResolveProperties);
+            var result = default(PhysicalDeviceDepthStencilResolveProperties);
             result.SupportedDepthResolveModes = pointer->SupportedDepthResolveModes;
             result.SupportedStencilResolveModes = pointer->SupportedStencilResolveModes;
             result.IndependentResolveNone = pointer->IndependentResolveNone;

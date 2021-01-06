@@ -22,30 +22,28 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DisplayPlaneProperties
+    public struct DisplayPlaneProperties
     {
         /// <summary>
-        /// The handle of the display the plane is currently associated with.
-        /// If the plane is not currently attached to any displays, this will
-        /// be null.
+        ///     The handle of the display the plane is currently associated with.
+        ///     If the plane is not currently attached to any displays, this will
+        ///     be null.
         /// </summary>
-        public SharpVk.Interop.Khronos.Display CurrentDisplay; 
-        
+        public Display CurrentDisplay;
+
         /// <summary>
-        /// The current z-order of the plane. This will be between 0 and the
-        /// value returned by
-        /// fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in
-        /// pPropertyCount.
+        ///     The current z-order of the plane. This will be between 0 and the
+        ///     value returned by
+        ///     fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in
+        ///     pPropertyCount.
         /// </summary>
-        public uint CurrentStackIndex; 
+        public uint CurrentStackIndex;
     }
 }

@@ -25,23 +25,19 @@
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum ShaderInfoType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Statistics = 0, 
-        
+        Statistics = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Binary = 1, 
-        
+        Binary = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Disassembly = 2, 
+        Disassembly = 2
     }
 }

@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ExportMemoryWin32HandleInfo
+    public unsafe struct ExportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A Windows SECURITY_ATTRIBUTES structure specifying security
-        /// attributes of the handle.
+        ///     A Windows SECURITY_ATTRIBUTES structure specifying security
+        ///     attributes of the handle.
         /// </summary>
-        public SecurityAttributes* Attributes; 
-        
+        public SecurityAttributes* Attributes;
+
         /// <summary>
-        /// A DWORD specifying access rights of the handle.
+        ///     A DWORD specifying access rights of the handle.
         /// </summary>
-        public uint DwAccess; 
+        public uint DwAccess;
     }
 }

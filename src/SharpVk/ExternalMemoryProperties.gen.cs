@@ -22,40 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalMemoryProperties
+    public struct ExternalMemoryProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ExternalMemoryProperties(SharpVk.ExternalMemoryFeatureFlags externalMemoryFeatures, SharpVk.ExternalMemoryHandleTypeFlags exportFromImportedHandleTypes, SharpVk.ExternalMemoryHandleTypeFlags compatibleHandleTypes)
+        public ExternalMemoryProperties(ExternalMemoryFeatureFlags externalMemoryFeatures, ExternalMemoryHandleTypeFlags exportFromImportedHandleTypes, ExternalMemoryHandleTypeFlags compatibleHandleTypes)
         {
-            this.ExternalMemoryFeatures = externalMemoryFeatures;
-            this.ExportFromImportedHandleTypes = exportFromImportedHandleTypes;
-            this.CompatibleHandleTypes = compatibleHandleTypes;
+            ExternalMemoryFeatures = externalMemoryFeatures;
+            ExportFromImportedHandleTypes = exportFromImportedHandleTypes;
+            CompatibleHandleTypes = compatibleHandleTypes;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryFeatureFlags ExternalMemoryFeatures; 
-        
+        public ExternalMemoryFeatureFlags ExternalMemoryFeatures;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryHandleTypeFlags ExportFromImportedHandleTypes; 
-        
+        public ExternalMemoryHandleTypeFlags ExportFromImportedHandleTypes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryHandleTypeFlags CompatibleHandleTypes; 
+        public ExternalMemoryHandleTypeFlags CompatibleHandleTypes;
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateGraphicsPipelinesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.PipelineCache pipelineCache, uint createInfoCount, SharpVk.Interop.GraphicsPipelineCreateInfo* createInfos, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Pipeline* pipelines);
+    public unsafe delegate Result VkDeviceCreateGraphicsPipelinesDelegate(Device device, PipelineCache pipelineCache, uint createInfoCount, GraphicsPipelineCreateInfo* createInfos, AllocationCallbacks* allocator, Pipeline* pipelines);
 }

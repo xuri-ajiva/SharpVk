@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SurfaceCapabilities2
+    public struct SurfaceCapabilities2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.SurfaceCapabilities SurfaceCapabilities
+        public SurfaceCapabilities SurfaceCapabilities
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SurfaceCapabilities2 MarshalFrom(SharpVk.Interop.Khronos.SurfaceCapabilities2* pointer)
+        internal static unsafe SurfaceCapabilities2 MarshalFrom(Interop.Khronos.SurfaceCapabilities2* pointer)
         {
-            SurfaceCapabilities2 result = default(SurfaceCapabilities2);
+            var result = default(SurfaceCapabilities2);
             result.SurfaceCapabilities = pointer->SurfaceCapabilities;
             return result;
         }

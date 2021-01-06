@@ -22,50 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceInlineUniformBlockProperties
+    public unsafe struct PhysicalDeviceInlineUniformBlockProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxInlineUniformBlockSize; 
-        
+        public uint MaxInlineUniformBlockSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorInlineUniformBlocks; 
-        
+        public uint MaxPerStageDescriptorInlineUniformBlocks;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindInlineUniformBlocks; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindInlineUniformBlocks;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetInlineUniformBlocks; 
-        
+        public uint MaxDescriptorSetInlineUniformBlocks;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindInlineUniformBlocks; 
+        public uint MaxDescriptorSetUpdateAfterBindInlineUniformBlocks;
     }
 }

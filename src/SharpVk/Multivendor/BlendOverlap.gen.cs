@@ -25,23 +25,19 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum BlendOverlap
     {
         /// <summary>
-        /// 
         /// </summary>
-        Uncorrelated = 0, 
-        
+        Uncorrelated = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Disjoint = 1, 
-        
+        Disjoint = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Conjoint = 2, 
+        Conjoint = 2
     }
 }

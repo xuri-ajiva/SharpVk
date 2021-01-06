@@ -22,43 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class PhysicalDeviceExtensions
     {
         /// <summary>
-        /// Returns device-generated commands related properties of a physical
-        /// device.
+        ///     Returns device-generated commands related properties of a physical
+        ///     device.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
+        ///     The PhysicalDevice handle to extend.
         /// </param>
         /// <param name="features">
         /// </param>
-        public static unsafe SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits GetGeneratedCommandsProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.NVidia.Experimental.DeviceGeneratedCommandsFeatures features)
+        public static unsafe DeviceGeneratedCommandsLimits GetGeneratedCommandsProperties(this PhysicalDevice extendedHandle, DeviceGeneratedCommandsFeatures features)
         {
             try
             {
-                SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits result = default(SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* marshalledFeatures = default(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures*);
-                SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits marshalledLimits = default(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits);
-                commandCache = extendedHandle.commandCache;
-                marshalledFeatures = (SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures>());
+                var result = default(DeviceGeneratedCommandsLimits);
+                var commandCache = default(CommandCache);
+                var marshalledFeatures = default(Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures*);
+                var marshalledLimits = default(Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits);
+                commandCache = extendedHandle.CommandCache;
+                marshalledFeatures = (Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures*)HeapUtil.Allocate<Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures>();
                 features.MarshalTo(marshalledFeatures);
-                SharpVk.Interop.NVidia.Experimental.VkPhysicalDeviceGetGeneratedCommandsPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX;
-                commandDelegate(extendedHandle.handle, marshalledFeatures, &marshalledLimits);
-                result = SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits.MarshalFrom(&marshalledLimits);
+                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceGeneratedCommandsPropertiesNvx;
+                commandDelegate(extendedHandle.Handle, marshalledFeatures, &marshalledLimits);
+                result = DeviceGeneratedCommandsLimits.MarshalFrom(&marshalledLimits);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

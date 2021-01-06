@@ -22,51 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Structure indicating support for explicit enable of depth clip
+    ///     Structure indicating support for explicit enable of depth clip
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceDepthClipEnableFeatures
+    public struct PhysicalDeviceDepthClipEnableFeatures
     {
         /// <summary>
-        /// Indicates that the implementation supports setting the depth
-        /// clipping operation explicitly via the
-        /// VkPipelineRasterizationDepthClipStateCreateInfoEXT pipeline state.
-        /// Otherwise depth clipping is only enabled when
-        /// VkPipelineRasterizationStateCreateInfo::depthClampEnable is set to
-        /// false.
+        ///     Indicates that the implementation supports setting the depth
+        ///     clipping operation explicitly via the
+        ///     VkPipelineRasterizationDepthClipStateCreateInfoEXT pipeline state.
+        ///     Otherwise depth clipping is only enabled when
+        ///     VkPipelineRasterizationStateCreateInfo::depthClampEnable is set to
+        ///     false.
         /// </summary>
         public bool DepthClipEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceDepthClipEnableFeatures;
             pointer->Next = null;
-            pointer->DepthClipEnable = this.DepthClipEnable;
+            pointer->DepthClipEnable = DepthClipEnable;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDepthClipEnableFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures* pointer)
+        internal static unsafe PhysicalDeviceDepthClipEnableFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures* pointer)
         {
-            PhysicalDeviceDepthClipEnableFeatures result = default(PhysicalDeviceDepthClipEnableFeatures);
+            var result = default(PhysicalDeviceDepthClipEnableFeatures);
             result.DepthClipEnable = pointer->DepthClipEnable;
             return result;
         }

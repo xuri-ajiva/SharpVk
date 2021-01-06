@@ -22,64 +22,63 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class CommandBufferExtensions
     {
         /// <summary>
-        /// Performs the generation of commands on the device.
+        ///     Performs the generation of commands on the device.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The CommandBuffer handle to extend.
+        ///     The CommandBuffer handle to extend.
         /// </param>
         /// <param name="processCommandsInfo">
         /// </param>
-        public static unsafe void ProcessCommands(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.Experimental.CommandProcessCommandsInfo processCommandsInfo)
+        public static unsafe void ProcessCommands(this CommandBuffer extendedHandle, CommandProcessCommandsInfo processCommandsInfo)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo* marshalledProcessCommandsInfo = default(SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo*);
-                commandCache = extendedHandle.commandCache;
-                marshalledProcessCommandsInfo = (SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo>());
+                var commandCache = default(CommandCache);
+                var marshalledProcessCommandsInfo = default(Interop.NVidia.Experimental.CommandProcessCommandsInfo*);
+                commandCache = extendedHandle.CommandCache;
+                marshalledProcessCommandsInfo = (Interop.NVidia.Experimental.CommandProcessCommandsInfo*)HeapUtil.Allocate<Interop.NVidia.Experimental.CommandProcessCommandsInfo>();
                 processCommandsInfo.MarshalTo(marshalledProcessCommandsInfo);
-                SharpVk.Interop.NVidia.Experimental.VkCommandBufferProcessCommandsDelegate commandDelegate = commandCache.Cache.vkCmdProcessCommandsNVX;
-                commandDelegate(extendedHandle.handle, marshalledProcessCommandsInfo);
+                var commandDelegate = commandCache.Cache.VkCmdProcessCommandsNvx;
+                commandDelegate(extendedHandle.Handle, marshalledProcessCommandsInfo);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Perform a reservation of command buffer space.
+        ///     Perform a reservation of command buffer space.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The CommandBuffer handle to extend.
+        ///     The CommandBuffer handle to extend.
         /// </param>
         /// <param name="reserveSpaceInfo">
         /// </param>
-        public static unsafe void ReserveSpaceForCommands(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.Experimental.CommandReserveSpaceForCommandsInfo reserveSpaceInfo)
+        public static unsafe void ReserveSpaceForCommands(this CommandBuffer extendedHandle, CommandReserveSpaceForCommandsInfo reserveSpaceInfo)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo* marshalledReserveSpaceInfo = default(SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo*);
-                commandCache = extendedHandle.commandCache;
-                marshalledReserveSpaceInfo = (SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo>());
+                var commandCache = default(CommandCache);
+                var marshalledReserveSpaceInfo = default(Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo*);
+                commandCache = extendedHandle.CommandCache;
+                marshalledReserveSpaceInfo = (Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo*)HeapUtil.Allocate<Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo>();
                 reserveSpaceInfo.MarshalTo(marshalledReserveSpaceInfo);
-                SharpVk.Interop.NVidia.Experimental.VkCommandBufferReserveSpaceForCommandsDelegate commandDelegate = commandCache.Cache.vkCmdReserveSpaceForCommandsNVX;
-                commandDelegate(extendedHandle.handle, marshalledReserveSpaceInfo);
+                var commandDelegate = commandCache.Cache.VkCmdReserveSpaceForCommandsNvx;
+                commandDelegate(extendedHandle.Handle, marshalledReserveSpaceInfo);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

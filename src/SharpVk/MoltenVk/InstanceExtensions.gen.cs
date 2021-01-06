@@ -23,141 +23,128 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
+using SharpVk.Khronos;
 
 namespace SharpVk.MoltenVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class InstanceExtensions
     {
         /// <summary>
-        /// Create a SurfaceKHR object for an iOS UIView.
+        ///     Create a SurfaceKHR object for an iOS UIView.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Instance handle to extend.
+        ///     The Instance handle to extend.
         /// </param>
         /// <param name="flags">
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </param>
         /// <param name="view">
-        /// A reference to a UIView object which will display this surface.
-        /// This UIView must be backed by a CALayer instance of type
-        /// CAMetalLayer.
+        ///     A reference to a UIView object which will display this surface.
+        ///     This UIView must be backed by a CALayer instance of type
+        ///     CAMetalLayer.
         /// </param>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateIOSSurface(this SharpVk.Instance extendedHandle, IntPtr view, SharpVk.MoltenVk.IOSSurfaceCreateFlags? flags = default(SharpVk.MoltenVk.IOSSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe Surface CreateIosSurface(this Instance extendedHandle, IntPtr view, IosSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo*);
-                void* vkIOSSurfaceCreateInfoMVKNextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo>());
+                var result = default(Surface);
+                var commandCache = default(CommandCache);
+                var marshalledCreateInfo = default(Interop.MoltenVk.IosSurfaceCreateInfo*);
+                var vkIosSurfaceCreateInfoMvkNextPointer = default(void*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                var marshalledSurface = default(Interop.Khronos.Surface);
+                commandCache = extendedHandle.CommandCache;
+                marshalledCreateInfo = (Interop.MoltenVk.IosSurfaceCreateInfo*)HeapUtil.Allocate<Interop.MoltenVk.IosSurfaceCreateInfo>();
                 marshalledCreateInfo->SType = StructureType.IosSurfaceCreateInfo;
-                marshalledCreateInfo->Next = vkIOSSurfaceCreateInfoMVKNextPointer;
+                marshalledCreateInfo->Next = vkIosSurfaceCreateInfoMvkNextPointer;
                 if (flags != null)
-                {
                     marshalledCreateInfo->Flags = flags.Value;
-                }
                 else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.MoltenVk.IOSSurfaceCreateFlags);
-                }
+                    marshalledCreateInfo->Flags = default;
                 marshalledCreateInfo->View = view.ToPointer();
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.MoltenVk.VkInstanceCreateIOSSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateIOSSurfaceMVK;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                var commandDelegate = commandCache.Cache.VkCreateIosSurfaceMvk;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(extendedHandle, marshalledSurface);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Create a SurfaceKHR object for a macOS NSView.
+        ///     Create a SurfaceKHR object for a macOS NSView.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Instance handle to extend.
+        ///     The Instance handle to extend.
         /// </param>
         /// <param name="flags">
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </param>
         /// <param name="view">
-        /// A reference to a NSView object which will display this surface.
-        /// This NSView must be backed by a CALayer instance of type
-        /// CAMetalLayer.
+        ///     A reference to a NSView object which will display this surface.
+        ///     This NSView must be backed by a CALayer instance of type
+        ///     CAMetalLayer.
         /// </param>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateMacOSSurface(this SharpVk.Instance extendedHandle, IntPtr view, SharpVk.MoltenVk.MacOSSurfaceCreateFlags? flags = default(SharpVk.MoltenVk.MacOSSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe Surface CreateMacOsSurface(this Instance extendedHandle, IntPtr view, MacOsSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo*);
-                void* vkMacOSSurfaceCreateInfoMVKNextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo>());
+                var result = default(Surface);
+                var commandCache = default(CommandCache);
+                var marshalledCreateInfo = default(Interop.MoltenVk.MacOsSurfaceCreateInfo*);
+                var vkMacOsSurfaceCreateInfoMvkNextPointer = default(void*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                var marshalledSurface = default(Interop.Khronos.Surface);
+                commandCache = extendedHandle.CommandCache;
+                marshalledCreateInfo = (Interop.MoltenVk.MacOsSurfaceCreateInfo*)HeapUtil.Allocate<Interop.MoltenVk.MacOsSurfaceCreateInfo>();
                 marshalledCreateInfo->SType = StructureType.MacosSurfaceCreateInfo;
-                marshalledCreateInfo->Next = vkMacOSSurfaceCreateInfoMVKNextPointer;
+                marshalledCreateInfo->Next = vkMacOsSurfaceCreateInfoMvkNextPointer;
                 if (flags != null)
-                {
                     marshalledCreateInfo->Flags = flags.Value;
-                }
                 else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.MoltenVk.MacOSSurfaceCreateFlags);
-                }
+                    marshalledCreateInfo->Flags = default;
                 marshalledCreateInfo->View = view.ToPointer();
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.MoltenVk.VkInstanceCreateMacOSSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateMacOSSurfaceMVK;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                var commandDelegate = commandCache.Cache.VkCreateMacOsSurfaceMvk;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(extendedHandle, marshalledSurface);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBuildAccelerationStructureDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.NVidia.AccelerationStructureInfo* info, SharpVk.Interop.Buffer instanceData, ulong instanceOffset, Bool32 update, SharpVk.Interop.NVidia.AccelerationStructure destination, SharpVk.Interop.NVidia.AccelerationStructure source, SharpVk.Interop.Buffer scratch, ulong scratchOffset);
+    public unsafe delegate void VkCommandBufferBuildAccelerationStructureDelegate(CommandBuffer commandBuffer, AccelerationStructureInfo* info, Buffer instanceData, ulong instanceOffset, Bool32 update, AccelerationStructure destination, AccelerationStructure source, Buffer scratch, ulong scratchOffset);
 }

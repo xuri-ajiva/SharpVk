@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceVertexAttributeDivisorProperties
+    public struct PhysicalDeviceVertexAttributeDivisorProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxVertexAttribDivisor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceVertexAttributeDivisorProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorProperties* pointer)
+        internal static unsafe PhysicalDeviceVertexAttributeDivisorProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorProperties* pointer)
         {
-            PhysicalDeviceVertexAttributeDivisorProperties result = default(PhysicalDeviceVertexAttributeDivisorProperties);
+            var result = default(PhysicalDeviceVertexAttributeDivisorProperties);
             result.MaxVertexAttribDivisor = pointer->MaxVertexAttribDivisor;
             return result;
         }

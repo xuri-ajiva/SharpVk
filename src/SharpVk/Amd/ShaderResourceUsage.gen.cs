@@ -22,52 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ShaderResourceUsage
+    public struct ShaderResourceUsage
     {
         /// <summary>
-        /// 
         /// </summary>
         public ShaderResourceUsage(uint numUsedVgprs, uint numUsedSgprs, uint ldsSizePerLocalWorkGroup, HostSize ldsUsageSizeInBytes, HostSize scratchMemUsageInBytes)
         {
-            this.NumUsedVgprs = numUsedVgprs;
-            this.NumUsedSgprs = numUsedSgprs;
-            this.LdsSizePerLocalWorkGroup = ldsSizePerLocalWorkGroup;
-            this.LdsUsageSizeInBytes = ldsUsageSizeInBytes;
-            this.ScratchMemUsageInBytes = scratchMemUsageInBytes;
+            NumUsedVgprs = numUsedVgprs;
+            NumUsedSgprs = numUsedSgprs;
+            LdsSizePerLocalWorkGroup = ldsSizePerLocalWorkGroup;
+            LdsUsageSizeInBytes = ldsUsageSizeInBytes;
+            ScratchMemUsageInBytes = scratchMemUsageInBytes;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint NumUsedVgprs; 
-        
+        public uint NumUsedVgprs;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint NumUsedSgprs; 
-        
+        public uint NumUsedSgprs;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint LdsSizePerLocalWorkGroup; 
-        
+        public uint LdsSizePerLocalWorkGroup;
+
         /// <summary>
-        /// 
         /// </summary>
-        public HostSize LdsUsageSizeInBytes; 
-        
+        public HostSize LdsUsageSizeInBytes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public HostSize ScratchMemUsageInBytes; 
+        public HostSize ScratchMemUsageInBytes;
     }
 }

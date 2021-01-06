@@ -22,73 +22,62 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportFenceFileDescriptorInfo
+    public struct ImportFenceFileDescriptorInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Fence Fence
+        public Fence Fence
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.FenceImportFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.ExternalFenceHandleTypeFlags HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int FileDescriptor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportFenceFileDescriptorInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.ImportFenceFileDescriptorInfo* pointer)
         {
             pointer->SType = StructureType.ImportFenceFileDescriptorInfo;
             pointer->Next = null;
-            pointer->Fence = this.Fence?.handle ?? default(SharpVk.Interop.Fence);
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            pointer->Fence = Fence?.Handle ?? default(Interop.Fence);
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.FenceImportFlags);
-            }
-            pointer->HandleType = this.HandleType;
-            pointer->FileDescriptor = this.FileDescriptor;
+                pointer->Flags = default;
+            pointer->HandleType = HandleType;
+            pointer->FileDescriptor = FileDescriptor;
         }
     }
 }

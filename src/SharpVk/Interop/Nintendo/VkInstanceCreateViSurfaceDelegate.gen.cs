@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Nintendo
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateViSurfaceDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.Nintendo.ViSurfaceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Khronos.Surface* surface);
+    public unsafe delegate Result VkInstanceCreateViSurfaceDelegate(Instance instance, ViSurfaceCreateInfo* createInfo, AllocationCallbacks* allocator, Surface* surface);
 }

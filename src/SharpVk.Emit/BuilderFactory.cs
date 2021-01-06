@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 
 namespace SharpVk.Emit
 {
@@ -14,7 +13,7 @@ namespace SharpVk.Emit
 
         public FileBuilder CreateFile(string subFolder, string fileName)
         {
-            return new FileBuilder(Path.Combine(this.outputFolder, subFolder ?? "."), fileName);
+            return new FileBuilder(Path.Combine(outputFolder, subFolder ?? "."), fileName);
         }
     }
 }

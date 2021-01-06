@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDescriptorSetLayoutDestroyDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DescriptorSetLayout descriptorSetLayout, SharpVk.Interop.AllocationCallbacks* allocator);
+    public unsafe delegate void VkDescriptorSetLayoutDestroyDelegate(Device device, DescriptorSetLayout descriptorSetLayout, AllocationCallbacks* allocator);
 }

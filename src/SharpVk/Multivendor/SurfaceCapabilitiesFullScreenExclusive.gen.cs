@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SurfaceCapabilitiesFullScreenExclusive
+    public struct SurfaceCapabilitiesFullScreenExclusive
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool FullScreenExclusiveSupported
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
         {
             pointer->SType = StructureType.SurfaceCapabilitiesFullScreenExclusive;
             pointer->Next = null;
-            pointer->FullScreenExclusiveSupported = this.FullScreenExclusiveSupported;
+            pointer->FullScreenExclusiveSupported = FullScreenExclusiveSupported;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SurfaceCapabilitiesFullScreenExclusive MarshalFrom(SharpVk.Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
+        internal static unsafe SurfaceCapabilitiesFullScreenExclusive MarshalFrom(Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
         {
-            SurfaceCapabilitiesFullScreenExclusive result = default(SurfaceCapabilitiesFullScreenExclusive);
+            var result = default(SurfaceCapabilitiesFullScreenExclusive);
             result.FullScreenExclusiveSupported = pointer->FullScreenExclusiveSupported;
             return result;
         }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetPipelineExecutableInternalRepresentationsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.PipelineExecutableInfo* executableInfo, uint* internalRepresentationCount, SharpVk.Interop.Khronos.PipelineExecutableInternalRepresentation* internalRepresentations);
+    public unsafe delegate Result VkDeviceGetPipelineExecutableInternalRepresentationsDelegate(Device device, PipelineExecutableInfo* executableInfo, uint* internalRepresentationCount, PipelineExecutableInternalRepresentation* internalRepresentations);
 }

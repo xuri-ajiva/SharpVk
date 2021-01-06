@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetLineWidthDelegate(SharpVk.Interop.CommandBuffer commandBuffer, float lineWidth);
+    public delegate void VkCommandBufferSetLineWidthDelegate(CommandBuffer commandBuffer, float lineWidth);
 }

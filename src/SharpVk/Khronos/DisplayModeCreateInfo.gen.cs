@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created display mode object.
+    ///     Structure specifying parameters of a newly created display mode object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayModeCreateInfo
+    public struct DisplayModeCreateInfo
     {
         /// <summary>
-        /// Reserved for future use, and must be zero.
+        ///     Reserved for future use, and must be zero.
         /// </summary>
-        public SharpVk.Khronos.DisplayModeCreateFlags? Flags
+        public DisplayModeCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A DisplayModeParametersKHR structure describing the display
-        /// parameters to use in creating the new mode. If the parameters are
-        /// not compatible with the specified display, the implementation must
-        /// return Result.ErrorINITIALIZATION_FAILED.
+        ///     A DisplayModeParametersKHR structure describing the display
+        ///     parameters to use in creating the new mode. If the parameters are
+        ///     not compatible with the specified display, the implementation must
+        ///     return Result.ErrorINITIALIZATION_FAILED.
         /// </summary>
-        public SharpVk.Khronos.DisplayModeParameters Parameters
+        public DisplayModeParameters Parameters
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplayModeCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.DisplayModeCreateInfo* pointer)
         {
             pointer->SType = StructureType.DisplayModeCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Khronos.DisplayModeCreateFlags);
-            }
-            pointer->Parameters = this.Parameters;
+                pointer->Flags = default;
+            pointer->Parameters = Parameters;
         }
     }
 }

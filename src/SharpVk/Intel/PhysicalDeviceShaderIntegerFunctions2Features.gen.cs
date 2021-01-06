@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderIntegerFunctions2Features
+    public struct PhysicalDeviceShaderIntegerFunctions2Features
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderIntegerFunctions2
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderIntegerFunctions2Features;
             pointer->Next = null;
-            pointer->ShaderIntegerFunctions2 = this.ShaderIntegerFunctions2;
+            pointer->ShaderIntegerFunctions2 = ShaderIntegerFunctions2;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderIntegerFunctions2Features MarshalFrom(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
+        internal static unsafe PhysicalDeviceShaderIntegerFunctions2Features MarshalFrom(Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
         {
-            PhysicalDeviceShaderIntegerFunctions2Features result = default(PhysicalDeviceShaderIntegerFunctions2Features);
+            var result = default(PhysicalDeviceShaderIntegerFunctions2Features);
             result.ShaderIntegerFunctions2 = pointer->ShaderIntegerFunctions2;
             return result;
         }

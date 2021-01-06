@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct GeometryData
+    public struct GeometryData
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.GeometryTriangles Triangles
+        public GeometryTriangles Triangles
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.GeometryAABB Aabbs
+        public GeometryAabb Aabbs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.GeometryData* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.GeometryData* pointer)
         {
-            this.Triangles.MarshalTo(&pointer->Triangles);
-            this.Aabbs.MarshalTo(&pointer->Aabbs);
+            Triangles.MarshalTo(&pointer->Triangles);
+            Aabbs.MarshalTo(&pointer->Aabbs);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe GeometryData MarshalFrom(SharpVk.Interop.NVidia.GeometryData* pointer)
+        internal static unsafe GeometryData MarshalFrom(Interop.NVidia.GeometryData* pointer)
         {
-            GeometryData result = default(GeometryData);
-            result.Triangles = SharpVk.NVidia.GeometryTriangles.MarshalFrom(&pointer->Triangles);
-            result.Aabbs = SharpVk.NVidia.GeometryAABB.MarshalFrom(&pointer->Aabbs);
+            var result = default(GeometryData);
+            result.Triangles = GeometryTriangles.MarshalFrom(&pointer->Triangles);
+            result.Aabbs = GeometryAabb.MarshalFrom(&pointer->Aabbs);
             return result;
         }
     }

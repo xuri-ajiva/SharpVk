@@ -22,97 +22,86 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AndroidHardwareBufferFormatProperties
+    public struct AndroidHardwareBufferFormatProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format
+        public Format Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ExternalFormat
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.FormatFeatureFlags FormatFeatures
+        public FormatFeatureFlags FormatFeatures
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ComponentMapping SamplerYcbcrConversionComponents
+        public ComponentMapping SamplerYcbcrConversionComponents
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrModelConversion SuggestedYcbcrModel
+        public SamplerYcbcrModelConversion SuggestedYcbcrModel
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrRange SuggestedYcbcrRange
+        public SamplerYcbcrRange SuggestedYcbcrRange
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation SuggestedXChromaOffset
+        public ChromaLocation SuggestedXChromaOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation SuggestedYChromaOffset
+        public ChromaLocation SuggestedYChromaOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AndroidHardwareBufferFormatProperties MarshalFrom(SharpVk.Interop.Android.AndroidHardwareBufferFormatProperties* pointer)
+        internal static unsafe AndroidHardwareBufferFormatProperties MarshalFrom(Interop.Android.AndroidHardwareBufferFormatProperties* pointer)
         {
-            AndroidHardwareBufferFormatProperties result = default(AndroidHardwareBufferFormatProperties);
+            var result = default(AndroidHardwareBufferFormatProperties);
             result.Format = pointer->Format;
             result.ExternalFormat = pointer->ExternalFormat;
             result.FormatFeatures = pointer->FormatFeatures;

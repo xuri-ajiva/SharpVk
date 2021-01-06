@@ -22,123 +22,114 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying intended usage of an image.
+    ///     Bitmask specifying intended usage of an image.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ImageUsageFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// Indicates that the image can be used as the source of a transfer
-        /// command.
+        ///     Indicates that the image can be used as the source of a transfer
+        ///     command.
         /// </summary>
-        TransferSource = 1 << 0, 
-        
+        TransferSource = 1 << 0,
+
         /// <summary>
-        /// Indicates that the image can be used as the destination of a
-        /// transfer command.
+        ///     Indicates that the image can be used as the destination of a
+        ///     transfer command.
         /// </summary>
-        TransferDestination = 1 << 1, 
-        
+        TransferDestination = 1 << 1,
+
         /// <summary>
-        /// Indicates that the image can be used to create an ImageView
-        /// suitable for occupying a DescriptorSet slot either of type
-        /// DescriptorType.SampledImage or DescriptorType.CombinedImageSampler,
-        /// and be sampled by a shader.
+        ///     Indicates that the image can be used to create an ImageView
+        ///     suitable for occupying a DescriptorSet slot either of type
+        ///     DescriptorType.SampledImage or DescriptorType.CombinedImageSampler,
+        ///     and be sampled by a shader.
         /// </summary>
-        Sampled = 1 << 2, 
-        
+        Sampled = 1 << 2,
+
         /// <summary>
-        /// Indicates that the image can be used to create an ImageView
-        /// suitable for occupying a DescriptorSet slot of type
-        /// DescriptorType.StorageImage.
+        ///     Indicates that the image can be used to create an ImageView
+        ///     suitable for occupying a DescriptorSet slot of type
+        ///     DescriptorType.StorageImage.
         /// </summary>
-        Storage = 1 << 3, 
-        
+        Storage = 1 << 3,
+
         /// <summary>
-        /// Indicates that the image can be used to create an ImageView
-        /// suitable for use as a color or resolve attachment in a Framebuffer.
+        ///     Indicates that the image can be used to create an ImageView
+        ///     suitable for use as a color or resolve attachment in a Framebuffer.
         /// </summary>
-        ColorAttachment = 1 << 4, 
-        
+        ColorAttachment = 1 << 4,
+
         /// <summary>
-        /// Indicates that the image can be used to create an ImageView
-        /// suitable for use as a depth/stencil attachment in a Framebuffer.
+        ///     Indicates that the image can be used to create an ImageView
+        ///     suitable for use as a depth/stencil attachment in a Framebuffer.
         /// </summary>
-        DepthStencilAttachment = 1 << 5, 
-        
+        DepthStencilAttachment = 1 << 5,
+
         /// <summary>
-        /// Indicates that the memory bound to this image will have been
-        /// allocated with the VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT (see
-        /// &lt;&lt;memory for more detail). This bit can be set for any image
-        /// that can be used to create an ImageView suitable for use as a
-        /// color, resolve, depth/stencil, or input attachment.
+        ///     Indicates that the memory bound to this image will have been
+        ///     allocated with the VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT (see
+        ///     &lt;&lt;memory for more detail). This bit can be set for any image
+        ///     that can be used to create an ImageView suitable for use as a
+        ///     color, resolve, depth/stencil, or input attachment.
         /// </summary>
-        TransientAttachment = 1 << 6, 
-        
+        TransientAttachment = 1 << 6,
+
         /// <summary>
-        /// Indicates that the image can be used to create an ImageView
-        /// suitable for occupying DescriptorSet slot of type
-        /// DescriptorType.InputAttachment; be read from a shader as an input
-        /// attachment; and be used as an input attachment in a framebuffer.
+        ///     Indicates that the image can be used to create an ImageView
+        ///     suitable for occupying DescriptorSet slot of type
+        ///     DescriptorType.InputAttachment; be read from a shader as an input
+        ///     attachment; and be used as an input attachment in a framebuffer.
         /// </summary>
-        InputAttachment = 1 << 7, 
-        
+        InputAttachment = 1 << 7,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved13 = 1 << 13, 
-        
+        Reserved13 = 1 << 13,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved14 = 1 << 14, 
-        
+        Reserved14 = 1 << 14,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved15 = 1 << 15, 
-        
+        Reserved15 = 1 << 15,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved10 = 1 << 10, 
-        
+        Reserved10 = 1 << 10,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved11 = 1 << 11, 
-        
+        Reserved11 = 1 << 11,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved12 = 1 << 12, 
-        
+        Reserved12 = 1 << 12,
+
         /// <summary>
-        /// 
         /// </summary>
-        ShadingRateImage = 1 << 8, 
-        
+        ShadingRateImage = 1 << 8,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved16 = 1 << 16, 
-        
+        Reserved16 = 1 << 16,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved17 = 1 << 17, 
-        
+        Reserved17 = 1 << 17,
+
         /// <summary>
-        /// 
         /// </summary>
-        FragmentDensityMap = 1 << 9, 
+        FragmentDensityMap = 1 << 9
     }
 }

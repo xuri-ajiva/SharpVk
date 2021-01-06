@@ -22,35 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Amd;
 
 namespace SharpVk.Interop.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceShaderCoreProperties2
+    public unsafe struct PhysicalDeviceShaderCoreProperties2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Amd.ShaderCorePropertiesFlags ShaderCoreFeatures; 
-        
+        public ShaderCorePropertiesFlags ShaderCoreFeatures;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ActiveComputeUnitCount; 
+        public uint ActiveComputeUnitCount;
     }
 }

@@ -22,37 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum PipelineShaderStageCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved2 = 1 << 2, 
-        
+        Reserved2 = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        AllowVaryingSubgroupSize = 1 << 0, 
-        
+        AllowVaryingSubgroupSize = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        RequireFullSubgroups = 1 << 1, 
-        
+        RequireFullSubgroups = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved3 = 1 << 3, 
+        Reserved3 = 1 << 3
     }
 }

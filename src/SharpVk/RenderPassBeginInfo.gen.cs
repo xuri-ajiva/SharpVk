@@ -22,81 +22,77 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying render pass begin info.
+    ///     Structure specifying render pass begin info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RenderPassBeginInfo
+    public struct RenderPassBeginInfo
     {
         /// <summary>
-        /// The render pass to begin an instance of.
+        ///     The render pass to begin an instance of.
         /// </summary>
-        public SharpVk.RenderPass RenderPass
+        public RenderPass RenderPass
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The framebuffer containing the attachments that are used with the
-        /// render pass.
+        ///     The framebuffer containing the attachments that are used with the
+        ///     render pass.
         /// </summary>
-        public SharpVk.Framebuffer Framebuffer
+        public Framebuffer Framebuffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The render area that is affected by the render pass instance, and
-        /// is described in more detail below.
+        ///     The render area that is affected by the render pass instance, and
+        ///     is described in more detail below.
         /// </summary>
-        public SharpVk.Rect2D RenderArea
+        public Rect2D RenderArea
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of ClearValue structures that contains clear values for
-        /// each attachment, if the attachment uses a loadOp value of
-        /// VK_ATTACHMENT_LOAD_OP_CLEAR or if the attachment has a
-        /// depth/stencil format and uses a stencilLoadOp value of
-        /// VK_ATTACHMENT_LOAD_OP_CLEAR. The array is indexed by attachment
-        /// number. Only elements corresponding to cleared attachments are
-        /// used. Other elements of pClearValues are ignored.
+        ///     An array of ClearValue structures that contains clear values for
+        ///     each attachment, if the attachment uses a loadOp value of
+        ///     VK_ATTACHMENT_LOAD_OP_CLEAR or if the attachment has a
+        ///     depth/stencil format and uses a stencilLoadOp value of
+        ///     VK_ATTACHMENT_LOAD_OP_CLEAR. The array is indexed by attachment
+        ///     number. Only elements corresponding to cleared attachments are
+        ///     used. Other elements of pClearValues are ignored.
         /// </summary>
-        public SharpVk.ClearValue[] ClearValues
+        public ClearValue[] ClearValues
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.RenderPassBeginInfo* pointer)
+        internal unsafe void MarshalTo(Interop.RenderPassBeginInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassBeginInfo;
             pointer->Next = null;
-            pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
-            pointer->Framebuffer = this.Framebuffer?.handle ?? default(SharpVk.Interop.Framebuffer);
-            pointer->RenderArea = this.RenderArea;
-            pointer->ClearValueCount = (uint)(Interop.HeapUtil.GetLength(this.ClearValues));
-            if (this.ClearValues != null)
+            pointer->RenderPass = RenderPass?.Handle ?? default(Interop.RenderPass);
+            pointer->Framebuffer = Framebuffer?.Handle ?? default(Interop.Framebuffer);
+            pointer->RenderArea = RenderArea;
+            pointer->ClearValueCount = HeapUtil.GetLength(ClearValues);
+            if (ClearValues != null)
             {
-                var fieldPointer = (SharpVk.ClearValue*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearValue>(this.ClearValues.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ClearValues.Length); index++)
-                {
-                    fieldPointer[index] = this.ClearValues[index];
-                }
+                var fieldPointer = (ClearValue*)HeapUtil.AllocateAndClear<ClearValue>(ClearValues.Length).ToPointer();
+                for (var index = 0; index < (uint)ClearValues.Length; index++) fieldPointer[index] = ClearValues[index];
                 pointer->ClearValues = fieldPointer;
             }
             else

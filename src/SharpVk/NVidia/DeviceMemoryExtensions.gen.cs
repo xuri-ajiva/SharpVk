@@ -23,42 +23,39 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class DeviceMemoryExtensions
     {
         /// <summary>
-        /// Retrieve Win32 handle to a device memory object.
+        ///     Retrieve Win32 handle to a device memory object.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The DeviceMemory handle to extend.
+        ///     The DeviceMemory handle to extend.
         /// </param>
         /// <param name="handleType">
         /// </param>
-        public static unsafe IntPtr GetWin32Handle(this SharpVk.DeviceMemory extendedHandle, SharpVk.NVidia.ExternalMemoryHandleTypeFlags handleType)
+        public static unsafe IntPtr GetWin32Handle(this DeviceMemory extendedHandle, ExternalMemoryHandleTypeFlags handleType)
         {
             try
             {
-                IntPtr result = default(IntPtr);
-                CommandCache commandCache = default(CommandCache);
-                IntPtr marshalledHandle = default(IntPtr);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkDeviceMemoryGetWin32HandleDelegate commandDelegate = commandCache.Cache.vkGetMemoryWin32HandleNV;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, handleType, &marshalledHandle);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var result = default(IntPtr);
+                var commandCache = default(CommandCache);
+                var marshalledHandle = default(IntPtr);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetMemoryWin32HandleNv;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, handleType, &marshalledHandle);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 result = marshalledHandle;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

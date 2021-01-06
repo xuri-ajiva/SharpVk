@@ -24,38 +24,38 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct Win32SurfaceCreateInfo
+    public unsafe struct Win32SurfaceCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Khronos.Win32SurfaceCreateFlags Flags; 
-        
+        public Win32SurfaceCreateFlags Flags;
+
         /// <summary>
-        /// Win32 HINSTANCE for the window to associate the surface with.
+        ///     Win32 HINSTANCE for the window to associate the surface with.
         /// </summary>
-        public IntPtr Hinstance; 
-        
+        public IntPtr Hinstance;
+
         /// <summary>
-        /// Win32 HWND for the window to associate the surface with.
+        ///     Win32 HWND for the window to associate the surface with.
         /// </summary>
-        public IntPtr Hwnd; 
+        public IntPtr Hwnd;
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkQueryPoolGetResultsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.QueryPool queryPool, uint firstQuery, uint queryCount, HostSize dataSize, void* data, ulong stride, SharpVk.QueryResultFlags flags);
+    public unsafe delegate Result VkQueryPoolGetResultsDelegate(Device device, QueryPool queryPool, uint firstQuery, uint queryCount, HostSize dataSize, void* data, ulong stride, QueryResultFlags flags);
 }

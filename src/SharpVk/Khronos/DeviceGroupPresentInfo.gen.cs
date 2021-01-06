@@ -22,59 +22,52 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGroupPresentInfo
+    public struct DeviceGroupPresentInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint[] DeviceMasks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.DeviceGroupPresentModeFlags Mode
+        public DeviceGroupPresentModeFlags Mode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DeviceGroupPresentInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.DeviceGroupPresentInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupPresentInfo;
             pointer->Next = null;
-            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceMasks));
-            if (this.DeviceMasks != null)
+            pointer->SwapchainCount = HeapUtil.GetLength(DeviceMasks);
+            if (DeviceMasks != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceMasks.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DeviceMasks.Length); index++)
-                {
-                    fieldPointer[index] = this.DeviceMasks[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(DeviceMasks.Length).ToPointer();
+                for (var index = 0; index < (uint)DeviceMasks.Length; index++) fieldPointer[index] = DeviceMasks[index];
                 pointer->DeviceMasks = fieldPointer;
             }
             else
             {
                 pointer->DeviceMasks = null;
             }
-            pointer->Mode = this.Mode;
+            pointer->Mode = Mode;
         }
     }
 }

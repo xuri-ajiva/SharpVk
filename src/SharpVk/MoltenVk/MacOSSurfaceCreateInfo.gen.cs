@@ -28,50 +28,45 @@ using System.Runtime.InteropServices;
 namespace SharpVk.MoltenVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created macOS surface
-    /// object.
+    ///     Structure specifying parameters of a newly created macOS surface
+    ///     object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MacOSSurfaceCreateInfo
+    public struct MacOsSurfaceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.MoltenVk.MacOSSurfaceCreateFlags? Flags
+        public MacOsSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A reference to a NSView object which will display this surface.
-        /// This NSView must be backed by a CALayer instance of type
-        /// CAMetalLayer.
+        ///     A reference to a NSView object which will display this surface.
+        ///     This NSView must be backed by a CALayer instance of type
+        ///     CAMetalLayer.
         /// </summary>
         public IntPtr View
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.MoltenVk.MacOsSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.MacosSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.MoltenVk.MacOSSurfaceCreateFlags);
-            }
-            pointer->View = this.View.ToPointer();
+                pointer->Flags = default;
+            pointer->View = View.ToPointer();
         }
     }
 }

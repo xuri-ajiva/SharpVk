@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetDeviceMaskDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint deviceMask);
+    public delegate void VkCommandBufferSetDeviceMaskDelegate(CommandBuffer commandBuffer, uint deviceMask);
 }

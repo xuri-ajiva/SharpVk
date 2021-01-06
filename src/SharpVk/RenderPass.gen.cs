@@ -23,90 +23,90 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Opaque handle to a render pass object.
+    ///     Opaque handle to a render pass object.
     /// </summary>
-    public partial class RenderPass
+    public class RenderPass
         : IDisposable
     {
-        internal readonly SharpVk.Interop.RenderPass handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal RenderPass(SharpVk.Device parent, SharpVk.Interop.RenderPass handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.RenderPass Handle;
+
+        internal readonly Device Parent;
+
+        internal RenderPass(Device parent, Interop.RenderPass handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.RenderPass RawHandle => this.handle;
-        
+        public Interop.RenderPass RawHandle => Handle;
+
         /// <summary>
-        /// Destroy a render pass object.
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
+        ///     Destroy a render pass object.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.VkRenderPassDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyRenderPass;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyRenderPass;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Returns the granularity for optimal render area.
+        ///     Returns the granularity for optimal render area.
         /// </summary>
-        public unsafe SharpVk.Extent2D GetRenderAreaGranularity()
+        public unsafe Extent2D GetRenderAreaGranularity()
         {
             try
             {
-                SharpVk.Extent2D result = default(SharpVk.Extent2D);
-                SharpVk.Extent2D marshalledGranularity = default(SharpVk.Extent2D);
-                SharpVk.Interop.VkRenderPassGetRenderAreaGranularityDelegate commandDelegate = commandCache.Cache.vkGetRenderAreaGranularity;
-                commandDelegate(this.parent.handle, this.handle, &marshalledGranularity);
+                var result = default(Extent2D);
+                var marshalledGranularity = default(Extent2D);
+                var commandDelegate = CommandCache.Cache.VkGetRenderAreaGranularity;
+                commandDelegate(Parent.Handle, Handle, &marshalledGranularity);
                 result = marshalledGranularity;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

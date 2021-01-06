@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ProtectedSubmitInfo
+    public struct ProtectedSubmitInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ProtectedSubmit
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ProtectedSubmitInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ProtectedSubmitInfo* pointer)
         {
             pointer->SType = StructureType.ProtectedSubmitInfo;
             pointer->Next = null;
-            pointer->ProtectedSubmit = this.ProtectedSubmit;
+            pointer->ProtectedSubmit = ProtectedSubmit;
         }
     }
 }

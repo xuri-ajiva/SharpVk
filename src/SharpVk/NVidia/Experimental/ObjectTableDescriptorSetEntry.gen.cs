@@ -22,78 +22,70 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ObjectTableDescriptorSetEntry
+    public struct ObjectTableDescriptorSetEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType Type
+        public ObjectEntryType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags Flags
+        public ObjectEntryUsageFlags Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineLayout PipelineLayout
+        public PipelineLayout PipelineLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorSet DescriptorSet
+        public DescriptorSet DescriptorSet
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTableDescriptorSetEntry* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.ObjectTableDescriptorSetEntry* pointer)
         {
-            pointer->Type = this.Type;
-            pointer->Flags = this.Flags;
-            pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
-            pointer->DescriptorSet = this.DescriptorSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
+            pointer->Type = Type;
+            pointer->Flags = Flags;
+            pointer->PipelineLayout = PipelineLayout?.Handle ?? default(Interop.PipelineLayout);
+            pointer->DescriptorSet = DescriptorSet?.Handle ?? default(Interop.DescriptorSet);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ObjectTableDescriptorSetEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTableDescriptorSetEntry* pointer)
+        internal static unsafe ObjectTableDescriptorSetEntry MarshalFrom(Interop.NVidia.Experimental.ObjectTableDescriptorSetEntry* pointer)
         {
-            ObjectTableDescriptorSetEntry result = default(ObjectTableDescriptorSetEntry);
+            var result = default(ObjectTableDescriptorSetEntry);
             result.Type = pointer->Type;
             result.Flags = pointer->Flags;
-            result.PipelineLayout = new SharpVk.PipelineLayout(default(SharpVk.Device), pointer->PipelineLayout);
-            result.DescriptorSet = new SharpVk.DescriptorSet(default(SharpVk.DescriptorPool), pointer->DescriptorSet);
+            result.PipelineLayout = new(default, pointer->PipelineLayout);
+            result.DescriptorSet = new(default, pointer->DescriptorSet);
             return result;
         }
     }

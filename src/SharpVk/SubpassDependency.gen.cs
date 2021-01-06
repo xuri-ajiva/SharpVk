@@ -22,66 +22,64 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a subpass dependency.
+    ///     Structure specifying a subpass dependency.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SubpassDependency
+    public struct SubpassDependency
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SubpassDependency(uint sourceSubpass, uint destinationSubpass, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.AccessFlags sourceAccessMask, SharpVk.AccessFlags destinationAccessMask, SharpVk.DependencyFlags dependencyFlags)
+        public SubpassDependency(uint sourceSubpass, uint destinationSubpass, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, AccessFlags sourceAccessMask, AccessFlags destinationAccessMask, DependencyFlags dependencyFlags)
         {
-            this.SourceSubpass = sourceSubpass;
-            this.DestinationSubpass = destinationSubpass;
-            this.SourceStageMask = sourceStageMask;
-            this.DestinationStageMask = destinationStageMask;
-            this.SourceAccessMask = sourceAccessMask;
-            this.DestinationAccessMask = destinationAccessMask;
-            this.DependencyFlags = dependencyFlags;
+            SourceSubpass = sourceSubpass;
+            DestinationSubpass = destinationSubpass;
+            SourceStageMask = sourceStageMask;
+            DestinationStageMask = destinationStageMask;
+            SourceAccessMask = sourceAccessMask;
+            DestinationAccessMask = destinationAccessMask;
+            DependencyFlags = dependencyFlags;
         }
-        
+
         /// <summary>
-        /// The subpass index of the first subpass in the dependency, or
-        /// VK_SUBPASS_EXTERNAL.
+        ///     The subpass index of the first subpass in the dependency, or
+        ///     VK_SUBPASS_EXTERNAL.
         /// </summary>
-        public uint SourceSubpass; 
-        
+        public uint SourceSubpass;
+
         /// <summary>
-        /// The subpass index of the second subpass in the dependency, or
-        /// VK_SUBPASS_EXTERNAL.
+        ///     The subpass index of the second subpass in the dependency, or
+        ///     VK_SUBPASS_EXTERNAL.
         /// </summary>
-        public uint DestinationSubpass; 
-        
+        public uint DestinationSubpass;
+
         /// <summary>
-        /// srcStageMask defines a source stage mask.
+        ///     srcStageMask defines a source stage mask.
         /// </summary>
-        public SharpVk.PipelineStageFlags SourceStageMask; 
-        
+        public PipelineStageFlags SourceStageMask;
+
         /// <summary>
-        /// dstStageMask defines a destination stage mask.
+        ///     dstStageMask defines a destination stage mask.
         /// </summary>
-        public SharpVk.PipelineStageFlags DestinationStageMask; 
-        
+        public PipelineStageFlags DestinationStageMask;
+
         /// <summary>
-        /// srcAccessMask defines a source access mask.
+        ///     srcAccessMask defines a source access mask.
         /// </summary>
-        public SharpVk.AccessFlags SourceAccessMask; 
-        
+        public AccessFlags SourceAccessMask;
+
         /// <summary>
-        /// dstAccessMask defines a destination access mask.
+        ///     dstAccessMask defines a destination access mask.
         /// </summary>
-        public SharpVk.AccessFlags DestinationAccessMask; 
-        
+        public AccessFlags DestinationAccessMask;
+
         /// <summary>
-        /// A bitmask of DependencyFlagBits.
+        ///     A bitmask of DependencyFlagBits.
         /// </summary>
-        public SharpVk.DependencyFlags DependencyFlags; 
+        public DependencyFlags DependencyFlags;
     }
 }

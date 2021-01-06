@@ -22,40 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct QueryPoolPerformanceCreateInfo
+    public unsafe struct QueryPoolPerformanceCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint QueueFamilyIndex; 
-        
+        public uint QueueFamilyIndex;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint CounterIndexCount; 
-        
+        public uint CounterIndexCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* CounterIndices; 
+        public uint* CounterIndices;
     }
 }

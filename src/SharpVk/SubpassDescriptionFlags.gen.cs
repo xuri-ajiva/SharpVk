@@ -22,37 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying usage of a subpass.
+    ///     Bitmask specifying usage of a subpass.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum SubpassDescriptionFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        PerViewAttributes = 1 << 0, 
-        
+        PerViewAttributes = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        PerViewPositionXOnly = 1 << 1, 
-        
+        PerViewPositionXOnly = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved2 = 1 << 2, 
-        
+        Reserved2 = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved3 = 1 << 3, 
+        Reserved3 = 1 << 3
     }
 }

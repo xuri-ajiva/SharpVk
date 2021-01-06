@@ -25,24 +25,24 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Specify the coverage reduction mode
+    ///     Specify the coverage reduction mode
     /// </summary>
     public enum CoverageReductionMode
     {
         /// <summary>
-        /// In this mode, there is an implementation-dependent association of
-        /// each raster sample to a color sample. The reduced color sample mask
-        /// is computed such that the bit for each color sample is 1 if any of
-        /// the associated bits in the fragment’s coverage is on, and 0
-        /// otherwise.
+        ///     In this mode, there is an implementation-dependent association of
+        ///     each raster sample to a color sample. The reduced color sample mask
+        ///     is computed such that the bit for each color sample is 1 if any of
+        ///     the associated bits in the fragment’s coverage is on, and 0
+        ///     otherwise.
         /// </summary>
-        Merge = 0, 
-        
+        Merge = 0,
+
         /// <summary>
-        /// In this mode, only the first M raster samples are associated with
-        /// the color samples such that raster sample i maps to color sample i,
-        /// where M is the number of color samples.
+        ///     In this mode, only the first M raster samples are associated with
+        ///     the color samples such that raster sample i maps to color sample i,
+        ///     where M is the number of color samples.
         /// </summary>
-        Truncate = 1, 
+        Truncate = 1
     }
 }

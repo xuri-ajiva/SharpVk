@@ -22,92 +22,84 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying the parameters of a newly created buffer object.
+    ///     Structure specifying the parameters of a newly created buffer object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BufferCreateInfo
+    public struct BufferCreateInfo
     {
         /// <summary>
-        /// A bitmask describing additional parameters of the buffer.
+        ///     A bitmask describing additional parameters of the buffer.
         /// </summary>
-        public SharpVk.BufferCreateFlags? Flags
+        public BufferCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The size in bytes of the buffer to be created.
+        ///     The size in bytes of the buffer to be created.
         /// </summary>
         public ulong Size
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A bitmask describing the allowed usages of the buffer.
+        ///     A bitmask describing the allowed usages of the buffer.
         /// </summary>
-        public SharpVk.BufferUsageFlags Usage
+        public BufferUsageFlags Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The sharing mode of the buffer when it will be accessed by multiple
-        /// queue families.
+        ///     The sharing mode of the buffer when it will be accessed by multiple
+        ///     queue families.
         /// </summary>
-        public SharpVk.SharingMode SharingMode
+        public SharingMode SharingMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A list of queue families that will access this buffer (ignored if
-        /// sharingMode is not Concurrent).
+        ///     A list of queue families that will access this buffer (ignored if
+        ///     sharingMode is not Concurrent).
         /// </summary>
         public uint[] QueueFamilyIndices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BufferCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.BufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->Size = Size;
+            pointer->Usage = Usage;
+            pointer->SharingMode = SharingMode;
+            pointer->QueueFamilyIndexCount = HeapUtil.GetLength(QueueFamilyIndices);
+            if (QueueFamilyIndices != null)
             {
-                pointer->Flags = default(SharpVk.BufferCreateFlags);
-            }
-            pointer->Size = this.Size;
-            pointer->Usage = this.Usage;
-            pointer->SharingMode = this.SharingMode;
-            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(this.QueueFamilyIndices));
-            if (this.QueueFamilyIndices != null)
-            {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.QueueFamilyIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.QueueFamilyIndices[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer();
+                for (var index = 0; index < (uint)QueueFamilyIndices.Length; index++) fieldPointer[index] = QueueFamilyIndices[index];
                 pointer->QueueFamilyIndices = fieldPointer;
             }
             else

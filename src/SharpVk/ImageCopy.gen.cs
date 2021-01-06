@@ -22,57 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying an image copy operation.
+    ///     Structure specifying an image copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageCopy
+    public struct ImageCopy
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ImageCopy(SharpVk.ImageSubresourceLayers sourceSubresource, SharpVk.Offset3D sourceOffset, SharpVk.ImageSubresourceLayers destinationSubresource, SharpVk.Offset3D destinationOffset, SharpVk.Extent3D extent)
+        public ImageCopy(ImageSubresourceLayers sourceSubresource, Offset3D sourceOffset, ImageSubresourceLayers destinationSubresource, Offset3D destinationOffset, Extent3D extent)
         {
-            this.SourceSubresource = sourceSubresource;
-            this.SourceOffset = sourceOffset;
-            this.DestinationSubresource = destinationSubresource;
-            this.DestinationOffset = destinationOffset;
-            this.Extent = extent;
+            SourceSubresource = sourceSubresource;
+            SourceOffset = sourceOffset;
+            DestinationSubresource = destinationSubresource;
+            DestinationOffset = destinationOffset;
+            Extent = extent;
         }
-        
+
         /// <summary>
-        /// ImageSubresourceLayer structure specifying the image subresources
-        /// of the images used for the source image data.
+        ///     ImageSubresourceLayer structure specifying the image subresources
+        ///     of the images used for the source image data.
         /// </summary>
-        public SharpVk.ImageSubresourceLayers SourceSubresource; 
-        
+        public ImageSubresourceLayers SourceSubresource;
+
         /// <summary>
-        /// The initial x, y, and z offsets in texels of the sub-regions of the
-        /// source image data.
+        ///     The initial x, y, and z offsets in texels of the sub-regions of the
+        ///     source image data.
         /// </summary>
-        public SharpVk.Offset3D SourceOffset; 
-        
+        public Offset3D SourceOffset;
+
         /// <summary>
-        /// ImageSubresourceLayer structure specifying the image subresources
-        /// of the images used for the destination image data.
+        ///     ImageSubresourceLayer structure specifying the image subresources
+        ///     of the images used for the destination image data.
         /// </summary>
-        public SharpVk.ImageSubresourceLayers DestinationSubresource; 
-        
+        public ImageSubresourceLayers DestinationSubresource;
+
         /// <summary>
-        /// The initial x, y, and z offsets in texels of the sub-regions of the
-        /// destination image data.
+        ///     The initial x, y, and z offsets in texels of the sub-regions of the
+        ///     destination image data.
         /// </summary>
-        public SharpVk.Offset3D DestinationOffset; 
-        
+        public Offset3D DestinationOffset;
+
         /// <summary>
-        /// The size in texels of the source image to copy in width, height and
-        /// depth.
+        ///     The size in texels of the source image to copy in width, height and
+        ///     depth.
         /// </summary>
-        public SharpVk.Extent3D Extent; 
+        public Extent3D Extent;
     }
 }

@@ -22,40 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DebugUtilsObjectNameInfo
+    public unsafe struct DebugUtilsObjectNameInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ObjectType ObjectType; 
-        
+        public ObjectType ObjectType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong ObjectHandle; 
-        
+        public ulong ObjectHandle;
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte* ObjectName; 
+        public byte* ObjectName;
     }
 }

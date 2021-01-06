@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceTimelineSemaphoreFeatures
+    public struct PhysicalDeviceTimelineSemaphoreFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool TimelineSemaphore
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceTimelineSemaphoreFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceTimelineSemaphoreFeaturesVersion;
             pointer->Next = null;
-            pointer->TimelineSemaphore = this.TimelineSemaphore;
+            pointer->TimelineSemaphore = TimelineSemaphore;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTimelineSemaphoreFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures* pointer)
+        internal static unsafe PhysicalDeviceTimelineSemaphoreFeatures MarshalFrom(Interop.PhysicalDeviceTimelineSemaphoreFeatures* pointer)
         {
-            PhysicalDeviceTimelineSemaphoreFeatures result = default(PhysicalDeviceTimelineSemaphoreFeatures);
+            var result = default(PhysicalDeviceTimelineSemaphoreFeatures);
             result.TimelineSemaphore = pointer->TimelineSemaphore;
             return result;
         }

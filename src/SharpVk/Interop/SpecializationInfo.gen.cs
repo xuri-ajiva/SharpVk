@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SpecializationInfo
+    public unsafe struct SpecializationInfo
     {
         /// <summary>
-        /// The number of entries in the pMapEntries array.
+        ///     The number of entries in the pMapEntries array.
         /// </summary>
-        public uint MapEntryCount; 
-        
+        public uint MapEntryCount;
+
         /// <summary>
-        /// An array of SpecializationMapEntry which maps constant IDs to
-        /// offsets in pData.
+        ///     An array of SpecializationMapEntry which maps constant IDs to
+        ///     offsets in pData.
         /// </summary>
-        public SharpVk.SpecializationMapEntry* MapEntries; 
-        
+        public SpecializationMapEntry* MapEntries;
+
         /// <summary>
-        /// The byte size of the pData buffer.
+        ///     The byte size of the pData buffer.
         /// </summary>
-        public HostSize DataSize; 
-        
+        public HostSize DataSize;
+
         /// <summary>
-        /// pData contains the actual constant values to specialize with.
+        ///     pData contains the actual constant values to specialize with.
         /// </summary>
-        public byte* Data; 
+        public byte* Data;
     }
 }

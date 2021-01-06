@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceRepresentativeFragmentTestFeatures
+    public struct PhysicalDeviceRepresentativeFragmentTestFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool RepresentativeFragmentTest
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceRepresentativeFragmentTestFeatures;
             pointer->Next = null;
-            pointer->RepresentativeFragmentTest = this.RepresentativeFragmentTest;
+            pointer->RepresentativeFragmentTest = RepresentativeFragmentTest;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceRepresentativeFragmentTestFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures* pointer)
+        internal static unsafe PhysicalDeviceRepresentativeFragmentTestFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures* pointer)
         {
-            PhysicalDeviceRepresentativeFragmentTestFeatures result = default(PhysicalDeviceRepresentativeFragmentTestFeatures);
+            var result = default(PhysicalDeviceRepresentativeFragmentTestFeatures);
             result.RepresentativeFragmentTest = pointer->RepresentativeFragmentTest;
             return result;
         }

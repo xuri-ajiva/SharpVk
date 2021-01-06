@@ -22,37 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct FramebufferAttachmentsCreateInfo
+    public unsafe struct FramebufferAttachmentsCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The number of attachments being described.
+        ///     The number of attachments being described.
         /// </summary>
-        public uint AttachmentImageInfoCount; 
-        
+        public uint AttachmentImageInfoCount;
+
         /// <summary>
-        /// An array of FramebufferAttachmentImageInfo instances, each of which
-        /// describes a number of parameters of the corresponding attachment in
-        /// a render pass instance.
+        ///     An array of FramebufferAttachmentImageInfo instances, each of which
+        ///     describes a number of parameters of the corresponding attachment in
+        ///     a render pass instance.
         /// </summary>
-        public SharpVk.Interop.FramebufferAttachmentImageInfo* AttachmentImageInfos; 
+        public FramebufferAttachmentImageInfo* AttachmentImageInfos;
     }
 }

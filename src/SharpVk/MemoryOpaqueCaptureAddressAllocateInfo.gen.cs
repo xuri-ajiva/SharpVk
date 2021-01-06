@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryOpaqueCaptureAddressAllocateInfo
+    public struct MemoryOpaqueCaptureAddressAllocateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong OpaqueCaptureAddress
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.MemoryOpaqueCaptureAddressAllocateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.MemoryOpaqueCaptureAddressAllocateInfo* pointer)
         {
             pointer->SType = StructureType.MemoryOpaqueCaptureAddressAllocateInfoVersion;
             pointer->Next = null;
-            pointer->OpaqueCaptureAddress = this.OpaqueCaptureAddress;
+            pointer->OpaqueCaptureAddress = OpaqueCaptureAddress;
         }
     }
 }

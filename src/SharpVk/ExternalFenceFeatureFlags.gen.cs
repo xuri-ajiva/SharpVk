@@ -22,27 +22,25 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ExternalFenceFeatureFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Exportable = 1 << 0, 
-        
+        Exportable = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Importable = 1 << 1, 
+        Importable = 1 << 1
     }
 }

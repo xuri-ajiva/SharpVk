@@ -27,31 +27,28 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// Opaque handle to a physical device object.
+    ///     Opaque handle to a physical device object.
     /// </summary>
     public struct PhysicalDevice
     {
-        internal UIntPtr handle; 
-        
+        internal UIntPtr Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public PhysicalDevice(UIntPtr handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public PhysicalDevice Null => new PhysicalDevice(default(UIntPtr));
-        
+        public PhysicalDevice Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle.ToUInt64();
+            return Handle.ToUInt64();
         }
     }
 }

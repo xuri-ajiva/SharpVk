@@ -22,260 +22,209 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceVulkan12Features
+    public unsafe struct PhysicalDeviceVulkan12Features
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SamplerMirrorClampToEdge; 
-        
+        public Bool32 SamplerMirrorClampToEdge;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DrawIndirectCount; 
-        
+        public Bool32 DrawIndirectCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StorageBuffer8BitAccess; 
-        
+        public Bool32 StorageBuffer8BitAccess;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 UniformAndStorageBuffer8BitAccess; 
-        
+        public Bool32 UniformAndStorageBuffer8BitAccess;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StoragePushConstant8; 
-        
+        public Bool32 StoragePushConstant8;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderBufferInt64Atomics; 
-        
+        public Bool32 ShaderBufferInt64Atomics;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSharedInt64Atomics; 
-        
+        public Bool32 ShaderSharedInt64Atomics;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderFloat16; 
-        
+        public Bool32 ShaderFloat16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderInt8; 
-        
+        public Bool32 ShaderInt8;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorIndexing; 
-        
+        public Bool32 DescriptorIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderInputAttachmentArrayDynamicIndexing; 
-        
+        public Bool32 ShaderInputAttachmentArrayDynamicIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderUniformTexelBufferArrayDynamicIndexing; 
-        
+        public Bool32 ShaderUniformTexelBufferArrayDynamicIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageTexelBufferArrayDynamicIndexing; 
-        
+        public Bool32 ShaderStorageTexelBufferArrayDynamicIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderUniformBufferArrayNonUniformIndexing; 
-        
+        public Bool32 ShaderUniformBufferArrayNonUniformIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSampledImageArrayNonUniformIndexing; 
-        
+        public Bool32 ShaderSampledImageArrayNonUniformIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageBufferArrayNonUniformIndexing; 
-        
+        public Bool32 ShaderStorageBufferArrayNonUniformIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageArrayNonUniformIndexing; 
-        
+        public Bool32 ShaderStorageImageArrayNonUniformIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderInputAttachmentArrayNonUniformIndexing; 
-        
+        public Bool32 ShaderInputAttachmentArrayNonUniformIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderUniformTexelBufferArrayNonUniformIndexing; 
-        
+        public Bool32 ShaderUniformTexelBufferArrayNonUniformIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageTexelBufferArrayNonUniformIndexing; 
-        
+        public Bool32 ShaderStorageTexelBufferArrayNonUniformIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingUniformBufferUpdateAfterBind; 
-        
+        public Bool32 DescriptorBindingUniformBufferUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingSampledImageUpdateAfterBind; 
-        
+        public Bool32 DescriptorBindingSampledImageUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingStorageImageUpdateAfterBind; 
-        
+        public Bool32 DescriptorBindingStorageImageUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingStorageBufferUpdateAfterBind; 
-        
+        public Bool32 DescriptorBindingStorageBufferUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingUniformTexelBufferUpdateAfterBind; 
-        
+        public Bool32 DescriptorBindingUniformTexelBufferUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingStorageTexelBufferUpdateAfterBind; 
-        
+        public Bool32 DescriptorBindingStorageTexelBufferUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingUpdateUnusedWhilePending; 
-        
+        public Bool32 DescriptorBindingUpdateUnusedWhilePending;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingPartiallyBound; 
-        
+        public Bool32 DescriptorBindingPartiallyBound;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DescriptorBindingVariableDescriptorCount; 
-        
+        public Bool32 DescriptorBindingVariableDescriptorCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 RuntimeDescriptorArray; 
-        
+        public Bool32 RuntimeDescriptorArray;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SamplerFilterMinmax; 
-        
+        public Bool32 SamplerFilterMinmax;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ScalarBlockLayout; 
-        
+        public Bool32 ScalarBlockLayout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ImagelessFramebuffer; 
-        
+        public Bool32 ImagelessFramebuffer;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 UniformBufferStandardLayout; 
-        
+        public Bool32 UniformBufferStandardLayout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSubgroupExtendedTypes; 
-        
+        public Bool32 ShaderSubgroupExtendedTypes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SeparateDepthStencilLayouts; 
-        
+        public Bool32 SeparateDepthStencilLayouts;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 HostQueryReset; 
-        
+        public Bool32 HostQueryReset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TimelineSemaphore; 
-        
+        public Bool32 TimelineSemaphore;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 BufferDeviceAddress; 
-        
+        public Bool32 BufferDeviceAddress;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 BufferDeviceAddressCaptureReplay; 
-        
+        public Bool32 BufferDeviceAddressCaptureReplay;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 BufferDeviceAddressMultiDevice; 
-        
+        public Bool32 BufferDeviceAddressMultiDevice;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VulkanMemoryModel; 
-        
+        public Bool32 VulkanMemoryModel;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VulkanMemoryModelDeviceScope; 
-        
+        public Bool32 VulkanMemoryModelDeviceScope;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VulkanMemoryModelAvailabilityVisibilityChains; 
-        
+        public Bool32 VulkanMemoryModelAvailabilityVisibilityChains;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderOutputViewportIndex; 
-        
+        public Bool32 ShaderOutputViewportIndex;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderOutputLayer; 
-        
+        public Bool32 ShaderOutputLayer;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SubgroupBroadcastDynamicId; 
+        public Bool32 SubgroupBroadcastDynamicId;
     }
 }

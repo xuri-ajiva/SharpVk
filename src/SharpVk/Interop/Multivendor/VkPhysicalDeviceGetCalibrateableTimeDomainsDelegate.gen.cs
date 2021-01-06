@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint* timeDomainCount, SharpVk.Multivendor.TimeDomain* timeDomains);
+    public unsafe delegate Result VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate(PhysicalDevice physicalDevice, uint* timeDomainCount, TimeDomain* timeDomains);
 }

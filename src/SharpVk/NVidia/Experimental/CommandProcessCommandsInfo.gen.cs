@@ -22,160 +22,148 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure specifying parameters for the generation of commands.
+    ///     Structure specifying parameters for the generation of commands.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CommandProcessCommandsInfo
+    public struct CommandProcessCommandsInfo
     {
         /// <summary>
-        /// The ObjectTableNVX to be used for the generation process. Only
-        /// registered objects at the time
-        /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
-        /// account for the reservation.
+        ///     The ObjectTableNVX to be used for the generation process. Only
+        ///     registered objects at the time
+        ///     flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
+        ///     account for the reservation.
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectTable ObjectTable
+        public ObjectTable ObjectTable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The IndirectCommandsLayoutNVX that provides the command sequence to
-        /// generate.
+        ///     The IndirectCommandsLayoutNVX that provides the command sequence to
+        ///     generate.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsLayout IndirectCommandsLayout
+        public IndirectCommandsLayout IndirectCommandsLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// pIndirectCommandsTokens provides an array of
-        /// IndirectCommandsTokenNVX that reference the input data for each
-        /// token command.
+        ///     pIndirectCommandsTokens provides an array of
+        ///     IndirectCommandsTokenNVX that reference the input data for each
+        ///     token command.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsToken[] IndirectCommandsTokens
+        public IndirectCommandsToken[] IndirectCommandsTokens
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The maximum number of sequences for which command buffer space will
-        /// be reserved. If sequencesCountBuffer is null, this is also the
-        /// actual number of sequences generated.
+        ///     The maximum number of sequences for which command buffer space will
+        ///     be reserved. If sequencesCountBuffer is null, this is also the
+        ///     actual number of sequences generated.
         /// </summary>
         public uint MaxSequencesCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// targetCommandBuffer can be the secondary CommandBuffer in which the
-        /// commands should be recorded. If targetCommandBuffer is Null an
-        /// implicit reservation as well as execution takes place on the
-        /// processing CommandBuffer.
+        ///     targetCommandBuffer can be the secondary CommandBuffer in which the
+        ///     commands should be recorded. If targetCommandBuffer is Null an
+        ///     implicit reservation as well as execution takes place on the
+        ///     processing CommandBuffer.
         /// </summary>
-        public SharpVk.CommandBuffer TargetCommandBuffer
+        public CommandBuffer TargetCommandBuffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// sequencesCountBuffer can be Buffer from which the actual amount of
-        /// sequences is sourced from as ftext:uint32_t value.
+        ///     sequencesCountBuffer can be Buffer from which the actual amount of
+        ///     sequences is sourced from as ftext:uint32_t value.
         /// </summary>
-        public SharpVk.Buffer SequencesCountBuffer
+        public Buffer SequencesCountBuffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The byte offset into sequencesCountBuffer where the count value is
-        /// stored.
+        ///     The byte offset into sequencesCountBuffer where the count value is
+        ///     stored.
         /// </summary>
         public ulong? SequencesCountOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// sequencesIndexBuffer must be set if indirectCommandsLayout's
-        /// VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT is set and
-        /// provides the used sequence indices as ftext:uint32_t array.
-        /// Otherwise it must be null.
+        ///     sequencesIndexBuffer must be set if indirectCommandsLayout's
+        ///     VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT is set and
+        ///     provides the used sequence indices as ftext:uint32_t array.
+        ///     Otherwise it must be null.
         /// </summary>
-        public SharpVk.Buffer SequencesIndexBuffer
+        public Buffer SequencesIndexBuffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The byte offset into sequencesIndexBuffer where the index values
-        /// start.
+        ///     The byte offset into sequencesIndexBuffer where the index values
+        ///     start.
         /// </summary>
         public ulong? SequencesIndexOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.CommandProcessCommandsInfo* pointer)
         {
             pointer->SType = StructureType.CommandProcessCommandsInfo;
             pointer->Next = null;
-            pointer->ObjectTable = this.ObjectTable?.handle ?? default(SharpVk.Interop.NVidia.Experimental.ObjectTable);
-            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.handle ?? default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout);
-            pointer->IndirectCommandsTokenCount = (uint)(Interop.HeapUtil.GetLength(this.IndirectCommandsTokens));
-            if (this.IndirectCommandsTokens != null)
+            pointer->ObjectTable = ObjectTable?.Handle ?? default(Interop.NVidia.Experimental.ObjectTable);
+            pointer->IndirectCommandsLayout = IndirectCommandsLayout?.Handle ?? default(Interop.NVidia.Experimental.IndirectCommandsLayout);
+            pointer->IndirectCommandsTokenCount = HeapUtil.GetLength(IndirectCommandsTokens);
+            if (IndirectCommandsTokens != null)
             {
-                var fieldPointer = (SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken>(this.IndirectCommandsTokens.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.IndirectCommandsTokens.Length); index++)
-                {
-                    this.IndirectCommandsTokens[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.NVidia.Experimental.IndirectCommandsToken*)HeapUtil.AllocateAndClear<Interop.NVidia.Experimental.IndirectCommandsToken>(IndirectCommandsTokens.Length).ToPointer();
+                for (var index = 0; index < (uint)IndirectCommandsTokens.Length; index++) IndirectCommandsTokens[index].MarshalTo(&fieldPointer[index]);
                 pointer->IndirectCommandsTokens = fieldPointer;
             }
             else
             {
                 pointer->IndirectCommandsTokens = null;
             }
-            pointer->MaxSequencesCount = this.MaxSequencesCount;
-            pointer->TargetCommandBuffer = this.TargetCommandBuffer?.handle ?? default(SharpVk.Interop.CommandBuffer);
-            pointer->SequencesCountBuffer = this.SequencesCountBuffer?.handle ?? default(SharpVk.Interop.Buffer);
-            if (this.SequencesCountOffset != null)
-            {
-                pointer->SequencesCountOffset = this.SequencesCountOffset.Value;
-            }
+            pointer->MaxSequencesCount = MaxSequencesCount;
+            pointer->TargetCommandBuffer = TargetCommandBuffer?.Handle ?? default(Interop.CommandBuffer);
+            pointer->SequencesCountBuffer = SequencesCountBuffer?.Handle ?? default(Interop.Buffer);
+            if (SequencesCountOffset != null)
+                pointer->SequencesCountOffset = SequencesCountOffset.Value;
             else
-            {
-                pointer->SequencesCountOffset = default(ulong);
-            }
-            pointer->SequencesIndexBuffer = this.SequencesIndexBuffer?.handle ?? default(SharpVk.Interop.Buffer);
-            if (this.SequencesIndexOffset != null)
-            {
-                pointer->SequencesIndexOffset = this.SequencesIndexOffset.Value;
-            }
+                pointer->SequencesCountOffset = default;
+            pointer->SequencesIndexBuffer = SequencesIndexBuffer?.Handle ?? default(Interop.Buffer);
+            if (SequencesIndexOffset != null)
+                pointer->SequencesIndexOffset = SequencesIndexOffset.Value;
             else
-            {
-                pointer->SequencesIndexOffset = default(ulong);
-            }
+                pointer->SequencesIndexOffset = default;
         }
     }
 }

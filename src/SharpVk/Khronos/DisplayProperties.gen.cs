@@ -22,95 +22,91 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure describing an available display device.
+    ///     Structure describing an available display device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayProperties
+    public struct DisplayProperties
     {
         /// <summary>
-        /// A handle that is used to refer to the display described here. This
-        /// handle will be valid for the lifetime of the Vulkan instance.
+        ///     A handle that is used to refer to the display described here. This
+        ///     handle will be valid for the lifetime of the Vulkan instance.
         /// </summary>
-        public SharpVk.Khronos.Display Display
+        public Display Display
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A string containing the name of the display. Generally, this will
-        /// be the name provided by the display's EDID. It can be Null if no
-        /// suitable name is available.
+        ///     A string containing the name of the display. Generally, this will
+        ///     be the name provided by the display's EDID. It can be Null if no
+        ///     suitable name is available.
         /// </summary>
         public string DisplayName
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// physicalDimensions describes the physical width and height of the
-        /// visible portion of the display, in millimeters.
+        ///     physicalDimensions describes the physical width and height of the
+        ///     visible portion of the display, in millimeters.
         /// </summary>
-        public SharpVk.Extent2D PhysicalDimensions
+        public Extent2D PhysicalDimensions
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// physicalResolution describes the physical, native, or preferred
-        /// resolution of the display.
+        ///     physicalResolution describes the physical, native, or preferred
+        ///     resolution of the display.
         /// </summary>
-        public SharpVk.Extent2D PhysicalResolution
+        public Extent2D PhysicalResolution
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.SurfaceTransformFlags? SupportedTransforms
+        public SurfaceTransformFlags? SupportedTransforms
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool PlaneReorderPossible
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool PersistentContent
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayProperties MarshalFrom(SharpVk.Interop.Khronos.DisplayProperties* pointer)
+        internal static unsafe DisplayProperties MarshalFrom(Interop.Khronos.DisplayProperties* pointer)
         {
-            DisplayProperties result = default(DisplayProperties);
-            result.Display = new SharpVk.Khronos.Display(pointer->Display);
-            result.DisplayName = Interop.HeapUtil.MarshalStringFrom(pointer->DisplayName);
+            var result = default(DisplayProperties);
+            result.Display = new(pointer->Display);
+            result.DisplayName = HeapUtil.MarshalStringFrom(pointer->DisplayName);
             result.PhysicalDimensions = pointer->PhysicalDimensions;
             result.PhysicalResolution = pointer->PhysicalResolution;
             result.SupportedTransforms = pointer->SupportedTransforms;

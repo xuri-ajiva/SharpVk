@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkRenderPassGetRenderAreaGranularityDelegate(SharpVk.Interop.Device device, SharpVk.Interop.RenderPass renderPass, SharpVk.Extent2D* granularity);
+    public unsafe delegate void VkRenderPassGetRenderAreaGranularityDelegate(Device device, RenderPass renderPass, Extent2D* granularity);
 }

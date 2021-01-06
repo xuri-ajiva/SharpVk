@@ -22,43 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Bitmask specifying allowed usage of a indirect commands layout.
+    ///     Bitmask specifying allowed usage of a indirect commands layout.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum IndirectCommandsLayoutUsageFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// Indicates that the processing of sequences can happen at an
-        /// implementation-dependent order, which is not guaranteed to be
-        /// coherent across multiple invocations.
+        ///     Indicates that the processing of sequences can happen at an
+        ///     implementation-dependent order, which is not guaranteed to be
+        ///     coherent across multiple invocations.
         /// </summary>
-        UnorderedSequences = 1 << 0, 
-        
+        UnorderedSequences = 1 << 0,
+
         /// <summary>
-        /// Indicates that there is likely a high difference between allocated
-        /// number of sequences and actually used.
+        ///     Indicates that there is likely a high difference between allocated
+        ///     number of sequences and actually used.
         /// </summary>
-        SparseSequences = 1 << 1, 
-        
+        SparseSequences = 1 << 1,
+
         /// <summary>
-        /// Indicates that there is likely many draw or dispatch calls that are
-        /// zero-sized (zero grid dimension, no primitives to render).
+        ///     Indicates that there is likely many draw or dispatch calls that are
+        ///     zero-sized (zero grid dimension, no primitives to render).
         /// </summary>
-        EmptyExecutions = 1 << 2, 
-        
+        EmptyExecutions = 1 << 2,
+
         /// <summary>
-        /// Indicates that the input data for the sequences is not implicitly
-        /// indexed from 0..sequencesUsed but a user provided Buffer encoding
-        /// the index is provided.
+        ///     Indicates that the input data for the sequences is not implicitly
+        ///     indexed from 0..sequencesUsed but a user provided Buffer encoding
+        ///     the index is provided.
         /// </summary>
-        IndexedSequences = 1 << 3, 
+        IndexedSequences = 1 << 3
     }
 }

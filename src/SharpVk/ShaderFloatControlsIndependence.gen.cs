@@ -25,23 +25,19 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum ShaderFloatControlsIndependence
     {
         /// <summary>
-        /// 
         /// </summary>
-        ShaderFloatControlsIndependence32BitOnly = 0, 
-        
+        ShaderFloatControlsIndependence32BitOnly = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        All = 1, 
-        
+        All = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        None = 2, 
+        None = 2
     }
 }

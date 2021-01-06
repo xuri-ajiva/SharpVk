@@ -25,23 +25,20 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specify the bind point of a pipeline object to a command buffer.
+    ///     Specify the bind point of a pipeline object to a command buffer.
     /// </summary>
     public enum PipelineBindPoint
     {
         /// <summary>
-        /// 
         /// </summary>
-        Graphics = 0, 
-        
+        Graphics = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Compute = 1, 
-        
+        Compute = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        RayTracing = 1000165000, 
+        RayTracing = 1000165000
     }
 }

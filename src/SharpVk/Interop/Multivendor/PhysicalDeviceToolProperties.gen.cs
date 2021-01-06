@@ -22,50 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceToolProperties
+    public unsafe struct PhysicalDeviceToolProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Name[Constants.MaxExtensionNameSize]; 
-        
+        public fixed byte Name[Constants.MaxExtensionNameSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Version[Constants.MaxExtensionNameSize]; 
-        
+        public fixed byte Version[Constants.MaxExtensionNameSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ToolPurposeFlags Purposes; 
-        
+        public ToolPurposeFlags Purposes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Description[Constants.MaxDescriptionSize]; 
-        
+        public fixed byte Description[Constants.MaxDescriptionSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Layer[Constants.MaxExtensionNameSize]; 
+        public fixed byte Layer[Constants.MaxExtensionNameSize];
     }
 }

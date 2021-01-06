@@ -22,37 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Describe a display event to create.
+    ///     Describe a display event to create.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayEventInfo
+    public struct DisplayEventInfo
     {
         /// <summary>
-        /// Specifies when the fence will be signaled. Possible values are: +
-        /// --
+        ///     Specifies when the fence will be signaled. Possible values are: +
+        ///     --
         /// </summary>
-        public SharpVk.Multivendor.DisplayEventType DisplayEvent
+        public DisplayEventType DisplayEvent
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DisplayEventInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DisplayEventInfo* pointer)
         {
             pointer->SType = StructureType.DisplayEventInfo;
             pointer->Next = null;
-            pointer->DisplayEvent = this.DisplayEvent;
+            pointer->DisplayEvent = DisplayEvent;
         }
     }
 }

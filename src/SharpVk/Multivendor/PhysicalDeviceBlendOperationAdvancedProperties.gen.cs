@@ -22,79 +22,70 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceBlendOperationAdvancedProperties
+    public struct PhysicalDeviceBlendOperationAdvancedProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint AdvancedBlendMaxColorAttachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool AdvancedBlendIndependentBlend
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool AdvancedBlendNonPremultipliedSourceColor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool AdvancedBlendNonPremultipliedDestinationColor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool AdvancedBlendCorrelatedOverlap
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool AdvancedBlendAllOperations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceBlendOperationAdvancedProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedProperties* pointer)
+        internal static unsafe PhysicalDeviceBlendOperationAdvancedProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedProperties* pointer)
         {
-            PhysicalDeviceBlendOperationAdvancedProperties result = default(PhysicalDeviceBlendOperationAdvancedProperties);
+            var result = default(PhysicalDeviceBlendOperationAdvancedProperties);
             result.AdvancedBlendMaxColorAttachments = pointer->AdvancedBlendMaxColorAttachments;
             result.AdvancedBlendIndependentBlend = pointer->AdvancedBlendIndependentBlend;
             result.AdvancedBlendNonPremultipliedSourceColor = pointer->AdvancedBlendNonPremultipliedSourceColor;

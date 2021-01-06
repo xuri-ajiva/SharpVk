@@ -25,23 +25,19 @@
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum PerformanceCounterScope
     {
         /// <summary>
-        /// 
         /// </summary>
-        CommandBuffer = 0, 
-        
+        CommandBuffer = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        RenderPass = 1, 
-        
+        RenderPass = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Command = 2, 
+        Command = 2
     }
 }

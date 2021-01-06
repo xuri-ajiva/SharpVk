@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGroupSwapchainCreateInfo
+    public struct DeviceGroupSwapchainCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.DeviceGroupPresentModeFlags Modes
+        public DeviceGroupPresentModeFlags Modes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.DeviceGroupSwapchainCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupSwapchainCreateInfo;
             pointer->Next = null;
-            pointer->Modes = this.Modes;
+            pointer->Modes = Modes;
         }
     }
 }

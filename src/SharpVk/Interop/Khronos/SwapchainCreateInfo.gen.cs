@@ -22,106 +22,90 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SwapchainCreateInfo
+    public unsafe struct SwapchainCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitmask indicating parameters of swapchain creation. Bits which
-        /// can be set include: + --
+        ///     A bitmask indicating parameters of swapchain creation. Bits which
+        ///     can be set include: + --
         /// </summary>
-        public SharpVk.Khronos.SwapchainCreateFlags Flags; 
-        
+        public SwapchainCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Khronos.Surface Surface; 
-        
+        public Surface Surface;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MinImageCount; 
-        
+        public uint MinImageCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format ImageFormat; 
-        
+        public Format ImageFormat;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.ColorSpace ImageColorSpace; 
-        
+        public ColorSpace ImageColorSpace;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D ImageExtent; 
-        
+        public Extent2D ImageExtent;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ImageArrayLayers; 
-        
+        public uint ImageArrayLayers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags ImageUsage; 
-        
+        public ImageUsageFlags ImageUsage;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SharingMode ImageSharingMode; 
-        
+        public SharingMode ImageSharingMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint QueueFamilyIndexCount; 
-        
+        public uint QueueFamilyIndexCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* QueueFamilyIndices; 
-        
+        public uint* QueueFamilyIndices;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.SurfaceTransformFlags PreTransform; 
-        
+        public SurfaceTransformFlags PreTransform;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.CompositeAlphaFlags CompositeAlpha; 
-        
+        public CompositeAlphaFlags CompositeAlpha;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PresentMode PresentMode; 
-        
+        public PresentMode PresentMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 Clipped; 
-        
+        public Bool32 Clipped;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Khronos.Swapchain OldSwapchain; 
+        public Swapchain OldSwapchain;
     }
 }

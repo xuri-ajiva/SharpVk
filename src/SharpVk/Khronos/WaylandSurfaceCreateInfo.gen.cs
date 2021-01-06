@@ -24,65 +24,60 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created Wayland surface
-    /// object.
+    ///     Structure specifying parameters of a newly created Wayland surface
+    ///     object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct WaylandSurfaceCreateInfo
+    public struct WaylandSurfaceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Khronos.WaylandSurfaceCreateFlags? Flags
+        public WaylandSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// display and surface are pointers to the Wayland wl_display and
-        /// wl_surface to associate the surface with.
+        ///     display and surface are pointers to the Wayland wl_display and
+        ///     wl_surface to associate the surface with.
         /// </summary>
         public IntPtr Display
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr Surface
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.WaylandSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.WaylandSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags);
-            }
-            pointer->Display = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-            *pointer->Display = this.Display;
-            pointer->Surface = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-            *pointer->Surface = this.Surface;
+                pointer->Flags = default;
+            pointer->Display = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+            *pointer->Display = Display;
+            pointer->Surface = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+            *pointer->Surface = Surface;
         }
     }
 }

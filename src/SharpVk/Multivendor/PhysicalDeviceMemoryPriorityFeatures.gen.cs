@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMemoryPriorityFeatures
+    public struct PhysicalDeviceMemoryPriorityFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool MemoryPriority
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMemoryPriorityFeatures;
             pointer->Next = null;
-            pointer->MemoryPriority = this.MemoryPriority;
+            pointer->MemoryPriority = MemoryPriority;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMemoryPriorityFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
+        internal static unsafe PhysicalDeviceMemoryPriorityFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
         {
-            PhysicalDeviceMemoryPriorityFeatures result = default(PhysicalDeviceMemoryPriorityFeatures);
+            var result = default(PhysicalDeviceMemoryPriorityFeatures);
             result.MemoryPriority = pointer->MemoryPriority;
             return result;
         }

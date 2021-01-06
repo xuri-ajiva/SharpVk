@@ -22,53 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineRasterizationDepthClipStateCreateInfo
+    public struct PipelineRasterizationDepthClipStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.PipelineRasterizationDepthClipStateCreateFlags? Flags
+        public PipelineRasterizationDepthClipStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DepthClipEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineRasterizationDepthClipStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineRasterizationDepthClipStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationDepthClipStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.PipelineRasterizationDepthClipStateCreateFlags);
-            }
-            pointer->DepthClipEnable = this.DepthClipEnable;
+                pointer->Flags = default;
+            pointer->DepthClipEnable = DepthClipEnable;
         }
     }
 }

@@ -22,66 +22,64 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImageMemoryBarrier
+    public unsafe struct ImageMemoryBarrier
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Defines a source access mask.
+        ///     Defines a source access mask.
         /// </summary>
-        public SharpVk.AccessFlags SourceAccessMask; 
-        
+        public AccessFlags SourceAccessMask;
+
         /// <summary>
-        /// Defines a destination access mask.
+        ///     Defines a destination access mask.
         /// </summary>
-        public SharpVk.AccessFlags DestinationAccessMask; 
-        
+        public AccessFlags DestinationAccessMask;
+
         /// <summary>
-        /// The old layout in an image layout transition.
+        ///     The old layout in an image layout transition.
         /// </summary>
-        public SharpVk.ImageLayout OldLayout; 
-        
+        public ImageLayout OldLayout;
+
         /// <summary>
-        /// The new layout in an image layout transition.
+        ///     The new layout in an image layout transition.
         /// </summary>
-        public SharpVk.ImageLayout NewLayout; 
-        
+        public ImageLayout NewLayout;
+
         /// <summary>
-        /// The source queue family for a queue family ownership transfer.
+        ///     The source queue family for a queue family ownership transfer.
         /// </summary>
-        public uint SourceQueueFamilyIndex; 
-        
+        public uint SourceQueueFamilyIndex;
+
         /// <summary>
-        /// The destination queue family for a queue family ownership transfer.
+        ///     The destination queue family for a queue family ownership transfer.
         /// </summary>
-        public uint DestinationQueueFamilyIndex; 
-        
+        public uint DestinationQueueFamilyIndex;
+
         /// <summary>
-        /// A handle to the image affected by this barrier.
+        ///     A handle to the image affected by this barrier.
         /// </summary>
-        public SharpVk.Interop.Image Image; 
-        
+        public Image Image;
+
         /// <summary>
-        /// Describes the image subresource range within image that is affected
-        /// by this barrier.
+        ///     Describes the image subresource range within image that is affected
+        ///     by this barrier.
         /// </summary>
-        public SharpVk.ImageSubresourceRange SubresourceRange; 
+        public ImageSubresourceRange SubresourceRange;
     }
 }

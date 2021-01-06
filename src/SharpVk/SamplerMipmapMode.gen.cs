@@ -25,18 +25,16 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specify mipmap mode used for texture lookups.
+    ///     Specify mipmap mode used for texture lookups.
     /// </summary>
     public enum SamplerMipmapMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        Nearest = 0, 
-        
+        Nearest = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Linear = 1, 
+        Linear = 1
     }
 }

@@ -22,22 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying constraints on a query.
+    ///     Bitmask specifying constraints on a query.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum QueryControlFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Precise = 1 << 0, 
+        Precise = 1 << 0
     }
 }

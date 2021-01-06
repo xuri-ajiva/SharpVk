@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceEnumerateLayerPropertiesDelegate(uint* propertyCount, SharpVk.Interop.LayerProperties* properties);
+    public unsafe delegate Result VkInstanceEnumerateLayerPropertiesDelegate(uint* propertyCount, LayerProperties* properties);
 }

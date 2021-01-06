@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SemaphoreSignalInfo
+    public struct SemaphoreSignalInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Semaphore Semaphore
+        public Semaphore Semaphore
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong Value
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SemaphoreSignalInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SemaphoreSignalInfo* pointer)
         {
             pointer->SType = StructureType.SemaphoreSignalInfoVersion;
             pointer->Next = null;
-            pointer->Semaphore = this.Semaphore?.handle ?? default(SharpVk.Interop.Semaphore);
-            pointer->Value = this.Value;
+            pointer->Semaphore = Semaphore?.Handle ?? default(Interop.Semaphore);
+            pointer->Value = Value;
         }
     }
 }

@@ -22,36 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Describe a device event to create.
+    ///     Describe a device event to create.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceEventInfo
+    public struct DeviceEventInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DeviceEventType DeviceEvent
+        public DeviceEventType DeviceEvent
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DeviceEventInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DeviceEventInfo* pointer)
         {
             pointer->SType = StructureType.DeviceEventInfo;
             pointer->Next = null;
-            pointer->DeviceEvent = this.DeviceEvent;
+            pointer->DeviceEvent = DeviceEvent;
         }
     }
 }

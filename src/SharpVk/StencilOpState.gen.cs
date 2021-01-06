@@ -22,69 +22,67 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying stencil operation state.
+    ///     Structure specifying stencil operation state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct StencilOpState
+    public struct StencilOpState
     {
         /// <summary>
-        /// 
         /// </summary>
-        public StencilOpState(SharpVk.StencilOp failOp, SharpVk.StencilOp passOp, SharpVk.StencilOp depthFailOp, SharpVk.CompareOp compareOp, uint compareMask, uint writeMask, uint reference)
+        public StencilOpState(StencilOp failOp, StencilOp passOp, StencilOp depthFailOp, CompareOp compareOp, uint compareMask, uint writeMask, uint reference)
         {
-            this.FailOp = failOp;
-            this.PassOp = passOp;
-            this.DepthFailOp = depthFailOp;
-            this.CompareOp = compareOp;
-            this.CompareMask = compareMask;
-            this.WriteMask = writeMask;
-            this.Reference = reference;
+            FailOp = failOp;
+            PassOp = passOp;
+            DepthFailOp = depthFailOp;
+            CompareOp = compareOp;
+            CompareMask = compareMask;
+            WriteMask = writeMask;
+            Reference = reference;
         }
-        
+
         /// <summary>
-        /// The action performed on samples that fail the stencil test.
+        ///     The action performed on samples that fail the stencil test.
         /// </summary>
-        public SharpVk.StencilOp FailOp; 
-        
+        public StencilOp FailOp;
+
         /// <summary>
-        /// The action performed on samples that pass both the depth and
-        /// stencil tests.
+        ///     The action performed on samples that pass both the depth and
+        ///     stencil tests.
         /// </summary>
-        public SharpVk.StencilOp PassOp; 
-        
+        public StencilOp PassOp;
+
         /// <summary>
-        /// The action performed on samples that pass the stencil test and fail
-        /// the depth test.
+        ///     The action performed on samples that pass the stencil test and fail
+        ///     the depth test.
         /// </summary>
-        public SharpVk.StencilOp DepthFailOp; 
-        
+        public StencilOp DepthFailOp;
+
         /// <summary>
-        /// The comparison operator used in the stencil test.
+        ///     The comparison operator used in the stencil test.
         /// </summary>
-        public SharpVk.CompareOp CompareOp; 
-        
+        public CompareOp CompareOp;
+
         /// <summary>
-        /// Selects the bits of the unsigned integer stencil values
-        /// participating in the stencil test.
+        ///     Selects the bits of the unsigned integer stencil values
+        ///     participating in the stencil test.
         /// </summary>
-        public uint CompareMask; 
-        
+        public uint CompareMask;
+
         /// <summary>
-        /// Selects the bits of the unsigned integer stencil values updated by
-        /// the stencil test in the stencil framebuffer attachment.
+        ///     Selects the bits of the unsigned integer stencil values updated by
+        ///     the stencil test in the stencil framebuffer attachment.
         /// </summary>
-        public uint WriteMask; 
-        
+        public uint WriteMask;
+
         /// <summary>
-        /// An integer reference value that is used in the unsigned stencil
-        /// comparison.
+        ///     An integer reference value that is used in the unsigned stencil
+        ///     comparison.
         /// </summary>
-        public uint Reference; 
+        public uint Reference;
     }
 }

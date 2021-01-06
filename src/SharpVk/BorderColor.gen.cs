@@ -25,38 +25,32 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specify border color used for texture lookups.
+    ///     Specify border color used for texture lookups.
     /// </summary>
     public enum BorderColor
     {
         /// <summary>
-        /// 
         /// </summary>
-        FloatTransparentBlack = 0, 
-        
+        FloatTransparentBlack = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        IntTransparentBlack = 1, 
-        
+        IntTransparentBlack = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        FloatOpaqueBlack = 2, 
-        
+        FloatOpaqueBlack = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        IntOpaqueBlack = 3, 
-        
+        IntOpaqueBlack = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        FloatOpaqueWhite = 4, 
-        
+        FloatOpaqueWhite = 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        IntOpaqueWhite = 5, 
+        IntOpaqueWhite = 5
     }
 }

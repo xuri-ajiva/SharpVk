@@ -6,13 +6,12 @@ namespace SharpVk.Shanq
     {
         public Pointer(T value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         public T Value
         {
             get;
-            private set;
         }
     }
 

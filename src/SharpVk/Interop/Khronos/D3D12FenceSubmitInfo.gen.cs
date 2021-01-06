@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct D3D12FenceSubmitInfo
+    public unsafe struct D3D12FenceSubmitInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint WaitSemaphoreValuesCount; 
-        
+        public uint WaitSemaphoreValuesCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong* WaitSemaphoreValues; 
-        
+        public ulong* WaitSemaphoreValues;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SignalSemaphoreValuesCount; 
-        
+        public uint SignalSemaphoreValuesCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong* SignalSemaphoreValues; 
+        public ulong* SignalSemaphoreValues;
     }
 }

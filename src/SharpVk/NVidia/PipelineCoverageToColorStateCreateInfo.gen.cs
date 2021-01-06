@@ -22,70 +22,56 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineCoverageToColorStateCreateInfo
+    public struct PipelineCoverageToColorStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.PipelineCoverageToColorStateCreateFlags? Flags
+        public PipelineCoverageToColorStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool CoverageToColorEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint? CoverageToColorLocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineCoverageToColorStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PipelineCoverageToColorStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCoverageToColorStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.NVidia.PipelineCoverageToColorStateCreateFlags);
-            }
-            pointer->CoverageToColorEnable = this.CoverageToColorEnable;
-            if (this.CoverageToColorLocation != null)
-            {
-                pointer->CoverageToColorLocation = this.CoverageToColorLocation.Value;
-            }
+                pointer->Flags = default;
+            pointer->CoverageToColorEnable = CoverageToColorEnable;
+            if (CoverageToColorLocation != null)
+                pointer->CoverageToColorLocation = CoverageToColorLocation.Value;
             else
-            {
-                pointer->CoverageToColorLocation = default(uint);
-            }
+                pointer->CoverageToColorLocation = default;
         }
     }
 }

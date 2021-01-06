@@ -22,30 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bits specifying additional parameters of a sampler.
+    ///     Bits specifying additional parameters of a sampler.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum SamplerCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// Specifies that the sampler will read from an image created with
-        /// flags containing ImageCreateFlags.Subsampled.
+        ///     Specifies that the sampler will read from an image created with
+        ///     flags containing ImageCreateFlags.Subsampled.
         /// </summary>
-        Subsampled = 1 << 0, 
-        
+        Subsampled = 1 << 0,
+
         /// <summary>
-        /// Specifies that the implementation may use approximations when
-        /// reconstructing a full color value for texture access from a
-        /// subsampled image.
+        ///     Specifies that the implementation may use approximations when
+        ///     reconstructing a full color value for texture access from a
+        ///     subsampled image.
         /// </summary>
-        SubsampledCoarseReconstruction = 1 << 1, 
+        SubsampledCoarseReconstruction = 1 << 1
     }
 }

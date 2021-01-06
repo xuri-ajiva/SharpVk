@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkInstanceSubmitDebugUtilsMessageDelegate(SharpVk.Interop.Instance instance, SharpVk.Multivendor.DebugUtilsMessageSeverityFlags messageSeverity, SharpVk.Multivendor.DebugUtilsMessageTypeFlags messageTypes, SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData* callbackData);
+    public unsafe delegate void VkInstanceSubmitDebugUtilsMessageDelegate(Instance instance, DebugUtilsMessageSeverityFlags messageSeverity, DebugUtilsMessageTypeFlags messageTypes, DebugUtilsMessengerCallbackData* callbackData);
 }

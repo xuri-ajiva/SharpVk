@@ -1,12 +1,12 @@
 ﻿namespace SharpVk.Spirv
 {
     /// <summary>
-    /// -
+    ///     -
     /// </summary>
     public struct Operand
     {
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public OperandKind Kind
         {
@@ -15,7 +15,7 @@
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public Quantifier Quantifier
         {
@@ -24,7 +24,7 @@
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public string Name
         {

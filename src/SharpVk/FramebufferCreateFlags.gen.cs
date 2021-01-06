@@ -22,24 +22,25 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying framebuffer properties
+    ///     Bitmask specifying framebuffer properties
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum FramebufferCreateFlags
     {
         /// <summary>
-        /// Specifies that image views are not specified, and only attachment
-        /// compatibility information will be provided via an instance of
-        /// FramebufferAttachmentImageInfo.
+        ///     Specifies that image views are not specified, and only attachment
+        ///     compatibility information will be provided via an instance of
+        ///     FramebufferAttachmentImageInfo.
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Imageless = 1 << 0, 
+        Imageless = 1 << 0
     }
 }

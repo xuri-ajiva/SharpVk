@@ -22,40 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying image format properties.
+    ///     Structure specifying image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct FormatProperties
+    public struct FormatProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public FormatProperties(SharpVk.FormatFeatureFlags linearTilingFeatures, SharpVk.FormatFeatureFlags optimalTilingFeatures, SharpVk.FormatFeatureFlags bufferFeatures)
+        public FormatProperties(FormatFeatureFlags linearTilingFeatures, FormatFeatureFlags optimalTilingFeatures, FormatFeatureFlags bufferFeatures)
         {
-            this.LinearTilingFeatures = linearTilingFeatures;
-            this.OptimalTilingFeatures = optimalTilingFeatures;
-            this.BufferFeatures = bufferFeatures;
+            LinearTilingFeatures = linearTilingFeatures;
+            OptimalTilingFeatures = optimalTilingFeatures;
+            BufferFeatures = bufferFeatures;
         }
-        
+
         /// <summary>
-        /// Describes the features supported by ImageTiling.Linear.
+        ///     Describes the features supported by ImageTiling.Linear.
         /// </summary>
-        public SharpVk.FormatFeatureFlags LinearTilingFeatures; 
-        
+        public FormatFeatureFlags LinearTilingFeatures;
+
         /// <summary>
-        /// Describes the features supported by ImageTiling.Optimal.
+        ///     Describes the features supported by ImageTiling.Optimal.
         /// </summary>
-        public SharpVk.FormatFeatureFlags OptimalTilingFeatures; 
-        
+        public FormatFeatureFlags OptimalTilingFeatures;
+
         /// <summary>
-        /// Describes the features supported by buffers.
+        ///     Describes the features supported by buffers.
         /// </summary>
-        public SharpVk.FormatFeatureFlags BufferFeatures; 
+        public FormatFeatureFlags BufferFeatures;
     }
 }

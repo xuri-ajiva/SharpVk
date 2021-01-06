@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.MoltenVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateIOSSurfaceDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Khronos.Surface* surface);
+    public unsafe delegate Result VkInstanceCreateIosSurfaceDelegate(Instance instance, IosSurfaceCreateInfo* createInfo, AllocationCallbacks* allocator, Surface* surface);
 }

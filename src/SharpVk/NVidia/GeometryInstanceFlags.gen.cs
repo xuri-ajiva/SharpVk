@@ -22,37 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum GeometryInstanceFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        TriangleCullDisable = 1 << 0, 
-        
+        TriangleCullDisable = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        TriangleFrontCounterclockwise = 1 << 1, 
-        
+        TriangleFrontCounterclockwise = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        ForceOpaque = 1 << 2, 
-        
+        ForceOpaque = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        ForceNoOpaque = 1 << 3, 
+        ForceNoOpaque = 1 << 3
     }
 }

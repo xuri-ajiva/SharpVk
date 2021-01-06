@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkQueuePresentDelegate(SharpVk.Interop.Queue queue, SharpVk.Interop.Khronos.PresentInfo* presentInfo);
+    public unsafe delegate Result VkQueuePresentDelegate(Queue queue, PresentInfo* presentInfo);
 }

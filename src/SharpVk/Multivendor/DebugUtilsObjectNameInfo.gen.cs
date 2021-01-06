@@ -22,56 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct DebugUtilsObjectNameInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ObjectType ObjectType
+        public ObjectType ObjectType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ObjectHandle
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string ObjectName
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugUtilsObjectNameInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DebugUtilsObjectNameInfo* pointer)
         {
             pointer->SType = StructureType.DebugUtilsObjectNameInfo;
             pointer->Next = null;
-            pointer->ObjectType = this.ObjectType;
-            pointer->ObjectHandle = this.ObjectHandle;
-            pointer->ObjectName = Interop.HeapUtil.MarshalTo(this.ObjectName);
+            pointer->ObjectType = ObjectType;
+            pointer->ObjectHandle = ObjectHandle;
+            pointer->ObjectName = HeapUtil.MarshalTo(ObjectName);
         }
     }
 }

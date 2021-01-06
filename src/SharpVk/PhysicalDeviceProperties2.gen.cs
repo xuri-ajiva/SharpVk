@@ -22,35 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceProperties2
+    public struct PhysicalDeviceProperties2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PhysicalDeviceProperties Properties
+        public PhysicalDeviceProperties Properties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceProperties2 MarshalFrom(SharpVk.Interop.PhysicalDeviceProperties2* pointer)
+        internal static unsafe PhysicalDeviceProperties2 MarshalFrom(Interop.PhysicalDeviceProperties2* pointer)
         {
-            PhysicalDeviceProperties2 result = default(PhysicalDeviceProperties2);
-            result.Properties = SharpVk.PhysicalDeviceProperties.MarshalFrom(&pointer->Properties);
+            var result = default(PhysicalDeviceProperties2);
+            result.Properties = PhysicalDeviceProperties.MarshalFrom(&pointer->Properties);
             return result;
         }
     }

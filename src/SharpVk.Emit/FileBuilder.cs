@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 
 namespace SharpVk.Emit
 {
@@ -11,58 +8,56 @@ namespace SharpVk.Emit
     {
         private readonly IndentedTextWriter fileWriter;
 
-        private bool hasFirstParagraph = false;
-        private bool previousParagraphWasNamespace = false;
-
-        public string FilePath { get; }
+        private bool hasFirstParagraph;
+        private bool previousParagraphWasNamespace;
 
         public FileBuilder(string folderPath, string fileName)
         {
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
+            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-            this.FilePath = Path.Combine(folderPath, fileName);
+            FilePath = Path.Combine(folderPath, fileName);
 
-            if (File.Exists(this.FilePath))
-            {
+            if (File.Exists(FilePath))
                 try
                 {
-                    File.Delete(this.FilePath);
+                    File.Delete(FilePath);
                 }
                 catch
                 {
                     //HACK Getting intermittent file-lock errors
                 }
-            }
 
-            this.fileWriter = new IndentedTextWriter(new StreamWriter(File.OpenWrite(this.FilePath)));
+            fileWriter = new IndentedTextWriter(new StreamWriter(File.OpenWrite(FilePath)));
+        }
+
+        public string FilePath { get; }
+
+        public void Dispose()
+        {
+            fileWriter.Flush();
+            fileWriter.Dispose();
         }
 
         public void EmitComment(string comment)
         {
-            this.EmitParagraphSpacing();
+            EmitParagraphSpacing();
 
-            foreach (var line in comment.Split('\n'))
-            {
-                this.fileWriter.WriteLine("// " + line.Trim());
-            }
+            foreach (var line in comment.Split('\n')) fileWriter.WriteLine("// " + line.Trim());
         }
 
         public void EmitUsing(string @namespace)
         {
-            this.EmitParagraphSpacing(true);
+            EmitParagraphSpacing(true);
 
-            this.fileWriter.WriteLine($"using {@namespace};");
+            fileWriter.WriteLine($"using {@namespace};");
         }
 
         public void EmitNamespace(string name, Action<NamespaceBuilder> @namespace)
         {
-            this.EmitParagraphSpacing();
+            EmitParagraphSpacing();
 
-            this.fileWriter.WriteLine($"namespace {name}");
-            using (var builder = new NamespaceBuilder(this.fileWriter.GetSubWriter()))
+            fileWriter.WriteLine($"namespace {name}");
+            using (var builder = new NamespaceBuilder(fileWriter.GetSubWriter()))
             {
                 @namespace(builder);
             }
@@ -70,22 +65,12 @@ namespace SharpVk.Emit
 
         private void EmitParagraphSpacing(bool isNamespace = false)
         {
-            if (hasFirstParagraph && !(isNamespace && this.previousParagraphWasNamespace))
-            {
-                this.fileWriter.WriteLine();
-            }
+            if (hasFirstParagraph && !(isNamespace && previousParagraphWasNamespace))
+                fileWriter.WriteLine();
             else
-            {
                 hasFirstParagraph = true;
-            }
 
-            this.previousParagraphWasNamespace = isNamespace;
-        }
-
-        public void Dispose()
-        {
-            this.fileWriter.Flush();
-            this.fileWriter.Dispose();
+            previousParagraphWasNamespace = isNamespace;
         }
     }
 }

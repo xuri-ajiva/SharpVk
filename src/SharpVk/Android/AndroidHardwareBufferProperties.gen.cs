@@ -22,43 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AndroidHardwareBufferProperties
+    public struct AndroidHardwareBufferProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong AllocationSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MemoryTypeBits
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AndroidHardwareBufferProperties MarshalFrom(SharpVk.Interop.Android.AndroidHardwareBufferProperties* pointer)
+        internal static unsafe AndroidHardwareBufferProperties MarshalFrom(Interop.Android.AndroidHardwareBufferProperties* pointer)
         {
-            AndroidHardwareBufferProperties result = default(AndroidHardwareBufferProperties);
+            var result = default(AndroidHardwareBufferProperties);
             result.AllocationSize = pointer->AllocationSize;
             result.MemoryTypeBits = pointer->MemoryTypeBits;
             return result;

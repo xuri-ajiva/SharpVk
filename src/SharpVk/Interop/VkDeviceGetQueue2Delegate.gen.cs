@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDeviceGetQueue2Delegate(SharpVk.Interop.Device device, SharpVk.Interop.DeviceQueueInfo2* queueInfo, SharpVk.Interop.Queue* queue);
+    public unsafe delegate void VkDeviceGetQueue2Delegate(Device device, DeviceQueueInfo2* queueInfo, Queue* queue);
 }

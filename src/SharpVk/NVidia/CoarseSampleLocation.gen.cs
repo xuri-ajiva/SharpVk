@@ -22,45 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CoarseSampleLocation
+    public struct CoarseSampleLocation
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static CoarseSampleLocation Zero => new CoarseSampleLocation();
-        
+        public static CoarseSampleLocation Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public CoarseSampleLocation(uint pixelX, uint pixelY, uint sample)
         {
-            this.PixelX = pixelX;
-            this.PixelY = pixelY;
-            this.Sample = sample;
+            PixelX = pixelX;
+            PixelY = pixelY;
+            Sample = sample;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PixelX; 
-        
+        public uint PixelX;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PixelY; 
-        
+        public uint PixelY;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Sample; 
+        public uint Sample;
     }
 }

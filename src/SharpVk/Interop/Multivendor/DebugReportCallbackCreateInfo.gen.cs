@@ -24,40 +24,38 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DebugReportCallbackCreateInfo
+    public unsafe struct DebugReportCallbackCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// flags indicate which event(s) will cause this callback to be
-        /// called. Flags are interpreted as bitmasks and multiple may be set.
-        /// Bits which can be set include: + --
+        ///     flags indicate which event(s) will cause this callback to be
+        ///     called. Flags are interpreted as bitmasks and multiple may be set.
+        ///     Bits which can be set include: + --
         /// </summary>
-        public SharpVk.Multivendor.DebugReportFlags Flags; 
-        
+        public DebugReportFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public IntPtr Callback; 
-        
+        public IntPtr Callback;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* UserData; 
+        public void* UserData;
     }
 }

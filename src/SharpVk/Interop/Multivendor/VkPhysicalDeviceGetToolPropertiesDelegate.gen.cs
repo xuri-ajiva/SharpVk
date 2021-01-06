@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetToolPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint* toolCount, SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties* toolProperties);
+    public unsafe delegate Result VkPhysicalDeviceGetToolPropertiesDelegate(PhysicalDevice physicalDevice, uint* toolCount, PhysicalDeviceToolProperties* toolProperties);
 }

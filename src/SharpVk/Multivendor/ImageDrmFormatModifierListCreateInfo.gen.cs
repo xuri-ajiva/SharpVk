@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageDrmFormatModifierListCreateInfo
+    public struct ImageDrmFormatModifierListCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong[] DrmFormatModifiers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ImageDrmFormatModifierListCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.ImageDrmFormatModifierListCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageDrmFormatModifierListCreateInfo;
             pointer->Next = null;
-            pointer->DrmFormatModifierCount = (uint)(Interop.HeapUtil.GetLength(this.DrmFormatModifiers));
-            if (this.DrmFormatModifiers != null)
+            pointer->DrmFormatModifierCount = HeapUtil.GetLength(DrmFormatModifiers);
+            if (DrmFormatModifiers != null)
             {
-                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.DrmFormatModifiers.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DrmFormatModifiers.Length); index++)
-                {
-                    fieldPointer[index] = this.DrmFormatModifiers[index];
-                }
+                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(DrmFormatModifiers.Length).ToPointer();
+                for (var index = 0; index < (uint)DrmFormatModifiers.Length; index++) fieldPointer[index] = DrmFormatModifiers[index];
                 pointer->DrmFormatModifiers = fieldPointer;
             }
             else

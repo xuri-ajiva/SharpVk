@@ -22,40 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineViewportShadingRateImageStateCreateInfo
+    public unsafe struct PipelineViewportShadingRateImageStateCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShadingRateImageEnable; 
-        
+        public Bool32 ShadingRateImageEnable;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ViewportCount; 
-        
+        public uint ViewportCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.NVidia.ShadingRatePalette* ShadingRatePalettes; 
+        public ShadingRatePalette* ShadingRatePalettes;
     }
 }

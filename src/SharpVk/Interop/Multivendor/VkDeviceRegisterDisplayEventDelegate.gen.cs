@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceRegisterDisplayEventDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Display display, SharpVk.Interop.Multivendor.DisplayEventInfo* displayEventInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Fence* fence);
+    public unsafe delegate Result VkDeviceRegisterDisplayEventDelegate(Device device, Display display, DisplayEventInfo* displayEventInfo, AllocationCallbacks* allocator, Fence* fence);
 }

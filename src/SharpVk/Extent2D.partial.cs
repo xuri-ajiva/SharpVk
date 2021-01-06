@@ -3,8 +3,7 @@
     public partial struct Extent2D
     {
         /// <summary>
-        /// 
         /// </summary>
-        public float AspectRatio => (float)this.Width / (float)this.Height;
+        public float AspectRatio => Width / (float)Height;
     }
 }

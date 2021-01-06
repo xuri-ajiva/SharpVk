@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetExternalImageFormatPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags flags, SharpVk.NVidia.ExternalMemoryHandleTypeFlags externalHandleType, SharpVk.NVidia.ExternalImageFormatProperties* externalImageFormatProperties);
+    public unsafe delegate Result VkPhysicalDeviceGetExternalImageFormatPropertiesDelegate(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, SharpVk.NVidia.ExternalMemoryHandleTypeFlags externalHandleType, SharpVk.NVidia.ExternalImageFormatProperties* externalImageFormatProperties);
 }

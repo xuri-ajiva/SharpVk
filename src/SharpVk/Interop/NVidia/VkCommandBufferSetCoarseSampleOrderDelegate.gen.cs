@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetCoarseSampleOrderDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.NVidia.CoarseSampleOrderType sampleOrderType, uint customSampleOrderCount, SharpVk.Interop.NVidia.CoarseSampleOrderCustom* customSampleOrders);
+    public unsafe delegate void VkCommandBufferSetCoarseSampleOrderDelegate(CommandBuffer commandBuffer, CoarseSampleOrderType sampleOrderType, uint customSampleOrderCount, CoarseSampleOrderCustom* customSampleOrders);
 }

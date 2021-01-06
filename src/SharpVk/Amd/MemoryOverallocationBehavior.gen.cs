@@ -25,23 +25,19 @@
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum MemoryOverallocationBehavior
     {
         /// <summary>
-        /// 
         /// </summary>
-        Default = 0, 
-        
+        Default = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Allowed = 1, 
-        
+        Allowed = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Disallowed = 2, 
+        Disallowed = 2
     }
 }

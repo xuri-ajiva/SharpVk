@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate uint VkDeviceGetImageViewHandleDelegate(SharpVk.Interop.Device device, SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo* info);
+    public unsafe delegate uint VkDeviceGetImageViewHandleDelegate(Device device, ImageViewHandleInfo* info);
 }

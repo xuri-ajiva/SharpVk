@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceYcbcrImageArraysFeatures
+    public struct PhysicalDeviceYcbcrImageArraysFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool YcbcrImageArrays
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceYcbcrImageArraysFeatures;
             pointer->Next = null;
-            pointer->YcbcrImageArrays = this.YcbcrImageArrays;
+            pointer->YcbcrImageArrays = YcbcrImageArrays;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceYcbcrImageArraysFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
+        internal static unsafe PhysicalDeviceYcbcrImageArraysFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
         {
-            PhysicalDeviceYcbcrImageArraysFeatures result = default(PhysicalDeviceYcbcrImageArraysFeatures);
+            var result = default(PhysicalDeviceYcbcrImageArraysFeatures);
             result.YcbcrImageArrays = pointer->YcbcrImageArrays;
             return result;
         }

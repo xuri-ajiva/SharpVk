@@ -22,37 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.MoltenVk;
 
 namespace SharpVk.Interop.MoltenVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct MacOSSurfaceCreateInfo
+    public unsafe struct MacOsSurfaceCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.MoltenVk.MacOSSurfaceCreateFlags Flags; 
-        
+        public MacOsSurfaceCreateFlags Flags;
+
         /// <summary>
-        /// A reference to a NSView object which will display this surface.
-        /// This NSView must be backed by a CALayer instance of type
-        /// CAMetalLayer.
+        ///     A reference to a NSView object which will display this surface.
+        ///     This NSView must be backed by a CALayer instance of type
+        ///     CAMetalLayer.
         /// </summary>
-        public void* View; 
+        public void* View;
     }
 }

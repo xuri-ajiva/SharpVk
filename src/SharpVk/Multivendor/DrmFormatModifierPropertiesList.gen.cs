@@ -22,41 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DrmFormatModifierPropertiesList
+    public struct DrmFormatModifierPropertiesList
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DrmFormatModifierProperties[] DrmFormatModifierProperties
+        public DrmFormatModifierProperties[] DrmFormatModifierProperties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DrmFormatModifierPropertiesList MarshalFrom(SharpVk.Interop.Multivendor.DrmFormatModifierPropertiesList* pointer)
+        internal static unsafe DrmFormatModifierPropertiesList MarshalFrom(Interop.Multivendor.DrmFormatModifierPropertiesList* pointer)
         {
-            DrmFormatModifierPropertiesList result = default(DrmFormatModifierPropertiesList);
+            var result = default(DrmFormatModifierPropertiesList);
             if (pointer->DrmFormatModifierProperties != null)
             {
-                var fieldPointer = new SharpVk.Multivendor.DrmFormatModifierProperties[(uint)(pointer->DrmFormatModifierCount)];
-                for(int index = 0; index < (uint)(pointer->DrmFormatModifierCount); index++)
-                {
-                    fieldPointer[index] = pointer->DrmFormatModifierProperties[index];
-                }
+                var fieldPointer = new DrmFormatModifierProperties[pointer->DrmFormatModifierCount];
+                for (var index = 0; index < pointer->DrmFormatModifierCount; index++) fieldPointer[index] = pointer->DrmFormatModifierProperties[index];
                 result.DrmFormatModifierProperties = fieldPointer;
             }
             else

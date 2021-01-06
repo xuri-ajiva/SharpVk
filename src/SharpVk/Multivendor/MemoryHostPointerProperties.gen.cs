@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryHostPointerProperties
+    public struct MemoryHostPointerProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MemoryTypeBits
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryHostPointerProperties MarshalFrom(SharpVk.Interop.Multivendor.MemoryHostPointerProperties* pointer)
+        internal static unsafe MemoryHostPointerProperties MarshalFrom(Interop.Multivendor.MemoryHostPointerProperties* pointer)
         {
-            MemoryHostPointerProperties result = default(MemoryHostPointerProperties);
+            var result = default(MemoryHostPointerProperties);
             result.MemoryTypeBits = pointer->MemoryTypeBits;
             return result;
         }

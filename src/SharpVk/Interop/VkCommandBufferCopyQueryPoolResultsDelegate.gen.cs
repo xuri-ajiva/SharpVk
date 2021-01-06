@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferCopyQueryPoolResultsDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.QueryPool queryPool, uint firstQuery, uint queryCount, SharpVk.Interop.Buffer destinationBuffer, ulong destinationOffset, ulong stride, SharpVk.QueryResultFlags flags);
+    public delegate void VkCommandBufferCopyQueryPoolResultsDelegate(CommandBuffer commandBuffer, QueryPool queryPool, uint firstQuery, uint queryCount, Buffer destinationBuffer, ulong destinationOffset, ulong stride, QueryResultFlags flags);
 }

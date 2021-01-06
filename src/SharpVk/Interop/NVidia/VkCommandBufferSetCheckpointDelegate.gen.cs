@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetCheckpointDelegate(SharpVk.Interop.CommandBuffer commandBuffer, void* checkpointMarker);
+    public unsafe delegate void VkCommandBufferSetCheckpointDelegate(CommandBuffer commandBuffer, void* checkpointMarker);
 }

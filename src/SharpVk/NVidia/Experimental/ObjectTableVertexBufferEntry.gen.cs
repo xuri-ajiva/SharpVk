@@ -22,67 +22,60 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ObjectTableVertexBufferEntry
+    public struct ObjectTableVertexBufferEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType Type
+        public ObjectEntryType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags Flags
+        public ObjectEntryUsageFlags Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTableVertexBufferEntry* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.ObjectTableVertexBufferEntry* pointer)
         {
-            pointer->Type = this.Type;
-            pointer->Flags = this.Flags;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
+            pointer->Type = Type;
+            pointer->Flags = Flags;
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ObjectTableVertexBufferEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTableVertexBufferEntry* pointer)
+        internal static unsafe ObjectTableVertexBufferEntry MarshalFrom(Interop.NVidia.Experimental.ObjectTableVertexBufferEntry* pointer)
         {
-            ObjectTableVertexBufferEntry result = default(ObjectTableVertexBufferEntry);
+            var result = default(ObjectTableVertexBufferEntry);
             result.Type = pointer->Type;
             result.Flags = pointer->Flags;
-            result.Buffer = new SharpVk.Buffer(default(SharpVk.Device), pointer->Buffer);
+            result.Buffer = new(default, pointer->Buffer);
             return result;
         }
     }

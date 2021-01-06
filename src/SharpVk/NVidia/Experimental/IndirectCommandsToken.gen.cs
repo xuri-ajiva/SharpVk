@@ -22,68 +22,65 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure specifying parameters for the reservation of command buffer
-    /// space.
+    ///     Structure specifying parameters for the reservation of command buffer
+    ///     space.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct IndirectCommandsToken
+    public struct IndirectCommandsToken
     {
         /// <summary>
-        /// Specifies the token command type.
+        ///     Specifies the token command type.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsTokenType TokenType
+        public IndirectCommandsTokenType TokenType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Specifies the Buffer storing the functional arguments for each
-        /// squence. These argumetns can be written by the device.
+        ///     Specifies the Buffer storing the functional arguments for each
+        ///     squence. These argumetns can be written by the device.
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// offset specified an offset into buffer where the arguments start.
+        ///     offset specified an offset into buffer where the arguments start.
         /// </summary>
         public ulong Offset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.IndirectCommandsToken* pointer)
         {
-            pointer->TokenType = this.TokenType;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->Offset = this.Offset;
+            pointer->TokenType = TokenType;
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            pointer->Offset = Offset;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe IndirectCommandsToken MarshalFrom(SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken* pointer)
+        internal static unsafe IndirectCommandsToken MarshalFrom(Interop.NVidia.Experimental.IndirectCommandsToken* pointer)
         {
-            IndirectCommandsToken result = default(IndirectCommandsToken);
+            var result = default(IndirectCommandsToken);
             result.TokenType = pointer->TokenType;
-            result.Buffer = new SharpVk.Buffer(default(SharpVk.Device), pointer->Buffer);
+            result.Buffer = new(default, pointer->Buffer);
             result.Offset = pointer->Offset;
             return result;
         }

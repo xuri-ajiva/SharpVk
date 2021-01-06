@@ -22,57 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure specifying the image view for handle queries
+    ///     Structure specifying the image view for handle queries
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageViewHandleInfo
+    public struct ImageViewHandleInfo
     {
         /// <summary>
-        /// The image view to query.
+        ///     The image view to query.
         /// </summary>
-        public SharpVk.ImageView ImageView
+        public ImageView ImageView
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The type of descriptor for which to query a handle.
+        ///     The type of descriptor for which to query a handle.
         /// </summary>
-        public SharpVk.DescriptorType DescriptorType
+        public DescriptorType DescriptorType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The sampler to combine with the image view when generating the
-        /// handle.
+        ///     The sampler to combine with the image view when generating the
+        ///     handle.
         /// </summary>
-        public SharpVk.Sampler Sampler
+        public Sampler Sampler
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.ImageViewHandleInfo* pointer)
         {
             pointer->SType = StructureType.ImageViewHandleInfo;
             pointer->Next = null;
-            pointer->ImageView = this.ImageView?.handle ?? default(SharpVk.Interop.ImageView);
-            pointer->DescriptorType = this.DescriptorType;
-            pointer->Sampler = this.Sampler?.handle ?? default(SharpVk.Interop.Sampler);
+            pointer->ImageView = ImageView?.Handle ?? default(Interop.ImageView);
+            pointer->DescriptorType = DescriptorType;
+            pointer->Sampler = Sampler?.Handle ?? default(Interop.Sampler);
         }
     }
 }

@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PerformanceQuerySubmitInfo
+    public struct PerformanceQuerySubmitInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint CounterPassIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PerformanceQuerySubmitInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PerformanceQuerySubmitInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceQuerySubmitInfo;
             pointer->Next = null;
-            pointer->CounterPassIndex = this.CounterPassIndex;
+            pointer->CounterPassIndex = CounterPassIndex;
         }
     }
 }

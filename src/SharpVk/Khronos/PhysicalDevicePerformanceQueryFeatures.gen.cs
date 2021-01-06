@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevicePerformanceQueryFeatures
+    public struct PhysicalDevicePerformanceQueryFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool PerformanceCounterQueryPools
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool PerformanceCounterMultipleQueryPools
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PhysicalDevicePerformanceQueryFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDevicePerformanceQueryFeatures;
             pointer->Next = null;
-            pointer->PerformanceCounterQueryPools = this.PerformanceCounterQueryPools;
-            pointer->PerformanceCounterMultipleQueryPools = this.PerformanceCounterMultipleQueryPools;
+            pointer->PerformanceCounterQueryPools = PerformanceCounterQueryPools;
+            pointer->PerformanceCounterMultipleQueryPools = PerformanceCounterMultipleQueryPools;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePerformanceQueryFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryFeatures* pointer)
+        internal static unsafe PhysicalDevicePerformanceQueryFeatures MarshalFrom(Interop.Khronos.PhysicalDevicePerformanceQueryFeatures* pointer)
         {
-            PhysicalDevicePerformanceQueryFeatures result = default(PhysicalDevicePerformanceQueryFeatures);
+            var result = default(PhysicalDevicePerformanceQueryFeatures);
             result.PerformanceCounterQueryPools = pointer->PerformanceCounterQueryPools;
             result.PerformanceCounterMultipleQueryPools = pointer->PerformanceCounterMultipleQueryPools;
             return result;

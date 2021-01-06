@@ -22,135 +22,124 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class DeviceExtensions
     {
         /// <summary>
-        /// Initialize a device for performance queries
+        ///     Initialize a device for performance queries
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Device handle to extend.
+        ///     The Device handle to extend.
         /// </param>
         /// <param name="initializeInfo">
-        /// The initialization parameters.
+        ///     The initialization parameters.
         /// </param>
-        public static unsafe void InitializePerformanceApi(this SharpVk.Device extendedHandle, SharpVk.Intel.InitializePerformanceApiInfo initializeInfo)
+        public static unsafe void InitializePerformanceApi(this Device extendedHandle, InitializePerformanceApiInfo initializeInfo)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Intel.InitializePerformanceApiInfo* marshalledInitializeInfo = default(SharpVk.Interop.Intel.InitializePerformanceApiInfo*);
-                commandCache = extendedHandle.commandCache;
-                marshalledInitializeInfo = (SharpVk.Interop.Intel.InitializePerformanceApiInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Intel.InitializePerformanceApiInfo>());
+                var commandCache = default(CommandCache);
+                var marshalledInitializeInfo = default(Interop.Intel.InitializePerformanceApiInfo*);
+                commandCache = extendedHandle.CommandCache;
+                marshalledInitializeInfo = (Interop.Intel.InitializePerformanceApiInfo*)HeapUtil.Allocate<Interop.Intel.InitializePerformanceApiInfo>();
                 initializeInfo.MarshalTo(marshalledInitializeInfo);
-                SharpVk.Interop.Intel.VkDeviceInitializePerformanceApiDelegate commandDelegate = commandCache.Cache.vkInitializePerformanceApiINTEL;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledInitializeInfo);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandDelegate = commandCache.Cache.VkInitializePerformanceApiIntel;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledInitializeInfo);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Device handle to extend.
+        ///     The Device handle to extend.
         /// </param>
-        public static unsafe void UninitializePerformanceApi(this SharpVk.Device extendedHandle)
+        public static void UninitializePerformanceApi(this Device extendedHandle)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Intel.VkDeviceUninitializePerformanceApiDelegate commandDelegate = commandCache.Cache.vkUninitializePerformanceApiINTEL;
-                commandDelegate(extendedHandle.handle);
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkUninitializePerformanceApiIntel;
+                commandDelegate(extendedHandle.Handle);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Acquire the performance query capability
+        ///     Acquire the performance query capability
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Device handle to extend.
+        ///     The Device handle to extend.
         /// </param>
         /// <param name="type">
-        /// One of the VkPerformanceConfigurationTypeINTEL type of performance
-        /// configuration that will be acquired.
+        ///     One of the VkPerformanceConfigurationTypeINTEL type of performance
+        ///     configuration that will be acquired.
         /// </param>
-        public static unsafe SharpVk.Intel.PerformanceConfiguration AcquirePerformanceConfiguration(this SharpVk.Device extendedHandle, SharpVk.Intel.PerformanceConfigurationType type)
+        public static unsafe PerformanceConfiguration AcquirePerformanceConfiguration(this Device extendedHandle, PerformanceConfigurationType type)
         {
             try
             {
-                SharpVk.Intel.PerformanceConfiguration result = default(SharpVk.Intel.PerformanceConfiguration);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo* marshalledAcquireInfo = default(SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo*);
-                void* vkPerformanceConfigurationAcquireInfoINTELNextPointer = default(void*);
-                SharpVk.Interop.Intel.PerformanceConfiguration marshalledConfiguration = default(SharpVk.Interop.Intel.PerformanceConfiguration);
-                commandCache = extendedHandle.commandCache;
-                marshalledAcquireInfo = (SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo>());
+                var result = default(PerformanceConfiguration);
+                var commandCache = default(CommandCache);
+                var marshalledAcquireInfo = default(Interop.Intel.PerformanceConfigurationAcquireInfo*);
+                var vkPerformanceConfigurationAcquireInfoIntelNextPointer = default(void*);
+                var marshalledConfiguration = default(Interop.Intel.PerformanceConfiguration);
+                commandCache = extendedHandle.CommandCache;
+                marshalledAcquireInfo = (Interop.Intel.PerformanceConfigurationAcquireInfo*)HeapUtil.Allocate<Interop.Intel.PerformanceConfigurationAcquireInfo>();
                 marshalledAcquireInfo->SType = StructureType.PerformanceConfigurationAcquireInfo;
-                marshalledAcquireInfo->Next = vkPerformanceConfigurationAcquireInfoINTELNextPointer;
+                marshalledAcquireInfo->Next = vkPerformanceConfigurationAcquireInfoIntelNextPointer;
                 marshalledAcquireInfo->Type = type;
-                SharpVk.Interop.Intel.VkDeviceAcquirePerformanceConfigurationDelegate commandDelegate = commandCache.Cache.vkAcquirePerformanceConfigurationINTEL;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledAcquireInfo, &marshalledConfiguration);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Intel.PerformanceConfiguration(extendedHandle, marshalledConfiguration);
+                var commandDelegate = commandCache.Cache.VkAcquirePerformanceConfigurationIntel;
+                var methodResult = commandDelegate(extendedHandle.Handle, marshalledAcquireInfo, &marshalledConfiguration);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(extendedHandle, marshalledConfiguration);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Query performance capabilities of the device
+        ///     Query performance capabilities of the device
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Device handle to extend.
+        ///     The Device handle to extend.
         /// </param>
         /// <param name="parameter">
-        /// The parameter to query.
+        ///     The parameter to query.
         /// </param>
-        public static unsafe SharpVk.Intel.PerformanceValue GetPerformanceParameter(this SharpVk.Device extendedHandle, SharpVk.Intel.PerformanceParameterType parameter)
+        public static unsafe PerformanceValue GetPerformanceParameter(this Device extendedHandle, PerformanceParameterType parameter)
         {
             try
             {
-                SharpVk.Intel.PerformanceValue result = default(SharpVk.Intel.PerformanceValue);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Intel.PerformanceValue marshalledValue = default(SharpVk.Interop.Intel.PerformanceValue);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Intel.VkDeviceGetPerformanceParameterDelegate commandDelegate = commandCache.Cache.vkGetPerformanceParameterINTEL;
-                Result methodResult = commandDelegate(extendedHandle.handle, parameter, &marshalledValue);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = SharpVk.Intel.PerformanceValue.MarshalFrom(&marshalledValue);
+                var result = default(PerformanceValue);
+                var commandCache = default(CommandCache);
+                var marshalledValue = default(Interop.Intel.PerformanceValue);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetPerformanceParameterIntel;
+                var methodResult = commandDelegate(extendedHandle.Handle, parameter, &marshalledValue);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = PerformanceValue.MarshalFrom(&marshalledValue);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

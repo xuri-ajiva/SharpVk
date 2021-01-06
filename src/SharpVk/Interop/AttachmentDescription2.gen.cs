@@ -22,70 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct AttachmentDescription2
+    public unsafe struct AttachmentDescription2
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentDescriptionFlags Flags; 
-        
+        public AttachmentDescriptionFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags Samples; 
-        
+        public SampleCountFlags Samples;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentLoadOp LoadOp; 
-        
+        public AttachmentLoadOp LoadOp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentStoreOp StoreOp; 
-        
+        public AttachmentStoreOp StoreOp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentLoadOp StencilLoadOp; 
-        
+        public AttachmentLoadOp StencilLoadOp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentStoreOp StencilStoreOp; 
-        
+        public AttachmentStoreOp StencilStoreOp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout InitialLayout; 
-        
+        public ImageLayout InitialLayout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout FinalLayout; 
+        public ImageLayout FinalLayout;
     }
 }

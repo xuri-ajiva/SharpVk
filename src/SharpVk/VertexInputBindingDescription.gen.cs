@@ -22,43 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying vertex input binding description.
+    ///     Structure specifying vertex input binding description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct VertexInputBindingDescription
+    public struct VertexInputBindingDescription
     {
         /// <summary>
-        /// 
         /// </summary>
-        public VertexInputBindingDescription(uint binding, uint stride, SharpVk.VertexInputRate inputRate)
+        public VertexInputBindingDescription(uint binding, uint stride, VertexInputRate inputRate)
         {
-            this.Binding = binding;
-            this.Stride = stride;
-            this.InputRate = inputRate;
+            Binding = binding;
+            Stride = stride;
+            InputRate = inputRate;
         }
-        
+
         /// <summary>
-        /// The binding number that this structure describes.
+        ///     The binding number that this structure describes.
         /// </summary>
-        public uint Binding; 
-        
+        public uint Binding;
+
         /// <summary>
-        /// The distance in bytes between two consecutive elements within the
-        /// buffer.
+        ///     The distance in bytes between two consecutive elements within the
+        ///     buffer.
         /// </summary>
-        public uint Stride; 
-        
+        public uint Stride;
+
         /// <summary>
-        /// Specifies whether vertex attribute addressing is a function of the
-        /// vertex index or of the instance index. Possible values include: +
-        /// --
+        ///     Specifies whether vertex attribute addressing is a function of the
+        ///     vertex index or of the instance index. Possible values include: +
+        ///     --
         /// </summary>
-        public SharpVk.VertexInputRate InputRate; 
+        public VertexInputRate InputRate;
     }
 }

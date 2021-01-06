@@ -25,48 +25,40 @@
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Enum specifying.
+    ///     Enum specifying.
     /// </summary>
     public enum IndirectCommandsTokenType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Pipeline = 0, 
-        
+        Pipeline = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        DescriptorSet = 1, 
-        
+        DescriptorSet = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        IndexBuffer = 2, 
-        
+        IndexBuffer = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        VertexBuffer = 3, 
-        
+        VertexBuffer = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        PushConstant = 4, 
-        
+        PushConstant = 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        DrawIndexed = 5, 
-        
+        DrawIndexed = 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        Draw = 6, 
-        
+        Draw = 6,
+
         /// <summary>
-        /// 
         /// </summary>
-        Dispatch = 7, 
+        Dispatch = 7
     }
 }

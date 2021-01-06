@@ -22,39 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct NativeBufferUsage2
+    public struct NativeBufferUsage2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static NativeBufferUsage2 Zero => new NativeBufferUsage2();
-        
+        public static NativeBufferUsage2 Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public NativeBufferUsage2(ulong consumer, ulong producer)
         {
-            this.Consumer = consumer;
-            this.Producer = producer;
+            Consumer = consumer;
+            Producer = producer;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong Consumer; 
-        
+        public ulong Consumer;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong Producer; 
+        public ulong Producer;
     }
 }

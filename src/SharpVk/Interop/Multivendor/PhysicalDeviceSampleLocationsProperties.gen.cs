@@ -22,50 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceSampleLocationsProperties
+    public unsafe struct PhysicalDeviceSampleLocationsProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags SampleLocationSampleCounts; 
-        
+        public SampleCountFlags SampleLocationSampleCounts;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D MaxSampleLocationGridSize; 
-        
+        public Extent2D MaxSampleLocationGridSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed float SampleLocationCoordinateRange[2]; 
-        
+        public fixed float SampleLocationCoordinateRange[2];
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SampleLocationSubPixelBits; 
-        
+        public uint SampleLocationSubPixelBits;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VariableSampleLocations; 
+        public Bool32 VariableSampleLocations;
     }
 }

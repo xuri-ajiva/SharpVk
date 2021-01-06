@@ -22,46 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Struct specifying the details of an indirect command layout token.
+    ///     Struct specifying the details of an indirect command layout token.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct IndirectCommandsLayoutToken
+    public struct IndirectCommandsLayoutToken
     {
         /// <summary>
-        /// 
         /// </summary>
-        public IndirectCommandsLayoutToken(SharpVk.NVidia.Experimental.IndirectCommandsTokenType tokenType, uint bindingUnit, uint dynamicCount, uint divisor)
+        public IndirectCommandsLayoutToken(IndirectCommandsTokenType tokenType, uint bindingUnit, uint dynamicCount, uint divisor)
         {
-            this.TokenType = tokenType;
-            this.BindingUnit = bindingUnit;
-            this.DynamicCount = dynamicCount;
-            this.Divisor = divisor;
+            TokenType = tokenType;
+            BindingUnit = bindingUnit;
+            DynamicCount = dynamicCount;
+            Divisor = divisor;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsTokenType TokenType; 
-        
+        public IndirectCommandsTokenType TokenType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint BindingUnit; 
-        
+        public uint BindingUnit;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DynamicCount; 
-        
+        public uint DynamicCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Divisor; 
+        public uint Divisor;
     }
 }

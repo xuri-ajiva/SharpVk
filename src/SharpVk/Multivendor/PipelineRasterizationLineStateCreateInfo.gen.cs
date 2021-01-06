@@ -22,80 +22,65 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineRasterizationLineStateCreateInfo
+    public struct PipelineRasterizationLineStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.LineRasterizationMode LineRasterizationMode
+        public LineRasterizationMode LineRasterizationMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StippledLineEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint? LineStippleFactor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ushort? LineStipplePattern
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineRasterizationLineStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineRasterizationLineStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationLineStateCreateInfo;
             pointer->Next = null;
-            pointer->LineRasterizationMode = this.LineRasterizationMode;
-            pointer->StippledLineEnable = this.StippledLineEnable;
-            if (this.LineStippleFactor != null)
-            {
-                pointer->LineStippleFactor = this.LineStippleFactor.Value;
-            }
+            pointer->LineRasterizationMode = LineRasterizationMode;
+            pointer->StippledLineEnable = StippledLineEnable;
+            if (LineStippleFactor != null)
+                pointer->LineStippleFactor = LineStippleFactor.Value;
             else
-            {
-                pointer->LineStippleFactor = default(uint);
-            }
-            if (this.LineStipplePattern != null)
-            {
-                pointer->LineStipplePattern = this.LineStipplePattern.Value;
-            }
+                pointer->LineStippleFactor = default;
+            if (LineStipplePattern != null)
+                pointer->LineStipplePattern = LineStipplePattern.Value;
             else
-            {
-                pointer->LineStipplePattern = default(ushort);
-            }
+                pointer->LineStipplePattern = default;
         }
     }
 }

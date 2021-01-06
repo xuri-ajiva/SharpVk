@@ -22,62 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying sparse image memory requirements.
+    ///     Structure specifying sparse image memory requirements.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SparseImageMemoryRequirements
+    public struct SparseImageMemoryRequirements
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SparseImageMemoryRequirements(SharpVk.SparseImageFormatProperties formatProperties, uint imageMipTailFirstLod, ulong imageMipTailSize, ulong imageMipTailOffset, ulong imageMipTailStride)
+        public SparseImageMemoryRequirements(SparseImageFormatProperties formatProperties, uint imageMipTailFirstLod, ulong imageMipTailSize, ulong imageMipTailOffset, ulong imageMipTailStride)
         {
-            this.FormatProperties = formatProperties;
-            this.ImageMipTailFirstLod = imageMipTailFirstLod;
-            this.ImageMipTailSize = imageMipTailSize;
-            this.ImageMipTailOffset = imageMipTailOffset;
-            this.ImageMipTailStride = imageMipTailStride;
+            FormatProperties = formatProperties;
+            ImageMipTailFirstLod = imageMipTailFirstLod;
+            ImageMipTailSize = imageMipTailSize;
+            ImageMipTailOffset = imageMipTailOffset;
+            ImageMipTailStride = imageMipTailStride;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SparseImageFormatProperties FormatProperties; 
-        
+        public SparseImageFormatProperties FormatProperties;
+
         /// <summary>
-        /// The first mip level at which image subresources are included in the
-        /// mip tail region.
+        ///     The first mip level at which image subresources are included in the
+        ///     mip tail region.
         /// </summary>
-        public uint ImageMipTailFirstLod; 
-        
+        public uint ImageMipTailFirstLod;
+
         /// <summary>
-        /// The memory size (in bytes) of the mip tail region. If
-        /// formatProperties.flags contains
-        /// VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, this is the size of the
-        /// whole mip tail, otherwise this is the size of the mip tail of a
-        /// single array layer. This value is guaranteed to be a multiple of
-        /// the sparse block size in bytes.
+        ///     The memory size (in bytes) of the mip tail region. If
+        ///     formatProperties.flags contains
+        ///     VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, this is the size of the
+        ///     whole mip tail, otherwise this is the size of the mip tail of a
+        ///     single array layer. This value is guaranteed to be a multiple of
+        ///     the sparse block size in bytes.
         /// </summary>
-        public ulong ImageMipTailSize; 
-        
+        public ulong ImageMipTailSize;
+
         /// <summary>
-        /// The opaque memory offset used with SparseImageOpaqueMemoryBindInfo
-        /// to bind the mip tail region(s).
+        ///     The opaque memory offset used with SparseImageOpaqueMemoryBindInfo
+        ///     to bind the mip tail region(s).
         /// </summary>
-        public ulong ImageMipTailOffset; 
-        
+        public ulong ImageMipTailOffset;
+
         /// <summary>
-        /// The offset stride between each array-layer's mip tail, if
-        /// formatProperties.flags does not contain
-        /// VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT (otherwise the value is
-        /// undefined).
+        ///     The offset stride between each array-layer's mip tail, if
+        ///     formatProperties.flags does not contain
+        ///     VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT (otherwise the value is
+        ///     undefined).
         /// </summary>
-        public ulong ImageMipTailStride; 
+        public ulong ImageMipTailStride;
     }
 }

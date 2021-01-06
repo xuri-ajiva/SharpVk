@@ -22,32 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask controlling triangle culling.
+    ///     Bitmask controlling triangle culling.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum CullModeFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Front = 1 << 0, 
-        
+        Front = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Back = 1 << 1, 
-        
+        Back = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        FrontAndBack = 0x00000003, 
+        FrontAndBack = 0x00000003
     }
 }

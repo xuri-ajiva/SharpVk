@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CommandBufferInheritanceConditionalRenderingInfo
+    public struct CommandBufferInheritanceConditionalRenderingInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ConditionalRenderingEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.CommandBufferInheritanceConditionalRenderingInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.CommandBufferInheritanceConditionalRenderingInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferInheritanceConditionalRenderingInfo;
             pointer->Next = null;
-            pointer->ConditionalRenderingEnable = this.ConditionalRenderingEnable;
+            pointer->ConditionalRenderingEnable = ConditionalRenderingEnable;
         }
     }
 }

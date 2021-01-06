@@ -22,43 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SparseMemoryBind
+    public struct SparseMemoryBind
     {
         /// <summary>
-        /// The offset into the resource.
+        ///     The offset into the resource.
         /// </summary>
-        public ulong ResourceOffset; 
-        
+        public ulong ResourceOffset;
+
         /// <summary>
-        /// The size of the memory region to be bound.
+        ///     The size of the memory region to be bound.
         /// </summary>
-        public ulong Size; 
-        
+        public ulong Size;
+
         /// <summary>
-        /// The DeviceMemory object that the range of the resource is bound to.
-        /// If memory is null, the range is unbound.
+        ///     The DeviceMemory object that the range of the resource is bound to.
+        ///     If memory is null, the range is unbound.
         /// </summary>
-        public SharpVk.Interop.DeviceMemory Memory; 
-        
+        public DeviceMemory Memory;
+
         /// <summary>
-        /// The offset into the DeviceMemory object to bind the resource range
-        /// to. If memory is null, this value is ignored.
+        ///     The offset into the DeviceMemory object to bind the resource range
+        ///     to. If memory is null, this value is ignored.
         /// </summary>
-        public ulong MemoryOffset; 
-        
+        public ulong MemoryOffset;
+
         /// <summary>
-        /// A bitmask specifying usage of the binding operation. Bits which can
-        /// be set include: + --
+        ///     A bitmask specifying usage of the binding operation. Bits which can
+        ///     be set include: + --
         /// </summary>
-        public SharpVk.SparseMemoryBindFlags Flags; 
+        public SparseMemoryBindFlags Flags;
     }
 }

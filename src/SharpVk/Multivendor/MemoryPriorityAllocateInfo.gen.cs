@@ -22,39 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Specify a memory allocation priority
+    ///     Specify a memory allocation priority
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryPriorityAllocateInfo
+    public struct MemoryPriorityAllocateInfo
     {
         /// <summary>
-        /// A value between 0 and 1, indicating the priority of the allocation
-        /// relative to other memory allocations. Larger values are higher
-        /// priority. The granularity of the priorities is
-        /// implementation-dependent.
+        ///     A value between 0 and 1, indicating the priority of the allocation
+        ///     relative to other memory allocations. Larger values are higher
+        ///     priority. The granularity of the priorities is
+        ///     implementation-dependent.
         /// </summary>
         public float Priority
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.MemoryPriorityAllocateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.MemoryPriorityAllocateInfo* pointer)
         {
             pointer->SType = StructureType.MemoryPriorityAllocateInfo;
             pointer->Next = null;
-            pointer->Priority = this.Priority;
+            pointer->Priority = Priority;
         }
     }
 }

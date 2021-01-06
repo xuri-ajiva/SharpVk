@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateRenderPass2Delegate(SharpVk.Interop.Device device, SharpVk.Interop.RenderPassCreateInfo2* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.RenderPass* renderPass);
+    public unsafe delegate Result VkDeviceCreateRenderPass2Delegate(Device device, RenderPassCreateInfo2* createInfo, AllocationCallbacks* allocator, RenderPass* renderPass);
 }

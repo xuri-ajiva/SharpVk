@@ -22,195 +22,159 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceGroupProperties
+    public unsafe struct PhysicalDeviceGroupProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PhysicalDeviceCount; 
-        
+        public uint PhysicalDeviceCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_0; 
-        
+        public PhysicalDevice PhysicalDevices_0;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_1; 
-        
+        public PhysicalDevice PhysicalDevices_1;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_2; 
-        
+        public PhysicalDevice PhysicalDevices_2;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_3; 
-        
+        public PhysicalDevice PhysicalDevices_3;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_4; 
-        
+        public PhysicalDevice PhysicalDevices_4;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_5; 
-        
+        public PhysicalDevice PhysicalDevices_5;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_6; 
-        
+        public PhysicalDevice PhysicalDevices_6;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_7; 
-        
+        public PhysicalDevice PhysicalDevices_7;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_8; 
-        
+        public PhysicalDevice PhysicalDevices_8;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_9; 
-        
+        public PhysicalDevice PhysicalDevices_9;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_10; 
-        
+        public PhysicalDevice PhysicalDevices_10;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_11; 
-        
+        public PhysicalDevice PhysicalDevices_11;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_12; 
-        
+        public PhysicalDevice PhysicalDevices_12;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_13; 
-        
+        public PhysicalDevice PhysicalDevices_13;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_14; 
-        
+        public PhysicalDevice PhysicalDevices_14;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_15; 
-        
+        public PhysicalDevice PhysicalDevices_15;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_16; 
-        
+        public PhysicalDevice PhysicalDevices_16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_17; 
-        
+        public PhysicalDevice PhysicalDevices_17;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_18; 
-        
+        public PhysicalDevice PhysicalDevices_18;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_19; 
-        
+        public PhysicalDevice PhysicalDevices_19;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_20; 
-        
+        public PhysicalDevice PhysicalDevices_20;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_21; 
-        
+        public PhysicalDevice PhysicalDevices_21;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_22; 
-        
+        public PhysicalDevice PhysicalDevices_22;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_23; 
-        
+        public PhysicalDevice PhysicalDevices_23;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_24; 
-        
+        public PhysicalDevice PhysicalDevices_24;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_25; 
-        
+        public PhysicalDevice PhysicalDevices_25;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_26; 
-        
+        public PhysicalDevice PhysicalDevices_26;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_27; 
-        
+        public PhysicalDevice PhysicalDevices_27;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_28; 
-        
+        public PhysicalDevice PhysicalDevices_28;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_29; 
-        
+        public PhysicalDevice PhysicalDevices_29;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_30; 
-        
+        public PhysicalDevice PhysicalDevices_30;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDevice PhysicalDevices_31; 
-        
+        public PhysicalDevice PhysicalDevices_31;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SubsetAllocation; 
+        public Bool32 SubsetAllocation;
     }
 }

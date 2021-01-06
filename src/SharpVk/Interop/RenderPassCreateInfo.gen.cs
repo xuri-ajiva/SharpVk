@@ -22,70 +22,68 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct RenderPassCreateInfo
+    public unsafe struct RenderPassCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.RenderPassCreateFlags Flags; 
-        
+        public RenderPassCreateFlags Flags;
+
         /// <summary>
-        /// The number of attachments used by this render pass, or zero
-        /// indicating no attachments. Attachments are referred to by
-        /// zero-based indices in the range [0,attachmentCount).
+        ///     The number of attachments used by this render pass, or zero
+        ///     indicating no attachments. Attachments are referred to by
+        ///     zero-based indices in the range [0,attachmentCount).
         /// </summary>
-        public uint AttachmentCount; 
-        
+        public uint AttachmentCount;
+
         /// <summary>
-        /// An array of attachmentCount number of AttachmentDescription
-        /// structures describing properties of the attachments, or Null if
-        /// attachmentCount is zero.
+        ///     An array of attachmentCount number of AttachmentDescription
+        ///     structures describing properties of the attachments, or Null if
+        ///     attachmentCount is zero.
         /// </summary>
-        public SharpVk.AttachmentDescription* Attachments; 
-        
+        public AttachmentDescription* Attachments;
+
         /// <summary>
-        /// The number of subpasses to create for this render pass. Subpasses
-        /// are referred to by zero-based indices in the range
-        /// [0,subpassCount). A render pass must have at least one subpass.
+        ///     The number of subpasses to create for this render pass. Subpasses
+        ///     are referred to by zero-based indices in the range
+        ///     [0,subpassCount). A render pass must have at least one subpass.
         /// </summary>
-        public uint SubpassCount; 
-        
+        public uint SubpassCount;
+
         /// <summary>
-        /// An array of SubpassDescription structures describing properties of
-        /// the subpasses.
+        ///     An array of SubpassDescription structures describing properties of
+        ///     the subpasses.
         /// </summary>
-        public SharpVk.Interop.SubpassDescription* Subpasses; 
-        
+        public SubpassDescription* Subpasses;
+
         /// <summary>
-        /// The number of dependencies between pairs of subpasses, or zero
-        /// indicating no dependencies.
+        ///     The number of dependencies between pairs of subpasses, or zero
+        ///     indicating no dependencies.
         /// </summary>
-        public uint DependencyCount; 
-        
+        public uint DependencyCount;
+
         /// <summary>
-        /// An array of dependencyCount number of SubpassDependency structures
-        /// describing dependencies between pairs of subpasses, or Null if
-        /// dependencyCount is zero.
+        ///     An array of dependencyCount number of SubpassDependency structures
+        ///     describing dependencies between pairs of subpasses, or Null if
+        ///     dependencyCount is zero.
         /// </summary>
-        public SharpVk.SubpassDependency* Dependencies; 
+        public SubpassDependency* Dependencies;
     }
 }

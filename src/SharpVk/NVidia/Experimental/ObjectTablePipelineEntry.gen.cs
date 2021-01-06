@@ -22,67 +22,60 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ObjectTablePipelineEntry
+    public struct ObjectTablePipelineEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType Type
+        public ObjectEntryType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags Flags
+        public ObjectEntryUsageFlags Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Pipeline Pipeline
+        public Pipeline Pipeline
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTablePipelineEntry* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.ObjectTablePipelineEntry* pointer)
         {
-            pointer->Type = this.Type;
-            pointer->Flags = this.Flags;
-            pointer->Pipeline = this.Pipeline?.handle ?? default(SharpVk.Interop.Pipeline);
+            pointer->Type = Type;
+            pointer->Flags = Flags;
+            pointer->Pipeline = Pipeline?.Handle ?? default(Interop.Pipeline);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ObjectTablePipelineEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTablePipelineEntry* pointer)
+        internal static unsafe ObjectTablePipelineEntry MarshalFrom(Interop.NVidia.Experimental.ObjectTablePipelineEntry* pointer)
         {
-            ObjectTablePipelineEntry result = default(ObjectTablePipelineEntry);
+            var result = default(ObjectTablePipelineEntry);
             result.Type = pointer->Type;
             result.Flags = pointer->Flags;
-            result.Pipeline = new SharpVk.Pipeline(default(SharpVk.Device), pointer->Pipeline);
+            result.Pipeline = new(default, pointer->Pipeline);
             return result;
         }
     }

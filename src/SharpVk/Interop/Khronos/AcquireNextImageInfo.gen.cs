@@ -22,52 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct AcquireNextImageInfo
+    public unsafe struct AcquireNextImageInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The swapchain from which an image is being acquired.
+        ///     The swapchain from which an image is being acquired.
         /// </summary>
-        public SharpVk.Interop.Khronos.Swapchain Swapchain; 
-        
+        public Swapchain Swapchain;
+
         /// <summary>
-        /// Indicates how long the function waits, in nanoseconds, if no image
-        /// is available.
+        ///     Indicates how long the function waits, in nanoseconds, if no image
+        ///     is available.
         /// </summary>
-        public ulong Timeout; 
-        
+        public ulong Timeout;
+
         /// <summary>
-        /// Null or a semaphore to signal.
+        ///     Null or a semaphore to signal.
         /// </summary>
-        public SharpVk.Interop.Semaphore Semaphore; 
-        
+        public Semaphore Semaphore;
+
         /// <summary>
-        /// Null or a fence to signal.
+        ///     Null or a fence to signal.
         /// </summary>
-        public SharpVk.Interop.Fence Fence; 
-        
+        public Fence Fence;
+
         /// <summary>
-        /// A mask of physical devices for which the swapchain image will be
-        /// ready to use when the semaphore or fence is signaled.
+        ///     A mask of physical devices for which the swapchain image will be
+        ///     ready to use when the semaphore or fence is signaled.
         /// </summary>
-        public uint DeviceMask; 
+        public uint DeviceMask;
     }
 }

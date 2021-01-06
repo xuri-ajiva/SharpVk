@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryDedicatedAllocateInfo
+    public struct MemoryDedicatedAllocateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Image Image
+        public Image Image
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.MemoryDedicatedAllocateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.MemoryDedicatedAllocateInfo* pointer)
         {
             pointer->SType = StructureType.MemoryDedicatedAllocateInfoVersion;
             pointer->Next = null;
-            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
+            pointer->Image = Image?.Handle ?? default(Interop.Image);
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
         }
     }
 }

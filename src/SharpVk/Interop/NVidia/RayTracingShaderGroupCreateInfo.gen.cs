@@ -22,50 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct RayTracingShaderGroupCreateInfo
+    public unsafe struct RayTracingShaderGroupCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.RayTracingShaderGroupType Type; 
-        
+        public RayTracingShaderGroupType Type;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint GeneralShader; 
-        
+        public uint GeneralShader;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ClosestHitShader; 
-        
+        public uint ClosestHitShader;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint AnyHitShader; 
-        
+        public uint AnyHitShader;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint IntersectionShader; 
+        public uint IntersectionShader;
     }
 }

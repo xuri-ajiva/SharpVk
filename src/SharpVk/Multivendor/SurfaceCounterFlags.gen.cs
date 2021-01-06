@@ -22,23 +22,24 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Surface-relative counter types.
+    ///     Surface-relative counter types.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum SurfaceCounterFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// A counter incrementing once every time a vblank period occurs on
-        /// the display associated with the surface.
+        ///     A counter incrementing once every time a vblank period occurs on
+        ///     the display associated with the surface.
         /// </summary>
-        Vblank = 1 << 0, 
+        Vblank = 1 << 0
     }
 }

@@ -22,47 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a image subresource layers.
+    ///     Structure specifying a image subresource layers.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageSubresourceLayers
+    public struct ImageSubresourceLayers
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ImageSubresourceLayers(SharpVk.ImageAspectFlags aspectMask, uint mipLevel, uint baseArrayLayer, uint layerCount)
+        public ImageSubresourceLayers(ImageAspectFlags aspectMask, uint mipLevel, uint baseArrayLayer, uint layerCount)
         {
-            this.AspectMask = aspectMask;
-            this.MipLevel = mipLevel;
-            this.BaseArrayLayer = baseArrayLayer;
-            this.LayerCount = layerCount;
+            AspectMask = aspectMask;
+            MipLevel = mipLevel;
+            BaseArrayLayer = baseArrayLayer;
+            LayerCount = layerCount;
         }
-        
+
         /// <summary>
-        /// A combination of ImageAspectFlagBits, selecting the color, depth
-        /// and/or stencil aspects to be copied.
+        ///     A combination of ImageAspectFlagBits, selecting the color, depth
+        ///     and/or stencil aspects to be copied.
         /// </summary>
-        public SharpVk.ImageAspectFlags AspectMask; 
-        
+        public ImageAspectFlags AspectMask;
+
         /// <summary>
-        /// The mipmap level to copy from.
+        ///     The mipmap level to copy from.
         /// </summary>
-        public uint MipLevel; 
-        
+        public uint MipLevel;
+
         /// <summary>
-        /// The starting layer to copy.
+        ///     The starting layer to copy.
         /// </summary>
-        public uint BaseArrayLayer; 
-        
+        public uint BaseArrayLayer;
+
         /// <summary>
-        /// The number of layers to copy
+        ///     The number of layers to copy
         /// </summary>
-        public uint LayerCount; 
+        public uint LayerCount;
     }
 }

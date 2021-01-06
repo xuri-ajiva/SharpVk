@@ -22,37 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Acquire a configuration to capture performance data
+    ///     Acquire a configuration to capture performance data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PerformanceConfigurationAcquireInfo
+    public struct PerformanceConfigurationAcquireInfo
     {
         /// <summary>
-        /// One of the VkPerformanceConfigurationTypeINTEL type of performance
-        /// configuration that will be acquired.
+        ///     One of the VkPerformanceConfigurationTypeINTEL type of performance
+        ///     configuration that will be acquired.
         /// </summary>
-        public SharpVk.Intel.PerformanceConfigurationType Type
+        public PerformanceConfigurationType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.PerformanceConfigurationAcquireInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceConfigurationAcquireInfo;
             pointer->Next = null;
-            pointer->Type = this.Type;
+            pointer->Type = Type;
         }
     }
 }

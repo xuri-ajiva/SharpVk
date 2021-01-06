@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferEndQueryIndexedDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.QueryPool queryPool, uint query, uint index);
+    public delegate void VkCommandBufferEndQueryIndexedDelegate(CommandBuffer commandBuffer, QueryPool queryPool, uint query, uint index);
 }

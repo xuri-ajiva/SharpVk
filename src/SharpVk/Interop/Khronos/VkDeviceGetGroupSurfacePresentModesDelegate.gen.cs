@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetGroupSurfacePresentModesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Surface surface, SharpVk.Khronos.DeviceGroupPresentModeFlags* modes);
+    public unsafe delegate Result VkDeviceGetGroupSurfacePresentModesDelegate(Device device, Surface surface, DeviceGroupPresentModeFlags* modes);
 }

@@ -22,30 +22,28 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SparseImageOpaqueMemoryBindInfo
+    public unsafe struct SparseImageOpaqueMemoryBindInfo
     {
         /// <summary>
-        /// The Image object to be bound.
+        ///     The Image object to be bound.
         /// </summary>
-        public SharpVk.Interop.Image Image; 
-        
+        public Image Image;
+
         /// <summary>
-        /// The number of SparseMemoryBind structures in the pBinds array.
+        ///     The number of SparseMemoryBind structures in the pBinds array.
         /// </summary>
-        public uint BindCount; 
-        
+        public uint BindCount;
+
         /// <summary>
-        /// Array of SparseMemoryBind structures.
+        ///     Array of SparseMemoryBind structures.
         /// </summary>
-        public SharpVk.Interop.SparseMemoryBind* Binds; 
+        public SparseMemoryBind* Binds;
     }
 }

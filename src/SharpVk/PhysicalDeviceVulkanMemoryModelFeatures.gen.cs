@@ -22,66 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceVulkanMemoryModelFeatures
+    public struct PhysicalDeviceVulkanMemoryModelFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool VulkanMemoryModel
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool VulkanMemoryModelDeviceScope
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool VulkanMemoryModelAvailabilityVisibilityChains
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceVulkanMemoryModelFeaturesVersion;
             pointer->Next = null;
-            pointer->VulkanMemoryModel = this.VulkanMemoryModel;
-            pointer->VulkanMemoryModelDeviceScope = this.VulkanMemoryModelDeviceScope;
-            pointer->VulkanMemoryModelAvailabilityVisibilityChains = this.VulkanMemoryModelAvailabilityVisibilityChains;
+            pointer->VulkanMemoryModel = VulkanMemoryModel;
+            pointer->VulkanMemoryModelDeviceScope = VulkanMemoryModelDeviceScope;
+            pointer->VulkanMemoryModelAvailabilityVisibilityChains = VulkanMemoryModelAvailabilityVisibilityChains;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceVulkanMemoryModelFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
+        internal static unsafe PhysicalDeviceVulkanMemoryModelFeatures MarshalFrom(Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
         {
-            PhysicalDeviceVulkanMemoryModelFeatures result = default(PhysicalDeviceVulkanMemoryModelFeatures);
+            var result = default(PhysicalDeviceVulkanMemoryModelFeatures);
             result.VulkanMemoryModel = pointer->VulkanMemoryModel;
             result.VulkanMemoryModelDeviceScope = pointer->VulkanMemoryModelDeviceScope;
             result.VulkanMemoryModelAvailabilityVisibilityChains = pointer->VulkanMemoryModelAvailabilityVisibilityChains;

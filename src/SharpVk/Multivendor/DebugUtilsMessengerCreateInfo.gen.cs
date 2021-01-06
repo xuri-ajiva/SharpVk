@@ -28,84 +28,69 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DebugUtilsMessengerCreateInfo
+    public struct DebugUtilsMessengerCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessengerCreateFlags? Flags
+        public DebugUtilsMessengerCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessageSeverityFlags MessageSeverity
+        public DebugUtilsMessageSeverityFlags MessageSeverity
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessageTypeFlags MessageType
+        public DebugUtilsMessageTypeFlags MessageType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessengerCallbackDelegate UserCallback
+        public DebugUtilsMessengerCallbackDelegate UserCallback
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr? UserData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DebugUtilsMessengerCreateInfo* pointer)
         {
             pointer->SType = StructureType.DebugUtilsMessengerCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.DebugUtilsMessengerCreateFlags);
-            }
-            pointer->MessageSeverity = this.MessageSeverity;
-            pointer->MessageType = this.MessageType;
-            pointer->UserCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.UserCallback);
-            if (this.UserData != null)
-            {
-                pointer->UserData = this.UserData.Value.ToPointer();
-            }
+                pointer->Flags = default;
+            pointer->MessageSeverity = MessageSeverity;
+            pointer->MessageType = MessageType;
+            pointer->UserCallback = Marshal.GetFunctionPointerForDelegate(UserCallback);
+            if (UserData != null)
+                pointer->UserData = UserData.Value.ToPointer();
             else
-            {
-                pointer->UserData = default(void*);
-            }
+                pointer->UserData = default;
         }
     }
 }

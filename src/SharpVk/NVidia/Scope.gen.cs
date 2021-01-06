@@ -25,28 +25,23 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum Scope
     {
         /// <summary>
-        /// 
         /// </summary>
-        Device = 1, 
-        
+        Device = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Workgroup = 2, 
-        
+        Workgroup = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Subgroup = 3, 
-        
+        Subgroup = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        QueueFamily = 5, 
+        QueueFamily = 5
     }
 }

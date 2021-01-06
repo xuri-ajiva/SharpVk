@@ -27,31 +27,28 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// Opaque handle to a command buffer object.
+    ///     Opaque handle to a command buffer object.
     /// </summary>
     public struct CommandBuffer
     {
-        internal UIntPtr handle; 
-        
+        internal UIntPtr Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public CommandBuffer(UIntPtr handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public CommandBuffer Null => new CommandBuffer(default(UIntPtr));
-        
+        public CommandBuffer Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle.ToUInt64();
+            return Handle.ToUInt64();
         }
     }
 }

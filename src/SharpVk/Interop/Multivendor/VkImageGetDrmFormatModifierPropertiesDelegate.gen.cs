@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkImageGetDrmFormatModifierPropertiesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Image image, SharpVk.Interop.Multivendor.ImageDrmFormatModifierProperties* properties);
+    public unsafe delegate Result VkImageGetDrmFormatModifierPropertiesDelegate(Device device, Image image, ImageDrmFormatModifierProperties* properties);
 }

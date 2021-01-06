@@ -27,7 +27,6 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate IntPtr VkInstanceGetProcedureAddressDelegate(SharpVk.Interop.Instance instance, byte* name);
+    public unsafe delegate IntPtr VkInstanceGetProcedureAddressDelegate(Instance instance, byte* name);
 }

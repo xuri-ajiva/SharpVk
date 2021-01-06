@@ -22,28 +22,24 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public partial class Display
+    public class Display
     {
-        internal readonly SharpVk.Interop.Khronos.Display handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal Display(SharpVk.Interop.Khronos.Display handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Khronos.Display Handle;
+
+        internal Display(Interop.Khronos.Display handle)
         {
-            this.handle = handle;
-            this.commandCache = null;
+            this.Handle = handle;
+            CommandCache = null;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Khronos.Display RawHandle => this.handle;
+        public Interop.Khronos.Display RawHandle => Handle;
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetFenceFileDescriptorDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.FenceGetFileDescriptorInfo* getFileDescriptorInfo, int* fileDescriptor);
+    public unsafe delegate Result VkDeviceGetFenceFileDescriptorDelegate(Device device, FenceGetFileDescriptorInfo* getFileDescriptorInfo, int* fileDescriptor);
 }

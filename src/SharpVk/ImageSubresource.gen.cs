@@ -22,40 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a image subresource.
+    ///     Structure specifying a image subresource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageSubresource
+    public struct ImageSubresource
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ImageSubresource(SharpVk.ImageAspectFlags aspectMask, uint mipLevel, uint arrayLayer)
+        public ImageSubresource(ImageAspectFlags aspectMask, uint mipLevel, uint arrayLayer)
         {
-            this.AspectMask = aspectMask;
-            this.MipLevel = mipLevel;
-            this.ArrayLayer = arrayLayer;
+            AspectMask = aspectMask;
+            MipLevel = mipLevel;
+            ArrayLayer = arrayLayer;
         }
-        
+
         /// <summary>
-        /// An ImageAspectFlags selecting the image aspect.
+        ///     An ImageAspectFlags selecting the image aspect.
         /// </summary>
-        public SharpVk.ImageAspectFlags AspectMask; 
-        
+        public ImageAspectFlags AspectMask;
+
         /// <summary>
-        /// Selects the mipmap level.
+        ///     Selects the mipmap level.
         /// </summary>
-        public uint MipLevel; 
-        
+        public uint MipLevel;
+
         /// <summary>
-        /// Selects the array layer.
+        ///     Selects the array layer.
         /// </summary>
-        public uint ArrayLayer; 
+        public uint ArrayLayer;
     }
 }

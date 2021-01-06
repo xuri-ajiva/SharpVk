@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferWriteAccelerationStructuresPropertiesDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint accelerationStructureCount, SharpVk.Interop.NVidia.AccelerationStructure* accelerationStructures, SharpVk.QueryType queryType, SharpVk.Interop.QueryPool queryPool, uint firstQuery);
+    public unsafe delegate void VkCommandBufferWriteAccelerationStructuresPropertiesDelegate(CommandBuffer commandBuffer, uint accelerationStructureCount, AccelerationStructure* accelerationStructures, QueryType queryType, QueryPool queryPool, uint firstQuery);
 }

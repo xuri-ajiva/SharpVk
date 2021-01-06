@@ -22,43 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExportSemaphoreCreateInfo
+    public struct ExportSemaphoreCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreHandleTypeFlags? HandleTypes
+        public ExternalSemaphoreHandleTypeFlags? HandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ExportSemaphoreCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ExportSemaphoreCreateInfo* pointer)
         {
             pointer->SType = StructureType.ExportSemaphoreCreateInfoVersion;
             pointer->Next = null;
-            if (this.HandleTypes != null)
-            {
-                pointer->HandleTypes = this.HandleTypes.Value;
-            }
+            if (HandleTypes != null)
+                pointer->HandleTypes = HandleTypes.Value;
             else
-            {
-                pointer->HandleTypes = default(SharpVk.ExternalSemaphoreHandleTypeFlags);
-            }
+                pointer->HandleTypes = default;
         }
     }
 }

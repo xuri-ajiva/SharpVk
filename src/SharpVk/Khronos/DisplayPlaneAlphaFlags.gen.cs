@@ -22,43 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Alpha blending type.
+    ///     Alpha blending type.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum DisplayPlaneAlphaFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// The source image will be treated as opaque.
+        ///     The source image will be treated as opaque.
         /// </summary>
-        Opaque = 1 << 0, 
-        
+        Opaque = 1 << 0,
+
         /// <summary>
-        /// A global alpha value must be specified that will be applied to all
-        /// pixels in the source image.
+        ///     A global alpha value must be specified that will be applied to all
+        ///     pixels in the source image.
         /// </summary>
-        Global = 1 << 1, 
-        
+        Global = 1 << 1,
+
         /// <summary>
-        /// The alpha value will be determined by the alpha channel of the
-        /// source image's pixels. If the source format contains no alpha
-        /// values, no blending will be applied. The source alpha values are
-        /// not premultiplied into the source image's other color channels.
+        ///     The alpha value will be determined by the alpha channel of the
+        ///     source image's pixels. If the source format contains no alpha
+        ///     values, no blending will be applied. The source alpha values are
+        ///     not premultiplied into the source image's other color channels.
         /// </summary>
-        PerPixel = 1 << 2, 
-        
+        PerPixel = 1 << 2,
+
         /// <summary>
-        /// This is equivalent to AlphaPerPixel except the source alpha values
-        /// are assumed to be premultiplied into the source image's other color
-        /// channels.
+        ///     This is equivalent to AlphaPerPixel except the source alpha values
+        ///     are assumed to be premultiplied into the source image's other color
+        ///     channels.
         /// </summary>
-        PerPixelPremultiplied = 1 << 3, 
+        PerPixelPremultiplied = 1 << 3
     }
 }

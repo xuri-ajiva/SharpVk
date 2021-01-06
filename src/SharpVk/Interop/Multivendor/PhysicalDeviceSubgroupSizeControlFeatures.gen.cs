@@ -22,35 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceSubgroupSizeControlFeatures
+    public unsafe struct PhysicalDeviceSubgroupSizeControlFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SubgroupSizeControl; 
-        
+        public Bool32 SubgroupSizeControl;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ComputeFullSubgroups; 
+        public Bool32 ComputeFullSubgroups;
     }
 }

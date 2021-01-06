@@ -22,70 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceConservativeRasterizationProperties
+    public unsafe struct PhysicalDeviceConservativeRasterizationProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float PrimitiveOverestimationSize; 
-        
+        public float PrimitiveOverestimationSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float MaxExtraPrimitiveOverestimationSize; 
-        
+        public float MaxExtraPrimitiveOverestimationSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float ExtraPrimitiveOverestimationSizeGranularity; 
-        
+        public float ExtraPrimitiveOverestimationSizeGranularity;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 PrimitiveUnderestimation; 
-        
+        public Bool32 PrimitiveUnderestimation;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ConservativePointAndLineRasterization; 
-        
+        public Bool32 ConservativePointAndLineRasterization;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DegenerateTrianglesRasterized; 
-        
+        public Bool32 DegenerateTrianglesRasterized;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DegenerateLinesRasterized; 
-        
+        public Bool32 DegenerateLinesRasterized;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 FullyCoveredFragmentShaderInputVariable; 
-        
+        public Bool32 FullyCoveredFragmentShaderInputVariable;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ConservativeRasterizationPostDepthCoverage; 
+        public Bool32 ConservativeRasterizationPostDepthCoverage;
     }
 }

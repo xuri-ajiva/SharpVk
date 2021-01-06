@@ -22,45 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceSubgroupSizeControlProperties
+    public unsafe struct PhysicalDeviceSubgroupSizeControlProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MinSubgroupSize; 
-        
+        public uint MinSubgroupSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxSubgroupSize; 
-        
+        public uint MaxSubgroupSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxComputeWorkgroupSubgroups; 
-        
+        public uint MaxComputeWorkgroupSubgroups;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags RequiredSubgroupSizeStages; 
+        public ShaderStageFlags RequiredSubgroupSizeStages;
     }
 }

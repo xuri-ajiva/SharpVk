@@ -22,180 +22,172 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying the parameters of a newly created image object.
+    ///     Structure specifying the parameters of a newly created image object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageCreateInfo
+    public struct ImageCreateInfo
     {
         /// <summary>
-        /// A bitmask describing additional parameters of the image. See
-        /// ImageCreateFlagBits below for a description of the supported bits.
+        ///     A bitmask describing additional parameters of the image. See
+        ///     ImageCreateFlagBits below for a description of the supported bits.
         /// </summary>
-        public SharpVk.ImageCreateFlags? Flags
+        public ImageCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An ImageType specifying the basic dimensionality of the image, as
-        /// described below. Layers in array textures do not count as a
-        /// dimension for the purposes of the image type.
+        ///     An ImageType specifying the basic dimensionality of the image, as
+        ///     described below. Layers in array textures do not count as a
+        ///     dimension for the purposes of the image type.
         /// </summary>
-        public SharpVk.ImageType ImageType
+        public ImageType ImageType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A Format describing the format and type of the data elements that
-        /// will be contained in the image.
+        ///     A Format describing the format and type of the data elements that
+        ///     will be contained in the image.
         /// </summary>
-        public SharpVk.Format Format
+        public Format Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A Extent3D describing the number of data elements in each dimension
-        /// of the base level.
+        ///     A Extent3D describing the number of data elements in each dimension
+        ///     of the base level.
         /// </summary>
-        public SharpVk.Extent3D Extent
+        public Extent3D Extent
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// mipLevels describes the number of levels of detail available for
-        /// minified sampling of the image.
+        ///     mipLevels describes the number of levels of detail available for
+        ///     minified sampling of the image.
         /// </summary>
         public uint MipLevels
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The number of layers in the image.
+        ///     The number of layers in the image.
         /// </summary>
         public uint ArrayLayers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The number of sub-data element samples in the image as defined in
-        /// SampleCountFlagBits. See Multisampling.
+        ///     The number of sub-data element samples in the image as defined in
+        ///     SampleCountFlagBits. See Multisampling.
         /// </summary>
-        public SharpVk.SampleCountFlags Samples
+        public SampleCountFlags Samples
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An ImageTiling specifying the tiling arrangement of the data
-        /// elements in memory, as described below.
+        ///     An ImageTiling specifying the tiling arrangement of the data
+        ///     elements in memory, as described below.
         /// </summary>
-        public SharpVk.ImageTiling Tiling
+        public ImageTiling Tiling
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A bitmask describing the intended usage of the image. See
-        /// ImageUsageFlagBits below for a description of the supported bits.
+        ///     A bitmask describing the intended usage of the image. See
+        ///     ImageUsageFlagBits below for a description of the supported bits.
         /// </summary>
-        public SharpVk.ImageUsageFlags Usage
+        public ImageUsageFlags Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The sharing mode of the image when it will be accessed by multiple
-        /// queue families, and must be one of the values described for
-        /// SharingMode in the Resource Sharing section below.
+        ///     The sharing mode of the image when it will be accessed by multiple
+        ///     queue families, and must be one of the values described for
+        ///     SharingMode in the Resource Sharing section below.
         /// </summary>
-        public SharpVk.SharingMode SharingMode
+        public SharingMode SharingMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A list of queue families that will access this image (ignored if
-        /// sharingMode is not VK_SHARING_MODE_CONCURRENT).
+        ///     A list of queue families that will access this image (ignored if
+        ///     sharingMode is not VK_SHARING_MODE_CONCURRENT).
         /// </summary>
         public uint[] QueueFamilyIndices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// initialLayout selects the initial ImageLayout state of all image
-        /// subresources of the image. See Image Layouts. initialLayout must be
-        /// VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
+        ///     initialLayout selects the initial ImageLayout state of all image
+        ///     subresources of the image. See Image Layouts. initialLayout must be
+        ///     VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
         /// </summary>
-        public SharpVk.ImageLayout InitialLayout
+        public ImageLayout InitialLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->ImageType = ImageType;
+            pointer->Format = Format;
+            pointer->Extent = Extent;
+            pointer->MipLevels = MipLevels;
+            pointer->ArrayLayers = ArrayLayers;
+            pointer->Samples = Samples;
+            pointer->Tiling = Tiling;
+            pointer->Usage = Usage;
+            pointer->SharingMode = SharingMode;
+            pointer->QueueFamilyIndexCount = HeapUtil.GetLength(QueueFamilyIndices);
+            if (QueueFamilyIndices != null)
             {
-                pointer->Flags = default(SharpVk.ImageCreateFlags);
-            }
-            pointer->ImageType = this.ImageType;
-            pointer->Format = this.Format;
-            pointer->Extent = this.Extent;
-            pointer->MipLevels = this.MipLevels;
-            pointer->ArrayLayers = this.ArrayLayers;
-            pointer->Samples = this.Samples;
-            pointer->Tiling = this.Tiling;
-            pointer->Usage = this.Usage;
-            pointer->SharingMode = this.SharingMode;
-            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(this.QueueFamilyIndices));
-            if (this.QueueFamilyIndices != null)
-            {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.QueueFamilyIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.QueueFamilyIndices[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer();
+                for (var index = 0; index < (uint)QueueFamilyIndices.Length; index++) fieldPointer[index] = QueueFamilyIndices[index];
                 pointer->QueueFamilyIndices = fieldPointer;
             }
             else
             {
                 pointer->QueueFamilyIndices = null;
             }
-            pointer->InitialLayout = this.InitialLayout;
+            pointer->InitialLayout = InitialLayout;
         }
     }
 }

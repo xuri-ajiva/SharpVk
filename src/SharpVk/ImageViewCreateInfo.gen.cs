@@ -22,96 +22,90 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created image view.
+    ///     Structure specifying parameters of a newly created image view.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageViewCreateInfo
+    public struct ImageViewCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.ImageViewCreateFlags? Flags
+        public ImageViewCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An Image on which the view will be created.
+        ///     An Image on which the view will be created.
         /// </summary>
-        public SharpVk.Image Image
+        public Image Image
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The type of the image view.
+        ///     The type of the image view.
         /// </summary>
-        public SharpVk.ImageViewType ViewType
+        public ImageViewType ViewType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A Format describing the format and type used to interpret data
-        /// elements in the image.
+        ///     A Format describing the format and type used to interpret data
+        ///     elements in the image.
         /// </summary>
-        public SharpVk.Format Format
+        public Format Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Specifies a remapping of color components (or of depth or stencil
-        /// components after they have been converted into color components).
+        ///     Specifies a remapping of color components (or of depth or stencil
+        ///     components after they have been converted into color components).
         /// </summary>
-        public SharpVk.ComponentMapping Components
+        public ComponentMapping Components
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An ImageSubresourceRange selecting the set of mipmap levels and
-        /// array layers to be accessible to the view.
+        ///     An ImageSubresourceRange selecting the set of mipmap levels and
+        ///     array layers to be accessible to the view.
         /// </summary>
-        public SharpVk.ImageSubresourceRange SubresourceRange
+        public ImageSubresourceRange SubresourceRange
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ImageViewCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ImageViewCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageViewCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.ImageViewCreateFlags);
-            }
-            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
-            pointer->ViewType = this.ViewType;
-            pointer->Format = this.Format;
-            pointer->Components = this.Components;
-            pointer->SubresourceRange = this.SubresourceRange;
+                pointer->Flags = default;
+            pointer->Image = Image?.Handle ?? default(Interop.Image);
+            pointer->ViewType = ViewType;
+            pointer->Format = Format;
+            pointer->Components = Components;
+            pointer->SubresourceRange = SubresourceRange;
         }
     }
 }

@@ -22,56 +22,53 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Container for value and types of parameters that can be queried
+    ///     Container for value and types of parameters that can be queried
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PerformanceValue
+    public struct PerformanceValue
     {
         /// <summary>
-        /// An VkPerformanceValueDataINTEL union specifying the type of the
-        /// returned data.
+        ///     An VkPerformanceValueDataINTEL union specifying the type of the
+        ///     returned data.
         /// </summary>
-        public SharpVk.Intel.PerformanceValueType Type
+        public PerformanceValueType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An VkPerformanceValueDataINTEL union specifying the value of the
-        /// returned data.
+        ///     An VkPerformanceValueDataINTEL union specifying the value of the
+        ///     returned data.
         /// </summary>
-        public SharpVk.Intel.PerformanceValueData Data
+        public PerformanceValueData Data
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceValue* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.PerformanceValue* pointer)
         {
-            pointer->Type = this.Type;
-            pointer->Data = this.Data;
+            pointer->Type = Type;
+            pointer->Data = Data;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PerformanceValue MarshalFrom(SharpVk.Interop.Intel.PerformanceValue* pointer)
+        internal static unsafe PerformanceValue MarshalFrom(Interop.Intel.PerformanceValue* pointer)
         {
-            PerformanceValue result = default(PerformanceValue);
+            var result = default(PerformanceValue);
             result.Type = pointer->Type;
             result.Data = pointer->Data;
             return result;

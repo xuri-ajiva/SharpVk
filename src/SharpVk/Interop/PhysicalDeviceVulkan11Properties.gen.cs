@@ -22,100 +22,81 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceVulkan11Properties
+    public unsafe struct PhysicalDeviceVulkan11Properties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DeviceUUID[Constants.UuidSize]; 
-        
+        public fixed byte DeviceUUID[Constants.UuidSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DriverUUID[Constants.UuidSize]; 
-        
+        public fixed byte DriverUUID[Constants.UuidSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DeviceLUID[Constants.LuidSize]; 
-        
+        public fixed byte DeviceLUID[Constants.LuidSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DeviceNodeMask; 
-        
+        public uint DeviceNodeMask;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DeviceLUIDValid; 
-        
+        public Bool32 DeviceLUIDValid;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SubgroupSize; 
-        
+        public uint SubgroupSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags SubgroupSupportedStages; 
-        
+        public ShaderStageFlags SubgroupSupportedStages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SubgroupFeatureFlags SubgroupSupportedOperations; 
-        
+        public SubgroupFeatureFlags SubgroupSupportedOperations;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SubgroupQuadOperationsInAllStages; 
-        
+        public Bool32 SubgroupQuadOperationsInAllStages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PointClippingBehavior PointClippingBehavior; 
-        
+        public PointClippingBehavior PointClippingBehavior;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxMultiviewViewCount; 
-        
+        public uint MaxMultiviewViewCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxMultiviewInstanceIndex; 
-        
+        public uint MaxMultiviewInstanceIndex;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ProtectedNoFault; 
-        
+        public Bool32 ProtectedNoFault;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerSetDescriptors; 
-        
+        public uint MaxPerSetDescriptors;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MaxMemoryAllocationSize; 
+        public ulong MaxMemoryAllocationSize;
     }
 }

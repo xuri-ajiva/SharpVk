@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetMemoryFileDescriptorDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.MemoryGetFileDescriptorInfo* getFileDescriptorInfo, int* fileDescriptor);
+    public unsafe delegate Result VkDeviceGetMemoryFileDescriptorDelegate(Device device, MemoryGetFileDescriptorInfo* getFileDescriptorInfo, int* fileDescriptor);
 }

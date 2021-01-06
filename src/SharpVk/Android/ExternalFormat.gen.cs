@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalFormat
+    public struct ExternalFormat
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong FormatValue
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Android.ExternalFormat* pointer)
+        internal unsafe void MarshalTo(Interop.Android.ExternalFormat* pointer)
         {
             pointer->SType = StructureType.ExternalFormat;
             pointer->Next = null;
-            pointer->FormatValue = this.FormatValue;
+            pointer->FormatValue = FormatValue;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ExternalFormat MarshalFrom(SharpVk.Interop.Android.ExternalFormat* pointer)
+        internal static unsafe ExternalFormat MarshalFrom(Interop.Android.ExternalFormat* pointer)
         {
-            ExternalFormat result = default(ExternalFormat);
+            var result = default(ExternalFormat);
             result.FormatValue = pointer->FormatValue;
             return result;
         }

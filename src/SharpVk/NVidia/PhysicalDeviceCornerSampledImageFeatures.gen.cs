@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceCornerSampledImageFeatures
+    public struct PhysicalDeviceCornerSampledImageFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool CornerSampledImage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCornerSampledImageFeatures;
             pointer->Next = null;
-            pointer->CornerSampledImage = this.CornerSampledImage;
+            pointer->CornerSampledImage = CornerSampledImage;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceCornerSampledImageFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures* pointer)
+        internal static unsafe PhysicalDeviceCornerSampledImageFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures* pointer)
         {
-            PhysicalDeviceCornerSampledImageFeatures result = default(PhysicalDeviceCornerSampledImageFeatures);
+            var result = default(PhysicalDeviceCornerSampledImageFeatures);
             result.CornerSampledImage = pointer->CornerSampledImage;
             return result;
         }

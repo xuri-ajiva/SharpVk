@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceDisplayPowerControlDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Display display, SharpVk.Interop.Multivendor.DisplayPowerInfo* displayPowerInfo);
+    public unsafe delegate Result VkDeviceDisplayPowerControlDelegate(Device device, Display display, DisplayPowerInfo* displayPowerInfo);
 }

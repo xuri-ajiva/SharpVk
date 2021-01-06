@@ -22,43 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryDedicatedRequirements
+    public struct MemoryDedicatedRequirements
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool PrefersDedicatedAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool RequiresDedicatedAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryDedicatedRequirements MarshalFrom(SharpVk.Interop.MemoryDedicatedRequirements* pointer)
+        internal static unsafe MemoryDedicatedRequirements MarshalFrom(Interop.MemoryDedicatedRequirements* pointer)
         {
-            MemoryDedicatedRequirements result = default(MemoryDedicatedRequirements);
+            var result = default(MemoryDedicatedRequirements);
             result.PrefersDedicatedAllocation = pointer->PrefersDedicatedAllocation;
             result.RequiresDedicatedAllocation = pointer->RequiresDedicatedAllocation;
             return result;

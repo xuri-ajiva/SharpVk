@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceEnumerateQueueFamilyPerformanceQueryCountersDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint queueFamilyIndex, uint* counterCount, SharpVk.Interop.Khronos.PerformanceCounter* counters, SharpVk.Interop.Khronos.PerformanceCounterDescription* counterDescriptions);
+    public unsafe delegate Result VkPhysicalDeviceEnumerateQueueFamilyPerformanceQueryCountersDelegate(PhysicalDevice physicalDevice, uint queueFamilyIndex, uint* counterCount, PerformanceCounter* counters, PerformanceCounterDescription* counterDescriptions);
 }

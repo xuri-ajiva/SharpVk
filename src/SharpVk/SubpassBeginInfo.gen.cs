@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SubpassBeginInfo
+    public struct SubpassBeginInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SubpassContents Contents
+        public SubpassContents Contents
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SubpassBeginInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SubpassBeginInfo* pointer)
         {
             pointer->SType = StructureType.SubpassBeginInfoVersion;
             pointer->Next = null;
-            pointer->Contents = this.Contents;
+            pointer->Contents = Contents;
         }
     }
 }

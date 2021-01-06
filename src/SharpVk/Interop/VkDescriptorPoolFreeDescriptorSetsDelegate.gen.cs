@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDescriptorPoolFreeDescriptorSetsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DescriptorPool descriptorPool, uint descriptorSetCount, SharpVk.Interop.DescriptorSet* descriptorSets);
+    public unsafe delegate Result VkDescriptorPoolFreeDescriptorSetsDelegate(Device device, DescriptorPool descriptorPool, uint descriptorSetCount, DescriptorSet* descriptorSets);
 }

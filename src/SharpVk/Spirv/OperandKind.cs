@@ -25,223 +25,179 @@
 namespace SharpVk.Spirv
 {
     /// <summary>
-    /// 
     /// </summary>
-    public partial class OperandKind
+    public class OperandKind
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind ImageOperands = new OperandKind(); 
-        
+        public static readonly OperandKind ImageOperands = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind FPFastMathMode = new OperandKind(); 
-        
+        public static readonly OperandKind FpFastMathMode = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind SelectionControl = new OperandKind(); 
-        
+        public static readonly OperandKind SelectionControl = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind LoopControl = new OperandKind(); 
-        
+        public static readonly OperandKind LoopControl = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind FunctionControl = new OperandKind(); 
-        
+        public static readonly OperandKind FunctionControl = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind MemorySemantics = new OperandKind(); 
-        
+        public static readonly OperandKind MemorySemantics = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind MemoryAccess = new OperandKind(); 
-        
+        public static readonly OperandKind MemoryAccess = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind KernelProfilingInfo = new OperandKind(); 
-        
+        public static readonly OperandKind KernelProfilingInfo = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind SourceLanguage = new OperandKind(); 
-        
+        public static readonly OperandKind SourceLanguage = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind ExecutionModel = new OperandKind(); 
-        
+        public static readonly OperandKind ExecutionModel = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind AddressingModel = new OperandKind(); 
-        
+        public static readonly OperandKind AddressingModel = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind MemoryModel = new OperandKind(); 
-        
+        public static readonly OperandKind MemoryModel = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind ExecutionMode = new OperandKind(); 
-        
+        public static readonly OperandKind ExecutionMode = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind StorageClass = new OperandKind(); 
-        
+        public static readonly OperandKind StorageClass = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind Dim = new OperandKind(); 
-        
+        public static readonly OperandKind Dim = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind SamplerAddressingMode = new OperandKind(); 
-        
+        public static readonly OperandKind SamplerAddressingMode = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind SamplerFilterMode = new OperandKind(); 
-        
+        public static readonly OperandKind SamplerFilterMode = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind ImageFormat = new OperandKind(); 
-        
+        public static readonly OperandKind ImageFormat = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind ImageChannelOrder = new OperandKind(); 
-        
+        public static readonly OperandKind ImageChannelOrder = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind ImageChannelDataType = new OperandKind(); 
-        
+        public static readonly OperandKind ImageChannelDataType = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind FPRoundingMode = new OperandKind(); 
-        
+        public static readonly OperandKind FpRoundingMode = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind LinkageType = new OperandKind(); 
-        
+        public static readonly OperandKind LinkageType = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind AccessQualifier = new OperandKind(); 
-        
+        public static readonly OperandKind AccessQualifier = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind FunctionParameterAttribute = new OperandKind(); 
-        
+        public static readonly OperandKind FunctionParameterAttribute = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind Decoration = new OperandKind(); 
-        
+        public static readonly OperandKind Decoration = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind BuiltIn = new OperandKind(); 
-        
+        public static readonly OperandKind BuiltIn = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind Scope = new OperandKind(); 
-        
+        public static readonly OperandKind Scope = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind GroupOperation = new OperandKind(); 
-        
+        public static readonly OperandKind GroupOperation = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind KernelEnqueueFlags = new OperandKind(); 
-        
+        public static readonly OperandKind KernelEnqueueFlags = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind Capability = new OperandKind(); 
-        
+        public static readonly OperandKind Capability = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind IdResultType = new OperandKind(); 
-        
+        public static readonly OperandKind IdResultType = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind IdResult = new OperandKind(); 
-        
+        public static readonly OperandKind IdResult = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind IdMemorySemantics = new OperandKind(); 
-        
+        public static readonly OperandKind IdMemorySemantics = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind IdScope = new OperandKind(); 
-        
+        public static readonly OperandKind IdScope = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind IdRef = new OperandKind(); 
-        
+        public static readonly OperandKind IdRef = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind LiteralInteger = new OperandKind(); 
-        
+        public static readonly OperandKind LiteralInteger = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind LiteralString = new OperandKind(); 
-        
+        public static readonly OperandKind LiteralString = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind LiteralContextDependentNumber = new OperandKind(); 
-        
+        public static readonly OperandKind LiteralContextDependentNumber = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind LiteralExtInstInteger = new OperandKind(); 
-        
+        public static readonly OperandKind LiteralExtInstInteger = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind LiteralSpecConstantOpInteger = new OperandKind(); 
-        
+        public static readonly OperandKind LiteralSpecConstantOpInteger = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind PairLiteralIntegerIdRef = new OperandKind(); 
-        
+        public static readonly OperandKind PairLiteralIntegerIdRef = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind PairIdRefLiteralInteger = new OperandKind(); 
-        
+        public static readonly OperandKind PairIdRefLiteralInteger = new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public static readonly OperandKind PairIdRefIdRef = new OperandKind(); 
+        public static readonly OperandKind PairIdRefIdRef = new();
     }
 }

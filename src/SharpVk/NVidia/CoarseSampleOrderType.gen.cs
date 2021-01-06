@@ -25,28 +25,23 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum CoarseSampleOrderType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Default = 0, 
-        
+        Default = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Custom = 1, 
-        
+        Custom = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        PixelMajor = 2, 
-        
+        PixelMajor = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        SampleMajor = 3, 
+        SampleMajor = 3
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkSwapchainKHRGetImagesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Swapchain swapchain, uint* swapchainImageCount, SharpVk.Interop.Image* swapchainImages);
+    public unsafe delegate Result VkSwapchainKhrGetImagesDelegate(Device device, Swapchain swapchain, uint* swapchainImageCount, Image* swapchainImages);
 }

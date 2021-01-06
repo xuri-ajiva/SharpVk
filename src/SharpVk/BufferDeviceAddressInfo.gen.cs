@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying the buffer to query an address for
+    ///     Structure specifying the buffer to query an address for
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BufferDeviceAddressInfo
+    public struct BufferDeviceAddressInfo
     {
         /// <summary>
-        /// The buffer whose address is being queried.
+        ///     The buffer whose address is being queried.
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BufferDeviceAddressInfo* pointer)
+        internal unsafe void MarshalTo(Interop.BufferDeviceAddressInfo* pointer)
         {
             pointer->SType = StructureType.BufferDeviceAddressInfoVersion;
             pointer->Next = null;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
         }
     }
 }

@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceMemoryOpaqueCaptureAddressInfo
+    public struct DeviceMemoryOpaqueCaptureAddressInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DeviceMemory Memory
+        public DeviceMemory Memory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DeviceMemoryOpaqueCaptureAddressInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DeviceMemoryOpaqueCaptureAddressInfo* pointer)
         {
             pointer->SType = StructureType.DeviceMemoryOpaqueCaptureAddressInfoVersion;
             pointer->Next = null;
-            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
+            pointer->Memory = Memory?.Handle ?? default(Interop.DeviceMemory);
         }
     }
 }

@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceCooperativeMatrixProperties
+    public unsafe struct PhysicalDeviceCooperativeMatrixProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitfield of VkShaderStageFlagBits describing the shader stages
-        /// that cooperative matrix instructions are supported in.
-        /// cooperativeMatrixSupportedStages will have the
-        /// VK_SHADER_STAGE_COMPUTE_BIT bit set if any of the physical device’s
-        /// queues support VK_QUEUE_COMPUTE_BIT.
+        ///     A bitfield of VkShaderStageFlagBits describing the shader stages
+        ///     that cooperative matrix instructions are supported in.
+        ///     cooperativeMatrixSupportedStages will have the
+        ///     VK_SHADER_STAGE_COMPUTE_BIT bit set if any of the physical device’s
+        ///     queues support VK_QUEUE_COMPUTE_BIT.
         /// </summary>
-        public SharpVk.ShaderStageFlags CooperativeMatrixSupportedStages; 
+        public ShaderStageFlags CooperativeMatrixSupportedStages;
     }
 }

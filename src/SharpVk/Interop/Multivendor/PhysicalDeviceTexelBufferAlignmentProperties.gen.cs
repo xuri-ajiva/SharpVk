@@ -22,49 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceTexelBufferAlignmentProperties
+    public unsafe struct PhysicalDeviceTexelBufferAlignmentProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A byte alignment that is sufficient for a storage texel buffer of
-        /// any format.
+        ///     A byte alignment that is sufficient for a storage texel buffer of
+        ///     any format.
         /// </summary>
-        public ulong StorageTexelBufferOffsetAlignmentBytes; 
-        
+        public ulong StorageTexelBufferOffsetAlignmentBytes;
+
         /// <summary>
-        /// Indicates whether single texel alignment is sufficient for a
-        /// storage texel buffer of any format.
+        ///     Indicates whether single texel alignment is sufficient for a
+        ///     storage texel buffer of any format.
         /// </summary>
-        public Bool32 StorageTexelBufferOffsetSingleTexelAlignment; 
-        
+        public Bool32 StorageTexelBufferOffsetSingleTexelAlignment;
+
         /// <summary>
-        /// A byte alignment that is sufficient for a uniform texel buffer of
-        /// any format.
+        ///     A byte alignment that is sufficient for a uniform texel buffer of
+        ///     any format.
         /// </summary>
-        public ulong UniformTexelBufferOffsetAlignmentBytes; 
-        
+        public ulong UniformTexelBufferOffsetAlignmentBytes;
+
         /// <summary>
-        /// Indicates whether single texel alignment is sufficient for a
-        /// uniform texel buffer of any format.
+        ///     Indicates whether single texel alignment is sufficient for a
+        ///     uniform texel buffer of any format.
         /// </summary>
-        public Bool32 UniformTexelBufferOffsetSingleTexelAlignment; 
+        public Bool32 UniformTexelBufferOffsetSingleTexelAlignment;
     }
 }

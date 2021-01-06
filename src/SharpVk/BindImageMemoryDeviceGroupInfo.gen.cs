@@ -22,66 +22,56 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BindImageMemoryDeviceGroupInfo
+    public struct BindImageMemoryDeviceGroupInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint[] DeviceIndices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Rect2D[] SplitInstanceBindRegions
+        public Rect2D[] SplitInstanceBindRegions
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BindImageMemoryDeviceGroupInfo* pointer)
+        internal unsafe void MarshalTo(Interop.BindImageMemoryDeviceGroupInfo* pointer)
         {
             pointer->SType = StructureType.BindImageMemoryDeviceGroupInfoVersion;
             pointer->Next = null;
-            pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
-            if (this.DeviceIndices != null)
+            pointer->DeviceIndexCount = HeapUtil.GetLength(DeviceIndices);
+            if (DeviceIndices != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DeviceIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.DeviceIndices[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(DeviceIndices.Length).ToPointer();
+                for (var index = 0; index < (uint)DeviceIndices.Length; index++) fieldPointer[index] = DeviceIndices[index];
                 pointer->DeviceIndices = fieldPointer;
             }
             else
             {
                 pointer->DeviceIndices = null;
             }
-            pointer->SplitInstanceBindRegionCount = (uint)(Interop.HeapUtil.GetLength(this.SplitInstanceBindRegions));
-            if (this.SplitInstanceBindRegions != null)
+            pointer->SplitInstanceBindRegionCount = HeapUtil.GetLength(SplitInstanceBindRegions);
+            if (SplitInstanceBindRegions != null)
             {
-                var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.SplitInstanceBindRegions.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.SplitInstanceBindRegions.Length); index++)
-                {
-                    fieldPointer[index] = this.SplitInstanceBindRegions[index];
-                }
+                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(SplitInstanceBindRegions.Length).ToPointer();
+                for (var index = 0; index < (uint)SplitInstanceBindRegions.Length; index++) fieldPointer[index] = SplitInstanceBindRegions[index];
                 pointer->SplitInstanceBindRegions = fieldPointer;
             }
             else

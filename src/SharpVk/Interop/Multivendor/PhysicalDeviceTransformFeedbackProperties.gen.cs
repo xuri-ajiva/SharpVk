@@ -22,75 +22,63 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceTransformFeedbackProperties
+    public unsafe struct PhysicalDeviceTransformFeedbackProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTransformFeedbackStreams; 
-        
+        public uint MaxTransformFeedbackStreams;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTransformFeedbackBuffers; 
-        
+        public uint MaxTransformFeedbackBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MaxTransformFeedbackBufferSize; 
-        
+        public ulong MaxTransformFeedbackBufferSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTransformFeedbackStreamDataSize; 
-        
+        public uint MaxTransformFeedbackStreamDataSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTransformFeedbackBufferDataSize; 
-        
+        public uint MaxTransformFeedbackBufferDataSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTransformFeedbackBufferDataStride; 
-        
+        public uint MaxTransformFeedbackBufferDataStride;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TransformFeedbackQueries; 
-        
+        public Bool32 TransformFeedbackQueries;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TransformFeedbackStreamsLinesTriangles; 
-        
+        public Bool32 TransformFeedbackStreamsLinesTriangles;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TransformFeedbackRasterizationStreamSelect; 
-        
+        public Bool32 TransformFeedbackRasterizationStreamSelect;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TransformFeedbackDraw; 
+        public Bool32 TransformFeedbackDraw;
     }
 }

@@ -22,31 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PerformanceStreamMarkerInfo
+    public unsafe struct PerformanceStreamMarkerInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The marker value that will be recorded into the reports consumed by
-        /// an external application.
+        ///     The marker value that will be recorded into the reports consumed by
+        ///     an external application.
         /// </summary>
-        public uint Marker; 
+        public uint Marker;
     }
 }

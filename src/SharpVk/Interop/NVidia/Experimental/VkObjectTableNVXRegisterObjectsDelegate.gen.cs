@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.NVidia.Experimental;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkObjectTableNVXRegisterObjectsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.NVidia.Experimental.ObjectTable objectTable, uint objectCount, SharpVk.NVidia.Experimental.ObjectTableEntry** objectTableEntries, uint* objectIndices);
+    public unsafe delegate Result VkObjectTableNvxRegisterObjectsDelegate(Device device, ObjectTable objectTable, uint objectCount, ObjectTableEntry** objectTableEntries, uint* objectIndices);
 }

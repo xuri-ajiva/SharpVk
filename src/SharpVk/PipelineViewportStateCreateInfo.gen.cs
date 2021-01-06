@@ -22,87 +22,76 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created pipeline viewport
-    /// state.
+    ///     Structure specifying parameters of a newly created pipeline viewport
+    ///     state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineViewportStateCreateInfo
+    public struct PipelineViewportStateCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineViewportStateCreateFlags? Flags
+        public PipelineViewportStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of Viewport structures, defining the viewport transforms.
-        /// If the viewport state is dynamic, this member is ignored.
+        ///     An array of Viewport structures, defining the viewport transforms.
+        ///     If the viewport state is dynamic, this member is ignored.
         /// </summary>
-        public SharpVk.Viewport[] Viewports
+        public Viewport[] Viewports
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of Rect2D structures which define the rectangular bounds
-        /// of the scissor for the corresponding viewport. If the scissor state
-        /// is dynamic, this member is ignored.
+        ///     An array of Rect2D structures which define the rectangular bounds
+        ///     of the scissor for the corresponding viewport. If the scissor state
+        ///     is dynamic, this member is ignored.
         /// </summary>
-        public SharpVk.Rect2D[] Scissors
+        public Rect2D[] Scissors
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PipelineViewportStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PipelineViewportStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->ViewportCount = HeapUtil.GetLength(Viewports);
+            if (Viewports != null)
             {
-                pointer->Flags = default(SharpVk.PipelineViewportStateCreateFlags);
-            }
-            pointer->ViewportCount = (uint)(Interop.HeapUtil.GetLength(this.Viewports));
-            if (this.Viewports != null)
-            {
-                var fieldPointer = (SharpVk.Viewport*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Viewport>(this.Viewports.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Viewports.Length); index++)
-                {
-                    fieldPointer[index] = this.Viewports[index];
-                }
+                var fieldPointer = (Viewport*)HeapUtil.AllocateAndClear<Viewport>(Viewports.Length).ToPointer();
+                for (var index = 0; index < (uint)Viewports.Length; index++) fieldPointer[index] = Viewports[index];
                 pointer->Viewports = fieldPointer;
             }
             else
             {
                 pointer->Viewports = null;
             }
-            pointer->ScissorCount = (uint)(Interop.HeapUtil.GetLength(this.Scissors));
-            if (this.Scissors != null)
+            pointer->ScissorCount = HeapUtil.GetLength(Scissors);
+            if (Scissors != null)
             {
-                var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.Scissors.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Scissors.Length); index++)
-                {
-                    fieldPointer[index] = this.Scissors[index];
-                }
+                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(Scissors.Length).ToPointer();
+                for (var index = 0; index < (uint)Scissors.Length; index++) fieldPointer[index] = Scissors[index];
                 pointer->Scissors = fieldPointer;
             }
             else

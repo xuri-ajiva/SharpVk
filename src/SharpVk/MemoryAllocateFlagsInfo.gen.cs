@@ -22,53 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryAllocateFlagsInfo
+    public struct MemoryAllocateFlagsInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.MemoryAllocateFlags? Flags
+        public MemoryAllocateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint DeviceMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.MemoryAllocateFlagsInfo* pointer)
+        internal unsafe void MarshalTo(Interop.MemoryAllocateFlagsInfo* pointer)
         {
             pointer->SType = StructureType.MemoryAllocateFlagsInfoVersion;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.MemoryAllocateFlags);
-            }
-            pointer->DeviceMask = this.DeviceMask;
+                pointer->Flags = default;
+            pointer->DeviceMask = DeviceMask;
         }
     }
 }

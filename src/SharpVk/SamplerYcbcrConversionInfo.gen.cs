@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SamplerYcbcrConversionInfo
+    public struct SamplerYcbcrConversionInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrConversion Conversion
+        public SamplerYcbcrConversion Conversion
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SamplerYcbcrConversionInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SamplerYcbcrConversionInfo* pointer)
         {
             pointer->SType = StructureType.SamplerYcbcrConversionInfoVersion;
             pointer->Next = null;
-            pointer->Conversion = this.Conversion?.handle ?? default(SharpVk.Interop.SamplerYcbcrConversion);
+            pointer->Conversion = Conversion?.Handle ?? default(Interop.SamplerYcbcrConversion);
         }
     }
 }

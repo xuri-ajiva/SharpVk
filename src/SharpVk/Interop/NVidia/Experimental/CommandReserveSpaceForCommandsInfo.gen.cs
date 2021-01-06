@@ -22,45 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct CommandReserveSpaceForCommandsInfo
+    public unsafe struct CommandReserveSpaceForCommandsInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The ObjectTableNVX to be used for the generation process. Only
-        /// registered objects at the time
-        /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
-        /// account for the reservation.
+        ///     The ObjectTableNVX to be used for the generation process. Only
+        ///     registered objects at the time
+        ///     flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
+        ///     account for the reservation.
         /// </summary>
-        public SharpVk.Interop.NVidia.Experimental.ObjectTable ObjectTable; 
-        
+        public ObjectTable ObjectTable;
+
         /// <summary>
-        /// The IndirectCommandsLayoutNVX that must also be used at generation
-        /// time.
+        ///     The IndirectCommandsLayoutNVX that must also be used at generation
+        ///     time.
         /// </summary>
-        public SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout IndirectCommandsLayout; 
-        
+        public IndirectCommandsLayout IndirectCommandsLayout;
+
         /// <summary>
-        /// The maximum number of sequences for which command buffer space will
-        /// be reserved.
+        ///     The maximum number of sequences for which command buffer space will
+        ///     be reserved.
         /// </summary>
-        public uint MaxSequencesCount; 
+        public uint MaxSequencesCount;
     }
 }

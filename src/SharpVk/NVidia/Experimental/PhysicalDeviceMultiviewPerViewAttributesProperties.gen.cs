@@ -22,35 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure describing multiview limits that can be supported by an
-    /// implementation.
+    ///     Structure describing multiview limits that can be supported by an
+    ///     implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMultiviewPerViewAttributesProperties
+    public struct PhysicalDeviceMultiviewPerViewAttributesProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool PerViewPositionAllComponents
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMultiviewPerViewAttributesProperties MarshalFrom(SharpVk.Interop.NVidia.Experimental.PhysicalDeviceMultiviewPerViewAttributesProperties* pointer)
+        internal static unsafe PhysicalDeviceMultiviewPerViewAttributesProperties MarshalFrom(Interop.NVidia.Experimental.PhysicalDeviceMultiviewPerViewAttributesProperties* pointer)
         {
-            PhysicalDeviceMultiviewPerViewAttributesProperties result = default(PhysicalDeviceMultiviewPerViewAttributesProperties);
+            var result = default(PhysicalDeviceMultiviewPerViewAttributesProperties);
             result.PerViewPositionAllComponents = pointer->PerViewPositionAllComponents;
             return result;
         }

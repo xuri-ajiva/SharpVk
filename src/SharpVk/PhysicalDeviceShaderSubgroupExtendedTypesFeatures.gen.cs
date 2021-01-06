@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures
+    public struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderSubgroupExtendedTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderSubgroupExtendedTypesFeaturesVersion;
             pointer->Next = null;
-            pointer->ShaderSubgroupExtendedTypes = this.ShaderSubgroupExtendedTypes;
+            pointer->ShaderSubgroupExtendedTypes = ShaderSubgroupExtendedTypes;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderSubgroupExtendedTypesFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures* pointer)
+        internal static unsafe PhysicalDeviceShaderSubgroupExtendedTypesFeatures MarshalFrom(Interop.PhysicalDeviceShaderSubgroupExtendedTypesFeatures* pointer)
         {
-            PhysicalDeviceShaderSubgroupExtendedTypesFeatures result = default(PhysicalDeviceShaderSubgroupExtendedTypesFeatures);
+            var result = default(PhysicalDeviceShaderSubgroupExtendedTypesFeatures);
             result.ShaderSubgroupExtendedTypes = pointer->ShaderSubgroupExtendedTypes;
             return result;
         }

@@ -22,40 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ExternalSemaphoreProperties
+    public unsafe struct ExternalSemaphoreProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreHandleTypeFlags ExportFromImportedHandleTypes; 
-        
+        public ExternalSemaphoreHandleTypeFlags ExportFromImportedHandleTypes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreHandleTypeFlags CompatibleHandleTypes; 
-        
+        public ExternalSemaphoreHandleTypeFlags CompatibleHandleTypes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreFeatureFlags ExternalSemaphoreFeatures; 
+        public ExternalSemaphoreFeatureFlags ExternalSemaphoreFeatures;
     }
 }

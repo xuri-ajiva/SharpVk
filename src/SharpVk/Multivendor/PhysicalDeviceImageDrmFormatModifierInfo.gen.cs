@@ -22,63 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceImageDrmFormatModifierInfo
+    public struct PhysicalDeviceImageDrmFormatModifierInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong DrmFormatModifier
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SharingMode SharingMode
+        public SharingMode SharingMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint[] QueueFamilyIndices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceImageDrmFormatModifierInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceImageDrmFormatModifierInfo* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceImageDrmFormatModifierInfo;
             pointer->Next = null;
-            pointer->DrmFormatModifier = this.DrmFormatModifier;
-            pointer->SharingMode = this.SharingMode;
-            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(this.QueueFamilyIndices));
-            if (this.QueueFamilyIndices != null)
+            pointer->DrmFormatModifier = DrmFormatModifier;
+            pointer->SharingMode = SharingMode;
+            pointer->QueueFamilyIndexCount = HeapUtil.GetLength(QueueFamilyIndices);
+            if (QueueFamilyIndices != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.QueueFamilyIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.QueueFamilyIndices[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer();
+                for (var index = 0; index < (uint)QueueFamilyIndices.Length; index++) fieldPointer[index] = QueueFamilyIndices[index];
                 pointer->QueueFamilyIndices = fieldPointer;
             }
             else

@@ -22,47 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageMemoryRequirementsInfo2
+    public struct ImageMemoryRequirementsInfo2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Image Image
+        public Image Image
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ImageMemoryRequirementsInfo2* pointer)
+        internal unsafe void MarshalTo(Interop.ImageMemoryRequirementsInfo2* pointer)
         {
             pointer->SType = StructureType.ImageMemoryRequirementsInfo2Version;
             pointer->Next = null;
-            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
+            pointer->Image = Image?.Handle ?? default(Interop.Image);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ImageMemoryRequirementsInfo2 MarshalFrom(SharpVk.Interop.ImageMemoryRequirementsInfo2* pointer)
+        internal static unsafe ImageMemoryRequirementsInfo2 MarshalFrom(Interop.ImageMemoryRequirementsInfo2* pointer)
         {
-            ImageMemoryRequirementsInfo2 result = default(ImageMemoryRequirementsInfo2);
-            result.Image = new SharpVk.Image(default(SharpVk.Device), pointer->Image);
+            var result = default(ImageMemoryRequirementsInfo2);
+            result.Image = new(default, pointer->Image);
             return result;
         }
     }

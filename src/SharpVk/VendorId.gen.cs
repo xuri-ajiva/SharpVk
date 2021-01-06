@@ -25,23 +25,19 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum VendorId
     {
         /// <summary>
-        /// 
         /// </summary>
-        Viv = 0x10001, 
-        
+        Viv = 0x10001,
+
         /// <summary>
-        /// 
         /// </summary>
-        Vsi = 0x10002, 
-        
+        Vsi = 0x10002,
+
         /// <summary>
-        /// 
         /// </summary>
-        Kazan = 0x10003, 
+        Kazan = 0x10003
     }
 }

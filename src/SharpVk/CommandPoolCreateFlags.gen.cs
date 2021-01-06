@@ -22,32 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying usage behavior for a command pool.
+    ///     Bitmask specifying usage behavior for a command pool.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum CommandPoolCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Transient = 1 << 0, 
-        
+        Transient = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        ResetCommandBuffer = 1 << 1, 
-        
+        ResetCommandBuffer = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Protected = 1 << 2, 
+        Protected = 1 << 2
     }
 }

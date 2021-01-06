@@ -22,49 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure describing display plane properties.
+    ///     Structure describing display plane properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayPlaneProperties
+    public struct DisplayPlaneProperties
     {
         /// <summary>
-        /// The handle of the display the plane is currently associated with.
-        /// If the plane is not currently attached to any displays, this will
-        /// be null.
+        ///     The handle of the display the plane is currently associated with.
+        ///     If the plane is not currently attached to any displays, this will
+        ///     be null.
         /// </summary>
-        public SharpVk.Khronos.Display CurrentDisplay
+        public Display CurrentDisplay
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The current z-order of the plane. This will be between 0 and the
-        /// value returned by
-        /// fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in
-        /// pPropertyCount.
+        ///     The current z-order of the plane. This will be between 0 and the
+        ///     value returned by
+        ///     fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in
+        ///     pPropertyCount.
         /// </summary>
         public uint CurrentStackIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayPlaneProperties MarshalFrom(SharpVk.Interop.Khronos.DisplayPlaneProperties* pointer)
+        internal static unsafe DisplayPlaneProperties MarshalFrom(Interop.Khronos.DisplayPlaneProperties* pointer)
         {
-            DisplayPlaneProperties result = default(DisplayPlaneProperties);
-            result.CurrentDisplay = new SharpVk.Khronos.Display(pointer->CurrentDisplay);
+            var result = default(DisplayPlaneProperties);
+            result.CurrentDisplay = new(pointer->CurrentDisplay);
             result.CurrentStackIndex = pointer->CurrentStackIndex;
             return result;
         }

@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ShaderModuleValidationCacheCreateInfo
+    public struct ShaderModuleValidationCacheCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ValidationCache ValidationCache
+        public ValidationCache ValidationCache
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ShaderModuleValidationCacheCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.ShaderModuleValidationCacheCreateInfo* pointer)
         {
             pointer->SType = StructureType.ShaderModuleValidationCacheCreateInfo;
             pointer->Next = null;
-            pointer->ValidationCache = this.ValidationCache?.handle ?? default(SharpVk.Interop.Multivendor.ValidationCache);
+            pointer->ValidationCache = ValidationCache?.Handle ?? default(Interop.Multivendor.ValidationCache);
         }
     }
 }

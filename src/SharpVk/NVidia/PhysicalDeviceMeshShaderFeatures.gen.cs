@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMeshShaderFeatures
+    public struct PhysicalDeviceMeshShaderFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool TaskShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool MeshShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMeshShaderFeatures;
             pointer->Next = null;
-            pointer->TaskShader = this.TaskShader;
-            pointer->MeshShader = this.MeshShader;
+            pointer->TaskShader = TaskShader;
+            pointer->MeshShader = MeshShader;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMeshShaderFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
+        internal static unsafe PhysicalDeviceMeshShaderFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
         {
-            PhysicalDeviceMeshShaderFeatures result = default(PhysicalDeviceMeshShaderFeatures);
+            var result = default(PhysicalDeviceMeshShaderFeatures);
             result.TaskShader = pointer->TaskShader;
             result.MeshShader = pointer->MeshShader;
             return result;

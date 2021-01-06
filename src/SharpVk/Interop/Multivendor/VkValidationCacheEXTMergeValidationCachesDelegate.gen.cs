@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkValidationCacheEXTMergeValidationCachesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Multivendor.ValidationCache destinationCache, uint sourceCacheCount, SharpVk.Interop.Multivendor.ValidationCache* sourceCaches);
+    public unsafe delegate Result VkValidationCacheExtMergeValidationCachesDelegate(Device device, ValidationCache destinationCache, uint sourceCacheCount, ValidationCache* sourceCaches);
 }

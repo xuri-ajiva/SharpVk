@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalMemoryImageCreateInfo
+    public struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryHandleTypeFlags HandleTypes
+        public ExternalMemoryHandleTypeFlags HandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ExternalMemoryImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ExternalMemoryImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ExternalMemoryImageCreateInfoVersion;
             pointer->Next = null;
-            pointer->HandleTypes = this.HandleTypes;
+            pointer->HandleTypes = HandleTypes;
         }
     }
 }

@@ -22,50 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceSparseImageFormatInfo2
+    public unsafe struct PhysicalDeviceSparseImageFormatInfo2
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageType Type; 
-        
+        public ImageType Type;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags Samples; 
-        
+        public SampleCountFlags Samples;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags Usage; 
-        
+        public ImageUsageFlags Usage;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageTiling Tiling; 
+        public ImageTiling Tiling;
     }
 }

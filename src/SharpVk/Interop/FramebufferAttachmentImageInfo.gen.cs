@@ -22,69 +22,66 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct FramebufferAttachmentImageInfo
+    public unsafe struct FramebufferAttachmentImageInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitmask of ImageCreateFlags, matching the value of
-        /// VkImageCreateInfo::flags used to create an image that will be used
-        /// with this framebuffer.
+        ///     A bitmask of ImageCreateFlags, matching the value of
+        ///     VkImageCreateInfo::flags used to create an image that will be used
+        ///     with this framebuffer.
         /// </summary>
-        public SharpVk.ImageCreateFlags Flags; 
-        
+        public ImageCreateFlags Flags;
+
         /// <summary>
-        /// A bitmask of ImageCreateFlags, matching the value of
-        /// VkImageCreateInfo::usage used to create an image used with this
-        /// framebuffer.
+        ///     A bitmask of ImageCreateFlags, matching the value of
+        ///     VkImageCreateInfo::usage used to create an image used with this
+        ///     framebuffer.
         /// </summary>
-        public SharpVk.ImageUsageFlags Usage; 
-        
+        public ImageUsageFlags Usage;
+
         /// <summary>
-        /// The width of the image view used for rendering.
+        ///     The width of the image view used for rendering.
         /// </summary>
-        public uint Width; 
-        
+        public uint Width;
+
         /// <summary>
-        /// The height of the image view used for rendering.
+        ///     The height of the image view used for rendering.
         /// </summary>
-        public uint Height; 
-        
+        public uint Height;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint LayerCount; 
-        
+        public uint LayerCount;
+
         /// <summary>
-        /// The number of entries in the pViewFormats array, matching the value
-        /// of VkImageFormatListCreateInfoKHR::viewFormatCount used to create
-        /// an image used with this framebuffer.
+        ///     The number of entries in the pViewFormats array, matching the value
+        ///     of VkImageFormatListCreateInfoKHR::viewFormatCount used to create
+        ///     an image used with this framebuffer.
         /// </summary>
-        public uint ViewFormatCount; 
-        
+        public uint ViewFormatCount;
+
         /// <summary>
-        /// An array which lists of all formats which can be used when creating
-        /// views of the image, matching the value of
-        /// VkImageFormatListCreateInfoKHR::pViewFormats used to create an
-        /// image used with this framebuffer.
+        ///     An array which lists of all formats which can be used when creating
+        ///     views of the image, matching the value of
+        ///     VkImageFormatListCreateInfoKHR::pViewFormats used to create an
+        ///     image used with this framebuffer.
         /// </summary>
-        public SharpVk.Format* ViewFormats; 
+        public Format* ViewFormats;
     }
 }

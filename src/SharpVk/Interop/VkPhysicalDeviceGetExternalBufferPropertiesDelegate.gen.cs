@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkPhysicalDeviceGetExternalBufferPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.PhysicalDeviceExternalBufferInfo* externalBufferInfo, SharpVk.Interop.ExternalBufferProperties* externalBufferProperties);
+    public unsafe delegate void VkPhysicalDeviceGetExternalBufferPropertiesDelegate(PhysicalDevice physicalDevice, PhysicalDeviceExternalBufferInfo* externalBufferInfo, ExternalBufferProperties* externalBufferProperties);
 }

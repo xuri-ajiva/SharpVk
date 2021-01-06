@@ -22,285 +22,229 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceVulkan12Properties
+    public unsafe struct PhysicalDeviceVulkan12Properties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DriverId DriverID; 
-        
+        public DriverId DriverID;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DriverName[Constants.MaxDriverNameSize]; 
-        
+        public fixed byte DriverName[Constants.MaxDriverNameSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte DriverInfo[Constants.MaxDriverInfoSize]; 
-        
+        public fixed byte DriverInfo[Constants.MaxDriverInfoSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ConformanceVersion ConformanceVersion; 
-        
+        public ConformanceVersion ConformanceVersion;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderFloatControlsIndependence DenormBehaviorIndependence; 
-        
+        public ShaderFloatControlsIndependence DenormBehaviorIndependence;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderFloatControlsIndependence RoundingModeIndependence; 
-        
+        public ShaderFloatControlsIndependence RoundingModeIndependence;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSignedZeroInfNanPreserveFloat16; 
-        
+        public Bool32 ShaderSignedZeroInfNanPreserveFloat16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSignedZeroInfNanPreserveFloat32; 
-        
+        public Bool32 ShaderSignedZeroInfNanPreserveFloat32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSignedZeroInfNanPreserveFloat64; 
-        
+        public Bool32 ShaderSignedZeroInfNanPreserveFloat64;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderDenormPreserveFloat16; 
-        
+        public Bool32 ShaderDenormPreserveFloat16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderDenormPreserveFloat32; 
-        
+        public Bool32 ShaderDenormPreserveFloat32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderDenormPreserveFloat64; 
-        
+        public Bool32 ShaderDenormPreserveFloat64;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderDenormFlushToZeroFloat16; 
-        
+        public Bool32 ShaderDenormFlushToZeroFloat16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderDenormFlushToZeroFloat32; 
-        
+        public Bool32 ShaderDenormFlushToZeroFloat32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderDenormFlushToZeroFloat64; 
-        
+        public Bool32 ShaderDenormFlushToZeroFloat64;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderRoundingModeRTEFloat16; 
-        
+        public Bool32 ShaderRoundingModeRTEFloat16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderRoundingModeRTEFloat32; 
-        
+        public Bool32 ShaderRoundingModeRTEFloat32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderRoundingModeRTEFloat64; 
-        
+        public Bool32 ShaderRoundingModeRTEFloat64;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderRoundingModeRTZFloat16; 
-        
+        public Bool32 ShaderRoundingModeRTZFloat16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderRoundingModeRTZFloat32; 
-        
+        public Bool32 ShaderRoundingModeRTZFloat32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderRoundingModeRTZFloat64; 
-        
+        public Bool32 ShaderRoundingModeRTZFloat64;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxUpdateAfterBindDescriptorsInAllPools; 
-        
+        public uint MaxUpdateAfterBindDescriptorsInAllPools;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderUniformBufferArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderUniformBufferArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSampledImageArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderSampledImageArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageBufferArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderStorageBufferArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderStorageImageArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderInputAttachmentArrayNonUniformIndexingNative; 
-        
+        public Bool32 ShaderInputAttachmentArrayNonUniformIndexingNative;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 RobustBufferAccessUpdateAfterBind; 
-        
+        public Bool32 RobustBufferAccessUpdateAfterBind;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 QuadDivergentImplicitLod; 
-        
+        public Bool32 QuadDivergentImplicitLod;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindSamplers; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindSamplers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindUniformBuffers; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindUniformBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindStorageBuffers; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindStorageBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindSampledImages; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindSampledImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindStorageImages; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindStorageImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageDescriptorUpdateAfterBindInputAttachments; 
-        
+        public uint MaxPerStageDescriptorUpdateAfterBindInputAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerStageUpdateAfterBindResources; 
-        
+        public uint MaxPerStageUpdateAfterBindResources;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindSamplers; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindSamplers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindUniformBuffers; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindUniformBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindStorageBuffers; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindStorageBuffers;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindSampledImages; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindSampledImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindStorageImages; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindStorageImages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDescriptorSetUpdateAfterBindInputAttachments; 
-        
+        public uint MaxDescriptorSetUpdateAfterBindInputAttachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags SupportedDepthResolveModes; 
-        
+        public ResolveModeFlags SupportedDepthResolveModes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags SupportedStencilResolveModes; 
-        
+        public ResolveModeFlags SupportedStencilResolveModes;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 IndependentResolveNone; 
-        
+        public Bool32 IndependentResolveNone;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 IndependentResolve; 
-        
+        public Bool32 IndependentResolve;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 FilterMinmaxSingleComponentFormats; 
-        
+        public Bool32 FilterMinmaxSingleComponentFormats;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 FilterMinmaxImageComponentMapping; 
-        
+        public Bool32 FilterMinmaxImageComponentMapping;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MaxTimelineSemaphoreValueDifference; 
-        
+        public ulong MaxTimelineSemaphoreValueDifference;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags FramebufferIntegerColorSampleCounts; 
+        public SampleCountFlags FramebufferIntegerColorSampleCounts;
     }
 }

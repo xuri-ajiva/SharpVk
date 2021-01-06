@@ -22,21 +22,20 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class PhysicalDeviceExtensions
     {
         /// <summary>
-        /// Determine image capabilities compatible with external memory handle
-        /// types.
+        ///     Determine image capabilities compatible with external memory handle
+        ///     types.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
+        ///     The PhysicalDevice handle to extend.
         /// </param>
         /// <param name="format">
         /// </param>
@@ -50,78 +49,61 @@ namespace SharpVk.NVidia
         /// </param>
         /// <param name="externalHandleType">
         /// </param>
-        public static unsafe SharpVk.NVidia.ExternalImageFormatProperties GetExternalImageFormatProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.NVidia.ExternalMemoryHandleTypeFlags? externalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags?))
+        public static unsafe ExternalImageFormatProperties GetExternalImageFormatProperties(this PhysicalDevice extendedHandle, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags? flags = default, ExternalMemoryHandleTypeFlags? externalHandleType = default)
         {
             try
             {
-                SharpVk.NVidia.ExternalImageFormatProperties result = default(SharpVk.NVidia.ExternalImageFormatProperties);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.ImageCreateFlags marshalledFlags = default(SharpVk.ImageCreateFlags);
-                SharpVk.NVidia.ExternalMemoryHandleTypeFlags marshalledExternalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags);
-                SharpVk.NVidia.ExternalImageFormatProperties marshalledExternalImageFormatProperties = default(SharpVk.NVidia.ExternalImageFormatProperties);
-                commandCache = extendedHandle.commandCache;
+                var result = default(ExternalImageFormatProperties);
+                var commandCache = default(CommandCache);
+                var marshalledFlags = default(ImageCreateFlags);
+                var marshalledExternalHandleType = default(ExternalMemoryHandleTypeFlags);
+                var marshalledExternalImageFormatProperties = default(ExternalImageFormatProperties);
+                commandCache = extendedHandle.CommandCache;
                 if (flags != null)
-                {
                     marshalledFlags = flags.Value;
-                }
                 else
-                {
-                    marshalledFlags = default(SharpVk.ImageCreateFlags);
-                }
+                    marshalledFlags = default;
                 if (externalHandleType != null)
-                {
                     marshalledExternalHandleType = externalHandleType.Value;
-                }
                 else
-                {
-                    marshalledExternalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags);
-                }
-                SharpVk.Interop.NVidia.VkPhysicalDeviceGetExternalImageFormatPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceExternalImageFormatPropertiesNV;
-                Result methodResult = commandDelegate(extendedHandle.handle, format, type, tiling, usage, marshalledFlags, marshalledExternalHandleType, &marshalledExternalImageFormatProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                    marshalledExternalHandleType = default;
+                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceExternalImageFormatPropertiesNv;
+                var methodResult = commandDelegate(extendedHandle.Handle, format, type, tiling, usage, marshalledFlags, marshalledExternalHandleType, &marshalledExternalImageFormatProperties);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 result = marshalledExternalImageFormatProperties;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Returns properties describing what cooperative matrix types are
-        /// supported
+        ///     Returns properties describing what cooperative matrix types are
+        ///     supported
         /// </summary>
         /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
+        ///     The PhysicalDevice handle to extend.
         /// </param>
-        public static unsafe SharpVk.NVidia.CooperativeMatrixProperties[] GetCooperativeMatrixProperties(this SharpVk.PhysicalDevice extendedHandle)
+        public static unsafe CooperativeMatrixProperties[] GetCooperativeMatrixProperties(this PhysicalDevice extendedHandle)
         {
             try
             {
-                SharpVk.NVidia.CooperativeMatrixProperties[] result = default(SharpVk.NVidia.CooperativeMatrixProperties[]);
-                uint marshalledPropertyCount = default(uint);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.CooperativeMatrixProperties* marshalledProperties = default(SharpVk.Interop.NVidia.CooperativeMatrixProperties*);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkPhysicalDeviceGetCooperativeMatrixPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceCooperativeMatrixPropertiesNV;
-                Result methodResult = commandDelegate(extendedHandle.handle, &marshalledPropertyCount, marshalledProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledProperties = (SharpVk.Interop.NVidia.CooperativeMatrixProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.CooperativeMatrixProperties>((uint)(marshalledPropertyCount)));
-                commandDelegate(extendedHandle.handle, &marshalledPropertyCount, marshalledProperties);
+                var result = default(CooperativeMatrixProperties[]);
+                var marshalledPropertyCount = default(uint);
+                var commandCache = default(CommandCache);
+                var marshalledProperties = default(Interop.NVidia.CooperativeMatrixProperties*);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceCooperativeMatrixPropertiesNv;
+                var methodResult = commandDelegate(extendedHandle.Handle, &marshalledPropertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                marshalledProperties = (Interop.NVidia.CooperativeMatrixProperties*)HeapUtil.Allocate<Interop.NVidia.CooperativeMatrixProperties>(marshalledPropertyCount);
+                commandDelegate(extendedHandle.Handle, &marshalledPropertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new SharpVk.NVidia.CooperativeMatrixProperties[(uint)(marshalledPropertyCount)];
-                    for(int index = 0; index < (uint)(marshalledPropertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.NVidia.CooperativeMatrixProperties.MarshalFrom(&marshalledProperties[index]);
-                    }
+                    var fieldPointer = new CooperativeMatrixProperties[marshalledPropertyCount];
+                    for (var index = 0; index < marshalledPropertyCount; index++) fieldPointer[index] = CooperativeMatrixProperties.MarshalFrom(&marshalledProperties[index]);
                     result = fieldPointer;
                 }
                 else
@@ -132,40 +114,34 @@ namespace SharpVk.NVidia
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Query supported sample count combinations
+        ///     Query supported sample count combinations
         /// </summary>
         /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
+        ///     The PhysicalDevice handle to extend.
         /// </param>
-        public static unsafe SharpVk.NVidia.FramebufferMixedSamplesCombination[] GetSupportedFramebufferMixedSamplesCombinations(this SharpVk.PhysicalDevice extendedHandle)
+        public static unsafe FramebufferMixedSamplesCombination[] GetSupportedFramebufferMixedSamplesCombinations(this PhysicalDevice extendedHandle)
         {
             try
             {
-                SharpVk.NVidia.FramebufferMixedSamplesCombination[] result = default(SharpVk.NVidia.FramebufferMixedSamplesCombination[]);
-                uint marshalledCombinationCount = default(uint);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination* marshalledCombinations = default(SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination*);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkPhysicalDeviceGetSupportedFramebufferMixedSamplesCombinationsDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV;
-                Result methodResult = commandDelegate(extendedHandle.handle, &marshalledCombinationCount, marshalledCombinations);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledCombinations = (SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination>((uint)(marshalledCombinationCount)));
-                commandDelegate(extendedHandle.handle, &marshalledCombinationCount, marshalledCombinations);
+                var result = default(FramebufferMixedSamplesCombination[]);
+                var marshalledCombinationCount = default(uint);
+                var commandCache = default(CommandCache);
+                var marshalledCombinations = default(Interop.NVidia.FramebufferMixedSamplesCombination*);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv;
+                var methodResult = commandDelegate(extendedHandle.Handle, &marshalledCombinationCount, marshalledCombinations);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                marshalledCombinations = (Interop.NVidia.FramebufferMixedSamplesCombination*)HeapUtil.Allocate<Interop.NVidia.FramebufferMixedSamplesCombination>(marshalledCombinationCount);
+                commandDelegate(extendedHandle.Handle, &marshalledCombinationCount, marshalledCombinations);
                 if (marshalledCombinations != null)
                 {
-                    var fieldPointer = new SharpVk.NVidia.FramebufferMixedSamplesCombination[(uint)(marshalledCombinationCount)];
-                    for(int index = 0; index < (uint)(marshalledCombinationCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.NVidia.FramebufferMixedSamplesCombination.MarshalFrom(&marshalledCombinations[index]);
-                    }
+                    var fieldPointer = new FramebufferMixedSamplesCombination[marshalledCombinationCount];
+                    for (var index = 0; index < marshalledCombinationCount; index++) fieldPointer[index] = FramebufferMixedSamplesCombination.MarshalFrom(&marshalledCombinations[index]);
                     result = fieldPointer;
                 }
                 else
@@ -176,7 +152,7 @@ namespace SharpVk.NVidia
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

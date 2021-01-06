@@ -25,20 +25,20 @@
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Parameters that can be queried
+    ///     Parameters that can be queried
     /// </summary>
     public enum PerformanceParameterType
     {
         /// <summary>
-        /// Has a boolean result which tells whether hardware counters can be
-        /// captured.
+        ///     Has a boolean result which tells whether hardware counters can be
+        ///     captured.
         /// </summary>
-        HwCountersSupported = 0, 
-        
+        HwCountersSupported = 0,
+
         /// <summary>
-        /// Has a 32 bits integer result which tells how many bits can be
-        /// written into the VkStreamPerformanceMarkerInfoINTEL value.
+        ///     Has a 32 bits integer result which tells how many bits can be
+        ///     written into the VkStreamPerformanceMarkerInfoINTEL value.
         /// </summary>
-        StreamMarkerValidBits = 1, 
+        StreamMarkerValidBits = 1
     }
 }

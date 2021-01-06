@@ -22,53 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct QueryPoolPerformanceCreateInfo
+    public struct QueryPoolPerformanceCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint QueueFamilyIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint[] CounterIndices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.QueryPoolPerformanceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.QueryPoolPerformanceCreateInfo* pointer)
         {
             pointer->SType = StructureType.QueryPoolPerformanceCreateInfo;
             pointer->Next = null;
-            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
-            pointer->CounterIndexCount = (uint)(Interop.HeapUtil.GetLength(this.CounterIndices));
-            if (this.CounterIndices != null)
+            pointer->QueueFamilyIndex = QueueFamilyIndex;
+            pointer->CounterIndexCount = HeapUtil.GetLength(CounterIndices);
+            if (CounterIndices != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CounterIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.CounterIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.CounterIndices[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(CounterIndices.Length).ToPointer();
+                for (var index = 0; index < (uint)CounterIndices.Length; index++) fieldPointer[index] = CounterIndices[index];
                 pointer->CounterIndices = fieldPointer;
             }
             else

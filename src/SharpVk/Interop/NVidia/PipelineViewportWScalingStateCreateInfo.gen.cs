@@ -22,43 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineViewportWScalingStateCreateInfo
+    public unsafe struct PipelineViewportWScalingStateCreateInfo
     {
         /// <summary>
-        /// The type of this structure
+        ///     The type of this structure
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure
+        ///     Null or an extension-specific structure
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The enable for viewport W scaling
+        ///     The enable for viewport W scaling
         /// </summary>
-        public Bool32 ViewportWScalingEnable; 
-        
+        public Bool32 ViewportWScalingEnable;
+
         /// <summary>
-        /// The number of viewports used by W scaling and must match the number
-        /// of viewports in the pipeline if viewport W scaling is enabled.
+        ///     The number of viewports used by W scaling and must match the number
+        ///     of viewports in the pipeline if viewport W scaling is enabled.
         /// </summary>
-        public uint ViewportCount; 
-        
+        public uint ViewportCount;
+
         /// <summary>
-        /// An array of ViewportWScalingNV structures which define the W
-        /// scaling parameters for the corresponding viewport. If the viewport
-        /// W scaling state is dynamic, this member is ignored.
+        ///     An array of ViewportWScalingNV structures which define the W
+        ///     scaling parameters for the corresponding viewport. If the viewport
+        ///     W scaling state is dynamic, this member is ignored.
         /// </summary>
-        public SharpVk.NVidia.ViewportWScaling* ViewportWScalings; 
+        public ViewportWScaling* ViewportWScalings;
     }
 }

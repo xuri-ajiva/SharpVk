@@ -22,41 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PresentRegion
+    public struct PresentRegion
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.RectLayer[] Rectangles
+        public RectLayer[] Rectangles
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PresentRegion* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PresentRegion* pointer)
         {
-            pointer->RectangleCount = (uint)(Interop.HeapUtil.GetLength(this.Rectangles));
-            if (this.Rectangles != null)
+            pointer->RectangleCount = HeapUtil.GetLength(Rectangles);
+            if (Rectangles != null)
             {
-                var fieldPointer = (SharpVk.Khronos.RectLayer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khronos.RectLayer>(this.Rectangles.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Rectangles.Length); index++)
-                {
-                    fieldPointer[index] = this.Rectangles[index];
-                }
+                var fieldPointer = (RectLayer*)HeapUtil.AllocateAndClear<RectLayer>(Rectangles.Length).ToPointer();
+                for (var index = 0; index < (uint)Rectangles.Length; index++) fieldPointer[index] = Rectangles[index];
                 pointer->Rectangles = fieldPointer;
             }
             else
@@ -64,22 +58,18 @@ namespace SharpVk.Khronos
                 pointer->Rectangles = null;
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PresentRegion MarshalFrom(SharpVk.Interop.Khronos.PresentRegion* pointer)
+        internal static unsafe PresentRegion MarshalFrom(Interop.Khronos.PresentRegion* pointer)
         {
-            PresentRegion result = default(PresentRegion);
+            var result = default(PresentRegion);
             if (pointer->Rectangles != null)
             {
-                var fieldPointer = new SharpVk.Khronos.RectLayer[(uint)(pointer->RectangleCount)];
-                for(int index = 0; index < (uint)(pointer->RectangleCount); index++)
-                {
-                    fieldPointer[index] = pointer->Rectangles[index];
-                }
+                var fieldPointer = new RectLayer[pointer->RectangleCount];
+                for (var index = 0; index < pointer->RectangleCount; index++) fieldPointer[index] = pointer->Rectangles[index];
                 result.Rectangles = fieldPointer;
             }
             else

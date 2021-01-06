@@ -25,23 +25,19 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum ConservativeRasterizationMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        Disabled = 0, 
-        
+        Disabled = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Overestimate = 1, 
-        
+        Overestimate = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Underestimate = 2, 
+        Underestimate = 2
     }
 }

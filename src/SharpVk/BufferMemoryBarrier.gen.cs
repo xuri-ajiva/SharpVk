@@ -22,116 +22,113 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a buffer memory barrier.
+    ///     Structure specifying a buffer memory barrier.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BufferMemoryBarrier
+    public struct BufferMemoryBarrier
     {
         /// <summary>
-        /// srcAccessMask defines a source access mask.
+        ///     srcAccessMask defines a source access mask.
         /// </summary>
-        public SharpVk.AccessFlags SourceAccessMask
+        public AccessFlags SourceAccessMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// dstAccessMask defines a destination access mask.
+        ///     dstAccessMask defines a destination access mask.
         /// </summary>
-        public SharpVk.AccessFlags DestinationAccessMask
+        public AccessFlags DestinationAccessMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The source queue family for a queue family ownership transfer.
+        ///     The source queue family for a queue family ownership transfer.
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The destination queue family for a queue family ownership transfer.
+        ///     The destination queue family for a queue family ownership transfer.
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A handle to the buffer whose backing memory is affected by the
-        /// barrier.
+        ///     A handle to the buffer whose backing memory is affected by the
+        ///     barrier.
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An offset in bytes into the backing memory for buffer; this is
-        /// relative to the base offset as bound to the buffer (see
-        /// flink:vkBindBufferMemory).
+        ///     An offset in bytes into the backing memory for buffer; this is
+        ///     relative to the base offset as bound to the buffer (see
+        ///     flink:vkBindBufferMemory).
         /// </summary>
         public ulong Offset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A size in bytes of the affected area of backing memory for buffer,
-        /// or Constants.WholeSize to use the range from offset to the end of
-        /// the buffer.
+        ///     A size in bytes of the affected area of backing memory for buffer,
+        ///     or Constants.WholeSize to use the range from offset to the end of
+        ///     the buffer.
         /// </summary>
         public ulong Size
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BufferMemoryBarrier* pointer)
+        internal unsafe void MarshalTo(Interop.BufferMemoryBarrier* pointer)
         {
             pointer->SType = StructureType.BufferMemoryBarrier;
             pointer->Next = null;
-            pointer->SourceAccessMask = this.SourceAccessMask;
-            pointer->DestinationAccessMask = this.DestinationAccessMask;
-            pointer->SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
-            pointer->DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->Offset = this.Offset;
-            pointer->Size = this.Size;
+            pointer->SourceAccessMask = SourceAccessMask;
+            pointer->DestinationAccessMask = DestinationAccessMask;
+            pointer->SourceQueueFamilyIndex = SourceQueueFamilyIndex;
+            pointer->DestinationQueueFamilyIndex = DestinationQueueFamilyIndex;
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            pointer->Offset = Offset;
+            pointer->Size = Size;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe BufferMemoryBarrier MarshalFrom(SharpVk.Interop.BufferMemoryBarrier* pointer)
+        internal static unsafe BufferMemoryBarrier MarshalFrom(Interop.BufferMemoryBarrier* pointer)
         {
-            BufferMemoryBarrier result = default(BufferMemoryBarrier);
+            var result = default(BufferMemoryBarrier);
             result.SourceAccessMask = pointer->SourceAccessMask;
             result.DestinationAccessMask = pointer->DestinationAccessMask;
             result.SourceQueueFamilyIndex = pointer->SourceQueueFamilyIndex;
             result.DestinationQueueFamilyIndex = pointer->DestinationQueueFamilyIndex;
-            result.Buffer = new SharpVk.Buffer(default(SharpVk.Device), pointer->Buffer);
+            result.Buffer = new(default, pointer->Buffer);
             result.Offset = pointer->Offset;
             result.Size = pointer->Size;
             return result;

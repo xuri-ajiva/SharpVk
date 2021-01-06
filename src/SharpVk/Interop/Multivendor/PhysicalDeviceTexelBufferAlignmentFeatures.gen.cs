@@ -22,33 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceTexelBufferAlignmentFeatures
+    public unsafe struct PhysicalDeviceTexelBufferAlignmentFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Indicates whether the implementation uses more specific alignment
-        /// requirements advertised in
-        /// PhysicalDeviceTexelBufferAlignmentProperties rather than
-        /// PhysicalDeviceLimits.MinTexelBufferOffsetAlignment.
+        ///     Indicates whether the implementation uses more specific alignment
+        ///     requirements advertised in
+        ///     PhysicalDeviceTexelBufferAlignmentProperties rather than
+        ///     PhysicalDeviceLimits.MinTexelBufferOffsetAlignment.
         /// </summary>
-        public Bool32 TexelBufferAlignment; 
+        public Bool32 TexelBufferAlignment;
     }
 }

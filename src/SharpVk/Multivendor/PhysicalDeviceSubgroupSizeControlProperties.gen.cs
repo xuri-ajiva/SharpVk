@@ -22,61 +22,54 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSubgroupSizeControlProperties
+    public struct PhysicalDeviceSubgroupSizeControlProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MinSubgroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxSubgroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxComputeWorkgroupSubgroups
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags RequiredSubgroupSizeStages
+        public ShaderStageFlags RequiredSubgroupSizeStages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSubgroupSizeControlProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlProperties* pointer)
+        internal static unsafe PhysicalDeviceSubgroupSizeControlProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceSubgroupSizeControlProperties* pointer)
         {
-            PhysicalDeviceSubgroupSizeControlProperties result = default(PhysicalDeviceSubgroupSizeControlProperties);
+            var result = default(PhysicalDeviceSubgroupSizeControlProperties);
             result.MinSubgroupSize = pointer->MinSubgroupSize;
             result.MaxSubgroupSize = pointer->MaxSubgroupSize;
             result.MaxComputeWorkgroupSubgroups = pointer->MaxComputeWorkgroupSubgroups;

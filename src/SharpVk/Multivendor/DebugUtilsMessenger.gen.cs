@@ -23,68 +23,66 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public partial class DebugUtilsMessenger
+    public class DebugUtilsMessenger
         : IDisposable
     {
-        internal readonly SharpVk.Interop.Multivendor.DebugUtilsMessenger handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Instance parent; 
-        
-        internal DebugUtilsMessenger(SharpVk.Instance parent, SharpVk.Interop.Multivendor.DebugUtilsMessenger handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Multivendor.DebugUtilsMessenger Handle;
+
+        internal readonly Instance Parent;
+
+        internal DebugUtilsMessenger(Instance parent, Interop.Multivendor.DebugUtilsMessenger handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Multivendor.DebugUtilsMessenger RawHandle => this.handle;
-        
+        public Interop.Multivendor.DebugUtilsMessenger RawHandle => Handle;
+
         /// <summary>
-        /// 
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
         /// </summary>
         /// <param name="allocator">
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.Multivendor.VkDebugUtilsMessengerEXTDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyDebugUtilsMessengerEXT;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyDebugUtilsMessengerExt;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

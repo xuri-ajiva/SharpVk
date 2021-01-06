@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkPhysicalDeviceGetGeneratedCommandsPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* features, SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* limits);
+    public unsafe delegate void VkPhysicalDeviceGetGeneratedCommandsPropertiesDelegate(PhysicalDevice physicalDevice, DeviceGeneratedCommandsFeatures* features, DeviceGeneratedCommandsLimits* limits);
 }

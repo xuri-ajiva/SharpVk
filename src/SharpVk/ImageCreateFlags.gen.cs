@@ -22,101 +22,92 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying additional parameters of an image.
+    ///     Bitmask specifying additional parameters of an image.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ImageCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// Indicates that the image will be backed using sparse memory
-        /// binding.
+        ///     Indicates that the image will be backed using sparse memory
+        ///     binding.
         /// </summary>
-        SparseBinding = 1 << 0, 
-        
+        SparseBinding = 1 << 0,
+
         /// <summary>
-        /// Indicates that the image can be partially backed using sparse
-        /// memory binding. Images created with this flag must also be created
-        /// with the VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag.
+        ///     Indicates that the image can be partially backed using sparse
+        ///     memory binding. Images created with this flag must also be created
+        ///     with the VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag.
         /// </summary>
-        SparseResidency = 1 << 1, 
-        
+        SparseResidency = 1 << 1,
+
         /// <summary>
-        /// Indicates that the image will be backed using sparse memory binding
-        /// with memory ranges that might also simultaneously be backing
-        /// another image (or another portion of the same image). Images
-        /// created with this flag must also be created with the
-        /// VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag
+        ///     Indicates that the image will be backed using sparse memory binding
+        ///     with memory ranges that might also simultaneously be backing
+        ///     another image (or another portion of the same image). Images
+        ///     created with this flag must also be created with the
+        ///     VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag
         /// </summary>
-        SparseAliased = 1 << 2, 
-        
+        SparseAliased = 1 << 2,
+
         /// <summary>
-        /// Indicates that the image can be used to create an ImageView with a
-        /// different format from the image.
+        ///     Indicates that the image can be used to create an ImageView with a
+        ///     different format from the image.
         /// </summary>
-        MutableFormat = 1 << 3, 
-        
+        MutableFormat = 1 << 3,
+
         /// <summary>
-        /// Indicates that the image can be used to create an ImageView of type
-        /// VK_IMAGE_VIEW_TYPE_CUBE or VK_IMAGE_VIEW_TYPE_CUBE_ARRAY.
+        ///     Indicates that the image can be used to create an ImageView of type
+        ///     VK_IMAGE_VIEW_TYPE_CUBE or VK_IMAGE_VIEW_TYPE_CUBE_ARRAY.
         /// </summary>
-        CubeCompatible = 1 << 4, 
-        
+        CubeCompatible = 1 << 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        Alias = 1 << 10, 
-        
+        Alias = 1 << 10,
+
         /// <summary>
-        /// 
         /// </summary>
-        SplitInstanceBindRegions = 1 << 6, 
-        
+        SplitInstanceBindRegions = 1 << 6,
+
         /// <summary>
-        /// 
         /// </summary>
-        ImageCreate2dArrayCompatible = 1 << 5, 
-        
+        ImageCreate2dArrayCompatible = 1 << 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        BlockTexelViewCompatible = 1 << 7, 
-        
+        BlockTexelViewCompatible = 1 << 7,
+
         /// <summary>
-        /// 
         /// </summary>
-        ExtendedUsage = 1 << 8, 
-        
+        ExtendedUsage = 1 << 8,
+
         /// <summary>
-        /// 
         /// </summary>
-        Protected = 1 << 11, 
-        
+        Protected = 1 << 11,
+
         /// <summary>
-        /// 
         /// </summary>
-        Disjoint = 1 << 9, 
-        
+        Disjoint = 1 << 9,
+
         /// <summary>
-        /// 
         /// </summary>
-        CornerSampled = 1 << 13, 
-        
+        CornerSampled = 1 << 13,
+
         /// <summary>
-        /// 
         /// </summary>
-        SampleLocationsCompatibleDepth = 1 << 12, 
-        
+        SampleLocationsCompatibleDepth = 1 << 12,
+
         /// <summary>
-        /// 
         /// </summary>
-        Subsampled = 1 << 14, 
+        Subsampled = 1 << 14
     }
 }

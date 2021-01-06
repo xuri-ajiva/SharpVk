@@ -28,48 +28,43 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Nintendo
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created VI surface object.
+    ///     Structure specifying parameters of a newly created VI surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ViSurfaceCreateInfo
+    public struct ViSurfaceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Nintendo.ViSurfaceCreateFlags? Flags
+        public ViSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
-        /// associate the surface.
+        ///     The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
+        ///     associate the surface.
         /// </summary>
         public IntPtr Window
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Nintendo.ViSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Nintendo.ViSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.ViSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Nintendo.ViSurfaceCreateFlags);
-            }
-            pointer->Window = this.Window.ToPointer();
+                pointer->Flags = default;
+            pointer->Window = Window.ToPointer();
         }
     }
 }

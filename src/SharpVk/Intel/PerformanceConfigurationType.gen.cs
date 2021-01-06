@@ -25,13 +25,12 @@
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Type of performance configuration
+    ///     Type of performance configuration
     /// </summary>
     public enum PerformanceConfigurationType
     {
         /// <summary>
-        /// 
         /// </summary>
-        CommandQueueMetricsDiscoveryActivated = 0, 
+        CommandQueueMetricsDiscoveryActivated = 0
     }
 }

@@ -22,33 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying additional information about a sparse image
-    /// resource.
+    ///     Bitmask specifying additional information about a sparse image
+    ///     resource.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum SparseImageFormatFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        SingleMiptail = 1 << 0, 
-        
+        SingleMiptail = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        AlignedMipSize = 1 << 1, 
-        
+        AlignedMipSize = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        NonstandardBlockSize = 1 << 2, 
+        NonstandardBlockSize = 1 << 2
     }
 }

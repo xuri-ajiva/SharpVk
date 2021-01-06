@@ -22,62 +22,60 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure specifying parameters for the reservation of command buffer
-    /// space.
+    ///     Structure specifying parameters for the reservation of command buffer
+    ///     space.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CommandReserveSpaceForCommandsInfo
+    public struct CommandReserveSpaceForCommandsInfo
     {
         /// <summary>
-        /// The ObjectTableNVX to be used for the generation process. Only
-        /// registered objects at the time
-        /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
-        /// account for the reservation.
+        ///     The ObjectTableNVX to be used for the generation process. Only
+        ///     registered objects at the time
+        ///     flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
+        ///     account for the reservation.
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectTable ObjectTable
+        public ObjectTable ObjectTable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The IndirectCommandsLayoutNVX that must also be used at generation
-        /// time.
+        ///     The IndirectCommandsLayoutNVX that must also be used at generation
+        ///     time.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsLayout IndirectCommandsLayout
+        public IndirectCommandsLayout IndirectCommandsLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The maximum number of sequences for which command buffer space will
-        /// be reserved.
+        ///     The maximum number of sequences for which command buffer space will
+        ///     be reserved.
         /// </summary>
         public uint MaxSequencesCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo* pointer)
         {
             pointer->SType = StructureType.CommandReserveSpaceForCommandsInfo;
             pointer->Next = null;
-            pointer->ObjectTable = this.ObjectTable?.handle ?? default(SharpVk.Interop.NVidia.Experimental.ObjectTable);
-            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.handle ?? default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout);
-            pointer->MaxSequencesCount = this.MaxSequencesCount;
+            pointer->ObjectTable = ObjectTable?.Handle ?? default(Interop.NVidia.Experimental.ObjectTable);
+            pointer->IndirectCommandsLayout = IndirectCommandsLayout?.Handle ?? default(Interop.NVidia.Experimental.IndirectCommandsLayout);
+            pointer->MaxSequencesCount = MaxSequencesCount;
         }
     }
 }

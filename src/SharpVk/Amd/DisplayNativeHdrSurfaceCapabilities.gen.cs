@@ -22,39 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// Structure describing display native HDR specific capabilities of a
-    /// surface
+    ///     Structure describing display native HDR specific capabilities of a
+    ///     surface
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayNativeHdrSurfaceCapabilities
+    public struct DisplayNativeHdrSurfaceCapabilities
     {
         /// <summary>
-        /// Specifies whether the surface supports local dimming. If this is
-        /// true, VkSwapchainDisplayNativeHdrCreateInfoAMD can be used to
-        /// explicitly enable or disable local dimming for the surface. Local
-        /// dimming may also be overriden by SetLocalDimming during the
-        /// lifetime of the swapchain.
+        ///     Specifies whether the surface supports local dimming. If this is
+        ///     true, VkSwapchainDisplayNativeHdrCreateInfoAMD can be used to
+        ///     explicitly enable or disable local dimming for the surface. Local
+        ///     dimming may also be overriden by SetLocalDimming during the
+        ///     lifetime of the swapchain.
         /// </summary>
         public bool LocalDimmingSupport
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayNativeHdrSurfaceCapabilities MarshalFrom(SharpVk.Interop.Amd.DisplayNativeHdrSurfaceCapabilities* pointer)
+        internal static unsafe DisplayNativeHdrSurfaceCapabilities MarshalFrom(Interop.Amd.DisplayNativeHdrSurfaceCapabilities* pointer)
         {
-            DisplayNativeHdrSurfaceCapabilities result = default(DisplayNativeHdrSurfaceCapabilities);
+            var result = default(DisplayNativeHdrSurfaceCapabilities);
             result.LocalDimmingSupport = pointer->LocalDimmingSupport;
             return result;
         }

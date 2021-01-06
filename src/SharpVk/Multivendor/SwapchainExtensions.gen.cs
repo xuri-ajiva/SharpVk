@@ -22,93 +22,83 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
+using SharpVk.Khronos;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class SwapchainExtensions
     {
         /// <summary>
-        /// Query the current value of a surface counter.
+        ///     Query the current value of a surface counter.
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Swapchain handle to extend.
+        ///     The Swapchain handle to extend.
         /// </param>
         /// <param name="counter">
         /// </param>
-        public static unsafe ulong GetCounter(this SharpVk.Khronos.Swapchain extendedHandle, SharpVk.Multivendor.SurfaceCounterFlags counter)
+        public static unsafe ulong GetCounter(this Swapchain extendedHandle, SurfaceCounterFlags counter)
         {
             try
             {
-                ulong result = default(ulong);
-                CommandCache commandCache = default(CommandCache);
-                ulong marshalledCounterValue = default(ulong);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkSwapchainKHRGetCounterDelegate commandDelegate = commandCache.Cache.vkGetSwapchainCounterEXT;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, counter, &marshalledCounterValue);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var result = default(ulong);
+                var commandCache = default(CommandCache);
+                var marshalledCounterValue = default(ulong);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetSwapchainCounterExt;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, counter, &marshalledCounterValue);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 result = marshalledCounterValue;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Acquire full-screen exclusive mode for a swapchain
+        ///     Acquire full-screen exclusive mode for a swapchain
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Swapchain handle to extend.
+        ///     The Swapchain handle to extend.
         /// </param>
-        public static unsafe void AcquireFullScreenExclusiveMode(this SharpVk.Khronos.Swapchain extendedHandle)
+        public static void AcquireFullScreenExclusiveMode(this Swapchain extendedHandle)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkSwapchainKHRAcquireFullScreenExclusiveModeDelegate commandDelegate = commandCache.Cache.vkAcquireFullScreenExclusiveModeEXT;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkAcquireFullScreenExclusiveModeExt;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Swapchain handle to extend.
+        ///     The Swapchain handle to extend.
         /// </param>
-        public static unsafe void ReleaseFullScreenExclusiveMode(this SharpVk.Khronos.Swapchain extendedHandle)
+        public static void ReleaseFullScreenExclusiveMode(this Swapchain extendedHandle)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkSwapchainKHRReleaseFullScreenExclusiveModeDelegate commandDelegate = commandCache.Cache.vkReleaseFullScreenExclusiveModeEXT;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkReleaseFullScreenExclusiveModeExt;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

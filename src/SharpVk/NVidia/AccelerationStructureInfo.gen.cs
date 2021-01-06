@@ -22,87 +22,70 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AccelerationStructureInfo
+    public struct AccelerationStructureInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.AccelerationStructureType Type
+        public AccelerationStructureType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.BuildAccelerationStructureFlags? Flags
+        public BuildAccelerationStructureFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint? InstanceCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Geometry[] Geometries
+        public Geometry[] Geometries
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.AccelerationStructureInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.AccelerationStructureInfo* pointer)
         {
             pointer->SType = StructureType.AccelerationStructureInfo;
             pointer->Next = null;
-            pointer->Type = this.Type;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            pointer->Type = Type;
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.NVidia.BuildAccelerationStructureFlags);
-            }
-            if (this.InstanceCount != null)
-            {
-                pointer->InstanceCount = this.InstanceCount.Value;
-            }
+                pointer->Flags = default;
+            if (InstanceCount != null)
+                pointer->InstanceCount = InstanceCount.Value;
             else
+                pointer->InstanceCount = default;
+            pointer->GeometryCount = HeapUtil.GetLength(Geometries);
+            if (Geometries != null)
             {
-                pointer->InstanceCount = default(uint);
-            }
-            pointer->GeometryCount = (uint)(Interop.HeapUtil.GetLength(this.Geometries));
-            if (this.Geometries != null)
-            {
-                var fieldPointer = (SharpVk.Interop.NVidia.Geometry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.NVidia.Geometry>(this.Geometries.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Geometries.Length); index++)
-                {
-                    this.Geometries[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.NVidia.Geometry*)HeapUtil.AllocateAndClear<Interop.NVidia.Geometry>(Geometries.Length).ToPointer();
+                for (var index = 0; index < (uint)Geometries.Length; index++) Geometries[index].MarshalTo(&fieldPointer[index]);
                 pointer->Geometries = fieldPointer;
             }
             else

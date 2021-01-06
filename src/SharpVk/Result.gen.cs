@@ -25,178 +25,144 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Vulkan command return codes.
+    ///     Vulkan command return codes.
     /// </summary>
     public enum Result
     {
         /// <summary>
-        /// 
         /// </summary>
-        Success = 0, 
-        
+        Success = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        NotReady = 1, 
-        
+        NotReady = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Timeout = 2, 
-        
+        Timeout = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        EventSet = 3, 
-        
+        EventSet = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        EventReset = 4, 
-        
+        EventReset = 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        Incomplete = 5, 
-        
+        Incomplete = 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorOutOfHostMemory = -1, 
-        
+        ErrorOutOfHostMemory = -1,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorOutOfDeviceMemory = -2, 
-        
+        ErrorOutOfDeviceMemory = -2,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorInitializationFailed = -3, 
-        
+        ErrorInitializationFailed = -3,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorDeviceLost = -4, 
-        
+        ErrorDeviceLost = -4,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorMemoryMapFailed = -5, 
-        
+        ErrorMemoryMapFailed = -5,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorLayerNotPresent = -6, 
-        
+        ErrorLayerNotPresent = -6,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorExtensionNotPresent = -7, 
-        
+        ErrorExtensionNotPresent = -7,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorFeatureNotPresent = -8, 
-        
+        ErrorFeatureNotPresent = -8,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorIncompatibleDriver = -9, 
-        
+        ErrorIncompatibleDriver = -9,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorTooManyObjects = -10, 
-        
+        ErrorTooManyObjects = -10,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorFormatNotSupported = -11, 
-        
+        ErrorFormatNotSupported = -11,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorFragmentedPool = -12, 
-        
+        ErrorFragmentedPool = -12,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorUnknown = -13, 
-        
+        ErrorUnknown = -13,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorOutOfPoolMemoryVersion = -1000069000, 
-        
+        ErrorOutOfPoolMemoryVersion = -1000069000,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorInvalidExternalHandleVersion = -1000072003, 
-        
+        ErrorInvalidExternalHandleVersion = -1000072003,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorFragmentationVersion = -1000161000, 
-        
+        ErrorFragmentationVersion = -1000161000,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorInvalidOpaqueCaptureAddressVersion = -1000257000, 
-        
+        ErrorInvalidOpaqueCaptureAddressVersion = -1000257000,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorSurfaceLost = -1000000000, 
-        
+        ErrorSurfaceLost = -1000000000,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorNativeWindowInUse = -1000000001, 
-        
+        ErrorNativeWindowInUse = -1000000001,
+
         /// <summary>
-        /// 
         /// </summary>
-        Suboptimal = 1000001003, 
-        
+        Suboptimal = 1000001003,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorOutOfDate = -1000001004, 
-        
+        ErrorOutOfDate = -1000001004,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorIncompatibleDisplay = -1000003001, 
-        
+        ErrorIncompatibleDisplay = -1000003001,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorValidationFailed = -1000011001, 
-        
+        ErrorValidationFailed = -1000011001,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorInvalidShader = -1000012000, 
-        
+        ErrorInvalidShader = -1000012000,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorInvalidDrmFormatModifierPlaneLayout = -1000158000, 
-        
+        ErrorInvalidDrmFormatModifierPlaneLayout = -1000158000,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorNotPermitted = -1000174001, 
-        
+        ErrorNotPermitted = -1000174001,
+
         /// <summary>
-        /// 
         /// </summary>
-        ErrorFullScreenExclusiveModeLost = -1000255000, 
-        
+        ErrorFullScreenExclusiveModeLost = -1000255000,
+
         /// <summary>
-        /// 
         /// </summary>
-        Ext298ReservedValue0 = 1000297000, 
+        Ext298ReservedValue0 = 1000297000
     }
 }

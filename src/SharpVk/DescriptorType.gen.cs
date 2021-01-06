@@ -25,73 +25,60 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specifies the type of a descriptor in a descriptor set.
+    ///     Specifies the type of a descriptor in a descriptor set.
     /// </summary>
     public enum DescriptorType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Sampler = 0, 
-        
+        Sampler = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        CombinedImageSampler = 1, 
-        
+        CombinedImageSampler = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        SampledImage = 2, 
-        
+        SampledImage = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        StorageImage = 3, 
-        
+        StorageImage = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        UniformTexelBuffer = 4, 
-        
+        UniformTexelBuffer = 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        StorageTexelBuffer = 5, 
-        
+        StorageTexelBuffer = 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        UniformBuffer = 6, 
-        
+        UniformBuffer = 6,
+
         /// <summary>
-        /// 
         /// </summary>
-        StorageBuffer = 7, 
-        
+        StorageBuffer = 7,
+
         /// <summary>
-        /// 
         /// </summary>
-        UniformBufferDynamic = 8, 
-        
+        UniformBufferDynamic = 8,
+
         /// <summary>
-        /// 
         /// </summary>
-        StorageBufferDynamic = 9, 
-        
+        StorageBufferDynamic = 9,
+
         /// <summary>
-        /// 
         /// </summary>
-        InputAttachment = 10, 
-        
+        InputAttachment = 10,
+
         /// <summary>
-        /// 
         /// </summary>
-        InlineUniformBlock = 1000138000, 
-        
+        InlineUniformBlock = 1000138000,
+
         /// <summary>
-        /// 
         /// </summary>
-        AccelerationStructure = 1000165000, 
+        AccelerationStructure = 1000165000
     }
 }

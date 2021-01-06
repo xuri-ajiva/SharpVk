@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetExclusiveScissorDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint firstExclusiveScissor, uint exclusiveScissorCount, SharpVk.Rect2D* exclusiveScissors);
+    public unsafe delegate void VkCommandBufferSetExclusiveScissorDelegate(CommandBuffer commandBuffer, uint firstExclusiveScissor, uint exclusiveScissorCount, Rect2D* exclusiveScissors);
 }

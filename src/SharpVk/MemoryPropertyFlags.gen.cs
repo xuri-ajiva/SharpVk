@@ -22,57 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying properties for a memory type.
+    ///     Bitmask specifying properties for a memory type.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum MemoryPropertyFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceLocal = 1 << 0, 
-        
+        DeviceLocal = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        HostVisible = 1 << 1, 
-        
+        HostVisible = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        HostCoherent = 1 << 2, 
-        
+        HostCoherent = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        HostCached = 1 << 3, 
-        
+        HostCached = 1 << 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        LazilyAllocated = 1 << 4, 
-        
+        LazilyAllocated = 1 << 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        Protected = 1 << 5, 
-        
+        Protected = 1 << 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceCoherent = 1 << 6, 
-        
+        DeviceCoherent = 1 << 6,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceUncached = 1 << 7, 
+        DeviceUncached = 1 << 7
     }
 }

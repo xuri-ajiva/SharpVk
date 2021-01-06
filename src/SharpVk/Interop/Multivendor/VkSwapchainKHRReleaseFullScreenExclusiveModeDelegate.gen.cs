@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkSwapchainKHRReleaseFullScreenExclusiveModeDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Swapchain swapchain);
+    public delegate Result VkSwapchainKhrReleaseFullScreenExclusiveModeDelegate(Device device, Swapchain swapchain);
 }

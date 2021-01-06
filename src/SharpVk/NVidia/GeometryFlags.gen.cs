@@ -22,27 +22,25 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum GeometryFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Opaque = 1 << 0, 
-        
+        Opaque = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        NoDuplicateAnyHitInvocation = 1 << 1, 
+        NoDuplicateAnyHitInvocation = 1 << 1
     }
 }

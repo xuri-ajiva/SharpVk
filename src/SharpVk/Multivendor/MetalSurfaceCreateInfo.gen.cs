@@ -24,52 +24,48 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created Metal surface object
+    ///     Structure specifying parameters of a newly created Metal surface object
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MetalSurfaceCreateInfo
+    public struct MetalSurfaceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Multivendor.MetalSurfaceCreateFlags? Flags
+        public MetalSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A CAMetalLayer object that represents a renderable surface.
+        ///     A CAMetalLayer object that represents a renderable surface.
         /// </summary>
         public IntPtr Layer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.MetalSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.MetalSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.MetalSurfaceCreateFlags);
-            }
-            pointer->Layer = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-            *pointer->Layer = this.Layer;
+                pointer->Flags = default;
+            pointer->Layer = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+            *pointer->Layer = Layer;
         }
     }
 }

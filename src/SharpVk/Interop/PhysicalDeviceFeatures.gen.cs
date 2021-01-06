@@ -22,290 +22,233 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceFeatures
+    public struct PhysicalDeviceFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 RobustBufferAccess; 
-        
+        public Bool32 RobustBufferAccess;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 FullDrawIndexUint32; 
-        
+        public Bool32 FullDrawIndexUint32;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ImageCubeArray; 
-        
+        public Bool32 ImageCubeArray;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 IndependentBlend; 
-        
+        public Bool32 IndependentBlend;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 GeometryShader; 
-        
+        public Bool32 GeometryShader;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TessellationShader; 
-        
+        public Bool32 TessellationShader;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SampleRateShading; 
-        
+        public Bool32 SampleRateShading;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DualSourceBlend; 
-        
+        public Bool32 DualSourceBlend;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 LogicOp; 
-        
+        public Bool32 LogicOp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 MultiDrawIndirect; 
-        
+        public Bool32 MultiDrawIndirect;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DrawIndirectFirstInstance; 
-        
+        public Bool32 DrawIndirectFirstInstance;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DepthClamp; 
-        
+        public Bool32 DepthClamp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DepthBiasClamp; 
-        
+        public Bool32 DepthBiasClamp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 FillModeNonSolid; 
-        
+        public Bool32 FillModeNonSolid;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 DepthBounds; 
-        
+        public Bool32 DepthBounds;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 WideLines; 
-        
+        public Bool32 WideLines;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 LargePoints; 
-        
+        public Bool32 LargePoints;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 AlphaToOne; 
-        
+        public Bool32 AlphaToOne;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 MultiViewport; 
-        
+        public Bool32 MultiViewport;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SamplerAnisotropy; 
-        
+        public Bool32 SamplerAnisotropy;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TextureCompressionETC2; 
-        
+        public Bool32 TextureCompressionETC2;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TexturecompressionastcLdr; 
-        
+        public Bool32 TexturecompressionastcLdr;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 TextureCompressionBC; 
-        
+        public Bool32 TextureCompressionBC;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 OcclusionQueryPrecise; 
-        
+        public Bool32 OcclusionQueryPrecise;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 PipelineStatisticsQuery; 
-        
+        public Bool32 PipelineStatisticsQuery;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VertexPipelineStoresAndAtomics; 
-        
+        public Bool32 VertexPipelineStoresAndAtomics;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 FragmentStoresAndAtomics; 
-        
+        public Bool32 FragmentStoresAndAtomics;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderTessellationAndGeometryPointSize; 
-        
+        public Bool32 ShaderTessellationAndGeometryPointSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderImageGatherExtended; 
-        
+        public Bool32 ShaderImageGatherExtended;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageExtendedFormats; 
-        
+        public Bool32 ShaderStorageImageExtendedFormats;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageMultisample; 
-        
+        public Bool32 ShaderStorageImageMultisample;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageReadWithoutFormat; 
-        
+        public Bool32 ShaderStorageImageReadWithoutFormat;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageWriteWithoutFormat; 
-        
+        public Bool32 ShaderStorageImageWriteWithoutFormat;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderUniformBufferArrayDynamicIndexing; 
-        
+        public Bool32 ShaderUniformBufferArrayDynamicIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSampledImageArrayDynamicIndexing; 
-        
+        public Bool32 ShaderSampledImageArrayDynamicIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageBufferArrayDynamicIndexing; 
-        
+        public Bool32 ShaderStorageBufferArrayDynamicIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderStorageImageArrayDynamicIndexing; 
-        
+        public Bool32 ShaderStorageImageArrayDynamicIndexing;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderClipDistance; 
-        
+        public Bool32 ShaderClipDistance;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderCullDistance; 
-        
+        public Bool32 ShaderCullDistance;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderFloat64; 
-        
+        public Bool32 ShaderFloat64;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderInt64; 
-        
+        public Bool32 ShaderInt64;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderInt16; 
-        
+        public Bool32 ShaderInt16;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderResourceResidency; 
-        
+        public Bool32 ShaderResourceResidency;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderResourceMinLod; 
-        
+        public Bool32 ShaderResourceMinLod;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseBinding; 
-        
+        public Bool32 SparseBinding;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidencyBuffer; 
-        
+        public Bool32 SparseResidencyBuffer;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidencyImage2D; 
-        
+        public Bool32 SparseResidencyImage2D;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidencyImage3D; 
-        
+        public Bool32 SparseResidencyImage3D;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidency2Samples; 
-        
+        public Bool32 SparseResidency2Samples;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidency4Samples; 
-        
+        public Bool32 SparseResidency4Samples;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidency8Samples; 
-        
+        public Bool32 SparseResidency8Samples;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidency16Samples; 
-        
+        public Bool32 SparseResidency16Samples;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SparseResidencyAliased; 
-        
+        public Bool32 SparseResidencyAliased;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 VariableMultisampleRate; 
-        
+        public Bool32 VariableMultisampleRate;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 InheritedQueries; 
+        public Bool32 InheritedQueries;
     }
 }

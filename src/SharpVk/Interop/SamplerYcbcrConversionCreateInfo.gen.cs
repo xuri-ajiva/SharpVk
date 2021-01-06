@@ -22,65 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SamplerYcbcrConversionCreateInfo
+    public unsafe struct SamplerYcbcrConversionCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrModelConversion YcbcrModel; 
-        
+        public SamplerYcbcrModelConversion YcbcrModel;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrRange YcbcrRange; 
-        
+        public SamplerYcbcrRange YcbcrRange;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ComponentMapping Components; 
-        
+        public ComponentMapping Components;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation XChromaOffset; 
-        
+        public ChromaLocation XChromaOffset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation YChromaOffset; 
-        
+        public ChromaLocation YChromaOffset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Filter ChromaFilter; 
-        
+        public Filter ChromaFilter;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ForceExplicitReconstruction; 
+        public Bool32 ForceExplicitReconstruction;
     }
 }

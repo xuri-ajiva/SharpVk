@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceRegisterEventDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Multivendor.DeviceEventInfo* deviceEventInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Fence* fence);
+    public unsafe delegate Result VkDeviceRegisterEventDelegate(Device device, DeviceEventInfo* deviceEventInfo, AllocationCallbacks* allocator, Fence* fence);
 }

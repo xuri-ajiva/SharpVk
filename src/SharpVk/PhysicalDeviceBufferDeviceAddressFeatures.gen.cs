@@ -22,66 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceBufferDeviceAddressFeatures
+    public struct PhysicalDeviceBufferDeviceAddressFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool BufferDeviceAddress
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool BufferDeviceAddressCaptureReplay
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool BufferDeviceAddressMultiDevice
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceBufferDeviceAddressFeaturesVersion;
             pointer->Next = null;
-            pointer->BufferDeviceAddress = this.BufferDeviceAddress;
-            pointer->BufferDeviceAddressCaptureReplay = this.BufferDeviceAddressCaptureReplay;
-            pointer->BufferDeviceAddressMultiDevice = this.BufferDeviceAddressMultiDevice;
+            pointer->BufferDeviceAddress = BufferDeviceAddress;
+            pointer->BufferDeviceAddressCaptureReplay = BufferDeviceAddressCaptureReplay;
+            pointer->BufferDeviceAddressMultiDevice = BufferDeviceAddressMultiDevice;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceBufferDeviceAddressFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
+        internal static unsafe PhysicalDeviceBufferDeviceAddressFeatures MarshalFrom(Interop.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
         {
-            PhysicalDeviceBufferDeviceAddressFeatures result = default(PhysicalDeviceBufferDeviceAddressFeatures);
+            var result = default(PhysicalDeviceBufferDeviceAddressFeatures);
             result.BufferDeviceAddress = pointer->BufferDeviceAddress;
             result.BufferDeviceAddressCaptureReplay = pointer->BufferDeviceAddressCaptureReplay;
             result.BufferDeviceAddressMultiDevice = pointer->BufferDeviceAddressMultiDevice;

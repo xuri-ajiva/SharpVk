@@ -22,31 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DedicatedAllocationBufferCreateInfo
+    public unsafe struct DedicatedAllocationBufferCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Indicates whether the buffer will have a dedicated allocation bound
-        /// to it.
+        ///     Indicates whether the buffer will have a dedicated allocation bound
+        ///     to it.
         /// </summary>
-        public Bool32 DedicatedAllocation; 
+        public Bool32 DedicatedAllocation;
     }
 }

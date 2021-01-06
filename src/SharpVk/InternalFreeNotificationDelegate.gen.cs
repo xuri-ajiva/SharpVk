@@ -27,7 +27,6 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    public delegate void InternalFreeNotificationDelegate(IntPtr pUserData, HostSize size, SharpVk.InternalAllocationType allocationType, SharpVk.SystemAllocationScope allocationScope);
+    public delegate void InternalFreeNotificationDelegate(IntPtr pUserData, HostSize size, InternalAllocationType allocationType, SystemAllocationScope allocationScope);
 }

@@ -22,49 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying additional parameters of a buffer.
+    ///     Bitmask specifying additional parameters of a buffer.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum BufferCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// Indicates that the buffer will be backed using sparse memory
-        /// binding.
+        ///     Indicates that the buffer will be backed using sparse memory
+        ///     binding.
         /// </summary>
-        SparseBinding = 1 << 0, 
-        
+        SparseBinding = 1 << 0,
+
         /// <summary>
-        /// Indicates that the buffer can be partially backed using sparse
-        /// memory binding. Buffers created with this flag must also be created
-        /// with the CreateSparseBinding flag.
+        ///     Indicates that the buffer can be partially backed using sparse
+        ///     memory binding. Buffers created with this flag must also be created
+        ///     with the CreateSparseBinding flag.
         /// </summary>
-        SparseResidency = 1 << 1, 
-        
+        SparseResidency = 1 << 1,
+
         /// <summary>
-        /// Indicates that the buffer will be backed using sparse memory
-        /// binding with memory ranges that might also simultaneously be
-        /// backing another buffer (or another portion of the same buffer).
-        /// Buffers created with this flag must also be created with the
-        /// CreateSparseBinding flag.
+        ///     Indicates that the buffer will be backed using sparse memory
+        ///     binding with memory ranges that might also simultaneously be
+        ///     backing another buffer (or another portion of the same buffer).
+        ///     Buffers created with this flag must also be created with the
+        ///     CreateSparseBinding flag.
         /// </summary>
-        SparseAliased = 1 << 2, 
-        
+        SparseAliased = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Protected = 1 << 3, 
-        
+        Protected = 1 << 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceAddressCaptureReplay = 1 << 4, 
+        DeviceAddressCaptureReplay = 1 << 4
     }
 }

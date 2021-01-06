@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceLineRasterizationProperties
+    public struct PhysicalDeviceLineRasterizationProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint LineSubPixelPrecisionBits
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceLineRasterizationProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationProperties* pointer)
+        internal static unsafe PhysicalDeviceLineRasterizationProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceLineRasterizationProperties* pointer)
         {
-            PhysicalDeviceLineRasterizationProperties result = default(PhysicalDeviceLineRasterizationProperties);
+            var result = default(PhysicalDeviceLineRasterizationProperties);
             result.LineSubPixelPrecisionBits = pointer->LineSubPixelPrecisionBits;
             return result;
         }

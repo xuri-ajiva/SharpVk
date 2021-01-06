@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorSetVariableDescriptorCountLayoutSupport
+    public struct DescriptorSetVariableDescriptorCountLayoutSupport
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxVariableDescriptorCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DescriptorSetVariableDescriptorCountLayoutSupport MarshalFrom(SharpVk.Interop.DescriptorSetVariableDescriptorCountLayoutSupport* pointer)
+        internal static unsafe DescriptorSetVariableDescriptorCountLayoutSupport MarshalFrom(Interop.DescriptorSetVariableDescriptorCountLayoutSupport* pointer)
         {
-            DescriptorSetVariableDescriptorCountLayoutSupport result = default(DescriptorSetVariableDescriptorCountLayoutSupport);
+            var result = default(DescriptorSetVariableDescriptorCountLayoutSupport);
             result.MaxVariableDescriptorCount = pointer->MaxVariableDescriptorCount;
             return result;
         }

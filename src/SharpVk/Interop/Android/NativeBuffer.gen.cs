@@ -22,50 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Android;
 
 namespace SharpVk.Interop.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct NativeBuffer
+    public unsafe struct NativeBuffer
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Handle; 
-        
+        public void* Handle;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int Stride; 
-        
+        public int Stride;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int Format; 
-        
+        public int Format;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int Usage; 
-        
+        public int Usage;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Android.NativeBufferUsage2 Usage2; 
+        public NativeBufferUsage2 Usage2;
     }
 }

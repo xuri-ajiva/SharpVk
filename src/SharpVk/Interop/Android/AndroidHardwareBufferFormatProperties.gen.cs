@@ -22,65 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct AndroidHardwareBufferFormatProperties
+    public unsafe struct AndroidHardwareBufferFormatProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong ExternalFormat; 
-        
+        public ulong ExternalFormat;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.FormatFeatureFlags FormatFeatures; 
-        
+        public FormatFeatureFlags FormatFeatures;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ComponentMapping SamplerYcbcrConversionComponents; 
-        
+        public ComponentMapping SamplerYcbcrConversionComponents;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrModelConversion SuggestedYcbcrModel; 
-        
+        public SamplerYcbcrModelConversion SuggestedYcbcrModel;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerYcbcrRange SuggestedYcbcrRange; 
-        
+        public SamplerYcbcrRange SuggestedYcbcrRange;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation SuggestedXChromaOffset; 
-        
+        public ChromaLocation SuggestedXChromaOffset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ChromaLocation SuggestedYChromaOffset; 
+        public ChromaLocation SuggestedYChromaOffset;
     }
 }

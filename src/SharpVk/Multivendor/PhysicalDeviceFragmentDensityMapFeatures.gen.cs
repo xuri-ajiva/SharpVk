@@ -22,66 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceFragmentDensityMapFeatures
+    public struct PhysicalDeviceFragmentDensityMapFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool FragmentDensityMap
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool FragmentDensityMapDynamic
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool FragmentDensityMapNonSubsampledImages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceFragmentDensityMapFeatures;
             pointer->Next = null;
-            pointer->FragmentDensityMap = this.FragmentDensityMap;
-            pointer->FragmentDensityMapDynamic = this.FragmentDensityMapDynamic;
-            pointer->FragmentDensityMapNonSubsampledImages = this.FragmentDensityMapNonSubsampledImages;
+            pointer->FragmentDensityMap = FragmentDensityMap;
+            pointer->FragmentDensityMapDynamic = FragmentDensityMapDynamic;
+            pointer->FragmentDensityMapNonSubsampledImages = FragmentDensityMapNonSubsampledImages;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceFragmentDensityMapFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures* pointer)
+        internal static unsafe PhysicalDeviceFragmentDensityMapFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures* pointer)
         {
-            PhysicalDeviceFragmentDensityMapFeatures result = default(PhysicalDeviceFragmentDensityMapFeatures);
+            var result = default(PhysicalDeviceFragmentDensityMapFeatures);
             result.FragmentDensityMap = pointer->FragmentDensityMap;
             result.FragmentDensityMapDynamic = pointer->FragmentDensityMapDynamic;
             result.FragmentDensityMapNonSubsampledImages = pointer->FragmentDensityMapNonSubsampledImages;

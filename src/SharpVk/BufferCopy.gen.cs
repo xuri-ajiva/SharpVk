@@ -22,41 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a buffer copy operation.
+    ///     Structure specifying a buffer copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BufferCopy
+    public struct BufferCopy
     {
         /// <summary>
-        /// 
         /// </summary>
         public BufferCopy(ulong sourceOffset, ulong destinationOffset, ulong size)
         {
-            this.SourceOffset = sourceOffset;
-            this.DestinationOffset = destinationOffset;
-            this.Size = size;
+            SourceOffset = sourceOffset;
+            DestinationOffset = destinationOffset;
+            Size = size;
         }
-        
+
         /// <summary>
-        /// The starting offset in bytes from the start of source buffer.
+        ///     The starting offset in bytes from the start of source buffer.
         /// </summary>
-        public ulong SourceOffset; 
-        
+        public ulong SourceOffset;
+
         /// <summary>
-        /// The starting offset in bytes from the start of the destination
-        /// buffer.
+        ///     The starting offset in bytes from the start of the destination
+        ///     buffer.
         /// </summary>
-        public ulong DestinationOffset; 
-        
+        public ulong DestinationOffset;
+
         /// <summary>
-        /// The number of bytes to copy.
+        ///     The number of bytes to copy.
         /// </summary>
-        public ulong Size; 
+        public ulong Size;
     }
 }

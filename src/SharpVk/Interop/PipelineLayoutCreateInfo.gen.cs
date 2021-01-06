@@ -22,56 +22,54 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineLayoutCreateInfo
+    public unsafe struct PipelineLayoutCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineLayoutCreateFlags Flags; 
-        
+        public PipelineLayoutCreateFlags Flags;
+
         /// <summary>
-        /// The number of descriptor sets included in the pipeline layout.
+        ///     The number of descriptor sets included in the pipeline layout.
         /// </summary>
-        public uint SetLayoutCount; 
-        
+        public uint SetLayoutCount;
+
         /// <summary>
-        /// An array of DescriptorSetLayout objects.
+        ///     An array of DescriptorSetLayout objects.
         /// </summary>
-        public SharpVk.Interop.DescriptorSetLayout* SetLayouts; 
-        
+        public DescriptorSetLayout* SetLayouts;
+
         /// <summary>
-        /// The number of push constant ranges included in the pipeline layout.
+        ///     The number of push constant ranges included in the pipeline layout.
         /// </summary>
-        public uint PushConstantRangeCount; 
-        
+        public uint PushConstantRangeCount;
+
         /// <summary>
-        /// An array of PushConstantRange structures defining a set of push
-        /// constant ranges for use in a single pipeline layout. In addition to
-        /// descriptor set layouts, a pipeline layout also describes how many
-        /// push constants can be accessed by each stage of the pipeline. +
-        /// [NOTE] .Note ==== Push constants represent a high speed path to
-        /// modify constant data in pipelines that is expected to outperform
-        /// memory-backed resource updates. ====
+        ///     An array of PushConstantRange structures defining a set of push
+        ///     constant ranges for use in a single pipeline layout. In addition to
+        ///     descriptor set layouts, a pipeline layout also describes how many
+        ///     push constants can be accessed by each stage of the pipeline. +
+        ///     [NOTE] .Note ==== Push constants represent a high speed path to
+        ///     modify constant data in pipelines that is expected to outperform
+        ///     memory-backed resource updates. ====
         /// </summary>
-        public SharpVk.PushConstantRange* PushConstantRanges; 
+        public PushConstantRange* PushConstantRanges;
     }
 }

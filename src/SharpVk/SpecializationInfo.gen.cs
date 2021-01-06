@@ -22,65 +22,58 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying specialization info.
+    ///     Structure specifying specialization info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SpecializationInfo
+    public struct SpecializationInfo
     {
         /// <summary>
-        /// An array of SpecializationMapEntry which maps constant IDs to
-        /// offsets in pData.
+        ///     An array of SpecializationMapEntry which maps constant IDs to
+        ///     offsets in pData.
         /// </summary>
-        public SharpVk.SpecializationMapEntry[] MapEntries
+        public SpecializationMapEntry[] MapEntries
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// pData contains the actual constant values to specialize with.
+        ///     pData contains the actual constant values to specialize with.
         /// </summary>
         public byte[] Data
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SpecializationInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SpecializationInfo* pointer)
         {
-            pointer->MapEntryCount = (uint)(Interop.HeapUtil.GetLength(this.MapEntries));
-            if (this.MapEntries != null)
+            pointer->MapEntryCount = HeapUtil.GetLength(MapEntries);
+            if (MapEntries != null)
             {
-                var fieldPointer = (SharpVk.SpecializationMapEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.SpecializationMapEntry>(this.MapEntries.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.MapEntries.Length); index++)
-                {
-                    fieldPointer[index] = this.MapEntries[index];
-                }
+                var fieldPointer = (SpecializationMapEntry*)HeapUtil.AllocateAndClear<SpecializationMapEntry>(MapEntries.Length).ToPointer();
+                for (var index = 0; index < (uint)MapEntries.Length; index++) fieldPointer[index] = MapEntries[index];
                 pointer->MapEntries = fieldPointer;
             }
             else
             {
                 pointer->MapEntries = null;
             }
-            pointer->DataSize = (HostSize)(Interop.HeapUtil.GetLength(this.Data));
-            if (this.Data != null)
+            pointer->DataSize = HeapUtil.GetLength(Data);
+            if (Data != null)
             {
-                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.Data.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Data.Length); index++)
-                {
-                    fieldPointer[index] = this.Data[index];
-                }
+                var fieldPointer = (byte*)HeapUtil.AllocateAndClear<byte>(Data.Length).ToPointer();
+                for (var index = 0; index < (uint)Data.Length; index++) fieldPointer[index] = Data[index];
                 pointer->Data = fieldPointer;
             }
             else

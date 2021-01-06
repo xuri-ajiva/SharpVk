@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate Bool32 VkPhysicalDeviceGetWin32PresentationSupportDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint queueFamilyIndex);
+    public delegate Bool32 VkPhysicalDeviceGetWin32PresentationSupportDelegate(PhysicalDevice physicalDevice, uint queueFamilyIndex);
 }

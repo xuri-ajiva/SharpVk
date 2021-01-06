@@ -22,40 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RectLayer
+    public struct RectLayer
     {
         /// <summary>
-        /// 
         /// </summary>
-        public RectLayer(SharpVk.Offset2D offset, SharpVk.Extent2D extent, uint layer)
+        public RectLayer(Offset2D offset, Extent2D extent, uint layer)
         {
-            this.Offset = offset;
-            this.Extent = extent;
-            this.Layer = layer;
+            Offset = offset;
+            Extent = extent;
+            Layer = layer;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Offset2D Offset; 
-        
+        public Offset2D Offset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D Extent; 
-        
+        public Extent2D Extent;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Layer; 
+        public uint Layer;
     }
 }

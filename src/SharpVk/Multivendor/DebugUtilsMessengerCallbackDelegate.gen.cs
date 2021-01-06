@@ -27,7 +27,6 @@ using System;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public delegate Bool32 DebugUtilsMessengerCallbackDelegate(SharpVk.Multivendor.DebugUtilsMessageSeverityFlags messageSeverity, SharpVk.Multivendor.DebugUtilsMessageTypeFlags messageTypes, IntPtr pCallbackData, IntPtr pUserData);
+    public delegate Bool32 DebugUtilsMessengerCallbackDelegate(DebugUtilsMessageSeverityFlags messageSeverity, DebugUtilsMessageTypeFlags messageTypes, IntPtr pCallbackData, IntPtr pUserData);
 }

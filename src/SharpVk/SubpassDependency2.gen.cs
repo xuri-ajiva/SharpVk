@@ -22,144 +22,116 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SubpassDependency2
+    public struct SubpassDependency2
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint SourceSubpass
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint DestinationSubpass
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineStageFlags SourceStageMask
+        public PipelineStageFlags SourceStageMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineStageFlags DestinationStageMask
+        public PipelineStageFlags DestinationStageMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AccessFlags? SourceAccessMask
+        public AccessFlags? SourceAccessMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AccessFlags? DestinationAccessMask
+        public AccessFlags? DestinationAccessMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DependencyFlags? DependencyFlags
+        public DependencyFlags? DependencyFlags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int? ViewOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SubpassDependency2* pointer)
+        internal unsafe void MarshalTo(Interop.SubpassDependency2* pointer)
         {
             pointer->SType = StructureType.SubpassDependency2Version;
             pointer->Next = null;
-            pointer->SourceSubpass = this.SourceSubpass;
-            pointer->DestinationSubpass = this.DestinationSubpass;
-            pointer->SourceStageMask = this.SourceStageMask;
-            pointer->DestinationStageMask = this.DestinationStageMask;
-            if (this.SourceAccessMask != null)
-            {
-                pointer->SourceAccessMask = this.SourceAccessMask.Value;
-            }
+            pointer->SourceSubpass = SourceSubpass;
+            pointer->DestinationSubpass = DestinationSubpass;
+            pointer->SourceStageMask = SourceStageMask;
+            pointer->DestinationStageMask = DestinationStageMask;
+            if (SourceAccessMask != null)
+                pointer->SourceAccessMask = SourceAccessMask.Value;
             else
-            {
-                pointer->SourceAccessMask = default(SharpVk.AccessFlags);
-            }
-            if (this.DestinationAccessMask != null)
-            {
-                pointer->DestinationAccessMask = this.DestinationAccessMask.Value;
-            }
+                pointer->SourceAccessMask = default;
+            if (DestinationAccessMask != null)
+                pointer->DestinationAccessMask = DestinationAccessMask.Value;
             else
-            {
-                pointer->DestinationAccessMask = default(SharpVk.AccessFlags);
-            }
-            if (this.DependencyFlags != null)
-            {
-                pointer->DependencyFlags = this.DependencyFlags.Value;
-            }
+                pointer->DestinationAccessMask = default;
+            if (DependencyFlags != null)
+                pointer->DependencyFlags = DependencyFlags.Value;
             else
-            {
-                pointer->DependencyFlags = default(SharpVk.DependencyFlags);
-            }
-            if (this.ViewOffset != null)
-            {
-                pointer->ViewOffset = this.ViewOffset.Value;
-            }
+                pointer->DependencyFlags = default;
+            if (ViewOffset != null)
+                pointer->ViewOffset = ViewOffset.Value;
             else
-            {
-                pointer->ViewOffset = default(int);
-            }
+                pointer->ViewOffset = default;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SubpassDependency2 MarshalFrom(SharpVk.Interop.SubpassDependency2* pointer)
+        internal static unsafe SubpassDependency2 MarshalFrom(Interop.SubpassDependency2* pointer)
         {
-            SubpassDependency2 result = default(SubpassDependency2);
+            var result = default(SubpassDependency2);
             result.SourceSubpass = pointer->SourceSubpass;
             result.DestinationSubpass = pointer->DestinationSubpass;
             result.SourceStageMask = pointer->SourceStageMask;

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferResetQueryPoolDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.QueryPool queryPool, uint firstQuery, uint queryCount);
+    public delegate void VkCommandBufferResetQueryPoolDelegate(CommandBuffer commandBuffer, QueryPool queryPool, uint firstQuery, uint queryCount);
 }

@@ -22,41 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class QueueExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Queue handle to extend.
+        ///     The Queue handle to extend.
         /// </param>
-        public static unsafe SharpVk.NVidia.CheckpointData[] GetCheckpointData(this SharpVk.Queue extendedHandle)
+        public static unsafe CheckpointData[] GetCheckpointData(this Queue extendedHandle)
         {
             try
             {
-                SharpVk.NVidia.CheckpointData[] result = default(SharpVk.NVidia.CheckpointData[]);
-                uint marshalledCheckpointDataCount = default(uint);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.NVidia.CheckpointData* marshalledCheckpointData = default(SharpVk.Interop.NVidia.CheckpointData*);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkQueueGetCheckpointDataDelegate commandDelegate = commandCache.Cache.vkGetQueueCheckpointDataNV;
-                commandDelegate(extendedHandle.handle, &marshalledCheckpointDataCount, marshalledCheckpointData);
-                marshalledCheckpointData = (SharpVk.Interop.NVidia.CheckpointData*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.CheckpointData>((uint)(marshalledCheckpointDataCount)));
-                commandDelegate(extendedHandle.handle, &marshalledCheckpointDataCount, marshalledCheckpointData);
+                var result = default(CheckpointData[]);
+                var marshalledCheckpointDataCount = default(uint);
+                var commandCache = default(CommandCache);
+                var marshalledCheckpointData = default(Interop.NVidia.CheckpointData*);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetQueueCheckpointDataNv;
+                commandDelegate(extendedHandle.Handle, &marshalledCheckpointDataCount, marshalledCheckpointData);
+                marshalledCheckpointData = (Interop.NVidia.CheckpointData*)HeapUtil.Allocate<Interop.NVidia.CheckpointData>(marshalledCheckpointDataCount);
+                commandDelegate(extendedHandle.Handle, &marshalledCheckpointDataCount, marshalledCheckpointData);
                 if (marshalledCheckpointData != null)
                 {
-                    var fieldPointer = new SharpVk.NVidia.CheckpointData[(uint)(marshalledCheckpointDataCount)];
-                    for(int index = 0; index < (uint)(marshalledCheckpointDataCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.NVidia.CheckpointData.MarshalFrom(&marshalledCheckpointData[index]);
-                    }
+                    var fieldPointer = new CheckpointData[marshalledCheckpointDataCount];
+                    for (var index = 0; index < marshalledCheckpointDataCount; index++) fieldPointer[index] = CheckpointData.MarshalFrom(&marshalledCheckpointData[index]);
                     result = fieldPointer;
                 }
                 else
@@ -67,7 +62,7 @@ namespace SharpVk.NVidia
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

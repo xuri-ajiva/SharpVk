@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceVertexAttributeDivisorFeatures
+    public struct PhysicalDeviceVertexAttributeDivisorFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool VertexAttributeInstanceRateDivisor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool VertexAttributeInstanceRateZeroDivisor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceVertexAttributeDivisorFeatures;
             pointer->Next = null;
-            pointer->VertexAttributeInstanceRateDivisor = this.VertexAttributeInstanceRateDivisor;
-            pointer->VertexAttributeInstanceRateZeroDivisor = this.VertexAttributeInstanceRateZeroDivisor;
+            pointer->VertexAttributeInstanceRateDivisor = VertexAttributeInstanceRateDivisor;
+            pointer->VertexAttributeInstanceRateZeroDivisor = VertexAttributeInstanceRateZeroDivisor;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceVertexAttributeDivisorFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures* pointer)
+        internal static unsafe PhysicalDeviceVertexAttributeDivisorFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorFeatures* pointer)
         {
-            PhysicalDeviceVertexAttributeDivisorFeatures result = default(PhysicalDeviceVertexAttributeDivisorFeatures);
+            var result = default(PhysicalDeviceVertexAttributeDivisorFeatures);
             result.VertexAttributeInstanceRateDivisor = pointer->VertexAttributeInstanceRateDivisor;
             result.VertexAttributeInstanceRateZeroDivisor = pointer->VertexAttributeInstanceRateZeroDivisor;
             return result;

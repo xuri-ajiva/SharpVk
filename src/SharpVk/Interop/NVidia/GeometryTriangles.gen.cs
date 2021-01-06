@@ -22,80 +22,67 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct GeometryTriangles
+    public unsafe struct GeometryTriangles
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Buffer VertexData; 
-        
+        public Buffer VertexData;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong VertexOffset; 
-        
+        public ulong VertexOffset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint VertexCount; 
-        
+        public uint VertexCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong VertexStride; 
-        
+        public ulong VertexStride;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format VertexFormat; 
-        
+        public Format VertexFormat;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Buffer IndexData; 
-        
+        public Buffer IndexData;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong IndexOffset; 
-        
+        public ulong IndexOffset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint IndexCount; 
-        
+        public uint IndexCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.IndexType IndexType; 
-        
+        public IndexType IndexType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Buffer TransformData; 
-        
+        public Buffer TransformData;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong TransformOffset; 
+        public ulong TransformOffset;
     }
 }

@@ -22,60 +22,49 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ValidationCacheCreateInfo
+    public struct ValidationCacheCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ValidationCacheCreateFlags? Flags
+        public ValidationCacheCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public byte[] InitialData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ValidationCacheCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.ValidationCacheCreateInfo* pointer)
         {
             pointer->SType = StructureType.ValidationCacheCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->InitialDataSize = HeapUtil.GetLength(InitialData);
+            if (InitialData != null)
             {
-                pointer->Flags = default(SharpVk.Multivendor.ValidationCacheCreateFlags);
-            }
-            pointer->InitialDataSize = (HostSize)(Interop.HeapUtil.GetLength(this.InitialData));
-            if (this.InitialData != null)
-            {
-                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.InitialData.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.InitialData.Length); index++)
-                {
-                    fieldPointer[index] = this.InitialData[index];
-                }
+                var fieldPointer = (byte*)HeapUtil.AllocateAndClear<byte>(InitialData.Length).ToPointer();
+                for (var index = 0; index < (uint)InitialData.Length; index++) fieldPointer[index] = InitialData[index];
                 pointer->InitialData = fieldPointer;
             }
             else

@@ -3,31 +3,23 @@
 namespace SharpVk.Glfw
 {
     /// <summary>
-    /// Opaque monitor handle.
+    ///     Opaque monitor handle.
     /// </summary>
     public struct MonitorHandle
     {
         internal MonitorHandle(IntPtr handle)
         {
-            this.handle = handle;
+            RawHandle = handle;
         }
 
-        private IntPtr handle;
-
         /// <summary>
-        /// Gets the underlying native pointer to the monitor object.
+        ///     Gets the underlying native pointer to the monitor object.
         /// </summary>
-        public IntPtr RawHandle
-        {
-            get
-            {
-                return this.handle;
-            }
-        }
+        public IntPtr RawHandle { get; }
 
         /// <summary>
-        /// A read-only field that represents a MonitorHandle that has been
-        /// inititalised to zero.
+        ///     A read-only field that represents a MonitorHandle that has been
+        ///     inititalised to zero.
         /// </summary>
         public static readonly MonitorHandle Zero = new MonitorHandle(IntPtr.Zero);
     }

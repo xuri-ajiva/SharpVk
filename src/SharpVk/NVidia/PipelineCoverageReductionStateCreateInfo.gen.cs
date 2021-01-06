@@ -22,53 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineCoverageReductionStateCreateInfo
+    public struct PipelineCoverageReductionStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.PipelineCoverageReductionStateCreateFlags? Flags
+        public PipelineCoverageReductionStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.CoverageReductionMode CoverageReductionMode
+        public CoverageReductionMode CoverageReductionMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineCoverageReductionStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PipelineCoverageReductionStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCoverageReductionStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.NVidia.PipelineCoverageReductionStateCreateFlags);
-            }
-            pointer->CoverageReductionMode = this.CoverageReductionMode;
+                pointer->Flags = default;
+            pointer->CoverageReductionMode = CoverageReductionMode;
         }
     }
 }

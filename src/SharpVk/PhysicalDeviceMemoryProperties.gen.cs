@@ -22,53 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying physical device memory properties.
+    ///     Structure specifying physical device memory properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMemoryProperties
+    public struct PhysicalDeviceMemoryProperties
     {
         /// <summary>
-        /// An array of MemoryType structures describing the _memory types_
-        /// that can be used to access memory allocated from the heaps
-        /// specified by memoryHeaps.
+        ///     An array of MemoryType structures describing the _memory types_
+        ///     that can be used to access memory allocated from the heaps
+        ///     specified by memoryHeaps.
         /// </summary>
-        public SharpVk.MemoryType[] MemoryTypes
+        public MemoryType[] MemoryTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of MemoryHeap structures describing the _memory heaps_
-        /// from which memory can be allocated.
+        ///     An array of MemoryHeap structures describing the _memory heaps_
+        ///     from which memory can be allocated.
         /// </summary>
-        public SharpVk.MemoryHeap[] MemoryHeaps
+        public MemoryHeap[] MemoryHeaps
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMemoryProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceMemoryProperties* pointer)
+        internal static unsafe PhysicalDeviceMemoryProperties MarshalFrom(Interop.PhysicalDeviceMemoryProperties* pointer)
         {
-            PhysicalDeviceMemoryProperties result = default(PhysicalDeviceMemoryProperties);
+            var result = default(PhysicalDeviceMemoryProperties);
             if (pointer->MemoryTypeCount != 0)
             {
-                var fieldPointer = new SharpVk.MemoryType[(uint)(pointer->MemoryTypeCount)];
-                for(int index = 0; index < (uint)(pointer->MemoryTypeCount); index++)
-                {
-                    fieldPointer[index] = (&(pointer->MemoryTypes_0))[index];
-                }
+                var fieldPointer = new MemoryType[pointer->MemoryTypeCount];
+                for (var index = 0; index < pointer->MemoryTypeCount; index++) fieldPointer[index] = (&pointer->MemoryTypes_0)[index];
                 result.MemoryTypes = fieldPointer;
             }
             else
@@ -77,11 +72,8 @@ namespace SharpVk
             }
             if (pointer->MemoryHeapCount != 0)
             {
-                var fieldPointer = new SharpVk.MemoryHeap[(uint)(pointer->MemoryHeapCount)];
-                for(int index = 0; index < (uint)(pointer->MemoryHeapCount); index++)
-                {
-                    fieldPointer[index] = (&(pointer->MemoryHeaps_0))[index];
-                }
+                var fieldPointer = new MemoryHeap[pointer->MemoryHeapCount];
+                for (var index = 0; index < pointer->MemoryHeapCount; index++) fieldPointer[index] = (&pointer->MemoryHeaps_0)[index];
                 result.MemoryHeaps = fieldPointer;
             }
             else

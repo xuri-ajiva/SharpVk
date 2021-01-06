@@ -22,54 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created command pool.
+    ///     Structure specifying parameters of a newly created command pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CommandPoolCreateInfo
+    public struct CommandPoolCreateInfo
     {
         /// <summary>
-        /// A bitmask indicating usage behavior for the pool and command
-        /// buffers allocated from it. Bits which can be set include: + --
+        ///     A bitmask indicating usage behavior for the pool and command
+        ///     buffers allocated from it. Bits which can be set include: + --
         /// </summary>
-        public SharpVk.CommandPoolCreateFlags? Flags
+        public CommandPoolCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint QueueFamilyIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.CommandPoolCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.CommandPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.CommandPoolCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.CommandPoolCreateFlags);
-            }
-            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
+                pointer->Flags = default;
+            pointer->QueueFamilyIndex = QueueFamilyIndex;
         }
     }
 }

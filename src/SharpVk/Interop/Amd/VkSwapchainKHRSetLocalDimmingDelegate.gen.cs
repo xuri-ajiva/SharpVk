@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkSwapchainKHRSetLocalDimmingDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Swapchain swapChain, Bool32 localDimmingEnable);
+    public delegate void VkSwapchainKhrSetLocalDimmingDelegate(Device device, Swapchain swapChain, Bool32 localDimmingEnable);
 }

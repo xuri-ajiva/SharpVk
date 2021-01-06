@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct WriteDescriptorSetAccelerationStructure
+    public struct WriteDescriptorSetAccelerationStructure
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.AccelerationStructure[] AccelerationStructures
+        public AccelerationStructure[] AccelerationStructures
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.WriteDescriptorSetAccelerationStructure* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.WriteDescriptorSetAccelerationStructure* pointer)
         {
             pointer->SType = StructureType.WriteDescriptorSetAccelerationStructure;
             pointer->Next = null;
-            pointer->AccelerationStructureCount = (uint)(Interop.HeapUtil.GetLength(this.AccelerationStructures));
-            if (this.AccelerationStructures != null)
+            pointer->AccelerationStructureCount = HeapUtil.GetLength(AccelerationStructures);
+            if (AccelerationStructures != null)
             {
-                var fieldPointer = (SharpVk.Interop.NVidia.AccelerationStructure*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.NVidia.AccelerationStructure>(this.AccelerationStructures.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.AccelerationStructures.Length); index++)
-                {
-                    fieldPointer[index] = this.AccelerationStructures[index]?.handle ?? default(SharpVk.Interop.NVidia.AccelerationStructure);
-                }
+                var fieldPointer = (Interop.NVidia.AccelerationStructure*)HeapUtil.AllocateAndClear<Interop.NVidia.AccelerationStructure>(AccelerationStructures.Length).ToPointer();
+                for (var index = 0; index < (uint)AccelerationStructures.Length; index++) fieldPointer[index] = AccelerationStructures[index]?.Handle ?? default(Interop.NVidia.AccelerationStructure);
                 pointer->AccelerationStructures = fieldPointer;
             }
             else
@@ -66,22 +60,18 @@ namespace SharpVk.NVidia
                 pointer->AccelerationStructures = null;
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe WriteDescriptorSetAccelerationStructure MarshalFrom(SharpVk.Interop.NVidia.WriteDescriptorSetAccelerationStructure* pointer)
+        internal static unsafe WriteDescriptorSetAccelerationStructure MarshalFrom(Interop.NVidia.WriteDescriptorSetAccelerationStructure* pointer)
         {
-            WriteDescriptorSetAccelerationStructure result = default(WriteDescriptorSetAccelerationStructure);
+            var result = default(WriteDescriptorSetAccelerationStructure);
             if (pointer->AccelerationStructures != null)
             {
-                var fieldPointer = new SharpVk.NVidia.AccelerationStructure[(uint)(pointer->AccelerationStructureCount)];
-                for(int index = 0; index < (uint)(pointer->AccelerationStructureCount); index++)
-                {
-                    fieldPointer[index] = new SharpVk.NVidia.AccelerationStructure(default(SharpVk.Device), pointer->AccelerationStructures[index]);
-                }
+                var fieldPointer = new AccelerationStructure[pointer->AccelerationStructureCount];
+                for (var index = 0; index < pointer->AccelerationStructureCount; index++) fieldPointer[index] = new(default, pointer->AccelerationStructures[index]);
                 result.AccelerationStructures = fieldPointer;
             }
             else

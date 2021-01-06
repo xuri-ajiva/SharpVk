@@ -22,80 +22,68 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created query pool.
+    ///     Structure specifying parameters of a newly created query pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct QueryPoolCreateInfo
+    public struct QueryPoolCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.QueryPoolCreateFlags? Flags
+        public QueryPoolCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The type of queries managed by the pool.
+        ///     The type of queries managed by the pool.
         /// </summary>
-        public SharpVk.QueryType QueryType
+        public QueryType QueryType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint QueryCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.QueryPipelineStatisticFlags? PipelineStatistics
+        public QueryPipelineStatisticFlags? PipelineStatistics
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.QueryPoolCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.QueryPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.QueryPoolCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.QueryPoolCreateFlags);
-            }
-            pointer->QueryType = this.QueryType;
-            pointer->QueryCount = this.QueryCount;
-            if (this.PipelineStatistics != null)
-            {
-                pointer->PipelineStatistics = this.PipelineStatistics.Value;
-            }
+                pointer->Flags = default;
+            pointer->QueryType = QueryType;
+            pointer->QueryCount = QueryCount;
+            if (PipelineStatistics != null)
+                pointer->PipelineStatistics = PipelineStatistics.Value;
             else
-            {
-                pointer->PipelineStatistics = default(SharpVk.QueryPipelineStatisticFlags);
-            }
+                pointer->PipelineStatistics = default;
         }
     }
 }

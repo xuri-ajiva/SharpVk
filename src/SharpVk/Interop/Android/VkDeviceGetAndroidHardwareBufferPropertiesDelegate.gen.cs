@@ -27,7 +27,6 @@ using System;
 namespace SharpVk.Interop.Android
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetAndroidHardwareBufferPropertiesDelegate(SharpVk.Interop.Device device, IntPtr* buffer, SharpVk.Interop.Android.AndroidHardwareBufferProperties* properties);
+    public unsafe delegate Result VkDeviceGetAndroidHardwareBufferPropertiesDelegate(Device device, IntPtr* buffer, AndroidHardwareBufferProperties* properties);
 }

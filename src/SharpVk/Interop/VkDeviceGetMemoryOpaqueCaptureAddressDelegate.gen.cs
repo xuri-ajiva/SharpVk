@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate ulong VkDeviceGetMemoryOpaqueCaptureAddressDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DeviceMemoryOpaqueCaptureAddressInfo* info);
+    public unsafe delegate ulong VkDeviceGetMemoryOpaqueCaptureAddressDelegate(Device device, DeviceMemoryOpaqueCaptureAddressInfo* info);
 }

@@ -22,31 +22,27 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    public partial class SamplerYcbcrConversion
+    public class SamplerYcbcrConversion
     {
-        internal readonly SharpVk.Interop.SamplerYcbcrConversion handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal SamplerYcbcrConversion(SharpVk.Device parent, SharpVk.Interop.SamplerYcbcrConversion handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.SamplerYcbcrConversion Handle;
+
+        internal readonly Device Parent;
+
+        internal SamplerYcbcrConversion(Device parent, Interop.SamplerYcbcrConversion handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.SamplerYcbcrConversion RawHandle => this.handle;
+        public Interop.SamplerYcbcrConversion RawHandle => Handle;
     }
 }

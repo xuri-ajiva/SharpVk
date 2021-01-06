@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevicePerformanceQueryProperties
+    public struct PhysicalDevicePerformanceQueryProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool AllowCommandBufferQueryCopies
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePerformanceQueryProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryProperties* pointer)
+        internal static unsafe PhysicalDevicePerformanceQueryProperties MarshalFrom(Interop.Khronos.PhysicalDevicePerformanceQueryProperties* pointer)
         {
-            PhysicalDevicePerformanceQueryProperties result = default(PhysicalDevicePerformanceQueryProperties);
+            var result = default(PhysicalDevicePerformanceQueryProperties);
             result.AllowCommandBufferQueryCopies = pointer->AllowCommandBufferQueryCopies;
             return result;
         }

@@ -22,66 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceFragmentShaderInterlockFeatures
+    public struct PhysicalDeviceFragmentShaderInterlockFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool FragmentShaderSampleInterlock
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool FragmentShaderPixelInterlock
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool FragmentShaderShadingRateInterlock
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceFragmentShaderInterlockFeatures;
             pointer->Next = null;
-            pointer->FragmentShaderSampleInterlock = this.FragmentShaderSampleInterlock;
-            pointer->FragmentShaderPixelInterlock = this.FragmentShaderPixelInterlock;
-            pointer->FragmentShaderShadingRateInterlock = this.FragmentShaderShadingRateInterlock;
+            pointer->FragmentShaderSampleInterlock = FragmentShaderSampleInterlock;
+            pointer->FragmentShaderPixelInterlock = FragmentShaderPixelInterlock;
+            pointer->FragmentShaderShadingRateInterlock = FragmentShaderShadingRateInterlock;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceFragmentShaderInterlockFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
+        internal static unsafe PhysicalDeviceFragmentShaderInterlockFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
         {
-            PhysicalDeviceFragmentShaderInterlockFeatures result = default(PhysicalDeviceFragmentShaderInterlockFeatures);
+            var result = default(PhysicalDeviceFragmentShaderInterlockFeatures);
             result.FragmentShaderSampleInterlock = pointer->FragmentShaderSampleInterlock;
             result.FragmentShaderPixelInterlock = pointer->FragmentShaderPixelInterlock;
             result.FragmentShaderShadingRateInterlock = pointer->FragmentShaderShadingRateInterlock;

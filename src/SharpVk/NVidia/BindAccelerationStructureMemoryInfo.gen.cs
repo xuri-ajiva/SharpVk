@@ -22,73 +22,64 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BindAccelerationStructureMemoryInfo
+    public struct BindAccelerationStructureMemoryInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.AccelerationStructure AccelerationStructure
+        public AccelerationStructure AccelerationStructure
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DeviceMemory Memory
+        public DeviceMemory Memory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong MemoryOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint[] DeviceIndices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.BindAccelerationStructureMemoryInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.BindAccelerationStructureMemoryInfo* pointer)
         {
             pointer->SType = StructureType.BindAccelerationStructureMemoryInfo;
             pointer->Next = null;
-            pointer->AccelerationStructure = this.AccelerationStructure?.handle ?? default(SharpVk.Interop.NVidia.AccelerationStructure);
-            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
-            pointer->MemoryOffset = this.MemoryOffset;
-            pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
-            if (this.DeviceIndices != null)
+            pointer->AccelerationStructure = AccelerationStructure?.Handle ?? default(Interop.NVidia.AccelerationStructure);
+            pointer->Memory = Memory?.Handle ?? default(Interop.DeviceMemory);
+            pointer->MemoryOffset = MemoryOffset;
+            pointer->DeviceIndexCount = HeapUtil.GetLength(DeviceIndices);
+            if (DeviceIndices != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DeviceIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.DeviceIndices[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(DeviceIndices.Length).ToPointer();
+                for (var index = 0; index < (uint)DeviceIndices.Length; index++) fieldPointer[index] = DeviceIndices[index];
                 pointer->DeviceIndices = fieldPointer;
             }
             else

@@ -22,27 +22,28 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Bitmask specifying allowed usage of an object entry.
+    ///     Bitmask specifying allowed usage of an object entry.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ObjectEntryUsageFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// Indicates that the resource is bound to PipelineBindPoint.Graphics
+        ///     Indicates that the resource is bound to PipelineBindPoint.Graphics
         /// </summary>
-        Graphics = 1 << 0, 
-        
+        Graphics = 1 << 0,
+
         /// <summary>
-        /// Indicates that the resource is bound to PipelineBindPoint.Compute
+        ///     Indicates that the resource is bound to PipelineBindPoint.Compute
         /// </summary>
-        Compute = 1 << 1, 
+        Compute = 1 << 1
     }
 }

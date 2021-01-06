@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceComputeShaderDerivativesFeatures
+    public struct PhysicalDeviceComputeShaderDerivativesFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ComputeDerivativeGroupQuads
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ComputeDerivativeGroupLinear
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceComputeShaderDerivativesFeatures;
             pointer->Next = null;
-            pointer->ComputeDerivativeGroupQuads = this.ComputeDerivativeGroupQuads;
-            pointer->ComputeDerivativeGroupLinear = this.ComputeDerivativeGroupLinear;
+            pointer->ComputeDerivativeGroupQuads = ComputeDerivativeGroupQuads;
+            pointer->ComputeDerivativeGroupLinear = ComputeDerivativeGroupLinear;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceComputeShaderDerivativesFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
+        internal static unsafe PhysicalDeviceComputeShaderDerivativesFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
         {
-            PhysicalDeviceComputeShaderDerivativesFeatures result = default(PhysicalDeviceComputeShaderDerivativesFeatures);
+            var result = default(PhysicalDeviceComputeShaderDerivativesFeatures);
             result.ComputeDerivativeGroupQuads = pointer->ComputeDerivativeGroupQuads;
             result.ComputeDerivativeGroupLinear = pointer->ComputeDerivativeGroupLinear;
             return result;

@@ -4,55 +4,36 @@ namespace SharpVk.Glfw
 {
     internal static class ErrorUtility
     {
-        [ThreadStatic]
-        private static ErrorCode? code;
+        [ThreadStatic] private static ErrorDelegate wrappedDelegate;
 
-        [ThreadStatic]
-        private static string description;
+        [ThreadStatic] private static ErrorDelegate callback;
 
-        [ThreadStatic]
-        private static ErrorDelegate wrappedDelegate;
+        [field: ThreadStatic]
+        public static ErrorCode? Code { get; private set; }
 
-        [ThreadStatic]
-        private static ErrorDelegate callback;
-
-        public static ErrorCode? Code
-        {
-            get => code;
-            private set => code = value;
-        }
-
-        public static string Description
-        {
-            get => description;
-            private set => description = value;
-        }
+        [field: ThreadStatic]
+        public static string Description { get; private set; }
 
         public static void Bind()
         {
-            code = null;
-            description = null;
+            Code = null;
+            Description = null;
 
             if (callback == null)
-            {
                 callback = (errorCode, errorDescription) =>
                 {
-                    code = errorCode;
-                    description = errorDescription;
+                    Code = errorCode;
+                    Description = errorDescription;
 
                     wrappedDelegate?.Invoke(errorCode, errorDescription);
                 };
-            }
 
             wrappedDelegate = Glfw3.SetErrorCallback(callback);
         }
 
         public static void ThrowOnError()
         {
-            if (Code.HasValue)
-            {
-                throw new GlfwErrorException(Code.Value, Description);
-            }
+            if (Code.HasValue) throw new GlfwErrorException(Code.Value, Description);
         }
 
         public static void Unbind()

@@ -22,63 +22,53 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineRasterizationConservativeStateCreateInfo
+    public struct PipelineRasterizationConservativeStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.PipelineRasterizationConservativeStateCreateFlags? Flags
+        public PipelineRasterizationConservativeStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ConservativeRasterizationMode ConservativeRasterizationMode
+        public ConservativeRasterizationMode ConservativeRasterizationMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float ExtraPrimitiveOverestimationSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineRasterizationConservativeStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineRasterizationConservativeStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationConservativeStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.PipelineRasterizationConservativeStateCreateFlags);
-            }
-            pointer->ConservativeRasterizationMode = this.ConservativeRasterizationMode;
-            pointer->ExtraPrimitiveOverestimationSize = this.ExtraPrimitiveOverestimationSize;
+                pointer->Flags = default;
+            pointer->ConservativeRasterizationMode = ConservativeRasterizationMode;
+            pointer->ExtraPrimitiveOverestimationSize = ExtraPrimitiveOverestimationSize;
         }
     }
 }

@@ -22,63 +22,57 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineExecutableStatistic
+    public struct PipelineExecutableStatistic
     {
         /// <summary>
-        /// 
         /// </summary>
         public string Name
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string Description
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PipelineExecutableStatisticFormat Format
+        public PipelineExecutableStatisticFormat Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PipelineExecutableStatisticValue Value
+        public PipelineExecutableStatisticValue Value
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineExecutableStatistic MarshalFrom(SharpVk.Interop.Khronos.PipelineExecutableStatistic* pointer)
+        internal static unsafe PipelineExecutableStatistic MarshalFrom(Interop.Khronos.PipelineExecutableStatistic* pointer)
         {
-            PipelineExecutableStatistic result = default(PipelineExecutableStatistic);
-            result.Name = Interop.HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
-            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
+            var result = default(PipelineExecutableStatistic);
+            result.Name = HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
+            result.Description = HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
             result.Format = pointer->Format;
             result.Value = pointer->Value;
             return result;

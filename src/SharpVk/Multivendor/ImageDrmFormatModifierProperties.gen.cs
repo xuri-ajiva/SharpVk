@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageDrmFormatModifierProperties
+    public struct ImageDrmFormatModifierProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong DrmFormatModifier
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ImageDrmFormatModifierProperties MarshalFrom(SharpVk.Interop.Multivendor.ImageDrmFormatModifierProperties* pointer)
+        internal static unsafe ImageDrmFormatModifierProperties MarshalFrom(Interop.Multivendor.ImageDrmFormatModifierProperties* pointer)
         {
-            ImageDrmFormatModifierProperties result = default(ImageDrmFormatModifierProperties);
+            var result = default(ImageDrmFormatModifierProperties);
             result.DrmFormatModifier = pointer->DrmFormatModifier;
             return result;
         }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBindShadingRateImageDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.ImageView imageView, SharpVk.ImageLayout imageLayout);
+    public delegate void VkCommandBufferBindShadingRateImageDelegate(CommandBuffer commandBuffer, ImageView imageView, ImageLayout imageLayout);
 }

@@ -22,42 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DescriptorSetLayoutCreateInfo
+    public unsafe struct DescriptorSetLayoutCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// flags provides options for descriptor set layout creation, and is
-        /// of type DescriptorSetLayoutCreateFlags. Bits which can be set
-        /// include: + --
+        ///     flags provides options for descriptor set layout creation, and is
+        ///     of type DescriptorSetLayoutCreateFlags. Bits which can be set
+        ///     include: + --
         /// </summary>
-        public SharpVk.DescriptorSetLayoutCreateFlags Flags; 
-        
+        public DescriptorSetLayoutCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint BindingCount; 
-        
+        public uint BindingCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.DescriptorSetLayoutBinding* Bindings; 
+        public DescriptorSetLayoutBinding* Bindings;
     }
 }

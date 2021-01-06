@@ -22,61 +22,54 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSubgroupProperties
+    public struct PhysicalDeviceSubgroupProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint SubgroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags SupportedStages
+        public ShaderStageFlags SupportedStages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SubgroupFeatureFlags SupportedOperations
+        public SubgroupFeatureFlags SupportedOperations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool QuadOperationsInAllStages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSubgroupProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSubgroupProperties* pointer)
+        internal static unsafe PhysicalDeviceSubgroupProperties MarshalFrom(Interop.PhysicalDeviceSubgroupProperties* pointer)
         {
-            PhysicalDeviceSubgroupProperties result = default(PhysicalDeviceSubgroupProperties);
+            var result = default(PhysicalDeviceSubgroupProperties);
             result.SubgroupSize = pointer->SubgroupSize;
             result.SupportedStages = pointer->SupportedStages;
             result.SupportedOperations = pointer->SupportedOperations;

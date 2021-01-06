@@ -22,40 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct InputAttachmentAspectReference
+    public struct InputAttachmentAspectReference
     {
         /// <summary>
-        /// 
         /// </summary>
-        public InputAttachmentAspectReference(uint subpass, uint inputAttachmentIndex, SharpVk.ImageAspectFlags aspectMask)
+        public InputAttachmentAspectReference(uint subpass, uint inputAttachmentIndex, ImageAspectFlags aspectMask)
         {
-            this.Subpass = subpass;
-            this.InputAttachmentIndex = inputAttachmentIndex;
-            this.AspectMask = aspectMask;
+            Subpass = subpass;
+            InputAttachmentIndex = inputAttachmentIndex;
+            AspectMask = aspectMask;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Subpass; 
-        
+        public uint Subpass;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint InputAttachmentIndex; 
-        
+        public uint InputAttachmentIndex;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageAspectFlags AspectMask; 
+        public ImageAspectFlags AspectMask;
     }
 }

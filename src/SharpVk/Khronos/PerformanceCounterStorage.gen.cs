@@ -25,38 +25,31 @@
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum PerformanceCounterStorage
     {
         /// <summary>
-        /// 
         /// </summary>
-        Int32 = 0, 
-        
+        Int32 = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Int64 = 1, 
-        
+        Int64 = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Uint32 = 2, 
-        
+        Uint32 = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Uint64 = 3, 
-        
+        Uint64 = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        Float32 = 4, 
-        
+        Float32 = 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        Float64 = 5, 
+        Float64 = 5
     }
 }

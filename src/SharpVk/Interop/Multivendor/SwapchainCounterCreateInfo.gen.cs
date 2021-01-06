@@ -22,31 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SwapchainCounterCreateInfo
+    public unsafe struct SwapchainCounterCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitmask containing a bit set for each surface counter to enable
-        /// for the swapchain.
+        ///     A bitmask containing a bit set for each surface counter to enable
+        ///     for the swapchain.
         /// </summary>
-        public SharpVk.Multivendor.SurfaceCounterFlags SurfaceCounters; 
+        public SurfaceCounterFlags SurfaceCounters;
     }
 }

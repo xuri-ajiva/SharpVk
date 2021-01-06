@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetStencilWriteMaskDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.StencilFaceFlags faceMask, uint writeMask);
+    public delegate void VkCommandBufferSetStencilWriteMaskDelegate(CommandBuffer commandBuffer, StencilFaceFlags faceMask, uint writeMask);
 }

@@ -5,7 +5,7 @@ namespace SharpVk.Emit
 {
     public class DocBuilder
     {
-        private IndentedTextWriter writer;
+        private readonly IndentedTextWriter writer;
 
         public DocBuilder(IndentedTextWriter writer, IEnumerable<string> summary)
         {
@@ -13,54 +13,42 @@ namespace SharpVk.Emit
 
             this.writer.WriteLine("/// <summary>");
             if (summary == null || !summary.Any())
-            {
                 this.writer.WriteLine("/// ");
-            }
             else if (summary.Count() == 1)
-            {
-                this.EmitParagraph(summary.Single());
-            }
+                EmitParagraph(summary.Single());
             else
-            {
                 foreach (var paragraph in summary)
                 {
                     this.writer.WriteLine("/// <para>");
-                    this.EmitParagraph(paragraph);
+                    EmitParagraph(paragraph);
                     this.writer.WriteLine("/// </para>");
                 }
-            }
             this.writer.WriteLine("/// </summary>");
         }
 
         private void EmitParagraph(string paragraph)
         {
-            char previousChar = ' ';
+            var previousChar = ' ';
             var charList = new List<char>();
 
-            foreach(char character in paragraph)
+            foreach (var character in paragraph)
             {
-                if(!char.IsWhiteSpace(character) || !char.IsWhiteSpace(previousChar))
-                {
-                    charList.Add(character);
-                }
+                if (!char.IsWhiteSpace(character) || !char.IsWhiteSpace(previousChar)) charList.Add(character);
 
                 previousChar = character;
             }
 
             var charArray = charList.ToArray();
 
-            int offset = 0;
-            int count = 0;
-            int lastSafeCount = 0;
+            var offset = 0;
+            var count = 0;
+            var lastSafeCount = 0;
 
-            int availableCharacters = 80 - (4 + this.writer.IndentCharacters);
+            var availableCharacters = 80 - (4 + writer.IndentCharacters);
 
             while (offset + count < charArray.Length)
             {
-                while (offset + count < charArray.Length && !char.IsWhiteSpace(charArray[offset + count]))
-                {
-                    count++;
-                }
+                while (offset + count < charArray.Length && !char.IsWhiteSpace(charArray[offset + count])) count++;
 
                 if (count < availableCharacters)
                 {
@@ -70,15 +58,12 @@ namespace SharpVk.Emit
                 }
                 else
                 {
-                    int displayCount = count;
+                    var displayCount = count;
 
-                    if (lastSafeCount > 0)
-                    {
-                        displayCount = lastSafeCount;
-                    }
+                    if (lastSafeCount > 0) displayCount = lastSafeCount;
 
-                    this.writer.Write("/// ");
-                    this.writer.WriteLine(charArray, offset, displayCount);
+                    writer.Write("/// ");
+                    writer.WriteLine(charArray, offset, displayCount);
 
                     offset += displayCount + 1;
                     count -= displayCount;
@@ -87,17 +72,17 @@ namespace SharpVk.Emit
 
                 if (offset + count >= charArray.Length && offset < charArray.Length)
                 {
-                    this.writer.Write("/// ");
-                    this.writer.WriteLine(charArray, offset, charArray.Length - offset);
+                    writer.Write("/// ");
+                    writer.WriteLine(charArray, offset, charArray.Length - offset);
                 }
             }
         }
 
         public void EmitParam(string paramName, string description)
         {
-            this.writer.WriteLine($"/// <param name=\"{paramName}\">");
-            this.EmitParagraph(description);
-            this.writer.WriteLine("/// </param>");
+            writer.WriteLine($"/// <param name=\"{paramName}\">");
+            EmitParagraph(description);
+            writer.WriteLine("/// </param>");
         }
     }
 }

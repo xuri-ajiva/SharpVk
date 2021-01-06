@@ -22,151 +22,134 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderCoreProperties
+    public struct PhysicalDeviceShaderCoreProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint ShaderEngineCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ShaderArraysPerEngineCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ComputeUnitsPerShaderArray
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint SimdPerComputeUnit
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint WavefrontsPerSimd
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint WavefrontSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint SgprsPerSimd
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MinSgprAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxSgprAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint SgprAllocationGranularity
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint VgprsPerSimd
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MinVgprAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxVgprAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint VgprAllocationGranularity
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderCoreProperties MarshalFrom(SharpVk.Interop.Amd.PhysicalDeviceShaderCoreProperties* pointer)
+        internal static unsafe PhysicalDeviceShaderCoreProperties MarshalFrom(Interop.Amd.PhysicalDeviceShaderCoreProperties* pointer)
         {
-            PhysicalDeviceShaderCoreProperties result = default(PhysicalDeviceShaderCoreProperties);
+            var result = default(PhysicalDeviceShaderCoreProperties);
             result.ShaderEngineCount = pointer->ShaderEngineCount;
             result.ShaderArraysPerEngineCount = pointer->ShaderArraysPerEngineCount;
             result.ComputeUnitsPerShaderArray = pointer->ComputeUnitsPerShaderArray;

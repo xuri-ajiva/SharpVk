@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGroupBindSparseInfo
+    public struct DeviceGroupBindSparseInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint ResourceDeviceIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MemoryDeviceIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupBindSparseInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DeviceGroupBindSparseInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupBindSparseInfoVersion;
             pointer->Next = null;
-            pointer->ResourceDeviceIndex = this.ResourceDeviceIndex;
-            pointer->MemoryDeviceIndex = this.MemoryDeviceIndex;
+            pointer->ResourceDeviceIndex = ResourceDeviceIndex;
+            pointer->MemoryDeviceIndex = MemoryDeviceIndex;
         }
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkCommandBufferEndDelegate(SharpVk.Interop.CommandBuffer commandBuffer);
+    public delegate Result VkCommandBufferEndDelegate(CommandBuffer commandBuffer);
 }

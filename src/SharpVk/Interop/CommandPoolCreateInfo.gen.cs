@@ -22,36 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct CommandPoolCreateInfo
+    public unsafe struct CommandPoolCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitmask indicating usage behavior for the pool and command
-        /// buffers allocated from it. Bits which can be set include: + --
+        ///     A bitmask indicating usage behavior for the pool and command
+        ///     buffers allocated from it. Bits which can be set include: + --
         /// </summary>
-        public SharpVk.CommandPoolCreateFlags Flags; 
-        
+        public CommandPoolCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint QueueFamilyIndex; 
+        public uint QueueFamilyIndex;
     }
 }

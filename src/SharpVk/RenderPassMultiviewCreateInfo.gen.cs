@@ -22,89 +22,75 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RenderPassMultiviewCreateInfo
+    public struct RenderPassMultiviewCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint[] ViewMasks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int[] ViewOffsets
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint[] CorrelationMasks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.RenderPassMultiviewCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.RenderPassMultiviewCreateInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassMultiviewCreateInfoVersion;
             pointer->Next = null;
-            pointer->SubpassCount = (uint)(Interop.HeapUtil.GetLength(this.ViewMasks));
-            if (this.ViewMasks != null)
+            pointer->SubpassCount = HeapUtil.GetLength(ViewMasks);
+            if (ViewMasks != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.ViewMasks.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ViewMasks.Length); index++)
-                {
-                    fieldPointer[index] = this.ViewMasks[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(ViewMasks.Length).ToPointer();
+                for (var index = 0; index < (uint)ViewMasks.Length; index++) fieldPointer[index] = ViewMasks[index];
                 pointer->ViewMasks = fieldPointer;
             }
             else
             {
                 pointer->ViewMasks = null;
             }
-            pointer->DependencyCount = (uint)(Interop.HeapUtil.GetLength(this.ViewOffsets));
-            if (this.ViewOffsets != null)
+            pointer->DependencyCount = HeapUtil.GetLength(ViewOffsets);
+            if (ViewOffsets != null)
             {
-                var fieldPointer = (int*)(Interop.HeapUtil.AllocateAndClear<int>(this.ViewOffsets.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ViewOffsets.Length); index++)
-                {
-                    fieldPointer[index] = this.ViewOffsets[index];
-                }
+                var fieldPointer = (int*)HeapUtil.AllocateAndClear<int>(ViewOffsets.Length).ToPointer();
+                for (var index = 0; index < (uint)ViewOffsets.Length; index++) fieldPointer[index] = ViewOffsets[index];
                 pointer->ViewOffsets = fieldPointer;
             }
             else
             {
                 pointer->ViewOffsets = null;
             }
-            pointer->CorrelationMaskCount = (uint)(Interop.HeapUtil.GetLength(this.CorrelationMasks));
-            if (this.CorrelationMasks != null)
+            pointer->CorrelationMaskCount = HeapUtil.GetLength(CorrelationMasks);
+            if (CorrelationMasks != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CorrelationMasks.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.CorrelationMasks.Length); index++)
-                {
-                    fieldPointer[index] = this.CorrelationMasks[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(CorrelationMasks.Length).ToPointer();
+                for (var index = 0; index < (uint)CorrelationMasks.Length; index++) fieldPointer[index] = CorrelationMasks[index];
                 pointer->CorrelationMasks = fieldPointer;
             }
             else

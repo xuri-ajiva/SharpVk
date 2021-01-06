@@ -22,197 +22,175 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created swapchain object.
+    ///     Structure specifying parameters of a newly created swapchain object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SwapchainCreateInfo
+    public struct SwapchainCreateInfo
     {
         /// <summary>
-        /// A bitmask indicating parameters of swapchain creation. Bits which
-        /// can be set include: + --
+        ///     A bitmask indicating parameters of swapchain creation. Bits which
+        ///     can be set include: + --
         /// </summary>
-        public SharpVk.Khronos.SwapchainCreateFlags? Flags
+        public SwapchainCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.Surface Surface
+        public Surface Surface
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MinImageCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format ImageFormat
+        public Format ImageFormat
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.ColorSpace ImageColorSpace
+        public ColorSpace ImageColorSpace
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D ImageExtent
+        public Extent2D ImageExtent
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ImageArrayLayers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags ImageUsage
+        public ImageUsageFlags ImageUsage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SharingMode ImageSharingMode
+        public SharingMode ImageSharingMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint[] QueueFamilyIndices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.SurfaceTransformFlags PreTransform
+        public SurfaceTransformFlags PreTransform
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.CompositeAlphaFlags CompositeAlpha
+        public CompositeAlphaFlags CompositeAlpha
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PresentMode PresentMode
+        public PresentMode PresentMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool Clipped
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.Swapchain OldSwapchain
+        public Swapchain OldSwapchain
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SwapchainCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.SwapchainCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->Surface = Surface?.Handle ?? default(Interop.Khronos.Surface);
+            pointer->MinImageCount = MinImageCount;
+            pointer->ImageFormat = ImageFormat;
+            pointer->ImageColorSpace = ImageColorSpace;
+            pointer->ImageExtent = ImageExtent;
+            pointer->ImageArrayLayers = ImageArrayLayers;
+            pointer->ImageUsage = ImageUsage;
+            pointer->ImageSharingMode = ImageSharingMode;
+            pointer->QueueFamilyIndexCount = HeapUtil.GetLength(QueueFamilyIndices);
+            if (QueueFamilyIndices != null)
             {
-                pointer->Flags = default(SharpVk.Khronos.SwapchainCreateFlags);
-            }
-            pointer->Surface = this.Surface?.handle ?? default(SharpVk.Interop.Khronos.Surface);
-            pointer->MinImageCount = this.MinImageCount;
-            pointer->ImageFormat = this.ImageFormat;
-            pointer->ImageColorSpace = this.ImageColorSpace;
-            pointer->ImageExtent = this.ImageExtent;
-            pointer->ImageArrayLayers = this.ImageArrayLayers;
-            pointer->ImageUsage = this.ImageUsage;
-            pointer->ImageSharingMode = this.ImageSharingMode;
-            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(this.QueueFamilyIndices));
-            if (this.QueueFamilyIndices != null)
-            {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.QueueFamilyIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.QueueFamilyIndices[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer();
+                for (var index = 0; index < (uint)QueueFamilyIndices.Length; index++) fieldPointer[index] = QueueFamilyIndices[index];
                 pointer->QueueFamilyIndices = fieldPointer;
             }
             else
             {
                 pointer->QueueFamilyIndices = null;
             }
-            pointer->PreTransform = this.PreTransform;
-            pointer->CompositeAlpha = this.CompositeAlpha;
-            pointer->PresentMode = this.PresentMode;
-            pointer->Clipped = this.Clipped;
-            pointer->OldSwapchain = this.OldSwapchain?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
+            pointer->PreTransform = PreTransform;
+            pointer->CompositeAlpha = CompositeAlpha;
+            pointer->PresentMode = PresentMode;
+            pointer->Clipped = Clipped;
+            pointer->OldSwapchain = OldSwapchain?.Handle ?? default(Interop.Khronos.Swapchain);
         }
     }
 }

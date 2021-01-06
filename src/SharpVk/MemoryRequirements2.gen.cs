@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryRequirements2
+    public struct MemoryRequirements2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.MemoryRequirements MemoryRequirements
+        public MemoryRequirements MemoryRequirements
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryRequirements2 MarshalFrom(SharpVk.Interop.MemoryRequirements2* pointer)
+        internal static unsafe MemoryRequirements2 MarshalFrom(Interop.MemoryRequirements2* pointer)
         {
-            MemoryRequirements2 result = default(MemoryRequirements2);
+            var result = default(MemoryRequirements2);
             result.MemoryRequirements = pointer->MemoryRequirements;
             return result;
         }

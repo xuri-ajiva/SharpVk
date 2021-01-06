@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceEnumeratePhysicalDevicesDelegate(SharpVk.Interop.Instance instance, uint* physicalDeviceCount, SharpVk.Interop.PhysicalDevice* physicalDevices);
+    public unsafe delegate Result VkInstanceEnumeratePhysicalDevicesDelegate(Instance instance, uint* physicalDeviceCount, PhysicalDevice* physicalDevices);
 }

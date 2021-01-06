@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct FenceGetWin32HandleInfo
+    public struct FenceGetWin32HandleInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Fence Fence
+        public Fence Fence
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.ExternalFenceHandleTypeFlags HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.FenceGetWin32HandleInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.FenceGetWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.FenceGetWin32HandleInfo;
             pointer->Next = null;
-            pointer->Fence = this.Fence?.handle ?? default(SharpVk.Interop.Fence);
-            pointer->HandleType = this.HandleType;
+            pointer->Fence = Fence?.Handle ?? default(Interop.Fence);
+            pointer->HandleType = HandleType;
         }
     }
 }

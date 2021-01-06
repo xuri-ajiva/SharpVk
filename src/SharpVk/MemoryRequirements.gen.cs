@@ -22,45 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying memory requirements.
+    ///     Structure specifying memory requirements.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryRequirements
+    public struct MemoryRequirements
     {
         /// <summary>
-        /// 
         /// </summary>
         public MemoryRequirements(ulong size, ulong alignment, uint memoryTypeBits)
         {
-            this.Size = size;
-            this.Alignment = alignment;
-            this.MemoryTypeBits = memoryTypeBits;
+            Size = size;
+            Alignment = alignment;
+            MemoryTypeBits = memoryTypeBits;
         }
-        
+
         /// <summary>
-        /// The size, in bytes, of the memory allocation required: for the
-        /// resource.
+        ///     The size, in bytes, of the memory allocation required: for the
+        ///     resource.
         /// </summary>
-        public ulong Size; 
-        
+        public ulong Size;
+
         /// <summary>
-        /// The alignment, in bytes, of the offset within the allocation
-        /// required: for the resource.
+        ///     The alignment, in bytes, of the offset within the allocation
+        ///     required: for the resource.
         /// </summary>
-        public ulong Alignment; 
-        
+        public ulong Alignment;
+
         /// <summary>
-        /// A bitmask and contains one bit set for every supported memory type
-        /// for the resource. Bit `i` is set if and only if the memory type `i`
-        /// in the PhysicalDeviceMemoryProperties structure for the physical
-        /// device is supported for the resource.
+        ///     A bitmask and contains one bit set for every supported memory type
+        ///     for the resource. Bit `i` is set if and only if the memory type `i`
+        ///     in the PhysicalDeviceMemoryProperties structure for the physical
+        ///     device is supported for the resource.
         /// </summary>
-        public uint MemoryTypeBits; 
+        public uint MemoryTypeBits;
     }
 }

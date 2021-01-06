@@ -23,132 +23,123 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Opaque handle to a event object.
+    ///     Opaque handle to a event object.
     /// </summary>
-    public partial class Event
+    public class Event
         : IDisposable
     {
-        internal readonly SharpVk.Interop.Event handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal Event(SharpVk.Device parent, SharpVk.Interop.Event handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Event Handle;
+
+        internal readonly Device Parent;
+
+        internal Event(Device parent, Interop.Event handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Event RawHandle => this.handle;
-        
+        public Interop.Event RawHandle => Handle;
+
         /// <summary>
-        /// Destroy an event object.
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
+        ///     Destroy an event object.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.VkEventDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyEvent;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyEvent;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Retrieve the status of an event object.
+        ///     Retrieve the status of an event object.
         /// </summary>
-        public unsafe Result GetStatus()
+        public Result GetStatus()
         {
             try
             {
-                Result result = default(Result);
-                SharpVk.Interop.VkEventGetStatusDelegate commandDelegate = commandCache.Cache.vkGetEventStatus;
-                result = commandDelegate(this.parent.handle, this.handle);
-                if (SharpVkException.IsError(result))
-                {
-                    throw SharpVkException.Create(result);
-                }
+                var result = default(Result);
+                var commandDelegate = CommandCache.Cache.VkGetEventStatus;
+                result = commandDelegate(Parent.Handle, Handle);
+                if (SharpVkException.IsError(result)) throw SharpVkException.Create(result);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Set an event to signaled state.
+        ///     Set an event to signaled state.
         /// </summary>
-        public unsafe void Set()
+        public void Set()
         {
             try
             {
-                SharpVk.Interop.VkEventSetDelegate commandDelegate = commandCache.Cache.vkSetEvent;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandDelegate = CommandCache.Cache.VkSetEvent;
+                var methodResult = commandDelegate(Parent.Handle, Handle);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Reset an event to non-signaled state.
+        ///     Reset an event to non-signaled state.
         /// </summary>
-        public unsafe void Reset()
+        public void Reset()
         {
             try
             {
-                SharpVk.Interop.VkEventResetDelegate commandDelegate = commandCache.Cache.vkResetEvent;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandDelegate = CommandCache.Cache.VkResetEvent;
+                var methodResult = commandDelegate(Parent.Handle, Handle);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

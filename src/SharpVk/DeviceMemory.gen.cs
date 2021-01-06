@@ -23,64 +23,64 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Opaque handle to a device memory object.
+    ///     Opaque handle to a device memory object.
     /// </summary>
-    public partial class DeviceMemory
+    public class DeviceMemory
     {
-        internal readonly SharpVk.Interop.DeviceMemory handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal DeviceMemory(SharpVk.Device parent, SharpVk.Interop.DeviceMemory handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.DeviceMemory Handle;
+
+        internal readonly Device Parent;
+
+        internal DeviceMemory(Device parent, Interop.DeviceMemory handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.DeviceMemory RawHandle => this.handle;
-        
+        public Interop.DeviceMemory RawHandle => Handle;
+
         /// <summary>
-        /// Free GPU memory.
+        ///     Free GPU memory.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Free(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Free(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.VkDeviceMemoryFreeDelegate commandDelegate = commandCache.Cache.vkFreeMemory;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkFreeMemory;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Map a memory object into application address space.
+        ///     Map a memory object into application address space.
         /// </summary>
         /// <param name="offset">
         /// </param>
@@ -88,69 +88,62 @@ namespace SharpVk
         /// </param>
         /// <param name="flags">
         /// </param>
-        public unsafe IntPtr Map(ulong offset, ulong size, SharpVk.MemoryMapFlags? flags = default(SharpVk.MemoryMapFlags?))
+        public unsafe IntPtr Map(ulong offset, ulong size, MemoryMapFlags? flags = default)
         {
             try
             {
-                IntPtr result = default(IntPtr);
-                SharpVk.MemoryMapFlags marshalledFlags = default(SharpVk.MemoryMapFlags);
-                void* marshalledData = default(void*);
+                var result = default(IntPtr);
+                var marshalledFlags = default(MemoryMapFlags);
+                var marshalledData = default(void*);
                 if (flags != null)
-                {
                     marshalledFlags = flags.Value;
-                }
                 else
-                {
-                    marshalledFlags = default(SharpVk.MemoryMapFlags);
-                }
-                SharpVk.Interop.VkDeviceMemoryMapDelegate commandDelegate = commandCache.Cache.vkMapMemory;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, offset, size, marshalledFlags, &marshalledData);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new IntPtr(marshalledData);
+                    marshalledFlags = default;
+                var commandDelegate = CommandCache.Cache.VkMapMemory;
+                var methodResult = commandDelegate(Parent.Handle, Handle, offset, size, marshalledFlags, &marshalledData);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                result = new(marshalledData);
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Unmap a previously mapped memory object.
+        ///     Unmap a previously mapped memory object.
         /// </summary>
-        public unsafe void Unmap()
+        public void Unmap()
         {
             try
             {
-                SharpVk.Interop.VkDeviceMemoryUnmapDelegate commandDelegate = commandCache.Cache.vkUnmapMemory;
-                commandDelegate(this.parent.handle, this.handle);
+                var commandDelegate = CommandCache.Cache.VkUnmapMemory;
+                commandDelegate(Parent.Handle, Handle);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// Query the current commitment for a DeviceMemory.
+        ///     Query the current commitment for a DeviceMemory.
         /// </summary>
         public unsafe ulong GetCommitment()
         {
             try
             {
-                ulong result = default(ulong);
-                ulong marshalledCommittedMemoryInBytes = default(ulong);
-                SharpVk.Interop.VkDeviceMemoryGetCommitmentDelegate commandDelegate = commandCache.Cache.vkGetDeviceMemoryCommitment;
-                commandDelegate(this.parent.handle, this.handle, &marshalledCommittedMemoryInBytes);
+                var result = default(ulong);
+                var marshalledCommittedMemoryInBytes = default(ulong);
+                var commandDelegate = CommandCache.Cache.VkGetDeviceMemoryCommitment;
+                commandDelegate(Parent.Handle, Handle, &marshalledCommittedMemoryInBytes);
                 result = marshalledCommittedMemoryInBytes;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

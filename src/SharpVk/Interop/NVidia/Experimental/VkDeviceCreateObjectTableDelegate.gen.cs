@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateObjectTableDelegate(SharpVk.Interop.Device device, SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.NVidia.Experimental.ObjectTable* objectTable);
+    public unsafe delegate Result VkDeviceCreateObjectTableDelegate(Device device, ObjectTableCreateInfo* createInfo, AllocationCallbacks* allocator, ObjectTable* objectTable);
 }

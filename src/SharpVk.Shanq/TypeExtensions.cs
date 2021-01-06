@@ -8,6 +8,9 @@ namespace SharpVk.Shanq
 {
     public static class TypeExtensions
     {
-        public static IEnumerable<FieldInfo> GetFieldsByOffset(this Type type) => type.GetFields().OrderBy(x => Marshal.OffsetOf(type, x.Name).ToInt32());
+        public static IEnumerable<FieldInfo> GetFieldsByOffset(this Type type)
+        {
+            return type.GetFields().OrderBy(x => Marshal.OffsetOf(type, x.Name).ToInt32());
+        }
     }
 }

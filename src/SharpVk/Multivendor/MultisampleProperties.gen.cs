@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MultisampleProperties
+    public struct MultisampleProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D MaxSampleLocationGridSize
+        public Extent2D MaxSampleLocationGridSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MultisampleProperties MarshalFrom(SharpVk.Interop.Multivendor.MultisampleProperties* pointer)
+        internal static unsafe MultisampleProperties MarshalFrom(Interop.Multivendor.MultisampleProperties* pointer)
         {
-            MultisampleProperties result = default(MultisampleProperties);
+            var result = default(MultisampleProperties);
             result.MaxSampleLocationGridSize = pointer->MaxSampleLocationGridSize;
             return result;
         }

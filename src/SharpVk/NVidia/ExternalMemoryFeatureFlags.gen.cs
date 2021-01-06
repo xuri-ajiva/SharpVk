@@ -22,35 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Bitmask specifying external memory features.
+    ///     Bitmask specifying external memory features.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ExternalMemoryFeatureFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// External memory of the specified type must be created as a
-        /// dedicated allocation when used in the manner specified.
+        ///     External memory of the specified type must be created as a
+        ///     dedicated allocation when used in the manner specified.
         /// </summary>
-        DedicatedOnly = 1 << 0, 
-        
+        DedicatedOnly = 1 << 0,
+
         /// <summary>
-        /// The implementation supports exporting handles of the specified
-        /// type.
+        ///     The implementation supports exporting handles of the specified
+        ///     type.
         /// </summary>
-        Exportable = 1 << 1, 
-        
+        Exportable = 1 << 1,
+
         /// <summary>
-        /// The implementation supports importing handles of the specified
-        /// type.
+        ///     The implementation supports importing handles of the specified
+        ///     type.
         /// </summary>
-        Importable = 1 << 2, 
+        Importable = 1 << 2
     }
 }

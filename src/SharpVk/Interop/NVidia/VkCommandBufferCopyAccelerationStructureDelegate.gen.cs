@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferCopyAccelerationStructureDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.NVidia.AccelerationStructure destination, SharpVk.Interop.NVidia.AccelerationStructure source, SharpVk.NVidia.CopyAccelerationStructureMode mode);
+    public delegate void VkCommandBufferCopyAccelerationStructureDelegate(CommandBuffer commandBuffer, AccelerationStructure destination, AccelerationStructure source, CopyAccelerationStructureMode mode);
 }

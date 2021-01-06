@@ -22,112 +22,102 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created framebuffer.
+    ///     Structure specifying parameters of a newly created framebuffer.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct FramebufferCreateInfo
+    public struct FramebufferCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.FramebufferCreateFlags? Flags
+        public FramebufferCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A render pass that defines what render passes the framebuffer will
-        /// be compatible with.
+        ///     A render pass that defines what render passes the framebuffer will
+        ///     be compatible with.
         /// </summary>
-        public SharpVk.RenderPass RenderPass
+        public RenderPass RenderPass
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of ImageView handles, each of which will be used as the
-        /// corresponding attachment in a render pass instance.
+        ///     An array of ImageView handles, each of which will be used as the
+        ///     corresponding attachment in a render pass instance.
         /// </summary>
-        public SharpVk.ImageView[] Attachments
+        public ImageView[] Attachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// width, height and layers define the dimensions of the framebuffer.
-        /// If the render pass uses multiview, then layers must be one and each
-        /// attachment requires a number of layers that is greater than the
-        /// maximum bit index set in the view mask in the subpasses in which it
-        /// is used.
+        ///     width, height and layers define the dimensions of the framebuffer.
+        ///     If the render pass uses multiview, then layers must be one and each
+        ///     attachment requires a number of layers that is greater than the
+        ///     maximum bit index set in the view mask in the subpasses in which it
+        ///     is used.
         /// </summary>
         public uint Width
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint Height
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint Layers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.FramebufferCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.FramebufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.FramebufferCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->RenderPass = RenderPass?.Handle ?? default(Interop.RenderPass);
+            pointer->AttachmentCount = HeapUtil.GetLength(Attachments);
+            if (Attachments != null)
             {
-                pointer->Flags = default(SharpVk.FramebufferCreateFlags);
-            }
-            pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
-            pointer->AttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.Attachments));
-            if (this.Attachments != null)
-            {
-                var fieldPointer = (SharpVk.Interop.ImageView*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageView>(this.Attachments.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Attachments.Length); index++)
-                {
-                    fieldPointer[index] = this.Attachments[index]?.handle ?? default(SharpVk.Interop.ImageView);
-                }
+                var fieldPointer = (Interop.ImageView*)HeapUtil.AllocateAndClear<Interop.ImageView>(Attachments.Length).ToPointer();
+                for (var index = 0; index < (uint)Attachments.Length; index++) fieldPointer[index] = Attachments[index]?.Handle ?? default(Interop.ImageView);
                 pointer->Attachments = fieldPointer;
             }
             else
             {
                 pointer->Attachments = null;
             }
-            pointer->Width = this.Width;
-            pointer->Height = this.Height;
-            pointer->Layers = this.Layers;
+            pointer->Width = Width;
+            pointer->Height = Height;
+            pointer->Layers = Layers;
         }
     }
 }

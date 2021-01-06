@@ -25,23 +25,20 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Possible power states for a Display.
+    ///     Possible power states for a Display.
     /// </summary>
     public enum DisplayPowerState
     {
         /// <summary>
-        /// 
         /// </summary>
-        Off = 0, 
-        
+        Off = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Suspend = 1, 
-        
+        Suspend = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        On = 2, 
+        On = 2
     }
 }

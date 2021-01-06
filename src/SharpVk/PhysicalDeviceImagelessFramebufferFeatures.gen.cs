@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceImagelessFramebufferFeatures
+    public struct PhysicalDeviceImagelessFramebufferFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ImagelessFramebuffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceImagelessFramebufferFeaturesVersion;
             pointer->Next = null;
-            pointer->ImagelessFramebuffer = this.ImagelessFramebuffer;
+            pointer->ImagelessFramebuffer = ImagelessFramebuffer;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceImagelessFramebufferFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
+        internal static unsafe PhysicalDeviceImagelessFramebufferFeatures MarshalFrom(Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
         {
-            PhysicalDeviceImagelessFramebufferFeatures result = default(PhysicalDeviceImagelessFramebufferFeatures);
+            var result = default(PhysicalDeviceImagelessFramebufferFeatures);
             result.ImagelessFramebuffer = pointer->ImagelessFramebuffer;
             return result;
         }

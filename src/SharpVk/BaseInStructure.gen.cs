@@ -22,45 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BaseInStructure
+    public struct BaseInStructure
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType
+        public StructureType SType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BaseInStructure* pointer)
+        internal unsafe void MarshalTo(Interop.BaseInStructure* pointer)
         {
-            pointer->SType = this.SType;
+            pointer->SType = SType;
             pointer->Next = null;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe BaseInStructure MarshalFrom(SharpVk.Interop.BaseInStructure* pointer)
+        internal static unsafe BaseInStructure MarshalFrom(Interop.BaseInStructure* pointer)
         {
-            BaseInStructure result = default(BaseInStructure);
+            var result = default(BaseInStructure);
             result.SType = pointer->SType;
             return result;
         }

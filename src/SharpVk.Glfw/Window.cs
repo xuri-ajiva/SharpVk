@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SharpVk.Glfw
 {
     /// <summary>
-    /// Represents an instance of a GLFW3 Window.
+    ///     Represents an instance of a GLFW3 Window.
     /// </summary>
     public class Window
         : IDisposable
@@ -14,21 +14,21 @@ namespace SharpVk.Glfw
         private bool isDisposed;
 
         /// <summary>
-        /// Creates a window and its associated OpenGL or OpenGL ES context.
+        ///     Creates a window and its associated OpenGL or OpenGL ES context.
         /// </summary>
         /// <param name="width">
-        /// The desired width, in screen coordinates, of the window. This must
-        /// be greater than zero.
+        ///     The desired width, in screen coordinates, of the window. This must
+        ///     be greater than zero.
         /// </param>
         /// <param name="height">
-        /// The desired height, in screen coordinates, of the window. This must
-        /// be greater than zero.
+        ///     The desired height, in screen coordinates, of the window. This must
+        ///     be greater than zero.
         /// </param>
         /// <param name="title">
-        /// The initial window title.
+        ///     The initial window title.
         /// </param>
         /// <param name="windowHints">
-        /// A dictionary of hints to set before creating the window.
+        ///     A dictionary of hints to set before creating the window.
         /// </param>
         public Window(int width, int height, string title, Dictionary<WindowAttribute, int> windowHints = null)
             : this(width, height, title, MonitorHandle.Zero, windowHints)
@@ -42,14 +42,10 @@ namespace SharpVk.Glfw
                 ErrorUtility.Bind();
 
                 if (windowHints != null)
-                {
                     foreach (var hintPair in windowHints)
-                    {
                         Glfw3.WindowHint(hintPair.Key, hintPair.Value);
-                    }
-                }
 
-                this.handle = Glfw3.CreateWindow(width, height, title, monitor, WindowHandle.Zero);
+                handle = Glfw3.CreateWindow(width, height, title, monitor, WindowHandle.Zero);
 
                 ErrorUtility.ThrowOnError();
             }
@@ -59,13 +55,36 @@ namespace SharpVk.Glfw
             }
         }
 
+        /// <summary>
+        ///     Returns the value of the close flag for this window.
+        /// </summary>
+        public bool ShouldClose
+        {
+            get
+            {
+                ThrowOnDisposed();
+
+                return Glfw3.WindowShouldClose(handle);
+            }
+        }
+
+        public WindowHandle Handle => handle;
+
+        /// <summary>
+        ///     Releases all unmanaged resources associated with this window.
+        /// </summary>
+        public void Dispose()
+        {
+            Close();
+        }
+
         public InputAction GetKeyState(Key key)
         {
             try
             {
                 ErrorUtility.Bind();
 
-                InputAction result = Glfw3.GetKey(this.handle, key);
+                var result = Glfw3.GetKey(handle, key);
 
                 ErrorUtility.ThrowOnError();
 
@@ -83,7 +102,7 @@ namespace SharpVk.Glfw
             {
                 ErrorUtility.Bind();
 
-                InputAction result = Glfw3.GetMouseButton(this.handle, mouseButton);
+                var result = Glfw3.GetMouseButton(handle, mouseButton);
 
                 ErrorUtility.ThrowOnError();
 
@@ -94,42 +113,25 @@ namespace SharpVk.Glfw
                 ErrorUtility.Unbind();
             }
         }
-        
-        /// <summary>
-        /// Returns the value of the close flag for this window.
-        /// </summary>
-        public bool ShouldClose
-        {
-            get
-            {
-                this.ThrowOnDisposed();
-
-                return Glfw3.WindowShouldClose(this.handle);
-            }
-        }
 
         private void ThrowOnDisposed()
         {
-            if (this.isDisposed)
-            {
-                throw new ObjectDisposedException(this.ToString());
-            }
+            if (isDisposed) throw new ObjectDisposedException(ToString());
         }
 
         /// <summary>
-        /// Closes the window.
+        ///     Closes the window.
         /// </summary>
         public void Close()
         {
-            if (!this.isDisposed)
-            {
+            if (!isDisposed)
                 try
                 {
                     ErrorUtility.Bind();
 
-                    Glfw3.DestroyWindow(this.handle);
+                    Glfw3.DestroyWindow(handle);
 
-                    this.isDisposed = true;
+                    isDisposed = true;
 
                     ErrorUtility.ThrowOnError();
                 }
@@ -137,17 +139,6 @@ namespace SharpVk.Glfw
                 {
                     ErrorUtility.Unbind();
                 }
-            }
         }
-
-        /// <summary>
-        /// Releases all unmanaged resources associated with this window.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Close();
-        }
-
-        public WindowHandle Handle => this.handle;
     }
 }

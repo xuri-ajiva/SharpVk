@@ -22,34 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineCreationFeedback
+    public struct PipelineCreationFeedback
     {
         /// <summary>
-        /// 
         /// </summary>
-        public PipelineCreationFeedback(SharpVk.Multivendor.PipelineCreationFeedbackFlags flags, ulong duration)
+        public PipelineCreationFeedback(PipelineCreationFeedbackFlags flags, ulong duration)
         {
-            this.Flags = flags;
-            this.Duration = duration;
+            Flags = flags;
+            Duration = duration;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.PipelineCreationFeedbackFlags Flags; 
-        
+        public PipelineCreationFeedbackFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong Duration; 
+        public ulong Duration;
     }
 }

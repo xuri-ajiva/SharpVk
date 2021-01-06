@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferDrawIndexedIndirectDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Buffer buffer, ulong offset, uint drawCount, uint stride);
+    public delegate void VkCommandBufferDrawIndexedIndirectDelegate(CommandBuffer commandBuffer, Buffer buffer, ulong offset, uint drawCount, uint stride);
 }

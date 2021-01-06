@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferWriteBufferMarkerDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineStageFlags pipelineStage, SharpVk.Interop.Buffer destinationBuffer, ulong destinationOffset, uint marker);
+    public delegate void VkCommandBufferWriteBufferMarkerDelegate(CommandBuffer commandBuffer, PipelineStageFlags pipelineStage, Buffer destinationBuffer, ulong destinationOffset, uint marker);
 }

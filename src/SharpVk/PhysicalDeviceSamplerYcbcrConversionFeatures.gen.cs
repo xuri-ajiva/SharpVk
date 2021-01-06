@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSamplerYcbcrConversionFeatures
+    public struct PhysicalDeviceSamplerYcbcrConversionFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool SamplerYcbcrConversion
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSamplerYcbcrConversionFeaturesVersion;
             pointer->Next = null;
-            pointer->SamplerYcbcrConversion = this.SamplerYcbcrConversion;
+            pointer->SamplerYcbcrConversion = SamplerYcbcrConversion;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSamplerYcbcrConversionFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
+        internal static unsafe PhysicalDeviceSamplerYcbcrConversionFeatures MarshalFrom(Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
         {
-            PhysicalDeviceSamplerYcbcrConversionFeatures result = default(PhysicalDeviceSamplerYcbcrConversionFeatures);
+            var result = default(PhysicalDeviceSamplerYcbcrConversionFeatures);
             result.SamplerYcbcrConversion = pointer->SamplerYcbcrConversion;
             return result;
         }

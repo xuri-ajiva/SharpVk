@@ -22,142 +22,126 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceMeshShaderProperties
+    public struct PhysicalDeviceMeshShaderProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDrawMeshTasksCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTaskWorkGroupInvocations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public (uint, uint, uint) MaxTaskWorkGroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTaskTotalMemorySize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxTaskOutputCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxMeshWorkGroupInvocations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public (uint, uint, uint) MaxMeshWorkGroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxMeshTotalMemorySize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxMeshOutputVertices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxMeshOutputPrimitives
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxMeshMultiviewViewCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MeshOutputPerVertexGranularity
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MeshOutputPerPrimitiveGranularity
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMeshShaderProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderProperties* pointer)
+        internal static unsafe PhysicalDeviceMeshShaderProperties MarshalFrom(Interop.NVidia.PhysicalDeviceMeshShaderProperties* pointer)
         {
-            PhysicalDeviceMeshShaderProperties result = default(PhysicalDeviceMeshShaderProperties);
+            var result = default(PhysicalDeviceMeshShaderProperties);
             result.MaxDrawMeshTasksCount = pointer->MaxDrawMeshTasksCount;
             result.MaxTaskWorkGroupInvocations = pointer->MaxTaskWorkGroupInvocations;
             result.MaxTaskWorkGroupSize = (pointer->MaxTaskWorkGroupSize[0], pointer->MaxTaskWorkGroupSize[1], pointer->MaxTaskWorkGroupSize[2]);

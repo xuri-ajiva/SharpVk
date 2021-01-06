@@ -22,60 +22,49 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineViewportSwizzleStateCreateInfo
+    public struct PipelineViewportSwizzleStateCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.PipelineViewportSwizzleStateCreateFlags? Flags
+        public PipelineViewportSwizzleStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.ViewportSwizzle[] ViewportSwizzles
+        public ViewportSwizzle[] ViewportSwizzles
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportSwizzleStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PipelineViewportSwizzleStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportSwizzleStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->ViewportCount = HeapUtil.GetLength(ViewportSwizzles);
+            if (ViewportSwizzles != null)
             {
-                pointer->Flags = default(SharpVk.NVidia.PipelineViewportSwizzleStateCreateFlags);
-            }
-            pointer->ViewportCount = (uint)(Interop.HeapUtil.GetLength(this.ViewportSwizzles));
-            if (this.ViewportSwizzles != null)
-            {
-                var fieldPointer = (SharpVk.NVidia.ViewportSwizzle*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.ViewportSwizzle>(this.ViewportSwizzles.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ViewportSwizzles.Length); index++)
-                {
-                    fieldPointer[index] = this.ViewportSwizzles[index];
-                }
+                var fieldPointer = (ViewportSwizzle*)HeapUtil.AllocateAndClear<ViewportSwizzle>(ViewportSwizzles.Length).ToPointer();
+                for (var index = 0; index < (uint)ViewportSwizzles.Length; index++) fieldPointer[index] = ViewportSwizzles[index];
                 pointer->ViewportSwizzles = fieldPointer;
             }
             else

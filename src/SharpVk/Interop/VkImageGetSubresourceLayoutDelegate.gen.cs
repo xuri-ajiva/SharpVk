@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkImageGetSubresourceLayoutDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Image image, SharpVk.ImageSubresource* subresource, SharpVk.SubresourceLayout* layout);
+    public unsafe delegate void VkImageGetSubresourceLayoutDelegate(Device device, Image image, ImageSubresource* subresource, SubresourceLayout* layout);
 }

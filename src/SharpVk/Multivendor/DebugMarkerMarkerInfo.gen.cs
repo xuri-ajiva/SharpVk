@@ -22,52 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Specify parameters of a command buffer marker region.
+    ///     Specify parameters of a command buffer marker region.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DebugMarkerMarkerInfo
+    public struct DebugMarkerMarkerInfo
     {
         /// <summary>
-        /// A string that contains the name of the marker.
+        ///     A string that contains the name of the marker.
         /// </summary>
         public string MarkerName
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An optional RGBA color value that can be associated with the
-        /// marker. A particular implementation may choose to ignore this color
-        /// value. The values contain RGBA values in order, in the range 0.0 to
-        /// 1.0. If all elements in color are set to 0.0 then it is ignored.
+        ///     An optional RGBA color value that can be associated with the
+        ///     marker. A particular implementation may choose to ignore this color
+        ///     value. The values contain RGBA values in order, in the range 0.0 to
+        ///     1.0. If all elements in color are set to 0.0 then it is ignored.
         /// </summary>
         public (float, float, float, float) Color
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DebugMarkerMarkerInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerMarkerInfo;
             pointer->Next = null;
-            pointer->MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
-            pointer->Color[0] = this.Color.Item1;
-            pointer->Color[1] = this.Color.Item2;
-            pointer->Color[2] = this.Color.Item3;
-            pointer->Color[3] = this.Color.Item4;
+            pointer->MarkerName = HeapUtil.MarshalTo(MarkerName);
+            pointer->Color[0] = Color.Item1;
+            pointer->Color[1] = Color.Item2;
+            pointer->Color[2] = Color.Item3;
+            pointer->Color[3] = Color.Item4;
         }
     }
 }

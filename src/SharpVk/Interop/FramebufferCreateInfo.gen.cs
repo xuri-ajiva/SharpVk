@@ -22,66 +22,62 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct FramebufferCreateInfo
+    public unsafe struct FramebufferCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.FramebufferCreateFlags Flags; 
-        
+        public FramebufferCreateFlags Flags;
+
         /// <summary>
-        /// A render pass that defines what render passes the framebuffer will
-        /// be compatible with.
+        ///     A render pass that defines what render passes the framebuffer will
+        ///     be compatible with.
         /// </summary>
-        public SharpVk.Interop.RenderPass RenderPass; 
-        
+        public RenderPass RenderPass;
+
         /// <summary>
-        /// The number of attachments.
+        ///     The number of attachments.
         /// </summary>
-        public uint AttachmentCount; 
-        
+        public uint AttachmentCount;
+
         /// <summary>
-        /// An array of ImageView handles, each of which will be used as the
-        /// corresponding attachment in a render pass instance.
+        ///     An array of ImageView handles, each of which will be used as the
+        ///     corresponding attachment in a render pass instance.
         /// </summary>
-        public SharpVk.Interop.ImageView* Attachments; 
-        
+        public ImageView* Attachments;
+
         /// <summary>
-        /// width, height and layers define the dimensions of the framebuffer.
-        /// If the render pass uses multiview, then layers must be one and each
-        /// attachment requires a number of layers that is greater than the
-        /// maximum bit index set in the view mask in the subpasses in which it
-        /// is used.
+        ///     width, height and layers define the dimensions of the framebuffer.
+        ///     If the render pass uses multiview, then layers must be one and each
+        ///     attachment requires a number of layers that is greater than the
+        ///     maximum bit index set in the view mask in the subpasses in which it
+        ///     is used.
         /// </summary>
-        public uint Width; 
-        
+        public uint Width;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Height; 
-        
+        public uint Height;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Layers; 
+        public uint Layers;
     }
 }

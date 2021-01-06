@@ -25,43 +25,35 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum ValidationFeatureDisable
     {
         /// <summary>
-        /// 
         /// </summary>
-        All = 0, 
-        
+        All = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Shaders = 1, 
-        
+        Shaders = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        ThreadSafety = 2, 
-        
+        ThreadSafety = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        ApiParameters = 3, 
-        
+        ApiParameters = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        ObjectLifetimes = 4, 
-        
+        ObjectLifetimes = 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        CoreChecks = 5, 
-        
+        CoreChecks = 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        UniqueHandles = 6, 
+        UniqueHandles = 6
     }
 }

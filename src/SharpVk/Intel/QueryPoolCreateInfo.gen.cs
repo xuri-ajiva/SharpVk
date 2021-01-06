@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct QueryPoolCreateInfo
+    public struct QueryPoolCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Intel.QueryPoolSamplingMode PerformanceCountersSampling
+        public QueryPoolSamplingMode PerformanceCountersSampling
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.QueryPoolCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.QueryPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.QueryPoolCreateInfoIntel;
             pointer->Next = null;
-            pointer->PerformanceCountersSampling = this.PerformanceCountersSampling;
+            pointer->PerformanceCountersSampling = PerformanceCountersSampling;
         }
     }
 }

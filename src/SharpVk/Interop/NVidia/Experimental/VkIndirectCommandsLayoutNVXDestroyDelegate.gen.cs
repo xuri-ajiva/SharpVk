@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkIndirectCommandsLayoutNVXDestroyDelegate(SharpVk.Interop.Device device, SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout indirectCommandsLayout, SharpVk.Interop.AllocationCallbacks* allocator);
+    public unsafe delegate void VkIndirectCommandsLayoutNvxDestroyDelegate(Device device, IndirectCommandsLayout indirectCommandsLayout, AllocationCallbacks* allocator);
 }

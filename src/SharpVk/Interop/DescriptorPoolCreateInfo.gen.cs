@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DescriptorPoolCreateInfo
+    public unsafe struct DescriptorPoolCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Specifies certain supported operations on the pool. Bits which can
-        /// be set include: + --
+        ///     Specifies certain supported operations on the pool. Bits which can
+        ///     be set include: + --
         /// </summary>
-        public SharpVk.DescriptorPoolCreateFlags Flags; 
-        
+        public DescriptorPoolCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxSets; 
-        
+        public uint MaxSets;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint PoolSizeCount; 
-        
+        public uint PoolSizeCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorPoolSize* PoolSizes; 
+        public DescriptorPoolSize* PoolSizes;
     }
 }

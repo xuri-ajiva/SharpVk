@@ -22,48 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Structure describing the shader demote to helper invocations features
-    /// that can be supported by an implementation.
+    ///     Structure describing the shader demote to helper invocations features
+    ///     that can be supported by an implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures
+    public struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures
     {
         /// <summary>
-        /// Sndicates whether the implementation supports the SPIR-V
-        /// DemoteToHelperInvocationEXT capability.
+        ///     Sndicates whether the implementation supports the SPIR-V
+        ///     DemoteToHelperInvocationEXT capability.
         /// </summary>
         public bool ShaderDemoteToHelperInvocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderDemoteToHelperInvocationFeatures;
             pointer->Next = null;
-            pointer->ShaderDemoteToHelperInvocation = this.ShaderDemoteToHelperInvocation;
+            pointer->ShaderDemoteToHelperInvocation = ShaderDemoteToHelperInvocation;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderDemoteToHelperInvocationFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
+        internal static unsafe PhysicalDeviceShaderDemoteToHelperInvocationFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
         {
-            PhysicalDeviceShaderDemoteToHelperInvocationFeatures result = default(PhysicalDeviceShaderDemoteToHelperInvocationFeatures);
+            var result = default(PhysicalDeviceShaderDemoteToHelperInvocationFeatures);
             result.ShaderDemoteToHelperInvocation = pointer->ShaderDemoteToHelperInvocation;
             return result;
         }

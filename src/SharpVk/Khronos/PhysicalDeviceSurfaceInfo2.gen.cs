@@ -22,47 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSurfaceInfo2
+    public struct PhysicalDeviceSurfaceInfo2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.Surface Surface
+        public Surface Surface
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.PhysicalDeviceSurfaceInfo2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSurfaceInfo2;
             pointer->Next = null;
-            pointer->Surface = this.Surface?.handle ?? default(SharpVk.Interop.Khronos.Surface);
+            pointer->Surface = Surface?.Handle ?? default(Interop.Khronos.Surface);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSurfaceInfo2 MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2* pointer)
+        internal static unsafe PhysicalDeviceSurfaceInfo2 MarshalFrom(Interop.Khronos.PhysicalDeviceSurfaceInfo2* pointer)
         {
-            PhysicalDeviceSurfaceInfo2 result = default(PhysicalDeviceSurfaceInfo2);
-            result.Surface = new SharpVk.Khronos.Surface(default(SharpVk.Instance), pointer->Surface);
+            var result = default(PhysicalDeviceSurfaceInfo2);
+            result.Surface = new(default, pointer->Surface);
             return result;
         }
     }

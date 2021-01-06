@@ -22,40 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DeviceGroupPresentInfo
+    public unsafe struct DeviceGroupPresentInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SwapchainCount; 
-        
+        public uint SwapchainCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* DeviceMasks; 
-        
+        public uint* DeviceMasks;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.DeviceGroupPresentModeFlags Mode; 
+        public DeviceGroupPresentModeFlags Mode;
     }
 }

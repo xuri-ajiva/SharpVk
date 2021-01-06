@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceExternalFenceInfo
+    public struct PhysicalDeviceExternalFenceInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalFenceHandleTypeFlags HandleType
+        public ExternalFenceHandleTypeFlags HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalFenceInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceExternalFenceInfo* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceExternalFenceInfoVersion;
             pointer->Next = null;
-            pointer->HandleType = this.HandleType;
+            pointer->HandleType = HandleType;
         }
     }
 }

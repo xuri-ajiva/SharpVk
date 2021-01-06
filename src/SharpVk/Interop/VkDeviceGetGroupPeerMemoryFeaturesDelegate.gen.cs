@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDeviceGetGroupPeerMemoryFeaturesDelegate(SharpVk.Interop.Device device, uint heapIndex, uint localDeviceIndex, uint remoteDeviceIndex, SharpVk.PeerMemoryFeatureFlags* peerMemoryFeatures);
+    public unsafe delegate void VkDeviceGetGroupPeerMemoryFeaturesDelegate(Device device, uint heapIndex, uint localDeviceIndex, uint remoteDeviceIndex, PeerMemoryFeatureFlags* peerMemoryFeatures);
 }

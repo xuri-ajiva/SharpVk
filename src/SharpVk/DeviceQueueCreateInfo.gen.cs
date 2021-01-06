@@ -22,75 +22,67 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created device queue.
+    ///     Structure specifying parameters of a newly created device queue.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceQueueCreateInfo
+    public struct DeviceQueueCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.DeviceQueueCreateFlags? Flags
+        public DeviceQueueCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An unsigned integer indicating the index of the queue family to
-        /// create on this device. This index corresponds to the index of an
-        /// element of the pQueueFamilyProperties array that was returned by
-        /// fname:vkGetPhysicalDeviceQueueFamilyProperties.
+        ///     An unsigned integer indicating the index of the queue family to
+        ///     create on this device. This index corresponds to the index of an
+        ///     element of the pQueueFamilyProperties array that was returned by
+        ///     fname:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
         public uint QueueFamilyIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of queueCount normalized floating point values, specifying
-        /// priorities of work that will be submitted to each created queue.
-        /// See Queue Priority for more information.
+        ///     An array of queueCount normalized floating point values, specifying
+        ///     priorities of work that will be submitted to each created queue.
+        ///     See Queue Priority for more information.
         /// </summary>
         public float[] QueuePriorities
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DeviceQueueCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DeviceQueueCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceQueueCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->QueueFamilyIndex = QueueFamilyIndex;
+            pointer->QueueCount = HeapUtil.GetLength(QueuePriorities);
+            if (QueuePriorities != null)
             {
-                pointer->Flags = default(SharpVk.DeviceQueueCreateFlags);
-            }
-            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
-            pointer->QueueCount = (uint)(Interop.HeapUtil.GetLength(this.QueuePriorities));
-            if (this.QueuePriorities != null)
-            {
-                var fieldPointer = (float*)(Interop.HeapUtil.AllocateAndClear<float>(this.QueuePriorities.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.QueuePriorities.Length); index++)
-                {
-                    fieldPointer[index] = this.QueuePriorities[index];
-                }
+                var fieldPointer = (float*)HeapUtil.AllocateAndClear<float>(QueuePriorities.Length).ToPointer();
+                for (var index = 0; index < (uint)QueuePriorities.Length; index++) fieldPointer[index] = QueuePriorities[index];
                 pointer->QueuePriorities = fieldPointer;
             }
             else

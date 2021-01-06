@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceBindImageMemory2Delegate(SharpVk.Interop.Device device, uint bindInfoCount, SharpVk.Interop.BindImageMemoryInfo* bindInfos);
+    public unsafe delegate Result VkDeviceBindImageMemory2Delegate(Device device, uint bindInfoCount, BindImageMemoryInfo* bindInfos);
 }

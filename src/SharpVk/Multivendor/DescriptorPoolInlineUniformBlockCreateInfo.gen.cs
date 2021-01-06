@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorPoolInlineUniformBlockCreateInfo
+    public struct DescriptorPoolInlineUniformBlockCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxInlineUniformBlockBindings
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DescriptorPoolInlineUniformBlockCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DescriptorPoolInlineUniformBlockCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorPoolInlineUniformBlockCreateInfo;
             pointer->Next = null;
-            pointer->MaxInlineUniformBlockBindings = this.MaxInlineUniformBlockBindings;
+            pointer->MaxInlineUniformBlockBindings = MaxInlineUniformBlockBindings;
         }
     }
 }

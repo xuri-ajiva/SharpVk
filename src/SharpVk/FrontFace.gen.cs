@@ -25,18 +25,16 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Interpret polygon front-facing orientation.
+    ///     Interpret polygon front-facing orientation.
     /// </summary>
     public enum FrontFace
     {
         /// <summary>
-        /// 
         /// </summary>
-        CounterClockwise = 0, 
-        
+        CounterClockwise = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Clockwise = 1, 
+        Clockwise = 1
     }
 }

@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AccelerationStructureMemoryRequirementsInfo
+    public struct AccelerationStructureMemoryRequirementsInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.AccelerationStructureMemoryRequirementsType Type
+        public AccelerationStructureMemoryRequirementsType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.AccelerationStructure AccelerationStructure
+        public AccelerationStructure AccelerationStructure
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.AccelerationStructureMemoryRequirementsInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.AccelerationStructureMemoryRequirementsInfo* pointer)
         {
             pointer->SType = StructureType.AccelerationStructureMemoryRequirementsInfo;
             pointer->Next = null;
-            pointer->Type = this.Type;
-            pointer->AccelerationStructure = this.AccelerationStructure?.handle ?? default(SharpVk.Interop.NVidia.AccelerationStructure);
+            pointer->Type = Type;
+            pointer->AccelerationStructure = AccelerationStructure?.Handle ?? default(Interop.NVidia.AccelerationStructure);
         }
     }
 }

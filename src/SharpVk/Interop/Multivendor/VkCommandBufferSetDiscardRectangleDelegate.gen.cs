@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetDiscardRectangleDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint firstDiscardRectangle, uint discardRectangleCount, SharpVk.Rect2D* discardRectangles);
+    public unsafe delegate void VkCommandBufferSetDiscardRectangleDelegate(CommandBuffer commandBuffer, uint firstDiscardRectangle, uint discardRectangleCount, Rect2D* discardRectangles);
 }

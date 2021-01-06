@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceBlendOperationAdvancedFeatures
+    public struct PhysicalDeviceBlendOperationAdvancedFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool AdvancedBlendCoherentOperations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceBlendOperationAdvancedFeatures;
             pointer->Next = null;
-            pointer->AdvancedBlendCoherentOperations = this.AdvancedBlendCoherentOperations;
+            pointer->AdvancedBlendCoherentOperations = AdvancedBlendCoherentOperations;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceBlendOperationAdvancedFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* pointer)
+        internal static unsafe PhysicalDeviceBlendOperationAdvancedFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* pointer)
         {
-            PhysicalDeviceBlendOperationAdvancedFeatures result = default(PhysicalDeviceBlendOperationAdvancedFeatures);
+            var result = default(PhysicalDeviceBlendOperationAdvancedFeatures);
             result.AdvancedBlendCoherentOperations = pointer->AdvancedBlendCoherentOperations;
             return result;
         }

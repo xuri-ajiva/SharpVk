@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetLineStippleDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint lineStippleFactor, ushort lineStipplePattern);
+    public delegate void VkCommandBufferSetLineStippleDelegate(CommandBuffer commandBuffer, uint lineStippleFactor, ushort lineStipplePattern);
 }

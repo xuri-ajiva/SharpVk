@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure describing a supported swapchain format-color space pair.
+    ///     Structure describing a supported swapchain format-color space pair.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SurfaceFormat
+    public struct SurfaceFormat
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SurfaceFormat(SharpVk.Format format, SharpVk.Khronos.ColorSpace colorSpace)
+        public SurfaceFormat(Format format, ColorSpace colorSpace)
         {
-            this.Format = format;
-            this.ColorSpace = colorSpace;
+            Format = format;
+            ColorSpace = colorSpace;
         }
-        
+
         /// <summary>
-        /// A Format that is compatible with the specified surface.
+        ///     A Format that is compatible with the specified surface.
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// A presentation ColorSpaceKHR that is compatible with the surface.
+        ///     A presentation ColorSpaceKHR that is compatible with the surface.
         /// </summary>
-        public SharpVk.Khronos.ColorSpace ColorSpace; 
+        public ColorSpace ColorSpace;
     }
 }

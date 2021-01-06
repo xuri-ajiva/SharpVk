@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct BindImageMemoryDeviceGroupInfo
+    public unsafe struct BindImageMemoryDeviceGroupInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DeviceIndexCount; 
-        
+        public uint DeviceIndexCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* DeviceIndices; 
-        
+        public uint* DeviceIndices;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SplitInstanceBindRegionCount; 
-        
+        public uint SplitInstanceBindRegionCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Rect2D* SplitInstanceBindRegions; 
+        public Rect2D* SplitInstanceBindRegions;
     }
 }

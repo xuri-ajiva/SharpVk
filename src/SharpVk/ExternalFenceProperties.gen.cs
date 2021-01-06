@@ -22,52 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalFenceProperties
+    public struct ExternalFenceProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalFenceHandleTypeFlags ExportFromImportedHandleTypes
+        public ExternalFenceHandleTypeFlags ExportFromImportedHandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalFenceHandleTypeFlags CompatibleHandleTypes
+        public ExternalFenceHandleTypeFlags CompatibleHandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalFenceFeatureFlags? ExternalFenceFeatures
+        public ExternalFenceFeatureFlags? ExternalFenceFeatures
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ExternalFenceProperties MarshalFrom(SharpVk.Interop.ExternalFenceProperties* pointer)
+        internal static unsafe ExternalFenceProperties MarshalFrom(Interop.ExternalFenceProperties* pointer)
         {
-            ExternalFenceProperties result = default(ExternalFenceProperties);
+            var result = default(ExternalFenceProperties);
             result.ExportFromImportedHandleTypes = pointer->ExportFromImportedHandleTypes;
             result.CompatibleHandleTypes = pointer->CompatibleHandleTypes;
             result.ExternalFenceFeatures = pointer->ExternalFenceFeatures;

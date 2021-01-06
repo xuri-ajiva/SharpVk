@@ -22,12 +22,12 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkSwapchainKHRGetCounterDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Swapchain swapchain, SharpVk.Multivendor.SurfaceCounterFlags counter, ulong* counterValue);
+    public unsafe delegate Result VkSwapchainKhrGetCounterDelegate(Device device, Swapchain swapchain, SurfaceCounterFlags counter, ulong* counterValue);
 }

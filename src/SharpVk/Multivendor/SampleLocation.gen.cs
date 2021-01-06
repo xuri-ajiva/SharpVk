@@ -22,39 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SampleLocation
+    public struct SampleLocation
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static SampleLocation Zero => new SampleLocation();
-        
+        public static SampleLocation Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public SampleLocation(float x, float y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public float X; 
-        
+        public float X;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float Y; 
+        public float Y;
     }
 }

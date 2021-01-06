@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceAllocateMemoryDelegate(SharpVk.Interop.Device device, SharpVk.Interop.MemoryAllocateInfo* allocateInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.DeviceMemory* memory);
+    public unsafe delegate Result VkDeviceAllocateMemoryDelegate(Device device, MemoryAllocateInfo* allocateInfo, AllocationCallbacks* allocator, DeviceMemory* memory);
 }

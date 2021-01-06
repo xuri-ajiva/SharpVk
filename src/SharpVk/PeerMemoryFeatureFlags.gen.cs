@@ -22,37 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum PeerMemoryFeatureFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        CopySource = 1 << 0, 
-        
+        CopySource = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        CopyDestination = 1 << 1, 
-        
+        CopyDestination = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        GenericSource = 1 << 2, 
-        
+        GenericSource = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        GenericDestination = 1 << 3, 
+        GenericDestination = 1 << 3
     }
 }

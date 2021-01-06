@@ -22,61 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// The PCI bus information of a physical device
+    ///     The PCI bus information of a physical device
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevicePCIBusInfoProperties
+    public struct PhysicalDevicePciBusInfoProperties
     {
         /// <summary>
-        /// The PCI bus domain
+        ///     The PCI bus domain
         /// </summary>
         public uint PciDomain
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The PCI bus identifier
+        ///     The PCI bus identifier
         /// </summary>
         public uint PciBus
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The PCI device identifier
+        ///     The PCI device identifier
         /// </summary>
         public uint PciDevice
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The PCI device function identifier
+        ///     The PCI device function identifier
         /// </summary>
         public uint PciFunction
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePCIBusInfoProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDevicePCIBusInfoProperties* pointer)
+        internal static unsafe PhysicalDevicePciBusInfoProperties MarshalFrom(Interop.Multivendor.PhysicalDevicePciBusInfoProperties* pointer)
         {
-            PhysicalDevicePCIBusInfoProperties result = default(PhysicalDevicePCIBusInfoProperties);
+            var result = default(PhysicalDevicePciBusInfoProperties);
             result.PciDomain = pointer->PciDomain;
             result.PciBus = pointer->PciBus;
             result.PciDevice = pointer->PciDevice;

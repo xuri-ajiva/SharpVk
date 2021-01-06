@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageFormatListCreateInfo
+    public struct ImageFormatListCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format[] ViewFormats
+        public Format[] ViewFormats
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ImageFormatListCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ImageFormatListCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageFormatListCreateInfoVersion;
             pointer->Next = null;
-            pointer->ViewFormatCount = (uint)(Interop.HeapUtil.GetLength(this.ViewFormats));
-            if (this.ViewFormats != null)
+            pointer->ViewFormatCount = HeapUtil.GetLength(ViewFormats);
+            if (ViewFormats != null)
             {
-                var fieldPointer = (SharpVk.Format*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Format>(this.ViewFormats.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ViewFormats.Length); index++)
-                {
-                    fieldPointer[index] = this.ViewFormats[index];
-                }
+                var fieldPointer = (Format*)HeapUtil.AllocateAndClear<Format>(ViewFormats.Length).ToPointer();
+                for (var index = 0; index < (uint)ViewFormats.Length; index++) fieldPointer[index] = ViewFormats[index];
                 pointer->ViewFormats = fieldPointer;
             }
             else

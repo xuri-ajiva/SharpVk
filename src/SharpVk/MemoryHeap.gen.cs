@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a memory heap.
+    ///     Structure specifying a memory heap.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryHeap
+    public struct MemoryHeap
     {
         /// <summary>
-        /// 
         /// </summary>
-        public MemoryHeap(ulong size, SharpVk.MemoryHeapFlags flags)
+        public MemoryHeap(ulong size, MemoryHeapFlags flags)
         {
-            this.Size = size;
-            this.Flags = flags;
+            Size = size;
+            Flags = flags;
         }
-        
+
         /// <summary>
-        /// The total memory size in bytes in the heap.
+        ///     The total memory size in bytes in the heap.
         /// </summary>
-        public ulong Size; 
-        
+        public ulong Size;
+
         /// <summary>
-        /// A bitmask of attribute flags for the heap.
+        ///     A bitmask of attribute flags for the heap.
         /// </summary>
-        public SharpVk.MemoryHeapFlags Flags; 
+        public MemoryHeapFlags Flags;
     }
 }

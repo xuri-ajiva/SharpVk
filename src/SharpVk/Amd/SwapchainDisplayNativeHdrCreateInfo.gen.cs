@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SwapchainDisplayNativeHdrCreateInfo
+    public struct SwapchainDisplayNativeHdrCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool LocalDimmingEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Amd.SwapchainDisplayNativeHdrCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainDisplayNativeHdrCreateInfo;
             pointer->Next = null;
-            pointer->LocalDimmingEnable = this.LocalDimmingEnable;
+            pointer->LocalDimmingEnable = LocalDimmingEnable;
         }
     }
 }

@@ -22,40 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ConditionalRenderingBeginInfo
+    public unsafe struct ConditionalRenderingBeginInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Buffer Buffer; 
-        
+        public Buffer Buffer;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong Offset; 
-        
+        public ulong Offset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ConditionalRenderingFlags Flags; 
+        public ConditionalRenderingFlags Flags;
     }
 }

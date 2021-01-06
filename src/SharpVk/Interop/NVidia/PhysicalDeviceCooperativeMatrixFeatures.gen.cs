@@ -22,38 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceCooperativeMatrixFeatures
+    public unsafe struct PhysicalDeviceCooperativeMatrixFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Indicates that the implementation supports the CooperativeMatrixNV
-        /// SPIR-V capability.a
+        ///     Indicates that the implementation supports the CooperativeMatrixNV
+        ///     SPIR-V capability.a
         /// </summary>
-        public Bool32 CooperativeMatrix; 
-        
+        public Bool32 CooperativeMatrix;
+
         /// <summary>
-        /// Indicates that the implementation supports robust buffer access for
-        /// SPIR-V OpCooperativeMatrixLoadNV and OpCooperativeMatrixStoreNV
-        /// instructions.
+        ///     Indicates that the implementation supports robust buffer access for
+        ///     SPIR-V OpCooperativeMatrixLoadNV and OpCooperativeMatrixStoreNV
+        ///     instructions.
         /// </summary>
-        public Bool32 CooperativeMatrixRobustBufferAccess; 
+        public Bool32 CooperativeMatrixRobustBufferAccess;
     }
 }

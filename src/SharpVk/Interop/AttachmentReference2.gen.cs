@@ -22,40 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct AttachmentReference2
+    public unsafe struct AttachmentReference2
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Attachment; 
-        
+        public uint Attachment;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout Layout; 
-        
+        public ImageLayout Layout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageAspectFlags AspectMask; 
+        public ImageAspectFlags AspectMask;
     }
 }

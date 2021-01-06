@@ -22,51 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineShaderStageCreateInfo
+    public unsafe struct PipelineShaderStageCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineShaderStageCreateFlags Flags; 
-        
+        public PipelineShaderStageCreateFlags Flags;
+
         /// <summary>
-        /// stage names a single pipeline stage. Bits which can be set include:
-        /// + --
+        ///     stage names a single pipeline stage. Bits which can be set include:
+        ///     + --
         /// </summary>
-        public SharpVk.ShaderStageFlags Stage; 
-        
+        public ShaderStageFlags Stage;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.ShaderModule Module; 
-        
+        public ShaderModule Module;
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte* Name; 
-        
+        public byte* Name;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.SpecializationInfo* SpecializationInfo; 
+        public SpecializationInfo* SpecializationInfo;
     }
 }

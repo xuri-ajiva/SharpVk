@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceExternalMemoryHostProperties
+    public struct PhysicalDeviceExternalMemoryHostProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong MinImportedHostPointerAlignment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceExternalMemoryHostProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceExternalMemoryHostProperties* pointer)
+        internal static unsafe PhysicalDeviceExternalMemoryHostProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceExternalMemoryHostProperties* pointer)
         {
-            PhysicalDeviceExternalMemoryHostProperties result = default(PhysicalDeviceExternalMemoryHostProperties);
+            var result = default(PhysicalDeviceExternalMemoryHostProperties);
             result.MinImportedHostPointerAlignment = pointer->MinImportedHostPointerAlignment;
             return result;
         }

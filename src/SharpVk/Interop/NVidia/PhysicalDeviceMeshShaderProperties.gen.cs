@@ -22,90 +22,75 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceMeshShaderProperties
+    public unsafe struct PhysicalDeviceMeshShaderProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxDrawMeshTasksCount; 
-        
+        public uint MaxDrawMeshTasksCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTaskWorkGroupInvocations; 
-        
+        public uint MaxTaskWorkGroupInvocations;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed uint MaxTaskWorkGroupSize[3]; 
-        
+        public fixed uint MaxTaskWorkGroupSize[3];
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTaskTotalMemorySize; 
-        
+        public uint MaxTaskTotalMemorySize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxTaskOutputCount; 
-        
+        public uint MaxTaskOutputCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxMeshWorkGroupInvocations; 
-        
+        public uint MaxMeshWorkGroupInvocations;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed uint MaxMeshWorkGroupSize[3]; 
-        
+        public fixed uint MaxMeshWorkGroupSize[3];
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxMeshTotalMemorySize; 
-        
+        public uint MaxMeshTotalMemorySize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxMeshOutputVertices; 
-        
+        public uint MaxMeshOutputVertices;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxMeshOutputPrimitives; 
-        
+        public uint MaxMeshOutputPrimitives;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxMeshMultiviewViewCount; 
-        
+        public uint MaxMeshMultiviewViewCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MeshOutputPerVertexGranularity; 
-        
+        public uint MeshOutputPerVertexGranularity;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MeshOutputPerPrimitiveGranularity; 
+        public uint MeshOutputPerPrimitiveGranularity;
     }
 }

@@ -22,45 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineExecutableProperties
+    public unsafe struct PipelineExecutableProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags Stages; 
-        
+        public ShaderStageFlags Stages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Name[Constants.MaxDescriptionSize]; 
-        
+        public fixed byte Name[Constants.MaxDescriptionSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public fixed byte Description[Constants.MaxDescriptionSize]; 
-        
+        public fixed byte Description[Constants.MaxDescriptionSize];
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SubgroupSize; 
+        public uint SubgroupSize;
     }
 }

@@ -22,53 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Ggp
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct StreamDescriptorSurfaceCreateInfo
+    public struct StreamDescriptorSurfaceCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Ggp.StreamDescriptorSurfaceCreateFlags? Flags
+        public StreamDescriptorSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint StreamDescriptor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Ggp.StreamDescriptorSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.StreamDescriptorSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Ggp.StreamDescriptorSurfaceCreateFlags);
-            }
-            pointer->StreamDescriptor = this.StreamDescriptor;
+                pointer->Flags = default;
+            pointer->StreamDescriptor = StreamDescriptor;
         }
     }
 }

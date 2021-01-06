@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AndroidHardwareBufferUsage
+    public struct AndroidHardwareBufferUsage
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong UsageValue
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AndroidHardwareBufferUsage MarshalFrom(SharpVk.Interop.Android.AndroidHardwareBufferUsage* pointer)
+        internal static unsafe AndroidHardwareBufferUsage MarshalFrom(Interop.Android.AndroidHardwareBufferUsage* pointer)
         {
-            AndroidHardwareBufferUsage result = default(AndroidHardwareBufferUsage);
+            var result = default(AndroidHardwareBufferUsage);
             result.UsageValue = pointer->UsageValue;
             return result;
         }

@@ -22,42 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ExternalSemaphoreHandleTypeFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        OpaqueFileDescriptor = 1 << 0, 
-        
+        OpaqueFileDescriptor = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        OpaqueWin32 = 1 << 1, 
-        
+        OpaqueWin32 = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        OpaqueWin32Kmt = 1 << 2, 
-        
+        OpaqueWin32Kmt = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        D3D12Fence = 1 << 3, 
-        
+        D3D12Fence = 1 << 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        SyncFileDescriptor = 1 << 4, 
+        SyncFileDescriptor = 1 << 4
     }
 }

@@ -28,71 +28,54 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportMemoryWin32HandleInfo
+    public struct ImportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.ExternalMemoryHandleTypeFlags? HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr? Handle
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr? Name
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportMemoryWin32HandleInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.ImportMemoryWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ImportMemoryWin32HandleInfoKhr;
             pointer->Next = null;
-            if (this.HandleType != null)
-            {
-                pointer->HandleType = this.HandleType.Value;
-            }
+            if (HandleType != null)
+                pointer->HandleType = HandleType.Value;
             else
-            {
-                pointer->HandleType = default(SharpVk.ExternalMemoryHandleTypeFlags);
-            }
-            if (this.Handle != null)
-            {
-                pointer->Handle = this.Handle.Value;
-            }
+                pointer->HandleType = default;
+            if (Handle != null)
+                pointer->Handle = Handle.Value;
             else
-            {
-                pointer->Handle = default(IntPtr);
-            }
-            if (this.Name != null)
-            {
-                pointer->Name = this.Name.Value;
-            }
+                pointer->Handle = default;
+            if (Name != null)
+                pointer->Name = Name.Value;
             else
-            {
-                pointer->Name = default(IntPtr);
-            }
+                pointer->Name = default;
         }
     }
 }

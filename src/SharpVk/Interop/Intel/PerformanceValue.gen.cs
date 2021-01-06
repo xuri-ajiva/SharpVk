@@ -22,27 +22,26 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Intel;
 
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PerformanceValue
+    public struct PerformanceValue
     {
         /// <summary>
-        /// An VkPerformanceValueDataINTEL union specifying the type of the
-        /// returned data.
+        ///     An VkPerformanceValueDataINTEL union specifying the type of the
+        ///     returned data.
         /// </summary>
-        public SharpVk.Intel.PerformanceValueType Type; 
-        
+        public PerformanceValueType Type;
+
         /// <summary>
-        /// An VkPerformanceValueDataINTEL union specifying the value of the
-        /// returned data.
+        ///     An VkPerformanceValueDataINTEL union specifying the value of the
+        ///     returned data.
         /// </summary>
-        public SharpVk.Intel.PerformanceValueData Data; 
+        public PerformanceValueData Data;
     }
 }

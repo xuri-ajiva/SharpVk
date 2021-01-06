@@ -1,9 +1,11 @@
-﻿namespace SharpVk
+﻿using SharpVk.Interop;
+
+namespace SharpVk
 {
     public partial class CommandBuffer
     {
         /// <summary>
-        /// Insert a memory dependency.
+        ///     Insert a memory dependency.
         /// </summary>
         /// <param name="sourceStageMask">
         /// </param>
@@ -28,16 +30,16 @@
         /// <param name="dependencyFlags">
         /// </param>
         public unsafe void PipelineBarrier(PipelineStageFlags sourceStageMask,
-                                                PipelineStageFlags destinationStageMask,
-                                                AccessFlags sourceAccessMask,
-                                                AccessFlags destinationAccessMask,
-                                                ImageLayout oldLayout,
-                                                ImageLayout newLayout,
-                                                uint sourceQueueFamilyIndex,
-                                                uint destinationQueueFamilyIndex,
-                                                Image image,
-                                                ImageSubresourceRange subresourceRange,
-                                                DependencyFlags dependencyFlags = DependencyFlags.None)
+            PipelineStageFlags destinationStageMask,
+            AccessFlags sourceAccessMask,
+            AccessFlags destinationAccessMask,
+            ImageLayout oldLayout,
+            ImageLayout newLayout,
+            uint sourceQueueFamilyIndex,
+            uint destinationQueueFamilyIndex,
+            Image image,
+            ImageSubresourceRange subresourceRange,
+            DependencyFlags dependencyFlags = DependencyFlags.None)
         {
             try
             {
@@ -51,16 +53,15 @@
                 marshalledImageMemoryBarrier.NewLayout = newLayout;
                 marshalledImageMemoryBarrier.SourceQueueFamilyIndex = sourceQueueFamilyIndex;
                 marshalledImageMemoryBarrier.DestinationQueueFamilyIndex = destinationQueueFamilyIndex;
-                marshalledImageMemoryBarrier.Image = image.handle;
+                marshalledImageMemoryBarrier.Image = image.Handle;
                 marshalledImageMemoryBarrier.SubresourceRange = subresourceRange;
-                Interop.VkCommandBufferPipelineBarrierDelegate commandDelegate = commandCache.GetCommandDelegate<Interop.VkCommandBufferPipelineBarrierDelegate>("vkCmdPipelineBarrier", "");
-                commandDelegate(this.handle, sourceStageMask, destinationStageMask, dependencyFlags, 0, null, 0, null, 1, &marshalledImageMemoryBarrier);
+                var commandDelegate = CommandCache.GetCommandDelegate<VkCommandBufferPipelineBarrierDelegate>("vkCmdPipelineBarrier", "");
+                commandDelegate(Handle, sourceStageMask, destinationStageMask, dependencyFlags, 0, null, 0, null, 1, &marshalledImageMemoryBarrier);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-
     }
 }

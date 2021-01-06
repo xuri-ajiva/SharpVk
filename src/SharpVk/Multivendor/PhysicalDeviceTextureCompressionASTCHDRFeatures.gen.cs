@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceTextureCompressionASTCHDRFeatures
+    public struct PhysicalDeviceTextureCompressionAstchdrFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool TexturecompressionastcHdr
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceTextureCompressionAstchdrFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceTextureCompressionAstcHdrFeatures;
             pointer->Next = null;
-            pointer->TexturecompressionastcHdr = this.TexturecompressionastcHdr;
+            pointer->TexturecompressionastcHdr = TexturecompressionastcHdr;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTextureCompressionASTCHDRFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures* pointer)
+        internal static unsafe PhysicalDeviceTextureCompressionAstchdrFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceTextureCompressionAstchdrFeatures* pointer)
         {
-            PhysicalDeviceTextureCompressionASTCHDRFeatures result = default(PhysicalDeviceTextureCompressionASTCHDRFeatures);
+            var result = default(PhysicalDeviceTextureCompressionAstchdrFeatures);
             result.TexturecompressionastcHdr = pointer->TexturecompressionastcHdr;
             return result;
         }

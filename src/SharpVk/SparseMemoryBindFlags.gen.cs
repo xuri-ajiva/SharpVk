@@ -22,22 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying usage of a sparse memory binding operation.
+    ///     Bitmask specifying usage of a sparse memory binding operation.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum SparseMemoryBindFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Metadata = 1 << 0, 
+        Metadata = 1 << 0
     }
 }

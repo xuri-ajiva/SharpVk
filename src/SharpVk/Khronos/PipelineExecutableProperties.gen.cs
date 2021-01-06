@@ -22,64 +22,58 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineExecutableProperties
+    public struct PipelineExecutableProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags Stages
+        public ShaderStageFlags Stages
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string Name
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string Description
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint SubgroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineExecutableProperties MarshalFrom(SharpVk.Interop.Khronos.PipelineExecutableProperties* pointer)
+        internal static unsafe PipelineExecutableProperties MarshalFrom(Interop.Khronos.PipelineExecutableProperties* pointer)
         {
-            PipelineExecutableProperties result = default(PipelineExecutableProperties);
+            var result = default(PipelineExecutableProperties);
             result.Stages = pointer->Stages;
-            result.Name = Interop.HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
-            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
+            result.Name = HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
+            result.Description = HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
             result.SubgroupSize = pointer->SubgroupSize;
             return result;
         }

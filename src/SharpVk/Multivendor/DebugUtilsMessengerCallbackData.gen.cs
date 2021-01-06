@@ -22,143 +22,117 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct DebugUtilsMessengerCallbackData
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessengerCallbackDataFlags? Flags
+        public DebugUtilsMessengerCallbackDataFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string MessageIdName
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int? MessageIdNumber
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public string Message
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsLabel[] QueueLabels
+        public DebugUtilsLabel[] QueueLabels
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsLabel[] CommandBufLabels
+        public DebugUtilsLabel[] CommandBufLabels
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsObjectNameInfo[] Objects
+        public DebugUtilsObjectNameInfo[] Objects
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DebugUtilsMessengerCallbackData* pointer)
         {
             pointer->SType = StructureType.DebugUtilsMessengerCallbackData;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.DebugUtilsMessengerCallbackDataFlags);
-            }
-            pointer->MessageIdName = Interop.HeapUtil.MarshalTo(this.MessageIdName);
-            if (this.MessageIdNumber != null)
-            {
-                pointer->MessageIdNumber = this.MessageIdNumber.Value;
-            }
+                pointer->Flags = default;
+            pointer->MessageIdName = HeapUtil.MarshalTo(MessageIdName);
+            if (MessageIdNumber != null)
+                pointer->MessageIdNumber = MessageIdNumber.Value;
             else
+                pointer->MessageIdNumber = default;
+            pointer->Message = HeapUtil.MarshalTo(Message);
+            pointer->QueueLabelCount = HeapUtil.GetLength(QueueLabels);
+            if (QueueLabels != null)
             {
-                pointer->MessageIdNumber = default(int);
-            }
-            pointer->Message = Interop.HeapUtil.MarshalTo(this.Message);
-            pointer->QueueLabelCount = (uint)(Interop.HeapUtil.GetLength(this.QueueLabels));
-            if (this.QueueLabels != null)
-            {
-                var fieldPointer = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.DebugUtilsLabel>(this.QueueLabels.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.QueueLabels.Length); index++)
-                {
-                    this.QueueLabels[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.Multivendor.DebugUtilsLabel*)HeapUtil.AllocateAndClear<Interop.Multivendor.DebugUtilsLabel>(QueueLabels.Length).ToPointer();
+                for (var index = 0; index < (uint)QueueLabels.Length; index++) QueueLabels[index].MarshalTo(&fieldPointer[index]);
                 pointer->QueueLabels = fieldPointer;
             }
             else
             {
                 pointer->QueueLabels = null;
             }
-            pointer->CommandBufLabelCount = (uint)(Interop.HeapUtil.GetLength(this.CommandBufLabels));
-            if (this.CommandBufLabels != null)
+            pointer->CommandBufLabelCount = HeapUtil.GetLength(CommandBufLabels);
+            if (CommandBufLabels != null)
             {
-                var fieldPointer = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.DebugUtilsLabel>(this.CommandBufLabels.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.CommandBufLabels.Length); index++)
-                {
-                    this.CommandBufLabels[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.Multivendor.DebugUtilsLabel*)HeapUtil.AllocateAndClear<Interop.Multivendor.DebugUtilsLabel>(CommandBufLabels.Length).ToPointer();
+                for (var index = 0; index < (uint)CommandBufLabels.Length; index++) CommandBufLabels[index].MarshalTo(&fieldPointer[index]);
                 pointer->CommandBufLabels = fieldPointer;
             }
             else
             {
                 pointer->CommandBufLabels = null;
             }
-            pointer->ObjectCount = (uint)(Interop.HeapUtil.GetLength(this.Objects));
-            if (this.Objects != null)
+            pointer->ObjectCount = HeapUtil.GetLength(Objects);
+            if (Objects != null)
             {
-                var fieldPointer = (SharpVk.Interop.Multivendor.DebugUtilsObjectNameInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.DebugUtilsObjectNameInfo>(this.Objects.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Objects.Length); index++)
-                {
-                    this.Objects[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.Multivendor.DebugUtilsObjectNameInfo*)HeapUtil.AllocateAndClear<Interop.Multivendor.DebugUtilsObjectNameInfo>(Objects.Length).ToPointer();
+                for (var index = 0; index < (uint)Objects.Length; index++) Objects[index].MarshalTo(&fieldPointer[index]);
                 pointer->Objects = fieldPointer;
             }
             else

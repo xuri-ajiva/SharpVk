@@ -25,53 +25,44 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specify the type of queries managed by a query pool.
+    ///     Specify the type of queries managed by a query pool.
     /// </summary>
     public enum QueryType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Occlusion = 0, 
-        
+        Occlusion = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        PipelineStatistics = 1, 
-        
+        PipelineStatistics = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Timestamp = 2, 
-        
+        Timestamp = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved8 = 1000023008, 
-        
+        Reserved8 = 1000023008,
+
         /// <summary>
-        /// 
         /// </summary>
-        Reserved4 = 1000024004, 
-        
+        Reserved4 = 1000024004,
+
         /// <summary>
-        /// 
         /// </summary>
-        TransformFeedbackStream = 1000028004, 
-        
+        TransformFeedbackStream = 1000028004,
+
         /// <summary>
-        /// 
         /// </summary>
-        PerformanceQueryKhr = 1000116000, 
-        
+        PerformanceQueryKhr = 1000116000,
+
         /// <summary>
-        /// 
         /// </summary>
-        AccelerationStructureCompactedSize = 1000165000, 
-        
+        AccelerationStructureCompactedSize = 1000165000,
+
         /// <summary>
-        /// 
         /// </summary>
-        PerformanceQueryIntel = 1000210000, 
+        PerformanceQueryIntel = 1000210000
     }
 }

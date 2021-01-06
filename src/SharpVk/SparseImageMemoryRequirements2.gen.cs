@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SparseImageMemoryRequirements2
+    public struct SparseImageMemoryRequirements2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SparseImageMemoryRequirements MemoryRequirements
+        public SparseImageMemoryRequirements MemoryRequirements
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SparseImageMemoryRequirements2 MarshalFrom(SharpVk.Interop.SparseImageMemoryRequirements2* pointer)
+        internal static unsafe SparseImageMemoryRequirements2 MarshalFrom(Interop.SparseImageMemoryRequirements2* pointer)
         {
-            SparseImageMemoryRequirements2 result = default(SparseImageMemoryRequirements2);
+            var result = default(SparseImageMemoryRequirements2);
             result.MemoryRequirements = pointer->MemoryRequirements;
             return result;
         }

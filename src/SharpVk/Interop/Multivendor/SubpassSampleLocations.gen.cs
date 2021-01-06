@@ -22,25 +22,21 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SubpassSampleLocations
+    public struct SubpassSampleLocations
     {
         /// <summary>
-        /// 
         /// </summary>
-        public uint SubpassIndex; 
-        
+        public uint SubpassIndex;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Multivendor.SampleLocationsInfo SampleLocationsInfo; 
+        public SampleLocationsInfo SampleLocationsInfo;
     }
 }

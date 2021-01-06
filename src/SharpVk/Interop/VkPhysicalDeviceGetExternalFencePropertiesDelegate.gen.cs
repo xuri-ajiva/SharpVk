@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkPhysicalDeviceGetExternalFencePropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.PhysicalDeviceExternalFenceInfo* externalFenceInfo, SharpVk.Interop.ExternalFenceProperties* externalFenceProperties);
+    public unsafe delegate void VkPhysicalDeviceGetExternalFencePropertiesDelegate(PhysicalDevice physicalDevice, PhysicalDeviceExternalFenceInfo* externalFenceInfo, ExternalFenceProperties* externalFenceProperties);
 }

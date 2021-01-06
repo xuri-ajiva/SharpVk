@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Ggp
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateStreamDescriptorSurfaceDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Khronos.Surface* surface);
+    public unsafe delegate Result VkInstanceCreateStreamDescriptorSurfaceDelegate(Instance instance, StreamDescriptorSurfaceCreateInfo* createInfo, AllocationCallbacks* allocator, Surface* surface);
 }

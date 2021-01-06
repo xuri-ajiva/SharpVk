@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceVariablePointersFeatures
+    public struct PhysicalDeviceVariablePointersFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool VariablePointersStorageBuffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool VariablePointers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVariablePointersFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceVariablePointersFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceVariablePointersFeaturesVersion;
             pointer->Next = null;
-            pointer->VariablePointersStorageBuffer = this.VariablePointersStorageBuffer;
-            pointer->VariablePointers = this.VariablePointers;
+            pointer->VariablePointersStorageBuffer = VariablePointersStorageBuffer;
+            pointer->VariablePointers = VariablePointers;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceVariablePointersFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceVariablePointersFeatures* pointer)
+        internal static unsafe PhysicalDeviceVariablePointersFeatures MarshalFrom(Interop.PhysicalDeviceVariablePointersFeatures* pointer)
         {
-            PhysicalDeviceVariablePointersFeatures result = default(PhysicalDeviceVariablePointersFeatures);
+            var result = default(PhysicalDeviceVariablePointersFeatures);
             result.VariablePointersStorageBuffer = pointer->VariablePointersStorageBuffer;
             result.VariablePointers = pointer->VariablePointers;
             return result;

@@ -22,53 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGroupRenderPassBeginInfo
+    public struct DeviceGroupRenderPassBeginInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint DeviceMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Rect2D[] DeviceRenderAreas
+        public Rect2D[] DeviceRenderAreas
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupRenderPassBeginInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DeviceGroupRenderPassBeginInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupRenderPassBeginInfoVersion;
             pointer->Next = null;
-            pointer->DeviceMask = this.DeviceMask;
-            pointer->DeviceRenderAreaCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceRenderAreas));
-            if (this.DeviceRenderAreas != null)
+            pointer->DeviceMask = DeviceMask;
+            pointer->DeviceRenderAreaCount = HeapUtil.GetLength(DeviceRenderAreas);
+            if (DeviceRenderAreas != null)
             {
-                var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.DeviceRenderAreas.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DeviceRenderAreas.Length); index++)
-                {
-                    fieldPointer[index] = this.DeviceRenderAreas[index];
-                }
+                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(DeviceRenderAreas.Length).ToPointer();
+                for (var index = 0; index < (uint)DeviceRenderAreas.Length; index++) fieldPointer[index] = DeviceRenderAreas[index];
                 pointer->DeviceRenderAreas = fieldPointer;
             }
             else

@@ -28,30 +28,27 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SurfaceFullScreenExclusiveWin32Info
+    public struct SurfaceFullScreenExclusiveWin32Info
     {
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr Hmonitor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info* pointer)
         {
             pointer->SType = StructureType.SurfaceFullScreenExclusiveWin32Info;
             pointer->Next = null;
-            pointer->Hmonitor = this.Hmonitor;
+            pointer->Hmonitor = Hmonitor;
         }
     }
 }

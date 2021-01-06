@@ -25,19 +25,17 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specify how contents of an attachment are treated at the end of a
-    /// subpass.
+    ///     Specify how contents of an attachment are treated at the end of a
+    ///     subpass.
     /// </summary>
     public enum AttachmentStoreOp
     {
         /// <summary>
-        /// 
         /// </summary>
-        Store = 0, 
-        
+        Store = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        DontCare = 1, 
+        DontCare = 1
     }
 }

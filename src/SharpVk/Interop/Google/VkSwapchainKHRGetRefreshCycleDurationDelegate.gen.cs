@@ -22,12 +22,12 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Google;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Google
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkSwapchainKHRGetRefreshCycleDurationDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Swapchain swapchain, SharpVk.Google.RefreshCycleDuration* displayTimingProperties);
+    public unsafe delegate Result VkSwapchainKhrGetRefreshCycleDurationDelegate(Device device, Swapchain swapchain, RefreshCycleDuration* displayTimingProperties);
 }

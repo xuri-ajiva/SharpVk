@@ -22,47 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceFeatures2
+    public struct PhysicalDeviceFeatures2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PhysicalDeviceFeatures Features
+        public PhysicalDeviceFeatures Features
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceFeatures2* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceFeatures2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceFeatures2Version;
             pointer->Next = null;
-            this.Features.MarshalTo(&pointer->Features);
+            Features.MarshalTo(&pointer->Features);
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceFeatures2 MarshalFrom(SharpVk.Interop.PhysicalDeviceFeatures2* pointer)
+        internal static unsafe PhysicalDeviceFeatures2 MarshalFrom(Interop.PhysicalDeviceFeatures2* pointer)
         {
-            PhysicalDeviceFeatures2 result = default(PhysicalDeviceFeatures2);
-            result.Features = SharpVk.PhysicalDeviceFeatures.MarshalFrom(&pointer->Features);
+            var result = default(PhysicalDeviceFeatures2);
+            result.Features = PhysicalDeviceFeatures.MarshalFrom(&pointer->Features);
             return result;
         }
     }

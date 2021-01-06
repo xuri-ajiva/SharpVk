@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageViewUsageCreateInfo
+    public struct ImageViewUsageCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags Usage
+        public ImageUsageFlags Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ImageViewUsageCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.ImageViewUsageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageViewUsageCreateInfoVersion;
             pointer->Next = null;
-            pointer->Usage = this.Usage;
+            pointer->Usage = Usage;
         }
     }
 }

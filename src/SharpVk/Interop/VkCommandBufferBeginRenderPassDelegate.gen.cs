@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBeginRenderPassDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.RenderPassBeginInfo* renderPassBegin, SharpVk.SubpassContents contents);
+    public unsafe delegate void VkCommandBufferBeginRenderPassDelegate(CommandBuffer commandBuffer, RenderPassBeginInfo* renderPassBegin, SubpassContents contents);
 }

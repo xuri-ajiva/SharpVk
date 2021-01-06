@@ -27,7 +27,6 @@ using System;
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceMemoryGetWin32HandleDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DeviceMemory memory, SharpVk.NVidia.ExternalMemoryHandleTypeFlags handleType, IntPtr* handle);
+    public unsafe delegate Result VkDeviceMemoryGetWin32HandleDelegate(Device device, DeviceMemory memory, SharpVk.NVidia.ExternalMemoryHandleTypeFlags handleType, IntPtr* handle);
 }

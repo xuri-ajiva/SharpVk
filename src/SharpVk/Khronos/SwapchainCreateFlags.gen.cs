@@ -22,39 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Bitmask controlling swapchain creation.
+    ///     Bitmask controlling swapchain creation.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum SwapchainCreateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        SplitInstanceBindRegions = 1 << 0, 
-        
+        SplitInstanceBindRegions = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Protected = 1 << 1, 
-        
+        Protected = 1 << 1,
+
         /// <summary>
-        /// Specifies that the images of the swapchain can be used to create an
-        /// ImageView with different format than what the swapchain was created
-        /// with. The list of allowed image view formats are specified by
-        /// submitting an instance of ImageFormatListCreateInfo to
-        /// Device.CreateSwapchain. In addition, this flag also specifies that
-        /// the swapchain can be created with usage flags that are not
-        /// supported for the format the swapchain is created with but are
-        /// supported for at least one of the allowed image view formats.
+        ///     Specifies that the images of the swapchain can be used to create an
+        ///     ImageView with different format than what the swapchain was created
+        ///     with. The list of allowed image view formats are specified by
+        ///     submitting an instance of ImageFormatListCreateInfo to
+        ///     Device.CreateSwapchain. In addition, this flag also specifies that
+        ///     the swapchain can be created with usage flags that are not
+        ///     supported for the format the swapchain is created with but are
+        ///     supported for at least one of the allowed image view formats.
         /// </summary>
-        MutableFormat = 1 << 2, 
+        MutableFormat = 1 << 2
     }
 }

@@ -22,40 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a clear rectangle.
+    ///     Structure specifying a clear rectangle.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ClearRect
+    public struct ClearRect
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ClearRect(SharpVk.Rect2D rect, uint baseArrayLayer, uint layerCount)
+        public ClearRect(Rect2D rect, uint baseArrayLayer, uint layerCount)
         {
-            this.Rect = rect;
-            this.BaseArrayLayer = baseArrayLayer;
-            this.LayerCount = layerCount;
+            Rect = rect;
+            BaseArrayLayer = baseArrayLayer;
+            LayerCount = layerCount;
         }
-        
+
         /// <summary>
-        /// The two-dimensional region to be cleared.
+        ///     The two-dimensional region to be cleared.
         /// </summary>
-        public SharpVk.Rect2D Rect; 
-        
+        public Rect2D Rect;
+
         /// <summary>
-        /// The first layer to be cleared.
+        ///     The first layer to be cleared.
         /// </summary>
-        public uint BaseArrayLayer; 
-        
+        public uint BaseArrayLayer;
+
         /// <summary>
-        /// The number of layers to clear.
+        ///     The number of layers to clear.
         /// </summary>
-        public uint LayerCount; 
+        public uint LayerCount;
     }
 }

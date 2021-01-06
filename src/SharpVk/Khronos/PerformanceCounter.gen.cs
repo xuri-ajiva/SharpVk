@@ -24,63 +24,58 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PerformanceCounter
+    public struct PerformanceCounter
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PerformanceCounterUnit Unit
+        public PerformanceCounterUnit Unit
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PerformanceCounterScope Scope
+        public PerformanceCounterScope Scope
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.PerformanceCounterStorage Storage
+        public PerformanceCounterStorage Storage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public Guid Uuid
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PerformanceCounter MarshalFrom(SharpVk.Interop.Khronos.PerformanceCounter* pointer)
+        internal static unsafe PerformanceCounter MarshalFrom(Interop.Khronos.PerformanceCounter* pointer)
         {
-            PerformanceCounter result = default(PerformanceCounter);
+            var result = default(PerformanceCounter);
             result.Unit = pointer->Unit;
             result.Scope = pointer->Scope;
             result.Storage = pointer->Storage;
-            result.Uuid = new Guid(Interop.HeapUtil.MarshalFrom(pointer->Uuid, Constants.UuidSize));
+            result.Uuid = new(HeapUtil.MarshalFrom(pointer->Uuid, Constants.UuidSize));
             return result;
         }
     }

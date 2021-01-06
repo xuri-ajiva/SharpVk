@@ -22,35 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia.Experimental;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ObjectTableDescriptorSetEntry
+    public struct ObjectTableDescriptorSetEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType Type; 
-        
+        public ObjectEntryType Type;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags Flags; 
-        
+        public ObjectEntryUsageFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PipelineLayout PipelineLayout; 
-        
+        public PipelineLayout PipelineLayout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.DescriptorSet DescriptorSet; 
+        public DescriptorSet DescriptorSet;
     }
 }

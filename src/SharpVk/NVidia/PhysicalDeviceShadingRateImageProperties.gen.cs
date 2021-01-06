@@ -22,52 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShadingRateImageProperties
+    public struct PhysicalDeviceShadingRateImageProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D ShadingRateTexelSize
+        public Extent2D ShadingRateTexelSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ShadingRatePaletteSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint ShadingRateMaxCoarseSamples
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShadingRateImageProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageProperties* pointer)
+        internal static unsafe PhysicalDeviceShadingRateImageProperties MarshalFrom(Interop.NVidia.PhysicalDeviceShadingRateImageProperties* pointer)
         {
-            PhysicalDeviceShadingRateImageProperties result = default(PhysicalDeviceShadingRateImageProperties);
+            var result = default(PhysicalDeviceShadingRateImageProperties);
             result.ShadingRateTexelSize = pointer->ShadingRateTexelSize;
             result.ShadingRatePaletteSize = pointer->ShadingRatePaletteSize;
             result.ShadingRateMaxCoarseSamples = pointer->ShadingRateMaxCoarseSamples;

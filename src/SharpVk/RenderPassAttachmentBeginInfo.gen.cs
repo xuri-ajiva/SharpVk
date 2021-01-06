@@ -22,44 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying images to be used as framebuffer attachments.
+    ///     Structure specifying images to be used as framebuffer attachments.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RenderPassAttachmentBeginInfo
+    public struct RenderPassAttachmentBeginInfo
     {
         /// <summary>
-        /// An array of ImageView handles, each of which will be used as the
-        /// corresponding attachment in the render pass instance.
+        ///     An array of ImageView handles, each of which will be used as the
+        ///     corresponding attachment in the render pass instance.
         /// </summary>
-        public SharpVk.ImageView[] Attachments
+        public ImageView[] Attachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.RenderPassAttachmentBeginInfo* pointer)
+        internal unsafe void MarshalTo(Interop.RenderPassAttachmentBeginInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassAttachmentBeginInfoVersion;
             pointer->Next = null;
-            pointer->AttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.Attachments));
-            if (this.Attachments != null)
+            pointer->AttachmentCount = HeapUtil.GetLength(Attachments);
+            if (Attachments != null)
             {
-                var fieldPointer = (SharpVk.Interop.ImageView*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageView>(this.Attachments.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Attachments.Length); index++)
-                {
-                    fieldPointer[index] = this.Attachments[index]?.handle ?? default(SharpVk.Interop.ImageView);
-                }
+                var fieldPointer = (Interop.ImageView*)HeapUtil.AllocateAndClear<Interop.ImageView>(Attachments.Length).ToPointer();
+                for (var index = 0; index < (uint)Attachments.Length; index++) fieldPointer[index] = Attachments[index]?.Handle ?? default(Interop.ImageView);
                 pointer->Attachments = fieldPointer;
             }
             else

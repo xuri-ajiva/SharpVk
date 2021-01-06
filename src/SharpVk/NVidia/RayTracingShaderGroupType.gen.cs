@@ -25,23 +25,19 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum RayTracingShaderGroupType
     {
         /// <summary>
-        /// 
         /// </summary>
-        General = 0, 
-        
+        General = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        TrianglesHitGroup = 1, 
-        
+        TrianglesHitGroup = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        ProceduralHitGroup = 2, 
+        ProceduralHitGroup = 2
     }
 }

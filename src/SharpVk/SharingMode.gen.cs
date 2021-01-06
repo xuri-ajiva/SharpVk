@@ -25,20 +25,20 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Buffer and image sharing modes.
+    ///     Buffer and image sharing modes.
     /// </summary>
     public enum SharingMode
     {
         /// <summary>
-        /// Specifies that access to any range or image subresource of the
-        /// object will be exclusive to a single queue family at a time.
+        ///     Specifies that access to any range or image subresource of the
+        ///     object will be exclusive to a single queue family at a time.
         /// </summary>
-        Exclusive = 0, 
-        
+        Exclusive = 0,
+
         /// <summary>
-        /// Specifies that concurrent access to any range or image subresource
-        /// of the object from multiple queue families is supported.
+        ///     Specifies that concurrent access to any range or image subresource
+        ///     of the object from multiple queue families is supported.
         /// </summary>
-        Concurrent = 1, 
+        Concurrent = 1
     }
 }

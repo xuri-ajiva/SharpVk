@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBindDescriptorSetsDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.Interop.PipelineLayout layout, uint firstSet, uint descriptorSetCount, SharpVk.Interop.DescriptorSet* descriptorSets, uint dynamicOffsetCount, uint* dynamicOffsets);
+    public unsafe delegate void VkCommandBufferBindDescriptorSetsDelegate(CommandBuffer commandBuffer, PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, uint descriptorSetCount, DescriptorSet* descriptorSets, uint dynamicOffsetCount, uint* dynamicOffsets);
 }

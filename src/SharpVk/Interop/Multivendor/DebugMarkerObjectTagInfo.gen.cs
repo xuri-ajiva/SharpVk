@@ -22,52 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DebugMarkerObjectTagInfo
+    public unsafe struct DebugMarkerObjectTagInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A DebugReportObjectTypeEXT specifying the type of the object to be
-        /// named.
+        ///     A DebugReportObjectTypeEXT specifying the type of the object to be
+        ///     named.
         /// </summary>
-        public SharpVk.Multivendor.DebugReportObjectType ObjectType; 
-        
+        public DebugReportObjectType ObjectType;
+
         /// <summary>
-        /// The object to be tagged.
+        ///     The object to be tagged.
         /// </summary>
-        public ulong Object; 
-        
+        public ulong Object;
+
         /// <summary>
-        /// A numerical identifier of the tag.
+        ///     A numerical identifier of the tag.
         /// </summary>
-        public ulong TagName; 
-        
+        public ulong TagName;
+
         /// <summary>
-        /// The number of bytes of data to attach to the object.
+        ///     The number of bytes of data to attach to the object.
         /// </summary>
-        public HostSize TagSize; 
-        
+        public HostSize TagSize;
+
         /// <summary>
-        /// An array of tagSize bytes containing the data to be associated with
-        /// the object.
+        ///     An array of tagSize bytes containing the data to be associated with
+        ///     the object.
         /// </summary>
-        public byte* Tag; 
+        public byte* Tag;
     }
 }

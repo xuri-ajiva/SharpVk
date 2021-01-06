@@ -22,30 +22,28 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SparseBufferMemoryBindInfo
+    public unsafe struct SparseBufferMemoryBindInfo
     {
         /// <summary>
-        /// The Buffer object to be bound.
+        ///     The Buffer object to be bound.
         /// </summary>
-        public SharpVk.Interop.Buffer Buffer; 
-        
+        public Buffer Buffer;
+
         /// <summary>
-        /// The number of SparseMemoryBind structures in the pBinds array.
+        ///     The number of SparseMemoryBind structures in the pBinds array.
         /// </summary>
-        public uint BindCount; 
-        
+        public uint BindCount;
+
         /// <summary>
-        /// Array of SparseMemoryBind structures.
+        ///     Array of SparseMemoryBind structures.
         /// </summary>
-        public SharpVk.Interop.SparseMemoryBind* Binds; 
+        public SparseMemoryBind* Binds;
     }
 }

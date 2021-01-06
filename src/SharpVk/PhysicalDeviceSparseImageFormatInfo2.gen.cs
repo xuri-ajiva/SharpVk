@@ -22,86 +22,77 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSparseImageFormatInfo2
+    public struct PhysicalDeviceSparseImageFormatInfo2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format
+        public Format Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageType Type
+        public ImageType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags Samples
+        public SampleCountFlags Samples
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags Usage
+        public ImageUsageFlags Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageTiling Tiling
+        public ImageTiling Tiling
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSparseImageFormatInfo2Version;
             pointer->Next = null;
-            pointer->Format = this.Format;
-            pointer->Type = this.Type;
-            pointer->Samples = this.Samples;
-            pointer->Usage = this.Usage;
-            pointer->Tiling = this.Tiling;
+            pointer->Format = Format;
+            pointer->Type = Type;
+            pointer->Samples = Samples;
+            pointer->Usage = Usage;
+            pointer->Tiling = Tiling;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSparseImageFormatInfo2 MarshalFrom(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
+        internal static unsafe PhysicalDeviceSparseImageFormatInfo2 MarshalFrom(Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
-            PhysicalDeviceSparseImageFormatInfo2 result = default(PhysicalDeviceSparseImageFormatInfo2);
+            var result = default(PhysicalDeviceSparseImageFormatInfo2);
             result.Format = pointer->Format;
             result.Type = pointer->Type;
             result.Samples = pointer->Samples;

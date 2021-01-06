@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SamplerReductionModeCreateInfo
+    public struct SamplerReductionModeCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerReductionMode ReductionMode
+        public SamplerReductionMode ReductionMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SamplerReductionModeCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SamplerReductionModeCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerReductionModeCreateInfoVersion;
             pointer->Next = null;
-            pointer->ReductionMode = this.ReductionMode;
+            pointer->ReductionMode = ReductionMode;
         }
     }
 }

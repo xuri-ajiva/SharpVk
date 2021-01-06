@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateDescriptorPoolDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DescriptorPoolCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.DescriptorPool* descriptorPool);
+    public unsafe delegate Result VkDeviceCreateDescriptorPoolDelegate(Device device, DescriptorPoolCreateInfo* createInfo, AllocationCallbacks* allocator, DescriptorPool* descriptorPool);
 }

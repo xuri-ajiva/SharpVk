@@ -22,50 +22,48 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a color component mapping.
+    ///     Structure specifying a color component mapping.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ComponentMapping
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ComponentMapping(SharpVk.ComponentSwizzle r, SharpVk.ComponentSwizzle g, SharpVk.ComponentSwizzle b, SharpVk.ComponentSwizzle a)
+        public ComponentMapping(ComponentSwizzle r, ComponentSwizzle g, ComponentSwizzle b, ComponentSwizzle a)
         {
-            this.R = r;
-            this.G = g;
-            this.B = b;
-            this.A = a;
+            R = r;
+            G = g;
+            B = b;
+            A = a;
         }
-        
+
         /// <summary>
-        /// r determines the component value placed in the R component of the
-        /// output vector.
+        ///     r determines the component value placed in the R component of the
+        ///     output vector.
         /// </summary>
-        public SharpVk.ComponentSwizzle R; 
-        
+        public ComponentSwizzle R;
+
         /// <summary>
-        /// g determines the component value placed in the G component of the
-        /// output vector.
+        ///     g determines the component value placed in the G component of the
+        ///     output vector.
         /// </summary>
-        public SharpVk.ComponentSwizzle G; 
-        
+        public ComponentSwizzle G;
+
         /// <summary>
-        /// b determines the component value placed in the B component of the
-        /// output vector.
+        ///     b determines the component value placed in the B component of the
+        ///     output vector.
         /// </summary>
-        public SharpVk.ComponentSwizzle B; 
-        
+        public ComponentSwizzle B;
+
         /// <summary>
-        /// a determines the component value placed in the A component of the
-        /// output vector.
+        ///     a determines the component value placed in the A component of the
+        ///     output vector.
         /// </summary>
-        public SharpVk.ComponentSwizzle A; 
+        public ComponentSwizzle A;
     }
 }

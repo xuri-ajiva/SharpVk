@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetCooperativeMatrixPropertiesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint* propertyCount, SharpVk.Interop.NVidia.CooperativeMatrixProperties* properties);
+    public unsafe delegate Result VkPhysicalDeviceGetCooperativeMatrixPropertiesDelegate(PhysicalDevice physicalDevice, uint* propertyCount, CooperativeMatrixProperties* properties);
 }

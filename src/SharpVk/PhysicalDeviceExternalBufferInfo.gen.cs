@@ -22,63 +22,53 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceExternalBufferInfo
+    public struct PhysicalDeviceExternalBufferInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.BufferCreateFlags? Flags
+        public BufferCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.BufferUsageFlags Usage
+        public BufferUsageFlags Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryHandleTypeFlags HandleType
+        public ExternalMemoryHandleTypeFlags HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalBufferInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceExternalBufferInfo* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceExternalBufferInfoVersion;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.BufferCreateFlags);
-            }
-            pointer->Usage = this.Usage;
-            pointer->HandleType = this.HandleType;
+                pointer->Flags = default;
+            pointer->Usage = Usage;
+            pointer->HandleType = HandleType;
         }
     }
 }

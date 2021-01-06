@@ -25,33 +25,29 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// A union describing a pipeline executable statistic
+    ///     A union describing a pipeline executable statistic
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
     public struct PipelineExecutableStatisticValue
     {
         /// <summary>
-        /// The 32-bit boolean value if the PipelineExecutableStatisticFormat is Bool32.
+        ///     The 32-bit boolean value if the PipelineExecutableStatisticFormat is Bool32.
         /// </summary>
-        [FieldOffset(0)]
-        public Bool32 B32;
+        [FieldOffset(0)] public Bool32 B32;
 
         /// <summary>
-        /// The signed 64-bit integer value if the PipelineExecutableStatisticFormat is Int64.
+        ///     The signed 64-bit integer value if the PipelineExecutableStatisticFormat is Int64.
         /// </summary>
-        [FieldOffset(0)]
-        public long I64;
+        [FieldOffset(0)] public long I64;
 
         /// <summary>
-        /// The unsigned 64-bit integer value if the PipelineExecutableStatisticFormat is Uint64.
+        ///     The unsigned 64-bit integer value if the PipelineExecutableStatisticFormat is Uint64.
         /// </summary>
-        [FieldOffset(0)]
-        public ulong U64;
+        [FieldOffset(0)] public ulong U64;
 
         /// <summary>
-        /// The 64-bit floating-point value if the PipelineExecutableStatisticFormat is Float64.
+        ///     The 64-bit floating-point value if the PipelineExecutableStatisticFormat is Float64.
         /// </summary>
-        [FieldOffset(0)]
-        public double F64;
+        [FieldOffset(0)] public double F64;
     }
 }

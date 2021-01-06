@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceHostQueryResetFeatures
+    public struct PhysicalDeviceHostQueryResetFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool HostQueryReset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceHostQueryResetFeaturesVersion;
             pointer->Next = null;
-            pointer->HostQueryReset = this.HostQueryReset;
+            pointer->HostQueryReset = HostQueryReset;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceHostQueryResetFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
+        internal static unsafe PhysicalDeviceHostQueryResetFeatures MarshalFrom(Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
         {
-            PhysicalDeviceHostQueryResetFeatures result = default(PhysicalDeviceHostQueryResetFeatures);
+            var result = default(PhysicalDeviceHostQueryResetFeatures);
             result.HostQueryReset = pointer->HostQueryReset;
             return result;
         }

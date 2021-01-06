@@ -22,39 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a two-dimensional extent.
+    ///     Structure specifying a two-dimensional extent.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct Extent2D
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static Extent2D Zero => new Extent2D();
-        
+        public static Extent2D Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public Extent2D(uint width, uint height)
         {
-            this.Width = width;
-            this.Height = height;
+            Width = width;
+            Height = height;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Width; 
-        
+        public uint Width;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Height; 
+        public uint Height;
     }
 }

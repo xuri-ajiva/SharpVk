@@ -22,74 +22,63 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
+using SharpVk.Khronos;
 
 namespace SharpVk.Google
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class SwapchainExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Swapchain handle to extend.
+        ///     The Swapchain handle to extend.
         /// </param>
-        public static unsafe SharpVk.Google.RefreshCycleDuration GetRefreshCycleDuration(this SharpVk.Khronos.Swapchain extendedHandle)
+        public static unsafe RefreshCycleDuration GetRefreshCycleDuration(this Swapchain extendedHandle)
         {
             try
             {
-                SharpVk.Google.RefreshCycleDuration result = default(SharpVk.Google.RefreshCycleDuration);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Google.RefreshCycleDuration marshalledDisplayTimingProperties = default(SharpVk.Google.RefreshCycleDuration);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Google.VkSwapchainKHRGetRefreshCycleDurationDelegate commandDelegate = commandCache.Cache.vkGetRefreshCycleDurationGOOGLE;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &marshalledDisplayTimingProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var result = default(RefreshCycleDuration);
+                var commandCache = default(CommandCache);
+                var marshalledDisplayTimingProperties = default(RefreshCycleDuration);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetRefreshCycleDurationGoogle;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, &marshalledDisplayTimingProperties);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 result = marshalledDisplayTimingProperties;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Swapchain handle to extend.
+        ///     The Swapchain handle to extend.
         /// </param>
-        public static unsafe SharpVk.Google.PastPresentationTiming[] GetPastPresentationTiming(this SharpVk.Khronos.Swapchain extendedHandle)
+        public static unsafe PastPresentationTiming[] GetPastPresentationTiming(this Swapchain extendedHandle)
         {
             try
             {
-                SharpVk.Google.PastPresentationTiming[] result = default(SharpVk.Google.PastPresentationTiming[]);
-                uint marshalledPresentationTimingCount = default(uint);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Google.PastPresentationTiming* marshalledPresentationTimings = default(SharpVk.Google.PastPresentationTiming*);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Google.VkSwapchainKHRGetPastPresentationTimingDelegate commandDelegate = commandCache.Cache.vkGetPastPresentationTimingGOOGLE;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledPresentationTimings = (SharpVk.Google.PastPresentationTiming*)(Interop.HeapUtil.Allocate<SharpVk.Google.PastPresentationTiming>((uint)(marshalledPresentationTimingCount)));
-                commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
+                var result = default(PastPresentationTiming[]);
+                var marshalledPresentationTimingCount = default(uint);
+                var commandCache = default(CommandCache);
+                var marshalledPresentationTimings = default(PastPresentationTiming*);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkGetPastPresentationTimingGoogle;
+                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                marshalledPresentationTimings = (PastPresentationTiming*)HeapUtil.Allocate<PastPresentationTiming>(marshalledPresentationTimingCount);
+                commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
                 if (marshalledPresentationTimings != null)
                 {
-                    var fieldPointer = new SharpVk.Google.PastPresentationTiming[(uint)(marshalledPresentationTimingCount)];
-                    for(int index = 0; index < (uint)(marshalledPresentationTimingCount); index++)
-                    {
-                        fieldPointer[index] = marshalledPresentationTimings[index];
-                    }
+                    var fieldPointer = new PastPresentationTiming[marshalledPresentationTimingCount];
+                    for (var index = 0; index < marshalledPresentationTimingCount; index++) fieldPointer[index] = marshalledPresentationTimings[index];
                     result = fieldPointer;
                 }
                 else
@@ -100,7 +89,7 @@ namespace SharpVk.Google
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

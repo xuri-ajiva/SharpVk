@@ -22,53 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineViewportStateCreateInfo
+    public unsafe struct PipelineViewportStateCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineViewportStateCreateFlags Flags; 
-        
+        public PipelineViewportStateCreateFlags Flags;
+
         /// <summary>
-        /// The number of viewports used by the pipeline.
+        ///     The number of viewports used by the pipeline.
         /// </summary>
-        public uint ViewportCount; 
-        
+        public uint ViewportCount;
+
         /// <summary>
-        /// An array of Viewport structures, defining the viewport transforms.
-        /// If the viewport state is dynamic, this member is ignored.
+        ///     An array of Viewport structures, defining the viewport transforms.
+        ///     If the viewport state is dynamic, this member is ignored.
         /// </summary>
-        public SharpVk.Viewport* Viewports; 
-        
+        public Viewport* Viewports;
+
         /// <summary>
-        /// The number of scissors and must match the number of viewports.
+        ///     The number of scissors and must match the number of viewports.
         /// </summary>
-        public uint ScissorCount; 
-        
+        public uint ScissorCount;
+
         /// <summary>
-        /// An array of Rect2D structures which define the rectangular bounds
-        /// of the scissor for the corresponding viewport. If the scissor state
-        /// is dynamic, this member is ignored.
+        ///     An array of Rect2D structures which define the rectangular bounds
+        ///     of the scissor for the corresponding viewport. If the scissor state
+        ///     is dynamic, this member is ignored.
         /// </summary>
-        public SharpVk.Rect2D* Scissors; 
+        public Rect2D* Scissors;
     }
 }

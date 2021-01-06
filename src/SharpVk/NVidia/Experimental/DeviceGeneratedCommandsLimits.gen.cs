@@ -22,91 +22,88 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure specifying physical device limits.
+    ///     Structure specifying physical device limits.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGeneratedCommandsLimits
+    public struct DeviceGeneratedCommandsLimits
     {
         /// <summary>
-        /// maxIndirectCommandsLayoutTokenCount the maximum number of tokens in
-        /// IndirectCommandsLayoutNVX.
+        ///     maxIndirectCommandsLayoutTokenCount the maximum number of tokens in
+        ///     IndirectCommandsLayoutNVX.
         /// </summary>
         public uint MaxIndirectCommandsLayoutTokenCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// maxObjectEntryCounts the maximum number of entries per resource
-        /// type in ObjectTableNVX.
+        ///     maxObjectEntryCounts the maximum number of entries per resource
+        ///     type in ObjectTableNVX.
         /// </summary>
         public uint MaxObjectEntryCounts
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The minimum alignment for memory addresses optionally used in
-        /// CommandBuffer.ProcessCommands().
+        ///     The minimum alignment for memory addresses optionally used in
+        ///     CommandBuffer.ProcessCommands().
         /// </summary>
         public uint MinSequenceCountBufferOffsetAlignment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The minimum alignment for memory addresses optionally used in
-        /// CommandBuffer.ProcessCommands().
+        ///     The minimum alignment for memory addresses optionally used in
+        ///     CommandBuffer.ProcessCommands().
         /// </summary>
         public uint MinSequenceIndexBufferOffsetAlignment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The minimum alignment for memory addresses optionally used in
-        /// CommandBuffer.ProcessCommands().
+        ///     The minimum alignment for memory addresses optionally used in
+        ///     CommandBuffer.ProcessCommands().
         /// </summary>
         public uint MinCommandsTokenBufferOffsetAlignment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
         {
             pointer->SType = StructureType.DeviceGeneratedCommandsLimits;
             pointer->Next = null;
-            pointer->MaxIndirectCommandsLayoutTokenCount = this.MaxIndirectCommandsLayoutTokenCount;
-            pointer->MaxObjectEntryCounts = this.MaxObjectEntryCounts;
-            pointer->MinSequenceCountBufferOffsetAlignment = this.MinSequenceCountBufferOffsetAlignment;
-            pointer->MinSequenceIndexBufferOffsetAlignment = this.MinSequenceIndexBufferOffsetAlignment;
-            pointer->MinCommandsTokenBufferOffsetAlignment = this.MinCommandsTokenBufferOffsetAlignment;
+            pointer->MaxIndirectCommandsLayoutTokenCount = MaxIndirectCommandsLayoutTokenCount;
+            pointer->MaxObjectEntryCounts = MaxObjectEntryCounts;
+            pointer->MinSequenceCountBufferOffsetAlignment = MinSequenceCountBufferOffsetAlignment;
+            pointer->MinSequenceIndexBufferOffsetAlignment = MinSequenceIndexBufferOffsetAlignment;
+            pointer->MinCommandsTokenBufferOffsetAlignment = MinCommandsTokenBufferOffsetAlignment;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DeviceGeneratedCommandsLimits MarshalFrom(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
+        internal static unsafe DeviceGeneratedCommandsLimits MarshalFrom(Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
         {
-            DeviceGeneratedCommandsLimits result = default(DeviceGeneratedCommandsLimits);
+            var result = default(DeviceGeneratedCommandsLimits);
             result.MaxIndirectCommandsLayoutTokenCount = pointer->MaxIndirectCommandsLayoutTokenCount;
             result.MaxObjectEntryCounts = pointer->MaxObjectEntryCounts;
             result.MinSequenceCountBufferOffsetAlignment = pointer->MinSequenceCountBufferOffsetAlignment;

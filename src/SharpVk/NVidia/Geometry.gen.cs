@@ -22,75 +22,64 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Geometry
+    public struct Geometry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.GeometryType GeometryType
+        public GeometryType GeometryType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.GeometryData GeometryValue
+        public GeometryData GeometryValue
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.GeometryFlags? Flags
+        public GeometryFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Geometry* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Geometry* pointer)
         {
             pointer->SType = StructureType.Geometry;
             pointer->Next = null;
-            pointer->GeometryType = this.GeometryType;
-            this.GeometryValue.MarshalTo(&pointer->GeometryValue);
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            pointer->GeometryType = GeometryType;
+            GeometryValue.MarshalTo(&pointer->GeometryValue);
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.NVidia.GeometryFlags);
-            }
+                pointer->Flags = default;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe Geometry MarshalFrom(SharpVk.Interop.NVidia.Geometry* pointer)
+        internal static unsafe Geometry MarshalFrom(Interop.NVidia.Geometry* pointer)
         {
-            Geometry result = default(Geometry);
+            var result = default(Geometry);
             result.GeometryType = pointer->GeometryType;
-            result.GeometryValue = SharpVk.NVidia.GeometryData.MarshalFrom(&pointer->GeometryValue);
+            result.GeometryValue = GeometryData.MarshalFrom(&pointer->GeometryValue);
             result.Flags = pointer->Flags;
             return result;
         }

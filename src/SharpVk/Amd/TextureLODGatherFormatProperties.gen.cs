@@ -22,35 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct TextureLODGatherFormatProperties
+    public struct TextureLodGatherFormatProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public bool SupportsTextureGatherLODBias
+        public bool SupportsTextureGatherLodBias
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe TextureLODGatherFormatProperties MarshalFrom(SharpVk.Interop.Amd.TextureLODGatherFormatProperties* pointer)
+        internal static unsafe TextureLodGatherFormatProperties MarshalFrom(Interop.Amd.TextureLodGatherFormatProperties* pointer)
         {
-            TextureLODGatherFormatProperties result = default(TextureLODGatherFormatProperties);
-            result.SupportsTextureGatherLODBias = pointer->SupportsTextureGatherLODBias;
+            var result = default(TextureLodGatherFormatProperties);
+            result.SupportsTextureGatherLodBias = pointer->SupportsTextureGatherLODBias;
             return result;
         }
     }

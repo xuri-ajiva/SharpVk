@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceSubgroupProperties
+    public unsafe struct PhysicalDeviceSubgroupProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SubgroupSize; 
-        
+        public uint SubgroupSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags SupportedStages; 
-        
+        public ShaderStageFlags SupportedStages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SubgroupFeatureFlags SupportedOperations; 
-        
+        public SubgroupFeatureFlags SupportedOperations;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 QuadOperationsInAllStages; 
+        public Bool32 QuadOperationsInAllStages;
     }
 }

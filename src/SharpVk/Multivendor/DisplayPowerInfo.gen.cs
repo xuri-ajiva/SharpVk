@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Describe the power state of a display.
+    ///     Describe the power state of a display.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayPowerInfo
+    public struct DisplayPowerInfo
     {
         /// <summary>
-        /// The new power state of the display. Possible values are: + --
+        ///     The new power state of the display. Possible values are: + --
         /// </summary>
-        public SharpVk.Multivendor.DisplayPowerState PowerState
+        public DisplayPowerState PowerState
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DisplayPowerInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.DisplayPowerInfo* pointer)
         {
             pointer->SType = StructureType.DisplayPowerInfo;
             pointer->Next = null;
-            pointer->PowerState = this.PowerState;
+            pointer->PowerState = PowerState;
         }
     }
 }

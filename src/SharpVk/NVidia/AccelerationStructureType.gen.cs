@@ -25,18 +25,15 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum AccelerationStructureType
     {
         /// <summary>
-        /// 
         /// </summary>
-        TopLevel = 0, 
-        
+        TopLevel = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        BottomLevel = 1, 
+        BottomLevel = 1
     }
 }

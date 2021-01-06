@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetPresentRectanglesDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.Khronos.Surface surface, uint* rectCount, SharpVk.Rect2D* rects);
+    public unsafe delegate Result VkPhysicalDeviceGetPresentRectanglesDelegate(PhysicalDevice physicalDevice, Surface surface, uint* rectCount, Rect2D* rects);
 }

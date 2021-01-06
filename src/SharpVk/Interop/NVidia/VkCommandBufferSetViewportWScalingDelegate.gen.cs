@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetViewportWScalingDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint firstViewport, uint viewportCount, SharpVk.NVidia.ViewportWScaling* viewportWScalings);
+    public unsafe delegate void VkCommandBufferSetViewportWScalingDelegate(CommandBuffer commandBuffer, uint firstViewport, uint viewportCount, ViewportWScaling* viewportWScalings);
 }

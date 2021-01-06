@@ -22,76 +22,68 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevice16BitStorageFeatures
+    public struct PhysicalDevice16BitStorageFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool StorageBuffer16BitAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool UniformAndStorageBuffer16BitAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StoragePushConstant16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StorageInputOutput16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDevice16BitStorageFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDevice16BitStorageFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDevice16bitStorageFeaturesVersion;
+            pointer->SType = StructureType.PhysicalDevice16BitStorageFeaturesVersion;
             pointer->Next = null;
-            pointer->StorageBuffer16BitAccess = this.StorageBuffer16BitAccess;
-            pointer->UniformAndStorageBuffer16BitAccess = this.UniformAndStorageBuffer16BitAccess;
-            pointer->StoragePushConstant16 = this.StoragePushConstant16;
-            pointer->StorageInputOutput16 = this.StorageInputOutput16;
+            pointer->StorageBuffer16BitAccess = StorageBuffer16BitAccess;
+            pointer->UniformAndStorageBuffer16BitAccess = UniformAndStorageBuffer16BitAccess;
+            pointer->StoragePushConstant16 = StoragePushConstant16;
+            pointer->StorageInputOutput16 = StorageInputOutput16;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevice16BitStorageFeatures MarshalFrom(SharpVk.Interop.PhysicalDevice16BitStorageFeatures* pointer)
+        internal static unsafe PhysicalDevice16BitStorageFeatures MarshalFrom(Interop.PhysicalDevice16BitStorageFeatures* pointer)
         {
-            PhysicalDevice16BitStorageFeatures result = default(PhysicalDevice16BitStorageFeatures);
+            var result = default(PhysicalDevice16BitStorageFeatures);
             result.StorageBuffer16BitAccess = pointer->StorageBuffer16BitAccess;
             result.UniformAndStorageBuffer16BitAccess = pointer->UniformAndStorageBuffer16BitAccess;
             result.StoragePushConstant16 = pointer->StoragePushConstant16;

@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorSetVariableDescriptorCountAllocateInfo
+    public struct DescriptorSetVariableDescriptorCountAllocateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint[] DescriptorCounts
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetVariableDescriptorCountAllocateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DescriptorSetVariableDescriptorCountAllocateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetVariableDescriptorCountAllocateInfoVersion;
             pointer->Next = null;
-            pointer->DescriptorSetCount = (uint)(Interop.HeapUtil.GetLength(this.DescriptorCounts));
-            if (this.DescriptorCounts != null)
+            pointer->DescriptorSetCount = HeapUtil.GetLength(DescriptorCounts);
+            if (DescriptorCounts != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DescriptorCounts.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DescriptorCounts.Length); index++)
-                {
-                    fieldPointer[index] = this.DescriptorCounts[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(DescriptorCounts.Length).ToPointer();
+                for (var index = 0; index < (uint)DescriptorCounts.Length; index++) fieldPointer[index] = DescriptorCounts[index];
                 pointer->DescriptorCounts = fieldPointer;
             }
             else

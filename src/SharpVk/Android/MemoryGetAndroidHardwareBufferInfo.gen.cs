@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Android
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryGetAndroidHardwareBufferInfo
+    public struct MemoryGetAndroidHardwareBufferInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DeviceMemory Memory
+        public DeviceMemory Memory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Android.MemoryGetAndroidHardwareBufferInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Android.MemoryGetAndroidHardwareBufferInfo* pointer)
         {
             pointer->SType = StructureType.MemoryGetAndroidHardwareBufferInfo;
             pointer->Next = null;
-            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
+            pointer->Memory = Memory?.Handle ?? default(Interop.DeviceMemory);
         }
     }
 }

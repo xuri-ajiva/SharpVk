@@ -25,28 +25,24 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Type of index buffer indices.
+    ///     Type of index buffer indices.
     /// </summary>
     public enum IndexType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Uint16 = 0, 
-        
+        Uint16 = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Uint32 = 1, 
-        
+        Uint32 = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        None = 1000165000, 
-        
+        None = 1000165000,
+
         /// <summary>
-        /// 
         /// </summary>
-        Uint8 = 1000265000, 
+        Uint8 = 1000265000
     }
 }

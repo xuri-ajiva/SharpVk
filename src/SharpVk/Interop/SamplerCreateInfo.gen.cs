@@ -22,105 +22,89 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SamplerCreateInfo
+    public unsafe struct SamplerCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.SamplerCreateFlags Flags; 
-        
+        public SamplerCreateFlags Flags;
+
         /// <summary>
-        /// The magnification filter to apply to lookups.
+        ///     The magnification filter to apply to lookups.
         /// </summary>
-        public SharpVk.Filter MagFilter; 
-        
+        public Filter MagFilter;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Filter MinFilter; 
-        
+        public Filter MinFilter;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerMipmapMode MipmapMode; 
-        
+        public SamplerMipmapMode MipmapMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerAddressMode AddressModeU; 
-        
+        public SamplerAddressMode AddressModeU;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerAddressMode AddressModeV; 
-        
+        public SamplerAddressMode AddressModeV;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerAddressMode AddressModeW; 
-        
+        public SamplerAddressMode AddressModeW;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float MipLodBias; 
-        
+        public float MipLodBias;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 AnisotropyEnable; 
-        
+        public Bool32 AnisotropyEnable;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float MaxAnisotropy; 
-        
+        public float MaxAnisotropy;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 CompareEnable; 
-        
+        public Bool32 CompareEnable;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.CompareOp CompareOp; 
-        
+        public CompareOp CompareOp;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float MinLod; 
-        
+        public float MinLod;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float MaxLod; 
-        
+        public float MaxLod;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.BorderColor BorderColor; 
-        
+        public BorderColor BorderColor;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 UnnormalizedCoordinates; 
+        public Bool32 UnnormalizedCoordinates;
     }
 }

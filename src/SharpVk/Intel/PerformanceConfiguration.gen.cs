@@ -22,50 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Device configuration for performance queries
+    ///     Device configuration for performance queries
     /// </summary>
-    public partial class PerformanceConfiguration
+    public class PerformanceConfiguration
     {
-        internal readonly SharpVk.Interop.Intel.PerformanceConfiguration handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal PerformanceConfiguration(SharpVk.Device parent, SharpVk.Interop.Intel.PerformanceConfiguration handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Intel.PerformanceConfiguration Handle;
+
+        internal readonly Device Parent;
+
+        internal PerformanceConfiguration(Device parent, Interop.Intel.PerformanceConfiguration handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Intel.PerformanceConfiguration RawHandle => this.handle;
-        
+        public Interop.Intel.PerformanceConfiguration RawHandle => Handle;
+
         /// <summary>
-        /// 
         /// </summary>
-        public unsafe void Release()
+        public void Release()
         {
             try
             {
-                SharpVk.Interop.Intel.VkPerformanceConfigurationINTELReleaseDelegate commandDelegate = commandCache.Cache.vkReleasePerformanceConfigurationINTEL;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandDelegate = CommandCache.Cache.VkReleasePerformanceConfigurationIntel;
+                var methodResult = commandDelegate(Parent.Handle, Handle);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

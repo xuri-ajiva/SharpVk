@@ -22,35 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceMaintenance3Properties
+    public unsafe struct PhysicalDeviceMaintenance3Properties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxPerSetDescriptors; 
-        
+        public uint MaxPerSetDescriptors;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong MaxMemoryAllocationSize; 
+        public ulong MaxMemoryAllocationSize;
     }
 }

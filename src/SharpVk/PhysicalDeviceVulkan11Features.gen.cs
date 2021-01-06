@@ -22,156 +22,140 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceVulkan11Features
+    public struct PhysicalDeviceVulkan11Features
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool StorageBuffer16BitAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool UniformAndStorageBuffer16BitAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StoragePushConstant16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StorageInputOutput16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool Multiview
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool MultiviewGeometryShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool MultiviewTessellationShader
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool VariablePointersStorageBuffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool VariablePointers
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ProtectedMemory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool SamplerYcbcrConversion
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShaderDrawParameters
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkan11Features* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceVulkan11Features* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceVulkan11Features;
             pointer->Next = null;
-            pointer->StorageBuffer16BitAccess = this.StorageBuffer16BitAccess;
-            pointer->UniformAndStorageBuffer16BitAccess = this.UniformAndStorageBuffer16BitAccess;
-            pointer->StoragePushConstant16 = this.StoragePushConstant16;
-            pointer->StorageInputOutput16 = this.StorageInputOutput16;
-            pointer->Multiview = this.Multiview;
-            pointer->MultiviewGeometryShader = this.MultiviewGeometryShader;
-            pointer->MultiviewTessellationShader = this.MultiviewTessellationShader;
-            pointer->VariablePointersStorageBuffer = this.VariablePointersStorageBuffer;
-            pointer->VariablePointers = this.VariablePointers;
-            pointer->ProtectedMemory = this.ProtectedMemory;
-            pointer->SamplerYcbcrConversion = this.SamplerYcbcrConversion;
-            pointer->ShaderDrawParameters = this.ShaderDrawParameters;
+            pointer->StorageBuffer16BitAccess = StorageBuffer16BitAccess;
+            pointer->UniformAndStorageBuffer16BitAccess = UniformAndStorageBuffer16BitAccess;
+            pointer->StoragePushConstant16 = StoragePushConstant16;
+            pointer->StorageInputOutput16 = StorageInputOutput16;
+            pointer->Multiview = Multiview;
+            pointer->MultiviewGeometryShader = MultiviewGeometryShader;
+            pointer->MultiviewTessellationShader = MultiviewTessellationShader;
+            pointer->VariablePointersStorageBuffer = VariablePointersStorageBuffer;
+            pointer->VariablePointers = VariablePointers;
+            pointer->ProtectedMemory = ProtectedMemory;
+            pointer->SamplerYcbcrConversion = SamplerYcbcrConversion;
+            pointer->ShaderDrawParameters = ShaderDrawParameters;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceVulkan11Features MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkan11Features* pointer)
+        internal static unsafe PhysicalDeviceVulkan11Features MarshalFrom(Interop.PhysicalDeviceVulkan11Features* pointer)
         {
-            PhysicalDeviceVulkan11Features result = default(PhysicalDeviceVulkan11Features);
+            var result = default(PhysicalDeviceVulkan11Features);
             result.StorageBuffer16BitAccess = pointer->StorageBuffer16BitAccess;
             result.UniformAndStorageBuffer16BitAccess = pointer->UniformAndStorageBuffer16BitAccess;
             result.StoragePushConstant16 = pointer->StoragePushConstant16;

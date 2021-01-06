@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkQueueSetPerformanceConfigurationDelegate(SharpVk.Interop.Queue queue, SharpVk.Interop.Intel.PerformanceConfiguration configuration);
+    public delegate Result VkQueueSetPerformanceConfigurationDelegate(Queue queue, PerformanceConfiguration configuration);
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferClearDepthStencilImageDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearDepthStencilValue* depthStencil, uint rangeCount, SharpVk.ImageSubresourceRange* ranges);
+    public unsafe delegate void VkCommandBufferClearDepthStencilImageDelegate(CommandBuffer commandBuffer, Image image, ImageLayout imageLayout, ClearDepthStencilValue* depthStencil, uint rangeCount, ImageSubresourceRange* ranges);
 }

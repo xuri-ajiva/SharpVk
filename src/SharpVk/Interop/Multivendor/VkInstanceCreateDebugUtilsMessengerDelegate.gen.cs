@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateDebugUtilsMessengerDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Multivendor.DebugUtilsMessenger* messenger);
+    public unsafe delegate Result VkInstanceCreateDebugUtilsMessengerDelegate(Instance instance, DebugUtilsMessengerCreateInfo* createInfo, AllocationCallbacks* allocator, DebugUtilsMessenger* messenger);
 }

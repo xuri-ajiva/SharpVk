@@ -22,53 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageDrmFormatModifierExplicitCreateInfo
+    public struct ImageDrmFormatModifierExplicitCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong DrmFormatModifier
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SubresourceLayout[] PlaneLayouts
+        public SubresourceLayout[] PlaneLayouts
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageDrmFormatModifierExplicitCreateInfo;
             pointer->Next = null;
-            pointer->DrmFormatModifier = this.DrmFormatModifier;
-            pointer->DrmFormatModifierPlaneCount = (uint)(Interop.HeapUtil.GetLength(this.PlaneLayouts));
-            if (this.PlaneLayouts != null)
+            pointer->DrmFormatModifier = DrmFormatModifier;
+            pointer->DrmFormatModifierPlaneCount = HeapUtil.GetLength(PlaneLayouts);
+            if (PlaneLayouts != null)
             {
-                var fieldPointer = (SharpVk.SubresourceLayout*)(Interop.HeapUtil.AllocateAndClear<SharpVk.SubresourceLayout>(this.PlaneLayouts.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.PlaneLayouts.Length); index++)
-                {
-                    fieldPointer[index] = this.PlaneLayouts[index];
-                }
+                var fieldPointer = (SubresourceLayout*)HeapUtil.AllocateAndClear<SubresourceLayout>(PlaneLayouts.Length).ToPointer();
+                for (var index = 0; index < (uint)PlaneLayouts.Length; index++) fieldPointer[index] = PlaneLayouts[index];
                 pointer->PlaneLayouts = fieldPointer;
             }
             else

@@ -22,43 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct HeadlessSurfaceCreateInfo
+    public struct HeadlessSurfaceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use
+        ///     Reserved for future use
         /// </summary>
-        public SharpVk.Multivendor.HeadlessSurfaceCreateFlags? Flags
+        public HeadlessSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.HeadlessSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.HeadlessSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.HeadlessSurfaceCreateFlags);
-            }
+                pointer->Flags = default;
         }
     }
 }

@@ -22,35 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceShaderAtomicInt64Features
+    public unsafe struct PhysicalDeviceShaderAtomicInt64Features
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderBufferInt64Atomics; 
-        
+        public Bool32 ShaderBufferInt64Atomics;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 ShaderSharedInt64Atomics; 
+        public Bool32 ShaderSharedInt64Atomics;
     }
 }

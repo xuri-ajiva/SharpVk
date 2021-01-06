@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceProtectedMemoryFeatures
+    public struct PhysicalDeviceProtectedMemoryFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ProtectedMemory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceProtectedMemoryFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceProtectedMemoryFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceProtectedMemoryFeatures;
             pointer->Next = null;
-            pointer->ProtectedMemory = this.ProtectedMemory;
+            pointer->ProtectedMemory = ProtectedMemory;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceProtectedMemoryFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceProtectedMemoryFeatures* pointer)
+        internal static unsafe PhysicalDeviceProtectedMemoryFeatures MarshalFrom(Interop.PhysicalDeviceProtectedMemoryFeatures* pointer)
         {
-            PhysicalDeviceProtectedMemoryFeatures result = default(PhysicalDeviceProtectedMemoryFeatures);
+            var result = default(PhysicalDeviceProtectedMemoryFeatures);
             result.ProtectedMemory = pointer->ProtectedMemory;
             return result;
         }

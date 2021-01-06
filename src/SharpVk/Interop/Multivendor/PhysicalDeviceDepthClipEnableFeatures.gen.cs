@@ -22,35 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceDepthClipEnableFeatures
+    public unsafe struct PhysicalDeviceDepthClipEnableFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Indicates that the implementation supports setting the depth
-        /// clipping operation explicitly via the
-        /// VkPipelineRasterizationDepthClipStateCreateInfoEXT pipeline state.
-        /// Otherwise depth clipping is only enabled when
-        /// VkPipelineRasterizationStateCreateInfo::depthClampEnable is set to
-        /// false.
+        ///     Indicates that the implementation supports setting the depth
+        ///     clipping operation explicitly via the
+        ///     VkPipelineRasterizationDepthClipStateCreateInfoEXT pipeline state.
+        ///     Otherwise depth clipping is only enabled when
+        ///     VkPipelineRasterizationStateCreateInfo::depthClampEnable is set to
+        ///     false.
         /// </summary>
-        public Bool32 DepthClipEnable; 
+        public Bool32 DepthClipEnable;
     }
 }

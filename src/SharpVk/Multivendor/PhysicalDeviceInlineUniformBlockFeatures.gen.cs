@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceInlineUniformBlockFeatures
+    public struct PhysicalDeviceInlineUniformBlockFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool InlineUniformBlock
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool DescriptorBindingInlineUniformBlockUpdateAfterBind
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceInlineUniformBlockFeatures;
             pointer->Next = null;
-            pointer->InlineUniformBlock = this.InlineUniformBlock;
-            pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind = this.DescriptorBindingInlineUniformBlockUpdateAfterBind;
+            pointer->InlineUniformBlock = InlineUniformBlock;
+            pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind = DescriptorBindingInlineUniformBlockUpdateAfterBind;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceInlineUniformBlockFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
+        internal static unsafe PhysicalDeviceInlineUniformBlockFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
         {
-            PhysicalDeviceInlineUniformBlockFeatures result = default(PhysicalDeviceInlineUniformBlockFeatures);
+            var result = default(PhysicalDeviceInlineUniformBlockFeatures);
             result.InlineUniformBlock = pointer->InlineUniformBlock;
             result.DescriptorBindingInlineUniformBlockUpdateAfterBind = pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind;
             return result;

@@ -22,58 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a draw indexed indirect command.
+    ///     Structure specifying a draw indexed indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DrawIndexedIndirectCommand
+    public struct DrawIndexedIndirectCommand
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static DrawIndexedIndirectCommand Zero => new DrawIndexedIndirectCommand();
-        
+        public static DrawIndexedIndirectCommand Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public DrawIndexedIndirectCommand(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
         {
-            this.IndexCount = indexCount;
-            this.InstanceCount = instanceCount;
-            this.FirstIndex = firstIndex;
-            this.VertexOffset = vertexOffset;
-            this.FirstInstance = firstInstance;
+            IndexCount = indexCount;
+            InstanceCount = instanceCount;
+            FirstIndex = firstIndex;
+            VertexOffset = vertexOffset;
+            FirstInstance = firstInstance;
         }
-        
+
         /// <summary>
-        /// The number of vertices to draw.
+        ///     The number of vertices to draw.
         /// </summary>
-        public uint IndexCount; 
-        
+        public uint IndexCount;
+
         /// <summary>
-        /// The number of instances to draw.
+        ///     The number of instances to draw.
         /// </summary>
-        public uint InstanceCount; 
-        
+        public uint InstanceCount;
+
         /// <summary>
-        /// The base index within the index buffer.
+        ///     The base index within the index buffer.
         /// </summary>
-        public uint FirstIndex; 
-        
+        public uint FirstIndex;
+
         /// <summary>
-        /// The value added to the vertex index before indexing into the vertex
-        /// buffer.
+        ///     The value added to the vertex index before indexing into the vertex
+        ///     buffer.
         /// </summary>
-        public int VertexOffset; 
-        
+        public int VertexOffset;
+
         /// <summary>
-        /// The instance ID of the first instance to draw.
+        ///     The instance ID of the first instance to draw.
         /// </summary>
-        public uint FirstInstance; 
+        public uint FirstInstance;
     }
 }

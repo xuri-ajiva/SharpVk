@@ -25,18 +25,15 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum DiscardRectangleMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        Inclusive = 0, 
-        
+        Inclusive = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Exclusive = 1, 
+        Exclusive = 1
     }
 }

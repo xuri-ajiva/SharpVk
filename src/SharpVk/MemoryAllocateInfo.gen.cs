@@ -22,47 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure containing parameters of a memory allocation.
+    ///     Structure containing parameters of a memory allocation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryAllocateInfo
+    public struct MemoryAllocateInfo
     {
         /// <summary>
-        /// The size of the allocation in bytes
+        ///     The size of the allocation in bytes
         /// </summary>
         public ulong AllocationSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The memory type index, which selects the properties of the memory
-        /// to be allocated, as well as the heap the memory will come from.
+        ///     The memory type index, which selects the properties of the memory
+        ///     to be allocated, as well as the heap the memory will come from.
         /// </summary>
         public uint MemoryTypeIndex
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.MemoryAllocateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.MemoryAllocateInfo* pointer)
         {
             pointer->SType = StructureType.MemoryAllocateInfo;
             pointer->Next = null;
-            pointer->AllocationSize = this.AllocationSize;
-            pointer->MemoryTypeIndex = this.MemoryTypeIndex;
+            pointer->AllocationSize = AllocationSize;
+            pointer->MemoryTypeIndex = MemoryTypeIndex;
         }
     }
 }

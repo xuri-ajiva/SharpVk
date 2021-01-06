@@ -22,66 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevice8BitStorageFeatures
+    public struct PhysicalDevice8BitStorageFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool StorageBuffer8BitAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool UniformAndStorageBuffer8BitAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool StoragePushConstant8
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDevice8BitStorageFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDevice8BitStorageFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDevice8bitStorageFeaturesVersion;
+            pointer->SType = StructureType.PhysicalDevice8BitStorageFeaturesVersion;
             pointer->Next = null;
-            pointer->StorageBuffer8BitAccess = this.StorageBuffer8BitAccess;
-            pointer->UniformAndStorageBuffer8BitAccess = this.UniformAndStorageBuffer8BitAccess;
-            pointer->StoragePushConstant8 = this.StoragePushConstant8;
+            pointer->StorageBuffer8BitAccess = StorageBuffer8BitAccess;
+            pointer->UniformAndStorageBuffer8BitAccess = UniformAndStorageBuffer8BitAccess;
+            pointer->StoragePushConstant8 = StoragePushConstant8;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevice8BitStorageFeatures MarshalFrom(SharpVk.Interop.PhysicalDevice8BitStorageFeatures* pointer)
+        internal static unsafe PhysicalDevice8BitStorageFeatures MarshalFrom(Interop.PhysicalDevice8BitStorageFeatures* pointer)
         {
-            PhysicalDevice8BitStorageFeatures result = default(PhysicalDevice8BitStorageFeatures);
+            var result = default(PhysicalDevice8BitStorageFeatures);
             result.StorageBuffer8BitAccess = pointer->StorageBuffer8BitAccess;
             result.UniformAndStorageBuffer8BitAccess = pointer->UniformAndStorageBuffer8BitAccess;
             result.StoragePushConstant8 = pointer->StoragePushConstant8;

@@ -22,25 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ShadingRatePalette
+    public unsafe struct ShadingRatePalette
     {
         /// <summary>
-        /// 
         /// </summary>
-        public uint ShadingRatePaletteEntryCount; 
-        
+        public uint ShadingRatePaletteEntryCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.ShadingRatePaletteEntry* ShadingRatePaletteEntries; 
+        public ShadingRatePaletteEntry* ShadingRatePaletteEntries;
     }
 }

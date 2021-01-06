@@ -22,93 +22,80 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceImageFormatInfo2
+    public struct PhysicalDeviceImageFormatInfo2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format Format
+        public Format Format
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageType Type
+        public ImageType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageTiling Tiling
+        public ImageTiling Tiling
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags Usage
+        public ImageUsageFlags Usage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageCreateFlags? Flags
+        public ImageCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceImageFormatInfo2* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceImageFormatInfo2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceImageFormatInfo2Version;
             pointer->Next = null;
-            pointer->Format = this.Format;
-            pointer->Type = this.Type;
-            pointer->Tiling = this.Tiling;
-            pointer->Usage = this.Usage;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            pointer->Format = Format;
+            pointer->Type = Type;
+            pointer->Tiling = Tiling;
+            pointer->Usage = Usage;
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.ImageCreateFlags);
-            }
+                pointer->Flags = default;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceImageFormatInfo2 MarshalFrom(SharpVk.Interop.PhysicalDeviceImageFormatInfo2* pointer)
+        internal static unsafe PhysicalDeviceImageFormatInfo2 MarshalFrom(Interop.PhysicalDeviceImageFormatInfo2* pointer)
         {
-            PhysicalDeviceImageFormatInfo2 result = default(PhysicalDeviceImageFormatInfo2);
+            var result = default(PhysicalDeviceImageFormatInfo2);
             result.Format = pointer->Format;
             result.Type = pointer->Type;
             result.Tiling = pointer->Tiling;

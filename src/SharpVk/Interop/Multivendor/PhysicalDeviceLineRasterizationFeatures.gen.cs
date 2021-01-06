@@ -22,55 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceLineRasterizationFeatures
+    public unsafe struct PhysicalDeviceLineRasterizationFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 RectangularLines; 
-        
+        public Bool32 RectangularLines;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 BresenhamLines; 
-        
+        public Bool32 BresenhamLines;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 SmoothLines; 
-        
+        public Bool32 SmoothLines;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StippledRectangularLines; 
-        
+        public Bool32 StippledRectangularLines;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StippledBresenhamLines; 
-        
+        public Bool32 StippledBresenhamLines;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 StippledSmoothLines; 
+        public Bool32 StippledSmoothLines;
     }
 }

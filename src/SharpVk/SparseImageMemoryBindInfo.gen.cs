@@ -22,51 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying sparse image memory bind info.
+    ///     Structure specifying sparse image memory bind info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SparseImageMemoryBindInfo
+    public struct SparseImageMemoryBindInfo
     {
         /// <summary>
-        /// The Image object to be bound
+        ///     The Image object to be bound
         /// </summary>
-        public SharpVk.Image Image
+        public Image Image
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Array of SparseImageMemoryBind structures
+        ///     Array of SparseImageMemoryBind structures
         /// </summary>
-        public SharpVk.SparseImageMemoryBind[] Binds
+        public SparseImageMemoryBind[] Binds
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SparseImageMemoryBindInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SparseImageMemoryBindInfo* pointer)
         {
-            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
-            pointer->BindCount = (uint)(Interop.HeapUtil.GetLength(this.Binds));
-            if (this.Binds != null)
+            pointer->Image = Image?.Handle ?? default(Interop.Image);
+            pointer->BindCount = HeapUtil.GetLength(Binds);
+            if (Binds != null)
             {
-                var fieldPointer = (SharpVk.Interop.SparseImageMemoryBind*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseImageMemoryBind>(this.Binds.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Binds.Length); index++)
-                {
-                    this.Binds[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.SparseImageMemoryBind*)HeapUtil.AllocateAndClear<Interop.SparseImageMemoryBind>(Binds.Length).ToPointer();
+                for (var index = 0; index < (uint)Binds.Length; index++) Binds[index].MarshalTo(&fieldPointer[index]);
                 pointer->Binds = fieldPointer;
             }
             else

@@ -22,78 +22,75 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying an image blit operation.
+    ///     Structure specifying an image blit operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageBlit
+    public struct ImageBlit
     {
         /// <summary>
-        /// The subresource to blit from.
+        ///     The subresource to blit from.
         /// </summary>
-        public SharpVk.ImageSubresourceLayers SourceSubresource
+        public ImageSubresourceLayers SourceSubresource
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of two Offset3D structures specifying the bounds of the
-        /// source region within the source subresource.
+        ///     An array of two Offset3D structures specifying the bounds of the
+        ///     source region within the source subresource.
         /// </summary>
-        public (SharpVk.Offset3D, SharpVk.Offset3D) SourceOffsets
+        public (Offset3D, Offset3D) SourceOffsets
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The subresource to blit into.
+        ///     The subresource to blit into.
         /// </summary>
-        public SharpVk.ImageSubresourceLayers DestinationSubresource
+        public ImageSubresourceLayers DestinationSubresource
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of two Offset3D structures specifying the bounds of the
-        /// destination region within the destination subresource.
+        ///     An array of two Offset3D structures specifying the bounds of the
+        ///     destination region within the destination subresource.
         /// </summary>
-        public (SharpVk.Offset3D, SharpVk.Offset3D) DestinationOffsets
+        public (Offset3D, Offset3D) DestinationOffsets
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.ImageBlit* pointer)
+        internal unsafe void MarshalTo(Interop.ImageBlit* pointer)
         {
-            pointer->SourceSubresource = this.SourceSubresource;
-            pointer->SourceOffsets_0 = this.SourceOffsets.Item1;
-            pointer->SourceOffsets_1 = this.SourceOffsets.Item2;
-            pointer->DestinationSubresource = this.DestinationSubresource;
-            pointer->DestinationOffsets_0 = this.DestinationOffsets.Item1;
-            pointer->DestinationOffsets_1 = this.DestinationOffsets.Item2;
+            pointer->SourceSubresource = SourceSubresource;
+            pointer->SourceOffsets_0 = SourceOffsets.Item1;
+            pointer->SourceOffsets_1 = SourceOffsets.Item2;
+            pointer->DestinationSubresource = DestinationSubresource;
+            pointer->DestinationOffsets_0 = DestinationOffsets.Item1;
+            pointer->DestinationOffsets_1 = DestinationOffsets.Item2;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ImageBlit MarshalFrom(SharpVk.Interop.ImageBlit* pointer)
+        internal static unsafe ImageBlit MarshalFrom(Interop.ImageBlit* pointer)
         {
-            ImageBlit result = default(ImageBlit);
+            var result = default(ImageBlit);
             result.SourceSubresource = pointer->SourceSubresource;
             result.SourceOffsets = (pointer->SourceOffsets_0, pointer->SourceOffsets_1);
             result.DestinationSubresource = pointer->DestinationSubresource;

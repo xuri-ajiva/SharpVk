@@ -23,94 +23,90 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Opaque handle to a semaphore object.
+    ///     Opaque handle to a semaphore object.
     /// </summary>
-    public partial class Semaphore
+    public class Semaphore
         : IDisposable
     {
-        internal readonly SharpVk.Interop.Semaphore handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal Semaphore(SharpVk.Device parent, SharpVk.Interop.Semaphore handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.Semaphore Handle;
+
+        internal readonly Device Parent;
+
+        internal Semaphore(Device parent, Interop.Semaphore handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.Semaphore RawHandle => this.handle;
-        
+        public Interop.Semaphore RawHandle => Handle;
+
         /// <summary>
-        /// Destroy a semaphore object.
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
+        ///     Destroy a semaphore object.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.VkSemaphoreDestroyDelegate commandDelegate = commandCache.Cache.vkDestroySemaphore;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroySemaphore;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public unsafe ulong GetCounterValue()
         {
             try
             {
-                ulong result = default(ulong);
-                ulong marshalledValue = default(ulong);
-                SharpVk.Interop.VkSemaphoreGetCounterValueDelegate commandDelegate = commandCache.Cache.vkGetSemaphoreCounterValue;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, &marshalledValue);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var result = default(ulong);
+                var marshalledValue = default(ulong);
+                var commandDelegate = CommandCache.Cache.VkGetSemaphoreCounterValue;
+                var methodResult = commandDelegate(Parent.Handle, Handle, &marshalledValue);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
                 result = marshalledValue;
                 return result;
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

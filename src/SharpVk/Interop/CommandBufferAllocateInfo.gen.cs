@@ -22,41 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct CommandBufferAllocateInfo
+    public unsafe struct CommandBufferAllocateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The command pool from which the command buffers are allocated.
+        ///     The command pool from which the command buffers are allocated.
         /// </summary>
-        public SharpVk.Interop.CommandPool CommandPool; 
-        
+        public CommandPool CommandPool;
+
         /// <summary>
-        /// level determines whether the command buffers are primary or
-        /// secondary command buffers. Possible values include: + --
+        ///     level determines whether the command buffers are primary or
+        ///     secondary command buffers. Possible values include: + --
         /// </summary>
-        public SharpVk.CommandBufferLevel Level; 
-        
+        public CommandBufferLevel Level;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint CommandBufferCount; 
+        public uint CommandBufferCount;
     }
 }

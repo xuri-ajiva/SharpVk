@@ -22,32 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum MemoryAllocateFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceMask = 1 << 0, 
-        
+        DeviceMask = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceAddress = 1 << 1, 
-        
+        DeviceAddress = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceAddressCaptureReplay = 1 << 2, 
+        DeviceAddressCaptureReplay = 1 << 2
     }
 }

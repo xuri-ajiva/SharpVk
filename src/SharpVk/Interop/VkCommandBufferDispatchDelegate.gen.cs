@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferDispatchDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint groupCountX, uint groupCountY, uint groupCountZ);
+    public delegate void VkCommandBufferDispatchDelegate(CommandBuffer commandBuffer, uint groupCountX, uint groupCountY, uint groupCountZ);
 }

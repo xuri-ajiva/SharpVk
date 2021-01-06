@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferDrawIndirectByteCountDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint instanceCount, uint firstInstance, SharpVk.Interop.Buffer counterBuffer, ulong counterBufferOffset, uint counterOffset, uint vertexStride);
+    public delegate void VkCommandBufferDrawIndirectByteCountDelegate(CommandBuffer commandBuffer, uint instanceCount, uint firstInstance, Buffer counterBuffer, ulong counterBufferOffset, uint counterOffset, uint vertexStride);
 }

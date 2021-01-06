@@ -22,39 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Structure to specify X,Y chromaticity coordinates.
+    ///     Structure to specify X,Y chromaticity coordinates.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct XYColor
+    public struct XyColor
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static XYColor Zero => new XYColor();
-        
+        public static XyColor Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
-        public XYColor(float x, float y)
+        public XyColor(float x, float y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public float X; 
-        
+        public float X;
+
         /// <summary>
-        /// 
         /// </summary>
-        public float Y; 
+        public float Y;
     }
 }

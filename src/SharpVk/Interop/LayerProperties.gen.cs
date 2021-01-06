@@ -22,40 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct LayerProperties
+    public unsafe struct LayerProperties
     {
         /// <summary>
-        /// A string specifying the name of the layer. Use this name in the
-        /// ppEnabledLayerNames array passed in the InstanceCreateInfo
-        /// structure to enable this layer for an instance.
+        ///     A string specifying the name of the layer. Use this name in the
+        ///     ppEnabledLayerNames array passed in the InstanceCreateInfo
+        ///     structure to enable this layer for an instance.
         /// </summary>
-        public fixed byte LayerName[Constants.MaxExtensionNameSize]; 
-        
+        public fixed byte LayerName[Constants.MaxExtensionNameSize];
+
         /// <summary>
-        /// The Vulkan version the layer was written to, encoded as described
-        /// in the API Version Numbers and Semantics section.
+        ///     The Vulkan version the layer was written to, encoded as described
+        ///     in the API Version Numbers and Semantics section.
         /// </summary>
-        public uint SpecVersion; 
-        
+        public uint SpecVersion;
+
         /// <summary>
-        /// The version of this layer. It is an integer, increasing with
-        /// backward compatible changes.
+        ///     The version of this layer. It is an integer, increasing with
+        ///     backward compatible changes.
         /// </summary>
-        public uint ImplementationVersion; 
-        
+        public uint ImplementationVersion;
+
         /// <summary>
-        /// A string providing additional details that can be used by the
-        /// application to identify the layer.
+        ///     A string providing additional details that can be used by the
+        ///     application to identify the layer.
         /// </summary>
-        public fixed byte Description[Constants.MaxDescriptionSize]; 
+        public fixed byte Description[Constants.MaxDescriptionSize];
     }
 }

@@ -22,36 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// Device configuration for performance queries
+    ///     Device configuration for performance queries
     /// </summary>
     public struct PerformanceConfiguration
     {
-        internal ulong handle; 
-        
+        internal ulong Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public PerformanceConfiguration(ulong handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public PerformanceConfiguration Null => new PerformanceConfiguration(default(ulong));
-        
+        public PerformanceConfiguration Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle;
+            return Handle;
         }
     }
 }

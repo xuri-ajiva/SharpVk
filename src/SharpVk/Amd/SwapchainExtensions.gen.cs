@@ -22,35 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop;
+using SharpVk.Khronos;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class SwapchainExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="extendedHandle">
-        /// The Swapchain handle to extend.
+        ///     The Swapchain handle to extend.
         /// </param>
         /// <param name="localDimmingEnable">
         /// </param>
-        public static unsafe void SetLocalDimming(this SharpVk.Khronos.Swapchain extendedHandle, bool localDimmingEnable)
+        public static void SetLocalDimming(this Swapchain extendedHandle, bool localDimmingEnable)
         {
             try
             {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkSwapchainKHRSetLocalDimmingDelegate commandDelegate = commandCache.Cache.vkSetLocalDimmingAMD;
-                commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, localDimmingEnable);
+                var commandCache = default(CommandCache);
+                commandCache = extendedHandle.CommandCache;
+                var commandDelegate = commandCache.Cache.VkSetLocalDimmingAmd;
+                commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, localDimmingEnable);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
     }

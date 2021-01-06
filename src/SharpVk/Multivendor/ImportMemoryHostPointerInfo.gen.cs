@@ -28,40 +28,36 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportMemoryHostPointerInfo
+    public struct ImportMemoryHostPointerInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryHandleTypeFlags HandleType
+        public ExternalMemoryHandleTypeFlags HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr HostPointer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ImportMemoryHostPointerInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.ImportMemoryHostPointerInfo* pointer)
         {
             pointer->SType = StructureType.ImportMemoryHostPointerInfo;
             pointer->Next = null;
-            pointer->HandleType = this.HandleType;
-            pointer->HostPointer = this.HostPointer.ToPointer();
+            pointer->HandleType = HandleType;
+            pointer->HostPointer = HostPointer.ToPointer();
         }
     }
 }

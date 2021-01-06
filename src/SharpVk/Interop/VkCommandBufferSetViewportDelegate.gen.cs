@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetViewportDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint firstViewport, uint viewportCount, SharpVk.Viewport* viewports);
+    public unsafe delegate void VkCommandBufferSetViewportDelegate(CommandBuffer commandBuffer, uint firstViewport, uint viewportCount, Viewport* viewports);
 }

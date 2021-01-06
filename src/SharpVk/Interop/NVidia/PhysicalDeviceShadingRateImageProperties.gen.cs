@@ -22,40 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceShadingRateImageProperties
+    public unsafe struct PhysicalDeviceShadingRateImageProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D ShadingRateTexelSize; 
-        
+        public Extent2D ShadingRateTexelSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ShadingRatePaletteSize; 
-        
+        public uint ShadingRatePaletteSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ShadingRateMaxCoarseSamples; 
+        public uint ShadingRateMaxCoarseSamples;
     }
 }

@@ -22,44 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created fence.
+    ///     Structure specifying parameters of a newly created fence.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct FenceCreateInfo
+    public struct FenceCreateInfo
     {
         /// <summary>
-        /// flags defines the initial state and behavior of the fence. Bits
-        /// which can be set include: + --
+        ///     flags defines the initial state and behavior of the fence. Bits
+        ///     which can be set include: + --
         /// </summary>
-        public SharpVk.FenceCreateFlags? Flags
+        public FenceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.FenceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.FenceCreateInfo* pointer)
         {
             pointer->SType = StructureType.FenceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.FenceCreateFlags);
-            }
+                pointer->Flags = default;
         }
     }
 }

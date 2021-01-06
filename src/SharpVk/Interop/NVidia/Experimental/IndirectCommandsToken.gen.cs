@@ -22,31 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia.Experimental;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct IndirectCommandsToken
+    public struct IndirectCommandsToken
     {
         /// <summary>
-        /// Specifies the token command type.
+        ///     Specifies the token command type.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsTokenType TokenType; 
-        
+        public IndirectCommandsTokenType TokenType;
+
         /// <summary>
-        /// Specifies the Buffer storing the functional arguments for each
-        /// squence. These argumetns can be written by the device.
+        ///     Specifies the Buffer storing the functional arguments for each
+        ///     squence. These argumetns can be written by the device.
         /// </summary>
-        public SharpVk.Interop.Buffer Buffer; 
-        
+        public Buffer Buffer;
+
         /// <summary>
-        /// offset specified an offset into buffer where the arguments start.
+        ///     offset specified an offset into buffer where the arguments start.
         /// </summary>
-        public ulong Offset; 
+        public ulong Offset;
     }
 }

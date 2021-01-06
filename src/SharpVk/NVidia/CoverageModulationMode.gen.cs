@@ -25,28 +25,23 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum CoverageModulationMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Rgb = 1, 
-        
+        Rgb = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Alpha = 2, 
-        
+        Alpha = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        Rgba = 3, 
+        Rgba = 3
     }
 }

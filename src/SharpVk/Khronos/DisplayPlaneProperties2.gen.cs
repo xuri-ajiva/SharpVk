@@ -22,35 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DisplayPlaneProperties2
+    public struct DisplayPlaneProperties2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Khronos.DisplayPlaneProperties DisplayPlaneProperties
+        public DisplayPlaneProperties DisplayPlaneProperties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayPlaneProperties2 MarshalFrom(SharpVk.Interop.Khronos.DisplayPlaneProperties2* pointer)
+        internal static unsafe DisplayPlaneProperties2 MarshalFrom(Interop.Khronos.DisplayPlaneProperties2* pointer)
         {
-            DisplayPlaneProperties2 result = default(DisplayPlaneProperties2);
-            result.DisplayPlaneProperties = SharpVk.Khronos.DisplayPlaneProperties.MarshalFrom(&pointer->DisplayPlaneProperties);
+            var result = default(DisplayPlaneProperties2);
+            result.DisplayPlaneProperties = DisplayPlaneProperties.MarshalFrom(&pointer->DisplayPlaneProperties);
             return result;
         }
     }

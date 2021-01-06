@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BindBufferMemoryInfo
+    public struct BindBufferMemoryInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DeviceMemory Memory
+        public DeviceMemory Memory
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong MemoryOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.BindBufferMemoryInfo* pointer)
+        internal unsafe void MarshalTo(Interop.BindBufferMemoryInfo* pointer)
         {
             pointer->SType = StructureType.BindBufferMemoryInfoVersion;
             pointer->Next = null;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
-            pointer->MemoryOffset = this.MemoryOffset;
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            pointer->Memory = Memory?.Handle ?? default(Interop.DeviceMemory);
+            pointer->MemoryOffset = MemoryOffset;
         }
     }
 }

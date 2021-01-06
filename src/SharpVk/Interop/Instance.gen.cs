@@ -27,31 +27,28 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// Opaque handle to a instance object.
+    ///     Opaque handle to a instance object.
     /// </summary>
     public struct Instance
     {
-        internal UIntPtr handle; 
-        
+        internal UIntPtr Handle;
+
         /// <summary>
-        /// 
         /// </summary>
         public Instance(UIntPtr handle)
         {
-            this.handle = handle;
+            this.Handle = handle;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public Instance Null => new Instance(default(UIntPtr));
-        
+        public Instance Null => new(default);
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong ToUInt64()
         {
-            return this.handle.ToUInt64();
+            return Handle.ToUInt64();
         }
     }
 }

@@ -22,31 +22,28 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    /// Opaque handle to a descriptor set object.
+    ///     Opaque handle to a descriptor set object.
     /// </summary>
     public partial class DescriptorSet
     {
-        internal readonly SharpVk.Interop.DescriptorSet handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.DescriptorPool parent; 
-        
-        internal DescriptorSet(SharpVk.DescriptorPool parent, SharpVk.Interop.DescriptorSet handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.DescriptorSet Handle;
+
+        internal readonly DescriptorPool Parent;
+
+        internal DescriptorSet(DescriptorPool parent, Interop.DescriptorSet handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.DescriptorSet RawHandle => this.handle;
+        public Interop.DescriptorSet RawHandle => Handle;
     }
 }

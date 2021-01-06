@@ -25,28 +25,23 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum LineRasterizationMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        Default = 0, 
-        
+        Default = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Rectangular = 1, 
-        
+        Rectangular = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Bresenham = 2, 
-        
+        Bresenham = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        RectangularSmooth = 3, 
+        RectangularSmooth = 3
     }
 }

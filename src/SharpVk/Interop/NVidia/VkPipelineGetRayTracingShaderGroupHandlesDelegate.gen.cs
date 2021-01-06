@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPipelineGetRayTracingShaderGroupHandlesDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Pipeline pipeline, uint firstGroup, uint groupCount, HostSize dataSize, void* data);
+    public unsafe delegate Result VkPipelineGetRayTracingShaderGroupHandlesDelegate(Device device, Pipeline pipeline, uint firstGroup, uint groupCount, HostSize dataSize, void* data);
 }

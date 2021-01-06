@@ -22,155 +22,132 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a subpass description.
+    ///     Structure specifying a subpass description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SubpassDescription
+    public struct SubpassDescription
     {
         /// <summary>
-        /// A bitmask indicating usage of the subpass. Bits which can be set
-        /// include: + --
+        ///     A bitmask indicating usage of the subpass. Bits which can be set
+        ///     include: + --
         /// </summary>
-        public SharpVk.SubpassDescriptionFlags? Flags
+        public SubpassDescriptionFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint
+        public PipelineBindPoint PipelineBindPoint
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference[] InputAttachments
+        public AttachmentReference[] InputAttachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference[] ColorAttachments
+        public AttachmentReference[] ColorAttachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference[] ResolveAttachments
+        public AttachmentReference[] ResolveAttachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference? DepthStencilAttachment
+        public AttachmentReference? DepthStencilAttachment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint[] PreserveAttachments
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescription* pointer)
+        internal unsafe void MarshalTo(Interop.SubpassDescription* pointer)
         {
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->PipelineBindPoint = PipelineBindPoint;
+            pointer->InputAttachmentCount = HeapUtil.GetLength(InputAttachments);
+            if (InputAttachments != null)
             {
-                pointer->Flags = default(SharpVk.SubpassDescriptionFlags);
-            }
-            pointer->PipelineBindPoint = this.PipelineBindPoint;
-            pointer->InputAttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.InputAttachments));
-            if (this.InputAttachments != null)
-            {
-                var fieldPointer = (SharpVk.AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<SharpVk.AttachmentReference>(this.InputAttachments.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.InputAttachments.Length); index++)
-                {
-                    fieldPointer[index] = this.InputAttachments[index];
-                }
+                var fieldPointer = (AttachmentReference*)HeapUtil.AllocateAndClear<AttachmentReference>(InputAttachments.Length).ToPointer();
+                for (var index = 0; index < (uint)InputAttachments.Length; index++) fieldPointer[index] = InputAttachments[index];
                 pointer->InputAttachments = fieldPointer;
             }
             else
             {
                 pointer->InputAttachments = null;
             }
-            pointer->ColorAttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.ColorAttachments));
-            if (this.ColorAttachments != null)
+            pointer->ColorAttachmentCount = HeapUtil.GetLength(ColorAttachments);
+            if (ColorAttachments != null)
             {
-                var fieldPointer = (SharpVk.AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<SharpVk.AttachmentReference>(this.ColorAttachments.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ColorAttachments.Length); index++)
-                {
-                    fieldPointer[index] = this.ColorAttachments[index];
-                }
+                var fieldPointer = (AttachmentReference*)HeapUtil.AllocateAndClear<AttachmentReference>(ColorAttachments.Length).ToPointer();
+                for (var index = 0; index < (uint)ColorAttachments.Length; index++) fieldPointer[index] = ColorAttachments[index];
                 pointer->ColorAttachments = fieldPointer;
             }
             else
             {
                 pointer->ColorAttachments = null;
             }
-            if (this.ResolveAttachments != null)
+            if (ResolveAttachments != null)
             {
-                var fieldPointer = (SharpVk.AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<SharpVk.AttachmentReference>(this.ResolveAttachments.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ResolveAttachments.Length); index++)
-                {
-                    fieldPointer[index] = this.ResolveAttachments[index];
-                }
+                var fieldPointer = (AttachmentReference*)HeapUtil.AllocateAndClear<AttachmentReference>(ResolveAttachments.Length).ToPointer();
+                for (var index = 0; index < (uint)ResolveAttachments.Length; index++) fieldPointer[index] = ResolveAttachments[index];
                 pointer->ResolveAttachments = fieldPointer;
             }
             else
             {
                 pointer->ResolveAttachments = null;
             }
-            if (this.DepthStencilAttachment != null)
+            if (DepthStencilAttachment != null)
             {
-                pointer->DepthStencilAttachment = (SharpVk.AttachmentReference*)(Interop.HeapUtil.Allocate<SharpVk.AttachmentReference>());
-                *pointer->DepthStencilAttachment = this.DepthStencilAttachment.Value;
+                pointer->DepthStencilAttachment = (AttachmentReference*)HeapUtil.Allocate<AttachmentReference>();
+                *pointer->DepthStencilAttachment = DepthStencilAttachment.Value;
             }
             else
             {
-                pointer->DepthStencilAttachment = default(SharpVk.AttachmentReference*);
+                pointer->DepthStencilAttachment = default;
             }
-            pointer->PreserveAttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.PreserveAttachments));
-            if (this.PreserveAttachments != null)
+            pointer->PreserveAttachmentCount = HeapUtil.GetLength(PreserveAttachments);
+            if (PreserveAttachments != null)
             {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.PreserveAttachments.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.PreserveAttachments.Length); index++)
-                {
-                    fieldPointer[index] = this.PreserveAttachments[index];
-                }
+                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(PreserveAttachments.Length).ToPointer();
+                for (var index = 0; index < (uint)PreserveAttachments.Length; index++) fieldPointer[index] = PreserveAttachments[index];
                 pointer->PreserveAttachments = fieldPointer;
             }
             else
@@ -178,24 +155,20 @@ namespace SharpVk
                 pointer->PreserveAttachments = null;
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SubpassDescription MarshalFrom(SharpVk.Interop.SubpassDescription* pointer)
+        internal static unsafe SubpassDescription MarshalFrom(Interop.SubpassDescription* pointer)
         {
-            SubpassDescription result = default(SubpassDescription);
+            var result = default(SubpassDescription);
             result.Flags = pointer->Flags;
             result.PipelineBindPoint = pointer->PipelineBindPoint;
             if (pointer->InputAttachments != null)
             {
-                var fieldPointer = new SharpVk.AttachmentReference[(uint)(pointer->InputAttachmentCount)];
-                for(int index = 0; index < (uint)(pointer->InputAttachmentCount); index++)
-                {
-                    fieldPointer[index] = pointer->InputAttachments[index];
-                }
+                var fieldPointer = new AttachmentReference[pointer->InputAttachmentCount];
+                for (var index = 0; index < pointer->InputAttachmentCount; index++) fieldPointer[index] = pointer->InputAttachments[index];
                 result.InputAttachments = fieldPointer;
             }
             else
@@ -204,11 +177,8 @@ namespace SharpVk
             }
             if (pointer->ColorAttachments != null)
             {
-                var fieldPointer = new SharpVk.AttachmentReference[(uint)(pointer->ColorAttachmentCount)];
-                for(int index = 0; index < (uint)(pointer->ColorAttachmentCount); index++)
-                {
-                    fieldPointer[index] = pointer->ColorAttachments[index];
-                }
+                var fieldPointer = new AttachmentReference[pointer->ColorAttachmentCount];
+                for (var index = 0; index < pointer->ColorAttachmentCount; index++) fieldPointer[index] = pointer->ColorAttachments[index];
                 result.ColorAttachments = fieldPointer;
             }
             else
@@ -217,11 +187,8 @@ namespace SharpVk
             }
             if (pointer->ResolveAttachments != null)
             {
-                var fieldPointer = new SharpVk.AttachmentReference[(uint)(pointer->ColorAttachmentCount)];
-                for(int index = 0; index < (uint)(pointer->ColorAttachmentCount); index++)
-                {
-                    fieldPointer[index] = pointer->ResolveAttachments[index];
-                }
+                var fieldPointer = new AttachmentReference[pointer->ColorAttachmentCount];
+                for (var index = 0; index < pointer->ColorAttachmentCount; index++) fieldPointer[index] = pointer->ResolveAttachments[index];
                 result.ResolveAttachments = fieldPointer;
             }
             else
@@ -229,20 +196,13 @@ namespace SharpVk
                 result.ResolveAttachments = null;
             }
             if (pointer->DepthStencilAttachment != null)
-            {
                 result.DepthStencilAttachment = *pointer->DepthStencilAttachment;
-            }
             else
-            {
                 result.DepthStencilAttachment = null;
-            }
             if (pointer->PreserveAttachments != null)
             {
-                var fieldPointer = new uint[(uint)(pointer->PreserveAttachmentCount)];
-                for(int index = 0; index < (uint)(pointer->PreserveAttachmentCount); index++)
-                {
-                    fieldPointer[index] = pointer->PreserveAttachments[index];
-                }
+                var fieldPointer = new uint[pointer->PreserveAttachmentCount];
+                for (var index = 0; index < pointer->PreserveAttachmentCount; index++) fieldPointer[index] = pointer->PreserveAttachments[index];
                 result.PreserveAttachments = fieldPointer;
             }
             else

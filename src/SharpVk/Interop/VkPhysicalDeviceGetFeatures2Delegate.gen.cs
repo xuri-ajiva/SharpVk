@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkPhysicalDeviceGetFeatures2Delegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.PhysicalDeviceFeatures2* features);
+    public unsafe delegate void VkPhysicalDeviceGetFeatures2Delegate(PhysicalDevice physicalDevice, PhysicalDeviceFeatures2* features);
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetCalibratedTimestampsDelegate(SharpVk.Interop.Device device, uint timestampCount, SharpVk.Interop.Multivendor.CalibratedTimestampInfo* timestampInfos, ulong* timestamps, ulong* maxDeviation);
+    public unsafe delegate Result VkDeviceGetCalibratedTimestampsDelegate(Device device, uint timestampCount, CalibratedTimestampInfo* timestampInfos, ulong* timestamps, ulong* maxDeviation);
 }

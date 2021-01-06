@@ -22,77 +22,69 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ObjectTablePushConstantEntry
+    public struct ObjectTablePushConstantEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType Type
+        public ObjectEntryType Type
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags Flags
+        public ObjectEntryUsageFlags Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineLayout PipelineLayout
+        public PipelineLayout PipelineLayout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags StageFlags
+        public ShaderStageFlags StageFlags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTablePushConstantEntry* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.ObjectTablePushConstantEntry* pointer)
         {
-            pointer->Type = this.Type;
-            pointer->Flags = this.Flags;
-            pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
-            pointer->StageFlags = this.StageFlags;
+            pointer->Type = Type;
+            pointer->Flags = Flags;
+            pointer->PipelineLayout = PipelineLayout?.Handle ?? default(Interop.PipelineLayout);
+            pointer->StageFlags = StageFlags;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ObjectTablePushConstantEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTablePushConstantEntry* pointer)
+        internal static unsafe ObjectTablePushConstantEntry MarshalFrom(Interop.NVidia.Experimental.ObjectTablePushConstantEntry* pointer)
         {
-            ObjectTablePushConstantEntry result = default(ObjectTablePushConstantEntry);
+            var result = default(ObjectTablePushConstantEntry);
             result.Type = pointer->Type;
             result.Flags = pointer->Flags;
-            result.PipelineLayout = new SharpVk.PipelineLayout(default(SharpVk.Device), pointer->PipelineLayout);
+            result.PipelineLayout = new(default, pointer->PipelineLayout);
             result.StageFlags = pointer->StageFlags;
             return result;
         }

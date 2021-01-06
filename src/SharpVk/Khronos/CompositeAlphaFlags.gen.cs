@@ -22,51 +22,52 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Alpha compositing modes supported on a device.
+    ///     Alpha compositing modes supported on a device.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum CompositeAlphaFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// The alpha channel, if it exists, of the images is ignored in the
-        /// compositing process. Instead, the image is treated as if it has a
-        /// constant alpha of 1.0.
+        ///     The alpha channel, if it exists, of the images is ignored in the
+        ///     compositing process. Instead, the image is treated as if it has a
+        ///     constant alpha of 1.0.
         /// </summary>
-        Opaque = 1 << 0, 
-        
+        Opaque = 1 << 0,
+
         /// <summary>
-        /// The alpha channel, if it exists, of the images is respected in the
-        /// compositing process. The non-alpha channels of the image are
-        /// expected to already be multiplied by the alpha channel by the
-        /// application.
+        ///     The alpha channel, if it exists, of the images is respected in the
+        ///     compositing process. The non-alpha channels of the image are
+        ///     expected to already be multiplied by the alpha channel by the
+        ///     application.
         /// </summary>
-        PreMultiplied = 1 << 1, 
-        
+        PreMultiplied = 1 << 1,
+
         /// <summary>
-        /// The alpha channel, if it exists, of the images is respected in the
-        /// compositing process. The non-alpha channels of the image are not
-        /// expected to already be multiplied by the alpha channel by the
-        /// application; instead, the compositor will multiply the non-alpha
-        /// channels of the image by the alpha channel during compositing.
+        ///     The alpha channel, if it exists, of the images is respected in the
+        ///     compositing process. The non-alpha channels of the image are not
+        ///     expected to already be multiplied by the alpha channel by the
+        ///     application; instead, the compositor will multiply the non-alpha
+        ///     channels of the image by the alpha channel during compositing.
         /// </summary>
-        PostMultiplied = 1 << 2, 
-        
+        PostMultiplied = 1 << 2,
+
         /// <summary>
-        /// The way in which the presentation engine treats the alpha channel
-        /// in the images is unknown to the Vulkan API. Instead, the
-        /// application is responsible for setting the composite alpha blending
-        /// mode using native window system commands. If the application does
-        /// not set the blending mode using native window system commands, then
-        /// a platform-specific default will be used.
+        ///     The way in which the presentation engine treats the alpha channel
+        ///     in the images is unknown to the Vulkan API. Instead, the
+        ///     application is responsible for setting the composite alpha blending
+        ///     mode using native window system commands. If the application does
+        ///     not set the blending mode using native window system commands, then
+        ///     a platform-specific default will be used.
         /// </summary>
-        Inherit = 1 << 3, 
+        Inherit = 1 << 3
     }
 }

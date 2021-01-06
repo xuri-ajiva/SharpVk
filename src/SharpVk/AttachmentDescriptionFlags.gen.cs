@@ -22,22 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying additional properties of an attachment.
+    ///     Bitmask specifying additional properties of an attachment.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum AttachmentDescriptionFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        MayAlias = 1 << 0, 
+        MayAlias = 1 << 0
     }
 }

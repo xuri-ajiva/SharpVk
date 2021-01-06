@@ -22,68 +22,64 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure specifying the parameters of a newly created indirect
-    /// commands layout object.
+    ///     Structure specifying the parameters of a newly created indirect
+    ///     commands layout object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct IndirectCommandsLayoutCreateInfo
+    public struct IndirectCommandsLayoutCreateInfo
     {
         /// <summary>
-        /// The PipelineBindPoint that this layout targets.
+        ///     The PipelineBindPoint that this layout targets.
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint
+        public PipelineBindPoint PipelineBindPoint
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A bitmask providing usage hints of this layout. See
-        /// IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
-        /// the supported bits.
+        ///     A bitmask providing usage hints of this layout. See
+        ///     IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
+        ///     the supported bits.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsLayoutUsageFlags Flags
+        public IndirectCommandsLayoutUsageFlags Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array describing each command token in detail. See
-        /// IndirectCommandsTokenTypeNVX and IndirectCommandsLayoutTokenNVX
-        /// below for details.
+        ///     An array describing each command token in detail. See
+        ///     IndirectCommandsTokenTypeNVX and IndirectCommandsLayoutTokenNVX
+        ///     below for details.
         /// </summary>
-        public SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken[] Tokens
+        public IndirectCommandsLayoutToken[] Tokens
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.IndirectCommandsLayoutCreateInfo;
             pointer->Next = null;
-            pointer->PipelineBindPoint = this.PipelineBindPoint;
-            pointer->Flags = this.Flags;
-            pointer->TokenCount = (uint)(Interop.HeapUtil.GetLength(this.Tokens));
-            if (this.Tokens != null)
+            pointer->PipelineBindPoint = PipelineBindPoint;
+            pointer->Flags = Flags;
+            pointer->TokenCount = HeapUtil.GetLength(Tokens);
+            if (Tokens != null)
             {
-                var fieldPointer = (SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Tokens.Length); index++)
-                {
-                    fieldPointer[index] = this.Tokens[index];
-                }
+                var fieldPointer = (IndirectCommandsLayoutToken*)HeapUtil.AllocateAndClear<IndirectCommandsLayoutToken>(Tokens.Length).ToPointer();
+                for (var index = 0; index < (uint)Tokens.Length; index++) fieldPointer[index] = Tokens[index];
                 pointer->Tokens = fieldPointer;
             }
             else

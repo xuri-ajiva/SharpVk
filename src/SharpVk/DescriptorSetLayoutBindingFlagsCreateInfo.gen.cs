@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorSetLayoutBindingFlagsCreateInfo
+    public struct DescriptorSetLayoutBindingFlagsCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorBindingFlags[] BindingFlags
+        public DescriptorBindingFlags[] BindingFlags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutBindingFlagsCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutBindingFlagsCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetLayoutBindingFlagsCreateInfoVersion;
             pointer->Next = null;
-            pointer->BindingCount = (uint)(Interop.HeapUtil.GetLength(this.BindingFlags));
-            if (this.BindingFlags != null)
+            pointer->BindingCount = HeapUtil.GetLength(BindingFlags);
+            if (BindingFlags != null)
             {
-                var fieldPointer = (SharpVk.DescriptorBindingFlags*)(Interop.HeapUtil.AllocateAndClear<SharpVk.DescriptorBindingFlags>(this.BindingFlags.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.BindingFlags.Length); index++)
-                {
-                    fieldPointer[index] = this.BindingFlags[index];
-                }
+                var fieldPointer = (DescriptorBindingFlags*)HeapUtil.AllocateAndClear<DescriptorBindingFlags>(BindingFlags.Length).ToPointer();
+                for (var index = 0; index < (uint)BindingFlags.Length; index++) fieldPointer[index] = BindingFlags[index];
                 pointer->BindingFlags = fieldPointer;
             }
             else

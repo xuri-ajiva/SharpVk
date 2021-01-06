@@ -22,58 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying the allocation parameters for command buffer
-    /// object.
+    ///     Structure specifying the allocation parameters for command buffer
+    ///     object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct CommandBufferAllocateInfo
+    public struct CommandBufferAllocateInfo
     {
         /// <summary>
-        /// The command pool from which the command buffers are allocated.
+        ///     The command pool from which the command buffers are allocated.
         /// </summary>
-        public SharpVk.CommandPool CommandPool
+        public CommandPool CommandPool
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// level determines whether the command buffers are primary or
-        /// secondary command buffers. Possible values include: + --
+        ///     level determines whether the command buffers are primary or
+        ///     secondary command buffers. Possible values include: + --
         /// </summary>
-        public SharpVk.CommandBufferLevel Level
+        public CommandBufferLevel Level
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint CommandBufferCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.CommandBufferAllocateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.CommandBufferAllocateInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferAllocateInfo;
             pointer->Next = null;
-            pointer->CommandPool = this.CommandPool?.handle ?? default(SharpVk.Interop.CommandPool);
-            pointer->Level = this.Level;
-            pointer->CommandBufferCount = this.CommandBufferCount;
+            pointer->CommandPool = CommandPool?.Handle ?? default(Interop.CommandPool);
+            pointer->Level = Level;
+            pointer->CommandBufferCount = CommandBufferCount;
         }
     }
 }

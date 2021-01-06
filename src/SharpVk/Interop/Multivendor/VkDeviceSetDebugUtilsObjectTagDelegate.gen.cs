@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceSetDebugUtilsObjectTagDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Multivendor.DebugUtilsObjectTagInfo* tagInfo);
+    public unsafe delegate Result VkDeviceSetDebugUtilsObjectTagDelegate(Device device, DebugUtilsObjectTagInfo* tagInfo);
 }

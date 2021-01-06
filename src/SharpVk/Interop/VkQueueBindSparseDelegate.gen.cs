@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkQueueBindSparseDelegate(SharpVk.Interop.Queue queue, uint bindInfoCount, SharpVk.Interop.BindSparseInfo* bindInfo, SharpVk.Interop.Fence fence);
+    public unsafe delegate Result VkQueueBindSparseDelegate(Queue queue, uint bindInfoCount, BindSparseInfo* bindInfo, Fence fence);
 }

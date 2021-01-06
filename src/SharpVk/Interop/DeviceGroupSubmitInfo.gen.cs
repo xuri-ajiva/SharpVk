@@ -22,55 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DeviceGroupSubmitInfo
+    public unsafe struct DeviceGroupSubmitInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint WaitSemaphoreCount; 
-        
+        public uint WaitSemaphoreCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* WaitSemaphoreDeviceIndices; 
-        
+        public uint* WaitSemaphoreDeviceIndices;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint CommandBufferCount; 
-        
+        public uint CommandBufferCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* CommandBufferDeviceMasks; 
-        
+        public uint* CommandBufferDeviceMasks;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SignalSemaphoreCount; 
-        
+        public uint SignalSemaphoreCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* SignalSemaphoreDeviceIndices; 
+        public uint* SignalSemaphoreDeviceIndices;
     }
 }

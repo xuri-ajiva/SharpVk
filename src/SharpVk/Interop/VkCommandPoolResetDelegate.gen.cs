@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkCommandPoolResetDelegate(SharpVk.Interop.Device device, SharpVk.Interop.CommandPool commandPool, SharpVk.CommandPoolResetFlags flags);
+    public delegate Result VkCommandPoolResetDelegate(Device device, CommandPool commandPool, CommandPoolResetFlags flags);
 }

@@ -22,65 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SubpassDependency2
+    public unsafe struct SubpassDependency2
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SourceSubpass; 
-        
+        public uint SourceSubpass;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DestinationSubpass; 
-        
+        public uint DestinationSubpass;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineStageFlags SourceStageMask; 
-        
+        public PipelineStageFlags SourceStageMask;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineStageFlags DestinationStageMask; 
-        
+        public PipelineStageFlags DestinationStageMask;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AccessFlags SourceAccessMask; 
-        
+        public AccessFlags SourceAccessMask;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AccessFlags DestinationAccessMask; 
-        
+        public AccessFlags DestinationAccessMask;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DependencyFlags DependencyFlags; 
-        
+        public DependencyFlags DependencyFlags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int ViewOffset; 
+        public int ViewOffset;
     }
 }

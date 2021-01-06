@@ -22,70 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a global memory barrier.
+    ///     Structure specifying a global memory barrier.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryBarrier
+    public struct MemoryBarrier
     {
         /// <summary>
-        /// srcAccessMask defines a source access mask.
+        ///     srcAccessMask defines a source access mask.
         /// </summary>
-        public SharpVk.AccessFlags? SourceAccessMask
+        public AccessFlags? SourceAccessMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// dstAccessMask defines a destination access mask.
+        ///     dstAccessMask defines a destination access mask.
         /// </summary>
-        public SharpVk.AccessFlags? DestinationAccessMask
+        public AccessFlags? DestinationAccessMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.MemoryBarrier* pointer)
+        internal unsafe void MarshalTo(Interop.MemoryBarrier* pointer)
         {
             pointer->SType = StructureType.MemoryBarrier;
             pointer->Next = null;
-            if (this.SourceAccessMask != null)
-            {
-                pointer->SourceAccessMask = this.SourceAccessMask.Value;
-            }
+            if (SourceAccessMask != null)
+                pointer->SourceAccessMask = SourceAccessMask.Value;
             else
-            {
-                pointer->SourceAccessMask = default(SharpVk.AccessFlags);
-            }
-            if (this.DestinationAccessMask != null)
-            {
-                pointer->DestinationAccessMask = this.DestinationAccessMask.Value;
-            }
+                pointer->SourceAccessMask = default;
+            if (DestinationAccessMask != null)
+                pointer->DestinationAccessMask = DestinationAccessMask.Value;
             else
-            {
-                pointer->DestinationAccessMask = default(SharpVk.AccessFlags);
-            }
+                pointer->DestinationAccessMask = default;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryBarrier MarshalFrom(SharpVk.Interop.MemoryBarrier* pointer)
+        internal static unsafe MemoryBarrier MarshalFrom(Interop.MemoryBarrier* pointer)
         {
-            MemoryBarrier result = default(MemoryBarrier);
+            var result = default(MemoryBarrier);
             result.SourceAccessMask = pointer->SourceAccessMask;
             result.DestinationAccessMask = pointer->DestinationAccessMask;
             return result;

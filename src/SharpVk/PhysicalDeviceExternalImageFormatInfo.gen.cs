@@ -22,43 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceExternalImageFormatInfo
+    public struct PhysicalDeviceExternalImageFormatInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryHandleTypeFlags? HandleType
+        public ExternalMemoryHandleTypeFlags? HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalImageFormatInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceExternalImageFormatInfo* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceExternalImageFormatInfoVersion;
             pointer->Next = null;
-            if (this.HandleType != null)
-            {
-                pointer->HandleType = this.HandleType.Value;
-            }
+            if (HandleType != null)
+                pointer->HandleType = HandleType.Value;
             else
-            {
-                pointer->HandleType = default(SharpVk.ExternalMemoryHandleTypeFlags);
-            }
+                pointer->HandleType = default;
         }
     }
 }

@@ -22,48 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Structure for querying cubic filtering capabilities of an image view
-    /// type
+    ///     Structure for querying cubic filtering capabilities of an image view
+    ///     type
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct FilterCubicImageViewImageFormatProperties
+    public struct FilterCubicImageViewImageFormatProperties
     {
         /// <summary>
-        /// Tells if image format, image type and image view type can be used
-        /// with cubic filtering. This field is set by the implementation.
-        /// User-specified value is ignored.
+        ///     Tells if image format, image type and image view type can be used
+        ///     with cubic filtering. This field is set by the implementation.
+        ///     User-specified value is ignored.
         /// </summary>
         public bool FilterCubic
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Tells if image format, image type and image view type can be used
-        /// with cubic filtering and minmax filtering. This field is set by the
-        /// implementation. User-specified value is ignored.
+        ///     Tells if image format, image type and image view type can be used
+        ///     with cubic filtering and minmax filtering. This field is set by the
+        ///     implementation. User-specified value is ignored.
         /// </summary>
         public bool FilterCubicMinmax
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe FilterCubicImageViewImageFormatProperties MarshalFrom(SharpVk.Interop.Multivendor.FilterCubicImageViewImageFormatProperties* pointer)
+        internal static unsafe FilterCubicImageViewImageFormatProperties MarshalFrom(Interop.Multivendor.FilterCubicImageViewImageFormatProperties* pointer)
         {
-            FilterCubicImageViewImageFormatProperties result = default(FilterCubicImageViewImageFormatProperties);
+            var result = default(FilterCubicImageViewImageFormatProperties);
             result.FilterCubic = pointer->FilterCubic;
             result.FilterCubicMinmax = pointer->FilterCubicMinmax;
             return result;

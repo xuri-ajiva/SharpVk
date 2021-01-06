@@ -22,72 +22,61 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum ExternalMemoryHandleTypeFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        OpaqueFileDescriptor = 1 << 0, 
-        
+        OpaqueFileDescriptor = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        OpaqueWin32 = 1 << 1, 
-        
+        OpaqueWin32 = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        OpaqueWin32Kmt = 1 << 2, 
-        
+        OpaqueWin32Kmt = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        D3D11Texture = 1 << 3, 
-        
+        D3D11Texture = 1 << 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        D3D11TextureKmt = 1 << 4, 
-        
+        D3D11TextureKmt = 1 << 4,
+
         /// <summary>
-        /// 
         /// </summary>
-        D3D12Heap = 1 << 5, 
-        
+        D3D12Heap = 1 << 5,
+
         /// <summary>
-        /// 
         /// </summary>
-        D3D12Resource = 1 << 6, 
-        
+        D3D12Resource = 1 << 6,
+
         /// <summary>
-        /// 
         /// </summary>
-        DmaBuf = 1 << 9, 
-        
+        DmaBuf = 1 << 9,
+
         /// <summary>
-        /// 
         /// </summary>
-        AndroidHardwareBuffer = 1 << 10, 
-        
+        AndroidHardwareBuffer = 1 << 10,
+
         /// <summary>
-        /// 
         /// </summary>
-        HostAllocation = 1 << 7, 
-        
+        HostAllocation = 1 << 7,
+
         /// <summary>
-        /// 
         /// </summary>
-        HostMappedForeignMemory = 1 << 8, 
+        HostMappedForeignMemory = 1 << 8
     }
 }

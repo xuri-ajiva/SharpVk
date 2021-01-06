@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkBufferGetMemoryRequirementsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Buffer buffer, SharpVk.MemoryRequirements* memoryRequirements);
+    public unsafe delegate void VkBufferGetMemoryRequirementsDelegate(Device device, Buffer buffer, MemoryRequirements* memoryRequirements);
 }

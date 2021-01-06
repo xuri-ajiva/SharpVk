@@ -22,43 +22,38 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSamplerFilterMinmaxProperties
+    public struct PhysicalDeviceSamplerFilterMinmaxProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool FilterMinmaxSingleComponentFormats
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool FilterMinmaxImageComponentMapping
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSamplerFilterMinmaxProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSamplerFilterMinmaxProperties* pointer)
+        internal static unsafe PhysicalDeviceSamplerFilterMinmaxProperties MarshalFrom(Interop.PhysicalDeviceSamplerFilterMinmaxProperties* pointer)
         {
-            PhysicalDeviceSamplerFilterMinmaxProperties result = default(PhysicalDeviceSamplerFilterMinmaxProperties);
+            var result = default(PhysicalDeviceSamplerFilterMinmaxProperties);
             result.FilterMinmaxSingleComponentFormats = pointer->FilterMinmaxSingleComponentFormats;
             result.FilterMinmaxImageComponentMapping = pointer->FilterMinmaxImageComponentMapping;
             return result;

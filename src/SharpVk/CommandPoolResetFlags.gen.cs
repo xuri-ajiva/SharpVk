@@ -22,22 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask controlling behavior of a command pool reset.
+    ///     Bitmask controlling behavior of a command pool reset.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum CommandPoolResetFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        ReleaseResources = 1 << 0, 
+        ReleaseResources = 1 << 0
     }
 }

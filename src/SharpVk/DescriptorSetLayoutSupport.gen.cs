@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorSetLayoutSupport
+    public struct DescriptorSetLayoutSupport
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool Supported
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DescriptorSetLayoutSupport MarshalFrom(SharpVk.Interop.DescriptorSetLayoutSupport* pointer)
+        internal static unsafe DescriptorSetLayoutSupport MarshalFrom(Interop.DescriptorSetLayoutSupport* pointer)
         {
-            DescriptorSetLayoutSupport result = default(DescriptorSetLayoutSupport);
+            var result = default(DescriptorSetLayoutSupport);
             result.Supported = pointer->Supported;
             return result;
         }

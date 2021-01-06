@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceDiscardRectangleProperties
+    public struct PhysicalDeviceDiscardRectangleProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxDiscardRectangles
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDiscardRectangleProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceDiscardRectangleProperties* pointer)
+        internal static unsafe PhysicalDeviceDiscardRectangleProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceDiscardRectangleProperties* pointer)
         {
-            PhysicalDeviceDiscardRectangleProperties result = default(PhysicalDeviceDiscardRectangleProperties);
+            var result = default(PhysicalDeviceDiscardRectangleProperties);
             result.MaxDiscardRectangles = pointer->MaxDiscardRectangles;
             return result;
         }

@@ -22,42 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineDynamicStateCreateInfo
+    public unsafe struct PipelineDynamicStateCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineDynamicStateCreateFlags Flags; 
-        
+        public PipelineDynamicStateCreateFlags Flags;
+
         /// <summary>
-        /// The number of elements in the pDynamicStates array.
+        ///     The number of elements in the pDynamicStates array.
         /// </summary>
-        public uint DynamicStateCount; 
-        
+        public uint DynamicStateCount;
+
         /// <summary>
-        /// An array of DynamicState enums which indicate which pieces of
-        /// pipeline state will use the values from dynamic state commands
-        /// rather than from the pipeline state creation info.
+        ///     An array of DynamicState enums which indicate which pieces of
+        ///     pipeline state will use the values from dynamic state commands
+        ///     rather than from the pipeline state creation info.
         /// </summary>
-        public SharpVk.DynamicState* DynamicStates; 
+        public DynamicState* DynamicStates;
     }
 }

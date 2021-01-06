@@ -22,36 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct CommandBufferBeginInfo
+    public unsafe struct CommandBufferBeginInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitmask indicating usage behavior for the command buffer. Bits
-        /// which can be set include: + --
+        ///     A bitmask indicating usage behavior for the command buffer. Bits
+        ///     which can be set include: + --
         /// </summary>
-        public SharpVk.CommandBufferUsageFlags Flags; 
-        
+        public CommandBufferUsageFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.CommandBufferInheritanceInfo* InheritanceInfo; 
+        public CommandBufferInheritanceInfo* InheritanceInfo;
     }
 }

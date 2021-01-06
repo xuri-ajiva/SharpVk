@@ -22,82 +22,67 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SemaphoreWaitInfo
+    public struct SemaphoreWaitInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SemaphoreWaitFlags? Flags
+        public SemaphoreWaitFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Semaphore[] Semaphores
+        public Semaphore[] Semaphores
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong[] Values
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SemaphoreWaitInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SemaphoreWaitInfo* pointer)
         {
             pointer->SType = StructureType.SemaphoreWaitInfoVersion;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->SemaphoreCount = HeapUtil.GetLength(Semaphores);
+            if (Semaphores != null)
             {
-                pointer->Flags = default(SharpVk.SemaphoreWaitFlags);
-            }
-            pointer->SemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.Semaphores));
-            if (this.Semaphores != null)
-            {
-                var fieldPointer = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Semaphore>(this.Semaphores.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Semaphores.Length); index++)
-                {
-                    fieldPointer[index] = this.Semaphores[index]?.handle ?? default(SharpVk.Interop.Semaphore);
-                }
+                var fieldPointer = (Interop.Semaphore*)HeapUtil.AllocateAndClear<Interop.Semaphore>(Semaphores.Length).ToPointer();
+                for (var index = 0; index < (uint)Semaphores.Length; index++) fieldPointer[index] = Semaphores[index]?.Handle ?? default(Interop.Semaphore);
                 pointer->Semaphores = fieldPointer;
             }
             else
             {
                 pointer->Semaphores = null;
             }
-            if (this.Values != null)
+            if (Values != null)
             {
-                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.Values.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Values.Length); index++)
-                {
-                    fieldPointer[index] = this.Values[index];
-                }
+                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(Values.Length).ToPointer();
+                for (var index = 0; index < (uint)Values.Length; index++) fieldPointer[index] = Values[index];
                 pointer->Values = fieldPointer;
             }
             else

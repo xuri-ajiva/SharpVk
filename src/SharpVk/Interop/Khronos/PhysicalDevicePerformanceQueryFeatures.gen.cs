@@ -22,35 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDevicePerformanceQueryFeatures
+    public unsafe struct PhysicalDevicePerformanceQueryFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 PerformanceCounterQueryPools; 
-        
+        public Bool32 PerformanceCounterQueryPools;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 PerformanceCounterMultipleQueryPools; 
+        public Bool32 PerformanceCounterMultipleQueryPools;
     }
 }

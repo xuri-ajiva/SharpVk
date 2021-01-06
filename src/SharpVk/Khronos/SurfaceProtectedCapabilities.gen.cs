@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SurfaceProtectedCapabilities
+    public struct SurfaceProtectedCapabilities
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool SupportsProtected
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SurfaceProtectedCapabilities* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.SurfaceProtectedCapabilities* pointer)
         {
             pointer->SType = StructureType.SurfaceProtectedCapabilities;
             pointer->Next = null;
-            pointer->SupportsProtected = this.SupportsProtected;
+            pointer->SupportsProtected = SupportsProtected;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SurfaceProtectedCapabilities MarshalFrom(SharpVk.Interop.Khronos.SurfaceProtectedCapabilities* pointer)
+        internal static unsafe SurfaceProtectedCapabilities MarshalFrom(Interop.Khronos.SurfaceProtectedCapabilities* pointer)
         {
-            SurfaceProtectedCapabilities result = default(SurfaceProtectedCapabilities);
+            var result = default(SurfaceProtectedCapabilities);
             result.SupportsProtected = pointer->SupportsProtected;
             return result;
         }

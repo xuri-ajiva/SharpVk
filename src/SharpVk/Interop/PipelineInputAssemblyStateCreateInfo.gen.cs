@@ -22,48 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PipelineInputAssemblyStateCreateInfo
+    public unsafe struct PipelineInputAssemblyStateCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineInputAssemblyStateCreateFlags Flags; 
-        
+        public PipelineInputAssemblyStateCreateFlags Flags;
+
         /// <summary>
-        /// A PrimitiveTopology defining the primitive topology, as described
-        /// below.
+        ///     A PrimitiveTopology defining the primitive topology, as described
+        ///     below.
         /// </summary>
-        public SharpVk.PrimitiveTopology Topology; 
-        
+        public PrimitiveTopology Topology;
+
         /// <summary>
-        /// primitiveRestartEnable controls whether a special vertex index
-        /// value is treated as restarting the assembly of primitives. This
-        /// enable only applies to indexed draws (flink:vkCmdDrawIndexed and
-        /// flink:vkCmdDrawIndexedIndirect), and the special index value is
-        /// either 0xFFFFFFFF when the indexType parameter of
-        /// CommandBuffer.BindIndexBuffer is equal to VK_INDEX_TYPE_UINT32, or
-        /// 0xFFFF when indexType is equal to VK_INDEX_TYPE_UINT16. Primitive
-        /// restart is not allowed for "`list`" topologies.
+        ///     primitiveRestartEnable controls whether a special vertex index
+        ///     value is treated as restarting the assembly of primitives. This
+        ///     enable only applies to indexed draws (flink:vkCmdDrawIndexed and
+        ///     flink:vkCmdDrawIndexedIndirect), and the special index value is
+        ///     either 0xFFFFFFFF when the indexType parameter of
+        ///     CommandBuffer.BindIndexBuffer is equal to VK_INDEX_TYPE_UINT32, or
+        ///     0xFFFF when indexType is equal to VK_INDEX_TYPE_UINT16. Primitive
+        ///     restart is not allowed for "`list`" topologies.
         /// </summary>
-        public Bool32 PrimitiveRestartEnable; 
+        public Bool32 PrimitiveRestartEnable;
     }
 }

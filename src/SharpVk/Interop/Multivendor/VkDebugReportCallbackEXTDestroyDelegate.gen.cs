@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDebugReportCallbackEXTDestroyDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.Multivendor.DebugReportCallback callback, SharpVk.Interop.AllocationCallbacks* allocator);
+    public unsafe delegate void VkDebugReportCallbackExtDestroyDelegate(Instance instance, DebugReportCallback callback, AllocationCallbacks* allocator);
 }

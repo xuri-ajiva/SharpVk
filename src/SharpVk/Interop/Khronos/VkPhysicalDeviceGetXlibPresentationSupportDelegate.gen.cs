@@ -27,7 +27,6 @@ using System;
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate Bool32 VkPhysicalDeviceGetXlibPresentationSupportDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint queueFamilyIndex, IntPtr* dpy, IntPtr visualID);
+    public unsafe delegate Bool32 VkPhysicalDeviceGetXlibPresentationSupportDelegate(PhysicalDevice physicalDevice, uint queueFamilyIndex, IntPtr* dpy, IntPtr visualId);
 }

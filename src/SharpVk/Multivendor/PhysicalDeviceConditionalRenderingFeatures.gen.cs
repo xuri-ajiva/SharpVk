@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceConditionalRenderingFeatures
+    public struct PhysicalDeviceConditionalRenderingFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ConditionalRendering
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool InheritedConditionalRendering
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceConditionalRenderingFeatures;
             pointer->Next = null;
-            pointer->ConditionalRendering = this.ConditionalRendering;
-            pointer->InheritedConditionalRendering = this.InheritedConditionalRendering;
+            pointer->ConditionalRendering = ConditionalRendering;
+            pointer->InheritedConditionalRendering = InheritedConditionalRendering;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceConditionalRenderingFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
+        internal static unsafe PhysicalDeviceConditionalRenderingFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
         {
-            PhysicalDeviceConditionalRenderingFeatures result = default(PhysicalDeviceConditionalRenderingFeatures);
+            var result = default(PhysicalDeviceConditionalRenderingFeatures);
             result.ConditionalRendering = pointer->ConditionalRendering;
             result.InheritedConditionalRendering = pointer->InheritedConditionalRendering;
             return result;

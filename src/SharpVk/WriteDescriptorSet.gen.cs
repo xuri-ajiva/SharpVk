@@ -22,146 +22,136 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying the parameters of a descriptor set write
-    /// operation.
+    ///     Structure specifying the parameters of a descriptor set write
+    ///     operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct WriteDescriptorSet
+    public struct WriteDescriptorSet
     {
         /// <summary>
-        /// The destination descriptor set to update.
+        ///     The destination descriptor set to update.
         /// </summary>
-        public SharpVk.DescriptorSet DestinationSet
+        public DescriptorSet DestinationSet
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The descriptor binding within that set.
+        ///     The descriptor binding within that set.
         /// </summary>
         public uint DestinationBinding
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The starting element in that array.
+        ///     The starting element in that array.
         /// </summary>
         public uint DestinationArrayElement
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The number of descriptors to update (the number of elements in
-        /// pImageInfo, pBufferInfo, or pTexelBufferView).
+        ///     The number of descriptors to update (the number of elements in
+        ///     pImageInfo, pBufferInfo, or pTexelBufferView).
         /// </summary>
         public uint DescriptorCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A DescriptorType specifying the type of each descriptor in
-        /// pImageInfo, pBufferInfo, or pTexelBufferView, as described below.
-        /// It must be the same type as that specified in
-        /// DescriptorSetLayoutBinding for dstSet at dstBinding. The type of
-        /// the descriptor also controls which array the descriptors are taken
-        /// from.
+        ///     A DescriptorType specifying the type of each descriptor in
+        ///     pImageInfo, pBufferInfo, or pTexelBufferView, as described below.
+        ///     It must be the same type as that specified in
+        ///     DescriptorSetLayoutBinding for dstSet at dstBinding. The type of
+        ///     the descriptor also controls which array the descriptors are taken
+        ///     from.
         /// </summary>
-        public SharpVk.DescriptorType DescriptorType
+        public DescriptorType DescriptorType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of DescriptorImageInfo structures or is ignored, as
-        /// described below.
+        ///     An array of DescriptorImageInfo structures or is ignored, as
+        ///     described below.
         /// </summary>
-        public SharpVk.DescriptorImageInfo[] ImageInfo
+        public DescriptorImageInfo[] ImageInfo
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of DescriptorBufferInfo structures or is ignored, as
-        /// described below.
+        ///     An array of DescriptorBufferInfo structures or is ignored, as
+        ///     described below.
         /// </summary>
-        public SharpVk.DescriptorBufferInfo[] BufferInfo
+        public DescriptorBufferInfo[] BufferInfo
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An array of BufferView handles as described in the Buffer Views
-        /// section or is ignored, as described below.
+        ///     An array of BufferView handles as described in the Buffer Views
+        ///     section or is ignored, as described below.
         /// </summary>
-        public SharpVk.BufferView[] TexelBufferView
+        public BufferView[] TexelBufferView
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.WriteDescriptorSet* pointer)
+        internal unsafe void MarshalTo(Interop.WriteDescriptorSet* pointer)
         {
             pointer->SType = StructureType.WriteDescriptorSet;
             pointer->Next = null;
-            pointer->DestinationSet = this.DestinationSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
-            pointer->DestinationBinding = this.DestinationBinding;
-            pointer->DestinationArrayElement = this.DestinationArrayElement;
-            pointer->DescriptorCount = this.DescriptorCount;
-            pointer->DescriptorType = this.DescriptorType;
-            if (this.ImageInfo != null)
+            pointer->DestinationSet = DestinationSet?.Handle ?? default(Interop.DescriptorSet);
+            pointer->DestinationBinding = DestinationBinding;
+            pointer->DestinationArrayElement = DestinationArrayElement;
+            pointer->DescriptorCount = DescriptorCount;
+            pointer->DescriptorType = DescriptorType;
+            if (ImageInfo != null)
             {
-                var fieldPointer = (SharpVk.Interop.DescriptorImageInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorImageInfo>(this.ImageInfo.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.ImageInfo.Length); index++)
-                {
-                    this.ImageInfo[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.DescriptorImageInfo*)HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>(ImageInfo.Length).ToPointer();
+                for (var index = 0; index < (uint)ImageInfo.Length; index++) ImageInfo[index].MarshalTo(&fieldPointer[index]);
                 pointer->ImageInfo = fieldPointer;
             }
             else
             {
                 pointer->ImageInfo = null;
             }
-            if (this.BufferInfo != null)
+            if (BufferInfo != null)
             {
-                var fieldPointer = (SharpVk.Interop.DescriptorBufferInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorBufferInfo>(this.BufferInfo.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.BufferInfo.Length); index++)
-                {
-                    this.BufferInfo[index].MarshalTo(&fieldPointer[index]);
-                }
+                var fieldPointer = (Interop.DescriptorBufferInfo*)HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>(BufferInfo.Length).ToPointer();
+                for (var index = 0; index < (uint)BufferInfo.Length; index++) BufferInfo[index].MarshalTo(&fieldPointer[index]);
                 pointer->BufferInfo = fieldPointer;
             }
             else
             {
                 pointer->BufferInfo = null;
             }
-            if (this.TexelBufferView != null)
+            if (TexelBufferView != null)
             {
-                var fieldPointer = (SharpVk.Interop.BufferView*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferView>(this.TexelBufferView.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.TexelBufferView.Length); index++)
-                {
-                    fieldPointer[index] = this.TexelBufferView[index]?.handle ?? default(SharpVk.Interop.BufferView);
-                }
+                var fieldPointer = (Interop.BufferView*)HeapUtil.AllocateAndClear<Interop.BufferView>(TexelBufferView.Length).ToPointer();
+                for (var index = 0; index < (uint)TexelBufferView.Length; index++) fieldPointer[index] = TexelBufferView[index]?.Handle ?? default(Interop.BufferView);
                 pointer->TexelBufferView = fieldPointer;
             }
             else

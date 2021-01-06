@@ -22,40 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceBufferDeviceAddressFeatures
+    public unsafe struct PhysicalDeviceBufferDeviceAddressFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 BufferDeviceAddress; 
-        
+        public Bool32 BufferDeviceAddress;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 BufferDeviceAddressCaptureReplay; 
-        
+        public Bool32 BufferDeviceAddressCaptureReplay;
+
         /// <summary>
-        /// 
         /// </summary>
-        public Bool32 BufferDeviceAddressMultiDevice; 
+        public Bool32 BufferDeviceAddressMultiDevice;
     }
 }

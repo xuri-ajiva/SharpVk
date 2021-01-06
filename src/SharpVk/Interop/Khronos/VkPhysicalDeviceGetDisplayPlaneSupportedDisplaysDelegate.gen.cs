@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetDisplayPlaneSupportedDisplaysDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint planeIndex, uint* displayCount, SharpVk.Interop.Khronos.Display* displays);
+    public unsafe delegate Result VkPhysicalDeviceGetDisplayPlaneSupportedDisplaysDelegate(PhysicalDevice physicalDevice, uint planeIndex, uint* displayCount, Display* displays);
 }

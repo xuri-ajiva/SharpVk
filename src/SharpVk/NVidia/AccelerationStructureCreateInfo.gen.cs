@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AccelerationStructureCreateInfo
+    public struct AccelerationStructureCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public ulong CompactedSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.AccelerationStructureInfo Info
+        public AccelerationStructureInfo Info
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.AccelerationStructureCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.AccelerationStructureCreateInfo* pointer)
         {
             pointer->SType = StructureType.AccelerationStructureCreateInfo;
             pointer->Next = null;
-            pointer->CompactedSize = this.CompactedSize;
-            this.Info.MarshalTo(&pointer->Info);
+            pointer->CompactedSize = CompactedSize;
+            Info.MarshalTo(&pointer->Info);
         }
     }
 }

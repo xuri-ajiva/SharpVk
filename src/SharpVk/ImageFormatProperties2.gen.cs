@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageFormatProperties2
+    public struct ImageFormatProperties2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageFormatProperties ImageFormatProperties
+        public ImageFormatProperties ImageFormatProperties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ImageFormatProperties2 MarshalFrom(SharpVk.Interop.ImageFormatProperties2* pointer)
+        internal static unsafe ImageFormatProperties2 MarshalFrom(Interop.ImageFormatProperties2* pointer)
         {
-            ImageFormatProperties2 result = default(ImageFormatProperties2);
+            var result = default(ImageFormatProperties2);
             result.ImageFormatProperties = pointer->ImageFormatProperties;
             return result;
         }

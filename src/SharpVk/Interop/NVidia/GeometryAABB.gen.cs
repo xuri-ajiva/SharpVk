@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct GeometryAABB
+    public unsafe struct GeometryAabb
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Buffer AabbData; 
-        
+        public Buffer AabbData;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint NumAABBs; 
-        
+        public uint NumAABBs;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Stride; 
-        
+        public uint Stride;
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong Offset; 
+        public ulong Offset;
     }
 }

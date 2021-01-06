@@ -25,36 +25,36 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Supported physical device types.
+    ///     Supported physical device types.
     /// </summary>
     public enum PhysicalDeviceType
     {
         /// <summary>
-        /// The device does not match any other available types.
+        ///     The device does not match any other available types.
         /// </summary>
-        Other = 0, 
-        
+        Other = 0,
+
         /// <summary>
-        /// The device is typically one embedded in or tightly coupled with the
-        /// host.
+        ///     The device is typically one embedded in or tightly coupled with the
+        ///     host.
         /// </summary>
-        IntegratedGpu = 1, 
-        
+        IntegratedGpu = 1,
+
         /// <summary>
-        /// The device is typically a separate processor connected to the host
-        /// via an interlink.
+        ///     The device is typically a separate processor connected to the host
+        ///     via an interlink.
         /// </summary>
-        DiscreteGpu = 2, 
-        
+        DiscreteGpu = 2,
+
         /// <summary>
-        /// The device is typically a virtual node in a virtualization
-        /// environment.
+        ///     The device is typically a virtual node in a virtualization
+        ///     environment.
         /// </summary>
-        VirtualGpu = 3, 
-        
+        VirtualGpu = 3,
+
         /// <summary>
-        /// The device is typically running on the same processors as the host.
+        ///     The device is typically running on the same processors as the host.
         /// </summary>
-        Cpu = 4, 
+        Cpu = 4
     }
 }

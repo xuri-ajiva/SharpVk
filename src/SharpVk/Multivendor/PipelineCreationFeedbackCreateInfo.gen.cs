@@ -22,54 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineCreationFeedbackCreateInfo
+    public struct PipelineCreationFeedbackCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.PipelineCreationFeedback PipelineCreationFeedback
+        public PipelineCreationFeedback PipelineCreationFeedback
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.PipelineCreationFeedback[] PipelineStageCreationFeedbacks
+        public PipelineCreationFeedback[] PipelineStageCreationFeedbacks
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PipelineCreationFeedbackCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCreationFeedbackCreateInfo;
             pointer->Next = null;
-            pointer->PipelineCreationFeedback = (SharpVk.Multivendor.PipelineCreationFeedback*)(Interop.HeapUtil.Allocate<SharpVk.Multivendor.PipelineCreationFeedback>());
-            *pointer->PipelineCreationFeedback = this.PipelineCreationFeedback;
-            pointer->PipelineStageCreationFeedbackCount = (uint)(Interop.HeapUtil.GetLength(this.PipelineStageCreationFeedbacks));
-            if (this.PipelineStageCreationFeedbacks != null)
+            pointer->PipelineCreationFeedback = (PipelineCreationFeedback*)HeapUtil.Allocate<PipelineCreationFeedback>();
+            *pointer->PipelineCreationFeedback = PipelineCreationFeedback;
+            pointer->PipelineStageCreationFeedbackCount = HeapUtil.GetLength(PipelineStageCreationFeedbacks);
+            if (PipelineStageCreationFeedbacks != null)
             {
-                var fieldPointer = (SharpVk.Multivendor.PipelineCreationFeedback*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Multivendor.PipelineCreationFeedback>(this.PipelineStageCreationFeedbacks.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.PipelineStageCreationFeedbacks.Length); index++)
-                {
-                    fieldPointer[index] = this.PipelineStageCreationFeedbacks[index];
-                }
+                var fieldPointer = (PipelineCreationFeedback*)HeapUtil.AllocateAndClear<PipelineCreationFeedback>(PipelineStageCreationFeedbacks.Length).ToPointer();
+                for (var index = 0; index < (uint)PipelineStageCreationFeedbacks.Length; index++) fieldPointer[index] = PipelineStageCreationFeedbacks[index];
                 pointer->PipelineStageCreationFeedbacks = fieldPointer;
             }
             else

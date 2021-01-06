@@ -22,65 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DescriptorUpdateTemplateCreateInfo
+    public unsafe struct DescriptorUpdateTemplateCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorUpdateTemplateCreateFlags Flags; 
-        
+        public DescriptorUpdateTemplateCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DescriptorUpdateEntryCount; 
-        
+        public uint DescriptorUpdateEntryCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorUpdateTemplateEntry* DescriptorUpdateEntries; 
-        
+        public DescriptorUpdateTemplateEntry* DescriptorUpdateEntries;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorUpdateTemplateType TemplateType; 
-        
+        public DescriptorUpdateTemplateType TemplateType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.DescriptorSetLayout DescriptorSetLayout; 
-        
+        public DescriptorSetLayout DescriptorSetLayout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint; 
-        
+        public PipelineBindPoint PipelineBindPoint;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PipelineLayout PipelineLayout; 
-        
+        public PipelineLayout PipelineLayout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Set; 
+        public uint Set;
     }
 }

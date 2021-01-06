@@ -22,32 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying usage behavior for command buffer.
+    ///     Bitmask specifying usage behavior for command buffer.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum CommandBufferUsageFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        OneTimeSubmit = 1 << 0, 
-        
+        OneTimeSubmit = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        RenderPassContinue = 1 << 1, 
-        
+        RenderPassContinue = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        SimultaneousUse = 1 << 2, 
+        SimultaneousUse = 1 << 2
     }
 }

@@ -1,41 +1,49 @@
-﻿
-using System;
+﻿using System;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Represents the size of a block in host memory.
+    ///     Represents the size of a block in host memory.
     /// </summary>
     public struct HostSize
     {
         private UIntPtr value;
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static implicit operator HostSize(int value)
         {
-            return new HostSize { value = (UIntPtr)value };
+            return new()
+            {
+                value = (UIntPtr)value
+            };
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static implicit operator HostSize(uint value)
         {
-            return new HostSize { value = (UIntPtr)value };
+            return new()
+            {
+                value = (UIntPtr)value
+            };
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static implicit operator HostSize(ulong value)
         {
-            return new HostSize { value = (UIntPtr)value };
+            return new()
+            {
+                value = (UIntPtr)value
+            };
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static explicit operator uint(HostSize size)
         {
@@ -43,7 +51,7 @@ namespace SharpVk
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static explicit operator ulong(HostSize size)
         {
@@ -51,11 +59,11 @@ namespace SharpVk
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public override string ToString()
         {
-            return this.value.ToString();
+            return value.ToString();
         }
     }
 }

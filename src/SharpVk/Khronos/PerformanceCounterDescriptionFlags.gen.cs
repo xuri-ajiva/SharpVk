@@ -22,27 +22,25 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum PerformanceCounterDescriptionFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        PerformanceImpacting = 1 << 0, 
-        
+        PerformanceImpacting = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        ConcurrentlyImpacted = 1 << 1, 
+        ConcurrentlyImpacted = 1 << 1
     }
 }

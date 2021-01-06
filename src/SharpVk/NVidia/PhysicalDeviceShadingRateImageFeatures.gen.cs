@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShadingRateImageFeatures
+    public struct PhysicalDeviceShadingRateImageFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool ShadingRateImage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool ShadingRateCoarseSampleOrder
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceShadingRateImageFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShadingRateImageFeatures;
             pointer->Next = null;
-            pointer->ShadingRateImage = this.ShadingRateImage;
-            pointer->ShadingRateCoarseSampleOrder = this.ShadingRateCoarseSampleOrder;
+            pointer->ShadingRateImage = ShadingRateImage;
+            pointer->ShadingRateCoarseSampleOrder = ShadingRateCoarseSampleOrder;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShadingRateImageFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageFeatures* pointer)
+        internal static unsafe PhysicalDeviceShadingRateImageFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceShadingRateImageFeatures* pointer)
         {
-            PhysicalDeviceShadingRateImageFeatures result = default(PhysicalDeviceShadingRateImageFeatures);
+            var result = default(PhysicalDeviceShadingRateImageFeatures);
             result.ShadingRateImage = pointer->ShadingRateImage;
             result.ShadingRateCoarseSampleOrder = pointer->ShadingRateCoarseSampleOrder;
             return result;

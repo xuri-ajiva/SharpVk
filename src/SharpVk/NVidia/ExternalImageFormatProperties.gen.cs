@@ -22,61 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Structure specifying external image format properties.
+    ///     Structure specifying external image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalImageFormatProperties
+    public struct ExternalImageFormatProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ExternalImageFormatProperties(SharpVk.ImageFormatProperties imageFormatProperties, SharpVk.NVidia.ExternalMemoryFeatureFlags externalMemoryFeatures, SharpVk.NVidia.ExternalMemoryHandleTypeFlags exportFromImportedHandleTypes, SharpVk.NVidia.ExternalMemoryHandleTypeFlags compatibleHandleTypes)
+        public ExternalImageFormatProperties(ImageFormatProperties imageFormatProperties, ExternalMemoryFeatureFlags externalMemoryFeatures, ExternalMemoryHandleTypeFlags exportFromImportedHandleTypes, ExternalMemoryHandleTypeFlags compatibleHandleTypes)
         {
-            this.ImageFormatProperties = imageFormatProperties;
-            this.ExternalMemoryFeatures = externalMemoryFeatures;
-            this.ExportFromImportedHandleTypes = exportFromImportedHandleTypes;
-            this.CompatibleHandleTypes = compatibleHandleTypes;
+            ImageFormatProperties = imageFormatProperties;
+            ExternalMemoryFeatures = externalMemoryFeatures;
+            ExportFromImportedHandleTypes = exportFromImportedHandleTypes;
+            CompatibleHandleTypes = compatibleHandleTypes;
         }
-        
+
         /// <summary>
-        /// imageFormatProperties will be filled in as when calling
-        /// flink:vkGetPhysicalDeviceImageFormatProperties, but the values
-        /// returned may vary depending on the external handle type requested.
+        ///     imageFormatProperties will be filled in as when calling
+        ///     flink:vkGetPhysicalDeviceImageFormatProperties, but the values
+        ///     returned may vary depending on the external handle type requested.
         /// </summary>
-        public SharpVk.ImageFormatProperties ImageFormatProperties; 
-        
+        public ImageFormatProperties ImageFormatProperties;
+
         /// <summary>
-        /// A bitmask of ExternalMemoryFeatureFlagBitsNV indicating properties
-        /// of the external memory handle type
-        /// (flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType) being
-        /// queried, or 0 if the external memory handle type is 0.
+        ///     A bitmask of ExternalMemoryFeatureFlagBitsNV indicating properties
+        ///     of the external memory handle type
+        ///     (flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType) being
+        ///     queried, or 0 if the external memory handle type is 0.
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryFeatureFlags ExternalMemoryFeatures; 
-        
+        public ExternalMemoryFeatureFlags ExternalMemoryFeatures;
+
         /// <summary>
-        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
-        /// set for every external handle type that may be used to create
-        /// memory from which the handles of the type specified in
-        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType can
-        /// be exported, or 0 if the external memory handle type is 0.
+        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
+        ///     set for every external handle type that may be used to create
+        ///     memory from which the handles of the type specified in
+        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType can
+        ///     be exported, or 0 if the external memory handle type is 0.
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags ExportFromImportedHandleTypes; 
-        
+        public ExternalMemoryHandleTypeFlags ExportFromImportedHandleTypes;
+
         /// <summary>
-        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
-        /// set for every external handle type that may be specified
-        /// simultaneously with the handle type specified by
-        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType when
-        /// calling flink:vkAllocateMemory, or 0 if the external memory handle
-        /// type is 0. compatibleHandleTypes will always contain
-        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType
+        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
+        ///     set for every external handle type that may be specified
+        ///     simultaneously with the handle type specified by
+        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType when
+        ///     calling flink:vkAllocateMemory, or 0 if the external memory handle
+        ///     type is 0. compatibleHandleTypes will always contain
+        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags CompatibleHandleTypes; 
+        public ExternalMemoryHandleTypeFlags CompatibleHandleTypes;
     }
 }

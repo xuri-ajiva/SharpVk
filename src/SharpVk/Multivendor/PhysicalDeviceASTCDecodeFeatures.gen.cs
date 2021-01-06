@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceASTCDecodeFeatures
+    public struct PhysicalDeviceAstcDecodeFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool DecodeModeSharedExponent
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceAstcDecodeFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceAstcDecodeFeatures;
             pointer->Next = null;
-            pointer->DecodeModeSharedExponent = this.DecodeModeSharedExponent;
+            pointer->DecodeModeSharedExponent = DecodeModeSharedExponent;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceASTCDecodeFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures* pointer)
+        internal static unsafe PhysicalDeviceAstcDecodeFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceAstcDecodeFeatures* pointer)
         {
-            PhysicalDeviceASTCDecodeFeatures result = default(PhysicalDeviceASTCDecodeFeatures);
+            var result = default(PhysicalDeviceAstcDecodeFeatures);
             result.DecodeModeSharedExponent = pointer->DecodeModeSharedExponent;
             return result;
         }

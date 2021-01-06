@@ -22,55 +22,53 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DeviceGeneratedCommandsLimits
+    public unsafe struct DeviceGeneratedCommandsLimits
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// maxIndirectCommandsLayoutTokenCount the maximum number of tokens in
-        /// IndirectCommandsLayoutNVX.
+        ///     maxIndirectCommandsLayoutTokenCount the maximum number of tokens in
+        ///     IndirectCommandsLayoutNVX.
         /// </summary>
-        public uint MaxIndirectCommandsLayoutTokenCount; 
-        
+        public uint MaxIndirectCommandsLayoutTokenCount;
+
         /// <summary>
-        /// maxObjectEntryCounts the maximum number of entries per resource
-        /// type in ObjectTableNVX.
+        ///     maxObjectEntryCounts the maximum number of entries per resource
+        ///     type in ObjectTableNVX.
         /// </summary>
-        public uint MaxObjectEntryCounts; 
-        
+        public uint MaxObjectEntryCounts;
+
         /// <summary>
-        /// The minimum alignment for memory addresses optionally used in
-        /// CommandBuffer.ProcessCommands().
+        ///     The minimum alignment for memory addresses optionally used in
+        ///     CommandBuffer.ProcessCommands().
         /// </summary>
-        public uint MinSequenceCountBufferOffsetAlignment; 
-        
+        public uint MinSequenceCountBufferOffsetAlignment;
+
         /// <summary>
-        /// The minimum alignment for memory addresses optionally used in
-        /// CommandBuffer.ProcessCommands().
+        ///     The minimum alignment for memory addresses optionally used in
+        ///     CommandBuffer.ProcessCommands().
         /// </summary>
-        public uint MinSequenceIndexBufferOffsetAlignment; 
-        
+        public uint MinSequenceIndexBufferOffsetAlignment;
+
         /// <summary>
-        /// The minimum alignment for memory addresses optionally used in
-        /// CommandBuffer.ProcessCommands().
+        ///     The minimum alignment for memory addresses optionally used in
+        ///     CommandBuffer.ProcessCommands().
         /// </summary>
-        public uint MinCommandsTokenBufferOffsetAlignment; 
+        public uint MinCommandsTokenBufferOffsetAlignment;
     }
 }

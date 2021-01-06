@@ -22,53 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ComputePipelineCreateInfo
+    public unsafe struct ComputePipelineCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// flags provides options for pipeline creation, and is of type
-        /// PipelineCreateFlagBits.
+        ///     flags provides options for pipeline creation, and is of type
+        ///     PipelineCreateFlagBits.
         /// </summary>
-        public SharpVk.PipelineCreateFlags Flags; 
-        
+        public PipelineCreateFlags Flags;
+
         /// <summary>
-        /// A PipelineShaderStageCreateInfo describing the compute shader.
+        ///     A PipelineShaderStageCreateInfo describing the compute shader.
         /// </summary>
-        public SharpVk.Interop.PipelineShaderStageCreateInfo Stage; 
-        
+        public PipelineShaderStageCreateInfo Stage;
+
         /// <summary>
-        /// The description of binding locations used by both the pipeline and
-        /// descriptor sets used with the pipeline.
+        ///     The description of binding locations used by both the pipeline and
+        ///     descriptor sets used with the pipeline.
         /// </summary>
-        public SharpVk.Interop.PipelineLayout Layout; 
-        
+        public PipelineLayout Layout;
+
         /// <summary>
-        /// A pipeline to derive from
+        ///     A pipeline to derive from
         /// </summary>
-        public SharpVk.Interop.Pipeline BasePipelineHandle; 
-        
+        public Pipeline BasePipelineHandle;
+
         /// <summary>
-        /// An index into the pCreateInfos parameter to use as a pipeline to
-        /// derive from
+        ///     An index into the pCreateInfos parameter to use as a pipeline to
+        ///     derive from
         /// </summary>
-        public int BasePipelineIndex; 
+        public int BasePipelineIndex;
     }
 }

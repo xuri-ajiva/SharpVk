@@ -22,71 +22,61 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created descriptor pool.
+    ///     Structure specifying parameters of a newly created descriptor pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorPoolCreateInfo
+    public struct DescriptorPoolCreateInfo
     {
         /// <summary>
-        /// Specifies certain supported operations on the pool. Bits which can
-        /// be set include: + --
+        ///     Specifies certain supported operations on the pool. Bits which can
+        ///     be set include: + --
         /// </summary>
-        public SharpVk.DescriptorPoolCreateFlags? Flags
+        public DescriptorPoolCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint MaxSets
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorPoolSize[] PoolSizes
+        public DescriptorPoolSize[] PoolSizes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorPoolCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DescriptorPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorPoolCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
+                pointer->Flags = default;
+            pointer->MaxSets = MaxSets;
+            pointer->PoolSizeCount = HeapUtil.GetLength(PoolSizes);
+            if (PoolSizes != null)
             {
-                pointer->Flags = default(SharpVk.DescriptorPoolCreateFlags);
-            }
-            pointer->MaxSets = this.MaxSets;
-            pointer->PoolSizeCount = (uint)(Interop.HeapUtil.GetLength(this.PoolSizes));
-            if (this.PoolSizes != null)
-            {
-                var fieldPointer = (SharpVk.DescriptorPoolSize*)(Interop.HeapUtil.AllocateAndClear<SharpVk.DescriptorPoolSize>(this.PoolSizes.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.PoolSizes.Length); index++)
-                {
-                    fieldPointer[index] = this.PoolSizes[index];
-                }
+                var fieldPointer = (DescriptorPoolSize*)HeapUtil.AllocateAndClear<DescriptorPoolSize>(PoolSizes.Length).ToPointer();
+                for (var index = 0; index < (uint)PoolSizes.Length; index++) fieldPointer[index] = PoolSizes[index];
                 pointer->PoolSizes = fieldPointer;
             }
             else

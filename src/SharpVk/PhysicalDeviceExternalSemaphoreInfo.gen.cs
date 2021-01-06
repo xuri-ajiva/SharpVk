@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceExternalSemaphoreInfo
+    public struct PhysicalDeviceExternalSemaphoreInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreHandleTypeFlags HandleType
+        public ExternalSemaphoreHandleTypeFlags HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceExternalSemaphoreInfo* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceExternalSemaphoreInfoVersion;
             pointer->Next = null;
-            pointer->HandleType = this.HandleType;
+            pointer->HandleType = HandleType;
         }
     }
 }

@@ -22,84 +22,83 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia.Experimental;
 
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ObjectTableCreateInfo
+    public unsafe struct ObjectTableCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The number of entry configurations that the object table supports.
-        /// The following array parameters must match the size provided here.
+        ///     The number of entry configurations that the object table supports.
+        ///     The following array parameters must match the size provided here.
         /// </summary>
-        public uint ObjectCount; 
-        
+        public uint ObjectCount;
+
         /// <summary>
-        /// An array of ObjectEntryTypeNVX providing the entry type of a given
-        /// configuration.
+        ///     An array of ObjectEntryTypeNVX providing the entry type of a given
+        ///     configuration.
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryType* ObjectEntryTypes; 
-        
+        public ObjectEntryType* ObjectEntryTypes;
+
         /// <summary>
-        /// An array of counts how many objects can be registered in the table.
+        ///     An array of counts how many objects can be registered in the table.
         /// </summary>
-        public uint* ObjectEntryCounts; 
-        
+        public uint* ObjectEntryCounts;
+
         /// <summary>
-        /// An array of bitmasks describing the binding usage of the entry. See
-        /// ObjectEntryUsageFlagBitsNVX below for a description of the
-        /// supported bits.
+        ///     An array of bitmasks describing the binding usage of the entry. See
+        ///     ObjectEntryUsageFlagBitsNVX below for a description of the
+        ///     supported bits.
         /// </summary>
-        public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags* ObjectEntryUsageFlags; 
-        
+        public ObjectEntryUsageFlags* ObjectEntryUsageFlags;
+
         /// <summary>
-        /// The maximum number of DescriptorType.UniformBuffer or
-        /// DescriptorType.UniformBufferDynamic used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.UniformBuffer or
+        ///     DescriptorType.UniformBufferDynamic used by any single registered
+        ///     DescriptorSet in this table.
         /// </summary>
-        public uint MaxUniformBuffersPerDescriptor; 
-        
+        public uint MaxUniformBuffersPerDescriptor;
+
         /// <summary>
-        /// The maximum number of DescriptorType.StorageBuffer or
-        /// DescriptorType.StorageBufferDynamic used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.StorageBuffer or
+        ///     DescriptorType.StorageBufferDynamic used by any single registered
+        ///     DescriptorSet in this table.
         /// </summary>
-        public uint MaxStorageBuffersPerDescriptor; 
-        
+        public uint MaxStorageBuffersPerDescriptor;
+
         /// <summary>
-        /// The maximum number of DescriptorType.StorageImage or
-        /// DescriptorType.StorageTexelBuffer used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.StorageImage or
+        ///     DescriptorType.StorageTexelBuffer used by any single registered
+        ///     DescriptorSet in this table.
         /// </summary>
-        public uint MaxStorageImagesPerDescriptor; 
-        
+        public uint MaxStorageImagesPerDescriptor;
+
         /// <summary>
-        /// The maximum number of DescriptorType.Sampler,
-        /// DescriptorType.CombinedImageSampler, DescriptorType.UniformTexelBuffer
-        /// or DescriptorType.InputAttachment used by any single registered
-        /// DescriptorSet in this table.
+        ///     The maximum number of DescriptorType.Sampler,
+        ///     DescriptorType.CombinedImageSampler, DescriptorType.UniformTexelBuffer
+        ///     or DescriptorType.InputAttachment used by any single registered
+        ///     DescriptorSet in this table.
         /// </summary>
-        public uint MaxSampledImagesPerDescriptor; 
-        
+        public uint MaxSampledImagesPerDescriptor;
+
         /// <summary>
-        /// The maximum number of unique PipelineLayout used by any registered
-        /// DescriptorSet or Pipeline in this table.
+        ///     The maximum number of unique PipelineLayout used by any registered
+        ///     DescriptorSet or Pipeline in this table.
         /// </summary>
-        public uint MaxPipelineLayouts; 
+        public uint MaxPipelineLayouts;
     }
 }

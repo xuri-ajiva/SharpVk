@@ -22,35 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct CoarseSampleOrderCustom
+    public unsafe struct CoarseSampleOrderCustom
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.ShadingRatePaletteEntry ShadingRate; 
-        
+        public ShadingRatePaletteEntry ShadingRate;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SampleCount; 
-        
+        public uint SampleCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SampleLocationCount; 
-        
+        public uint SampleLocationCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.NVidia.CoarseSampleLocation* SampleLocations; 
+        public CoarseSampleLocation* SampleLocations;
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferCopyImageToBufferDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Interop.Buffer destinationBuffer, uint regionCount, SharpVk.BufferImageCopy* regions);
+    public unsafe delegate void VkCommandBufferCopyImageToBufferDelegate(CommandBuffer commandBuffer, Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, uint regionCount, BufferImageCopy* regions);
 }

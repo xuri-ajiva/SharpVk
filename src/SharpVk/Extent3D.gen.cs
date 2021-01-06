@@ -22,45 +22,39 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a three-dimensional extent.
+    ///     Structure specifying a three-dimensional extent.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Extent3D
+    public struct Extent3D
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static Extent3D Zero => new Extent3D();
-        
+        public static Extent3D Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public Extent3D(uint width, uint height, uint depth)
         {
-            this.Width = width;
-            this.Height = height;
-            this.Depth = depth;
+            Width = width;
+            Height = height;
+            Depth = depth;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Width; 
-        
+        public uint Width;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Height; 
-        
+        public uint Height;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint Depth; 
+        public uint Depth;
     }
 }

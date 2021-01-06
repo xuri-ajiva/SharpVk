@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateImageDelegate(SharpVk.Interop.Device device, SharpVk.Interop.ImageCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Image* image);
+    public unsafe delegate Result VkDeviceCreateImageDelegate(Device device, ImageCreateInfo* createInfo, AllocationCallbacks* allocator, Image* image);
 }

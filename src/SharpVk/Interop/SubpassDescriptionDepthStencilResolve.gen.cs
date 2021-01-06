@@ -22,40 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct SubpassDescriptionDepthStencilResolve
+    public unsafe struct SubpassDescriptionDepthStencilResolve
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags DepthResolveMode; 
-        
+        public ResolveModeFlags DepthResolveMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ResolveModeFlags StencilResolveMode; 
-        
+        public ResolveModeFlags StencilResolveMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.AttachmentReference2* DepthStencilResolveAttachment; 
+        public AttachmentReference2* DepthStencilResolveAttachment;
     }
 }

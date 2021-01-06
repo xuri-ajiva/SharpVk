@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkInstanceCreateHeadlessSurfaceDelegate(SharpVk.Interop.Instance instance, SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.Khronos.Surface* surface);
+    public unsafe delegate Result VkInstanceCreateHeadlessSurfaceDelegate(Instance instance, HeadlessSurfaceCreateInfo* createInfo, AllocationCallbacks* allocator, Surface* surface);
 }

@@ -22,33 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct MemoryPriorityAllocateInfo
+    public unsafe struct MemoryPriorityAllocateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A value between 0 and 1, indicating the priority of the allocation
-        /// relative to other memory allocations. Larger values are higher
-        /// priority. The granularity of the priorities is
-        /// implementation-dependent.
+        ///     A value between 0 and 1, indicating the priority of the allocation
+        ///     relative to other memory allocations. Larger values are higher
+        ///     priority. The granularity of the priorities is
+        ///     implementation-dependent.
         /// </summary>
-        public float Priority; 
+        public float Priority;
     }
 }

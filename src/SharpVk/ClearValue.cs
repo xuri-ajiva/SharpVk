@@ -25,56 +25,53 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
-    /// Structure specifying a clear value.
-    /// </para>
-    /// <para>
-    /// This union is used where part of the API requires either color or
-    /// depth/stencil clear values, depending on the attachment, and defines
-    /// the initial clear values in the slink:VkRenderPassBeginInfo structure.
-    /// </para>
+    ///     <para>
+    ///         Structure specifying a clear value.
+    ///     </para>
+    ///     <para>
+    ///         This union is used where part of the API requires either color or
+    ///         depth/stencil clear values, depending on the attachment, and defines
+    ///         the initial clear values in the slink:VkRenderPassBeginInfo structure.
+    ///     </para>
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public unsafe partial struct ClearValue
+    public struct ClearValue
     {
-        [FieldOffset(0)]
-        private ClearColorValue color;
+        [FieldOffset(0)] private ClearColorValue color;
 
-        [FieldOffset(0)]
-        private ClearDepthStencilValue depthStencil;
+        [FieldOffset(0)] private ClearDepthStencilValue depthStencil;
 
         /// <summary>
-        /// Implicit conversion of ClearColorValue to ClearValue.
+        ///     Implicit conversion of ClearColorValue to ClearValue.
         /// </summary>
         /// <param name="color">
-        /// Specifies the color image clear values to use when clearing a color
-        /// image or attachment.
+        ///     Specifies the color image clear values to use when clearing a color
+        ///     image or attachment.
         /// </param>
         public static implicit operator ClearValue(ClearColorValue color)
         {
-            return new ClearValue
+            return new()
             {
                 color = color
             };
         }
 
         /// <summary>
-        /// Implicit conversion of ClearDepthStencilValue to ClearValue.
+        ///     Implicit conversion of ClearDepthStencilValue to ClearValue.
         /// </summary>
         /// <param name="depthStencil">
-        /// Specifies the depth and stencil clear values to use when clearing a
-        /// depth/stencil image or attachment.
+        ///     Specifies the depth and stencil clear values to use when clearing a
+        ///     depth/stencil image or attachment.
         /// </param>
         public static implicit operator ClearValue(ClearDepthStencilValue depthStencil)
         {
-            return new ClearValue
+            return new()
             {
                 depthStencil = depthStencil
             };
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         public static implicit operator ClearValue((float, float, float, float) value)
@@ -83,7 +80,6 @@ namespace SharpVk
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         public static implicit operator ClearValue((int, int, int, int) value)
@@ -92,7 +88,6 @@ namespace SharpVk
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         public static implicit operator ClearValue((uint, uint, uint, uint) value)

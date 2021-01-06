@@ -24,62 +24,58 @@
 
 using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created Xcb surface object.
+    ///     Structure specifying parameters of a newly created Xcb surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct XcbSurfaceCreateInfo
+    public struct XcbSurfaceCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.Khronos.XcbSurfaceCreateFlags? Flags
+        public XcbSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// An xcb_connection_t to the X server.
+        ///     An xcb_connection_t to the X server.
         /// </summary>
         public IntPtr Connection
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The xcb_window_t for the X11 window to associate the surface with.
+        ///     The xcb_window_t for the X11 window to associate the surface with.
         /// </summary>
         public IntPtr Window
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.XcbSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.XcbSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.XcbSurfaceCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Khronos.XcbSurfaceCreateFlags);
-            }
-            pointer->Connection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-            *pointer->Connection = this.Connection;
-            pointer->Window = this.Window;
+                pointer->Flags = default;
+            pointer->Connection = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+            *pointer->Connection = Connection;
+            pointer->Window = Window;
         }
     }
 }

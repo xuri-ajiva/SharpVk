@@ -25,51 +25,51 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Stencil comparison function.
+    ///     Stencil comparison function.
     /// </summary>
     public enum StencilOp
     {
         /// <summary>
-        /// Keeps the current value.
+        ///     Keeps the current value.
         /// </summary>
-        Keep = 0, 
-        
+        Keep = 0,
+
         /// <summary>
-        /// Sets the value to 0.
+        ///     Sets the value to 0.
         /// </summary>
-        Zero = 1, 
-        
+        Zero = 1,
+
         /// <summary>
-        /// Sets the value to reference.
+        ///     Sets the value to reference.
         /// </summary>
-        Replace = 2, 
-        
+        Replace = 2,
+
         /// <summary>
-        /// Increments the current value and clamps to the maximum
-        /// representable unsigned value.
+        ///     Increments the current value and clamps to the maximum
+        ///     representable unsigned value.
         /// </summary>
-        IncrementAndClamp = 3, 
-        
+        IncrementAndClamp = 3,
+
         /// <summary>
-        /// decrements the current value and clamps to 0.
+        ///     decrements the current value and clamps to 0.
         /// </summary>
-        DecrementAndClamp = 4, 
-        
+        DecrementAndClamp = 4,
+
         /// <summary>
-        /// Bitwise-inverts the current value.
+        ///     Bitwise-inverts the current value.
         /// </summary>
-        Invert = 5, 
-        
+        Invert = 5,
+
         /// <summary>
-        /// Increments the current value and wraps to 0 when the maximum value
-        /// would have been exceeded.
+        ///     Increments the current value and wraps to 0 when the maximum value
+        ///     would have been exceeded.
         /// </summary>
-        IncrementAndWrap = 6, 
-        
+        IncrementAndWrap = 6,
+
         /// <summary>
-        /// Decrements the current value and wraps to the maximum possible
-        /// value when the value would go below 0.
+        ///     Decrements the current value and wraps to the maximum possible
+        ///     value when the value would go below 0.
         /// </summary>
-        DecrementAndWrap = 7, 
+        DecrementAndWrap = 7
     }
 }

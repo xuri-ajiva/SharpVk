@@ -1,30 +1,36 @@
 ﻿namespace SharpVk
 {
     /// <summary>
-    /// Represents the address in device memory.
+    ///     Represents the address in device memory.
     /// </summary>
     public struct DeviceAddress
     {
         private ulong value;
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static implicit operator DeviceAddress(int value)
         {
-            return new DeviceAddress { value = (ulong)value };
+            return new()
+            {
+                value = (ulong)value
+            };
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static implicit operator DeviceAddress(ulong value)
         {
-            return new DeviceAddress { value = value };
+            return new()
+            {
+                value = value
+            };
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static implicit operator ulong(DeviceAddress size)
         {
@@ -32,7 +38,7 @@
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static explicit operator uint(DeviceAddress size)
         {
@@ -40,7 +46,7 @@
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public static explicit operator int(DeviceAddress size)
         {
@@ -48,11 +54,11 @@
         }
 
         /// <summary>
-        /// -
+        ///     -
         /// </summary>
         public override string ToString()
         {
-            return this.value.ToString();
+            return value.ToString();
         }
     }
 }

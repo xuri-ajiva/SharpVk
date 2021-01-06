@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferInsertDebugUtilsLabelDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Multivendor.DebugUtilsLabel* labelInfo);
+    public unsafe delegate void VkCommandBufferInsertDebugUtilsLabelDelegate(CommandBuffer commandBuffer, DebugUtilsLabel* labelInfo);
 }

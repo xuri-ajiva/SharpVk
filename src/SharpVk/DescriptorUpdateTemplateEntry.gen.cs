@@ -22,58 +22,49 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DescriptorUpdateTemplateEntry
+    public struct DescriptorUpdateTemplateEntry
     {
         /// <summary>
-        /// 
         /// </summary>
-        public DescriptorUpdateTemplateEntry(uint destinationBinding, uint destinationArrayElement, uint descriptorCount, SharpVk.DescriptorType descriptorType, HostSize offset, HostSize stride)
+        public DescriptorUpdateTemplateEntry(uint destinationBinding, uint destinationArrayElement, uint descriptorCount, DescriptorType descriptorType, HostSize offset, HostSize stride)
         {
-            this.DestinationBinding = destinationBinding;
-            this.DestinationArrayElement = destinationArrayElement;
-            this.DescriptorCount = descriptorCount;
-            this.DescriptorType = descriptorType;
-            this.Offset = offset;
-            this.Stride = stride;
+            DestinationBinding = destinationBinding;
+            DestinationArrayElement = destinationArrayElement;
+            DescriptorCount = descriptorCount;
+            DescriptorType = descriptorType;
+            Offset = offset;
+            Stride = stride;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DestinationBinding; 
-        
+        public uint DestinationBinding;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DestinationArrayElement; 
-        
+        public uint DestinationArrayElement;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DescriptorCount; 
-        
+        public uint DescriptorCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.DescriptorType DescriptorType; 
-        
+        public DescriptorType DescriptorType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public HostSize Offset; 
-        
+        public HostSize Offset;
+
         /// <summary>
-        /// 
         /// </summary>
-        public HostSize Stride; 
+        public HostSize Stride;
     }
 }

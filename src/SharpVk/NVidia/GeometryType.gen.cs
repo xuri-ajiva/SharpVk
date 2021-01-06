@@ -25,18 +25,15 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum GeometryType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Triangles = 0, 
-        
+        Triangles = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Aabbs = 1, 
+        Aabbs = 1
     }
 }

@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetStencilCompareMaskDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.StencilFaceFlags faceMask, uint compareMask);
+    public delegate void VkCommandBufferSetStencilCompareMaskDelegate(CommandBuffer commandBuffer, StencilFaceFlags faceMask, uint compareMask);
 }

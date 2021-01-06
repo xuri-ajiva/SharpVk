@@ -22,33 +22,28 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Google
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RefreshCycleDuration
+    public struct RefreshCycleDuration
     {
         /// <summary>
-        /// 
         /// </summary>
-        public static RefreshCycleDuration Zero => new RefreshCycleDuration();
-        
+        public static RefreshCycleDuration Zero => new();
+
         /// <summary>
-        /// 
         /// </summary>
         public RefreshCycleDuration(ulong refreshDuration)
         {
-            this.RefreshDuration = refreshDuration;
+            RefreshDuration = refreshDuration;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public ulong RefreshDuration; 
+        public ulong RefreshDuration;
     }
 }

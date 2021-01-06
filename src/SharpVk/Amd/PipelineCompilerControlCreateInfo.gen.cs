@@ -22,43 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineCompilerControlCreateInfo
+    public struct PipelineCompilerControlCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Amd.PipelineCompilerControlFlags? CompilerControlFlags
+        public PipelineCompilerControlFlags? CompilerControlFlags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Amd.PipelineCompilerControlCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCompilerControlCreateInfo;
             pointer->Next = null;
-            if (this.CompilerControlFlags != null)
-            {
-                pointer->CompilerControlFlags = this.CompilerControlFlags.Value;
-            }
+            if (CompilerControlFlags != null)
+                pointer->CompilerControlFlags = CompilerControlFlags.Value;
             else
-            {
-                pointer->CompilerControlFlags = default(SharpVk.Amd.PipelineCompilerControlFlags);
-            }
+                pointer->CompilerControlFlags = default;
         }
     }
 }

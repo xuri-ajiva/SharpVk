@@ -22,32 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// Bitmask specifying how execution and memory dependencies are formed.
+    ///     Bitmask specifying how execution and memory dependencies are formed.
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum DependencyFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// Dependency is per pixel region 
+        ///     Dependency is per pixel region
         /// </summary>
-        ByRegion = 1 << 0, 
-        
+        ByRegion = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        DeviceGroup = 1 << 2, 
-        
+        DeviceGroup = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        ViewLocal = 1 << 1, 
+        ViewLocal = 1 << 1
     }
 }

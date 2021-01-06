@@ -22,70 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct RenderPassCreateInfo2
+    public unsafe struct RenderPassCreateInfo2
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.RenderPassCreateFlags Flags; 
-        
+        public RenderPassCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint AttachmentCount; 
-        
+        public uint AttachmentCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.AttachmentDescription2* Attachments; 
-        
+        public AttachmentDescription2* Attachments;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SubpassCount; 
-        
+        public uint SubpassCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.SubpassDescription2* Subpasses; 
-        
+        public SubpassDescription2* Subpasses;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint DependencyCount; 
-        
+        public uint DependencyCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.SubpassDependency2* Dependencies; 
-        
+        public SubpassDependency2* Dependencies;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint CorrelatedViewMaskCount; 
-        
+        public uint CorrelatedViewMaskCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint* CorrelatedViewMasks; 
+        public uint* CorrelatedViewMasks;
     }
 }

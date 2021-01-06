@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferClearColorImageDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearColorValue* color, uint rangeCount, SharpVk.ImageSubresourceRange* ranges);
+    public unsafe delegate void VkCommandBufferClearColorImageDelegate(CommandBuffer commandBuffer, Image image, ImageLayout imageLayout, ClearColorValue* color, uint rangeCount, ImageSubresourceRange* ranges);
 }

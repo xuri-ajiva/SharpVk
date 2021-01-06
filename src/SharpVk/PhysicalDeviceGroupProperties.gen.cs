@@ -22,50 +22,42 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceGroupProperties
+    public struct PhysicalDeviceGroupProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PhysicalDevice[] PhysicalDevices
+        public PhysicalDevice[] PhysicalDevices
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool SubsetAllocation
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceGroupProperties* pointer)
+        internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(Interop.PhysicalDeviceGroupProperties* pointer)
         {
-            PhysicalDeviceGroupProperties result = default(PhysicalDeviceGroupProperties);
+            var result = default(PhysicalDeviceGroupProperties);
             if (pointer->PhysicalDeviceCount != 0)
             {
-                var fieldPointer = new SharpVk.PhysicalDevice[(uint)(pointer->PhysicalDeviceCount)];
-                for(int index = 0; index < (uint)(pointer->PhysicalDeviceCount); index++)
-                {
-                    fieldPointer[index] = new SharpVk.PhysicalDevice(default(SharpVk.Instance), (&(pointer->PhysicalDevices_0))[index]);
-                }
+                var fieldPointer = new PhysicalDevice[pointer->PhysicalDeviceCount];
+                for (var index = 0; index < pointer->PhysicalDeviceCount; index++) fieldPointer[index] = new(default, (&pointer->PhysicalDevices_0)[index]);
                 result.PhysicalDevices = fieldPointer;
             }
             else

@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryFileDescriptorProperties
+    public struct MemoryFileDescriptorProperties
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint MemoryTypeBits
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryFileDescriptorProperties MarshalFrom(SharpVk.Interop.Khronos.MemoryFileDescriptorProperties* pointer)
+        internal static unsafe MemoryFileDescriptorProperties MarshalFrom(Interop.Khronos.MemoryFileDescriptorProperties* pointer)
         {
-            MemoryFileDescriptorProperties result = default(MemoryFileDescriptorProperties);
+            var result = default(MemoryFileDescriptorProperties);
             result.MemoryTypeBits = pointer->MemoryTypeBits;
             return result;
         }

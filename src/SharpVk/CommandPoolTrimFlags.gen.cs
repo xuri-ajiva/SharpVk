@@ -22,17 +22,17 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum CommandPoolTrimFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
+        None = 0
     }
 }

@@ -23,70 +23,70 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Opaque handle to an indirect commands layout object.
+    ///     Opaque handle to an indirect commands layout object.
     /// </summary>
-    public partial class IndirectCommandsLayout
+    public class IndirectCommandsLayout
         : IDisposable
     {
-        internal readonly SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal IndirectCommandsLayout(SharpVk.Device parent, SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.NVidia.Experimental.IndirectCommandsLayout Handle;
+
+        internal readonly Device Parent;
+
+        internal IndirectCommandsLayout(Device parent, Interop.NVidia.Experimental.IndirectCommandsLayout handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout RawHandle => this.handle;
-        
+        public Interop.NVidia.Experimental.IndirectCommandsLayout RawHandle => Handle;
+
         /// <summary>
-        /// Destroy a object table.
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
+        ///     Destroy a object table.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.NVidia.Experimental.VkIndirectCommandsLayoutNVXDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyIndirectCommandsLayoutNVX;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyIndirectCommandsLayoutNvx;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

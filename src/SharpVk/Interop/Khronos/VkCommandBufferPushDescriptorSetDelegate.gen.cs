@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferPushDescriptorSetDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.Interop.PipelineLayout layout, uint set, uint descriptorWriteCount, SharpVk.Interop.WriteDescriptorSet* descriptorWrites);
+    public unsafe delegate void VkCommandBufferPushDescriptorSetDelegate(CommandBuffer commandBuffer, PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint set, uint descriptorWriteCount, WriteDescriptorSet* descriptorWrites);
 }

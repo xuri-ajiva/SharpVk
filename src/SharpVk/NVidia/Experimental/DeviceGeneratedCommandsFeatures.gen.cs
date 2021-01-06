@@ -22,48 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Structure specifying physical device support.
+    ///     Structure specifying physical device support.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGeneratedCommandsFeatures
+    public struct DeviceGeneratedCommandsFeatures
     {
         /// <summary>
-        /// Indicates whether the ObjectTableNVX supports entries with
-        /// VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX bit set and
-        /// IndirectCommandsLayoutNVX supports VK_PIPELINE_BIND_POINT_COMPUTE.
+        ///     Indicates whether the ObjectTableNVX supports entries with
+        ///     VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX bit set and
+        ///     IndirectCommandsLayoutNVX supports VK_PIPELINE_BIND_POINT_COMPUTE.
         /// </summary>
         public bool ComputeBindingPointSupport
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* pointer)
         {
             pointer->SType = StructureType.DeviceGeneratedCommandsFeatures;
             pointer->Next = null;
-            pointer->ComputeBindingPointSupport = this.ComputeBindingPointSupport;
+            pointer->ComputeBindingPointSupport = ComputeBindingPointSupport;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DeviceGeneratedCommandsFeatures MarshalFrom(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* pointer)
+        internal static unsafe DeviceGeneratedCommandsFeatures MarshalFrom(Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* pointer)
         {
-            DeviceGeneratedCommandsFeatures result = default(DeviceGeneratedCommandsFeatures);
+            var result = default(DeviceGeneratedCommandsFeatures);
             result.ComputeBindingPointSupport = pointer->ComputeBindingPointSupport;
             return result;
         }

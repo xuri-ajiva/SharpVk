@@ -25,33 +25,28 @@
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Enum specifying object table entry type.
+    ///     Enum specifying object table entry type.
     /// </summary>
     public enum ObjectEntryType
     {
         /// <summary>
-        /// 
         /// </summary>
-        DescriptorSet = 0, 
-        
+        DescriptorSet = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Pipeline = 1, 
-        
+        Pipeline = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        IndexBuffer = 2, 
-        
+        IndexBuffer = 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        VertexBuffer = 3, 
-        
+        VertexBuffer = 3,
+
         /// <summary>
-        /// 
         /// </summary>
-        PushConstant = 4, 
+        PushConstant = 4
     }
 }

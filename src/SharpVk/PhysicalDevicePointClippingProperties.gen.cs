@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDevicePointClippingProperties
+    public struct PhysicalDevicePointClippingProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PointClippingBehavior PointClippingBehavior
+        public PointClippingBehavior PointClippingBehavior
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePointClippingProperties MarshalFrom(SharpVk.Interop.PhysicalDevicePointClippingProperties* pointer)
+        internal static unsafe PhysicalDevicePointClippingProperties MarshalFrom(Interop.PhysicalDevicePointClippingProperties* pointer)
         {
-            PhysicalDevicePointClippingProperties result = default(PhysicalDevicePointClippingProperties);
+            var result = default(PhysicalDevicePointClippingProperties);
             result.PointClippingBehavior = pointer->PointClippingBehavior;
             return result;
         }

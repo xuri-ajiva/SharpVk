@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceResetFencesDelegate(SharpVk.Interop.Device device, uint fenceCount, SharpVk.Interop.Fence* fences);
+    public unsafe delegate Result VkDeviceResetFencesDelegate(Device device, uint fenceCount, Fence* fences);
 }

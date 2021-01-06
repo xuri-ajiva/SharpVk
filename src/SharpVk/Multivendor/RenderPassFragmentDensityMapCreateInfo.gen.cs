@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RenderPassFragmentDensityMapCreateInfo
+    public struct RenderPassFragmentDensityMapCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.AttachmentReference FragmentDensityMapAttachment
+        public AttachmentReference FragmentDensityMapAttachment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.RenderPassFragmentDensityMapCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.RenderPassFragmentDensityMapCreateInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassFragmentDensityMapCreateInfo;
             pointer->Next = null;
-            pointer->FragmentDensityMapAttachment = this.FragmentDensityMapAttachment;
+            pointer->FragmentDensityMapAttachment = FragmentDensityMapAttachment;
         }
     }
 }

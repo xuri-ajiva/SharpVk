@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Request a specific address for a buffer
+    ///     Request a specific address for a buffer
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct BufferDeviceAddressCreateInfo
+    public struct BufferDeviceAddressCreateInfo
     {
         /// <summary>
-        /// The device address requested for the buffer.
+        ///     The device address requested for the buffer.
         /// </summary>
         public ulong DeviceAddress
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.BufferDeviceAddressCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.BufferDeviceAddressCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferDeviceAddressCreateInfo;
             pointer->Next = null;
-            pointer->DeviceAddress = this.DeviceAddress;
+            pointer->DeviceAddress = DeviceAddress;
         }
     }
 }

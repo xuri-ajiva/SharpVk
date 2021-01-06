@@ -22,67 +22,65 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceProperties
+    public unsafe struct PhysicalDeviceProperties
     {
         /// <summary>
-        /// The version of Vulkan supported by the device, encoded as described
-        /// in the API Version Numbers and Semantics section.
+        ///     The version of Vulkan supported by the device, encoded as described
+        ///     in the API Version Numbers and Semantics section.
         /// </summary>
-        public uint ApiVersion; 
-        
+        public uint ApiVersion;
+
         /// <summary>
-        /// The vendor-specified version of the driver.
+        ///     The vendor-specified version of the driver.
         /// </summary>
-        public uint DriverVersion; 
-        
+        public uint DriverVersion;
+
         /// <summary>
-        /// A unique identifier for the _vendor_ (see below) of the physical
-        /// device.
+        ///     A unique identifier for the _vendor_ (see below) of the physical
+        ///     device.
         /// </summary>
-        public uint VendorID; 
-        
+        public uint VendorID;
+
         /// <summary>
-        /// A unique identifier for the physical device among devices available
-        /// from the vendor.
+        ///     A unique identifier for the physical device among devices available
+        ///     from the vendor.
         /// </summary>
-        public uint DeviceID; 
-        
+        public uint DeviceID;
+
         /// <summary>
-        /// A PhysicalDeviceType specifying the type of device.
+        ///     A PhysicalDeviceType specifying the type of device.
         /// </summary>
-        public SharpVk.PhysicalDeviceType DeviceType; 
-        
+        public PhysicalDeviceType DeviceType;
+
         /// <summary>
-        /// A string containing the name of the device.
+        ///     A string containing the name of the device.
         /// </summary>
-        public fixed byte DeviceName[Constants.MaxPhysicalDeviceNameSize]; 
-        
+        public fixed byte DeviceName[Constants.MaxPhysicalDeviceNameSize];
+
         /// <summary>
-        /// An array of size VK_UUID_SIZE, containing 8-bit values that
-        /// represent a universally unique identifier for the device.
+        ///     An array of size VK_UUID_SIZE, containing 8-bit values that
+        ///     represent a universally unique identifier for the device.
         /// </summary>
-        public fixed byte PipelineCacheUUID[Constants.UuidSize]; 
-        
+        public fixed byte PipelineCacheUUID[Constants.UuidSize];
+
         /// <summary>
-        /// The PhysicalDeviceLimits structure which specifies device-specific
-        /// limits of the physical device. See Limits for details.
+        ///     The PhysicalDeviceLimits structure which specifies device-specific
+        ///     limits of the physical device. See Limits for details.
         /// </summary>
-        public SharpVk.Interop.PhysicalDeviceLimits Limits; 
-        
+        public PhysicalDeviceLimits Limits;
+
         /// <summary>
-        /// The PhysicalDeviceSparseProperties structure which specifies
-        /// various sparse related properties of the physical device. See
-        /// Sparse Properties for details.
+        ///     The PhysicalDeviceSparseProperties structure which specifies
+        ///     various sparse related properties of the physical device. See
+        ///     Sparse Properties for details.
         /// </summary>
-        public SharpVk.Interop.PhysicalDeviceSparseProperties SparseProperties; 
+        public PhysicalDeviceSparseProperties SparseProperties;
     }
 }

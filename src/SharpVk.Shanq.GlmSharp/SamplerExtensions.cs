@@ -1,5 +1,5 @@
-﻿using GlmSharp;
-using System.Linq;
+﻿using System.Linq;
+using GlmSharp;
 
 namespace SharpVk.Shanq.GlmSharp
 {

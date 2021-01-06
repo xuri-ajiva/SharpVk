@@ -22,193 +22,173 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created sampler.
+    ///     Structure specifying parameters of a newly created sampler.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct SamplerCreateInfo
+    public struct SamplerCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.SamplerCreateFlags? Flags
+        public SamplerCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The magnification filter to apply to lookups.
+        ///     The magnification filter to apply to lookups.
         /// </summary>
-        public SharpVk.Filter MagFilter
+        public Filter MagFilter
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Filter MinFilter
+        public Filter MinFilter
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerMipmapMode MipmapMode
+        public SamplerMipmapMode MipmapMode
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerAddressMode AddressModeU
+        public SamplerAddressMode AddressModeU
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerAddressMode AddressModeV
+        public SamplerAddressMode AddressModeV
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SamplerAddressMode AddressModeW
+        public SamplerAddressMode AddressModeW
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MipLodBias
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool AnisotropyEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MaxAnisotropy
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool CompareEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.CompareOp CompareOp
+        public CompareOp CompareOp
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MinLod
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MaxLod
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.BorderColor BorderColor
+        public BorderColor BorderColor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool UnnormalizedCoordinates
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.SamplerCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.SamplerCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.SamplerCreateFlags);
-            }
-            pointer->MagFilter = this.MagFilter;
-            pointer->MinFilter = this.MinFilter;
-            pointer->MipmapMode = this.MipmapMode;
-            pointer->AddressModeU = this.AddressModeU;
-            pointer->AddressModeV = this.AddressModeV;
-            pointer->AddressModeW = this.AddressModeW;
-            pointer->MipLodBias = this.MipLodBias;
-            pointer->AnisotropyEnable = this.AnisotropyEnable;
-            pointer->MaxAnisotropy = this.MaxAnisotropy;
-            pointer->CompareEnable = this.CompareEnable;
-            pointer->CompareOp = this.CompareOp;
-            pointer->MinLod = this.MinLod;
-            pointer->MaxLod = this.MaxLod;
-            pointer->BorderColor = this.BorderColor;
-            pointer->UnnormalizedCoordinates = this.UnnormalizedCoordinates;
+                pointer->Flags = default;
+            pointer->MagFilter = MagFilter;
+            pointer->MinFilter = MinFilter;
+            pointer->MipmapMode = MipmapMode;
+            pointer->AddressModeU = AddressModeU;
+            pointer->AddressModeV = AddressModeV;
+            pointer->AddressModeW = AddressModeW;
+            pointer->MipLodBias = MipLodBias;
+            pointer->AnisotropyEnable = AnisotropyEnable;
+            pointer->MaxAnisotropy = MaxAnisotropy;
+            pointer->CompareEnable = CompareEnable;
+            pointer->CompareOp = CompareOp;
+            pointer->MinLod = MinLod;
+            pointer->MaxLod = MaxLod;
+            pointer->BorderColor = BorderColor;
+            pointer->UnnormalizedCoordinates = UnnormalizedCoordinates;
         }
     }
 }

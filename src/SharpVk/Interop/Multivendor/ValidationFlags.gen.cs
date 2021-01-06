@@ -22,36 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ValidationFlags
+    public unsafe struct ValidationFlags
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// The number of checks to disable.
+        ///     The number of checks to disable.
         /// </summary>
-        public uint DisabledValidationCheckCount; 
-        
+        public uint DisabledValidationCheckCount;
+
         /// <summary>
-        /// An array of values specifying the validation checks to be disabled.
-        /// Checks which may be specified include: + --
+        ///     An array of values specifying the validation checks to be disabled.
+        ///     Checks which may be specified include: + --
         /// </summary>
-        public SharpVk.Multivendor.ValidationCheck* DisabledValidationChecks; 
+        public ValidationCheck* DisabledValidationChecks;
     }
 }

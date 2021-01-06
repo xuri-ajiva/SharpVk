@@ -22,136 +22,128 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying parameters of a newly created pipeline depth
-    /// stencil state.
+    ///     Structure specifying parameters of a newly created pipeline depth
+    ///     stencil state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineDepthStencilStateCreateInfo
+    public struct PipelineDepthStencilStateCreateInfo
     {
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.PipelineDepthStencilStateCreateFlags? Flags
+        public PipelineDepthStencilStateCreateFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// depthTestEnable controls whether depth testing is enabled.
+        ///     depthTestEnable controls whether depth testing is enabled.
         /// </summary>
         public bool DepthTestEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// depthWriteEnable controls whether depth writes are enabled.
+        ///     depthWriteEnable controls whether depth writes are enabled.
         /// </summary>
         public bool DepthWriteEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// The comparison operator used in the depth test.
+        ///     The comparison operator used in the depth test.
         /// </summary>
-        public SharpVk.CompareOp DepthCompareOp
+        public CompareOp DepthCompareOp
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// depthBoundsTestEnable controls whether depth bounds testing is
-        /// enabled.
+        ///     depthBoundsTestEnable controls whether depth bounds testing is
+        ///     enabled.
         /// </summary>
         public bool DepthBoundsTestEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// stencilTestEnable controls whether stencil testing is enabled.
+        ///     stencilTestEnable controls whether stencil testing is enabled.
         /// </summary>
         public bool StencilTestEnable
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// front and back control the parameters of the stencil test.
+        ///     front and back control the parameters of the stencil test.
         /// </summary>
-        public SharpVk.StencilOpState Front
+        public StencilOpState Front
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.StencilOpState Back
+        public StencilOpState Back
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// minDepthBounds and maxDepthBounds define the range of values used
-        /// in the depth bounds test.
+        ///     minDepthBounds and maxDepthBounds define the range of values used
+        ///     in the depth bounds test.
         /// </summary>
         public float MinDepthBounds
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public float MaxDepthBounds
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PipelineDepthStencilStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.PipelineDepthStencilStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineDepthStencilStateCreateInfo;
             pointer->Next = null;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.PipelineDepthStencilStateCreateFlags);
-            }
-            pointer->DepthTestEnable = this.DepthTestEnable;
-            pointer->DepthWriteEnable = this.DepthWriteEnable;
-            pointer->DepthCompareOp = this.DepthCompareOp;
-            pointer->DepthBoundsTestEnable = this.DepthBoundsTestEnable;
-            pointer->StencilTestEnable = this.StencilTestEnable;
-            pointer->Front = this.Front;
-            pointer->Back = this.Back;
-            pointer->MinDepthBounds = this.MinDepthBounds;
-            pointer->MaxDepthBounds = this.MaxDepthBounds;
+                pointer->Flags = default;
+            pointer->DepthTestEnable = DepthTestEnable;
+            pointer->DepthWriteEnable = DepthWriteEnable;
+            pointer->DepthCompareOp = DepthCompareOp;
+            pointer->DepthBoundsTestEnable = DepthBoundsTestEnable;
+            pointer->StencilTestEnable = StencilTestEnable;
+            pointer->Front = Front;
+            pointer->Back = Back;
+            pointer->MinDepthBounds = MinDepthBounds;
+            pointer->MaxDepthBounds = MaxDepthBounds;
         }
     }
 }

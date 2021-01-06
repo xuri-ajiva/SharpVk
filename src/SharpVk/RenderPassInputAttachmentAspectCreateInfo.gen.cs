@@ -22,43 +22,37 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct RenderPassInputAttachmentAspectCreateInfo
+    public struct RenderPassInputAttachmentAspectCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.InputAttachmentAspectReference[] AspectReferences
+        public InputAttachmentAspectReference[] AspectReferences
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.RenderPassInputAttachmentAspectCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.RenderPassInputAttachmentAspectCreateInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassInputAttachmentAspectCreateInfoVersion;
             pointer->Next = null;
-            pointer->AspectReferenceCount = (uint)(Interop.HeapUtil.GetLength(this.AspectReferences));
-            if (this.AspectReferences != null)
+            pointer->AspectReferenceCount = HeapUtil.GetLength(AspectReferences);
+            if (AspectReferences != null)
             {
-                var fieldPointer = (SharpVk.InputAttachmentAspectReference*)(Interop.HeapUtil.AllocateAndClear<SharpVk.InputAttachmentAspectReference>(this.AspectReferences.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.AspectReferences.Length); index++)
-                {
-                    fieldPointer[index] = this.AspectReferences[index];
-                }
+                var fieldPointer = (InputAttachmentAspectReference*)HeapUtil.AllocateAndClear<InputAttachmentAspectReference>(AspectReferences.Length).ToPointer();
+                for (var index = 0; index < (uint)AspectReferences.Length; index++) fieldPointer[index] = AspectReferences[index];
                 pointer->AspectReferences = fieldPointer;
             }
             else

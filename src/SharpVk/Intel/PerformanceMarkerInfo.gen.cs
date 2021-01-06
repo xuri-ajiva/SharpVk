@@ -22,37 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Structure specifying performance markers
+    ///     Structure specifying performance markers
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PerformanceMarkerInfo
+    public struct PerformanceMarkerInfo
     {
         /// <summary>
-        /// The marker value that will be recorded into the opaque query
-        /// results.
+        ///     The marker value that will be recorded into the opaque query
+        ///     results.
         /// </summary>
         public ulong Marker
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceMarkerInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.PerformanceMarkerInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceMarkerInfo;
             pointer->Next = null;
-            pointer->Marker = this.Marker;
+            pointer->Marker = Marker;
         }
     }
 }

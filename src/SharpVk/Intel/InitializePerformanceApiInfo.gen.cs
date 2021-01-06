@@ -28,30 +28,29 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Intel
 {
     /// <summary>
-    /// Structure specifying parameters of initialize of the device
+    ///     Structure specifying parameters of initialize of the device
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct InitializePerformanceApiInfo
+    public struct InitializePerformanceApiInfo
     {
         /// <summary>
-        /// The application data.
+        ///     The application data.
         /// </summary>
         public IntPtr UserData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.InitializePerformanceApiInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Intel.InitializePerformanceApiInfo* pointer)
         {
             pointer->SType = StructureType.InitializePerformanceApiInfo;
             pointer->Next = null;
-            pointer->UserData = this.UserData.ToPointer();
+            pointer->UserData = UserData.ToPointer();
         }
     }
 }

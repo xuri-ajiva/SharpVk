@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDeviceGetImageSparseMemoryRequirements2Delegate(SharpVk.Interop.Device device, SharpVk.Interop.ImageSparseMemoryRequirementsInfo2* info, uint* sparseMemoryRequirementCount, SharpVk.Interop.SparseImageMemoryRequirements2* sparseMemoryRequirements);
+    public unsafe delegate void VkDeviceGetImageSparseMemoryRequirements2Delegate(Device device, ImageSparseMemoryRequirementsInfo2* info, uint* sparseMemoryRequirementCount, SparseImageMemoryRequirements2* sparseMemoryRequirements);
 }

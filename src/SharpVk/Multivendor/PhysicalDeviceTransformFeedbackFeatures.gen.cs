@@ -22,56 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceTransformFeedbackFeatures
+    public struct PhysicalDeviceTransformFeedbackFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool TransformFeedback
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool GeometryStreams
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceTransformFeedbackFeatures;
             pointer->Next = null;
-            pointer->TransformFeedback = this.TransformFeedback;
-            pointer->GeometryStreams = this.GeometryStreams;
+            pointer->TransformFeedback = TransformFeedback;
+            pointer->GeometryStreams = GeometryStreams;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTransformFeedbackFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures* pointer)
+        internal static unsafe PhysicalDeviceTransformFeedbackFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures* pointer)
         {
-            PhysicalDeviceTransformFeedbackFeatures result = default(PhysicalDeviceTransformFeedbackFeatures);
+            var result = default(PhysicalDeviceTransformFeedbackFeatures);
             result.TransformFeedback = pointer->TransformFeedback;
             result.GeometryStreams = pointer->GeometryStreams;
             return result;

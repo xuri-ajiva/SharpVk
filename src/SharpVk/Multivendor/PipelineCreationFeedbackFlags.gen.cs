@@ -22,32 +22,29 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum PipelineCreationFeedbackFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Valid = 1 << 0, 
-        
+        Valid = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        ApplicationPipelineCacheHit = 1 << 1, 
-        
+        ApplicationPipelineCacheHit = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        BasePipelineAcceleration = 1 << 2, 
+        BasePipelineAcceleration = 1 << 2
     }
 }

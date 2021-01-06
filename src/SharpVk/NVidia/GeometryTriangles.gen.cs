@@ -22,156 +22,141 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct GeometryTriangles
+    public struct GeometryTriangles
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer VertexData
+        public Buffer VertexData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong VertexOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint VertexCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong VertexStride
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Format VertexFormat
+        public Format VertexFormat
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer IndexData
+        public Buffer IndexData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong IndexOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint IndexCount
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.IndexType IndexType
+        public IndexType IndexType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer TransformData
+        public Buffer TransformData
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong TransformOffset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.GeometryTriangles* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.GeometryTriangles* pointer)
         {
             pointer->SType = StructureType.GeometryTriangles;
             pointer->Next = null;
-            pointer->VertexData = this.VertexData?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->VertexOffset = this.VertexOffset;
-            pointer->VertexCount = this.VertexCount;
-            pointer->VertexStride = this.VertexStride;
-            pointer->VertexFormat = this.VertexFormat;
-            pointer->IndexData = this.IndexData?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->IndexOffset = this.IndexOffset;
-            pointer->IndexCount = this.IndexCount;
-            pointer->IndexType = this.IndexType;
-            pointer->TransformData = this.TransformData?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->TransformOffset = this.TransformOffset;
+            pointer->VertexData = VertexData?.Handle ?? default(Interop.Buffer);
+            pointer->VertexOffset = VertexOffset;
+            pointer->VertexCount = VertexCount;
+            pointer->VertexStride = VertexStride;
+            pointer->VertexFormat = VertexFormat;
+            pointer->IndexData = IndexData?.Handle ?? default(Interop.Buffer);
+            pointer->IndexOffset = IndexOffset;
+            pointer->IndexCount = IndexCount;
+            pointer->IndexType = IndexType;
+            pointer->TransformData = TransformData?.Handle ?? default(Interop.Buffer);
+            pointer->TransformOffset = TransformOffset;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe GeometryTriangles MarshalFrom(SharpVk.Interop.NVidia.GeometryTriangles* pointer)
+        internal static unsafe GeometryTriangles MarshalFrom(Interop.NVidia.GeometryTriangles* pointer)
         {
-            GeometryTriangles result = default(GeometryTriangles);
-            result.VertexData = new SharpVk.Buffer(default(SharpVk.Device), pointer->VertexData);
+            var result = default(GeometryTriangles);
+            result.VertexData = new(default, pointer->VertexData);
             result.VertexOffset = pointer->VertexOffset;
             result.VertexCount = pointer->VertexCount;
             result.VertexStride = pointer->VertexStride;
             result.VertexFormat = pointer->VertexFormat;
-            result.IndexData = new SharpVk.Buffer(default(SharpVk.Device), pointer->IndexData);
+            result.IndexData = new(default, pointer->IndexData);
             result.IndexOffset = pointer->IndexOffset;
             result.IndexCount = pointer->IndexCount;
             result.IndexType = pointer->IndexType;
-            result.TransformData = new SharpVk.Buffer(default(SharpVk.Device), pointer->TransformData);
+            result.TransformData = new(default, pointer->TransformData);
             result.TransformOffset = pointer->TransformOffset;
             return result;
         }

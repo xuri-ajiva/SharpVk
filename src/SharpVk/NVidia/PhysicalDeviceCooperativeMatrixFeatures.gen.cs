@@ -22,60 +22,57 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Structure describing cooperative matrix features that can be supported
-    /// by an implementation
+    ///     Structure describing cooperative matrix features that can be supported
+    ///     by an implementation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceCooperativeMatrixFeatures
+    public struct PhysicalDeviceCooperativeMatrixFeatures
     {
         /// <summary>
-        /// Indicates that the implementation supports the CooperativeMatrixNV
-        /// SPIR-V capability.a
+        ///     Indicates that the implementation supports the CooperativeMatrixNV
+        ///     SPIR-V capability.a
         /// </summary>
         public bool CooperativeMatrix
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Indicates that the implementation supports robust buffer access for
-        /// SPIR-V OpCooperativeMatrixLoadNV and OpCooperativeMatrixStoreNV
-        /// instructions.
+        ///     Indicates that the implementation supports robust buffer access for
+        ///     SPIR-V OpCooperativeMatrixLoadNV and OpCooperativeMatrixStoreNV
+        ///     instructions.
         /// </summary>
         public bool CooperativeMatrixRobustBufferAccess
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCooperativeMatrixFeatures;
             pointer->Next = null;
-            pointer->CooperativeMatrix = this.CooperativeMatrix;
-            pointer->CooperativeMatrixRobustBufferAccess = this.CooperativeMatrixRobustBufferAccess;
+            pointer->CooperativeMatrix = CooperativeMatrix;
+            pointer->CooperativeMatrixRobustBufferAccess = CooperativeMatrixRobustBufferAccess;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceCooperativeMatrixFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures* pointer)
+        internal static unsafe PhysicalDeviceCooperativeMatrixFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures* pointer)
         {
-            PhysicalDeviceCooperativeMatrixFeatures result = default(PhysicalDeviceCooperativeMatrixFeatures);
+            var result = default(PhysicalDeviceCooperativeMatrixFeatures);
             result.CooperativeMatrix = pointer->CooperativeMatrix;
             result.CooperativeMatrixRobustBufferAccess = pointer->CooperativeMatrixRobustBufferAccess;
             return result;

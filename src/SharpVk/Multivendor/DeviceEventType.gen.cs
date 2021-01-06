@@ -25,13 +25,12 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Events that can occur on a device object.
+    ///     Events that can occur on a device object.
     /// </summary>
     public enum DeviceEventType
     {
         /// <summary>
-        /// 
         /// </summary>
-        DisplayHotplug = 0, 
+        DisplayHotplug = 0
     }
 }

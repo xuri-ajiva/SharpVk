@@ -22,70 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct RayTracingPipelineCreateInfo
+    public unsafe struct RayTracingPipelineCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.PipelineCreateFlags Flags; 
-        
+        public PipelineCreateFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint StageCount; 
-        
+        public uint StageCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PipelineShaderStageCreateInfo* Stages; 
-        
+        public PipelineShaderStageCreateInfo* Stages;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint GroupCount; 
-        
+        public uint GroupCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.NVidia.RayTracingShaderGroupCreateInfo* Groups; 
-        
+        public RayTracingShaderGroupCreateInfo* Groups;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxRecursionDepth; 
-        
+        public uint MaxRecursionDepth;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.PipelineLayout Layout; 
-        
+        public PipelineLayout Layout;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Pipeline BasePipelineHandle; 
-        
+        public Pipeline BasePipelineHandle;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int BasePipelineIndex; 
+        public int BasePipelineIndex;
     }
 }

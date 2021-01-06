@@ -1,5 +1,5 @@
-﻿using SharpVk.Spirv;
-using System;
+﻿using System;
+using SharpVk.Spirv;
 
 namespace SharpVk.Shanq
 {
@@ -9,13 +9,12 @@ namespace SharpVk.Shanq
     {
         public BuiltInAttribute(BuiltIn builtIn)
         {
-            this.BuiltIn = builtIn;
+            BuiltIn = builtIn;
         }
 
         public BuiltIn BuiltIn
         {
             get;
-            private set;
         }
     }
 }

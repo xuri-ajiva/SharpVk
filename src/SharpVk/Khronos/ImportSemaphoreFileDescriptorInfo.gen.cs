@@ -22,73 +22,62 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportSemaphoreFileDescriptorInfo
+    public struct ImportSemaphoreFileDescriptorInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Semaphore Semaphore
+        public Semaphore Semaphore
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.SemaphoreImportFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.ExternalSemaphoreHandleTypeFlags HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public int FileDescriptor
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportSemaphoreFileDescriptorInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.ImportSemaphoreFileDescriptorInfo* pointer)
         {
             pointer->SType = StructureType.ImportSemaphoreFileDescriptorInfo;
             pointer->Next = null;
-            pointer->Semaphore = this.Semaphore?.handle ?? default(SharpVk.Interop.Semaphore);
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            pointer->Semaphore = Semaphore?.Handle ?? default(Interop.Semaphore);
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.SemaphoreImportFlags);
-            }
-            pointer->HandleType = this.HandleType;
-            pointer->FileDescriptor = this.FileDescriptor;
+                pointer->Flags = default;
+            pointer->HandleType = HandleType;
+            pointer->FileDescriptor = FileDescriptor;
         }
     }
 }

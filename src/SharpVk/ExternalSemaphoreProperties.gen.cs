@@ -22,52 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalSemaphoreProperties
+    public struct ExternalSemaphoreProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreHandleTypeFlags ExportFromImportedHandleTypes
+        public ExternalSemaphoreHandleTypeFlags ExportFromImportedHandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreHandleTypeFlags CompatibleHandleTypes
+        public ExternalSemaphoreHandleTypeFlags CompatibleHandleTypes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalSemaphoreFeatureFlags? ExternalSemaphoreFeatures
+        public ExternalSemaphoreFeatureFlags? ExternalSemaphoreFeatures
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ExternalSemaphoreProperties MarshalFrom(SharpVk.Interop.ExternalSemaphoreProperties* pointer)
+        internal static unsafe ExternalSemaphoreProperties MarshalFrom(Interop.ExternalSemaphoreProperties* pointer)
         {
-            ExternalSemaphoreProperties result = default(ExternalSemaphoreProperties);
+            var result = default(ExternalSemaphoreProperties);
             result.ExportFromImportedHandleTypes = pointer->ExportFromImportedHandleTypes;
             result.CompatibleHandleTypes = pointer->CompatibleHandleTypes;
             result.ExternalSemaphoreFeatures = pointer->ExternalSemaphoreFeatures;

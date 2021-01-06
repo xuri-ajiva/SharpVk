@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct QueueFamilyProperties2
+    public struct QueueFamilyProperties2
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.QueueFamilyProperties QueueFamilyProperties
+        public QueueFamilyProperties QueueFamilyProperties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe QueueFamilyProperties2 MarshalFrom(SharpVk.Interop.QueueFamilyProperties2* pointer)
+        internal static unsafe QueueFamilyProperties2 MarshalFrom(Interop.QueueFamilyProperties2* pointer)
         {
-            QueueFamilyProperties2 result = default(QueueFamilyProperties2);
+            var result = default(QueueFamilyProperties2);
             result.QueueFamilyProperties = pointer->QueueFamilyProperties;
             return result;
         }

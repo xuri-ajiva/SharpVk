@@ -22,88 +22,78 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ShaderStatisticsInfo
+    public struct ShaderStatisticsInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderStageFlags ShaderStageMask
+        public ShaderStageFlags ShaderStageMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Amd.ShaderResourceUsage ResourceUsage
+        public ShaderResourceUsage ResourceUsage
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint NumPhysicalVgprs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint NumPhysicalSgprs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint NumAvailableVgprs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint NumAvailableSgprs
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public (uint, uint, uint) ComputeWorkGroupSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ShaderStatisticsInfo MarshalFrom(SharpVk.Interop.Amd.ShaderStatisticsInfo* pointer)
+        internal static unsafe ShaderStatisticsInfo MarshalFrom(Interop.Amd.ShaderStatisticsInfo* pointer)
         {
-            ShaderStatisticsInfo result = default(ShaderStatisticsInfo);
+            var result = default(ShaderStatisticsInfo);
             result.ShaderStageMask = pointer->ShaderStageMask;
             result.ResourceUsage = pointer->ResourceUsage;
             result.NumPhysicalVgprs = pointer->NumPhysicalVgprs;

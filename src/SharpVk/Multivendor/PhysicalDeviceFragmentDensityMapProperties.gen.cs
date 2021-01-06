@@ -22,52 +22,46 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceFragmentDensityMapProperties
+    public struct PhysicalDeviceFragmentDensityMapProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D MinFragmentDensityTexelSize
+        public Extent2D MinFragmentDensityTexelSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D MaxFragmentDensityTexelSize
+        public Extent2D MaxFragmentDensityTexelSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool FragmentDensityInvocations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceFragmentDensityMapProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapProperties* pointer)
+        internal static unsafe PhysicalDeviceFragmentDensityMapProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceFragmentDensityMapProperties* pointer)
         {
-            PhysicalDeviceFragmentDensityMapProperties result = default(PhysicalDeviceFragmentDensityMapProperties);
+            var result = default(PhysicalDeviceFragmentDensityMapProperties);
             result.MinFragmentDensityTexelSize = pointer->MinFragmentDensityTexelSize;
             result.MaxFragmentDensityTexelSize = pointer->MaxFragmentDensityTexelSize;
             result.FragmentDensityInvocations = pointer->FragmentDensityInvocations;

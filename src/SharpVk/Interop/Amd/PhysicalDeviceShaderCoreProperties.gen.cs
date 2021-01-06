@@ -22,95 +22,79 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceShaderCoreProperties
+    public unsafe struct PhysicalDeviceShaderCoreProperties
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ShaderEngineCount; 
-        
+        public uint ShaderEngineCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ShaderArraysPerEngineCount; 
-        
+        public uint ShaderArraysPerEngineCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ComputeUnitsPerShaderArray; 
-        
+        public uint ComputeUnitsPerShaderArray;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SimdPerComputeUnit; 
-        
+        public uint SimdPerComputeUnit;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint WavefrontsPerSimd; 
-        
+        public uint WavefrontsPerSimd;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint WavefrontSize; 
-        
+        public uint WavefrontSize;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SgprsPerSimd; 
-        
+        public uint SgprsPerSimd;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MinSgprAllocation; 
-        
+        public uint MinSgprAllocation;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxSgprAllocation; 
-        
+        public uint MaxSgprAllocation;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint SgprAllocationGranularity; 
-        
+        public uint SgprAllocationGranularity;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint VgprsPerSimd; 
-        
+        public uint VgprsPerSimd;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MinVgprAllocation; 
-        
+        public uint MinVgprAllocation;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint MaxVgprAllocation; 
-        
+        public uint MaxVgprAllocation;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint VgprAllocationGranularity; 
+        public uint VgprAllocationGranularity;
     }
 }

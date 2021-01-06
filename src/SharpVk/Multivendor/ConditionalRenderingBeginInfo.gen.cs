@@ -22,63 +22,53 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ConditionalRenderingBeginInfo
+    public struct ConditionalRenderingBeginInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Buffer Buffer
+        public Buffer Buffer
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public ulong Offset
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ConditionalRenderingFlags? Flags
+        public ConditionalRenderingFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ConditionalRenderingBeginInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.ConditionalRenderingBeginInfo* pointer)
         {
             pointer->SType = StructureType.ConditionalRenderingBeginInfo;
             pointer->Next = null;
-            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
-            pointer->Offset = this.Offset;
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            pointer->Offset = Offset;
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.Multivendor.ConditionalRenderingFlags);
-            }
+                pointer->Flags = default;
         }
     }
 }

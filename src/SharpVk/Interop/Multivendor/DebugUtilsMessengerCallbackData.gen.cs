@@ -22,75 +22,64 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct DebugUtilsMessengerCallbackData
+    public unsafe struct DebugUtilsMessengerCallbackData
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugUtilsMessengerCallbackDataFlags Flags; 
-        
+        public DebugUtilsMessengerCallbackDataFlags Flags;
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte* MessageIdName; 
-        
+        public byte* MessageIdName;
+
         /// <summary>
-        /// 
         /// </summary>
-        public int MessageIdNumber; 
-        
+        public int MessageIdNumber;
+
         /// <summary>
-        /// 
         /// </summary>
-        public byte* Message; 
-        
+        public byte* Message;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint QueueLabelCount; 
-        
+        public uint QueueLabelCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Multivendor.DebugUtilsLabel* QueueLabels; 
-        
+        public DebugUtilsLabel* QueueLabels;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint CommandBufLabelCount; 
-        
+        public uint CommandBufLabelCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Multivendor.DebugUtilsLabel* CommandBufLabels; 
-        
+        public DebugUtilsLabel* CommandBufLabels;
+
         /// <summary>
-        /// 
         /// </summary>
-        public uint ObjectCount; 
-        
+        public uint ObjectCount;
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Interop.Multivendor.DebugUtilsObjectNameInfo* Objects; 
+        public DebugUtilsObjectNameInfo* Objects;
     }
 }

@@ -22,66 +22,64 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Structure describing the texel buffer alignment requirements supported
-    /// by an implementation.
+    ///     Structure describing the texel buffer alignment requirements supported
+    ///     by an implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceTexelBufferAlignmentProperties
+    public struct PhysicalDeviceTexelBufferAlignmentProperties
     {
         /// <summary>
-        /// A byte alignment that is sufficient for a storage texel buffer of
-        /// any format.
+        ///     A byte alignment that is sufficient for a storage texel buffer of
+        ///     any format.
         /// </summary>
         public ulong StorageTexelBufferOffsetAlignmentBytes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Indicates whether single texel alignment is sufficient for a
-        /// storage texel buffer of any format.
+        ///     Indicates whether single texel alignment is sufficient for a
+        ///     storage texel buffer of any format.
         /// </summary>
         public bool StorageTexelBufferOffsetSingleTexelAlignment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A byte alignment that is sufficient for a uniform texel buffer of
-        /// any format.
+        ///     A byte alignment that is sufficient for a uniform texel buffer of
+        ///     any format.
         /// </summary>
         public ulong UniformTexelBufferOffsetAlignmentBytes
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// Indicates whether single texel alignment is sufficient for a
-        /// uniform texel buffer of any format.
+        ///     Indicates whether single texel alignment is sufficient for a
+        ///     uniform texel buffer of any format.
         /// </summary>
         public bool UniformTexelBufferOffsetSingleTexelAlignment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTexelBufferAlignmentProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentProperties* pointer)
+        internal static unsafe PhysicalDeviceTexelBufferAlignmentProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentProperties* pointer)
         {
-            PhysicalDeviceTexelBufferAlignmentProperties result = default(PhysicalDeviceTexelBufferAlignmentProperties);
+            var result = default(PhysicalDeviceTexelBufferAlignmentProperties);
             result.StorageTexelBufferOffsetAlignmentBytes = pointer->StorageTexelBufferOffsetAlignmentBytes;
             result.StorageTexelBufferOffsetSingleTexelAlignment = pointer->StorageTexelBufferOffsetSingleTexelAlignment;
             result.UniformTexelBufferOffsetAlignmentBytes = pointer->UniformTexelBufferOffsetAlignmentBytes;

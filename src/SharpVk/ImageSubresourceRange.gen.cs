@@ -22,55 +22,53 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying a image subresource range.
+    ///     Structure specifying a image subresource range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImageSubresourceRange
+    public struct ImageSubresourceRange
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ImageSubresourceRange(SharpVk.ImageAspectFlags aspectMask, uint baseMipLevel, uint levelCount, uint baseArrayLayer, uint layerCount)
+        public ImageSubresourceRange(ImageAspectFlags aspectMask, uint baseMipLevel, uint levelCount, uint baseArrayLayer, uint layerCount)
         {
-            this.AspectMask = aspectMask;
-            this.BaseMipLevel = baseMipLevel;
-            this.LevelCount = levelCount;
-            this.BaseArrayLayer = baseArrayLayer;
-            this.LayerCount = layerCount;
+            AspectMask = aspectMask;
+            BaseMipLevel = baseMipLevel;
+            LevelCount = levelCount;
+            BaseArrayLayer = baseArrayLayer;
+            LayerCount = layerCount;
         }
-        
+
         /// <summary>
-        /// A bitmask indicating which aspect(s) of the image are included in
-        /// the view. See ImageAspectFlagBits.
+        ///     A bitmask indicating which aspect(s) of the image are included in
+        ///     the view. See ImageAspectFlagBits.
         /// </summary>
-        public SharpVk.ImageAspectFlags AspectMask; 
-        
+        public ImageAspectFlags AspectMask;
+
         /// <summary>
-        /// The first mipmap level accessible to the view.
+        ///     The first mipmap level accessible to the view.
         /// </summary>
-        public uint BaseMipLevel; 
-        
+        public uint BaseMipLevel;
+
         /// <summary>
-        /// The number of mipmap levels (starting from baseMipLevel) accessible
-        /// to the view.
+        ///     The number of mipmap levels (starting from baseMipLevel) accessible
+        ///     to the view.
         /// </summary>
-        public uint LevelCount; 
-        
+        public uint LevelCount;
+
         /// <summary>
-        /// The first array layer accessible to the view.
+        ///     The first array layer accessible to the view.
         /// </summary>
-        public uint BaseArrayLayer; 
-        
+        public uint BaseArrayLayer;
+
         /// <summary>
-        /// The number of array layers (starting from baseArrayLayer)
-        /// accessible to the view.
+        ///     The number of array layers (starting from baseArrayLayer)
+        ///     accessible to the view.
         /// </summary>
-        public uint LayerCount; 
+        public uint LayerCount;
     }
 }

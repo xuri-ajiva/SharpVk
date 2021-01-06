@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Intel;
 
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetPerformanceParameterDelegate(SharpVk.Interop.Device device, SharpVk.Intel.PerformanceParameterType parameter, SharpVk.Interop.Intel.PerformanceValue* value);
+    public unsafe delegate Result VkDeviceGetPerformanceParameterDelegate(Device device, PerformanceParameterType parameter, PerformanceValue* value);
 }

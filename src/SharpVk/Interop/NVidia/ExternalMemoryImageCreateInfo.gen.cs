@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ExternalMemoryImageCreateInfo
+    public unsafe struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
-        /// more external memory handle types. The types must all be compatible
-        /// with each other and the other image creation parameters, as
-        /// reported by
-        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
+        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
+        ///     more external memory handle types. The types must all be compatible
+        ///     with each other and the other image creation parameters, as
+        ///     reported by
+        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleTypes; 
+        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleTypes;
     }
 }

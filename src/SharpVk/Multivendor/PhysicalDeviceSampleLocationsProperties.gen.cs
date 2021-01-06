@@ -22,70 +22,62 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSampleLocationsProperties
+    public struct PhysicalDeviceSampleLocationsProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.SampleCountFlags SampleLocationSampleCounts
+        public SampleCountFlags SampleLocationSampleCounts
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Extent2D MaxSampleLocationGridSize
+        public Extent2D MaxSampleLocationGridSize
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public (float, float) SampleLocationCoordinateRange
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public uint SampleLocationSubPixelBits
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public bool VariableSampleLocations
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSampleLocationsProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSampleLocationsProperties* pointer)
+        internal static unsafe PhysicalDeviceSampleLocationsProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceSampleLocationsProperties* pointer)
         {
-            PhysicalDeviceSampleLocationsProperties result = default(PhysicalDeviceSampleLocationsProperties);
+            var result = default(PhysicalDeviceSampleLocationsProperties);
             result.SampleLocationSampleCounts = pointer->SampleLocationSampleCounts;
             result.MaxSampleLocationGridSize = pointer->MaxSampleLocationGridSize;
             result.SampleLocationCoordinateRange = (pointer->SampleLocationCoordinateRange[0], pointer->SampleLocationCoordinateRange[1]);

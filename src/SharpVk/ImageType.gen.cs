@@ -25,23 +25,20 @@
 namespace SharpVk
 {
     /// <summary>
-    /// Specifies the type of an image object.
+    ///     Specifies the type of an image object.
     /// </summary>
     public enum ImageType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Image1d = 0, 
-        
+        Image1d = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Image2d = 1, 
-        
+        Image2d = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        Image3d = 2, 
+        Image3d = 2
     }
 }

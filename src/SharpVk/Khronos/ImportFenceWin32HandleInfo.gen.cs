@@ -28,98 +28,75 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ImportFenceWin32HandleInfo
+    public struct ImportFenceWin32HandleInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Fence Fence
+        public Fence Fence
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.FenceImportFlags? Flags
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public SharpVk.ExternalFenceHandleTypeFlags? HandleType
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr? Handle
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public IntPtr? Name
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportFenceWin32HandleInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Khronos.ImportFenceWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ImportFenceWin32HandleInfo;
             pointer->Next = null;
-            pointer->Fence = this.Fence?.handle ?? default(SharpVk.Interop.Fence);
-            if (this.Flags != null)
-            {
-                pointer->Flags = this.Flags.Value;
-            }
+            pointer->Fence = Fence?.Handle ?? default(Interop.Fence);
+            if (Flags != null)
+                pointer->Flags = Flags.Value;
             else
-            {
-                pointer->Flags = default(SharpVk.FenceImportFlags);
-            }
-            if (this.HandleType != null)
-            {
-                pointer->HandleType = this.HandleType.Value;
-            }
+                pointer->Flags = default;
+            if (HandleType != null)
+                pointer->HandleType = HandleType.Value;
             else
-            {
-                pointer->HandleType = default(SharpVk.ExternalFenceHandleTypeFlags);
-            }
-            if (this.Handle != null)
-            {
-                pointer->Handle = this.Handle.Value;
-            }
+                pointer->HandleType = default;
+            if (Handle != null)
+                pointer->Handle = Handle.Value;
             else
-            {
-                pointer->Handle = default(IntPtr);
-            }
-            if (this.Name != null)
-            {
-                pointer->Name = this.Name.Value;
-            }
+                pointer->Handle = default;
+            if (Name != null)
+                pointer->Name = Name.Value;
             else
-            {
-                pointer->Name = default(IntPtr);
-            }
+                pointer->Name = default;
         }
     }
 }

@@ -22,37 +22,33 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
-    [System.Flags]
+    [Flags]
     public enum DescriptorBindingFlags
     {
         /// <summary>
-        /// 
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        UpdateAfterBind = 1 << 0, 
-        
+        UpdateAfterBind = 1 << 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        UpdateUnusedWhilePending = 1 << 1, 
-        
+        UpdateUnusedWhilePending = 1 << 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        PartiallyBound = 1 << 2, 
-        
+        PartiallyBound = 1 << 2,
+
         /// <summary>
-        /// 
         /// </summary>
-        VariableDescriptorCount = 1 << 3, 
+        VariableDescriptorCount = 1 << 3
     }
 }

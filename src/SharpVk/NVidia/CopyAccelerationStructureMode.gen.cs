@@ -25,18 +25,15 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum CopyAccelerationStructureMode
     {
         /// <summary>
-        /// 
         /// </summary>
-        Clone = 0, 
-        
+        Clone = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        Compact = 1, 
+        Compact = 1
     }
 }

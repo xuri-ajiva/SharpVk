@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkEventSetDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Event @event);
+    public delegate Result VkEventSetDelegate(Device device, Event @event);
 }

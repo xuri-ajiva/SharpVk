@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkBufferBindMemoryDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Buffer buffer, SharpVk.Interop.DeviceMemory memory, ulong memoryOffset);
+    public delegate Result VkBufferBindMemoryDelegate(Device device, Buffer buffer, DeviceMemory memory, ulong memoryOffset);
 }

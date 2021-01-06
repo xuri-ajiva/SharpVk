@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferSetEventDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Event @event, SharpVk.PipelineStageFlags stageMask);
+    public delegate void VkCommandBufferSetEventDelegate(CommandBuffer commandBuffer, Event @event, PipelineStageFlags stageMask);
 }

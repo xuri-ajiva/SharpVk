@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkQueueGetCheckpointDataDelegate(SharpVk.Interop.Queue queue, uint* checkpointDataCount, SharpVk.Interop.NVidia.CheckpointData* checkpointData);
+    public unsafe delegate void VkQueueGetCheckpointDataDelegate(Queue queue, uint* checkpointDataCount, CheckpointData* checkpointData);
 }

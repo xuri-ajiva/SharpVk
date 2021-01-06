@@ -22,46 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// Structure specifying a viewport swizzle.
+    ///     Structure specifying a viewport swizzle.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ViewportSwizzle
+    public struct ViewportSwizzle
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ViewportSwizzle(SharpVk.NVidia.ViewportCoordinateSwizzle x, SharpVk.NVidia.ViewportCoordinateSwizzle y, SharpVk.NVidia.ViewportCoordinateSwizzle z, SharpVk.NVidia.ViewportCoordinateSwizzle w)
+        public ViewportSwizzle(ViewportCoordinateSwizzle x, ViewportCoordinateSwizzle y, ViewportCoordinateSwizzle z, ViewportCoordinateSwizzle w)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
-            this.W = w;
+            X = x;
+            Y = y;
+            Z = z;
+            W = w;
         }
-        
+
         /// <summary>
-        /// The swizzle operation to apply to the x component of the primitive
+        ///     The swizzle operation to apply to the x component of the primitive
         /// </summary>
-        public SharpVk.NVidia.ViewportCoordinateSwizzle X; 
-        
+        public ViewportCoordinateSwizzle X;
+
         /// <summary>
-        /// The swizzle operation to apply to the y component of the primitive
+        ///     The swizzle operation to apply to the y component of the primitive
         /// </summary>
-        public SharpVk.NVidia.ViewportCoordinateSwizzle Y; 
-        
+        public ViewportCoordinateSwizzle Y;
+
         /// <summary>
-        /// The swizzle operation to apply to the z component of the primitive
+        ///     The swizzle operation to apply to the z component of the primitive
         /// </summary>
-        public SharpVk.NVidia.ViewportCoordinateSwizzle Z; 
-        
+        public ViewportCoordinateSwizzle Z;
+
         /// <summary>
-        /// The swizzle operation to apply to the w component of the primitive
+        ///     The swizzle operation to apply to the w component of the primitive
         /// </summary>
-        public SharpVk.NVidia.ViewportCoordinateSwizzle W; 
+        public ViewportCoordinateSwizzle W;
     }
 }

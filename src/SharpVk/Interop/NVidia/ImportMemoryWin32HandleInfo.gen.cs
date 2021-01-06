@@ -28,29 +28,27 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImportMemoryWin32HandleInfo
+    public unsafe struct ImportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// A flag specifying the type of memory handle in handle.
+        ///     A flag specifying the type of memory handle in handle.
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleType; 
-        
+        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleType;
+
         /// <summary>
-        /// 
         /// </summary>
-        public IntPtr Handle; 
+        public IntPtr Handle;
     }
 }

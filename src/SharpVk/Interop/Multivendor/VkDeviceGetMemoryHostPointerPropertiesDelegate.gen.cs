@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceGetMemoryHostPointerPropertiesDelegate(SharpVk.Interop.Device device, SharpVk.ExternalMemoryHandleTypeFlags handleType, void* hostPointer, SharpVk.Interop.Multivendor.MemoryHostPointerProperties* memoryHostPointerProperties);
+    public unsafe delegate Result VkDeviceGetMemoryHostPointerPropertiesDelegate(Device device, ExternalMemoryHandleTypeFlags handleType, void* hostPointer, MemoryHostPointerProperties* memoryHostPointerProperties);
 }

@@ -22,46 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures
+    public struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
         public bool SeparateDepthStencilLayouts
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSeparateDepthStencilLayoutsFeaturesVersion;
             pointer->Next = null;
-            pointer->SeparateDepthStencilLayouts = this.SeparateDepthStencilLayouts;
+            pointer->SeparateDepthStencilLayouts = SeparateDepthStencilLayouts;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSeparateDepthStencilLayoutsFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
+        internal static unsafe PhysicalDeviceSeparateDepthStencilLayoutsFeatures MarshalFrom(Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
         {
-            PhysicalDeviceSeparateDepthStencilLayoutsFeatures result = default(PhysicalDeviceSeparateDepthStencilLayoutsFeatures);
+            var result = default(PhysicalDeviceSeparateDepthStencilLayoutsFeatures);
             result.SeparateDepthStencilLayouts = pointer->SeparateDepthStencilLayouts;
             return result;
         }

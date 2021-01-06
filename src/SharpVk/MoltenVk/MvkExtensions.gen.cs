@@ -25,18 +25,15 @@
 namespace SharpVk.MoltenVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class MvkExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
-        public const string IosSurface = "VK_MVK_ios_surface"; 
-        
+        public const string IosSurface = "VK_MVK_ios_surface";
+
         /// <summary>
-        /// 
         /// </summary>
-        public const string MacosSurface = "VK_MVK_macos_surface"; 
+        public const string MacosSurface = "VK_MVK_macos_surface";
     }
 }

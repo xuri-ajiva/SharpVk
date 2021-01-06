@@ -22,229 +22,225 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Describes properties supported by VK_KHR_shader_float_controls
+    ///     Describes properties supported by VK_KHR_shader_float_controls
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceFloatControlsProperties
+    public struct PhysicalDeviceFloatControlsProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderFloatControlsIndependence DenormBehaviorIndependence
+        public ShaderFloatControlsIndependence DenormBehaviorIndependence
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ShaderFloatControlsIndependence RoundingModeIndependence
+        public ShaderFloatControlsIndependence RoundingModeIndependence
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether an implementation supports the
-        /// round-towards-zero rounding mode for 16-bit floating-point
-        /// arithmetic and conversion instructions. It also indicates whether
-        /// the RoundingModeRTZ execution mode can be used for 16-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether an implementation supports the
+        ///     round-towards-zero rounding mode for 16-bit floating-point
+        ///     arithmetic and conversion instructions. It also indicates whether
+        ///     the RoundingModeRTZ execution mode can be used for 16-bit
+        ///     floating-point types.
         /// </summary>
         public bool ShaderSignedZeroInfNanPreserveFloat16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether an implementation supports the
-        /// round-towards-zero rounding mode for 32-bit floating-point
-        /// arithmetic and conversion instructions. It also indicates whether
-        /// the RoundingModeRTZ execution mode can be used for 32-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether an implementation supports the
+        ///     round-towards-zero rounding mode for 32-bit floating-point
+        ///     arithmetic and conversion instructions. It also indicates whether
+        ///     the RoundingModeRTZ execution mode can be used for 32-bit
+        ///     floating-point types.
         /// </summary>
         public bool ShaderSignedZeroInfNanPreserveFloat32
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether an implementation supports the
-        /// round-towards-zero rounding mode for 64-bit floating-point
-        /// arithmetic and conversion instructions. It also indicates whether
-        /// the RoundingModeRTZ execution mode can be used for 64-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether an implementation supports the
+        ///     round-towards-zero rounding mode for 64-bit floating-point
+        ///     arithmetic and conversion instructions. It also indicates whether
+        ///     the RoundingModeRTZ execution mode can be used for 64-bit
+        ///     floating-point types.
         /// </summary>
         public bool ShaderSignedZeroInfNanPreserveFloat64
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether denormals can be preserved in
-        /// 16-bit floating-point computations. It also indicates whether the
-        /// DenormPreserve execution mode can be used for 16-bit floating-point
-        /// types.
+        ///     A boolean value indicating whether denormals can be preserved in
+        ///     16-bit floating-point computations. It also indicates whether the
+        ///     DenormPreserve execution mode can be used for 16-bit floating-point
+        ///     types.
         /// </summary>
         public bool ShaderDenormPreserveFloat16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether denormals can be preserved in
-        /// 32-bit floating-point computations. It also indicates whether the
-        /// DenormPreserve execution mode can be used for 32-bit floating-point
-        /// types.
+        ///     A boolean value indicating whether denormals can be preserved in
+        ///     32-bit floating-point computations. It also indicates whether the
+        ///     DenormPreserve execution mode can be used for 32-bit floating-point
+        ///     types.
         /// </summary>
         public bool ShaderDenormPreserveFloat32
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether denormals can be preserved in
-        /// 64-bit floating-point computations. It also indicates whether the
-        /// DenormPreserve execution mode can be used for 64-bit floating-point
-        /// types.
+        ///     A boolean value indicating whether denormals can be preserved in
+        ///     64-bit floating-point computations. It also indicates whether the
+        ///     DenormPreserve execution mode can be used for 64-bit floating-point
+        ///     types.
         /// </summary>
         public bool ShaderDenormPreserveFloat64
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether sign of a zero, Nans and ±∞ can
-        /// be preserved in 16-bit floating-point computations. It also
-        /// indicates whether the SignedZeroInfNanPreserve execution mode can
-        /// be used for 16-bit floating-point types.
+        ///     A boolean value indicating whether sign of a zero, Nans and ±∞ can
+        ///     be preserved in 16-bit floating-point computations. It also
+        ///     indicates whether the SignedZeroInfNanPreserve execution mode can
+        ///     be used for 16-bit floating-point types.
         /// </summary>
         public bool ShaderDenormFlushToZeroFloat16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether sign of a zero, Nans and ±∞ can
-        /// be preserved in 32-bit floating-point computations. It also
-        /// indicates whether the SignedZeroInfNanPreserve execution mode can
-        /// be used for 32-bit floating-point types.
+        ///     A boolean value indicating whether sign of a zero, Nans and ±∞ can
+        ///     be preserved in 32-bit floating-point computations. It also
+        ///     indicates whether the SignedZeroInfNanPreserve execution mode can
+        ///     be used for 32-bit floating-point types.
         /// </summary>
         public bool ShaderDenormFlushToZeroFloat32
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether sign of a zero, Nans and ±∞ can
-        /// be preserved in 64-bit floating-point computations. It also
-        /// indicates whether the SignedZeroInfNanPreserve execution mode can
-        /// be used for 64-bit floating-point types.
+        ///     A boolean value indicating whether sign of a zero, Nans and ±∞ can
+        ///     be preserved in 64-bit floating-point computations. It also
+        ///     indicates whether the SignedZeroInfNanPreserve execution mode can
+        ///     be used for 64-bit floating-point types.
         /// </summary>
         public bool ShaderDenormFlushToZeroFloat64
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether denormals can be flushed to zero
-        /// in 16-bit floating-point computations. It also indicates whether
-        /// the DenormFlushToZero execution mode can be used for 16-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether denormals can be flushed to zero
+        ///     in 16-bit floating-point computations. It also indicates whether
+        ///     the DenormFlushToZero execution mode can be used for 16-bit
+        ///     floating-point types.
         /// </summary>
-        public bool ShaderRoundingModeRTEFloat16
+        public bool ShaderRoundingModeRteFloat16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether denormals can be flushed to zero
-        /// in 32-bit floating-point computations. It also indicates whether
-        /// the DenormFlushToZero execution mode can be used for 32-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether denormals can be flushed to zero
+        ///     in 32-bit floating-point computations. It also indicates whether
+        ///     the DenormFlushToZero execution mode can be used for 32-bit
+        ///     floating-point types.
         /// </summary>
-        public bool ShaderRoundingModeRTEFloat32
+        public bool ShaderRoundingModeRteFloat32
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether denormals can be flushed to zero
-        /// in 64-bit floating-point computations. It also indicates whether
-        /// the DenormFlushToZero execution mode can be used for 164-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether denormals can be flushed to zero
+        ///     in 64-bit floating-point computations. It also indicates whether
+        ///     the DenormFlushToZero execution mode can be used for 164-bit
+        ///     floating-point types.
         /// </summary>
-        public bool ShaderRoundingModeRTEFloat64
+        public bool ShaderRoundingModeRteFloat64
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether an implementation supports the
-        /// round-to-nearest-even rounding mode for 16-bit floating-point
-        /// arithmetic and conversion instructions. It also indicates whether
-        /// the RoundingModeRTE execution mode can be used for 16-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether an implementation supports the
+        ///     round-to-nearest-even rounding mode for 16-bit floating-point
+        ///     arithmetic and conversion instructions. It also indicates whether
+        ///     the RoundingModeRTE execution mode can be used for 16-bit
+        ///     floating-point types.
         /// </summary>
-        public bool ShaderRoundingModeRTZFloat16
+        public bool ShaderRoundingModeRtzFloat16
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether an implementation supports the
-        /// round-to-nearest-even rounding mode for 32-bit floating-point
-        /// arithmetic and conversion instructions. It also indicates whether
-        /// the RoundingModeRTE execution mode can be used for 32-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether an implementation supports the
+        ///     round-to-nearest-even rounding mode for 32-bit floating-point
+        ///     arithmetic and conversion instructions. It also indicates whether
+        ///     the RoundingModeRTE execution mode can be used for 32-bit
+        ///     floating-point types.
         /// </summary>
-        public bool ShaderRoundingModeRTZFloat32
+        public bool ShaderRoundingModeRtzFloat32
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// A boolean value indicating whether an implementation supports the
-        /// round-to-nearest-even rounding mode for 64-bit floating-point
-        /// arithmetic and conversion instructions. It also indicates whether
-        /// the RoundingModeRTE execution mode can be used for 64-bit
-        /// floating-point types.
+        ///     A boolean value indicating whether an implementation supports the
+        ///     round-to-nearest-even rounding mode for 64-bit floating-point
+        ///     arithmetic and conversion instructions. It also indicates whether
+        ///     the RoundingModeRTE execution mode can be used for 64-bit
+        ///     floating-point types.
         /// </summary>
-        public bool ShaderRoundingModeRTZFloat64
+        public bool ShaderRoundingModeRtzFloat64
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceFloatControlsProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceFloatControlsProperties* pointer)
+        internal static unsafe PhysicalDeviceFloatControlsProperties MarshalFrom(Interop.PhysicalDeviceFloatControlsProperties* pointer)
         {
-            PhysicalDeviceFloatControlsProperties result = default(PhysicalDeviceFloatControlsProperties);
+            var result = default(PhysicalDeviceFloatControlsProperties);
             result.DenormBehaviorIndependence = pointer->DenormBehaviorIndependence;
             result.RoundingModeIndependence = pointer->RoundingModeIndependence;
             result.ShaderSignedZeroInfNanPreserveFloat16 = pointer->ShaderSignedZeroInfNanPreserveFloat16;
@@ -256,12 +252,12 @@ namespace SharpVk
             result.ShaderDenormFlushToZeroFloat16 = pointer->ShaderDenormFlushToZeroFloat16;
             result.ShaderDenormFlushToZeroFloat32 = pointer->ShaderDenormFlushToZeroFloat32;
             result.ShaderDenormFlushToZeroFloat64 = pointer->ShaderDenormFlushToZeroFloat64;
-            result.ShaderRoundingModeRTEFloat16 = pointer->ShaderRoundingModeRTEFloat16;
-            result.ShaderRoundingModeRTEFloat32 = pointer->ShaderRoundingModeRTEFloat32;
-            result.ShaderRoundingModeRTEFloat64 = pointer->ShaderRoundingModeRTEFloat64;
-            result.ShaderRoundingModeRTZFloat16 = pointer->ShaderRoundingModeRTZFloat16;
-            result.ShaderRoundingModeRTZFloat32 = pointer->ShaderRoundingModeRTZFloat32;
-            result.ShaderRoundingModeRTZFloat64 = pointer->ShaderRoundingModeRTZFloat64;
+            result.ShaderRoundingModeRteFloat16 = pointer->ShaderRoundingModeRTEFloat16;
+            result.ShaderRoundingModeRteFloat32 = pointer->ShaderRoundingModeRTEFloat32;
+            result.ShaderRoundingModeRteFloat64 = pointer->ShaderRoundingModeRTEFloat64;
+            result.ShaderRoundingModeRtzFloat16 = pointer->ShaderRoundingModeRTZFloat16;
+            result.ShaderRoundingModeRtzFloat32 = pointer->ShaderRoundingModeRTZFloat32;
+            result.ShaderRoundingModeRtzFloat64 = pointer->ShaderRoundingModeRTZFloat64;
             return result;
         }
     }

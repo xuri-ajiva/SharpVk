@@ -22,66 +22,59 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct AttachmentReference2
+    public struct AttachmentReference2
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint Attachment
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageLayout Layout
+        public ImageLayout Layout
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ImageAspectFlags AspectMask
+        public ImageAspectFlags AspectMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.AttachmentReference2* pointer)
+        internal unsafe void MarshalTo(Interop.AttachmentReference2* pointer)
         {
             pointer->SType = StructureType.AttachmentReference2Version;
             pointer->Next = null;
-            pointer->Attachment = this.Attachment;
-            pointer->Layout = this.Layout;
-            pointer->AspectMask = this.AspectMask;
+            pointer->Attachment = Attachment;
+            pointer->Layout = Layout;
+            pointer->AspectMask = AspectMask;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AttachmentReference2 MarshalFrom(SharpVk.Interop.AttachmentReference2* pointer)
+        internal static unsafe AttachmentReference2 MarshalFrom(Interop.AttachmentReference2* pointer)
         {
-            AttachmentReference2 result = default(AttachmentReference2);
+            var result = default(AttachmentReference2);
             result.Attachment = pointer->Attachment;
             result.Layout = pointer->Layout;
             result.AspectMask = pointer->AspectMask;

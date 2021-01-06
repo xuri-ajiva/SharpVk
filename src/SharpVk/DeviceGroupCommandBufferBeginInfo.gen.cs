@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceGroupCommandBufferBeginInfo
+    public struct DeviceGroupCommandBufferBeginInfo
     {
         /// <summary>
-        /// 
         /// </summary>
         public uint DeviceMask
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupCommandBufferBeginInfo* pointer)
+        internal unsafe void MarshalTo(Interop.DeviceGroupCommandBufferBeginInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupCommandBufferBeginInfoVersion;
             pointer->Next = null;
-            pointer->DeviceMask = this.DeviceMask;
+            pointer->DeviceMask = DeviceMask;
         }
     }
 }

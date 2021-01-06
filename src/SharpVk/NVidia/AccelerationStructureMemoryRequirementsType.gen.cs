@@ -25,23 +25,19 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
     public enum AccelerationStructureMemoryRequirementsType
     {
         /// <summary>
-        /// 
         /// </summary>
-        Object = 0, 
-        
+        Object = 0,
+
         /// <summary>
-        /// 
         /// </summary>
-        BuildScratch = 1, 
-        
+        BuildScratch = 1,
+
         /// <summary>
-        /// 
         /// </summary>
-        UpdateScratch = 2, 
+        UpdateScratch = 2
     }
 }

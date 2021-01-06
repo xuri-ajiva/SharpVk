@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Interop.NVidia
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceCreateAccelerationStructureDelegate(SharpVk.Interop.Device device, SharpVk.Interop.NVidia.AccelerationStructureCreateInfo* createInfo, SharpVk.Interop.AllocationCallbacks* allocator, SharpVk.Interop.NVidia.AccelerationStructure* accelerationStructure);
+    public unsafe delegate Result VkDeviceCreateAccelerationStructureDelegate(Device device, AccelerationStructureCreateInfo* createInfo, AllocationCallbacks* allocator, AccelerationStructure* accelerationStructure);
 }

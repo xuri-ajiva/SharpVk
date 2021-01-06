@@ -4,47 +4,42 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Glfw
 {
     /// <summary>
-    /// Wraps a pointer to a native, null-terminated ANSI string.
+    ///     Wraps a pointer to a native, null-terminated ANSI string.
     /// </summary>
     public struct NativeString
     {
         internal NativeString(IntPtr pointer)
         {
-            this.pointer = pointer;
+            RawPointer = pointer;
         }
 
-        private IntPtr pointer;
-
         /// <summary>
-        /// Gets the marshalled string value for this native string.
+        ///     Gets the marshalled string value for this native string.
         /// </summary>
         public string Value
         {
             get
             {
-                if (this.IsNull)
-                {
-                    throw new NullReferenceException();
-                }
+                if (IsNull) throw new NullReferenceException();
 
-                return Marshal.PtrToStringAnsi(this.pointer);
+                return Marshal.PtrToStringAnsi(RawPointer);
             }
         }
 
         /// <summary>
-        /// Gets a value indicating whether the pointer wrapped by this
-        /// instance is null.
+        ///     Gets a value indicating whether the pointer wrapped by this
+        ///     instance is null.
         /// </summary>
-        public bool IsNull => this.pointer == IntPtr.Zero;
+        public bool IsNull => RawPointer == IntPtr.Zero;
 
         /// <summary>
-        /// The underlying pointer wrapped by this instance.
+        ///     The underlying pointer wrapped by this instance.
         /// </summary>
-        public IntPtr RawPointer => this.pointer;
+        public IntPtr RawPointer { get; }
 
         public override string ToString()
         {
-            return this.Value;
+            return Value;
         }
     }
 }

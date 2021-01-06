@@ -22,36 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Amd
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct DeviceMemoryOverallocationCreateInfo
+    public struct DeviceMemoryOverallocationCreateInfo
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Amd.MemoryOverallocationBehavior OverallocationBehavior
+        public MemoryOverallocationBehavior OverallocationBehavior
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo* pointer)
+        internal unsafe void MarshalTo(Interop.Amd.DeviceMemoryOverallocationCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceMemoryOverallocationCreateInfo;
             pointer->Next = null;
-            pointer->OverallocationBehavior = this.OverallocationBehavior;
+            pointer->OverallocationBehavior = OverallocationBehavior;
         }
     }
 }

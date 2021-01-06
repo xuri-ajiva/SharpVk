@@ -1,16 +1,16 @@
-﻿using GlmSharp;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using GlmSharp;
 
 namespace SharpVk.Shanq.GlmSharp
 {
     public class VectorTypeLibrary
         : IVectorTypeLibrary
     {
-        private readonly static Dictionary<Type, Format> vectorFormats = new Dictionary<Type, Format>()
+        private static readonly Dictionary<Type, Format> VectorFormats = new Dictionary<Type, Format>
         {
             [typeof(float)] = Format.R32SFloat,
             [typeof(vec2)] = Format.R32G32SFloat,
@@ -26,9 +26,9 @@ namespace SharpVk.Shanq.GlmSharp
             [typeof(uvec4)] = Format.R32G32B32A32UInt
         };
 
-        private readonly static Assembly glmSharpAssembly = typeof(mat4).Assembly;
+        private static readonly Assembly GlmSharpAssembly = typeof(mat4).Assembly;
 
-        public readonly static VectorTypeLibrary Instance = new VectorTypeLibrary();
+        public static readonly VectorTypeLibrary Instance = new VectorTypeLibrary();
 
         public Type GetMatrixRowType(Type value)
         {
@@ -43,50 +43,45 @@ namespace SharpVk.Shanq.GlmSharp
         public int GetVectorLength(Type value)
         {
             return ((IEnumerable)value.GetProperty("Zero")
-                                .GetValue(null))
-                                .OfType<object>()
-                                .Count();
+                    .GetValue(null))
+                .OfType<object>()
+                .Count();
         }
 
         public int[] GetMatrixDimensions(Type value)
         {
             var identity = value.GetProperty("Identity")
-                                .GetValue(null);
+                .GetValue(null);
 
             var values = (float[,])value.GetProperty("Values")
-                                        .GetValue(identity);
+                .GetValue(identity);
 
             return new[]
             {
-                values.GetLength(0),
-                values.GetLength(1)
+                values.GetLength(0), values.GetLength(1)
             };
         }
 
         public bool IsVectorType(Type type)
         {
-            return type.Assembly == glmSharpAssembly
-                && type.Name.Contains("vec");
+            return type.Assembly == GlmSharpAssembly
+                   && type.Name.Contains("vec");
         }
 
         public bool IsMatrixType(Type type)
         {
-            return type.Assembly == glmSharpAssembly
-                && type.Name.Contains("mat");
+            return type.Assembly == GlmSharpAssembly
+                   && type.Name.Contains("mat");
         }
 
         public IEnumerable<int> GetSwizzle(Type type, string name)
         {
-            if (name.Length > 4)
-            {
-                return null;
-            }
+            if (name.Length > 4) return null;
 
             var result = new List<int>();
 
-            for (int index = 0; index < name.Length; index++)
-            {
-                switch(name[index])
+            for (var index = 0; index < name.Length; index++)
+                switch (name[index])
                 {
                     case 'r':
                     case 'x':
@@ -105,21 +100,15 @@ namespace SharpVk.Shanq.GlmSharp
                         result.Add(3);
                         break;
                 }
-            }
 
             return result;
         }
 
         public Format GetVectorFormat(Type type)
         {
-            if (vectorFormats.TryGetValue(type, out Format result))
-            {
+            if (VectorFormats.TryGetValue(type, out var result))
                 return result;
-            }
-            else
-            {
-                throw new NotSupportedException();
-            }
+            throw new NotSupportedException();
         }
     }
 }

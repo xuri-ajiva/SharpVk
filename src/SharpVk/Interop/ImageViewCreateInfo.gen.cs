@@ -22,58 +22,56 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct ImageViewCreateInfo
+    public unsafe struct ImageViewCreateInfo
     {
         /// <summary>
-        /// The type of this structure.
+        ///     The type of this structure.
         /// </summary>
-        public SharpVk.StructureType SType; 
-        
+        public StructureType SType;
+
         /// <summary>
-        /// Null or an extension-specific structure.
+        ///     Null or an extension-specific structure.
         /// </summary>
-        public void* Next; 
-        
+        public void* Next;
+
         /// <summary>
-        /// Reserved for future use.
+        ///     Reserved for future use.
         /// </summary>
-        public SharpVk.ImageViewCreateFlags Flags; 
-        
+        public ImageViewCreateFlags Flags;
+
         /// <summary>
-        /// An Image on which the view will be created.
+        ///     An Image on which the view will be created.
         /// </summary>
-        public SharpVk.Interop.Image Image; 
-        
+        public Image Image;
+
         /// <summary>
-        /// The type of the image view.
+        ///     The type of the image view.
         /// </summary>
-        public SharpVk.ImageViewType ViewType; 
-        
+        public ImageViewType ViewType;
+
         /// <summary>
-        /// A Format describing the format and type used to interpret data
-        /// elements in the image.
+        ///     A Format describing the format and type used to interpret data
+        ///     elements in the image.
         /// </summary>
-        public SharpVk.Format Format; 
-        
+        public Format Format;
+
         /// <summary>
-        /// Specifies a remapping of color components (or of depth or stencil
-        /// components after they have been converted into color components).
+        ///     Specifies a remapping of color components (or of depth or stencil
+        ///     components after they have been converted into color components).
         /// </summary>
-        public SharpVk.ComponentMapping Components; 
-        
+        public ComponentMapping Components;
+
         /// <summary>
-        /// An ImageSubresourceRange selecting the set of mipmap levels and
-        /// array layers to be accessible to the view.
+        ///     An ImageSubresourceRange selecting the set of mipmap levels and
+        ///     array layers to be accessible to the view.
         /// </summary>
-        public SharpVk.ImageSubresourceRange SubresourceRange; 
+        public ImageSubresourceRange SubresourceRange;
     }
 }

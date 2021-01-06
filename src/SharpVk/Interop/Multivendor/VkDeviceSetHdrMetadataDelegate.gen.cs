@@ -22,12 +22,11 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
+using SharpVk.Interop.Khronos;
 
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
-    public unsafe delegate void VkDeviceSetHdrMetadataDelegate(SharpVk.Interop.Device device, uint swapchainCount, SharpVk.Interop.Khronos.Swapchain* swapchains, SharpVk.Interop.Multivendor.HdrMetadata* metadata);
+    public unsafe delegate void VkDeviceSetHdrMetadataDelegate(Device device, uint swapchainCount, Swapchain* swapchains, HdrMetadata* metadata);
 }

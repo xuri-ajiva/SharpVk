@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public struct ArrayProxy<T>
@@ -15,7 +13,6 @@ namespace SharpVk
         private ArraySegment<T> arrayValue;
 
         /// <summary>
-        /// 
         /// </summary>
         public ProxyContents Contents
         {
@@ -24,7 +21,6 @@ namespace SharpVk
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -32,26 +28,14 @@ namespace SharpVk
         {
             get
             {
-                if (index < 0 || index >= this.Length)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-                else
-                {
-                    if(this.Contents == ProxyContents.Single)
-                    {
-                        return this.value;
-                    }
-                    else
-                    {
-                        return this.arrayValue.Array[this.arrayValue.Offset + index];
-                    }
-                }
+                if (index < 0 || index >= Length) throw new IndexOutOfRangeException();
+                if (Contents == ProxyContents.Single)
+                    return value;
+                return arrayValue.Array[arrayValue.Offset + index];
             }
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         public int Length
@@ -61,153 +45,114 @@ namespace SharpVk
                 // The underlying integer values for ProxyContents.Null & .Single
                 // are 0 and 1 respectively and can be returned directly; otherwise
                 // get the length of the array.
-                int length = (int)this.Contents;
+                var length = (int)Contents;
 
-                if (length > 1)
-                {
-                    length = this.arrayValue.Count;
-                }
+                if (length > 1) length = arrayValue.Count;
 
                 return length;
             }
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         public T GetSingleValue()
         {
-            return this.value;
+            return value;
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         public ArraySegment<T> GetArrayValue()
         {
-            return this.arrayValue;
+            return arrayValue;
         }
 
         /// <summary>
-        /// 
         /// </summary>
-        public static ArrayProxy<T> Null
-        {
-            get
+        public static ArrayProxy<T> Null =>
+            new()
             {
-                return new ArrayProxy<T>
-                {
-                    Contents = ProxyContents.Null
-                };
-            }
-        }
+                Contents = ProxyContents.Null
+            };
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         public static implicit operator ArrayProxy<T>(T[] value)
         {
             if (value == null)
-            {
                 return Null;
-            }
-            else if (value.Length == 1)
-            {
-                return new ArrayProxy<T>
+            if (value.Length == 1)
+                return new()
                 {
                     value = value[0],
                     Contents = ProxyContents.Single
                 };
-            }
-            else
+            return new()
             {
-                return new ArrayProxy<T>
-                {
-                    arrayValue = new ArraySegment<T>(value),
-                    Contents = ProxyContents.Array
-                };
-            }
+                arrayValue = new(value),
+                Contents = ProxyContents.Array
+            };
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         public static implicit operator ArrayProxy<T>(ArraySegment<T> value)
         {
             if (value.Count == 0)
-            {
                 return Null;
-            }
-            else if (value.Count == 1)
-            {
-                return new ArrayProxy<T>
+            if (value.Count == 1)
+                return new()
                 {
                     value = value.Array[0],
                     Contents = ProxyContents.Single
                 };
-            }
-            else
+            return new()
             {
-                return new ArrayProxy<T>
-                {
-                    arrayValue = value,
-                    Contents = ProxyContents.Array
-                };
-            }
+                arrayValue = value,
+                Contents = ProxyContents.Array
+            };
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         public static implicit operator ArrayProxy<T>(T value)
         {
             if (!typeof(T).GetTypeInfo().IsValueType && value.Equals(default(T)))
-            {
                 return Null;
-            }
-            else
+            return new()
             {
-                return new ArrayProxy<T>
-                {
-                    value = value,
-                    Contents = ProxyContents.Single
-                };
-            }
+                value = value,
+                Contents = ProxyContents.Single
+            };
         }
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public enum ProxyContents
         : uint
     {
         /// <summary>
-        /// 
         /// </summary>
         Null = 0,
         /// <summary>
-        /// 
         /// </summary>
         Single = 1,
         /// <summary>
-        /// 
         /// </summary>
         Array = 2
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public static class ArrayProxyExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="proxy"></param>
@@ -218,7 +163,6 @@ namespace SharpVk
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="proxy"></param>

@@ -22,34 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ExternalImageFormatProperties
+    public struct ExternalImageFormatProperties
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.ExternalMemoryProperties ExternalMemoryProperties
+        public ExternalMemoryProperties ExternalMemoryProperties
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ExternalImageFormatProperties MarshalFrom(SharpVk.Interop.ExternalImageFormatProperties* pointer)
+        internal static unsafe ExternalImageFormatProperties MarshalFrom(Interop.ExternalImageFormatProperties* pointer)
         {
-            ExternalImageFormatProperties result = default(ExternalImageFormatProperties);
+            var result = default(ExternalImageFormatProperties);
             result.ExternalMemoryProperties = pointer->ExternalMemoryProperties;
             return result;
         }

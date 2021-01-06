@@ -8,13 +8,12 @@ namespace SharpVk.Shanq
     {
         public LocationAttribute(int locationIndex)
         {
-            this.LocationIndex = locationIndex;
+            LocationIndex = locationIndex;
         }
 
         public int LocationIndex
         {
             get;
-            private set;
         }
     }
 }

@@ -27,7 +27,6 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
     /// </summary>
     public delegate void FreeFunctionDelegate(IntPtr pUserData, IntPtr pMemory);
 }

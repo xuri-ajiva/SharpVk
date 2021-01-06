@@ -23,77 +23,85 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using SharpVk.Interop;
 
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// Opaque handle to an object table.
+    ///     Opaque handle to an object table.
     /// </summary>
-    public partial class ObjectTable
+    public class ObjectTable
         : IDisposable
     {
-        internal readonly SharpVk.Interop.NVidia.Experimental.ObjectTable handle; 
-        
-        internal readonly CommandCache commandCache; 
-        
-        internal readonly SharpVk.Device parent; 
-        
-        internal ObjectTable(SharpVk.Device parent, SharpVk.Interop.NVidia.Experimental.ObjectTable handle)
+        internal readonly CommandCache CommandCache;
+        internal readonly Interop.NVidia.Experimental.ObjectTable Handle;
+
+        internal readonly Device Parent;
+
+        internal ObjectTable(Device parent, Interop.NVidia.Experimental.ObjectTable handle)
         {
-            this.handle = handle;
-            this.parent = parent;
-            this.commandCache = parent.commandCache;
+            this.Handle = handle;
+            this.Parent = parent;
+            CommandCache = parent.CommandCache;
         }
-        
+
         /// <summary>
-        /// The raw handle for this instance.
+        ///     The raw handle for this instance.
         /// </summary>
-        public SharpVk.Interop.NVidia.Experimental.ObjectTable RawHandle => this.handle;
-        
+        public Interop.NVidia.Experimental.ObjectTable RawHandle => Handle;
+
         /// <summary>
-        /// Destroy a object table.
+        ///     Destroys the handles and releases any unmanaged resources
+        ///     associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
+        }
+
+        /// <summary>
+        ///     Destroy a object table.
         /// </summary>
         /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
+        ///     An optional AllocationCallbacks instance that controls host memory
+        ///     allocation.
         /// </param>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                var marshalledAllocator = default(Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                    marshalledAllocator = default;
                 }
-                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyObjectTableNVX;
-                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
+                var commandDelegate = CommandCache.Cache.VkDestroyObjectTableNvx;
+                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="objectTableEntries">
         /// </param>
         /// <param name="objectIndices">
         /// </param>
-        public unsafe void RegisterObjects(ArrayProxy<SharpVk.NVidia.Experimental.ObjectTableEntry>? objectTableEntries, ArrayProxy<uint>? objectIndices)
+        public unsafe void RegisterObjects(ArrayProxy<ObjectTableEntry>? objectTableEntries, ArrayProxy<uint>? objectIndices)
         {
             try
             {
-                SharpVk.NVidia.Experimental.ObjectTableEntry** marshalledObjectTableEntries = default(SharpVk.NVidia.Experimental.ObjectTableEntry**);
-                SharpVk.NVidia.Experimental.ObjectTableEntry* semiMarshalledObjectTableEntries = default(SharpVk.NVidia.Experimental.ObjectTableEntry*);
-                uint* marshalledObjectIndices = default(uint*);
+                var marshalledObjectTableEntries = default(ObjectTableEntry**);
+                var semiMarshalledObjectTableEntries = default(ObjectTableEntry*);
+                var marshalledObjectIndices = default(uint*);
                 if (objectTableEntries.IsNull())
                 {
                     marshalledObjectTableEntries = null;
@@ -102,22 +110,16 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (objectTableEntries.Value.Contents == ProxyContents.Single)
                     {
-                        semiMarshalledObjectTableEntries = (SharpVk.NVidia.Experimental.ObjectTableEntry*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.ObjectTableEntry>());
-                        *(SharpVk.NVidia.Experimental.ObjectTableEntry*)(semiMarshalledObjectTableEntries) = objectTableEntries.Value.GetSingleValue();
+                        semiMarshalledObjectTableEntries = (ObjectTableEntry*)HeapUtil.Allocate<ObjectTableEntry>();
+                        *semiMarshalledObjectTableEntries = objectTableEntries.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (SharpVk.NVidia.Experimental.ObjectTableEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectTableEntry>(Interop.HeapUtil.GetLength(objectTableEntries.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectTableEntries.Value)); index++)
-                        {
-                            fieldPointer[index] = objectTableEntries.Value[index];
-                        }
+                        var fieldPointer = (ObjectTableEntry*)HeapUtil.AllocateAndClear<ObjectTableEntry>(HeapUtil.GetLength(objectTableEntries.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectTableEntries.Value); index++) fieldPointer[index] = objectTableEntries.Value[index];
                         semiMarshalledObjectTableEntries = fieldPointer;
-                        var marshalledFieldPointer = (SharpVk.NVidia.Experimental.ObjectTableEntry**)(Interop.HeapUtil.AllocateAndClear<IntPtr>(Interop.HeapUtil.GetLength(objectTableEntries.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectTableEntries.Value)); index++)
-                        {
-                            marshalledFieldPointer[index] = &semiMarshalledObjectTableEntries[index];
-                        }
+                        var marshalledFieldPointer = (ObjectTableEntry**)HeapUtil.AllocateAndClear<IntPtr>(HeapUtil.GetLength(objectTableEntries.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectTableEntries.Value); index++) marshalledFieldPointer[index] = &semiMarshalledObjectTableEntries[index];
                         marshalledObjectTableEntries = marshalledFieldPointer;
                     }
                 }
@@ -129,45 +131,38 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (objectIndices.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledObjectIndices = (uint*)(Interop.HeapUtil.Allocate<uint>());
-                        *(uint*)(marshalledObjectIndices) = objectIndices.Value.GetSingleValue();
+                        marshalledObjectIndices = (uint*)HeapUtil.Allocate<uint>();
+                        *marshalledObjectIndices = objectIndices.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(objectIndices.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectIndices.Value)); index++)
-                        {
-                            fieldPointer[index] = objectIndices.Value[index];
-                        }
+                        var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(HeapUtil.GetLength(objectIndices.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectIndices.Value); index++) fieldPointer[index] = objectIndices.Value[index];
                         marshalledObjectIndices = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXRegisterObjectsDelegate commandDelegate = commandCache.Cache.vkRegisterObjectsNVX;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(objectTableEntries)), marshalledObjectTableEntries, marshalledObjectIndices);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandDelegate = CommandCache.Cache.VkRegisterObjectsNvx;
+                var methodResult = commandDelegate(Parent.Handle, Handle, HeapUtil.GetLength(objectTableEntries), marshalledObjectTableEntries, marshalledObjectIndices);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="objectEntryTypes">
         /// </param>
         /// <param name="objectIndices">
         /// </param>
-        public unsafe void UnregisterObjects(ArrayProxy<SharpVk.NVidia.Experimental.ObjectEntryType>? objectEntryTypes, ArrayProxy<uint>? objectIndices)
+        public unsafe void UnregisterObjects(ArrayProxy<ObjectEntryType>? objectEntryTypes, ArrayProxy<uint>? objectIndices)
         {
             try
             {
-                SharpVk.NVidia.Experimental.ObjectEntryType* marshalledObjectEntryTypes = default(SharpVk.NVidia.Experimental.ObjectEntryType*);
-                uint* marshalledObjectIndices = default(uint*);
+                var marshalledObjectEntryTypes = default(ObjectEntryType*);
+                var marshalledObjectIndices = default(uint*);
                 if (objectEntryTypes.IsNull())
                 {
                     marshalledObjectEntryTypes = null;
@@ -176,16 +171,13 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (objectEntryTypes.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledObjectEntryTypes = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.ObjectEntryType>());
-                        *(SharpVk.NVidia.Experimental.ObjectEntryType*)(marshalledObjectEntryTypes) = objectEntryTypes.Value.GetSingleValue();
+                        marshalledObjectEntryTypes = (ObjectEntryType*)HeapUtil.Allocate<ObjectEntryType>();
+                        *marshalledObjectEntryTypes = objectEntryTypes.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryType>(Interop.HeapUtil.GetLength(objectEntryTypes.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectEntryTypes.Value)); index++)
-                        {
-                            fieldPointer[index] = objectEntryTypes.Value[index];
-                        }
+                        var fieldPointer = (ObjectEntryType*)HeapUtil.AllocateAndClear<ObjectEntryType>(HeapUtil.GetLength(objectEntryTypes.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectEntryTypes.Value); index++) fieldPointer[index] = objectEntryTypes.Value[index];
                         marshalledObjectEntryTypes = fieldPointer;
                     }
                 }
@@ -197,39 +189,24 @@ namespace SharpVk.NVidia.Experimental
                 {
                     if (objectIndices.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledObjectIndices = (uint*)(Interop.HeapUtil.Allocate<uint>());
-                        *(uint*)(marshalledObjectIndices) = objectIndices.Value.GetSingleValue();
+                        marshalledObjectIndices = (uint*)HeapUtil.Allocate<uint>();
+                        *marshalledObjectIndices = objectIndices.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(objectIndices.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectIndices.Value)); index++)
-                        {
-                            fieldPointer[index] = objectIndices.Value[index];
-                        }
+                        var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(HeapUtil.GetLength(objectIndices.Value)).ToPointer();
+                        for (var index = 0; index < HeapUtil.GetLength(objectIndices.Value); index++) fieldPointer[index] = objectIndices.Value[index];
                         marshalledObjectIndices = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXUnregisterObjectsDelegate commandDelegate = commandCache.Cache.vkUnregisterObjectsNVX;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(objectEntryTypes)), marshalledObjectEntryTypes, marshalledObjectIndices);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
+                var commandDelegate = CommandCache.Cache.VkUnregisterObjectsNvx;
+                var methodResult = commandDelegate(Parent.Handle, Handle, HeapUtil.GetLength(objectEntryTypes), marshalledObjectEntryTypes, marshalledObjectIndices);
+                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
             }
             finally
             {
-                Interop.HeapUtil.FreeAll();
+                HeapUtil.FreeAll();
             }
-        }
-        
-        /// <summary>
-        /// Destroys the handles and releases any unmanaged resources
-        /// associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Destroy();
         }
     }
 }

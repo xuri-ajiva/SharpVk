@@ -22,36 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying memory type.
+    ///     Structure specifying memory type.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct MemoryType
+    public struct MemoryType
     {
         /// <summary>
-        /// 
         /// </summary>
-        public MemoryType(SharpVk.MemoryPropertyFlags propertyFlags, uint heapIndex)
+        public MemoryType(MemoryPropertyFlags propertyFlags, uint heapIndex)
         {
-            this.PropertyFlags = propertyFlags;
-            this.HeapIndex = heapIndex;
+            PropertyFlags = propertyFlags;
+            HeapIndex = heapIndex;
         }
-        
+
         /// <summary>
-        /// A bitmask of properties for this memory type.
+        ///     A bitmask of properties for this memory type.
         /// </summary>
-        public SharpVk.MemoryPropertyFlags PropertyFlags; 
-        
+        public MemoryPropertyFlags PropertyFlags;
+
         /// <summary>
-        /// heapIndex describes which memory heap this memory type corresponds
-        /// to, and must be less than memoryHeapCount from the
-        /// PhysicalDeviceMemoryProperties structure.
+        ///     heapIndex describes which memory heap this memory type corresponds
+        ///     to, and must be less than memoryHeapCount from the
+        ///     PhysicalDeviceMemoryProperties structure.
         /// </summary>
-        public uint HeapIndex; 
+        public uint HeapIndex;
     }
 }

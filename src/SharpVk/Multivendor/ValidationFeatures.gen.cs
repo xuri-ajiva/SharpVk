@@ -22,66 +22,56 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
 using System.Runtime.InteropServices;
+using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct ValidationFeatures
+    public struct ValidationFeatures
     {
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ValidationFeatureEnable[] EnabledValidationFeatures
+        public ValidationFeatureEnable[] EnabledValidationFeatures
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        public SharpVk.Multivendor.ValidationFeatureDisable[] DisabledValidationFeatures
+        public ValidationFeatureDisable[] DisabledValidationFeatures
         {
             get;
             set;
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ValidationFeatures* pointer)
+        internal unsafe void MarshalTo(Interop.Multivendor.ValidationFeatures* pointer)
         {
             pointer->SType = StructureType.ValidationFeatures;
             pointer->Next = null;
-            pointer->EnabledValidationFeatureCount = (uint)(Interop.HeapUtil.GetLength(this.EnabledValidationFeatures));
-            if (this.EnabledValidationFeatures != null)
+            pointer->EnabledValidationFeatureCount = HeapUtil.GetLength(EnabledValidationFeatures);
+            if (EnabledValidationFeatures != null)
             {
-                var fieldPointer = (SharpVk.Multivendor.ValidationFeatureEnable*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Multivendor.ValidationFeatureEnable>(this.EnabledValidationFeatures.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.EnabledValidationFeatures.Length); index++)
-                {
-                    fieldPointer[index] = this.EnabledValidationFeatures[index];
-                }
+                var fieldPointer = (ValidationFeatureEnable*)HeapUtil.AllocateAndClear<ValidationFeatureEnable>(EnabledValidationFeatures.Length).ToPointer();
+                for (var index = 0; index < (uint)EnabledValidationFeatures.Length; index++) fieldPointer[index] = EnabledValidationFeatures[index];
                 pointer->EnabledValidationFeatures = fieldPointer;
             }
             else
             {
                 pointer->EnabledValidationFeatures = null;
             }
-            pointer->DisabledValidationFeatureCount = (uint)(Interop.HeapUtil.GetLength(this.DisabledValidationFeatures));
-            if (this.DisabledValidationFeatures != null)
+            pointer->DisabledValidationFeatureCount = HeapUtil.GetLength(DisabledValidationFeatures);
+            if (DisabledValidationFeatures != null)
             {
-                var fieldPointer = (SharpVk.Multivendor.ValidationFeatureDisable*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Multivendor.ValidationFeatureDisable>(this.DisabledValidationFeatures.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DisabledValidationFeatures.Length); index++)
-                {
-                    fieldPointer[index] = this.DisabledValidationFeatures[index];
-                }
+                var fieldPointer = (ValidationFeatureDisable*)HeapUtil.AllocateAndClear<ValidationFeatureDisable>(DisabledValidationFeatures.Length).ToPointer();
+                for (var index = 0; index < (uint)DisabledValidationFeatures.Length; index++) fieldPointer[index] = DisabledValidationFeatures[index];
                 pointer->DisabledValidationFeatures = fieldPointer;
             }
             else
@@ -89,22 +79,18 @@ namespace SharpVk.Multivendor
                 pointer->DisabledValidationFeatures = null;
             }
         }
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ValidationFeatures MarshalFrom(SharpVk.Interop.Multivendor.ValidationFeatures* pointer)
+        internal static unsafe ValidationFeatures MarshalFrom(Interop.Multivendor.ValidationFeatures* pointer)
         {
-            ValidationFeatures result = default(ValidationFeatures);
+            var result = default(ValidationFeatures);
             if (pointer->EnabledValidationFeatures != null)
             {
-                var fieldPointer = new SharpVk.Multivendor.ValidationFeatureEnable[(uint)(pointer->EnabledValidationFeatureCount)];
-                for(int index = 0; index < (uint)(pointer->EnabledValidationFeatureCount); index++)
-                {
-                    fieldPointer[index] = pointer->EnabledValidationFeatures[index];
-                }
+                var fieldPointer = new ValidationFeatureEnable[pointer->EnabledValidationFeatureCount];
+                for (var index = 0; index < pointer->EnabledValidationFeatureCount; index++) fieldPointer[index] = pointer->EnabledValidationFeatures[index];
                 result.EnabledValidationFeatures = fieldPointer;
             }
             else
@@ -113,11 +99,8 @@ namespace SharpVk.Multivendor
             }
             if (pointer->DisabledValidationFeatures != null)
             {
-                var fieldPointer = new SharpVk.Multivendor.ValidationFeatureDisable[(uint)(pointer->DisabledValidationFeatureCount)];
-                for(int index = 0; index < (uint)(pointer->DisabledValidationFeatureCount); index++)
-                {
-                    fieldPointer[index] = pointer->DisabledValidationFeatures[index];
-                }
+                var fieldPointer = new ValidationFeatureDisable[pointer->DisabledValidationFeatureCount];
+                for (var index = 0; index < pointer->DisabledValidationFeatureCount; index++) fieldPointer[index] = pointer->DisabledValidationFeatures[index];
                 result.DisabledValidationFeatures = fieldPointer;
             }
             else
