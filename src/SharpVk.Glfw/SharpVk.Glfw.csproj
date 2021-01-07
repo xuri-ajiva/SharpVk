@@ -25,4 +25,10 @@
     <ProjectReference Include="..\SharpVk\SharpVk.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="glfw3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
