@@ -2989,7 +2989,8 @@ namespace SharpVk
             {
                 var result = default(MemoryRequirements2);
                 var marshalledInfo = default(Interop.ImageMemoryRequirementsInfo2*);
-                var marshalledMemoryRequirements = default(Interop.MemoryRequirements2);
+                var marshalledMemoryRequirements =default(Interop.MemoryRequirements2);
+                marshalledMemoryRequirements.SType = StructureType.MemoryRequirements2Version;
                 marshalledInfo = (Interop.ImageMemoryRequirementsInfo2*)HeapUtil.Allocate<Interop.ImageMemoryRequirementsInfo2>();
                 info.MarshalTo(marshalledInfo);
                 var commandDelegate = CommandCache.Cache.VkGetImageMemoryRequirements2;
