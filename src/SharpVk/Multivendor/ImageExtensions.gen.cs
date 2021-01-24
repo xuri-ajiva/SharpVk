@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Interop;
-
 namespace SharpVk.Multivendor
 {
     /// <summary>
@@ -33,25 +31,28 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Image handle to extend.
+        /// The Image handle to extend.
         /// </param>
         public static unsafe ImageDrmFormatModifierProperties GetDrmFormatModifierProperties(this Image extendedHandle)
         {
             try
             {
-                var result = default(ImageDrmFormatModifierProperties);
-                var commandCache = default(CommandCache);
-                var marshalledProperties = default(Interop.Multivendor.ImageDrmFormatModifierProperties);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetImageDrmFormatModifierPropertiesExt;
-                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, &marshalledProperties);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                ImageDrmFormatModifierProperties result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.ImageDrmFormatModifierProperties marshalledProperties = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkImageGetDrmFormatModifierPropertiesDelegate commandDelegate = commandCache.Cache.vkGetImageDrmFormatModifierPropertiesEXT;
+                Result methodResult = commandDelegate(extendedHandle.parent.Handle, extendedHandle.Handle, &marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 result = ImageDrmFormatModifierProperties.MarshalFrom(&marshalledProperties);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

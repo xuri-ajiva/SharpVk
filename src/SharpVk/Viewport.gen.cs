@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a viewport.
+    /// Structure specifying a viewport.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Viewport
     {
         /// <summary>
         /// </summary>
-        public static Viewport Zero => new();
-
+        public static Viewport Zero => new Viewport();
+        
         /// <summary>
         /// </summary>
         public Viewport(float x, float y, float width, float height, float minDepth, float maxDepth)
@@ -47,33 +47,33 @@ namespace SharpVk
             MinDepth = minDepth;
             MaxDepth = maxDepth;
         }
-
+        
         /// <summary>
-        ///     x and y are the viewport's upper left corner [eq]#(x,y)#.
+        /// x and y are the viewport's upper left corner [eq]#(x,y)#.
         /// </summary>
-        public float X;
-
-        /// <summary>
-        /// </summary>
-        public float Y;
-
-        /// <summary>
-        ///     width and height are the viewport's width and height, respectively.
-        /// </summary>
-        public float Width;
-
+        public float X; 
+        
         /// <summary>
         /// </summary>
-        public float Height;
-
+        public float Y; 
+        
         /// <summary>
-        ///     minDepth and maxDepth are the depth range for the viewport. It is
-        ///     valid for minDepth to be greater than or equal to maxDepth.
+        /// width and height are the viewport's width and height, respectively.
         /// </summary>
-        public float MinDepth;
-
+        public float Width; 
+        
         /// <summary>
         /// </summary>
-        public float MaxDepth;
+        public float Height; 
+        
+        /// <summary>
+        /// minDepth and maxDepth are the depth range for the viewport. It is
+        /// valid for minDepth to be greater than or equal to maxDepth.
+        /// </summary>
+        public float MinDepth; 
+        
+        /// <summary>
+        /// </summary>
+        public float MaxDepth; 
     }
 }

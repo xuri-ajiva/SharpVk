@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +23,11 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Use Windows keyex mutex mechanism to synchronize work.
+    /// Use Windows keyex mutex mechanism to synchronize work.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Win32KeyedMutexAcquireReleaseInfo
@@ -40,7 +39,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong[] AcquireKeys
@@ -48,7 +47,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint[] AcquireTimeoutMilliseconds
@@ -56,7 +55,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DeviceMemory[] ReleaseSyncs
@@ -64,7 +63,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong[] ReleaseKeys
@@ -72,20 +71,23 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.Win32KeyedMutexAcquireReleaseInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Win32KeyedMutexAcquireReleaseInfo* pointer)
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoNv;
             pointer->Next = null;
-            pointer->AcquireCount = HeapUtil.GetLength(AcquireSyncs);
+            pointer->AcquireCount = (uint)(Interop.HeapUtil.GetLength(AcquireSyncs));
             if (AcquireSyncs != null)
             {
-                var fieldPointer = (Interop.DeviceMemory*)HeapUtil.AllocateAndClear<Interop.DeviceMemory>(AcquireSyncs.Length).ToPointer();
-                for (var index = 0; index < (uint)AcquireSyncs.Length; index++) fieldPointer[index] = AcquireSyncs[index]?.Handle ?? default(Interop.DeviceMemory);
+                var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(AcquireSyncs.Length).ToPointer());
+                for(int index = 0; index < (uint)(AcquireSyncs.Length); index++)
+                {
+                    fieldPointer[index] = AcquireSyncs[index]?.Handle ?? default;
+                }
                 pointer->AcquireSyncs = fieldPointer;
             }
             else
@@ -94,8 +96,11 @@ namespace SharpVk.NVidia
             }
             if (AcquireKeys != null)
             {
-                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(AcquireKeys.Length).ToPointer();
-                for (var index = 0; index < (uint)AcquireKeys.Length; index++) fieldPointer[index] = AcquireKeys[index];
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(AcquireKeys.Length).ToPointer());
+                for(int index = 0; index < (uint)(AcquireKeys.Length); index++)
+                {
+                    fieldPointer[index] = AcquireKeys[index];
+                }
                 pointer->AcquireKeys = fieldPointer;
             }
             else
@@ -104,19 +109,25 @@ namespace SharpVk.NVidia
             }
             if (AcquireTimeoutMilliseconds != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(AcquireTimeoutMilliseconds.Length).ToPointer();
-                for (var index = 0; index < (uint)AcquireTimeoutMilliseconds.Length; index++) fieldPointer[index] = AcquireTimeoutMilliseconds[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(AcquireTimeoutMilliseconds.Length).ToPointer());
+                for(int index = 0; index < (uint)(AcquireTimeoutMilliseconds.Length); index++)
+                {
+                    fieldPointer[index] = AcquireTimeoutMilliseconds[index];
+                }
                 pointer->AcquireTimeoutMilliseconds = fieldPointer;
             }
             else
             {
                 pointer->AcquireTimeoutMilliseconds = null;
             }
-            pointer->ReleaseCount = HeapUtil.GetLength(ReleaseSyncs);
+            pointer->ReleaseCount = (uint)(Interop.HeapUtil.GetLength(ReleaseSyncs));
             if (ReleaseSyncs != null)
             {
-                var fieldPointer = (Interop.DeviceMemory*)HeapUtil.AllocateAndClear<Interop.DeviceMemory>(ReleaseSyncs.Length).ToPointer();
-                for (var index = 0; index < (uint)ReleaseSyncs.Length; index++) fieldPointer[index] = ReleaseSyncs[index]?.Handle ?? default(Interop.DeviceMemory);
+                var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(ReleaseSyncs.Length).ToPointer());
+                for(int index = 0; index < (uint)(ReleaseSyncs.Length); index++)
+                {
+                    fieldPointer[index] = ReleaseSyncs[index]?.Handle ?? default;
+                }
                 pointer->ReleaseSyncs = fieldPointer;
             }
             else
@@ -125,8 +136,11 @@ namespace SharpVk.NVidia
             }
             if (ReleaseKeys != null)
             {
-                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(ReleaseKeys.Length).ToPointer();
-                for (var index = 0; index < (uint)ReleaseKeys.Length; index++) fieldPointer[index] = ReleaseKeys[index];
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(ReleaseKeys.Length).ToPointer());
+                for(int index = 0; index < (uint)(ReleaseKeys.Length); index++)
+                {
+                    fieldPointer[index] = ReleaseKeys[index];
+                }
                 pointer->ReleaseKeys = fieldPointer;
             }
             else

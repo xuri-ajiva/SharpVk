@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Format Format
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SampleCountFlags Samples
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public AttachmentLoadOp LoadOp
@@ -62,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public AttachmentStoreOp StoreOp
@@ -70,7 +70,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public AttachmentLoadOp StencilLoadOp
@@ -78,7 +78,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public AttachmentStoreOp StencilStoreOp
@@ -86,7 +86,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageLayout InitialLayout
@@ -94,7 +94,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageLayout FinalLayout
@@ -102,19 +102,23 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.AttachmentDescription2* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.AttachmentDescription2* pointer)
         {
             pointer->SType = StructureType.AttachmentDescription2Version;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->Format = Format;
             pointer->Samples = Samples;
             pointer->LoadOp = LoadOp;
@@ -124,14 +128,14 @@ namespace SharpVk
             pointer->InitialLayout = InitialLayout;
             pointer->FinalLayout = FinalLayout;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AttachmentDescription2 MarshalFrom(Interop.AttachmentDescription2* pointer)
+        internal static unsafe AttachmentDescription2 MarshalFrom(SharpVk.Interop.AttachmentDescription2* pointer)
         {
-            var result = default(AttachmentDescription2);
+            AttachmentDescription2 result = default;
             result.Flags = pointer->Flags;
             result.Format = pointer->Format;
             result.Samples = pointer->Samples;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,27 +32,27 @@ namespace SharpVk.Interop
     public unsafe struct PhysicalDeviceShaderFloat16Int8Features
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or a pointer to an extension-specific structure.
+        /// Null or a pointer to an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Indicates whether 16-bit floats (halfs) are supported in shader
-        ///     code. This also indicates whether shader modules can declare the
-        ///     Float16 capability.
+        /// Indicates whether 16-bit floats (halfs) are supported in shader
+        /// code. This also indicates whether shader modules can declare the
+        /// Float16 capability.
         /// </summary>
-        public Bool32 ShaderFloat16;
-
+        public Bool32 ShaderFloat16; 
+        
         /// <summary>
-        ///     Indicates whether 8-bit integers (signed and unsigned) are
-        ///     supported in shader code. This also indicates whether shader
-        ///     modules can declare the Int8 capability.
+        /// Indicates whether 8-bit integers (signed and unsigned) are
+        /// supported in shader code. This also indicates whether shader
+        /// modules can declare the Int8 capability.
         /// </summary>
-        public Bool32 ShaderInt8;
+        public Bool32 ShaderInt8; 
     }
 }

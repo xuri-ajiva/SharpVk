@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
-using SharpVk.Interop;
-using SharpVk.Khronos;
 
 namespace SharpVk.Multivendor
 {
@@ -34,72 +31,83 @@ namespace SharpVk.Multivendor
     public static class InstanceExtensions
     {
         /// <summary>
-        ///     Create a debug report callback object.
+        /// Create a debug report callback object.
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Instance handle to extend.
+        /// The Instance handle to extend.
         /// </param>
         /// <param name="flags">
-        ///     flags indicate which event(s) will cause this callback to be
-        ///     called. Flags are interpreted as bitmasks and multiple may be set.
-        ///     Bits which can be set include: + --
+        /// flags indicate which event(s) will cause this callback to be
+        /// called. Flags are interpreted as bitmasks and multiple may be set.
+        /// Bits which can be set include: + --
         /// </param>
         /// <param name="callback">
         /// </param>
         /// <param name="userData">
         /// </param>
         /// <param name="allocator">
-        ///     An optional AllocationCallbacks instance that controls host memory
-        ///     allocation.
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
         /// </param>
         public static unsafe DebugReportCallback CreateDebugReportCallback(this Instance extendedHandle, DebugReportCallbackDelegate callback, DebugReportFlags? flags = default, IntPtr? userData = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                var result = default(DebugReportCallback);
-                var commandCache = default(CommandCache);
-                var marshalledCreateInfo = default(Interop.Multivendor.DebugReportCallbackCreateInfo*);
-                var vkDebugReportCallbackCreateInfoExtNextPointer = default(void*);
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
-                var marshalledCallback = default(Interop.Multivendor.DebugReportCallback);
-                commandCache = extendedHandle.CommandCache;
-                marshalledCreateInfo = (Interop.Multivendor.DebugReportCallbackCreateInfo*)HeapUtil.Allocate<Interop.Multivendor.DebugReportCallbackCreateInfo>();
+                DebugReportCallback result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo* marshalledCreateInfo = default;
+                void* vkDebugReportCallbackCreateInfoEXTNextPointer = default;
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
+                SharpVk.Interop.Multivendor.DebugReportCallback marshalledCallback = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DebugReportCallbackCreateInfo;
-                marshalledCreateInfo->Next = vkDebugReportCallbackCreateInfoExtNextPointer;
+                marshalledCreateInfo->Next = vkDebugReportCallbackCreateInfoEXTNextPointer;
                 if (flags != null)
+                {
                     marshalledCreateInfo->Flags = flags.Value;
+                }
                 else
+                {
                     marshalledCreateInfo->Flags = default;
-                marshalledCreateInfo->Callback = Marshal.GetFunctionPointerForDelegate(callback);
+                }
+                marshalledCreateInfo->Callback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
                 if (userData != null)
+                {
                     marshalledCreateInfo->UserData = userData.Value.ToPointer();
+                }
                 else
+                {
                     marshalledCreateInfo->UserData = default;
+                }
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = commandCache.Cache.VkCreateDebugReportCallbackExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledCallback);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                result = new(extendedHandle, marshalledCallback);
+                SharpVk.Interop.Multivendor.VkInstanceCreateDebugReportCallbackDelegate commandDelegate = commandCache.Cache.vkCreateDebugReportCallbackEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledCallback);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new DebugReportCallback(extendedHandle, marshalledCallback);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Instance handle to extend.
+        /// The Instance handle to extend.
         /// </param>
         /// <param name="flags">
         /// </param>
@@ -119,21 +127,21 @@ namespace SharpVk.Multivendor
         {
             try
             {
-                var commandCache = default(CommandCache);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkDebugReportMessageExt;
-                commandDelegate(extendedHandle.Handle, flags, objectType, @object, location, messageCode, HeapUtil.MarshalTo(layerPrefix), HeapUtil.MarshalTo(message));
+                CommandCache commandCache = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkInstanceDebugReportMessageDelegate commandDelegate = commandCache.Cache.vkDebugReportMessageEXT;
+                commandDelegate(extendedHandle.Handle, flags, objectType, @object, location, messageCode, Interop.HeapUtil.MarshalTo(layerPrefix), Interop.HeapUtil.MarshalTo(message));
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Instance handle to extend.
+        /// The Instance handle to extend.
         /// </param>
         /// <param name="flags">
         /// </param>
@@ -151,52 +159,63 @@ namespace SharpVk.Multivendor
         {
             try
             {
-                var result = default(DebugUtilsMessenger);
-                var commandCache = default(CommandCache);
-                var marshalledCreateInfo = default(Interop.Multivendor.DebugUtilsMessengerCreateInfo*);
-                var vkDebugUtilsMessengerCreateInfoExtNextPointer = default(void*);
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
-                var marshalledMessenger = default(Interop.Multivendor.DebugUtilsMessenger);
-                commandCache = extendedHandle.CommandCache;
-                marshalledCreateInfo = (Interop.Multivendor.DebugUtilsMessengerCreateInfo*)HeapUtil.Allocate<Interop.Multivendor.DebugUtilsMessengerCreateInfo>();
+                DebugUtilsMessenger result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo* marshalledCreateInfo = default;
+                void* vkDebugUtilsMessengerCreateInfoEXTNextPointer = default;
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
+                SharpVk.Interop.Multivendor.DebugUtilsMessenger marshalledMessenger = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DebugUtilsMessengerCreateInfo;
-                marshalledCreateInfo->Next = vkDebugUtilsMessengerCreateInfoExtNextPointer;
+                marshalledCreateInfo->Next = vkDebugUtilsMessengerCreateInfoEXTNextPointer;
                 if (flags != null)
+                {
                     marshalledCreateInfo->Flags = flags.Value;
+                }
                 else
+                {
                     marshalledCreateInfo->Flags = default;
+                }
                 marshalledCreateInfo->MessageSeverity = messageSeverity;
                 marshalledCreateInfo->MessageType = messageType;
-                marshalledCreateInfo->UserCallback = Marshal.GetFunctionPointerForDelegate(userCallback);
+                marshalledCreateInfo->UserCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(userCallback);
                 if (userData != null)
+                {
                     marshalledCreateInfo->UserData = userData.Value.ToPointer();
+                }
                 else
+                {
                     marshalledCreateInfo->UserData = default;
+                }
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = commandCache.Cache.VkCreateDebugUtilsMessengerExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledMessenger);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                result = new(extendedHandle, marshalledMessenger);
+                SharpVk.Interop.Multivendor.VkInstanceCreateDebugUtilsMessengerDelegate commandDelegate = commandCache.Cache.vkCreateDebugUtilsMessengerEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledMessenger);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new DebugUtilsMessenger(extendedHandle, marshalledMessenger);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Instance handle to extend.
+        /// The Instance handle to extend.
         /// </param>
         /// <param name="messageSeverity">
         /// </param>
@@ -208,126 +227,203 @@ namespace SharpVk.Multivendor
         {
             try
             {
-                var commandCache = default(CommandCache);
-                var marshalledCallbackData = default(Interop.Multivendor.DebugUtilsMessengerCallbackData*);
-                commandCache = extendedHandle.CommandCache;
-                marshalledCallbackData = (Interop.Multivendor.DebugUtilsMessengerCallbackData*)HeapUtil.Allocate<Interop.Multivendor.DebugUtilsMessengerCallbackData>();
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData* marshalledCallbackData = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledCallbackData = (SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData>());
                 callbackData.MarshalTo(marshalledCallbackData);
-                var commandDelegate = commandCache.Cache.VkSubmitDebugUtilsMessageExt;
+                SharpVk.Interop.Multivendor.VkInstanceSubmitDebugUtilsMessageDelegate commandDelegate = commandCache.Cache.vkSubmitDebugUtilsMessageEXT;
                 commandDelegate(extendedHandle.Handle, messageSeverity, messageTypes, marshalledCallbackData);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Create a VkSurfaceKHR object for CAMetalLayer.
+        /// Create a VkSurfaceKHR object for CAMetalLayer.
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Instance handle to extend.
+        /// The Instance handle to extend.
         /// </param>
         /// <param name="flags">
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="layer">
-        ///     A CAMetalLayer object that represents a renderable surface.
+        /// A CAMetalLayer object that represents a renderable surface.
         /// </param>
         /// <param name="allocator">
-        ///     The allocator used for host memory allocated for the surface object
-        ///     when there is no more specific allocator available.
+        /// The allocator used for host memory allocated for the surface object
+        /// when there is no more specific allocator available.
         /// </param>
-        public static unsafe Surface CreateMetalSurface(this Instance extendedHandle, IntPtr layer, MetalSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
+        public static unsafe Khronos.Surface CreateMetalSurface(this Instance extendedHandle, IntPtr layer, MetalSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                var result = default(Surface);
-                var commandCache = default(CommandCache);
-                var marshalledCreateInfo = default(Interop.Multivendor.MetalSurfaceCreateInfo*);
-                var vkMetalSurfaceCreateInfoExtNextPointer = default(void*);
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
-                var marshalledSurface = default(Interop.Khronos.Surface);
-                commandCache = extendedHandle.CommandCache;
-                marshalledCreateInfo = (Interop.Multivendor.MetalSurfaceCreateInfo*)HeapUtil.Allocate<Interop.Multivendor.MetalSurfaceCreateInfo>();
+                Khronos.Surface result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo* marshalledCreateInfo = default;
+                void* vkMetalSurfaceCreateInfoEXTNextPointer = default;
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.MetalSurfaceCreateInfo;
-                marshalledCreateInfo->Next = vkMetalSurfaceCreateInfoExtNextPointer;
+                marshalledCreateInfo->Next = vkMetalSurfaceCreateInfoEXTNextPointer;
                 if (flags != null)
+                {
                     marshalledCreateInfo->Flags = flags.Value;
+                }
                 else
+                {
                     marshalledCreateInfo->Flags = default;
-                marshalledCreateInfo->Layer = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+                }
+                marshalledCreateInfo->Layer = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledCreateInfo->Layer = layer;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = commandCache.Cache.VkCreateMetalSurfaceExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                result = new(extendedHandle, marshalledSurface);
+                SharpVk.Interop.Multivendor.VkInstanceCreateMetalSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateMetalSurfaceEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new Khronos.Surface(extendedHandle, marshalledSurface);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Create a headless Surface object
+        /// Create a headless Surface object
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Instance handle to extend.
+        /// The Instance handle to extend.
         /// </param>
         /// <param name="flags">
-        ///     Reserved for future use
+        /// Reserved for future use
         /// </param>
         /// <param name="allocator">
-        ///     The allocator used for host memory allocated for the surface object
-        ///     when there is no more specific allocator available.
+        /// The allocator used for host memory allocated for the surface object
+        /// when there is no more specific allocator available.
         /// </param>
-        public static unsafe Surface CreateHeadlessSurface(this Instance extendedHandle, HeadlessSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
+        public static unsafe Khronos.Surface CreateHeadlessSurface(this Instance extendedHandle, HeadlessSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                var result = default(Surface);
-                var commandCache = default(CommandCache);
-                var marshalledCreateInfo = default(Interop.Multivendor.HeadlessSurfaceCreateInfo*);
-                var vkHeadlessSurfaceCreateInfoExtNextPointer = default(void*);
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
-                var marshalledSurface = default(Interop.Khronos.Surface);
-                commandCache = extendedHandle.CommandCache;
-                marshalledCreateInfo = (Interop.Multivendor.HeadlessSurfaceCreateInfo*)HeapUtil.Allocate<Interop.Multivendor.HeadlessSurfaceCreateInfo>();
+                Khronos.Surface result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo* marshalledCreateInfo = default;
+                void* vkHeadlessSurfaceCreateInfoEXTNextPointer = default;
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.HeadlessSurfaceCreateInfo;
-                marshalledCreateInfo->Next = vkHeadlessSurfaceCreateInfoExtNextPointer;
+                marshalledCreateInfo->Next = vkHeadlessSurfaceCreateInfoEXTNextPointer;
                 if (flags != null)
+                {
                     marshalledCreateInfo->Flags = flags.Value;
+                }
                 else
+                {
                     marshalledCreateInfo->Flags = default;
+                }
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = commandCache.Cache.VkCreateHeadlessSurfaceExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                result = new(extendedHandle, marshalledSurface);
+                SharpVk.Interop.Multivendor.VkInstanceCreateHeadlessSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateHeadlessSurfaceEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new Khronos.Surface(extendedHandle, marshalledSurface);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
+        /// <param name="flags">
+        /// </param>
+        /// <param name="dfb">
+        /// </param>
+        /// <param name="surface">
+        /// </param>
+        /// <param name="allocator">
+        /// </param>
+        public static unsafe Khronos.Surface CreateDirectFBSurface(this Instance extendedHandle, IDirectFB dfb, IDirectFBSurface surface, DirectFBSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
+        {
+            try
+            {
+                Khronos.Surface result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.DirectFBSurfaceCreateInfo* marshalledCreateInfo = default;
+                void* vkDirectFBSurfaceCreateInfoEXTNextPointer = default;
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Multivendor.DirectFBSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DirectFBSurfaceCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.DirectfbSurfaceCreateInfo;
+                marshalledCreateInfo->Next = vkDirectFBSurfaceCreateInfoEXTNextPointer;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default;
+                }
+                marshalledCreateInfo->Dfb = (IDirectFB*)(Interop.HeapUtil.Allocate<IDirectFB>());
+                *marshalledCreateInfo->Dfb = dfb;
+                marshalledCreateInfo->Surface = (IDirectFBSurface*)(Interop.HeapUtil.Allocate<IDirectFBSurface>());
+                *marshalledCreateInfo->Surface = surface;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default;
+                }
+                SharpVk.Interop.Multivendor.VkInstanceCreateDirectFBSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateDirectFBSurfaceEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new Khronos.Surface(extendedHandle, marshalledSurface);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

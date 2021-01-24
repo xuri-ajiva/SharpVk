@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a push constant range.
+    /// Structure specifying a push constant range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PushConstantRange
@@ -40,26 +40,26 @@ namespace SharpVk
             Offset = offset;
             Size = size;
         }
-
+        
         /// <summary>
-        ///     A set of stage flags describing the shader stages that will access
-        ///     a range of push constants. If a particular stage is not included in
-        ///     the range, then accessing members of that range of push constants
-        ///     from the corresponding shader stage will result in undefined data
-        ///     being read.
+        /// A set of stage flags describing the shader stages that will access
+        /// a range of push constants. If a particular stage is not included in
+        /// the range, then accessing members of that range of push constants
+        /// from the corresponding shader stage will result in undefined data
+        /// being read.
         /// </summary>
-        public ShaderStageFlags StageFlags;
-
+        public ShaderStageFlags StageFlags; 
+        
         /// <summary>
-        ///     offset and size are the start offset and size, respectively,
-        ///     consumed by the range. Both offset and size are in units of bytes
-        ///     and must be a multiple of 4. The layout of the push constant
-        ///     variables is specified in the shader.
+        /// offset and size are the start offset and size, respectively,
+        /// consumed by the range. Both offset and size are in units of bytes
+        /// and must be a multiple of 4. The layout of the push constant
+        /// variables is specified in the shader.
         /// </summary>
-        public uint Offset;
-
+        public uint Offset; 
+        
         /// <summary>
         /// </summary>
-        public uint Size;
+        public uint Size; 
     }
 }

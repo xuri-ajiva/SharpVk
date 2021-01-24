@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,98 +23,96 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Opaque handle to a descriptor pool object.
+    /// Opaque handle to a descriptor pool object.
     /// </summary>
     public partial class DescriptorPool
         : IDisposable
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.DescriptorPool Handle;
-
-        internal readonly Device Parent;
-
-        internal DescriptorPool(Device parent, Interop.DescriptorPool handle)
+        internal readonly SharpVk.Interop.DescriptorPool Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly Device parent; 
+        
+        internal DescriptorPool(Device parent, SharpVk.Interop.DescriptorPool handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.DescriptorPool RawHandle => Handle;
-
+        public SharpVk.Interop.DescriptorPool RawHandle => Handle;
+        
         /// <summary>
-        ///     Destroys the handles and releases any unmanaged resources
-        ///     associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            Destroy();
-        }
-
-        /// <summary>
-        ///     Destroy a descriptor pool object.
+        /// Destroy a descriptor pool object.
         /// </summary>
         /// <param name="allocator">
-        ///     An optional AllocationCallbacks instance that controls host memory
-        ///     allocation.
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
         /// </param>
         public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = CommandCache.Cache.VkDestroyDescriptorPool;
-                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
+                Interop.VkDescriptorPoolDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyDescriptorPool;
+                commandDelegate(parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Resets a descriptor pool object.
+        /// Resets a descriptor pool object.
         /// </summary>
         /// <param name="flags">
         /// </param>
-        public void Reset(DescriptorPoolResetFlags? flags = default)
+        public unsafe void Reset(DescriptorPoolResetFlags? flags = default)
         {
             try
             {
-                var marshalledFlags = default(DescriptorPoolResetFlags);
+                DescriptorPoolResetFlags marshalledFlags = default;
                 if (flags != null)
+                {
                     marshalledFlags = flags.Value;
+                }
                 else
+                {
                     marshalledFlags = default;
-                var commandDelegate = CommandCache.Cache.VkResetDescriptorPool;
-                var methodResult = commandDelegate(Parent.Handle, Handle, marshalledFlags);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                }
+                Interop.VkDescriptorPoolResetDelegate commandDelegate = commandCache.Cache.vkResetDescriptorPool;
+                Result methodResult = commandDelegate(parent.Handle, Handle, marshalledFlags);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Free one or more descriptor sets.
+        /// Free one or more descriptor sets.
         /// </summary>
         /// <param name="descriptorSets">
         /// </param>
@@ -122,7 +120,7 @@ namespace SharpVk
         {
             try
             {
-                var marshalledDescriptorSets = default(Interop.DescriptorSet*);
+                SharpVk.Interop.DescriptorSet* marshalledDescriptorSets = default;
                 if (descriptorSets.IsNull())
                 {
                     marshalledDescriptorSets = null;
@@ -131,24 +129,39 @@ namespace SharpVk
                 {
                     if (descriptorSets.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledDescriptorSets = (Interop.DescriptorSet*)HeapUtil.Allocate<Interop.DescriptorSet>();
-                        *marshalledDescriptorSets = descriptorSets.Value.GetSingleValue()?.Handle ?? default(Interop.DescriptorSet);
+                        marshalledDescriptorSets = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSet>());
+                        *(SharpVk.Interop.DescriptorSet*)(marshalledDescriptorSets) = descriptorSets.Value.GetSingleValue()?.Handle ?? default;
                     }
                     else
                     {
-                        var fieldPointer = (Interop.DescriptorSet*)HeapUtil.AllocateAndClear<Interop.DescriptorSet>(HeapUtil.GetLength(descriptorSets.Value)).ToPointer();
-                        for (var index = 0; index < HeapUtil.GetLength(descriptorSets.Value); index++) fieldPointer[index] = descriptorSets.Value[index]?.Handle ?? default(Interop.DescriptorSet);
+                        var fieldPointer = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSet>(Interop.HeapUtil.GetLength(descriptorSets.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(descriptorSets.Value)); index++)
+                        {
+                            fieldPointer[index] = descriptorSets.Value[index]?.Handle ?? default;
+                        }
                         marshalledDescriptorSets = fieldPointer;
                     }
                 }
-                var commandDelegate = CommandCache.Cache.VkFreeDescriptorSets;
-                var methodResult = commandDelegate(Parent.Handle, Handle, HeapUtil.GetLength(descriptorSets), marshalledDescriptorSets);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                Interop.VkDescriptorPoolFreeDescriptorSetsDelegate commandDelegate = commandCache.Cache.vkFreeDescriptorSets;
+                Result methodResult = commandDelegate(parent.Handle, Handle, (uint)(Interop.HeapUtil.GetLength(descriptorSets)), marshalledDescriptorSets);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
         }
     }
 }

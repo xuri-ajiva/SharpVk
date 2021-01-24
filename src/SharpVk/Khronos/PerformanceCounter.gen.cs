@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -40,7 +39,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public PerformanceCounterScope Scope
@@ -48,7 +47,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public PerformanceCounterStorage Storage
@@ -56,7 +55,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Guid Uuid
@@ -64,18 +63,18 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PerformanceCounter MarshalFrom(Interop.Khronos.PerformanceCounter* pointer)
+        internal static unsafe PerformanceCounter MarshalFrom(SharpVk.Interop.Khronos.PerformanceCounter* pointer)
         {
-            var result = default(PerformanceCounter);
+            PerformanceCounter result = default;
             result.Unit = pointer->Unit;
             result.Scope = pointer->Scope;
             result.Storage = pointer->Storage;
-            result.Uuid = new(HeapUtil.MarshalFrom(pointer->Uuid, Constants.UuidSize));
+            result.Uuid = new Guid(Interop.HeapUtil.MarshalFrom(pointer->Uuid, Constants.UuidSize));
             return result;
         }
     }

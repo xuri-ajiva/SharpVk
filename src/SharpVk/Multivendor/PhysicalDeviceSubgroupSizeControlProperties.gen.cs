@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxSubgroupSize
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxComputeWorkgroupSubgroups
@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShaderStageFlags RequiredSubgroupSizeStages
@@ -62,14 +62,14 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSubgroupSizeControlProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceSubgroupSizeControlProperties* pointer)
+        internal static unsafe PhysicalDeviceSubgroupSizeControlProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlProperties* pointer)
         {
-            var result = default(PhysicalDeviceSubgroupSizeControlProperties);
+            PhysicalDeviceSubgroupSizeControlProperties result = default;
             result.MinSubgroupSize = pointer->MinSubgroupSize;
             result.MaxSubgroupSize = pointer->MaxSubgroupSize;
             result.MaxComputeWorkgroupSubgroups = pointer->MaxComputeWorkgroupSubgroups;

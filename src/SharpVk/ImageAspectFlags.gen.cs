@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,62 +22,60 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    ///     Bitmask specifying which aspects of an image are included in a view.
+    /// Bitmask specifying which aspects of an image are included in a view.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum ImageAspectFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
         /// </summary>
-        Color = 1 << 0,
-
+        Color = 1 << 0, 
+        
         /// <summary>
         /// </summary>
-        Depth = 1 << 1,
-
+        Depth = 1 << 1, 
+        
         /// <summary>
         /// </summary>
-        Stencil = 1 << 2,
-
+        Stencil = 1 << 2, 
+        
         /// <summary>
         /// </summary>
-        Metadata = 1 << 3,
-
+        Metadata = 1 << 3, 
+        
         /// <summary>
         /// </summary>
-        Plane0 = 1 << 4,
-
+        Plane0 = 1 << 4, 
+        
         /// <summary>
         /// </summary>
-        Plane1 = 1 << 5,
-
+        Plane1 = 1 << 5, 
+        
         /// <summary>
         /// </summary>
-        Plane2 = 1 << 6,
-
+        Plane2 = 1 << 6, 
+        
         /// <summary>
         /// </summary>
-        MemoryPlane0 = 1 << 7,
-
+        MemoryPlane0 = 1 << 7, 
+        
         /// <summary>
         /// </summary>
-        MemoryPlane1 = 1 << 8,
-
+        MemoryPlane1 = 1 << 8, 
+        
         /// <summary>
         /// </summary>
-        MemoryPlane2 = 1 << 9,
-
+        MemoryPlane2 = 1 << 9, 
+        
         /// <summary>
         /// </summary>
-        MemoryPlane3 = 1 << 10
+        MemoryPlane3 = 1 << 10, 
     }
 }

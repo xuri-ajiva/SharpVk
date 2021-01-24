@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
@@ -34,28 +33,28 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct XlibSurfaceCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public XlibSurfaceCreateFlags Flags;
-
+        public SharpVk.Khronos.XlibSurfaceCreateFlags Flags; 
+        
         /// <summary>
-        ///     An Xlib Display connection to the X server.
+        /// An Xlib Display connection to the X server.
         /// </summary>
-        public IntPtr* Dpy;
-
+        public IntPtr* Dpy; 
+        
         /// <summary>
-        ///     An Xlib Window to associate the surface with.
+        /// An Xlib Window to associate the surface with.
         /// </summary>
-        public IntPtr Window;
+        public IntPtr Window; 
     }
 }

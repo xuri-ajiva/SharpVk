@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,36 +25,36 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Image view types.
+    /// Image view types.
     /// </summary>
     public enum ImageViewType
     {
         /// <summary>
         /// </summary>
-        ImageView1d = 0,
-
+        ImageView1d = 0, 
+        
         /// <summary>
         /// </summary>
-        ImageView2d = 1,
-
+        ImageView2d = 1, 
+        
         /// <summary>
         /// </summary>
-        ImageView3d = 2,
-
+        ImageView3d = 2, 
+        
         /// <summary>
         /// </summary>
-        Cube = 3,
-
+        Cube = 3, 
+        
         /// <summary>
         /// </summary>
-        ImageView1dArray = 4,
-
+        ImageView1dArray = 4, 
+        
         /// <summary>
         /// </summary>
-        ImageView2dArray = 5,
-
+        ImageView2dArray = 5, 
+        
         /// <summary>
         /// </summary>
-        CubeArray = 6
+        CubeArray = 6, 
     }
 }

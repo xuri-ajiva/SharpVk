@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Amd;
 
 namespace SharpVk.Interop.Amd
 {
@@ -34,30 +33,30 @@ namespace SharpVk.Interop.Amd
     {
         /// <summary>
         /// </summary>
-        public ShaderStageFlags ShaderStageMask;
-
+        public ShaderStageFlags ShaderStageMask; 
+        
         /// <summary>
         /// </summary>
-        public ShaderResourceUsage ResourceUsage;
-
+        public SharpVk.Amd.ShaderResourceUsage ResourceUsage; 
+        
         /// <summary>
         /// </summary>
-        public uint NumPhysicalVgprs;
-
+        public uint NumPhysicalVgprs; 
+        
         /// <summary>
         /// </summary>
-        public uint NumPhysicalSgprs;
-
+        public uint NumPhysicalSgprs; 
+        
         /// <summary>
         /// </summary>
-        public uint NumAvailableVgprs;
-
+        public uint NumAvailableVgprs; 
+        
         /// <summary>
         /// </summary>
-        public uint NumAvailableSgprs;
-
+        public uint NumAvailableSgprs; 
+        
         /// <summary>
         /// </summary>
-        public fixed uint ComputeWorkGroupSize[3];
+        public fixed uint ComputeWorkGroupSize[3]; 
     }
 }

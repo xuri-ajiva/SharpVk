@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong InitialValue
@@ -46,12 +46,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.SemaphoreTypeCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SemaphoreTypeCreateInfo* pointer)
         {
             pointer->SType = StructureType.SemaphoreTypeCreateInfoVersion;
             pointer->Next = null;

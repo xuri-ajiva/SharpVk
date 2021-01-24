@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,14 +32,14 @@ namespace SharpVk.Interop
     public unsafe struct ExtensionProperties
     {
         /// <summary>
-        ///     A string specifying the name of the extension.
+        /// A string specifying the name of the extension.
         /// </summary>
-        public fixed byte ExtensionName[Constants.MaxExtensionNameSize];
-
+        public fixed byte ExtensionName[Constants.MaxExtensionNameSize]; 
+        
         /// <summary>
-        ///     The version of this extension. It is an integer, incremented with
-        ///     backward compatible changes.
+        /// The version of this extension. It is an integer, incremented with
+        /// backward compatible changes.
         /// </summary>
-        public uint SpecVersion;
+        public uint SpecVersion; 
     }
 }

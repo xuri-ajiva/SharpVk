@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,49 +27,42 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    ///     The base type for exceptions thrown by the SharpVK library.
+    /// The base type for exceptions thrown by the SharpVK library.
     /// </summary>
     public abstract class SharpVkException
         : Exception
     {
         /// <summary>
-        ///     Creates a new instance of the
-        ///     <see
-        ///         cref="SharpVk.SharpVkException" />
-        ///     class .
+        /// Creates a new instance of the <see
+        /// cref="SharpVk.SharpVkException"/> class .
         /// </summary>
         /// <param name="message">
-        ///     The message that describes the error.
+        /// The message that describes the error.
         /// </param>
         protected SharpVkException(string message)
             : base(message)
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
-        /// </summary>
-        public abstract Result ResultCode
-        {
-            get;
-        }
-
-        /// <summary>
-        ///     Returns a value indicating whether the given Vulkan result code
-        ///     represents an error.
+        /// Returns a value indicating whether the given Vulkan result code
+        /// represents an error.
         /// </summary>
         public static bool IsError(Result resultCode)
         {
-            return (int)resultCode < 0;
+            return (int)(resultCode) < 0;
         }
-
+        
         /// <summary>
-        ///     Creates and returns a new, specifically-typed exception that
-        ///     represents the given result code.
+        /// Creates and returns a new, specifically-typed exception that
+        /// represents the given result code.
         /// </summary>
         public static SharpVkException Create(Result resultCode)
         {
-            if (!IsError(resultCode)) return null;
+            if (!IsError(resultCode))
+            {
+                return null;
+            }
             switch (resultCode)
             {
                 case Result.ErrorOutOfHostMemory:
@@ -118,6 +111,8 @@ namespace SharpVk
                     return new ValidationFailedException();
                 case Result.ErrorInvalidShader:
                     return new InvalidShaderException();
+                case Result.ErrorIncompatibleVersion:
+                    return new IncompatibleVersionException();
                 case Result.ErrorInvalidDrmFormatModifierPlaneLayout:
                     return new InvalidDrmFormatModifierPlaneLayoutException();
                 case Result.ErrorNotPermitted:
@@ -127,27 +122,37 @@ namespace SharpVk
             }
             return new UnknownSharpVkException(resultCode);
         }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public abstract Result ResultCode
+        {
+            get;
+        }
     }
-
+    
     /// <summary>
-    ///     An exception representing a result code not recognised by the SharpVk
-    ///     library.
+    /// An exception representing a result code not recognised by the SharpVk
+    /// library.
     /// </summary>
     public class UnknownSharpVkException
         : SharpVkException
     {
+        private Result resultCode; 
+        
         internal UnknownSharpVkException(Result resultCode)
             : base($"An unknown exception as been thrown by the Vulkan API: {resultCode}")
         {
-            this.ResultCode = resultCode;
+            this.resultCode = resultCode;
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
-        public override Result ResultCode { get; }
+        public override Result ResultCode => resultCode;
     }
-
+    
     /// <summary>
     /// </summary>
     public class OutOfHostMemoryException
@@ -157,13 +162,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorOutOfHostMemory;
     }
-
+    
     /// <summary>
     /// </summary>
     public class OutOfDeviceMemoryException
@@ -173,13 +178,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorOutOfDeviceMemory;
     }
-
+    
     /// <summary>
     /// </summary>
     public class InitializationFailedException
@@ -189,13 +194,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInitializationFailed;
     }
-
+    
     /// <summary>
     /// </summary>
     public class DeviceLostException
@@ -205,13 +210,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorDeviceLost;
     }
-
+    
     /// <summary>
     /// </summary>
     public class MemoryMapFailedException
@@ -221,13 +226,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorMemoryMapFailed;
     }
-
+    
     /// <summary>
     /// </summary>
     public class LayerNotPresentException
@@ -237,13 +242,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorLayerNotPresent;
     }
-
+    
     /// <summary>
     /// </summary>
     public class ExtensionNotPresentException
@@ -253,13 +258,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorExtensionNotPresent;
     }
-
+    
     /// <summary>
     /// </summary>
     public class FeatureNotPresentException
@@ -269,13 +274,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorFeatureNotPresent;
     }
-
+    
     /// <summary>
     /// </summary>
     public class IncompatibleDriverException
@@ -285,13 +290,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorIncompatibleDriver;
     }
-
+    
     /// <summary>
     /// </summary>
     public class TooManyObjectsException
@@ -301,13 +306,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorTooManyObjects;
     }
-
+    
     /// <summary>
     /// </summary>
     public class FormatNotSupportedException
@@ -317,13 +322,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorFormatNotSupported;
     }
-
+    
     /// <summary>
     /// </summary>
     public class FragmentedPoolException
@@ -333,13 +338,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorFragmentedPool;
     }
-
+    
     /// <summary>
     /// </summary>
     public class UnknownException
@@ -349,13 +354,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorUnknown;
     }
-
+    
     /// <summary>
     /// </summary>
     public class OutOfPoolMemoryVersionException
@@ -365,13 +370,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorOutOfPoolMemoryVersion;
     }
-
+    
     /// <summary>
     /// </summary>
     public class InvalidExternalHandleVersionException
@@ -381,13 +386,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInvalidExternalHandleVersion;
     }
-
+    
     /// <summary>
     /// </summary>
     public class FragmentationVersionException
@@ -397,13 +402,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorFragmentationVersion;
     }
-
+    
     /// <summary>
     /// </summary>
     public class InvalidOpaqueCaptureAddressVersionException
@@ -413,13 +418,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInvalidOpaqueCaptureAddressVersion;
     }
-
+    
     /// <summary>
     /// </summary>
     public class SurfaceLostException
@@ -429,13 +434,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorSurfaceLost;
     }
-
+    
     /// <summary>
     /// </summary>
     public class NativeWindowInUseException
@@ -445,13 +450,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorNativeWindowInUse;
     }
-
+    
     /// <summary>
     /// </summary>
     public class OutOfDateException
@@ -461,13 +466,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorOutOfDate;
     }
-
+    
     /// <summary>
     /// </summary>
     public class IncompatibleDisplayException
@@ -477,13 +482,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorIncompatibleDisplay;
     }
-
+    
     /// <summary>
     /// </summary>
     public class ValidationFailedException
@@ -493,13 +498,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorValidationFailed;
     }
-
+    
     /// <summary>
     /// </summary>
     public class InvalidShaderException
@@ -509,13 +514,29 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInvalidShader;
     }
-
+    
+    /// <summary>
+    /// </summary>
+    public class IncompatibleVersionException
+        : SharpVkException
+    {
+        internal IncompatibleVersionException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorIncompatibleVersion;
+    }
+    
     /// <summary>
     /// </summary>
     public class InvalidDrmFormatModifierPlaneLayoutException
@@ -525,13 +546,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInvalidDrmFormatModifierPlaneLayout;
     }
-
+    
     /// <summary>
     /// </summary>
     public class NotPermittedException
@@ -541,13 +562,13 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorNotPermitted;
     }
-
+    
     /// <summary>
     /// </summary>
     public class FullScreenExclusiveModeLostException
@@ -557,9 +578,9 @@ namespace SharpVk
             : base("")
         {
         }
-
+        
         /// <summary>
-        ///     The Vulkan result code represented by this exception.
+        /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorFullScreenExclusiveModeLost;
     }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,45 +32,45 @@ namespace SharpVk.Interop
     public unsafe struct SubpassDescription
     {
         /// <summary>
-        ///     A bitmask indicating usage of the subpass. Bits which can be set
-        ///     include: + --
+        /// A bitmask indicating usage of the subpass. Bits which can be set
+        /// include: + --
         /// </summary>
-        public SubpassDescriptionFlags Flags;
-
+        public SubpassDescriptionFlags Flags; 
+        
         /// <summary>
         /// </summary>
-        public PipelineBindPoint PipelineBindPoint;
-
+        public PipelineBindPoint PipelineBindPoint; 
+        
         /// <summary>
         /// </summary>
-        public uint InputAttachmentCount;
-
+        public uint InputAttachmentCount; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference* InputAttachments;
-
+        public AttachmentReference* InputAttachments; 
+        
         /// <summary>
         /// </summary>
-        public uint ColorAttachmentCount;
-
+        public uint ColorAttachmentCount; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference* ColorAttachments;
-
+        public AttachmentReference* ColorAttachments; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference* ResolveAttachments;
-
+        public AttachmentReference* ResolveAttachments; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference* DepthStencilAttachment;
-
+        public AttachmentReference* DepthStencilAttachment; 
+        
         /// <summary>
         /// </summary>
-        public uint PreserveAttachmentCount;
-
+        public uint PreserveAttachmentCount; 
+        
         /// <summary>
         /// </summary>
-        public uint* PreserveAttachments;
+        public uint* PreserveAttachments; 
     }
 }

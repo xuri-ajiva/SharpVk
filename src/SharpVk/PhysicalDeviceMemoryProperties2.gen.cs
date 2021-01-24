@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,14 +38,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMemoryProperties2 MarshalFrom(Interop.PhysicalDeviceMemoryProperties2* pointer)
+        internal static unsafe PhysicalDeviceMemoryProperties2 MarshalFrom(SharpVk.Interop.PhysicalDeviceMemoryProperties2* pointer)
         {
-            var result = default(PhysicalDeviceMemoryProperties2);
+            PhysicalDeviceMemoryProperties2 result = default;
             result.MemoryProperties = PhysicalDeviceMemoryProperties.MarshalFrom(&pointer->MemoryProperties);
             return result;
         }

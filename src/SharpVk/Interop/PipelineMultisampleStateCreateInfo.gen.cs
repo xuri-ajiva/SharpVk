@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,57 +32,57 @@ namespace SharpVk.Interop
     public unsafe struct PipelineMultisampleStateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public PipelineMultisampleStateCreateFlags Flags;
-
+        public PipelineMultisampleStateCreateFlags Flags; 
+        
         /// <summary>
-        ///     A SampleCountFlagBits specifying the number of samples per pixel
-        ///     used in rasterization.
+        /// A SampleCountFlagBits specifying the number of samples per pixel
+        /// used in rasterization.
         /// </summary>
-        public SampleCountFlags RasterizationSamples;
-
+        public SampleCountFlags RasterizationSamples; 
+        
         /// <summary>
-        ///     Specifies that fragment shading executes per-sample if VK_TRUE, or
-        ///     per-fragment if VK_FALSE, as described in Sample Shading.
+        /// Specifies that fragment shading executes per-sample if VK_TRUE, or
+        /// per-fragment if VK_FALSE, as described in Sample Shading.
         /// </summary>
-        public Bool32 SampleShadingEnable;
-
+        public Bool32 SampleShadingEnable; 
+        
         /// <summary>
-        ///     The minimum fraction of sample shading, as described in Sample
-        ///     Shading.
+        /// The minimum fraction of sample shading, as described in Sample
+        /// Shading.
         /// </summary>
-        public float MinSampleShading;
-
+        public float MinSampleShading; 
+        
         /// <summary>
-        ///     A bitmask of static coverage information that is ANDed with the
-        ///     coverage information generated during rasterization, as described
-        ///     in Sample Mask.
+        /// A bitmask of static coverage information that is ANDed with the
+        /// coverage information generated during rasterization, as described
+        /// in Sample Mask.
         /// </summary>
-        public SampleMask* SampleMask;
-
+        public SampleMask* SampleMask; 
+        
         /// <summary>
-        ///     alphaToCoverageEnable controls whether a temporary coverage value
-        ///     is generated based on the alpha component of the fragment's first
-        ///     color output as specified in the Multisample Coverage section.
+        /// alphaToCoverageEnable controls whether a temporary coverage value
+        /// is generated based on the alpha component of the fragment's first
+        /// color output as specified in the Multisample Coverage section.
         /// </summary>
-        public Bool32 AlphaToCoverageEnable;
-
+        public Bool32 AlphaToCoverageEnable; 
+        
         /// <summary>
-        ///     alphaToOneEnable controls whether the alpha component of the
-        ///     fragment's first color output is replaced with one as described in
-        ///     Multisample Coverage.
+        /// alphaToOneEnable controls whether the alpha component of the
+        /// fragment's first color output is replaced with one as described in
+        /// Multisample Coverage.
         /// </summary>
-        public Bool32 AlphaToOneEnable;
+        public Bool32 AlphaToOneEnable; 
     }
 }

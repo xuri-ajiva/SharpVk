@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageLayout StencilFinalLayout
@@ -46,26 +46,26 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.AttachmentDescriptionStencilLayout* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.AttachmentDescriptionStencilLayout* pointer)
         {
             pointer->SType = StructureType.AttachmentDescriptionStencilLayoutVersion;
             pointer->Next = null;
             pointer->StencilInitialLayout = StencilInitialLayout;
             pointer->StencilFinalLayout = StencilFinalLayout;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AttachmentDescriptionStencilLayout MarshalFrom(Interop.AttachmentDescriptionStencilLayout* pointer)
+        internal static unsafe AttachmentDescriptionStencilLayout MarshalFrom(SharpVk.Interop.AttachmentDescriptionStencilLayout* pointer)
         {
-            var result = default(AttachmentDescriptionStencilLayout);
+            AttachmentDescriptionStencilLayout result = default;
             result.StencilInitialLayout = pointer->StencilInitialLayout;
             result.StencilFinalLayout = pointer->StencilFinalLayout;
             return result;

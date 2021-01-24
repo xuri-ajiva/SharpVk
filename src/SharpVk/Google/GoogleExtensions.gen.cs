@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,18 +30,18 @@ namespace SharpVk.Google
     {
         /// <summary>
         /// </summary>
-        public const string DisplayTiming = "VK_GOOGLE_display_timing";
-
+        public const string DisplayTiming = "VK_GOOGLE_display_timing"; 
+        
         /// <summary>
         /// </summary>
-        public const string HlslFunctionality1 = "VK_GOOGLE_hlsl_functionality1";
-
+        public const string HlslFunctionality1 = "VK_GOOGLE_hlsl_functionality1"; 
+        
         /// <summary>
         /// </summary>
-        public const string DecorateString = "VK_GOOGLE_decorate_string";
-
+        public const string DecorateString = "VK_GOOGLE_decorate_string"; 
+        
         /// <summary>
         /// </summary>
-        public const string UserType = "VK_GOOGLE_user_type";
+        public const string UserType = "VK_GOOGLE_user_type"; 
     }
 }

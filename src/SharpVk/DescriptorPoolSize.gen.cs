@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying descriptor pool size.
+    /// Structure specifying descriptor pool size.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DescriptorPoolSize
@@ -39,15 +39,15 @@ namespace SharpVk
             Type = type;
             DescriptorCount = descriptorCount;
         }
-
+        
         /// <summary>
-        ///     The type of descriptor.
+        /// The type of descriptor.
         /// </summary>
-        public DescriptorType Type;
-
+        public DescriptorType Type; 
+        
         /// <summary>
-        ///     The number of descriptors of that type to allocate.
+        /// The number of descriptors of that type to allocate.
         /// </summary>
-        public uint DescriptorCount;
+        public uint DescriptorCount; 
     }
 }

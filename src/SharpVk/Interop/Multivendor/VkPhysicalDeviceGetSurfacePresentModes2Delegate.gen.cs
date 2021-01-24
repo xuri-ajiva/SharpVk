@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Khronos;
-using PhysicalDeviceSurfaceInfo2 = SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// </summary>
-    public unsafe delegate Result VkPhysicalDeviceGetSurfacePresentModes2Delegate(PhysicalDevice physicalDevice, PhysicalDeviceSurfaceInfo2* surfaceInfo, uint* presentModeCount, PresentMode* presentModes);
+    public unsafe delegate Result VkPhysicalDeviceGetSurfacePresentModes2Delegate(PhysicalDevice physicalDevice, Khronos.PhysicalDeviceSurfaceInfo2* surfaceInfo, uint* presentModeCount, SharpVk.Khronos.PresentMode* presentModes);
 }

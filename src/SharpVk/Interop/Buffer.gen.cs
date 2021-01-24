@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,26 +25,26 @@
 namespace SharpVk.Interop
 {
     /// <summary>
-    ///     Buffers represent linear arrays of data which are used for various
-    ///     purposes by binding them to a graphics or compute pipeline via
-    ///     descriptor sets or via certain commands, or by directly specifying them
-    ///     as parameters to certain commands.
+    /// Buffers represent linear arrays of data which are used for various
+    /// purposes by binding them to a graphics or compute pipeline via
+    /// descriptor sets or via certain commands, or by directly specifying them
+    /// as parameters to certain commands.
     /// </summary>
     public struct Buffer
     {
-        internal ulong Handle;
-
+        internal ulong Handle; 
+        
         /// <summary>
         /// </summary>
         public Buffer(ulong handle)
         {
-            this.Handle = handle;
+            Handle = handle;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Buffer Null => new(default);
-
+        public Buffer Null => new Buffer(default);
+        
         /// <summary>
         /// </summary>
         public ulong ToUInt64()

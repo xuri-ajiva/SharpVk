@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,23 +25,23 @@
 namespace SharpVk.Interop
 {
     /// <summary>
-    ///     Opaque handle to a event object.
+    /// Opaque handle to a event object.
     /// </summary>
     public struct Event
     {
-        internal ulong Handle;
-
+        internal ulong Handle; 
+        
         /// <summary>
         /// </summary>
         public Event(ulong handle)
         {
-            this.Handle = handle;
+            Handle = handle;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Event Null => new(default);
-
+        public Event Null => new Event(default);
+        
         /// <summary>
         /// </summary>
         public ulong ToUInt64()

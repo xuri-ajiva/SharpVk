@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Extent2D SampleLocationGridSize
@@ -47,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SampleLocation[] SampleLocations
@@ -55,25 +54,32 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.SampleLocationsInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SampleLocationsInfo* pointer)
         {
             pointer->SType = StructureType.SampleLocationsInfo;
             pointer->Next = null;
             if (SampleLocationsPerPixel != null)
+            {
                 pointer->SampleLocationsPerPixel = SampleLocationsPerPixel.Value;
+            }
             else
+            {
                 pointer->SampleLocationsPerPixel = default;
+            }
             pointer->SampleLocationGridSize = SampleLocationGridSize;
-            pointer->SampleLocationsCount = HeapUtil.GetLength(SampleLocations);
+            pointer->SampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(SampleLocations));
             if (SampleLocations != null)
             {
-                var fieldPointer = (SampleLocation*)HeapUtil.AllocateAndClear<SampleLocation>(SampleLocations.Length).ToPointer();
-                for (var index = 0; index < (uint)SampleLocations.Length; index++) fieldPointer[index] = SampleLocations[index];
+                var fieldPointer = (SampleLocation*)(Interop.HeapUtil.AllocateAndClear<SampleLocation>(SampleLocations.Length).ToPointer());
+                for(int index = 0; index < (uint)(SampleLocations.Length); index++)
+                {
+                    fieldPointer[index] = SampleLocations[index];
+                }
                 pointer->SampleLocations = fieldPointer;
             }
             else

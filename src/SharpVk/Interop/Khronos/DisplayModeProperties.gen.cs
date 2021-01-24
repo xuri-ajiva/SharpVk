@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,24 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayModeProperties
+    public unsafe struct DisplayModeProperties
     {
         /// <summary>
-        ///     A handle to the display mode described in this structure. This
-        ///     handle will be valid for the lifetime of the Vulkan instance.
+        /// A handle to the display mode described in this structure. This
+        /// handle will be valid for the lifetime of the Vulkan instance.
         /// </summary>
-        public DisplayMode DisplayMode;
-
+        public DisplayMode DisplayMode; 
+        
         /// <summary>
-        ///     A DisplayModeParametersKHR structure describing the display
-        ///     parameters associated with displayMode.
+        /// A DisplayModeParametersKHR structure describing the display
+        /// parameters associated with displayMode.
         /// </summary>
-        public DisplayModeParameters Parameters;
+        public SharpVk.Khronos.DisplayModeParameters Parameters; 
     }
 }

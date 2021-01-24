@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,20 +25,20 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Buffer and image sharing modes.
+    /// Buffer and image sharing modes.
     /// </summary>
     public enum SharingMode
     {
         /// <summary>
-        ///     Specifies that access to any range or image subresource of the
-        ///     object will be exclusive to a single queue family at a time.
+        /// Specifies that access to any range or image subresource of the
+        /// object will be exclusive to a single queue family at a time.
         /// </summary>
-        Exclusive = 0,
-
+        Exclusive = 0, 
+        
         /// <summary>
-        ///     Specifies that concurrent access to any range or image subresource
-        ///     of the object from multiple queue families is supported.
+        /// Specifies that concurrent access to any range or image subresource
+        /// of the object from multiple queue families is supported.
         /// </summary>
-        Concurrent = 1
+        Concurrent = 1, 
     }
 }

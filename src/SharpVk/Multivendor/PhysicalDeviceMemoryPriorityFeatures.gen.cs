@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMemoryPriorityFeatures;
             pointer->Next = null;
             pointer->MemoryPriority = MemoryPriority;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMemoryPriorityFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
+        internal static unsafe PhysicalDeviceMemoryPriorityFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
         {
-            var result = default(PhysicalDeviceMemoryPriorityFeatures);
+            PhysicalDeviceMemoryPriorityFeatures result = default;
             result.MemoryPriority = pointer->MemoryPriority;
             return result;
         }

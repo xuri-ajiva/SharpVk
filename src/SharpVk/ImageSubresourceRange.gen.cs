@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a image subresource range.
+    /// Structure specifying a image subresource range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageSubresourceRange
@@ -42,33 +42,33 @@ namespace SharpVk
             BaseArrayLayer = baseArrayLayer;
             LayerCount = layerCount;
         }
-
+        
         /// <summary>
-        ///     A bitmask indicating which aspect(s) of the image are included in
-        ///     the view. See ImageAspectFlagBits.
+        /// A bitmask indicating which aspect(s) of the image are included in
+        /// the view. See ImageAspectFlagBits.
         /// </summary>
-        public ImageAspectFlags AspectMask;
-
+        public ImageAspectFlags AspectMask; 
+        
         /// <summary>
-        ///     The first mipmap level accessible to the view.
+        /// The first mipmap level accessible to the view.
         /// </summary>
-        public uint BaseMipLevel;
-
+        public uint BaseMipLevel; 
+        
         /// <summary>
-        ///     The number of mipmap levels (starting from baseMipLevel) accessible
-        ///     to the view.
+        /// The number of mipmap levels (starting from baseMipLevel) accessible
+        /// to the view.
         /// </summary>
-        public uint LevelCount;
-
+        public uint LevelCount; 
+        
         /// <summary>
-        ///     The first array layer accessible to the view.
+        /// The first array layer accessible to the view.
         /// </summary>
-        public uint BaseArrayLayer;
-
+        public uint BaseArrayLayer; 
+        
         /// <summary>
-        ///     The number of array layers (starting from baseArrayLayer)
-        ///     accessible to the view.
+        /// The number of array layers (starting from baseArrayLayer)
+        /// accessible to the view.
         /// </summary>
-        public uint LayerCount;
+        public uint LayerCount; 
     }
 }

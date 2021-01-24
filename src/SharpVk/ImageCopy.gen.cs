@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying an image copy operation.
+    /// Structure specifying an image copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageCopy
@@ -42,35 +42,35 @@ namespace SharpVk
             DestinationOffset = destinationOffset;
             Extent = extent;
         }
-
+        
         /// <summary>
-        ///     ImageSubresourceLayer structure specifying the image subresources
-        ///     of the images used for the source image data.
+        /// ImageSubresourceLayer structure specifying the image subresources
+        /// of the images used for the source image data.
         /// </summary>
-        public ImageSubresourceLayers SourceSubresource;
-
+        public ImageSubresourceLayers SourceSubresource; 
+        
         /// <summary>
-        ///     The initial x, y, and z offsets in texels of the sub-regions of the
-        ///     source image data.
+        /// The initial x, y, and z offsets in texels of the sub-regions of the
+        /// source image data.
         /// </summary>
-        public Offset3D SourceOffset;
-
+        public Offset3D SourceOffset; 
+        
         /// <summary>
-        ///     ImageSubresourceLayer structure specifying the image subresources
-        ///     of the images used for the destination image data.
+        /// ImageSubresourceLayer structure specifying the image subresources
+        /// of the images used for the destination image data.
         /// </summary>
-        public ImageSubresourceLayers DestinationSubresource;
-
+        public ImageSubresourceLayers DestinationSubresource; 
+        
         /// <summary>
-        ///     The initial x, y, and z offsets in texels of the sub-regions of the
-        ///     destination image data.
+        /// The initial x, y, and z offsets in texels of the sub-regions of the
+        /// destination image data.
         /// </summary>
-        public Offset3D DestinationOffset;
-
+        public Offset3D DestinationOffset; 
+        
         /// <summary>
-        ///     The size in texels of the source image to copy in width, height and
-        ///     depth.
+        /// The size in texels of the source image to copy in width, height and
+        /// depth.
         /// </summary>
-        public Extent3D Extent;
+        public Extent3D Extent; 
     }
 }

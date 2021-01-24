@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,37 +25,37 @@
 namespace SharpVk.Intel
 {
     /// <summary>
-    ///     Type of the parameters that can be queried
+    /// Type of the parameters that can be queried
     /// </summary>
     public enum PerformanceValueType
     {
         /// <summary>
-        ///     Specifies that unsigned 32-bit integer data is returned in
-        ///     data.value32.
+        /// Specifies that unsigned 32-bit integer data is returned in
+        /// data.value32.
         /// </summary>
-        Uint32 = 0,
-
+        Uint32 = 0, 
+        
         /// <summary>
-        ///     Specifies that unsigned 64-bit integer data is returned in
-        ///     data.value64.
+        /// Specifies that unsigned 64-bit integer data is returned in
+        /// data.value64.
         /// </summary>
-        Uint64 = 1,
-
+        Uint64 = 1, 
+        
         /// <summary>
-        ///     Specifies that floating-point data is returned in data.valueFloat.
+        /// Specifies that floating-point data is returned in data.valueFloat.
         /// </summary>
-        Float = 2,
-
+        Float = 2, 
+        
         /// <summary>
-        ///     Specifies that Bool32 data is returned in data.valueBool.
+        /// Specifies that Bool32 data is returned in data.valueBool.
         /// </summary>
-        Bool = 3,
-
+        Bool = 3, 
+        
         /// <summary>
-        ///     Specifies that a pointer to a NULL-terminated string is returned in
-        ///     data.valueString. The pointer is valid for the lifetime of the
-        ///     device parameter passed to vkGetPerformanceParameterINTEL.
+        /// Specifies that a pointer to a NULL-terminated string is returned in
+        /// data.valueString. The pointer is valid for the lifetime of the
+        /// device parameter passed to vkGetPerformanceParameterINTEL.
         /// </summary>
-        String = 4
+        String = 4, 
     }
 }

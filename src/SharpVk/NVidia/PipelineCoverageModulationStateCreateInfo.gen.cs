@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
@@ -39,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public CoverageModulationMode CoverageModulationMode
@@ -47,7 +46,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool CoverageModulationTableEnable
@@ -55,7 +54,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint? CoverageModulationTableCount
@@ -63,7 +62,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float[] CoverageModulationTable
@@ -71,29 +70,40 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PipelineCoverageModulationStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineCoverageModulationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCoverageModulationStateCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->CoverageModulationMode = CoverageModulationMode;
             pointer->CoverageModulationTableEnable = CoverageModulationTableEnable;
             if (CoverageModulationTableCount != null)
+            {
                 pointer->CoverageModulationTableCount = CoverageModulationTableCount.Value;
+            }
             else
-                pointer->CoverageModulationTableCount = HeapUtil.GetLength(CoverageModulationTable);
+            {
+                pointer->CoverageModulationTableCount = (uint)(Interop.HeapUtil.GetLength(CoverageModulationTable));
+            }
             if (CoverageModulationTable != null)
             {
-                var fieldPointer = (float*)HeapUtil.AllocateAndClear<float>(CoverageModulationTable.Length).ToPointer();
-                for (var index = 0; index < (uint)CoverageModulationTable.Length; index++) fieldPointer[index] = CoverageModulationTable[index];
+                var fieldPointer = (float*)(Interop.HeapUtil.AllocateAndClear<float>(CoverageModulationTable.Length).ToPointer());
+                for(int index = 0; index < (uint)(CoverageModulationTable.Length); index++)
+                {
+                    fieldPointer[index] = CoverageModulationTable[index];
+                }
                 pointer->CoverageModulationTable = fieldPointer;
             }
             else

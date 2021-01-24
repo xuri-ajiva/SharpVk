@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
@@ -33,79 +32,79 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct SwapchainCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A bitmask indicating parameters of swapchain creation. Bits which
-        ///     can be set include: + --
+        /// A bitmask indicating parameters of swapchain creation. Bits which
+        /// can be set include: + --
         /// </summary>
-        public SwapchainCreateFlags Flags;
-
-        /// <summary>
-        /// </summary>
-        public Surface Surface;
-
+        public SharpVk.Khronos.SwapchainCreateFlags Flags; 
+        
         /// <summary>
         /// </summary>
-        public uint MinImageCount;
-
+        public Surface Surface; 
+        
         /// <summary>
         /// </summary>
-        public Format ImageFormat;
-
+        public uint MinImageCount; 
+        
         /// <summary>
         /// </summary>
-        public ColorSpace ImageColorSpace;
-
+        public Format ImageFormat; 
+        
         /// <summary>
         /// </summary>
-        public Extent2D ImageExtent;
-
+        public SharpVk.Khronos.ColorSpace ImageColorSpace; 
+        
         /// <summary>
         /// </summary>
-        public uint ImageArrayLayers;
-
+        public Extent2D ImageExtent; 
+        
         /// <summary>
         /// </summary>
-        public ImageUsageFlags ImageUsage;
-
+        public uint ImageArrayLayers; 
+        
         /// <summary>
         /// </summary>
-        public SharingMode ImageSharingMode;
-
+        public ImageUsageFlags ImageUsage; 
+        
         /// <summary>
         /// </summary>
-        public uint QueueFamilyIndexCount;
-
+        public SharingMode ImageSharingMode; 
+        
         /// <summary>
         /// </summary>
-        public uint* QueueFamilyIndices;
-
+        public uint QueueFamilyIndexCount; 
+        
         /// <summary>
         /// </summary>
-        public SurfaceTransformFlags PreTransform;
-
+        public uint* QueueFamilyIndices; 
+        
         /// <summary>
         /// </summary>
-        public CompositeAlphaFlags CompositeAlpha;
-
+        public SharpVk.Khronos.SurfaceTransformFlags PreTransform; 
+        
         /// <summary>
         /// </summary>
-        public PresentMode PresentMode;
-
+        public SharpVk.Khronos.CompositeAlphaFlags CompositeAlpha; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 Clipped;
-
+        public SharpVk.Khronos.PresentMode PresentMode; 
+        
         /// <summary>
         /// </summary>
-        public Swapchain OldSwapchain;
+        public Bool32 Clipped; 
+        
+        /// <summary>
+        /// </summary>
+        public Swapchain OldSwapchain; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,97 +22,99 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    ///     Bitmask controlling how a pipeline is generated.
+    /// Bitmask controlling how a pipeline is generated.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum PipelineCreateFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
-        ///     Specifies that the created pipeline will not be optimized. Using
-        ///     this flag may reduce the time taken to create the pipeline.
+        /// Specifies that the created pipeline will not be optimized. Using
+        /// this flag may reduce the time taken to create the pipeline.
         /// </summary>
-        DisableOptimization = 1 << 0,
-
+        DisableOptimization = 1 << 0, 
+        
         /// <summary>
-        ///     Specifies that the pipeline to be created is allowed to be the
-        ///     parent of a pipeline that will be created in a subsequent call to
-        ///     flink:vkCreateGraphicsPipelines.
+        /// Specifies that the pipeline to be created is allowed to be the
+        /// parent of a pipeline that will be created in a subsequent call to
+        /// flink:vkCreateGraphicsPipelines.
         /// </summary>
-        AllowDerivatives = 1 << 1,
-
+        AllowDerivatives = 1 << 1, 
+        
         /// <summary>
-        ///     Specifies that the pipeline to be created will be a child of a
-        ///     previously created parent pipeline.
+        /// Specifies that the pipeline to be created will be a child of a
+        /// previously created parent pipeline.
         /// </summary>
-        Derivative = 1 << 2,
-
-        /// <summary>
-        /// </summary>
-        ViewIndexFromDeviceIndex = 1 << 3,
-
+        Derivative = 1 << 2, 
+        
         /// <summary>
         /// </summary>
-        DispatchBaseVersion = 1 << 4,
-
+        ViewIndexFromDeviceIndex = 1 << 3, 
+        
         /// <summary>
         /// </summary>
-        Extension151Bit0 = 1 << 11,
-
+        DispatchBaseVersion = 1 << 4, 
+        
         /// <summary>
         /// </summary>
-        Extension151Bit1 = 1 << 14,
-
+        RayTracingNoNullAnyHitShaders = 1 << 14, 
+        
         /// <summary>
         /// </summary>
-        Extension151Bit2 = 1 << 15,
-
+        RayTracingNoNullClosestHitShaders = 1 << 15, 
+        
         /// <summary>
         /// </summary>
-        Extension151Bit3 = 1 << 16,
-
+        RayTracingNoNullMissShaders = 1 << 16, 
+        
         /// <summary>
         /// </summary>
-        Extension151Bit4 = 1 << 17,
-
+        RayTracingNoNullIntersectionShaders = 1 << 17, 
+        
         /// <summary>
         /// </summary>
-        DeferCompile = 1 << 5,
-
+        RayTracingSkipTriangles = 1 << 12, 
+        
         /// <summary>
         /// </summary>
-        CaptureStatistics = 1 << 6,
-
+        RayTracingSkipAabbs = 1 << 13, 
+        
         /// <summary>
         /// </summary>
-        CaptureInternalRepresentations = 1 << 7,
-
+        DeferCompile = 1 << 5, 
+        
         /// <summary>
         /// </summary>
-        Extension291Bit0 = 1 << 12,
-
+        Reserved19 = 1 << 19, 
+        
         /// <summary>
         /// </summary>
-        Extension291Bit1 = 1 << 13,
-
+        CaptureStatistics = 1 << 6, 
+        
         /// <summary>
         /// </summary>
-        Reserved8 = 1 << 8,
-
+        CaptureInternalRepresentations = 1 << 7, 
+        
         /// <summary>
         /// </summary>
-        Reserved9 = 1 << 9,
-
+        IndirectBindable = 1 << 18, 
+        
         /// <summary>
         /// </summary>
-        Reserved10 = 1 << 10
+        Library = 1 << 11, 
+        
+        /// <summary>
+        /// </summary>
+        FailOnPipelineCompileRequired = 1 << 8, 
+        
+        /// <summary>
+        /// </summary>
+        EarlyReturnOnFailure = 1 << 9, 
     }
 }

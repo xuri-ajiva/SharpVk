@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,19 +25,19 @@
 namespace SharpVk.Intel
 {
     /// <summary>
-    ///     Performance override type
+    /// Performance override type
     /// </summary>
     public enum PerformanceOverrideType
     {
         /// <summary>
-        ///     Turns all rendering operations into noop.
+        /// Turns all rendering operations into noop.
         /// </summary>
-        NullHardware = 0,
-
+        NullHardware = 0, 
+        
         /// <summary>
-        ///     Stalls the stream of commands until all previously emitted commands
-        ///     have completed and all caches been flushed and invalidated.
+        /// Stalls the stream of commands until all previously emitted commands
+        /// have completed and all caches been flushed and invalidated.
         /// </summary>
-        FlushGpuCaches = 1
+        FlushGpuCaches = 1, 
     }
 }

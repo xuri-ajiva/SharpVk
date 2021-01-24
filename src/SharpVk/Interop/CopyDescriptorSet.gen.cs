@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,50 +32,50 @@ namespace SharpVk.Interop
     public unsafe struct CopyDescriptorSet
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     srcSet, srcBinding, and srcArrayElement are the source set,
-        ///     binding, and array element, respectively.
+        /// srcSet, srcBinding, and srcArrayElement are the source set,
+        /// binding, and array element, respectively.
         /// </summary>
-        public DescriptorSet SourceSet;
-
-        /// <summary>
-        /// </summary>
-        public uint SourceBinding;
-
+        public DescriptorSet SourceSet; 
+        
         /// <summary>
         /// </summary>
-        public uint SourceArrayElement;
-
-        /// <summary>
-        ///     dstSet, dstBinding, and dstArrayElement are the destination set,
-        ///     binding, and array element, respectively.
-        /// </summary>
-        public DescriptorSet DestinationSet;
-
+        public uint SourceBinding; 
+        
         /// <summary>
         /// </summary>
-        public uint DestinationBinding;
-
+        public uint SourceArrayElement; 
+        
+        /// <summary>
+        /// dstSet, dstBinding, and dstArrayElement are the destination set,
+        /// binding, and array element, respectively.
+        /// </summary>
+        public DescriptorSet DestinationSet; 
+        
         /// <summary>
         /// </summary>
-        public uint DestinationArrayElement;
-
+        public uint DestinationBinding; 
+        
         /// <summary>
-        ///     The number of descriptors to copy from the source to destination.
-        ///     If descriptorCount is greater than the number of remaining array
-        ///     elements in the source or destination binding, those affect
-        ///     consecutive bindings in a manner similar to WriteDescriptorSet
-        ///     above.
         /// </summary>
-        public uint DescriptorCount;
+        public uint DestinationArrayElement; 
+        
+        /// <summary>
+        /// The number of descriptors to copy from the source to destination.
+        /// If descriptorCount is greater than the number of remaining array
+        /// elements in the source or destination binding, those affect
+        /// consecutive bindings in a manner similar to WriteDescriptorSet
+        /// above.
+        /// </summary>
+        public uint DescriptorCount; 
     }
 }

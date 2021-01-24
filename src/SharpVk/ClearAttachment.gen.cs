@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a clear attachment.
+    /// Structure specifying a clear attachment.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ClearAttachment
@@ -40,32 +40,32 @@ namespace SharpVk
             ColorAttachment = colorAttachment;
             ClearValue = clearValue;
         }
-
+        
         /// <summary>
-        ///     A mask selecting the color, depth and/or stencil aspects of the
-        ///     attachment to be cleared. aspectMask can include
-        ///     VK_IMAGE_ASPECT_COLOR_BIT for color attachments,
-        ///     VK_IMAGE_ASPECT_DEPTH_BIT for depth/stencil attachments with a
-        ///     depth component, and VK_IMAGE_ASPECT_STENCIL_BIT for depth/stencil
-        ///     attachments with a stencil component. If the subpass's
-        ///     depth/stencil attachment is VK_ATTACHMENT_UNUSED, then the clear
-        ///     has no effect.
+        /// A mask selecting the color, depth and/or stencil aspects of the
+        /// attachment to be cleared. aspectMask can include
+        /// VK_IMAGE_ASPECT_COLOR_BIT for color attachments,
+        /// VK_IMAGE_ASPECT_DEPTH_BIT for depth/stencil attachments with a
+        /// depth component, and VK_IMAGE_ASPECT_STENCIL_BIT for depth/stencil
+        /// attachments with a stencil component. If the subpass's
+        /// depth/stencil attachment is VK_ATTACHMENT_UNUSED, then the clear
+        /// has no effect.
         /// </summary>
-        public ImageAspectFlags AspectMask;
-
+        public ImageAspectFlags AspectMask; 
+        
         /// <summary>
-        ///     colorAttachment is only meaningful if VK_IMAGE_ASPECT_COLOR_BIT is
-        ///     set in aspectMask, in which case it is an index to the
-        ///     pColorAttachments array in the SubpassDescription structure of the
-        ///     current subpass which selects the color attachment to clear. If
-        ///     colorAttachment is VK_ATTACHMENT_UNUSED then the clear has no
-        ///     effect.
+        /// colorAttachment is only meaningful if VK_IMAGE_ASPECT_COLOR_BIT is
+        /// set in aspectMask, in which case it is an index to the
+        /// pColorAttachments array in the SubpassDescription structure of the
+        /// current subpass which selects the color attachment to clear. If
+        /// colorAttachment is VK_ATTACHMENT_UNUSED then the clear has no
+        /// effect.
         /// </summary>
-        public uint ColorAttachment;
-
+        public uint ColorAttachment; 
+        
         /// <summary>
-        ///     The color or depth/stencil value to clear the attachment to.
+        /// The color or depth/stencil value to clear the attachment to.
         /// </summary>
-        public ClearValue ClearValue;
+        public ClearValue ClearValue; 
     }
 }

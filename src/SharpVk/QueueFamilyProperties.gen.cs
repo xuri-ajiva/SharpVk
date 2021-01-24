@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure providing information about a queue family.
+    /// Structure providing information about a queue family.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct QueueFamilyProperties
@@ -41,31 +41,31 @@ namespace SharpVk
             TimestampValidBits = timestampValidBits;
             MinImageTransferGranularity = minImageTransferGranularity;
         }
-
+        
         /// <summary>
-        ///     queueFlags contains flags indicating the capabilities of the queues
-        ///     in this queue family.
+        /// queueFlags contains flags indicating the capabilities of the queues
+        /// in this queue family.
         /// </summary>
-        public QueueFlags QueueFlags;
-
+        public QueueFlags QueueFlags; 
+        
         /// <summary>
-        ///     The unsigned integer count of queues in this queue family.
+        /// The unsigned integer count of queues in this queue family.
         /// </summary>
-        public uint QueueCount;
-
+        public uint QueueCount; 
+        
         /// <summary>
-        ///     The unsigned integer count of meaningful bits in the timestamps
-        ///     written via CommandBuffer.WriteTimestamp. The valid range for the
-        ///     count is 36..64 bits, or a value of 0, indicating no support for
-        ///     timestamps. Bits outside the valid range are guaranteed to be
-        ///     zeros.
+        /// The unsigned integer count of meaningful bits in the timestamps
+        /// written via CommandBuffer.WriteTimestamp. The valid range for the
+        /// count is 36..64 bits, or a value of 0, indicating no support for
+        /// timestamps. Bits outside the valid range are guaranteed to be
+        /// zeros.
         /// </summary>
-        public uint TimestampValidBits;
-
+        public uint TimestampValidBits; 
+        
         /// <summary>
-        ///     The minimum granularity supported for image transfer operations on
-        ///     the queues in this queue family.
+        /// The minimum granularity supported for image transfer operations on
+        /// the queues in this queue family.
         /// </summary>
-        public Extent3D MinImageTransferGranularity;
+        public Extent3D MinImageTransferGranularity; 
     }
 }

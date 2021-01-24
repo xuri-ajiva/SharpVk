@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,52 +32,52 @@ namespace SharpVk.Interop
     public unsafe struct FramebufferCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public FramebufferCreateFlags Flags;
-
+        public FramebufferCreateFlags Flags; 
+        
         /// <summary>
-        ///     A render pass that defines what render passes the framebuffer will
-        ///     be compatible with.
+        /// A render pass that defines what render passes the framebuffer will
+        /// be compatible with.
         /// </summary>
-        public RenderPass RenderPass;
-
+        public RenderPass RenderPass; 
+        
         /// <summary>
-        ///     The number of attachments.
+        /// The number of attachments.
         /// </summary>
-        public uint AttachmentCount;
-
+        public uint AttachmentCount; 
+        
         /// <summary>
-        ///     An array of ImageView handles, each of which will be used as the
-        ///     corresponding attachment in a render pass instance.
+        /// An array of ImageView handles, each of which will be used as the
+        /// corresponding attachment in a render pass instance.
         /// </summary>
-        public ImageView* Attachments;
-
+        public ImageView* Attachments; 
+        
         /// <summary>
-        ///     width, height and layers define the dimensions of the framebuffer.
-        ///     If the render pass uses multiview, then layers must be one and each
-        ///     attachment requires a number of layers that is greater than the
-        ///     maximum bit index set in the view mask in the subpasses in which it
-        ///     is used.
+        /// width, height and layers define the dimensions of the framebuffer.
+        /// If the render pass uses multiview, then layers must be one and each
+        /// attachment requires a number of layers that is greater than the
+        /// maximum bit index set in the view mask in the subpasses in which it
+        /// is used.
         /// </summary>
-        public uint Width;
-
-        /// <summary>
-        /// </summary>
-        public uint Height;
-
+        public uint Width; 
+        
         /// <summary>
         /// </summary>
-        public uint Layers;
+        public uint Height; 
+        
+        /// <summary>
+        /// </summary>
+        public uint Layers; 
     }
 }

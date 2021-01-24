@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,36 +33,36 @@ namespace SharpVk.Multivendor
     {
         /// <summary>
         /// </summary>
-        public XyColor DisplayPrimaryRed
+        public XYColor DisplayPrimaryRed
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public XyColor DisplayPrimaryGreen
+        public XYColor DisplayPrimaryGreen
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public XyColor DisplayPrimaryBlue
+        public XYColor DisplayPrimaryBlue
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public XyColor WhitePoint
+        public XYColor WhitePoint
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MaxLuminance
@@ -70,7 +70,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MinLuminance
@@ -78,7 +78,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MaxContentLightLevel
@@ -86,7 +86,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MaxFrameAverageLightLevel
@@ -94,12 +94,12 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.HdrMetadata* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
         {
             pointer->SType = StructureType.HdrMetadata;
             pointer->Next = null;
@@ -112,14 +112,14 @@ namespace SharpVk.Multivendor
             pointer->MaxContentLightLevel = MaxContentLightLevel;
             pointer->MaxFrameAverageLightLevel = MaxFrameAverageLightLevel;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe HdrMetadata MarshalFrom(Interop.Multivendor.HdrMetadata* pointer)
+        internal static unsafe HdrMetadata MarshalFrom(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
         {
-            var result = default(HdrMetadata);
+            HdrMetadata result = default;
             result.DisplayPrimaryRed = pointer->DisplayPrimaryRed;
             result.DisplayPrimaryGreen = pointer->DisplayPrimaryGreen;
             result.DisplayPrimaryBlue = pointer->DisplayPrimaryBlue;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
@@ -39,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShadingRatePalette[] ShadingRatePalettes
@@ -47,21 +46,24 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PipelineViewportShadingRateImageStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportShadingRateImageStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportShadingRateImageStateCreateInfo;
             pointer->Next = null;
             pointer->ShadingRateImageEnable = ShadingRateImageEnable;
-            pointer->ViewportCount = HeapUtil.GetLength(ShadingRatePalettes);
+            pointer->ViewportCount = (uint)(Interop.HeapUtil.GetLength(ShadingRatePalettes));
             if (ShadingRatePalettes != null)
             {
-                var fieldPointer = (Interop.NVidia.ShadingRatePalette*)HeapUtil.AllocateAndClear<Interop.NVidia.ShadingRatePalette>(ShadingRatePalettes.Length).ToPointer();
-                for (var index = 0; index < (uint)ShadingRatePalettes.Length; index++) ShadingRatePalettes[index].MarshalTo(&fieldPointer[index]);
+                var fieldPointer = (SharpVk.Interop.NVidia.ShadingRatePalette*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.NVidia.ShadingRatePalette>(ShadingRatePalettes.Length).ToPointer());
+                for(int index = 0; index < (uint)(ShadingRatePalettes.Length); index++)
+                {
+                    ShadingRatePalettes[index].MarshalTo(&fieldPointer[index]);
+                }
                 pointer->ShadingRatePalettes = fieldPointer;
             }
             else

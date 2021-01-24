@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,79 +32,79 @@ namespace SharpVk.Interop
     public unsafe struct SamplerCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public SamplerCreateFlags Flags;
-
+        public SamplerCreateFlags Flags; 
+        
         /// <summary>
-        ///     The magnification filter to apply to lookups.
+        /// The magnification filter to apply to lookups.
         /// </summary>
-        public Filter MagFilter;
-
-        /// <summary>
-        /// </summary>
-        public Filter MinFilter;
-
+        public Filter MagFilter; 
+        
         /// <summary>
         /// </summary>
-        public SamplerMipmapMode MipmapMode;
-
+        public Filter MinFilter; 
+        
         /// <summary>
         /// </summary>
-        public SamplerAddressMode AddressModeU;
-
+        public SamplerMipmapMode MipmapMode; 
+        
         /// <summary>
         /// </summary>
-        public SamplerAddressMode AddressModeV;
-
+        public SamplerAddressMode AddressModeU; 
+        
         /// <summary>
         /// </summary>
-        public SamplerAddressMode AddressModeW;
-
+        public SamplerAddressMode AddressModeV; 
+        
         /// <summary>
         /// </summary>
-        public float MipLodBias;
-
+        public SamplerAddressMode AddressModeW; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 AnisotropyEnable;
-
+        public float MipLodBias; 
+        
         /// <summary>
         /// </summary>
-        public float MaxAnisotropy;
-
+        public Bool32 AnisotropyEnable; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 CompareEnable;
-
+        public float MaxAnisotropy; 
+        
         /// <summary>
         /// </summary>
-        public CompareOp CompareOp;
-
+        public Bool32 CompareEnable; 
+        
         /// <summary>
         /// </summary>
-        public float MinLod;
-
+        public CompareOp CompareOp; 
+        
         /// <summary>
         /// </summary>
-        public float MaxLod;
-
+        public float MinLod; 
+        
         /// <summary>
         /// </summary>
-        public BorderColor BorderColor;
-
+        public float MaxLod; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 UnnormalizedCoordinates;
+        public BorderColor BorderColor; 
+        
+        /// <summary>
+        /// </summary>
+        public Bool32 UnnormalizedCoordinates; 
     }
 }

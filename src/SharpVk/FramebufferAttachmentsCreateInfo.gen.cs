@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,41 +23,43 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of images that will be used with a
-    ///     framebuffer
+    /// Structure specifying parameters of images that will be used with a
+    /// framebuffer
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct FramebufferAttachmentsCreateInfo
     {
         /// <summary>
-        ///     An array of FramebufferAttachmentImageInfo instances, each of which
-        ///     describes a number of parameters of the corresponding attachment in
-        ///     a render pass instance.
+        /// An array of FramebufferAttachmentImageInfo instances, each of which
+        /// describes a number of parameters of the corresponding attachment in
+        /// a render pass instance.
         /// </summary>
         public FramebufferAttachmentImageInfo[] AttachmentImageInfos
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.FramebufferAttachmentsCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.FramebufferAttachmentsCreateInfo* pointer)
         {
             pointer->SType = StructureType.FramebufferAttachmentsCreateInfoVersion;
             pointer->Next = null;
-            pointer->AttachmentImageInfoCount = HeapUtil.GetLength(AttachmentImageInfos);
+            pointer->AttachmentImageInfoCount = (uint)(Interop.HeapUtil.GetLength(AttachmentImageInfos));
             if (AttachmentImageInfos != null)
             {
-                var fieldPointer = (Interop.FramebufferAttachmentImageInfo*)HeapUtil.AllocateAndClear<Interop.FramebufferAttachmentImageInfo>(AttachmentImageInfos.Length).ToPointer();
-                for (var index = 0; index < (uint)AttachmentImageInfos.Length; index++) AttachmentImageInfos[index].MarshalTo(&fieldPointer[index]);
+                var fieldPointer = (SharpVk.Interop.FramebufferAttachmentImageInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.FramebufferAttachmentImageInfo>(AttachmentImageInfos.Length).ToPointer());
+                for(int index = 0; index < (uint)(AttachmentImageInfos.Length); index++)
+                {
+                    AttachmentImageInfos[index].MarshalTo(&fieldPointer[index]);
+                }
                 pointer->AttachmentImageInfos = fieldPointer;
             }
             else

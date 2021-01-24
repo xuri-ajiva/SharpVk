@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,53 +32,53 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct PhysicalDeviceTransformFeedbackProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public uint MaxTransformFeedbackStreams;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxTransformFeedbackBuffers;
-
+        public uint MaxTransformFeedbackStreams; 
+        
         /// <summary>
         /// </summary>
-        public ulong MaxTransformFeedbackBufferSize;
-
+        public uint MaxTransformFeedbackBuffers; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxTransformFeedbackStreamDataSize;
-
+        public ulong MaxTransformFeedbackBufferSize; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxTransformFeedbackBufferDataSize;
-
+        public uint MaxTransformFeedbackStreamDataSize; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxTransformFeedbackBufferDataStride;
-
+        public uint MaxTransformFeedbackBufferDataSize; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 TransformFeedbackQueries;
-
+        public uint MaxTransformFeedbackBufferDataStride; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 TransformFeedbackStreamsLinesTriangles;
-
+        public Bool32 TransformFeedbackQueries; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 TransformFeedbackRasterizationStreamSelect;
-
+        public Bool32 TransformFeedbackStreamsLinesTriangles; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 TransformFeedbackDraw;
+        public Bool32 TransformFeedbackRasterizationStreamSelect; 
+        
+        /// <summary>
+        /// </summary>
+        public Bool32 TransformFeedbackDraw; 
     }
 }

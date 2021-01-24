@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a buffer image copy operation.
+    /// Structure specifying a buffer image copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferImageCopy
@@ -43,42 +43,42 @@ namespace SharpVk
             ImageOffset = imageOffset;
             ImageExtent = imageExtent;
         }
-
+        
         /// <summary>
-        ///     The offset in bytes from the start of the buffer object where the
-        ///     image data is copied from or to.
+        /// The offset in bytes from the start of the buffer object where the
+        /// image data is copied from or to.
         /// </summary>
-        public ulong BufferOffset;
-
+        public ulong BufferOffset; 
+        
         /// <summary>
-        ///     bufferRowLength and bufferImageHeight specify the data in buffer
-        ///     memory as a subregion of a larger two- or three-dimensional image,
-        ///     and control the addressing calculations of data in buffer memory.
-        ///     If either of these values is zero, that aspect of the buffer memory
-        ///     is considered to be tightly packed according to the imageExtent.
+        /// bufferRowLength and bufferImageHeight specify the data in buffer
+        /// memory as a subregion of a larger two- or three-dimensional image,
+        /// and control the addressing calculations of data in buffer memory.
+        /// If either of these values is zero, that aspect of the buffer memory
+        /// is considered to be tightly packed according to the imageExtent.
         /// </summary>
-        public uint BufferRowLength;
-
+        public uint BufferRowLength; 
+        
         /// <summary>
         /// </summary>
-        public uint BufferImageHeight;
-
+        public uint BufferImageHeight; 
+        
         /// <summary>
-        ///     An ImageSubresourceLayers used to specify the specific image
-        ///     subresources of the image used for the source or destination image
-        ///     data.
+        /// An ImageSubresourceLayers used to specify the specific image
+        /// subresources of the image used for the source or destination image
+        /// data.
         /// </summary>
-        public ImageSubresourceLayers ImageSubresource;
-
+        public ImageSubresourceLayers ImageSubresource; 
+        
         /// <summary>
-        ///     imageOffset selects the initial x, y, z offsets in texels of the
-        ///     sub-region of the source or destination image data.
+        /// imageOffset selects the initial x, y, z offsets in texels of the
+        /// sub-region of the source or destination image data.
         /// </summary>
-        public Offset3D ImageOffset;
-
+        public Offset3D ImageOffset; 
+        
         /// <summary>
-        ///     The size in texels of the image to copy in width, height and depth.
+        /// The size in texels of the image to copy in width, height and depth.
         /// </summary>
-        public Extent3D ImageExtent;
+        public Extent3D ImageExtent; 
     }
 }

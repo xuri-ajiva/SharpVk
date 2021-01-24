@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public int Stride
@@ -47,7 +47,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public int Format
@@ -55,7 +55,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public int Usage
@@ -63,7 +63,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public NativeBufferUsage2 Usage2
@@ -71,12 +71,12 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Android.NativeBuffer* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Android.NativeBuffer* pointer)
         {
             pointer->SType = StructureType.NativeBuffer;
             pointer->Next = null;
@@ -86,15 +86,15 @@ namespace SharpVk.Android
             pointer->Usage = Usage;
             pointer->Usage2 = Usage2;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe NativeBuffer MarshalFrom(Interop.Android.NativeBuffer* pointer)
+        internal static unsafe NativeBuffer MarshalFrom(SharpVk.Interop.Android.NativeBuffer* pointer)
         {
-            var result = default(NativeBuffer);
-            result.Handle = new(pointer->Handle);
+            NativeBuffer result = default;
+            result.Handle = new IntPtr(pointer->Handle);
             result.Stride = pointer->Stride;
             result.Format = pointer->Format;
             result.Usage = pointer->Usage;

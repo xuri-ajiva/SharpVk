@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string Name
@@ -47,7 +46,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string Description
@@ -55,7 +54,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SubgroupSize
@@ -63,17 +62,17 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineExecutableProperties MarshalFrom(Interop.Khronos.PipelineExecutableProperties* pointer)
+        internal static unsafe PipelineExecutableProperties MarshalFrom(SharpVk.Interop.Khronos.PipelineExecutableProperties* pointer)
         {
-            var result = default(PipelineExecutableProperties);
+            PipelineExecutableProperties result = default;
             result.Stages = pointer->Stages;
-            result.Name = HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
-            result.Description = HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
+            result.Name = Interop.HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
+            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
             result.SubgroupSize = pointer->SubgroupSize;
             return result;
         }

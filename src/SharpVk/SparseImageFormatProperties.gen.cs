@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying sparse image format properties.
+    /// Structure specifying sparse image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseImageFormatProperties
@@ -40,23 +40,23 @@ namespace SharpVk
             ImageGranularity = imageGranularity;
             Flags = flags;
         }
-
+        
         /// <summary>
-        ///     A bitmask of ImageAspectFlagBits specifying which aspects of the
-        ///     image the properties apply to.
+        /// A bitmask of ImageAspectFlagBits specifying which aspects of the
+        /// image the properties apply to.
         /// </summary>
-        public ImageAspectFlags AspectMask;
-
+        public ImageAspectFlags AspectMask; 
+        
         /// <summary>
-        ///     The width, height, and depth of the sparse image block in texels or
-        ///     compressed texel blocks.
+        /// The width, height, and depth of the sparse image block in texels or
+        /// compressed texel blocks.
         /// </summary>
-        public Extent3D ImageGranularity;
-
+        public Extent3D ImageGranularity; 
+        
         /// <summary>
-        ///     A bitmask specifying additional information about the sparse
-        ///     resource. Bits which can be set include: + --
+        /// A bitmask specifying additional information about the sparse
+        /// resource. Bits which can be set include: + --
         /// </summary>
-        public SparseImageFormatFlags Flags;
+        public SparseImageFormatFlags Flags; 
     }
 }

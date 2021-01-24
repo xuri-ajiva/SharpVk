@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong[] SignalSemaphoreValues
@@ -47,31 +46,37 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.TimelineSemaphoreSubmitInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.TimelineSemaphoreSubmitInfo* pointer)
         {
             pointer->SType = StructureType.TimelineSemaphoreSubmitInfoVersion;
             pointer->Next = null;
-            pointer->WaitSemaphoreValueCount = HeapUtil.GetLength(WaitSemaphoreValues);
+            pointer->WaitSemaphoreValueCount = (uint)(Interop.HeapUtil.GetLength(WaitSemaphoreValues));
             if (WaitSemaphoreValues != null)
             {
-                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(WaitSemaphoreValues.Length).ToPointer();
-                for (var index = 0; index < (uint)WaitSemaphoreValues.Length; index++) fieldPointer[index] = WaitSemaphoreValues[index];
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(WaitSemaphoreValues.Length).ToPointer());
+                for(int index = 0; index < (uint)(WaitSemaphoreValues.Length); index++)
+                {
+                    fieldPointer[index] = WaitSemaphoreValues[index];
+                }
                 pointer->WaitSemaphoreValues = fieldPointer;
             }
             else
             {
                 pointer->WaitSemaphoreValues = null;
             }
-            pointer->SignalSemaphoreValueCount = HeapUtil.GetLength(SignalSemaphoreValues);
+            pointer->SignalSemaphoreValueCount = (uint)(Interop.HeapUtil.GetLength(SignalSemaphoreValues));
             if (SignalSemaphoreValues != null)
             {
-                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(SignalSemaphoreValues.Length).ToPointer();
-                for (var index = 0; index < (uint)SignalSemaphoreValues.Length; index++) fieldPointer[index] = SignalSemaphoreValues[index];
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(SignalSemaphoreValues.Length).ToPointer());
+                for(int index = 0; index < (uint)(SignalSemaphoreValues.Length); index++)
+                {
+                    fieldPointer[index] = SignalSemaphoreValues[index];
+                }
                 pointer->SignalSemaphoreValues = fieldPointer;
             }
             else

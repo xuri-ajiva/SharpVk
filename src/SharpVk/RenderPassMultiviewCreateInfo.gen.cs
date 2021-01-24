@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public int[] ViewOffsets
@@ -47,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint[] CorrelationMasks
@@ -55,42 +54,51 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.RenderPassMultiviewCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.RenderPassMultiviewCreateInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassMultiviewCreateInfoVersion;
             pointer->Next = null;
-            pointer->SubpassCount = HeapUtil.GetLength(ViewMasks);
+            pointer->SubpassCount = (uint)(Interop.HeapUtil.GetLength(ViewMasks));
             if (ViewMasks != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(ViewMasks.Length).ToPointer();
-                for (var index = 0; index < (uint)ViewMasks.Length; index++) fieldPointer[index] = ViewMasks[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(ViewMasks.Length).ToPointer());
+                for(int index = 0; index < (uint)(ViewMasks.Length); index++)
+                {
+                    fieldPointer[index] = ViewMasks[index];
+                }
                 pointer->ViewMasks = fieldPointer;
             }
             else
             {
                 pointer->ViewMasks = null;
             }
-            pointer->DependencyCount = HeapUtil.GetLength(ViewOffsets);
+            pointer->DependencyCount = (uint)(Interop.HeapUtil.GetLength(ViewOffsets));
             if (ViewOffsets != null)
             {
-                var fieldPointer = (int*)HeapUtil.AllocateAndClear<int>(ViewOffsets.Length).ToPointer();
-                for (var index = 0; index < (uint)ViewOffsets.Length; index++) fieldPointer[index] = ViewOffsets[index];
+                var fieldPointer = (int*)(Interop.HeapUtil.AllocateAndClear<int>(ViewOffsets.Length).ToPointer());
+                for(int index = 0; index < (uint)(ViewOffsets.Length); index++)
+                {
+                    fieldPointer[index] = ViewOffsets[index];
+                }
                 pointer->ViewOffsets = fieldPointer;
             }
             else
             {
                 pointer->ViewOffsets = null;
             }
-            pointer->CorrelationMaskCount = HeapUtil.GetLength(CorrelationMasks);
+            pointer->CorrelationMaskCount = (uint)(Interop.HeapUtil.GetLength(CorrelationMasks));
             if (CorrelationMasks != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(CorrelationMasks.Length).ToPointer();
-                for (var index = 0; index < (uint)CorrelationMasks.Length; index++) fieldPointer[index] = CorrelationMasks[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(CorrelationMasks.Length).ToPointer());
+                for(int index = 0; index < (uint)(CorrelationMasks.Length); index++)
+                {
+                    fieldPointer[index] = CorrelationMasks[index];
+                }
                 pointer->CorrelationMasks = fieldPointer;
             }
             else

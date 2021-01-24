@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,21 +32,21 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct DisplayPlaneInfo2
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public DisplayMode Mode;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint PlaneIndex;
+        public DisplayMode Mode; 
+        
+        /// <summary>
+        /// </summary>
+        public uint PlaneIndex; 
     }
 }

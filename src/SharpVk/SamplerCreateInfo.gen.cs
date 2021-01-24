@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,29 +27,29 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created sampler.
+    /// Structure specifying parameters of a newly created sampler.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SamplerCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SamplerCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The magnification filter to apply to lookups.
+        /// The magnification filter to apply to lookups.
         /// </summary>
         public Filter MagFilter
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Filter MinFilter
@@ -57,7 +57,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SamplerMipmapMode MipmapMode
@@ -65,7 +65,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SamplerAddressMode AddressModeU
@@ -73,7 +73,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SamplerAddressMode AddressModeV
@@ -81,7 +81,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SamplerAddressMode AddressModeW
@@ -89,7 +89,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MipLodBias
@@ -97,7 +97,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool AnisotropyEnable
@@ -105,7 +105,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MaxAnisotropy
@@ -113,7 +113,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool CompareEnable
@@ -121,7 +121,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public CompareOp CompareOp
@@ -129,7 +129,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MinLod
@@ -137,7 +137,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MaxLod
@@ -145,7 +145,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public BorderColor BorderColor
@@ -153,7 +153,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool UnnormalizedCoordinates
@@ -161,19 +161,23 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.SamplerCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SamplerCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->MagFilter = MagFilter;
             pointer->MinFilter = MinFilter;
             pointer->MipmapMode = MipmapMode;

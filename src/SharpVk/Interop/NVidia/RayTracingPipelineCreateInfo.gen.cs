@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,49 +32,49 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct RayTracingPipelineCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public PipelineCreateFlags Flags;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint StageCount;
-
+        public PipelineCreateFlags Flags; 
+        
         /// <summary>
         /// </summary>
-        public PipelineShaderStageCreateInfo* Stages;
-
+        public uint StageCount; 
+        
         /// <summary>
         /// </summary>
-        public uint GroupCount;
-
+        public PipelineShaderStageCreateInfo* Stages; 
+        
         /// <summary>
         /// </summary>
-        public RayTracingShaderGroupCreateInfo* Groups;
-
+        public uint GroupCount; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxRecursionDepth;
-
+        public RayTracingShaderGroupCreateInfo* Groups; 
+        
         /// <summary>
         /// </summary>
-        public PipelineLayout Layout;
-
+        public uint MaxRecursionDepth; 
+        
         /// <summary>
         /// </summary>
-        public Pipeline BasePipelineHandle;
-
+        public PipelineLayout Layout; 
+        
         /// <summary>
         /// </summary>
-        public int BasePipelineIndex;
+        public Pipeline BasePipelineHandle; 
+        
+        /// <summary>
+        /// </summary>
+        public int BasePipelineIndex; 
     }
 }

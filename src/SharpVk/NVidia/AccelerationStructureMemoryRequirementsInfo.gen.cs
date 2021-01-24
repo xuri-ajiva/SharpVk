@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,30 +33,30 @@ namespace SharpVk.NVidia
     {
         /// <summary>
         /// </summary>
-        public AccelerationStructureMemoryRequirementsType Type
+        public Khronos.AccelerationStructureMemoryRequirementsType Type
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public AccelerationStructure AccelerationStructure
+        public Khronos.AccelerationStructure AccelerationStructure
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.AccelerationStructureMemoryRequirementsInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.AccelerationStructureMemoryRequirementsInfo* pointer)
         {
-            pointer->SType = StructureType.AccelerationStructureMemoryRequirementsInfo;
+            pointer->SType = StructureType.AccelerationStructureMemoryRequirementsInfoNv;
             pointer->Next = null;
             pointer->Type = Type;
-            pointer->AccelerationStructure = AccelerationStructure?.Handle ?? default(Interop.NVidia.AccelerationStructure);
+            pointer->AccelerationStructure = AccelerationStructure?.Handle ?? default;
         }
     }
 }

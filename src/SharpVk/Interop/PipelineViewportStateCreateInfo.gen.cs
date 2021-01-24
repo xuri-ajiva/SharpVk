@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,41 +32,41 @@ namespace SharpVk.Interop
     public unsafe struct PipelineViewportStateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public PipelineViewportStateCreateFlags Flags;
-
+        public PipelineViewportStateCreateFlags Flags; 
+        
         /// <summary>
-        ///     The number of viewports used by the pipeline.
+        /// The number of viewports used by the pipeline.
         /// </summary>
-        public uint ViewportCount;
-
+        public uint ViewportCount; 
+        
         /// <summary>
-        ///     An array of Viewport structures, defining the viewport transforms.
-        ///     If the viewport state is dynamic, this member is ignored.
+        /// An array of Viewport structures, defining the viewport transforms.
+        /// If the viewport state is dynamic, this member is ignored.
         /// </summary>
-        public Viewport* Viewports;
-
+        public Viewport* Viewports; 
+        
         /// <summary>
-        ///     The number of scissors and must match the number of viewports.
+        /// The number of scissors and must match the number of viewports.
         /// </summary>
-        public uint ScissorCount;
-
+        public uint ScissorCount; 
+        
         /// <summary>
-        ///     An array of Rect2D structures which define the rectangular bounds
-        ///     of the scissor for the corresponding viewport. If the scissor state
-        ///     is dynamic, this member is ignored.
+        /// An array of Rect2D structures which define the rectangular bounds
+        /// of the scissor for the corresponding viewport. If the scissor state
+        /// is dynamic, this member is ignored.
         /// </summary>
-        public Rect2D* Scissors;
+        public Rect2D* Scissors; 
     }
 }

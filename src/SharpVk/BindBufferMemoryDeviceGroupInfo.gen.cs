@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,20 +38,23 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.BindBufferMemoryDeviceGroupInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.BindBufferMemoryDeviceGroupInfo* pointer)
         {
             pointer->SType = StructureType.BindBufferMemoryDeviceGroupInfoVersion;
             pointer->Next = null;
-            pointer->DeviceIndexCount = HeapUtil.GetLength(DeviceIndices);
+            pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(DeviceIndices));
             if (DeviceIndices != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(DeviceIndices.Length).ToPointer();
-                for (var index = 0; index < (uint)DeviceIndices.Length; index++) fieldPointer[index] = DeviceIndices[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(DeviceIndices.Length).ToPointer());
+                for(int index = 0; index < (uint)(DeviceIndices.Length); index++)
+                {
+                    fieldPointer[index] = DeviceIndices[index];
+                }
                 pointer->DeviceIndices = fieldPointer;
             }
             else

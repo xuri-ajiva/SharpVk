@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -42,29 +42,29 @@ namespace SharpVk
             Offset = offset;
             Stride = stride;
         }
-
+        
         /// <summary>
         /// </summary>
-        public uint DestinationBinding;
-
+        public uint DestinationBinding; 
+        
         /// <summary>
         /// </summary>
-        public uint DestinationArrayElement;
-
+        public uint DestinationArrayElement; 
+        
         /// <summary>
         /// </summary>
-        public uint DescriptorCount;
-
+        public uint DescriptorCount; 
+        
         /// <summary>
         /// </summary>
-        public DescriptorType DescriptorType;
-
+        public DescriptorType DescriptorType; 
+        
         /// <summary>
         /// </summary>
-        public HostSize Offset;
-
+        public HostSize Offset; 
+        
         /// <summary>
         /// </summary>
-        public HostSize Stride;
+        public HostSize Stride; 
     }
 }

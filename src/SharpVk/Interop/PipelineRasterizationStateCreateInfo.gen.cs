@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,75 +32,75 @@ namespace SharpVk.Interop
     public unsafe struct PipelineRasterizationStateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public PipelineRasterizationStateCreateFlags Flags;
-
+        public PipelineRasterizationStateCreateFlags Flags; 
+        
         /// <summary>
-        ///     depthClampEnable controls whether to clamp the fragment's depth
-        ///     values instead of clipping primitives to the z planes of the
-        ///     frustum, as described in Primitive Clipping.
+        /// depthClampEnable controls whether to clamp the fragment's depth
+        /// values instead of clipping primitives to the z planes of the
+        /// frustum, as described in Primitive Clipping.
         /// </summary>
-        public Bool32 DepthClampEnable;
-
+        public Bool32 DepthClampEnable; 
+        
         /// <summary>
-        ///     rasterizerDiscardEnable controls whether primitives are discarded
-        ///     immediately before the rasterization stage.
+        /// rasterizerDiscardEnable controls whether primitives are discarded
+        /// immediately before the rasterization stage.
         /// </summary>
-        public Bool32 RasterizerDiscardEnable;
-
+        public Bool32 RasterizerDiscardEnable; 
+        
         /// <summary>
-        ///     The triangle rendering mode. See PolygonMode.
+        /// The triangle rendering mode. See PolygonMode.
         /// </summary>
-        public PolygonMode PolygonMode;
-
+        public PolygonMode PolygonMode; 
+        
         /// <summary>
-        ///     The triangle facing direction used for primitive culling. See
-        ///     CullModeFlagBits.
+        /// The triangle facing direction used for primitive culling. See
+        /// CullModeFlagBits.
         /// </summary>
-        public CullModeFlags CullMode;
-
+        public CullModeFlags CullMode; 
+        
         /// <summary>
-        ///     The front-facing triangle orientation to be used for culling. See
-        ///     FrontFace.
+        /// The front-facing triangle orientation to be used for culling. See
+        /// FrontFace.
         /// </summary>
-        public FrontFace FrontFace;
-
+        public FrontFace FrontFace; 
+        
         /// <summary>
-        ///     depthBiasEnable controls whether to bias fragment depth values.
+        /// depthBiasEnable controls whether to bias fragment depth values.
         /// </summary>
-        public Bool32 DepthBiasEnable;
-
+        public Bool32 DepthBiasEnable; 
+        
         /// <summary>
-        ///     A scalar factor controlling the constant depth value added to each
-        ///     fragment.
+        /// A scalar factor controlling the constant depth value added to each
+        /// fragment.
         /// </summary>
-        public float DepthBiasConstantFactor;
-
+        public float DepthBiasConstantFactor; 
+        
         /// <summary>
-        ///     The maximum (or minimum) depth bias of a fragment.
+        /// The maximum (or minimum) depth bias of a fragment.
         /// </summary>
-        public float DepthBiasClamp;
-
+        public float DepthBiasClamp; 
+        
         /// <summary>
-        ///     A scalar factor applied to a fragment's slope in depth bias
-        ///     calculations.
+        /// A scalar factor applied to a fragment's slope in depth bias
+        /// calculations.
         /// </summary>
-        public float DepthBiasSlopeFactor;
-
+        public float DepthBiasSlopeFactor; 
+        
         /// <summary>
-        ///     The width of rasterized line segments.
+        /// The width of rasterized line segments.
         /// </summary>
-        public float LineWidth;
+        public float LineWidth; 
     }
 }

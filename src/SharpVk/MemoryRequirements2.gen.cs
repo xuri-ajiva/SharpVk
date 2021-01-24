@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,14 +38,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryRequirements2 MarshalFrom(Interop.MemoryRequirements2* pointer)
+        internal static unsafe MemoryRequirements2 MarshalFrom(SharpVk.Interop.MemoryRequirements2* pointer)
         {
-            var result = default(MemoryRequirements2);
+            MemoryRequirements2 result = default;
             result.MemoryRequirements = pointer->MemoryRequirements;
             return result;
         }

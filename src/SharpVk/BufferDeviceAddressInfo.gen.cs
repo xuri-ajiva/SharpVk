@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,29 +27,29 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying the buffer to query an address for
+    /// Structure specifying the buffer to query an address for
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferDeviceAddressInfo
     {
         /// <summary>
-        ///     The buffer whose address is being queried.
+        /// The buffer whose address is being queried.
         /// </summary>
         public Buffer Buffer
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.BufferDeviceAddressInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.BufferDeviceAddressInfo* pointer)
         {
             pointer->SType = StructureType.BufferDeviceAddressInfoVersion;
             pointer->Next = null;
-            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            pointer->Buffer = Buffer?.Handle ?? default;
         }
     }
 }

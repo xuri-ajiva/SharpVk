@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure describing push descriptor limits that can be supported by an
-    ///     implementation.
+    /// Structure describing push descriptor limits that can be supported by an
+    /// implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDevicePushDescriptorProperties
@@ -40,14 +40,14 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePushDescriptorProperties MarshalFrom(Interop.Khronos.PhysicalDevicePushDescriptorProperties* pointer)
+        internal static unsafe PhysicalDevicePushDescriptorProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePushDescriptorProperties* pointer)
         {
-            var result = default(PhysicalDevicePushDescriptorProperties);
+            PhysicalDevicePushDescriptorProperties result = default;
             result.MaxPushDescriptors = pointer->MaxPushDescriptors;
             return result;
         }

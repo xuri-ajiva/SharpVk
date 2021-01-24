@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool UniformAndStorageBuffer8BitAccess
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StoragePushConstant8
@@ -54,27 +54,27 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDevice8BitStorageFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDevice8BitStorageFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDevice8BitStorageFeaturesVersion;
+            pointer->SType = StructureType.PhysicalDevice8bitStorageFeaturesVersion;
             pointer->Next = null;
             pointer->StorageBuffer8BitAccess = StorageBuffer8BitAccess;
             pointer->UniformAndStorageBuffer8BitAccess = UniformAndStorageBuffer8BitAccess;
             pointer->StoragePushConstant8 = StoragePushConstant8;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevice8BitStorageFeatures MarshalFrom(Interop.PhysicalDevice8BitStorageFeatures* pointer)
+        internal static unsafe PhysicalDevice8BitStorageFeatures MarshalFrom(SharpVk.Interop.PhysicalDevice8BitStorageFeatures* pointer)
         {
-            var result = default(PhysicalDevice8BitStorageFeatures);
+            PhysicalDevice8BitStorageFeatures result = default;
             result.StorageBuffer8BitAccess = pointer->StorageBuffer8BitAccess;
             result.UniformAndStorageBuffer8BitAccess = pointer->UniformAndStorageBuffer8BitAccess;
             result.StoragePushConstant8 = pointer->StoragePushConstant8;

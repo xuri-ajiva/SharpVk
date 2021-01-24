@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ namespace SharpVk.Multivendor
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageViewAstcDecodeMode
+    public struct ImageViewASTCDecodeMode
     {
         /// <summary>
         /// </summary>
@@ -38,25 +38,25 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.ImageViewAstcDecodeMode* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ImageViewASTCDecodeMode* pointer)
         {
             pointer->SType = StructureType.ImageViewAstcDecodeMode;
             pointer->Next = null;
             pointer->DecodeMode = DecodeMode;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ImageViewAstcDecodeMode MarshalFrom(Interop.Multivendor.ImageViewAstcDecodeMode* pointer)
+        internal static unsafe ImageViewASTCDecodeMode MarshalFrom(SharpVk.Interop.Multivendor.ImageViewASTCDecodeMode* pointer)
         {
-            var result = default(ImageViewAstcDecodeMode);
+            ImageViewASTCDecodeMode result = default;
             result.DecodeMode = pointer->DecodeMode;
             return result;
         }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool VulkanMemoryModelDeviceScope
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool VulkanMemoryModelAvailabilityVisibilityChains
@@ -54,12 +54,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceVulkanMemoryModelFeaturesVersion;
             pointer->Next = null;
@@ -67,14 +67,14 @@ namespace SharpVk
             pointer->VulkanMemoryModelDeviceScope = VulkanMemoryModelDeviceScope;
             pointer->VulkanMemoryModelAvailabilityVisibilityChains = VulkanMemoryModelAvailabilityVisibilityChains;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceVulkanMemoryModelFeatures MarshalFrom(Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
+        internal static unsafe PhysicalDeviceVulkanMemoryModelFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
         {
-            var result = default(PhysicalDeviceVulkanMemoryModelFeatures);
+            PhysicalDeviceVulkanMemoryModelFeatures result = default;
             result.VulkanMemoryModel = pointer->VulkanMemoryModel;
             result.VulkanMemoryModelDeviceScope = pointer->VulkanMemoryModelDeviceScope;
             result.VulkanMemoryModelAvailabilityVisibilityChains = pointer->VulkanMemoryModelAvailabilityVisibilityChains;

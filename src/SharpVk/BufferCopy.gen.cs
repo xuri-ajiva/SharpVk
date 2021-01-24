@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a buffer copy operation.
+    /// Structure specifying a buffer copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferCopy
@@ -40,21 +40,21 @@ namespace SharpVk
             DestinationOffset = destinationOffset;
             Size = size;
         }
-
+        
         /// <summary>
-        ///     The starting offset in bytes from the start of source buffer.
+        /// The starting offset in bytes from the start of source buffer.
         /// </summary>
-        public ulong SourceOffset;
-
+        public ulong SourceOffset; 
+        
         /// <summary>
-        ///     The starting offset in bytes from the start of the destination
-        ///     buffer.
+        /// The starting offset in bytes from the start of the destination
+        /// buffer.
         /// </summary>
-        public ulong DestinationOffset;
-
+        public ulong DestinationOffset; 
+        
         /// <summary>
-        ///     The number of bytes to copy.
+        /// The number of bytes to copy.
         /// </summary>
-        public ulong Size;
+        public ulong Size; 
     }
 }

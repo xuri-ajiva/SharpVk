@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
@@ -39,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public CoarseSampleOrderCustom[] CustomSampleOrders
@@ -47,21 +46,24 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PipelineViewportCoarseSampleOrderStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportCoarseSampleOrderStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportCoarseSampleOrderStateCreateInfo;
             pointer->Next = null;
             pointer->SampleOrderType = SampleOrderType;
-            pointer->CustomSampleOrderCount = HeapUtil.GetLength(CustomSampleOrders);
+            pointer->CustomSampleOrderCount = (uint)(Interop.HeapUtil.GetLength(CustomSampleOrders));
             if (CustomSampleOrders != null)
             {
-                var fieldPointer = (Interop.NVidia.CoarseSampleOrderCustom*)HeapUtil.AllocateAndClear<Interop.NVidia.CoarseSampleOrderCustom>(CustomSampleOrders.Length).ToPointer();
-                for (var index = 0; index < (uint)CustomSampleOrders.Length; index++) CustomSampleOrders[index].MarshalTo(&fieldPointer[index]);
+                var fieldPointer = (SharpVk.Interop.NVidia.CoarseSampleOrderCustom*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.NVidia.CoarseSampleOrderCustom>(CustomSampleOrders.Length).ToPointer());
+                for(int index = 0; index < (uint)(CustomSampleOrders.Length); index++)
+                {
+                    CustomSampleOrders[index].MarshalTo(&fieldPointer[index]);
+                }
                 pointer->CustomSampleOrders = fieldPointer;
             }
             else

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float MaxExtraPrimitiveOverestimationSize
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public float ExtraPrimitiveOverestimationSizeGranularity
@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool PrimitiveUnderestimation
@@ -62,7 +62,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ConservativePointAndLineRasterization
@@ -70,7 +70,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DegenerateTrianglesRasterized
@@ -78,7 +78,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DegenerateLinesRasterized
@@ -86,7 +86,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FullyCoveredFragmentShaderInputVariable
@@ -94,7 +94,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ConservativeRasterizationPostDepthCoverage
@@ -102,14 +102,14 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceConservativeRasterizationProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceConservativeRasterizationProperties* pointer)
+        internal static unsafe PhysicalDeviceConservativeRasterizationProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceConservativeRasterizationProperties* pointer)
         {
-            var result = default(PhysicalDeviceConservativeRasterizationProperties);
+            PhysicalDeviceConservativeRasterizationProperties result = default;
             result.PrimitiveOverestimationSize = pointer->PrimitiveOverestimationSize;
             result.MaxExtraPrimitiveOverestimationSize = pointer->MaxExtraPrimitiveOverestimationSize;
             result.ExtraPrimitiveOverestimationSizeGranularity = pointer->ExtraPrimitiveOverestimationSizeGranularity;

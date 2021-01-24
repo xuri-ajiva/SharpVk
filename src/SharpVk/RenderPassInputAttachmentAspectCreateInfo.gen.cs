@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,20 +38,23 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.RenderPassInputAttachmentAspectCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.RenderPassInputAttachmentAspectCreateInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassInputAttachmentAspectCreateInfoVersion;
             pointer->Next = null;
-            pointer->AspectReferenceCount = HeapUtil.GetLength(AspectReferences);
+            pointer->AspectReferenceCount = (uint)(Interop.HeapUtil.GetLength(AspectReferences));
             if (AspectReferences != null)
             {
-                var fieldPointer = (InputAttachmentAspectReference*)HeapUtil.AllocateAndClear<InputAttachmentAspectReference>(AspectReferences.Length).ToPointer();
-                for (var index = 0; index < (uint)AspectReferences.Length; index++) fieldPointer[index] = AspectReferences[index];
+                var fieldPointer = (InputAttachmentAspectReference*)(Interop.HeapUtil.AllocateAndClear<InputAttachmentAspectReference>(AspectReferences.Length).ToPointer());
+                for(int index = 0; index < (uint)(AspectReferences.Length); index++)
+                {
+                    fieldPointer[index] = AspectReferences[index];
+                }
                 pointer->AspectReferences = fieldPointer;
             }
             else

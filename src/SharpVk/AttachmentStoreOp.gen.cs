@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,17 +25,21 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Specify how contents of an attachment are treated at the end of a
-    ///     subpass.
+    /// Specify how contents of an attachment are treated at the end of a
+    /// subpass.
     /// </summary>
     public enum AttachmentStoreOp
     {
         /// <summary>
         /// </summary>
-        Store = 0,
-
+        Store = 0, 
+        
         /// <summary>
         /// </summary>
-        DontCare = 1
+        DontCare = 1, 
+        
+        /// <summary>
+        /// </summary>
+        None = 1000301000, 
     }
 }

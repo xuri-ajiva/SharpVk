@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,44 +33,44 @@ namespace SharpVk.Interop
     public unsafe struct AllocationCallbacks
     {
         /// <summary>
-        ///     A value to be interpreted by the implementation of the callbacks.
-        ///     When any of the callbacks in AllocationCallbacks are called, the
-        ///     Vulkan implementation will pass this value as the first parameter
-        ///     to the callback. This value can vary each time an allocator is
-        ///     passed into a command, even when the same object takes an allocator
-        ///     in multiple commands.
+        /// A value to be interpreted by the implementation of the callbacks.
+        /// When any of the callbacks in AllocationCallbacks are called, the
+        /// Vulkan implementation will pass this value as the first parameter
+        /// to the callback. This value can vary each time an allocator is
+        /// passed into a command, even when the same object takes an allocator
+        /// in multiple commands.
         /// </summary>
-        public void* UserData;
-
+        public void* UserData; 
+        
         /// <summary>
-        ///     An application-defined memory allocation function of type
-        ///     AllocationFunction.
+        /// An application-defined memory allocation function of type
+        /// AllocationFunction.
         /// </summary>
-        public IntPtr Allocation;
-
+        public IntPtr Allocation; 
+        
         /// <summary>
-        ///     An application-defined memory reallocation function of type
-        ///     ReallocationFunction.
+        /// An application-defined memory reallocation function of type
+        /// ReallocationFunction.
         /// </summary>
-        public IntPtr Reallocation;
-
+        public IntPtr Reallocation; 
+        
         /// <summary>
-        ///     An application-defined memory free function of type FreeFunction.
+        /// An application-defined memory free function of type FreeFunction.
         /// </summary>
-        public IntPtr Free;
-
+        public IntPtr Free; 
+        
         /// <summary>
-        ///     An application-defined function that is called by the
-        ///     implementation when the implementation makes internal allocations,
-        ///     and it is of type InternalAllocationNotification.
+        /// An application-defined function that is called by the
+        /// implementation when the implementation makes internal allocations,
+        /// and it is of type InternalAllocationNotification.
         /// </summary>
-        public IntPtr InternalAllocation;
-
+        public IntPtr InternalAllocation; 
+        
         /// <summary>
-        ///     An application-defined function that is called by the
-        ///     implementation when the implementation frees internal allocations,
-        ///     and it is of type InternalFreeNotification.
+        /// An application-defined function that is called by the
+        /// implementation when the implementation frees internal allocations,
+        /// and it is of type InternalFreeNotification.
         /// </summary>
-        public IntPtr InternalFree;
+        public IntPtr InternalFree; 
     }
 }

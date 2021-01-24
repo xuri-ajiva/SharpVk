@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum DescriptorBindingFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
         /// </summary>
-        UpdateAfterBind = 1 << 0,
-
+        UpdateAfterBind = 1 << 0, 
+        
         /// <summary>
         /// </summary>
-        UpdateUnusedWhilePending = 1 << 1,
-
+        UpdateUnusedWhilePending = 1 << 1, 
+        
         /// <summary>
         /// </summary>
-        PartiallyBound = 1 << 2,
-
+        PartiallyBound = 1 << 2, 
+        
         /// <summary>
         /// </summary>
-        VariableDescriptorCount = 1 << 3
+        VariableDescriptorCount = 1 << 3, 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SharingMode SharingMode
@@ -47,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint[] QueueFamilyIndices
@@ -55,22 +54,25 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceImageDrmFormatModifierInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceImageDrmFormatModifierInfo* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceImageDrmFormatModifierInfo;
             pointer->Next = null;
             pointer->DrmFormatModifier = DrmFormatModifier;
             pointer->SharingMode = SharingMode;
-            pointer->QueueFamilyIndexCount = HeapUtil.GetLength(QueueFamilyIndices);
+            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(QueueFamilyIndices));
             if (QueueFamilyIndices != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer();
-                for (var index = 0; index < (uint)QueueFamilyIndices.Length; index++) fieldPointer[index] = QueueFamilyIndices[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer());
+                for(int index = 0; index < (uint)(QueueFamilyIndices.Length); index++)
+                {
+                    fieldPointer[index] = QueueFamilyIndices[index];
+                }
                 pointer->QueueFamilyIndices = fieldPointer;
             }
             else

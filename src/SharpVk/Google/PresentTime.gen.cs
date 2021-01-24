@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,22 +33,22 @@ namespace SharpVk.Google
     {
         /// <summary>
         /// </summary>
-        public static PresentTime Zero => new();
-
+        public static PresentTime Zero => new PresentTime();
+        
         /// <summary>
         /// </summary>
-        public PresentTime(uint presentId, ulong desiredPresentTime)
+        public PresentTime(uint presentID, ulong desiredPresentTime)
         {
-            PresentID = presentId;
+            PresentID = presentID;
             DesiredPresentTime = desiredPresentTime;
         }
-
+        
         /// <summary>
         /// </summary>
-        public uint PresentID;
-
+        public uint PresentID; 
+        
         /// <summary>
         /// </summary>
-        public ulong DesiredPresentTime;
+        public ulong DesiredPresentTime; 
     }
 }

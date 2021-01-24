@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string Name
@@ -47,7 +46,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string Category
@@ -55,7 +54,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string Description
@@ -63,18 +62,18 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PerformanceCounterDescription MarshalFrom(Interop.Khronos.PerformanceCounterDescription* pointer)
+        internal static unsafe PerformanceCounterDescription MarshalFrom(SharpVk.Interop.Khronos.PerformanceCounterDescription* pointer)
         {
-            var result = default(PerformanceCounterDescription);
+            PerformanceCounterDescription result = default;
             result.Flags = pointer->Flags;
-            result.Name = HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
-            result.Category = HeapUtil.MarshalStringFrom(pointer->Category, Constants.MaxDescriptionSize, true);
-            result.Description = HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
+            result.Name = Interop.HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
+            result.Category = Interop.HeapUtil.MarshalStringFrom(pointer->Category, Constants.MaxDescriptionSize, true);
+            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
             return result;
         }
     }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SharpVk.ExternalFenceHandleTypeFlags HandleType
@@ -46,16 +46,16 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.FenceGetFileDescriptorInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.FenceGetFileDescriptorInfo* pointer)
         {
             pointer->SType = StructureType.FenceGetFileDescriptorInfo;
             pointer->Next = null;
-            pointer->Fence = Fence?.Handle ?? default(Interop.Fence);
+            pointer->Fence = Fence?.Handle ?? default;
             pointer->HandleType = HandleType;
         }
     }

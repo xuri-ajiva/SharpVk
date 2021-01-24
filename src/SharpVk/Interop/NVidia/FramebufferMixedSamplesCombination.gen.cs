@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
@@ -33,39 +32,39 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct FramebufferMixedSamplesCombination
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Specifies the coverage reduction mode and is of type
-        ///     VkCoverageReductionModeNV.
+        /// Specifies the coverage reduction mode and is of type
+        /// VkCoverageReductionModeNV.
         /// </summary>
-        public CoverageReductionMode CoverageReductionMode;
-
+        public SharpVk.NVidia.CoverageReductionMode CoverageReductionMode; 
+        
         /// <summary>
-        ///     Specifies the number of rasterization samples in the supported
-        ///     combination.
+        /// Specifies the number of rasterization samples in the supported
+        /// combination.
         /// </summary>
-        public SampleCountFlags RasterizationSamples;
-
+        public SampleCountFlags RasterizationSamples; 
+        
         /// <summary>
-        ///     Specifies the number of samples in the depth stencil attachment in
-        ///     the supported combination. A value of 0 indicates the combination
-        ///     does not have a depth stencil attachment.
+        /// Specifies the number of samples in the depth stencil attachment in
+        /// the supported combination. A value of 0 indicates the combination
+        /// does not have a depth stencil attachment.
         /// </summary>
-        public SampleCountFlags DepthStencilSamples;
-
+        public SampleCountFlags DepthStencilSamples; 
+        
         /// <summary>
-        ///     Specifies the number of color samples in a color attachment in the
-        ///     supported combination. A value of 0 indicates the combination does
-        ///     not have a color attachment.
+        /// Specifies the number of color samples in a color attachment in the
+        /// supported combination. A value of 0 indicates the combination does
+        /// not have a color attachment.
         /// </summary>
-        public SampleCountFlags ColorSamples;
+        public SampleCountFlags ColorSamples; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,20 +38,23 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutBindingFlagsCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutBindingFlagsCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetLayoutBindingFlagsCreateInfoVersion;
             pointer->Next = null;
-            pointer->BindingCount = HeapUtil.GetLength(BindingFlags);
+            pointer->BindingCount = (uint)(Interop.HeapUtil.GetLength(BindingFlags));
             if (BindingFlags != null)
             {
-                var fieldPointer = (DescriptorBindingFlags*)HeapUtil.AllocateAndClear<DescriptorBindingFlags>(BindingFlags.Length).ToPointer();
-                for (var index = 0; index < (uint)BindingFlags.Length; index++) fieldPointer[index] = BindingFlags[index];
+                var fieldPointer = (DescriptorBindingFlags*)(Interop.HeapUtil.AllocateAndClear<DescriptorBindingFlags>(BindingFlags.Length).ToPointer());
+                for(int index = 0; index < (uint)(BindingFlags.Length); index++)
+                {
+                    fieldPointer[index] = BindingFlags[index];
+                }
                 pointer->BindingFlags = fieldPointer;
             }
             else

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,22 +32,22 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
-        ///     more external memory handle types. The types must all be compatible
-        ///     with each other and the other image creation parameters, as
-        ///     reported by
-        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
+        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
+        /// more external memory handle types. The types must all be compatible
+        /// with each other and the other image creation parameters, as
+        /// reported by
+        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleTypes;
+        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleTypes; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Buffer Buffer
@@ -46,17 +46,17 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.MemoryDedicatedAllocateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.MemoryDedicatedAllocateInfo* pointer)
         {
             pointer->SType = StructureType.MemoryDedicatedAllocateInfoVersion;
             pointer->Next = null;
-            pointer->Image = Image?.Handle ?? default(Interop.Image);
-            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            pointer->Image = Image?.Handle ?? default;
+            pointer->Buffer = Buffer?.Handle ?? default;
         }
     }
 }

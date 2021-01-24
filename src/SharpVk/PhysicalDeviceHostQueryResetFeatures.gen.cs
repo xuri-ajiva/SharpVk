@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceHostQueryResetFeaturesVersion;
             pointer->Next = null;
             pointer->HostQueryReset = HostQueryReset;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceHostQueryResetFeatures MarshalFrom(Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
+        internal static unsafe PhysicalDeviceHostQueryResetFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
         {
-            var result = default(PhysicalDeviceHostQueryResetFeatures);
+            PhysicalDeviceHostQueryResetFeatures result = default;
             result.HostQueryReset = pointer->HostQueryReset;
             return result;
         }

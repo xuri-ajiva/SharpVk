@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,49 +32,49 @@ namespace SharpVk.Interop
     public unsafe struct InstanceCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public InstanceCreateFlags Flags;
-
+        public InstanceCreateFlags Flags; 
+        
         /// <summary>
-        ///     Null or an instance of ApplicationInfo. If not Null, this
-        ///     information helps implementations recognize behavior inherent to
-        ///     classes of applications. ApplicationInfo is defined in detail
-        ///     below.
+        /// Null or an instance of ApplicationInfo. If not Null, this
+        /// information helps implementations recognize behavior inherent to
+        /// classes of applications. ApplicationInfo is defined in detail
+        /// below.
         /// </summary>
-        public ApplicationInfo* ApplicationInfo;
-
+        public ApplicationInfo* ApplicationInfo; 
+        
         /// <summary>
-        ///     The number of global layers to enable.
+        /// The number of global layers to enable.
         /// </summary>
-        public uint EnabledLayerCount;
-
+        public uint EnabledLayerCount; 
+        
         /// <summary>
-        ///     An array of enabledLayerCount strings containing the names of
-        ///     layers to enable for the created instance. See the Layers section
-        ///     for further details.
+        /// An array of enabledLayerCount strings containing the names of
+        /// layers to enable for the created instance. See the Layers section
+        /// for further details.
         /// </summary>
-        public byte** EnabledLayerNames;
-
+        public byte** EnabledLayerNames; 
+        
         /// <summary>
-        ///     The number of global extensions to enable.
+        /// The number of global extensions to enable.
         /// </summary>
-        public uint EnabledExtensionCount;
-
+        public uint EnabledExtensionCount; 
+        
         /// <summary>
-        ///     An array of enabledExtensionCount strings containing the names of
-        ///     extensions to enable.
+        /// An array of enabledExtensionCount strings containing the names of
+        /// extensions to enable.
         /// </summary>
-        public byte** EnabledExtensionNames;
+        public byte** EnabledExtensionNames; 
     }
 }

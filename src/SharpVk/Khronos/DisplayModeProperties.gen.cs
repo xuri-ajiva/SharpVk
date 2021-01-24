@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,39 +27,39 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure describing display mode properties.
+    /// Structure describing display mode properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayModeProperties
     {
         /// <summary>
-        ///     A handle to the display mode described in this structure. This
-        ///     handle will be valid for the lifetime of the Vulkan instance.
+        /// A handle to the display mode described in this structure. This
+        /// handle will be valid for the lifetime of the Vulkan instance.
         /// </summary>
         public DisplayMode DisplayMode
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A DisplayModeParametersKHR structure describing the display
-        ///     parameters associated with displayMode.
+        /// A DisplayModeParametersKHR structure describing the display
+        /// parameters associated with displayMode.
         /// </summary>
         public DisplayModeParameters Parameters
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayModeProperties MarshalFrom(Interop.Khronos.DisplayModeProperties* pointer)
+        internal static unsafe DisplayModeProperties MarshalFrom(SharpVk.Interop.Khronos.DisplayModeProperties* pointer)
         {
-            var result = default(DisplayModeProperties);
-            result.DisplayMode = new(default, pointer->DisplayMode);
+            DisplayModeProperties result = default;
+            result.DisplayMode = new DisplayMode(default, pointer->DisplayMode);
             result.Parameters = pointer->Parameters;
             return result;
         }

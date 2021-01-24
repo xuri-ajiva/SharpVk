@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying stencil operation state.
+    /// Structure specifying stencil operation state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct StencilOpState
@@ -44,45 +44,45 @@ namespace SharpVk
             WriteMask = writeMask;
             Reference = reference;
         }
-
+        
         /// <summary>
-        ///     The action performed on samples that fail the stencil test.
+        /// The action performed on samples that fail the stencil test.
         /// </summary>
-        public StencilOp FailOp;
-
+        public StencilOp FailOp; 
+        
         /// <summary>
-        ///     The action performed on samples that pass both the depth and
-        ///     stencil tests.
+        /// The action performed on samples that pass both the depth and
+        /// stencil tests.
         /// </summary>
-        public StencilOp PassOp;
-
+        public StencilOp PassOp; 
+        
         /// <summary>
-        ///     The action performed on samples that pass the stencil test and fail
-        ///     the depth test.
+        /// The action performed on samples that pass the stencil test and fail
+        /// the depth test.
         /// </summary>
-        public StencilOp DepthFailOp;
-
+        public StencilOp DepthFailOp; 
+        
         /// <summary>
-        ///     The comparison operator used in the stencil test.
+        /// The comparison operator used in the stencil test.
         /// </summary>
-        public CompareOp CompareOp;
-
+        public CompareOp CompareOp; 
+        
         /// <summary>
-        ///     Selects the bits of the unsigned integer stencil values
-        ///     participating in the stencil test.
+        /// Selects the bits of the unsigned integer stencil values
+        /// participating in the stencil test.
         /// </summary>
-        public uint CompareMask;
-
+        public uint CompareMask; 
+        
         /// <summary>
-        ///     Selects the bits of the unsigned integer stencil values updated by
-        ///     the stencil test in the stencil framebuffer attachment.
+        /// Selects the bits of the unsigned integer stencil values updated by
+        /// the stencil test in the stencil framebuffer attachment.
         /// </summary>
-        public uint WriteMask;
-
+        public uint WriteMask; 
+        
         /// <summary>
-        ///     An integer reference value that is used in the unsigned stencil
-        ///     comparison.
+        /// An integer reference value that is used in the unsigned stencil
+        /// comparison.
         /// </summary>
-        public uint Reference;
+        public uint Reference; 
     }
 }

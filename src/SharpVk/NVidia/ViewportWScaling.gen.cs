@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Structure specifying a viewport.
+    /// Structure specifying a viewport.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ViewportWScaling
     {
         /// <summary>
         /// </summary>
-        public static ViewportWScaling Zero => new();
-
+        public static ViewportWScaling Zero => new ViewportWScaling();
+        
         /// <summary>
         /// </summary>
         public ViewportWScaling(float xcoeff, float ycoeff)
@@ -43,15 +43,15 @@ namespace SharpVk.NVidia
             Xcoeff = xcoeff;
             Ycoeff = ycoeff;
         }
-
+        
         /// <summary>
-        ///     xcoeff and ycoeff are the viewport's W scaling factor for x and y
-        ///     respectively.
+        /// xcoeff and ycoeff are the viewport's W scaling factor for x and y
+        /// respectively.
         /// </summary>
-        public float Xcoeff;
-
+        public float Xcoeff; 
+        
         /// <summary>
         /// </summary>
-        public float Ycoeff;
+        public float Ycoeff; 
     }
 }

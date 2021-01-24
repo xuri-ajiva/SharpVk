@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,54 +23,60 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created pipeline cache.
+    /// Structure specifying parameters of a newly created pipeline cache.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineCacheCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public PipelineCacheCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A pointer to previously retrieved pipeline cache data. If the
-        ///     pipeline cache data is incompatible (as defined below) with the
-        ///     device, the pipeline cache will be initially empty. If
-        ///     initialDataSize is zero, pInitialData is ignored.
+        /// A pointer to previously retrieved pipeline cache data. If the
+        /// pipeline cache data is incompatible (as defined below) with the
+        /// device, the pipeline cache will be initially empty. If
+        /// initialDataSize is zero, pInitialData is ignored.
         /// </summary>
         public byte[] InitialData
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PipelineCacheCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineCacheCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCacheCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->InitialDataSize = HeapUtil.GetLength(InitialData);
+            }
+            pointer->InitialDataSize = (HostSize)(Interop.HeapUtil.GetLength(InitialData));
             if (InitialData != null)
             {
-                var fieldPointer = (byte*)HeapUtil.AllocateAndClear<byte>(InitialData.Length).ToPointer();
-                for (var index = 0; index < (uint)InitialData.Length; index++) fieldPointer[index] = InitialData[index];
+                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(InitialData.Length).ToPointer());
+                for(int index = 0; index < (uint)(InitialData.Length); index++)
+                {
+                    fieldPointer[index] = InitialData[index];
+                }
                 pointer->InitialData = fieldPointer;
             }
             else

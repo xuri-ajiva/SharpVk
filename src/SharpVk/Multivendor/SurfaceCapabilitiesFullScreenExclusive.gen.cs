@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
         {
             pointer->SType = StructureType.SurfaceCapabilitiesFullScreenExclusive;
             pointer->Next = null;
             pointer->FullScreenExclusiveSupported = FullScreenExclusiveSupported;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SurfaceCapabilitiesFullScreenExclusive MarshalFrom(Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
+        internal static unsafe SurfaceCapabilitiesFullScreenExclusive MarshalFrom(SharpVk.Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
         {
-            var result = default(SurfaceCapabilitiesFullScreenExclusive);
+            SurfaceCapabilitiesFullScreenExclusive result = default;
             result.FullScreenExclusiveSupported = pointer->FullScreenExclusiveSupported;
             return result;
         }

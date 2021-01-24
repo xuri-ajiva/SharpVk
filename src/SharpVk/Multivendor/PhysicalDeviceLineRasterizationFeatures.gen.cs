@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool BresenhamLines
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SmoothLines
@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StippledRectangularLines
@@ -62,7 +62,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StippledBresenhamLines
@@ -70,7 +70,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StippledSmoothLines
@@ -78,12 +78,12 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceLineRasterizationFeatures;
             pointer->Next = null;
@@ -94,14 +94,14 @@ namespace SharpVk.Multivendor
             pointer->StippledBresenhamLines = StippledBresenhamLines;
             pointer->StippledSmoothLines = StippledSmoothLines;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceLineRasterizationFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
+        internal static unsafe PhysicalDeviceLineRasterizationFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
         {
-            var result = default(PhysicalDeviceLineRasterizationFeatures);
+            PhysicalDeviceLineRasterizationFeatures result = default;
             result.RectangularLines = pointer->RectangularLines;
             result.BresenhamLines = pointer->BresenhamLines;
             result.SmoothLines = pointer->SmoothLines;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DiscardRectangleMode DiscardRectangleMode
@@ -47,15 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
-        /// <summary>
-        /// </summary>
-        public uint? DiscardRectangleCount
-        {
-            get;
-            set;
-        }
-
+        
         /// <summary>
         /// </summary>
         public Rect2D[] DiscardRectangles
@@ -63,28 +54,32 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineDiscardRectangleStateCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->DiscardRectangleMode = DiscardRectangleMode;
-            if (DiscardRectangleCount != null)
-                pointer->DiscardRectangleCount = DiscardRectangleCount.Value;
-            else
-                pointer->DiscardRectangleCount = HeapUtil.GetLength(DiscardRectangles);
+            pointer->DiscardRectangleCount = (uint)(Interop.HeapUtil.GetLength(DiscardRectangles));
             if (DiscardRectangles != null)
             {
-                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(DiscardRectangles.Length).ToPointer();
-                for (var index = 0; index < (uint)DiscardRectangles.Length; index++) fieldPointer[index] = DiscardRectangles[index];
+                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(DiscardRectangles.Length).ToPointer());
+                for(int index = 0; index < (uint)(DiscardRectangles.Length); index++)
+                {
+                    fieldPointer[index] = DiscardRectangles[index];
+                }
                 pointer->DiscardRectangles = fieldPointer;
             }
             else

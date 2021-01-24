@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,35 +25,35 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Specify behavior of sampling with texture coordinates outside an image.
+    /// Specify behavior of sampling with texture coordinates outside an image.
     /// </summary>
     public enum SamplerAddressMode
     {
         /// <summary>
-        ///     Indicates that the repeat wrap mode will be used.
+        /// Indicates that the repeat wrap mode will be used.
         /// </summary>
-        Repeat = 0,
-
+        Repeat = 0, 
+        
         /// <summary>
-        ///     Indicates that the mirrored repeat wrap mode will be used.
+        /// Indicates that the mirrored repeat wrap mode will be used.
         /// </summary>
-        MirroredRepeat = 1,
-
+        MirroredRepeat = 1, 
+        
         /// <summary>
-        ///     Indicates that the clamp to edge wrap mode will be used.
+        /// Indicates that the clamp to edge wrap mode will be used.
         /// </summary>
-        ClampToEdge = 2,
-
+        ClampToEdge = 2, 
+        
         /// <summary>
-        ///     Indicates that the clamp to border wrap mode will be used.
+        /// Indicates that the clamp to border wrap mode will be used.
         /// </summary>
-        ClampToBorder = 3,
-
+        ClampToBorder = 3, 
+        
         /// <summary>
-        ///     Indicates that the mirror clamp to edge wrap mode will be used.
-        ///     This is only valid if the "VK_KHR_mirror_clamp_to_edge" extension
-        ///     is enabled.
+        /// Indicates that the mirror clamp to edge wrap mode will be used.
+        /// This is only valid if the "VK_KHR_mirror_clamp_to_edge" extension
+        /// is enabled.
         /// </summary>
-        MirrorClampToEdgeKhr = 4
+        MirrorClampToEdgeKhr = 4, 
     }
 }

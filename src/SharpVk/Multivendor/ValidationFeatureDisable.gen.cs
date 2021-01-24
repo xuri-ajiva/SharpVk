@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,30 +30,30 @@ namespace SharpVk.Multivendor
     {
         /// <summary>
         /// </summary>
-        All = 0,
-
+        All = 0, 
+        
         /// <summary>
         /// </summary>
-        Shaders = 1,
-
+        Shaders = 1, 
+        
         /// <summary>
         /// </summary>
-        ThreadSafety = 2,
-
+        ThreadSafety = 2, 
+        
         /// <summary>
         /// </summary>
-        ApiParameters = 3,
-
+        ApiParameters = 3, 
+        
         /// <summary>
         /// </summary>
-        ObjectLifetimes = 4,
-
+        ObjectLifetimes = 4, 
+        
         /// <summary>
         /// </summary>
-        CoreChecks = 5,
-
+        CoreChecks = 5, 
+        
         /// <summary>
         /// </summary>
-        UniqueHandles = 6
+        UniqueHandles = 6, 
     }
 }

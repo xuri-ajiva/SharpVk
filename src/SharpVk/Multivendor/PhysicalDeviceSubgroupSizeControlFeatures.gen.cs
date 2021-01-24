@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ComputeFullSubgroups
@@ -46,26 +46,26 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSubgroupSizeControlFeatures;
             pointer->Next = null;
             pointer->SubgroupSizeControl = SubgroupSizeControl;
             pointer->ComputeFullSubgroups = ComputeFullSubgroups;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSubgroupSizeControlFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
+        internal static unsafe PhysicalDeviceSubgroupSizeControlFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
         {
-            var result = default(PhysicalDeviceSubgroupSizeControlFeatures);
+            PhysicalDeviceSubgroupSizeControlFeatures result = default;
             result.SubgroupSizeControl = pointer->SubgroupSizeControl;
             result.ComputeFullSubgroups = pointer->ComputeFullSubgroups;
             return result;

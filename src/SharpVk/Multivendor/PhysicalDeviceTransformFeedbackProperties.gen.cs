@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxTransformFeedbackBuffers
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong MaxTransformFeedbackBufferSize
@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxTransformFeedbackStreamDataSize
@@ -62,7 +62,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxTransformFeedbackBufferDataSize
@@ -70,7 +70,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxTransformFeedbackBufferDataStride
@@ -78,7 +78,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool TransformFeedbackQueries
@@ -86,7 +86,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool TransformFeedbackStreamsLinesTriangles
@@ -94,7 +94,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool TransformFeedbackRasterizationStreamSelect
@@ -102,7 +102,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool TransformFeedbackDraw
@@ -110,14 +110,14 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceTransformFeedbackProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceTransformFeedbackProperties* pointer)
+        internal static unsafe PhysicalDeviceTransformFeedbackProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackProperties* pointer)
         {
-            var result = default(PhysicalDeviceTransformFeedbackProperties);
+            PhysicalDeviceTransformFeedbackProperties result = default;
             result.MaxTransformFeedbackStreams = pointer->MaxTransformFeedbackStreams;
             result.MaxTransformFeedbackBuffers = pointer->MaxTransformFeedbackBuffers;
             result.MaxTransformFeedbackBufferSize = pointer->MaxTransformFeedbackBufferSize;

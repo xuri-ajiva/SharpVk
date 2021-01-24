@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,20 +25,20 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Specifies the tiling arrangement of data in an image.
+    /// Specifies the tiling arrangement of data in an image.
     /// </summary>
     public enum ImageTiling
     {
         /// <summary>
         /// </summary>
-        Optimal = 0,
-
+        Optimal = 0, 
+        
         /// <summary>
         /// </summary>
-        Linear = 1,
-
+        Linear = 1, 
+        
         /// <summary>
         /// </summary>
-        DrmFormatModifier = 1000158000
+        DrmFormatModifier = 1000158000, 
     }
 }

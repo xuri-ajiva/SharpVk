@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,39 +23,41 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Specify validation checks to disable for a Vulkan instance.
+    /// Specify validation checks to disable for a Vulkan instance.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ValidationFlags
     {
         /// <summary>
-        ///     An array of values specifying the validation checks to be disabled.
-        ///     Checks which may be specified include: + --
+        /// An array of values specifying the validation checks to be disabled.
+        /// Checks which may be specified include: + --
         /// </summary>
         public ValidationCheck[] DisabledValidationChecks
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.ValidationFlags* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ValidationFlags* pointer)
         {
             pointer->SType = StructureType.ValidationFlags;
             pointer->Next = null;
-            pointer->DisabledValidationCheckCount = HeapUtil.GetLength(DisabledValidationChecks);
+            pointer->DisabledValidationCheckCount = (uint)(Interop.HeapUtil.GetLength(DisabledValidationChecks));
             if (DisabledValidationChecks != null)
             {
-                var fieldPointer = (ValidationCheck*)HeapUtil.AllocateAndClear<ValidationCheck>(DisabledValidationChecks.Length).ToPointer();
-                for (var index = 0; index < (uint)DisabledValidationChecks.Length; index++) fieldPointer[index] = DisabledValidationChecks[index];
+                var fieldPointer = (ValidationCheck*)(Interop.HeapUtil.AllocateAndClear<ValidationCheck>(DisabledValidationChecks.Length).ToPointer());
+                for(int index = 0; index < (uint)(DisabledValidationChecks.Length); index++)
+                {
+                    fieldPointer[index] = DisabledValidationChecks[index];
+                }
                 pointer->DisabledValidationChecks = fieldPointer;
             }
             else
@@ -63,18 +65,21 @@ namespace SharpVk.Multivendor
                 pointer->DisabledValidationChecks = null;
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ValidationFlags MarshalFrom(Interop.Multivendor.ValidationFlags* pointer)
+        internal static unsafe ValidationFlags MarshalFrom(SharpVk.Interop.Multivendor.ValidationFlags* pointer)
         {
-            var result = default(ValidationFlags);
+            ValidationFlags result = default;
             if (pointer->DisabledValidationChecks != null)
             {
-                var fieldPointer = new ValidationCheck[pointer->DisabledValidationCheckCount];
-                for (var index = 0; index < pointer->DisabledValidationCheckCount; index++) fieldPointer[index] = pointer->DisabledValidationChecks[index];
+                var fieldPointer = new ValidationCheck[(uint)(pointer->DisabledValidationCheckCount)];
+                for(int index = 0; index < (uint)(pointer->DisabledValidationCheckCount); index++)
+                {
+                    fieldPointer[index] = pointer->DisabledValidationChecks[index];
+                }
                 result.DisabledValidationChecks = fieldPointer;
             }
             else

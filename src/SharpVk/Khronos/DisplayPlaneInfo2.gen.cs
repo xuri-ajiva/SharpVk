@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint PlaneIndex
@@ -46,27 +46,27 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.DisplayPlaneInfo2* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplayPlaneInfo2* pointer)
         {
             pointer->SType = StructureType.DisplayPlaneInfo2;
             pointer->Next = null;
-            pointer->Mode = Mode?.Handle ?? default(Interop.Khronos.DisplayMode);
+            pointer->Mode = Mode?.Handle ?? default;
             pointer->PlaneIndex = PlaneIndex;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DisplayPlaneInfo2 MarshalFrom(Interop.Khronos.DisplayPlaneInfo2* pointer)
+        internal static unsafe DisplayPlaneInfo2 MarshalFrom(SharpVk.Interop.Khronos.DisplayPlaneInfo2* pointer)
         {
-            var result = default(DisplayPlaneInfo2);
-            result.Mode = new(default, pointer->Mode);
+            DisplayPlaneInfo2 result = default;
+            result.Mode = new DisplayMode(default, pointer->Mode);
             result.PlaneIndex = pointer->PlaneIndex;
             return result;
         }

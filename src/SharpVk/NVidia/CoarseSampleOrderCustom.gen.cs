@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
@@ -39,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SampleCount
@@ -47,7 +46,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public CoarseSampleLocation[] SampleLocations
@@ -55,20 +54,23 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.CoarseSampleOrderCustom* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.CoarseSampleOrderCustom* pointer)
         {
             pointer->ShadingRate = ShadingRate;
             pointer->SampleCount = SampleCount;
-            pointer->SampleLocationCount = HeapUtil.GetLength(SampleLocations);
+            pointer->SampleLocationCount = (uint)(Interop.HeapUtil.GetLength(SampleLocations));
             if (SampleLocations != null)
             {
-                var fieldPointer = (CoarseSampleLocation*)HeapUtil.AllocateAndClear<CoarseSampleLocation>(SampleLocations.Length).ToPointer();
-                for (var index = 0; index < (uint)SampleLocations.Length; index++) fieldPointer[index] = SampleLocations[index];
+                var fieldPointer = (CoarseSampleLocation*)(Interop.HeapUtil.AllocateAndClear<CoarseSampleLocation>(SampleLocations.Length).ToPointer());
+                for(int index = 0; index < (uint)(SampleLocations.Length); index++)
+                {
+                    fieldPointer[index] = SampleLocations[index];
+                }
                 pointer->SampleLocations = fieldPointer;
             }
             else
@@ -76,20 +78,23 @@ namespace SharpVk.NVidia
                 pointer->SampleLocations = null;
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe CoarseSampleOrderCustom MarshalFrom(Interop.NVidia.CoarseSampleOrderCustom* pointer)
+        internal static unsafe CoarseSampleOrderCustom MarshalFrom(SharpVk.Interop.NVidia.CoarseSampleOrderCustom* pointer)
         {
-            var result = default(CoarseSampleOrderCustom);
+            CoarseSampleOrderCustom result = default;
             result.ShadingRate = pointer->ShadingRate;
             result.SampleCount = pointer->SampleCount;
             if (pointer->SampleLocations != null)
             {
-                var fieldPointer = new CoarseSampleLocation[pointer->SampleLocationCount];
-                for (var index = 0; index < pointer->SampleLocationCount; index++) fieldPointer[index] = pointer->SampleLocations[index];
+                var fieldPointer = new CoarseSampleLocation[(uint)(pointer->SampleLocationCount)];
+                for(int index = 0; index < (uint)(pointer->SampleLocationCount); index++)
+                {
+                    fieldPointer[index] = pointer->SampleLocations[index];
+                }
                 result.SampleLocations = fieldPointer;
             }
             else

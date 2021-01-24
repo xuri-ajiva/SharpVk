@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ResolveModeFlags StencilResolveMode
@@ -47,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public AttachmentReference2? DepthStencilResolveAttachment
@@ -55,12 +54,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.SubpassDescriptionDepthStencilResolve* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescriptionDepthStencilResolve* pointer)
         {
             pointer->SType = StructureType.SubpassDescriptionDepthStencilResolveVersion;
             pointer->Next = null;
@@ -68,7 +67,7 @@ namespace SharpVk
             pointer->StencilResolveMode = StencilResolveMode;
             if (DepthStencilResolveAttachment != null)
             {
-                pointer->DepthStencilResolveAttachment = (Interop.AttachmentReference2*)HeapUtil.Allocate<Interop.AttachmentReference2>();
+                pointer->DepthStencilResolveAttachment = (SharpVk.Interop.AttachmentReference2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AttachmentReference2>());
                 DepthStencilResolveAttachment.Value.MarshalTo(pointer->DepthStencilResolveAttachment);
             }
             else
@@ -76,20 +75,24 @@ namespace SharpVk
                 pointer->DepthStencilResolveAttachment = default;
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SubpassDescriptionDepthStencilResolve MarshalFrom(Interop.SubpassDescriptionDepthStencilResolve* pointer)
+        internal static unsafe SubpassDescriptionDepthStencilResolve MarshalFrom(SharpVk.Interop.SubpassDescriptionDepthStencilResolve* pointer)
         {
-            var result = default(SubpassDescriptionDepthStencilResolve);
+            SubpassDescriptionDepthStencilResolve result = default;
             result.DepthResolveMode = pointer->DepthResolveMode;
             result.StencilResolveMode = pointer->StencilResolveMode;
             if (pointer->DepthStencilResolveAttachment != null)
+            {
                 result.DepthStencilResolveAttachment = AttachmentReference2.MarshalFrom(pointer->DepthStencilResolveAttachment);
+            }
             else
+            {
                 result.DepthStencilResolveAttachment = null;
+            }
             return result;
         }
     }

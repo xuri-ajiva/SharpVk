@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,67 +29,67 @@ namespace SharpVk.Interop
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceSparseProperties
+    public unsafe struct PhysicalDeviceSparseProperties
     {
         /// <summary>
-        ///     residencyStandard2DBlockShape is VK_TRUE if the physical device
-        ///     will access all single-sample 2D sparse resources using the
-        ///     standard sparse image block shapes (based on image format), as
-        ///     described in the Standard Sparse Image Block Shapes (Single Sample)
-        ///     table. If this property is not supported the value returned in the
-        ///     imageGranularity member of the SparseImageFormatProperties
-        ///     structure for single-sample 2D images is not required: to match the
-        ///     standard sparse image block dimensions listed in the table.
+        /// residencyStandard2DBlockShape is VK_TRUE if the physical device
+        /// will access all single-sample 2D sparse resources using the
+        /// standard sparse image block shapes (based on image format), as
+        /// described in the Standard Sparse Image Block Shapes (Single Sample)
+        /// table. If this property is not supported the value returned in the
+        /// imageGranularity member of the SparseImageFormatProperties
+        /// structure for single-sample 2D images is not required: to match the
+        /// standard sparse image block dimensions listed in the table.
         /// </summary>
-        public Bool32 ResidencyStandard2DBlockShape;
-
+        public Bool32 ResidencyStandard2DBlockShape; 
+        
         /// <summary>
-        ///     residencyStandard2DMultisampleBlockShape is VK_TRUE if the physical
-        ///     device will access all multisample 2D sparse resources using the
-        ///     standard sparse image block shapes (based on image format), as
-        ///     described in the Standard Sparse Image Block Shapes (MSAA) table.
-        ///     If this property is not supported, the value returned in the
-        ///     imageGranularity member of the SparseImageFormatProperties
-        ///     structure for multisample 2D images is not required: to match the
-        ///     standard sparse image block dimensions listed in the table.
+        /// residencyStandard2DMultisampleBlockShape is VK_TRUE if the physical
+        /// device will access all multisample 2D sparse resources using the
+        /// standard sparse image block shapes (based on image format), as
+        /// described in the Standard Sparse Image Block Shapes (MSAA) table.
+        /// If this property is not supported, the value returned in the
+        /// imageGranularity member of the SparseImageFormatProperties
+        /// structure for multisample 2D images is not required: to match the
+        /// standard sparse image block dimensions listed in the table.
         /// </summary>
-        public Bool32 ResidencyStandard2DMultisampleBlockShape;
-
+        public Bool32 ResidencyStandard2DMultisampleBlockShape; 
+        
         /// <summary>
-        ///     residencyStandard3DBlockShape is VK_TRUE if the physical device
-        ///     will access all 3D sparse resources using the standard sparse image
-        ///     block shapes (based on image format), as described in the Standard
-        ///     Sparse Image Block Shapes (Single Sample) table. If this property
-        ///     is not supported, the value returned in the imageGranularity member
-        ///     of the SparseImageFormatProperties structure for 3D images is not
-        ///     required: to match the standard sparse image block dimensions
-        ///     listed in the table.
+        /// residencyStandard3DBlockShape is VK_TRUE if the physical device
+        /// will access all 3D sparse resources using the standard sparse image
+        /// block shapes (based on image format), as described in the Standard
+        /// Sparse Image Block Shapes (Single Sample) table. If this property
+        /// is not supported, the value returned in the imageGranularity member
+        /// of the SparseImageFormatProperties structure for 3D images is not
+        /// required: to match the standard sparse image block dimensions
+        /// listed in the table.
         /// </summary>
-        public Bool32 ResidencyStandard3DBlockShape;
-
+        public Bool32 ResidencyStandard3DBlockShape; 
+        
         /// <summary>
-        ///     residencyAlignedMipSize is VK_TRUE if images with mip level
-        ///     dimensions that are not integer multiples of the corresponding
-        ///     dimensions of the sparse image block may be placed in the mip tail.
-        ///     If this property is not reported, only mip levels with dimensions
-        ///     smaller than the imageGranularity member of the
-        ///     SparseImageFormatProperties structure will be placed in the mip
-        ///     tail. If this property is reported the implementation is allowed to
-        ///     return VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT in the flags
-        ///     member of SparseImageFormatProperties, indicating that mip level
-        ///     dimensions that are not integer multiples of the corresponding
-        ///     dimensions of the sparse image block will be placed in the mip
-        ///     tail.
+        /// residencyAlignedMipSize is VK_TRUE if images with mip level
+        /// dimensions that are not integer multiples of the corresponding
+        /// dimensions of the sparse image block may be placed in the mip tail.
+        /// If this property is not reported, only mip levels with dimensions
+        /// smaller than the imageGranularity member of the
+        /// SparseImageFormatProperties structure will be placed in the mip
+        /// tail. If this property is reported the implementation is allowed to
+        /// return VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT in the flags
+        /// member of SparseImageFormatProperties, indicating that mip level
+        /// dimensions that are not integer multiples of the corresponding
+        /// dimensions of the sparse image block will be placed in the mip
+        /// tail.
         /// </summary>
-        public Bool32 ResidencyAlignedMipSize;
-
+        public Bool32 ResidencyAlignedMipSize; 
+        
         /// <summary>
-        ///     Specifies whether the physical device can consistently access
-        ///     non-resident regions of a resource. If this property is VK_TRUE,
-        ///     access to non-resident regions of resources will be guaranteed to
-        ///     return values as if the resource were populated with 0; writes to
-        ///     non-resident regions will be discarded.
+        /// Specifies whether the physical device can consistently access
+        /// non-resident regions of a resource. If this property is VK_TRUE,
+        /// access to non-resident regions of resources will be guaranteed to
+        /// return values as if the resource were populated with 0; writes to
+        /// non-resident regions will be discarded.
         /// </summary>
-        public Bool32 ResidencyNonResidentStrict;
+        public Bool32 ResidencyNonResidentStrict; 
     }
 }

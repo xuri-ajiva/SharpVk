@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,75 +23,116 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created pipeline viewport
-    ///     state.
+    /// Structure specifying parameters of a newly created pipeline viewport
+    /// state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineViewportStateCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public PipelineViewportStateCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of Viewport structures, defining the viewport transforms.
-        ///     If the viewport state is dynamic, this member is ignored.
+        /// The number of viewports used by the pipeline.
+        /// </summary>
+        public uint? ViewportCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// An array of Viewport structures, defining the viewport transforms.
+        /// If the viewport state is dynamic, this member is ignored.
         /// </summary>
         public Viewport[] Viewports
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of Rect2D structures which define the rectangular bounds
-        ///     of the scissor for the corresponding viewport. If the scissor state
-        ///     is dynamic, this member is ignored.
+        /// The number of scissors and must match the number of viewports.
+        /// </summary>
+        public uint? ScissorCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// An array of Rect2D structures which define the rectangular bounds
+        /// of the scissor for the corresponding viewport. If the scissor state
+        /// is dynamic, this member is ignored.
         /// </summary>
         public Rect2D[] Scissors
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PipelineViewportStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineViewportStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportStateCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->ViewportCount = HeapUtil.GetLength(Viewports);
+            }
+            if (ViewportCount != null)
+            {
+                pointer->ViewportCount = ViewportCount.Value;
+            }
+            else
+            {
+                pointer->ViewportCount = (uint)(Interop.HeapUtil.GetLength(Viewports));
+            }
             if (Viewports != null)
             {
-                var fieldPointer = (Viewport*)HeapUtil.AllocateAndClear<Viewport>(Viewports.Length).ToPointer();
-                for (var index = 0; index < (uint)Viewports.Length; index++) fieldPointer[index] = Viewports[index];
+                var fieldPointer = (Viewport*)(Interop.HeapUtil.AllocateAndClear<Viewport>(Viewports.Length).ToPointer());
+                for(int index = 0; index < (uint)(Viewports.Length); index++)
+                {
+                    fieldPointer[index] = Viewports[index];
+                }
                 pointer->Viewports = fieldPointer;
             }
             else
             {
                 pointer->Viewports = null;
             }
-            pointer->ScissorCount = HeapUtil.GetLength(Scissors);
+            if (ScissorCount != null)
+            {
+                pointer->ScissorCount = ScissorCount.Value;
+            }
+            else
+            {
+                pointer->ScissorCount = (uint)(Interop.HeapUtil.GetLength(Scissors));
+            }
             if (Scissors != null)
             {
-                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(Scissors.Length).ToPointer();
-                for (var index = 0; index < (uint)Scissors.Length; index++) fieldPointer[index] = Scissors[index];
+                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(Scissors.Length).ToPointer());
+                for(int index = 0; index < (uint)(Scissors.Length); index++)
+                {
+                    fieldPointer[index] = Scissors[index];
+                }
                 pointer->Scissors = fieldPointer;
             }
             else

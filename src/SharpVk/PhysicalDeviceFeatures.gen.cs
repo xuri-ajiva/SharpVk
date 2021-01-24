@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure describing the fine-grained features that can be supported by
-    ///     an implementation.
+    /// Structure describing the fine-grained features that can be supported by
+    /// an implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceFeatures
@@ -40,7 +40,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FullDrawIndexUint32
@@ -48,7 +48,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ImageCubeArray
@@ -56,7 +56,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool IndependentBlend
@@ -64,7 +64,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool GeometryShader
@@ -72,7 +72,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool TessellationShader
@@ -80,7 +80,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SampleRateShading
@@ -88,7 +88,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DualSourceBlend
@@ -96,7 +96,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool LogicOp
@@ -104,7 +104,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool MultiDrawIndirect
@@ -112,7 +112,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DrawIndirectFirstInstance
@@ -120,7 +120,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DepthClamp
@@ -128,7 +128,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DepthBiasClamp
@@ -136,7 +136,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FillModeNonSolid
@@ -144,7 +144,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DepthBounds
@@ -152,7 +152,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool WideLines
@@ -160,7 +160,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool LargePoints
@@ -168,7 +168,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool AlphaToOne
@@ -176,7 +176,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool MultiViewport
@@ -184,7 +184,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SamplerAnisotropy
@@ -192,15 +192,15 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool TextureCompressionEtc2
+        public bool TextureCompressionETC2
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool TexturecompressionastcLdr
@@ -208,15 +208,15 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool TextureCompressionBc
+        public bool TextureCompressionBC
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool OcclusionQueryPrecise
@@ -224,7 +224,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool PipelineStatisticsQuery
@@ -232,7 +232,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool VertexPipelineStoresAndAtomics
@@ -240,7 +240,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FragmentStoresAndAtomics
@@ -248,7 +248,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderTessellationAndGeometryPointSize
@@ -256,7 +256,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderImageGatherExtended
@@ -264,7 +264,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageExtendedFormats
@@ -272,7 +272,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageMultisample
@@ -280,7 +280,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageReadWithoutFormat
@@ -288,7 +288,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageWriteWithoutFormat
@@ -296,7 +296,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderUniformBufferArrayDynamicIndexing
@@ -304,7 +304,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderSampledImageArrayDynamicIndexing
@@ -312,7 +312,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageBufferArrayDynamicIndexing
@@ -320,7 +320,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageArrayDynamicIndexing
@@ -328,7 +328,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderClipDistance
@@ -336,7 +336,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderCullDistance
@@ -344,7 +344,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderFloat64
@@ -352,7 +352,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderInt64
@@ -360,7 +360,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderInt16
@@ -368,7 +368,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderResourceResidency
@@ -376,7 +376,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderResourceMinLod
@@ -384,7 +384,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseBinding
@@ -392,7 +392,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidencyBuffer
@@ -400,7 +400,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidencyImage2D
@@ -408,7 +408,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidencyImage3D
@@ -416,7 +416,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidency2Samples
@@ -424,7 +424,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidency4Samples
@@ -432,7 +432,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidency8Samples
@@ -440,7 +440,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidency16Samples
@@ -448,7 +448,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SparseResidencyAliased
@@ -456,7 +456,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool VariableMultisampleRate
@@ -464,7 +464,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool InheritedQueries
@@ -472,12 +472,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceFeatures* pointer)
         {
             pointer->RobustBufferAccess = RobustBufferAccess;
             pointer->FullDrawIndexUint32 = FullDrawIndexUint32;
@@ -499,9 +499,9 @@ namespace SharpVk
             pointer->AlphaToOne = AlphaToOne;
             pointer->MultiViewport = MultiViewport;
             pointer->SamplerAnisotropy = SamplerAnisotropy;
-            pointer->TextureCompressionETC2 = TextureCompressionEtc2;
+            pointer->TextureCompressionETC2 = TextureCompressionETC2;
             pointer->TexturecompressionastcLdr = TexturecompressionastcLdr;
-            pointer->TextureCompressionBC = TextureCompressionBc;
+            pointer->TextureCompressionBC = TextureCompressionBC;
             pointer->OcclusionQueryPrecise = OcclusionQueryPrecise;
             pointer->PipelineStatisticsQuery = PipelineStatisticsQuery;
             pointer->VertexPipelineStoresAndAtomics = VertexPipelineStoresAndAtomics;
@@ -535,14 +535,14 @@ namespace SharpVk
             pointer->VariableMultisampleRate = VariableMultisampleRate;
             pointer->InheritedQueries = InheritedQueries;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceFeatures MarshalFrom(Interop.PhysicalDeviceFeatures* pointer)
+        internal static unsafe PhysicalDeviceFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceFeatures* pointer)
         {
-            var result = default(PhysicalDeviceFeatures);
+            PhysicalDeviceFeatures result = default;
             result.RobustBufferAccess = pointer->RobustBufferAccess;
             result.FullDrawIndexUint32 = pointer->FullDrawIndexUint32;
             result.ImageCubeArray = pointer->ImageCubeArray;
@@ -563,9 +563,9 @@ namespace SharpVk
             result.AlphaToOne = pointer->AlphaToOne;
             result.MultiViewport = pointer->MultiViewport;
             result.SamplerAnisotropy = pointer->SamplerAnisotropy;
-            result.TextureCompressionEtc2 = pointer->TextureCompressionETC2;
+            result.TextureCompressionETC2 = pointer->TextureCompressionETC2;
             result.TexturecompressionastcLdr = pointer->TexturecompressionastcLdr;
-            result.TextureCompressionBc = pointer->TextureCompressionBC;
+            result.TextureCompressionBC = pointer->TextureCompressionBC;
             result.OcclusionQueryPrecise = pointer->OcclusionQueryPrecise;
             result.PipelineStatisticsQuery = pointer->PipelineStatisticsQuery;
             result.VertexPipelineStoresAndAtomics = pointer->VertexPipelineStoresAndAtomics;

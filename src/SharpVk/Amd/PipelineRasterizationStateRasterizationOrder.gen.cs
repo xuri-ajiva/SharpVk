@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationStateRasterizationOrder;
             pointer->Next = null;
             pointer->RasterizationOrder = RasterizationOrder;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineRasterizationStateRasterizationOrder MarshalFrom(Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
+        internal static unsafe PipelineRasterizationStateRasterizationOrder MarshalFrom(SharpVk.Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
         {
-            var result = default(PipelineRasterizationStateRasterizationOrder);
+            PipelineRasterizationStateRasterizationOrder result = default;
             result.RasterizationOrder = pointer->RasterizationOrder;
             return result;
         }

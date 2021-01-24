@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,50 +30,58 @@ namespace SharpVk
     {
         /// <summary>
         /// </summary>
-        AmdProprietary = 1,
-
+        AmdProprietary = 1, 
+        
         /// <summary>
         /// </summary>
-        AmdOpenSource = 2,
-
+        AmdOpenSource = 2, 
+        
         /// <summary>
         /// </summary>
-        MesaRadv = 3,
-
+        MesaRadv = 3, 
+        
         /// <summary>
         /// </summary>
-        NvidiaProprietary = 4,
-
+        NvidiaProprietary = 4, 
+        
         /// <summary>
         /// </summary>
-        IntelProprietaryWindows = 5,
-
+        IntelProprietaryWindows = 5, 
+        
         /// <summary>
         /// </summary>
-        IntelOpenSource = 6,
-
+        IntelOpenSource = 6, 
+        
         /// <summary>
         /// </summary>
-        ImaginationProprietary = 7,
-
+        ImaginationProprietary = 7, 
+        
         /// <summary>
         /// </summary>
-        QualcommProprietary = 8,
-
+        QualcommProprietary = 8, 
+        
         /// <summary>
         /// </summary>
-        ArmProprietary = 9,
-
+        ArmProprietary = 9, 
+        
         /// <summary>
         /// </summary>
-        GoogleSwiftshader = 10,
-
+        GoogleSwiftshader = 10, 
+        
         /// <summary>
         /// </summary>
-        GgpProprietary = 11,
-
+        GgpProprietary = 11, 
+        
         /// <summary>
         /// </summary>
-        BroadcomProprietary = 12
+        BroadcomProprietary = 12, 
+        
+        /// <summary>
+        /// </summary>
+        MesaLlvmpipe = 13, 
+        
+        /// <summary>
+        /// </summary>
+        Moltenvk = 14, 
     }
 }

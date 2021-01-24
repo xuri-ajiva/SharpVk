@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Interop.Khronos;
-using SharpVk.Multivendor;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// </summary>
-    public unsafe delegate Result VkSwapchainKhrGetCounterDelegate(Device device, Swapchain swapchain, SurfaceCounterFlags counter, ulong* counterValue);
+    public unsafe delegate Result VkSwapchainKHRGetCounterDelegate(Device device, Khronos.Swapchain swapchain, SharpVk.Multivendor.SurfaceCounterFlags counter, ulong* counterValue);
 }

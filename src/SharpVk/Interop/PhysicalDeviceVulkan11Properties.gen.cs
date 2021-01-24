@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,70 +33,70 @@ namespace SharpVk.Interop
     {
         /// <summary>
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte DeviceUUID[Constants.UuidSize];
-
+        public fixed byte DeviceUUID[Constants.UuidSize]; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte DriverUUID[Constants.UuidSize];
-
+        public fixed byte DriverUUID[Constants.UuidSize]; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte DeviceLUID[Constants.LuidSize];
-
+        public fixed byte DeviceLUID[Constants.LuidSize]; 
+        
         /// <summary>
         /// </summary>
-        public uint DeviceNodeMask;
-
+        public uint DeviceNodeMask; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 DeviceLUIDValid;
-
+        public Bool32 DeviceLUIDValid; 
+        
         /// <summary>
         /// </summary>
-        public uint SubgroupSize;
-
+        public uint SubgroupSize; 
+        
         /// <summary>
         /// </summary>
-        public ShaderStageFlags SubgroupSupportedStages;
-
+        public ShaderStageFlags SubgroupSupportedStages; 
+        
         /// <summary>
         /// </summary>
-        public SubgroupFeatureFlags SubgroupSupportedOperations;
-
+        public SubgroupFeatureFlags SubgroupSupportedOperations; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 SubgroupQuadOperationsInAllStages;
-
+        public Bool32 SubgroupQuadOperationsInAllStages; 
+        
         /// <summary>
         /// </summary>
-        public PointClippingBehavior PointClippingBehavior;
-
+        public PointClippingBehavior PointClippingBehavior; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxMultiviewViewCount;
-
+        public uint MaxMultiviewViewCount; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxMultiviewInstanceIndex;
-
+        public uint MaxMultiviewInstanceIndex; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 ProtectedNoFault;
-
+        public Bool32 ProtectedNoFault; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxPerSetDescriptors;
-
+        public uint MaxPerSetDescriptors; 
+        
         /// <summary>
         /// </summary>
-        public ulong MaxMemoryAllocationSize;
+        public ulong MaxMemoryAllocationSize; 
     }
 }

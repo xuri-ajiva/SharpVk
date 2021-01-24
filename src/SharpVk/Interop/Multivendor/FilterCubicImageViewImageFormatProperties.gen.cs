@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,27 +32,27 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct FilterCubicImageViewImageFormatProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Tells if image format, image type and image view type can be used
-        ///     with cubic filtering. This field is set by the implementation.
-        ///     User-specified value is ignored.
+        /// Tells if image format, image type and image view type can be used
+        /// with cubic filtering. This field is set by the implementation.
+        /// User-specified value is ignored.
         /// </summary>
-        public Bool32 FilterCubic;
-
+        public Bool32 FilterCubic; 
+        
         /// <summary>
-        ///     Tells if image format, image type and image view type can be used
-        ///     with cubic filtering and minmax filtering. This field is set by the
-        ///     implementation. User-specified value is ignored.
+        /// Tells if image format, image type and image view type can be used
+        /// with cubic filtering and minmax filtering. This field is set by the
+        /// implementation. User-specified value is ignored.
         /// </summary>
-        public Bool32 FilterCubicMinmax;
+        public Bool32 FilterCubicMinmax; 
     }
 }

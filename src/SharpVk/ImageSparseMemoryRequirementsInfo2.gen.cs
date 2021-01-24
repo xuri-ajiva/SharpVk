@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,26 +38,26 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.ImageSparseMemoryRequirementsInfo2* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ImageSparseMemoryRequirementsInfo2* pointer)
         {
             pointer->SType = StructureType.ImageSparseMemoryRequirementsInfo2Version;
             pointer->Next = null;
-            pointer->Image = Image?.Handle ?? default(Interop.Image);
+            pointer->Image = Image?.Handle ?? default;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ImageSparseMemoryRequirementsInfo2 MarshalFrom(Interop.ImageSparseMemoryRequirementsInfo2* pointer)
+        internal static unsafe ImageSparseMemoryRequirementsInfo2 MarshalFrom(SharpVk.Interop.ImageSparseMemoryRequirementsInfo2* pointer)
         {
-            var result = default(ImageSparseMemoryRequirementsInfo2);
-            result.Image = new(default, pointer->Image);
+            ImageSparseMemoryRequirementsInfo2 result = default;
+            result.Image = new Image(default, pointer->Image);
             return result;
         }
     }

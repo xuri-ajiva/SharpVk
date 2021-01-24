@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,30 +32,30 @@ namespace SharpVk.Interop
     public unsafe struct DescriptorSetAllocateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     The pool which the sets will be allocated from.
+        /// The pool which the sets will be allocated from.
         /// </summary>
-        public DescriptorPool DescriptorPool;
-
+        public DescriptorPool DescriptorPool; 
+        
         /// <summary>
-        ///     descriptorSetCount determines the number of descriptor sets to be
-        ///     allocated from the pool.
+        /// descriptorSetCount determines the number of descriptor sets to be
+        /// allocated from the pool.
         /// </summary>
-        public uint DescriptorSetCount;
-
+        public uint DescriptorSetCount; 
+        
         /// <summary>
-        ///     An array of descriptor set layouts, with each member specifying how
-        ///     the corresponding descriptor set is allocated.
+        /// An array of descriptor set layouts, with each member specifying how
+        /// the corresponding descriptor set is allocated.
         /// </summary>
-        public DescriptorSetLayout* SetLayouts;
+        public DescriptorSetLayout* SetLayouts; 
     }
 }

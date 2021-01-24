@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SubresourceLayout[] PlaneLayouts
@@ -47,21 +46,24 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageDrmFormatModifierExplicitCreateInfo;
             pointer->Next = null;
             pointer->DrmFormatModifier = DrmFormatModifier;
-            pointer->DrmFormatModifierPlaneCount = HeapUtil.GetLength(PlaneLayouts);
+            pointer->DrmFormatModifierPlaneCount = (uint)(Interop.HeapUtil.GetLength(PlaneLayouts));
             if (PlaneLayouts != null)
             {
-                var fieldPointer = (SubresourceLayout*)HeapUtil.AllocateAndClear<SubresourceLayout>(PlaneLayouts.Length).ToPointer();
-                for (var index = 0; index < (uint)PlaneLayouts.Length; index++) fieldPointer[index] = PlaneLayouts[index];
+                var fieldPointer = (SubresourceLayout*)(Interop.HeapUtil.AllocateAndClear<SubresourceLayout>(PlaneLayouts.Length).ToPointer());
+                for(int index = 0; index < (uint)(PlaneLayouts.Length); index++)
+                {
+                    fieldPointer[index] = PlaneLayouts[index];
+                }
                 pointer->PlaneLayouts = fieldPointer;
             }
             else

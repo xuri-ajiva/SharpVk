@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,114 +23,117 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Buffers represent linear arrays of data which are used for various
-    ///     purposes by binding them to a graphics or compute pipeline via
-    ///     descriptor sets or via certain commands, or by directly specifying them
-    ///     as parameters to certain commands.
+    /// Buffers represent linear arrays of data which are used for various
+    /// purposes by binding them to a graphics or compute pipeline via
+    /// descriptor sets or via certain commands, or by directly specifying them
+    /// as parameters to certain commands.
     /// </summary>
     public partial class Buffer
         : IDisposable
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.Buffer Handle;
-
-        internal readonly Device Parent;
-
-        internal Buffer(Device parent, Interop.Buffer handle)
+        internal readonly SharpVk.Interop.Buffer Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly Device parent; 
+        
+        internal Buffer(Device parent, SharpVk.Interop.Buffer handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.Buffer RawHandle => Handle;
-
+        public SharpVk.Interop.Buffer RawHandle => Handle;
+        
         /// <summary>
-        ///     Bind device memory to a buffer object.
+        /// Bind device memory to a buffer object.
         /// </summary>
         /// <param name="memory">
         /// </param>
         /// <param name="memoryOffset">
         /// </param>
-        public void BindMemory(DeviceMemory memory, ulong memoryOffset)
+        public unsafe void BindMemory(DeviceMemory memory, ulong memoryOffset)
         {
             try
             {
-                var commandDelegate = CommandCache.Cache.VkBindBufferMemory;
-                var methodResult = commandDelegate(Parent.Handle, Handle, memory?.Handle ?? default(Interop.DeviceMemory), memoryOffset);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                Interop.VkBufferBindMemoryDelegate commandDelegate = commandCache.Cache.vkBindBufferMemory;
+                Result methodResult = commandDelegate(parent.Handle, Handle, memory?.Handle ?? default, memoryOffset);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Returns the memory requirements for specified Vulkan object.
+        /// Returns the memory requirements for specified Vulkan object.
         /// </summary>
         public unsafe MemoryRequirements GetMemoryRequirements()
         {
             try
             {
-                var result = default(MemoryRequirements);
-                var marshalledMemoryRequirements = default(MemoryRequirements);
-                var commandDelegate = CommandCache.Cache.VkGetBufferMemoryRequirements;
-                commandDelegate(Parent.Handle, Handle, &marshalledMemoryRequirements);
+                MemoryRequirements result = default;
+                MemoryRequirements marshalledMemoryRequirements = default;
+                Interop.VkBufferGetMemoryRequirementsDelegate commandDelegate = commandCache.Cache.vkGetBufferMemoryRequirements;
+                commandDelegate(parent.Handle, Handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Destroys the handles and releases any unmanaged resources
-        ///     associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            Destroy();
-        }
-
-        /// <summary>
-        ///     Destroy a buffer object.
+        /// Destroy a buffer object.
         /// </summary>
         /// <param name="allocator">
-        ///     An optional AllocationCallbacks instance that controls host memory
-        ///     allocation.
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
         /// </param>
         public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = CommandCache.Cache.VkDestroyBuffer;
-                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
+                Interop.VkBufferDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyBuffer;
+                commandDelegate(parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
         }
     }
 }

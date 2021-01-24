@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,45 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Interop;
-
 namespace SharpVk.Intel
 {
     /// <summary>
-    ///     Device configuration for performance queries
+    /// Device configuration for performance queries
     /// </summary>
     public class PerformanceConfiguration
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.Intel.PerformanceConfiguration Handle;
-
-        internal readonly Device Parent;
-
-        internal PerformanceConfiguration(Device parent, Interop.Intel.PerformanceConfiguration handle)
+        internal readonly SharpVk.Interop.Intel.PerformanceConfiguration Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly Device parent; 
+        
+        internal PerformanceConfiguration(Device parent, SharpVk.Interop.Intel.PerformanceConfiguration handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.Intel.PerformanceConfiguration RawHandle => Handle;
-
+        public SharpVk.Interop.Intel.PerformanceConfiguration RawHandle => Handle;
+        
         /// <summary>
         /// </summary>
-        public void Release()
+        public unsafe void Release()
         {
             try
             {
-                var commandDelegate = CommandCache.Cache.VkReleasePerformanceConfigurationIntel;
-                var methodResult = commandDelegate(Parent.Handle, Handle);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                SharpVk.Interop.Intel.VkPerformanceConfigurationINTELReleaseDelegate commandDelegate = commandCache.Cache.vkReleasePerformanceConfigurationINTEL;
+                Result methodResult = commandDelegate(parent.Handle, Handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

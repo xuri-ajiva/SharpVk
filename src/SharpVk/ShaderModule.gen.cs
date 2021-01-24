@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,70 +23,70 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Opaque handle to a shader module object.
+    /// Opaque handle to a shader module object.
     /// </summary>
     public class ShaderModule
         : IDisposable
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.ShaderModule Handle;
-
-        internal readonly Device Parent;
-
-        internal ShaderModule(Device parent, Interop.ShaderModule handle)
+        internal readonly SharpVk.Interop.ShaderModule Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly Device parent; 
+        
+        internal ShaderModule(Device parent, SharpVk.Interop.ShaderModule handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.ShaderModule RawHandle => Handle;
-
+        public SharpVk.Interop.ShaderModule RawHandle => Handle;
+        
         /// <summary>
-        ///     Destroys the handles and releases any unmanaged resources
-        ///     associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            Destroy();
-        }
-
-        /// <summary>
-        ///     Destroy a shader module module.
+        /// Destroy a shader module module.
         /// </summary>
         /// <param name="allocator">
-        ///     An optional AllocationCallbacks instance that controls host memory
-        ///     allocation.
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
         /// </param>
         public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = CommandCache.Cache.VkDestroyShaderModule;
-                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
+                Interop.VkShaderModuleDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyShaderModule;
+                commandDelegate(parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
         }
     }
 }

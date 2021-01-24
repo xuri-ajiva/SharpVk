@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string Description
@@ -47,7 +46,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool IsText
@@ -55,7 +54,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public byte[] Data
@@ -63,21 +62,24 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineExecutableInternalRepresentation MarshalFrom(Interop.Khronos.PipelineExecutableInternalRepresentation* pointer)
+        internal static unsafe PipelineExecutableInternalRepresentation MarshalFrom(SharpVk.Interop.Khronos.PipelineExecutableInternalRepresentation* pointer)
         {
-            var result = default(PipelineExecutableInternalRepresentation);
-            result.Name = HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
-            result.Description = HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
+            PipelineExecutableInternalRepresentation result = default;
+            result.Name = Interop.HeapUtil.MarshalStringFrom(pointer->Name, Constants.MaxDescriptionSize, true);
+            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
             result.IsText = pointer->IsText;
             if (pointer->Data != null)
             {
-                var fieldPointer = new byte[(uint)pointer->DataSize];
-                for (var index = 0; index < (uint)pointer->DataSize; index++) fieldPointer[index] = pointer->Data[index];
+                var fieldPointer = new byte[(uint)(pointer->DataSize)];
+                for(int index = 0; index < (uint)(pointer->DataSize); index++)
+                {
+                    fieldPointer[index] = pointer->Data[index];
+                }
                 result.Data = fieldPointer;
             }
             else

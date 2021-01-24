@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
@@ -39,18 +38,21 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.ShadingRatePalette* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.ShadingRatePalette* pointer)
         {
-            pointer->ShadingRatePaletteEntryCount = HeapUtil.GetLength(ShadingRatePaletteEntries);
+            pointer->ShadingRatePaletteEntryCount = (uint)(Interop.HeapUtil.GetLength(ShadingRatePaletteEntries));
             if (ShadingRatePaletteEntries != null)
             {
-                var fieldPointer = (ShadingRatePaletteEntry*)HeapUtil.AllocateAndClear<ShadingRatePaletteEntry>(ShadingRatePaletteEntries.Length).ToPointer();
-                for (var index = 0; index < (uint)ShadingRatePaletteEntries.Length; index++) fieldPointer[index] = ShadingRatePaletteEntries[index];
+                var fieldPointer = (ShadingRatePaletteEntry*)(Interop.HeapUtil.AllocateAndClear<ShadingRatePaletteEntry>(ShadingRatePaletteEntries.Length).ToPointer());
+                for(int index = 0; index < (uint)(ShadingRatePaletteEntries.Length); index++)
+                {
+                    fieldPointer[index] = ShadingRatePaletteEntries[index];
+                }
                 pointer->ShadingRatePaletteEntries = fieldPointer;
             }
             else
@@ -58,18 +60,21 @@ namespace SharpVk.NVidia
                 pointer->ShadingRatePaletteEntries = null;
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ShadingRatePalette MarshalFrom(Interop.NVidia.ShadingRatePalette* pointer)
+        internal static unsafe ShadingRatePalette MarshalFrom(SharpVk.Interop.NVidia.ShadingRatePalette* pointer)
         {
-            var result = default(ShadingRatePalette);
+            ShadingRatePalette result = default;
             if (pointer->ShadingRatePaletteEntries != null)
             {
-                var fieldPointer = new ShadingRatePaletteEntry[pointer->ShadingRatePaletteEntryCount];
-                for (var index = 0; index < pointer->ShadingRatePaletteEntryCount; index++) fieldPointer[index] = pointer->ShadingRatePaletteEntries[index];
+                var fieldPointer = new ShadingRatePaletteEntry[(uint)(pointer->ShadingRatePaletteEntryCount)];
+                for(int index = 0; index < (uint)(pointer->ShadingRatePaletteEntryCount); index++)
+                {
+                    fieldPointer[index] = pointer->ShadingRatePaletteEntries[index];
+                }
                 result.ShadingRatePaletteEntries = fieldPointer;
             }
             else

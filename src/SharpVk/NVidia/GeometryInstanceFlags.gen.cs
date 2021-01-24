@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,15 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.NVidia
 {
     /// <summary>
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum GeometryInstanceFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
-        /// <summary>
-        /// </summary>
-        TriangleCullDisable = 1 << 0,
-
-        /// <summary>
-        /// </summary>
-        TriangleFrontCounterclockwise = 1 << 1,
-
-        /// <summary>
-        /// </summary>
-        ForceOpaque = 1 << 2,
-
-        /// <summary>
-        /// </summary>
-        ForceNoOpaque = 1 << 3
+        None = 0, 
     }
 }

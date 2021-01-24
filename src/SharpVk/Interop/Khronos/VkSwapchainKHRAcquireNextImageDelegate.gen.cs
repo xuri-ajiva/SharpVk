@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,5 +26,5 @@ namespace SharpVk.Interop.Khronos
 {
     /// <summary>
     /// </summary>
-    public unsafe delegate Result VkSwapchainKhrAcquireNextImageDelegate(Device device, Swapchain swapchain, ulong timeout, Semaphore semaphore, Fence fence, uint* imageIndex);
+    public unsafe delegate Result VkSwapchainKHRAcquireNextImageDelegate(Device device, Swapchain swapchain, ulong timeout, Semaphore semaphore, Fence fence, uint* imageIndex);
 }

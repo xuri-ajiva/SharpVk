@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong ExternalFormat
@@ -46,7 +46,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public FormatFeatureFlags FormatFeatures
@@ -54,7 +54,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ComponentMapping SamplerYcbcrConversionComponents
@@ -62,7 +62,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SamplerYcbcrModelConversion SuggestedYcbcrModel
@@ -70,7 +70,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SamplerYcbcrRange SuggestedYcbcrRange
@@ -78,7 +78,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ChromaLocation SuggestedXChromaOffset
@@ -86,7 +86,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ChromaLocation SuggestedYChromaOffset
@@ -94,14 +94,14 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AndroidHardwareBufferFormatProperties MarshalFrom(Interop.Android.AndroidHardwareBufferFormatProperties* pointer)
+        internal static unsafe AndroidHardwareBufferFormatProperties MarshalFrom(SharpVk.Interop.Android.AndroidHardwareBufferFormatProperties* pointer)
         {
-            var result = default(AndroidHardwareBufferFormatProperties);
+            AndroidHardwareBufferFormatProperties result = default;
             result.Format = pointer->Format;
             result.ExternalFormat = pointer->ExternalFormat;
             result.FormatFeatures = pointer->FormatFeatures;

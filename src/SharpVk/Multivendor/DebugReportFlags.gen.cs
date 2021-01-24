@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,53 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Bitmask specifying events which cause a debug report callback.
+    /// Bitmask specifying events which cause a debug report callback.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum DebugReportFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
-        ///     Indicates an informational message such as resource details that
-        ///     may be handy when debugging an application.
+        /// Indicates an informational message such as resource details that
+        /// may be handy when debugging an application.
         /// </summary>
-        Information = 1 << 0,
-
+        Information = 1 << 0, 
+        
         /// <summary>
-        ///     Indicates use of Vulkan that may expose an app bug. Such cases may
-        ///     not be immediately harmful, such as a fragment shader outputting to
-        ///     a location with no attachment. Other cases may point to behavior
-        ///     that is almost certainly bad when unintended such as using an image
-        ///     whose memory has not been filled. In general if you see a warning
-        ///     but you know that the behavior is intended/desired, then simply
-        ///     ignore the warning.
+        /// Indicates use of Vulkan that may expose an app bug. Such cases may
+        /// not be immediately harmful, such as a fragment shader outputting to
+        /// a location with no attachment. Other cases may point to behavior
+        /// that is almost certainly bad when unintended such as using an image
+        /// whose memory has not been filled. In general if you see a warning
+        /// but you know that the behavior is intended/desired, then simply
+        /// ignore the warning.
         /// </summary>
-        Warning = 1 << 1,
-
+        Warning = 1 << 1, 
+        
         /// <summary>
-        ///     Indicates a potentially non-optimal use of Vulkan. E.g. using
-        ///     flink:vkCmdClearColorImage when a RenderPass load_op would have
-        ///     worked.
+        /// Indicates a potentially non-optimal use of Vulkan. E.g. using
+        /// flink:vkCmdClearColorImage when a RenderPass load_op would have
+        /// worked.
         /// </summary>
-        PerformanceWarning = 1 << 2,
-
+        PerformanceWarning = 1 << 2, 
+        
         /// <summary>
-        ///     Indicates an error that may cause undefined results, including an
-        ///     application crash.
+        /// Indicates an error that may cause undefined results, including an
+        /// application crash.
         /// </summary>
-        Error = 1 << 3,
-
+        Error = 1 << 3, 
+        
         /// <summary>
-        ///     Indicates diagnostic information from the loader and layers. -- +
+        /// Indicates diagnostic information from the loader and layers. -- +
         /// </summary>
-        Debug = 1 << 4
+        Debug = 1 << 4, 
     }
 }

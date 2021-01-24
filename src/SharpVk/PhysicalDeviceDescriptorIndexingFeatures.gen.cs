@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderUniformTexelBufferArrayDynamicIndexing
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageTexelBufferArrayDynamicIndexing
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderUniformBufferArrayNonUniformIndexing
@@ -62,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderSampledImageArrayNonUniformIndexing
@@ -70,7 +70,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageBufferArrayNonUniformIndexing
@@ -78,7 +78,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageArrayNonUniformIndexing
@@ -86,7 +86,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderInputAttachmentArrayNonUniformIndexing
@@ -94,7 +94,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderUniformTexelBufferArrayNonUniformIndexing
@@ -102,7 +102,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageTexelBufferArrayNonUniformIndexing
@@ -110,7 +110,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingUniformBufferUpdateAfterBind
@@ -118,7 +118,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingSampledImageUpdateAfterBind
@@ -126,7 +126,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingStorageImageUpdateAfterBind
@@ -134,7 +134,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingStorageBufferUpdateAfterBind
@@ -142,7 +142,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingUniformTexelBufferUpdateAfterBind
@@ -150,7 +150,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingStorageTexelBufferUpdateAfterBind
@@ -158,7 +158,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingUpdateUnusedWhilePending
@@ -166,7 +166,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingPartiallyBound
@@ -174,7 +174,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingVariableDescriptorCount
@@ -182,7 +182,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool RuntimeDescriptorArray
@@ -190,12 +190,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceDescriptorIndexingFeaturesVersion;
             pointer->Next = null;
@@ -220,14 +220,14 @@ namespace SharpVk
             pointer->DescriptorBindingVariableDescriptorCount = DescriptorBindingVariableDescriptorCount;
             pointer->RuntimeDescriptorArray = RuntimeDescriptorArray;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDescriptorIndexingFeatures MarshalFrom(Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
+        internal static unsafe PhysicalDeviceDescriptorIndexingFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
         {
-            var result = default(PhysicalDeviceDescriptorIndexingFeatures);
+            PhysicalDeviceDescriptorIndexingFeatures result = default;
             result.ShaderInputAttachmentArrayDynamicIndexing = pointer->ShaderInputAttachmentArrayDynamicIndexing;
             result.ShaderUniformTexelBufferArrayDynamicIndexing = pointer->ShaderUniformTexelBufferArrayDynamicIndexing;
             result.ShaderStorageTexelBufferArrayDynamicIndexing = pointer->ShaderStorageTexelBufferArrayDynamicIndexing;

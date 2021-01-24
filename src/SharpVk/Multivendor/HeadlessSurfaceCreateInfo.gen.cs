@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,26 +32,30 @@ namespace SharpVk.Multivendor
     public struct HeadlessSurfaceCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use
+        /// Reserved for future use
         /// </summary>
         public HeadlessSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.HeadlessSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.HeadlessSurfaceCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
         }
     }
 }

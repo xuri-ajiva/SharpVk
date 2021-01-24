@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,19 +28,19 @@ namespace SharpVk.Interop.Khronos
     /// </summary>
     public struct DisplayMode
     {
-        internal ulong Handle;
-
+        internal ulong Handle; 
+        
         /// <summary>
         /// </summary>
         public DisplayMode(ulong handle)
         {
-            this.Handle = handle;
+            Handle = handle;
         }
-
+        
         /// <summary>
         /// </summary>
-        public DisplayMode Null => new(default);
-
+        public DisplayMode Null => new DisplayMode(default);
+        
         /// <summary>
         /// </summary>
         public ulong ToUInt64()

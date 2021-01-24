@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,39 +24,38 @@
 
 using System;
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceIdProperties
+    public struct PhysicalDeviceIDProperties
     {
         /// <summary>
         /// </summary>
-        public Guid DeviceUuid
+        public Guid DeviceUUID
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Guid DriverUuid
+        public Guid DriverUUID
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Guid DeviceLuid
+        public Guid DeviceLUID
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint DeviceNodeMask
@@ -64,27 +63,27 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool DeviceLuidValid
+        public bool DeviceLUIDValid
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceIdProperties MarshalFrom(Interop.PhysicalDeviceIdProperties* pointer)
+        internal static unsafe PhysicalDeviceIDProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceIDProperties* pointer)
         {
-            var result = default(PhysicalDeviceIdProperties);
-            result.DeviceUuid = new(HeapUtil.MarshalFrom(pointer->DeviceUUID, Constants.UuidSize));
-            result.DriverUuid = new(HeapUtil.MarshalFrom(pointer->DriverUUID, Constants.UuidSize));
-            result.DeviceLuid = new(HeapUtil.MarshalFrom(pointer->DeviceLUID, Constants.LuidSize));
+            PhysicalDeviceIDProperties result = default;
+            result.DeviceUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceUUID, Constants.UuidSize));
+            result.DriverUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DriverUUID, Constants.UuidSize));
+            result.DeviceLUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceLUID, Constants.LuidSize));
             result.DeviceNodeMask = pointer->DeviceNodeMask;
-            result.DeviceLuidValid = pointer->DeviceLUIDValid;
+            result.DeviceLUIDValid = pointer->DeviceLUIDValid;
             return result;
         }
     }

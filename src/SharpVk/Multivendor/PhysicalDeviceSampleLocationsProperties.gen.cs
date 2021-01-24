@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Extent2D MaxSampleLocationGridSize
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public (float, float) SampleLocationCoordinateRange
@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SampleLocationSubPixelBits
@@ -62,7 +62,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool VariableSampleLocations
@@ -70,14 +70,14 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSampleLocationsProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceSampleLocationsProperties* pointer)
+        internal static unsafe PhysicalDeviceSampleLocationsProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSampleLocationsProperties* pointer)
         {
-            var result = default(PhysicalDeviceSampleLocationsProperties);
+            PhysicalDeviceSampleLocationsProperties result = default;
             result.SampleLocationSampleCounts = pointer->SampleLocationSampleCounts;
             result.MaxSampleLocationGridSize = pointer->MaxSampleLocationGridSize;
             result.SampleLocationCoordinateRange = (pointer->SampleLocationCoordinateRange[0], pointer->SampleLocationCoordinateRange[1]);

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong[] AcquireKeys
@@ -47,7 +46,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint[] AcquireTimeouts
@@ -55,7 +54,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DeviceMemory[] ReleaseSyncs
@@ -63,7 +62,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong[] ReleaseKeys
@@ -71,20 +70,23 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.Win32KeyedMutexAcquireReleaseInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Win32KeyedMutexAcquireReleaseInfo* pointer)
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoKhr;
             pointer->Next = null;
-            pointer->AcquireCount = HeapUtil.GetLength(AcquireSyncs);
+            pointer->AcquireCount = (uint)(Interop.HeapUtil.GetLength(AcquireSyncs));
             if (AcquireSyncs != null)
             {
-                var fieldPointer = (Interop.DeviceMemory*)HeapUtil.AllocateAndClear<Interop.DeviceMemory>(AcquireSyncs.Length).ToPointer();
-                for (var index = 0; index < (uint)AcquireSyncs.Length; index++) fieldPointer[index] = AcquireSyncs[index]?.Handle ?? default(Interop.DeviceMemory);
+                var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(AcquireSyncs.Length).ToPointer());
+                for(int index = 0; index < (uint)(AcquireSyncs.Length); index++)
+                {
+                    fieldPointer[index] = AcquireSyncs[index]?.Handle ?? default;
+                }
                 pointer->AcquireSyncs = fieldPointer;
             }
             else
@@ -93,8 +95,11 @@ namespace SharpVk.Khronos
             }
             if (AcquireKeys != null)
             {
-                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(AcquireKeys.Length).ToPointer();
-                for (var index = 0; index < (uint)AcquireKeys.Length; index++) fieldPointer[index] = AcquireKeys[index];
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(AcquireKeys.Length).ToPointer());
+                for(int index = 0; index < (uint)(AcquireKeys.Length); index++)
+                {
+                    fieldPointer[index] = AcquireKeys[index];
+                }
                 pointer->AcquireKeys = fieldPointer;
             }
             else
@@ -103,19 +108,25 @@ namespace SharpVk.Khronos
             }
             if (AcquireTimeouts != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(AcquireTimeouts.Length).ToPointer();
-                for (var index = 0; index < (uint)AcquireTimeouts.Length; index++) fieldPointer[index] = AcquireTimeouts[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(AcquireTimeouts.Length).ToPointer());
+                for(int index = 0; index < (uint)(AcquireTimeouts.Length); index++)
+                {
+                    fieldPointer[index] = AcquireTimeouts[index];
+                }
                 pointer->AcquireTimeouts = fieldPointer;
             }
             else
             {
                 pointer->AcquireTimeouts = null;
             }
-            pointer->ReleaseCount = HeapUtil.GetLength(ReleaseSyncs);
+            pointer->ReleaseCount = (uint)(Interop.HeapUtil.GetLength(ReleaseSyncs));
             if (ReleaseSyncs != null)
             {
-                var fieldPointer = (Interop.DeviceMemory*)HeapUtil.AllocateAndClear<Interop.DeviceMemory>(ReleaseSyncs.Length).ToPointer();
-                for (var index = 0; index < (uint)ReleaseSyncs.Length; index++) fieldPointer[index] = ReleaseSyncs[index]?.Handle ?? default(Interop.DeviceMemory);
+                var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(ReleaseSyncs.Length).ToPointer());
+                for(int index = 0; index < (uint)(ReleaseSyncs.Length); index++)
+                {
+                    fieldPointer[index] = ReleaseSyncs[index]?.Handle ?? default;
+                }
                 pointer->ReleaseSyncs = fieldPointer;
             }
             else
@@ -124,8 +135,11 @@ namespace SharpVk.Khronos
             }
             if (ReleaseKeys != null)
             {
-                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(ReleaseKeys.Length).ToPointer();
-                for (var index = 0; index < (uint)ReleaseKeys.Length; index++) fieldPointer[index] = ReleaseKeys[index];
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(ReleaseKeys.Length).ToPointer());
+                for(int index = 0; index < (uint)(ReleaseKeys.Length); index++)
+                {
+                    fieldPointer[index] = ReleaseKeys[index];
+                }
                 pointer->ReleaseKeys = fieldPointer;
             }
             else

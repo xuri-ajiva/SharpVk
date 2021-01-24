@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,36 +29,36 @@ namespace SharpVk.Interop.Multivendor
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDevicePciBusInfoProperties
+    public unsafe struct PhysicalDevicePCIBusInfoProperties
     {
         /// <summary>
-        ///     The type of this structure
+        /// The type of this structure
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or a pointer to an extension-specific structure
+        /// Null or a pointer to an extension-specific structure
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     The PCI bus domain
+        /// The PCI bus domain
         /// </summary>
-        public uint PciDomain;
-
+        public uint PciDomain; 
+        
         /// <summary>
-        ///     The PCI bus identifier
+        /// The PCI bus identifier
         /// </summary>
-        public uint PciBus;
-
+        public uint PciBus; 
+        
         /// <summary>
-        ///     The PCI device identifier
+        /// The PCI device identifier
         /// </summary>
-        public uint PciDevice;
-
+        public uint PciDevice; 
+        
         /// <summary>
-        ///     The PCI device function identifier
+        /// The PCI device function identifier
         /// </summary>
-        public uint PciFunction;
+        public uint PciFunction; 
     }
 }

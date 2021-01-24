@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying an attachment reference.
+    /// Structure specifying an attachment reference.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AttachmentReference
@@ -39,19 +39,19 @@ namespace SharpVk
             Attachment = attachment;
             Layout = layout;
         }
-
+        
         /// <summary>
-        ///     The index of the attachment of the render pass, and corresponds to
-        ///     the index of the corresponding element in the attachments array of
-        ///     Device.CreateRenderPass. If any color or depth/stencil attachments
-        ///     are Attachment.Unused, then no writes occur for those attachments.
+        /// The index of the attachment of the render pass, and corresponds to
+        /// the index of the corresponding element in the attachments array of
+        /// Device.CreateRenderPass. If any color or depth/stencil attachments
+        /// are Attachment.Unused, then no writes occur for those attachments.
         /// </summary>
-        public uint Attachment;
-
+        public uint Attachment; 
+        
         /// <summary>
-        ///     An ImageLayout value specifying the layout the attachment uses
-        ///     during the subpass.
+        /// An ImageLayout value specifying the layout the attachment uses
+        /// during the subpass.
         /// </summary>
-        public ImageLayout Layout;
+        public ImageLayout Layout; 
     }
 }

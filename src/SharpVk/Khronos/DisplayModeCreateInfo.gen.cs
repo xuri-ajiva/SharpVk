@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,44 +27,48 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created display mode object.
+    /// Structure specifying parameters of a newly created display mode object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayModeCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use, and must be zero.
+        /// Reserved for future use, and must be zero.
         /// </summary>
         public DisplayModeCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A DisplayModeParametersKHR structure describing the display
-        ///     parameters to use in creating the new mode. If the parameters are
-        ///     not compatible with the specified display, the implementation must
-        ///     return Result.ErrorINITIALIZATION_FAILED.
+        /// A DisplayModeParametersKHR structure describing the display
+        /// parameters to use in creating the new mode. If the parameters are
+        /// not compatible with the specified display, the implementation must
+        /// return Result.ErrorINITIALIZATION_FAILED.
         /// </summary>
         public DisplayModeParameters Parameters
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.DisplayModeCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplayModeCreateInfo* pointer)
         {
             pointer->SType = StructureType.DisplayModeCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->Parameters = Parameters;
         }
     }

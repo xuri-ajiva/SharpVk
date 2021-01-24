@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,14 +38,14 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryWin32HandleProperties MarshalFrom(Interop.Khronos.MemoryWin32HandleProperties* pointer)
+        internal static unsafe MemoryWin32HandleProperties MarshalFrom(SharpVk.Interop.Khronos.MemoryWin32HandleProperties* pointer)
         {
-            var result = default(MemoryWin32HandleProperties);
+            MemoryWin32HandleProperties result = default;
             result.MemoryTypeBits = pointer->MemoryTypeBits;
             return result;
         }

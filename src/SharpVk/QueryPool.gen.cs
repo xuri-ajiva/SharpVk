@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,74 +23,65 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Opaque handle to a query pool object.
+    /// Opaque handle to a query pool object.
     /// </summary>
     public class QueryPool
         : IDisposable
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.QueryPool Handle;
-
-        internal readonly Device Parent;
-
-        internal QueryPool(Device parent, Interop.QueryPool handle)
+        internal readonly SharpVk.Interop.QueryPool Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly Device parent; 
+        
+        internal QueryPool(Device parent, SharpVk.Interop.QueryPool handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.QueryPool RawHandle => Handle;
-
+        public SharpVk.Interop.QueryPool RawHandle => Handle;
+        
         /// <summary>
-        ///     Destroys the handles and releases any unmanaged resources
-        ///     associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            Destroy();
-        }
-
-        /// <summary>
-        ///     Destroy a query pool object.
+        /// Destroy a query pool object.
         /// </summary>
         /// <param name="allocator">
-        ///     An optional AllocationCallbacks instance that controls host memory
-        ///     allocation.
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
         /// </param>
         public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = CommandCache.Cache.VkDestroyQueryPool;
-                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
+                Interop.VkQueryPoolDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyQueryPool;
+                commandDelegate(parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Copy results of queries in a query pool to a host memory region.
+        /// Copy results of queries in a query pool to a host memory region.
         /// </summary>
         /// <param name="firstQuery">
         /// </param>
@@ -106,9 +97,9 @@ namespace SharpVk
         {
             try
             {
-                var result = default(Result);
-                var marshalledData = default(byte*);
-                var marshalledFlags = default(QueryResultFlags);
+                Result result = default;
+                byte* marshalledData = default;
+                QueryResultFlags marshalledFlags = default;
                 if (data.IsNull())
                 {
                     marshalledData = null;
@@ -117,48 +108,67 @@ namespace SharpVk
                 {
                     if (data.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledData = (byte*)HeapUtil.Allocate<byte>();
-                        *marshalledData = data.Value.GetSingleValue();
+                        marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>());
+                        *(byte*)(marshalledData) = data.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (byte*)HeapUtil.AllocateAndClear<byte>(HeapUtil.GetLength(data.Value)).ToPointer();
-                        for (var index = 0; index < HeapUtil.GetLength(data.Value); index++) fieldPointer[index] = data.Value[index];
+                        var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(Interop.HeapUtil.GetLength(data.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(data.Value)); index++)
+                        {
+                            fieldPointer[index] = data.Value[index];
+                        }
                         marshalledData = fieldPointer;
                     }
                 }
                 if (flags != null)
+                {
                     marshalledFlags = flags.Value;
+                }
                 else
+                {
                     marshalledFlags = default;
-                var commandDelegate = CommandCache.Cache.VkGetQueryPoolResults;
-                result = commandDelegate(Parent.Handle, Handle, firstQuery, queryCount, HeapUtil.GetLength(data), marshalledData, stride, marshalledFlags);
-                if (SharpVkException.IsError(result)) throw SharpVkException.Create(result);
+                }
+                Interop.VkQueryPoolGetResultsDelegate commandDelegate = commandCache.Cache.vkGetQueryPoolResults;
+                result = commandDelegate(parent.Handle, Handle, firstQuery, queryCount, (HostSize)(Interop.HeapUtil.GetLength(data)), marshalledData, stride, marshalledFlags);
+                if (SharpVkException.IsError(result))
+                {
+                    throw SharpVkException.Create(result);
+                }
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="firstQuery">
         /// </param>
         /// <param name="queryCount">
         /// </param>
-        public void Reset(uint firstQuery, uint queryCount)
+        public unsafe void Reset(uint firstQuery, uint queryCount)
         {
             try
             {
-                var commandDelegate = CommandCache.Cache.VkResetQueryPool;
-                commandDelegate(Parent.Handle, Handle, firstQuery, queryCount);
+                Interop.VkQueryPoolResetDelegate commandDelegate = commandCache.Cache.vkResetQueryPool;
+                commandDelegate(parent.Handle, Handle, firstQuery, queryCount);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
         }
     }
 }

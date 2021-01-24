@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,24 +25,24 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Type of index buffer indices.
+    /// Type of index buffer indices.
     /// </summary>
     public enum IndexType
     {
         /// <summary>
         /// </summary>
-        Uint16 = 0,
-
+        Uint16 = 0, 
+        
         /// <summary>
         /// </summary>
-        Uint32 = 1,
-
+        Uint32 = 1, 
+        
         /// <summary>
         /// </summary>
-        None = 1000165000,
-
+        NoneKhr = 1000165000, 
+        
         /// <summary>
         /// </summary>
-        Uint8 = 1000265000
+        Uint8 = 1000265000, 
     }
 }

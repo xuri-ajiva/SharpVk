@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,63 +25,63 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Specify SPIR-V cooperative matrix component type.
+    /// Specify SPIR-V cooperative matrix component type.
     /// </summary>
     public enum ComponentType
     {
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 16.
+        /// Corresponds to SPIR-V OpTypeFloat 16.
         /// </summary>
-        Float16 = 0,
-
+        Float16 = 0, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 32.
+        /// Corresponds to SPIR-V OpTypeFloat 32.
         /// </summary>
-        Float32 = 1,
-
+        Float32 = 1, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 64.
+        /// Corresponds to SPIR-V OpTypeFloat 64.
         /// </summary>
-        Float64 = 2,
-
+        Float64 = 2, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 8 1.
+        /// Corresponds to SPIR-V OpTypeFloat 8 1.
         /// </summary>
-        Sint8 = 3,
-
+        Sint8 = 3, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 16 1.
+        /// Corresponds to SPIR-V OpTypeFloat 16 1.
         /// </summary>
-        Sint16 = 4,
-
+        Sint16 = 4, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 32 1.
+        /// Corresponds to SPIR-V OpTypeFloat 32 1.
         /// </summary>
-        Sint32 = 5,
-
+        Sint32 = 5, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 64 1.
+        /// Corresponds to SPIR-V OpTypeFloat 64 1.
         /// </summary>
-        Sint64 = 6,
-
+        Sint64 = 6, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 8 0.
+        /// Corresponds to SPIR-V OpTypeFloat 8 0.
         /// </summary>
-        Uint8 = 7,
-
+        Uint8 = 7, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 16 0.
+        /// Corresponds to SPIR-V OpTypeFloat 16 0.
         /// </summary>
-        Uint16 = 8,
-
+        Uint16 = 8, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 32 0.
+        /// Corresponds to SPIR-V OpTypeFloat 32 0.
         /// </summary>
-        Uint32 = 9,
-
+        Uint32 = 9, 
+        
         /// <summary>
-        ///     Corresponds to SPIR-V OpTypeFloat 64 0.
+        /// Corresponds to SPIR-V OpTypeFloat 64 0.
         /// </summary>
-        Uint64 = 10
+        Uint64 = 10, 
     }
 }

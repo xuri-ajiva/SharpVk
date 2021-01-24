@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceYcbcrImageArraysFeatures;
             pointer->Next = null;
             pointer->YcbcrImageArrays = YcbcrImageArrays;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceYcbcrImageArraysFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
+        internal static unsafe PhysicalDeviceYcbcrImageArraysFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
         {
-            var result = default(PhysicalDeviceYcbcrImageArraysFeatures);
+            PhysicalDeviceYcbcrImageArraysFeatures result = default;
             result.YcbcrImageArrays = pointer->YcbcrImageArrays;
             return result;
         }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +22,28 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    ///     Bitmask specifying usage behavior for command buffer.
+    /// Bitmask specifying usage behavior for command buffer.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum CommandBufferUsageFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
         /// </summary>
-        OneTimeSubmit = 1 << 0,
-
+        OneTimeSubmit = 1 << 0, 
+        
         /// <summary>
         /// </summary>
-        RenderPassContinue = 1 << 1,
-
+        RenderPassContinue = 1 << 1, 
+        
         /// <summary>
         /// </summary>
-        SimultaneousUse = 1 << 2
+        SimultaneousUse = 1 << 2, 
     }
 }

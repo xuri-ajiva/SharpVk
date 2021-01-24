@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,26 +27,26 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Intel
 {
     /// <summary>
-    ///     Acquire a configuration to capture performance data
+    /// Acquire a configuration to capture performance data
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PerformanceConfigurationAcquireInfo
     {
         /// <summary>
-        ///     One of the VkPerformanceConfigurationTypeINTEL type of performance
-        ///     configuration that will be acquired.
+        /// One of the VkPerformanceConfigurationTypeINTEL type of performance
+        /// configuration that will be acquired.
         /// </summary>
         public PerformanceConfigurationType Type
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Intel.PerformanceConfigurationAcquireInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceConfigurationAcquireInfo;
             pointer->Next = null;

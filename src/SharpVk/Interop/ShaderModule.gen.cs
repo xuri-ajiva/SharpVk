@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,23 +25,23 @@
 namespace SharpVk.Interop
 {
     /// <summary>
-    ///     Opaque handle to a shader module object.
+    /// Opaque handle to a shader module object.
     /// </summary>
     public struct ShaderModule
     {
-        internal ulong Handle;
-
+        internal ulong Handle; 
+        
         /// <summary>
         /// </summary>
         public ShaderModule(ulong handle)
         {
-            this.Handle = handle;
+            Handle = handle;
         }
-
+        
         /// <summary>
         /// </summary>
-        public ShaderModule Null => new(default);
-
+        public ShaderModule Null => new ShaderModule(default);
+        
         /// <summary>
         /// </summary>
         public ulong ToUInt64()

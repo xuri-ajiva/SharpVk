@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,188 +25,178 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Specify the type of an object handle.
+    /// Specify the type of an object handle.
     /// </summary>
     public enum DebugReportObjectType
     {
         /// <summary>
-        ///     An unknown object.
+        /// An unknown object.
         /// </summary>
-        Unknown = 0,
-
+        Unknown = 0, 
+        
         /// <summary>
-        ///     A Instance.
+        /// A Instance.
         /// </summary>
-        Instance = 1,
-
+        Instance = 1, 
+        
         /// <summary>
-        ///     A PhysicalDevice.
+        /// A PhysicalDevice.
         /// </summary>
-        PhysicalDevice = 2,
-
+        PhysicalDevice = 2, 
+        
         /// <summary>
-        ///     A Device.
+        /// A Device.
         /// </summary>
-        Device = 3,
-
+        Device = 3, 
+        
         /// <summary>
-        ///     A Queue.
+        /// A Queue.
         /// </summary>
-        Queue = 4,
-
+        Queue = 4, 
+        
         /// <summary>
-        ///     A Semaphore.
+        /// A Semaphore.
         /// </summary>
-        Semaphore = 5,
-
+        Semaphore = 5, 
+        
         /// <summary>
-        ///     A CommandBuffer.
+        /// A CommandBuffer.
         /// </summary>
-        CommandBuffer = 6,
-
+        CommandBuffer = 6, 
+        
         /// <summary>
-        ///     A Fence.
+        /// A Fence.
         /// </summary>
-        Fence = 7,
-
+        Fence = 7, 
+        
         /// <summary>
-        ///     A DeviceMemory.
+        /// A DeviceMemory.
         /// </summary>
-        DeviceMemory = 8,
-
+        DeviceMemory = 8, 
+        
         /// <summary>
-        ///     A Buffer.
+        /// A Buffer.
         /// </summary>
-        Buffer = 9,
-
+        Buffer = 9, 
+        
         /// <summary>
-        ///     An Image.
+        /// An Image.
         /// </summary>
-        Image = 10,
-
+        Image = 10, 
+        
         /// <summary>
-        ///     A Event.
+        /// A Event.
         /// </summary>
-        Event = 11,
-
+        Event = 11, 
+        
         /// <summary>
-        ///     A QueryPool.
+        /// A QueryPool.
         /// </summary>
-        QueryPool = 12,
-
+        QueryPool = 12, 
+        
         /// <summary>
-        ///     A BufferView.
+        /// A BufferView.
         /// </summary>
-        BufferView = 13,
-
+        BufferView = 13, 
+        
         /// <summary>
-        ///     An ImageView.
+        /// An ImageView.
         /// </summary>
-        ImageView = 14,
-
+        ImageView = 14, 
+        
         /// <summary>
-        ///     A ShaderModule.
+        /// A ShaderModule.
         /// </summary>
-        ShaderModule = 15,
-
+        ShaderModule = 15, 
+        
         /// <summary>
-        ///     A PipelineCache.
+        /// A PipelineCache.
         /// </summary>
-        PipelineCache = 16,
-
+        PipelineCache = 16, 
+        
         /// <summary>
-        ///     A PipelineLayout.
+        /// A PipelineLayout.
         /// </summary>
-        PipelineLayout = 17,
-
+        PipelineLayout = 17, 
+        
         /// <summary>
-        ///     A RenderPass.
+        /// A RenderPass.
         /// </summary>
-        RenderPass = 18,
-
+        RenderPass = 18, 
+        
         /// <summary>
-        ///     A Pipeline.
+        /// A Pipeline.
         /// </summary>
-        Pipeline = 19,
-
+        Pipeline = 19, 
+        
         /// <summary>
-        ///     A DescriptorSetLayout.
+        /// A DescriptorSetLayout.
         /// </summary>
-        DescriptorSetLayout = 20,
-
+        DescriptorSetLayout = 20, 
+        
         /// <summary>
-        ///     A Sampler.
+        /// A Sampler.
         /// </summary>
-        Sampler = 21,
-
+        Sampler = 21, 
+        
         /// <summary>
-        ///     A DescriptorPool.
+        /// A DescriptorPool.
         /// </summary>
-        DescriptorPool = 22,
-
+        DescriptorPool = 22, 
+        
         /// <summary>
-        ///     A DescriptorSet.
+        /// A DescriptorSet.
         /// </summary>
-        DescriptorSet = 23,
-
+        DescriptorSet = 23, 
+        
         /// <summary>
-        ///     A Framebuffer.
+        /// A Framebuffer.
         /// </summary>
-        Framebuffer = 24,
-
+        Framebuffer = 24, 
+        
         /// <summary>
-        ///     A CommandPool.
+        /// A CommandPool.
         /// </summary>
-        CommandPool = 25,
-
+        CommandPool = 25, 
+        
         /// <summary>
-        ///     A SurfaceKHR.
+        /// A SurfaceKHR.
         /// </summary>
-        SurfaceKhr = 26,
-
+        SurfaceKhr = 26, 
+        
         /// <summary>
-        ///     A SwapchainKHR.
+        /// A SwapchainKHR.
         /// </summary>
-        SwapchainKhr = 27,
-
-        /// <summary>
-        /// </summary>
-        DebugReportCallbackExt = 28,
-
-        /// <summary>
-        ///     A DisplayKHR.
-        /// </summary>
-        DisplayKhr = 29,
-
-        /// <summary>
-        ///     A DisplayModeKHR.
-        /// </summary>
-        DisplayModeKhr = 30,
-
-        /// <summary>
-        ///     A ObjectTableNVX.
-        /// </summary>
-        ObjectTableNvx = 31,
-
-        /// <summary>
-        ///     A IndirectCommandsLayoutNVX.
-        /// </summary>
-        IndirectCommandsLayoutNvx = 32,
-
+        SwapchainKhr = 27, 
+        
         /// <summary>
         /// </summary>
-        ValidationCacheExt = 33,
-
+        DebugReportCallbackExt = 28, 
+        
+        /// <summary>
+        /// A DisplayKHR.
+        /// </summary>
+        DisplayKhr = 29, 
+        
+        /// <summary>
+        /// A DisplayModeKHR.
+        /// </summary>
+        DisplayModeKhr = 30, 
+        
         /// <summary>
         /// </summary>
-        SamplerYcbcrConversion = 1000156000,
-
+        ValidationCacheExt = 33, 
+        
         /// <summary>
         /// </summary>
-        DescriptorUpdateTemplate = 1000085000,
-
+        SamplerYcbcrConversion = 1000156000, 
+        
         /// <summary>
         /// </summary>
-        AccelerationStructureNv = 1000165000
+        DescriptorUpdateTemplate = 1000085000, 
+        
+        /// <summary>
+        /// </summary>
+        AccelerationStructureKhr = 1000165000, 
     }
 }

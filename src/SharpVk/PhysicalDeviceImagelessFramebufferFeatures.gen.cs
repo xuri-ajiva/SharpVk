@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceImagelessFramebufferFeaturesVersion;
             pointer->Next = null;
             pointer->ImagelessFramebuffer = ImagelessFramebuffer;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceImagelessFramebufferFeatures MarshalFrom(Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
+        internal static unsafe PhysicalDeviceImagelessFramebufferFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
         {
-            var result = default(PhysicalDeviceImagelessFramebufferFeatures);
+            PhysicalDeviceImagelessFramebufferFeatures result = default;
             result.ImagelessFramebuffer = pointer->ImagelessFramebuffer;
             return result;
         }

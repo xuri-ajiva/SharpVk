@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,18 +30,18 @@ namespace SharpVk.Khronos
     {
         /// <summary>
         /// </summary>
-        Bool32 = 0,
-
+        Bool32 = 0, 
+        
         /// <summary>
         /// </summary>
-        Int64 = 1,
-
+        Int64 = 1, 
+        
         /// <summary>
         /// </summary>
-        Uint64 = 2,
-
+        Uint64 = 2, 
+        
         /// <summary>
         /// </summary>
-        Float64 = 3
+        Float64 = 3, 
     }
 }

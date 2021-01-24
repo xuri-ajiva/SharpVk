@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SubpassSampleLocations[] PostSubpassSampleLocations
@@ -47,31 +46,37 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.RenderPassSampleLocationsBeginInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassSampleLocationsBeginInfo;
             pointer->Next = null;
-            pointer->AttachmentInitialSampleLocationsCount = HeapUtil.GetLength(AttachmentInitialSampleLocations);
+            pointer->AttachmentInitialSampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(AttachmentInitialSampleLocations));
             if (AttachmentInitialSampleLocations != null)
             {
-                var fieldPointer = (Interop.Multivendor.AttachmentSampleLocations*)HeapUtil.AllocateAndClear<Interop.Multivendor.AttachmentSampleLocations>(AttachmentInitialSampleLocations.Length).ToPointer();
-                for (var index = 0; index < (uint)AttachmentInitialSampleLocations.Length; index++) AttachmentInitialSampleLocations[index].MarshalTo(&fieldPointer[index]);
+                var fieldPointer = (SharpVk.Interop.Multivendor.AttachmentSampleLocations*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.AttachmentSampleLocations>(AttachmentInitialSampleLocations.Length).ToPointer());
+                for(int index = 0; index < (uint)(AttachmentInitialSampleLocations.Length); index++)
+                {
+                    AttachmentInitialSampleLocations[index].MarshalTo(&fieldPointer[index]);
+                }
                 pointer->AttachmentInitialSampleLocations = fieldPointer;
             }
             else
             {
                 pointer->AttachmentInitialSampleLocations = null;
             }
-            pointer->PostSubpassSampleLocationsCount = HeapUtil.GetLength(PostSubpassSampleLocations);
+            pointer->PostSubpassSampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(PostSubpassSampleLocations));
             if (PostSubpassSampleLocations != null)
             {
-                var fieldPointer = (Interop.Multivendor.SubpassSampleLocations*)HeapUtil.AllocateAndClear<Interop.Multivendor.SubpassSampleLocations>(PostSubpassSampleLocations.Length).ToPointer();
-                for (var index = 0; index < (uint)PostSubpassSampleLocations.Length; index++) PostSubpassSampleLocations[index].MarshalTo(&fieldPointer[index]);
+                var fieldPointer = (SharpVk.Interop.Multivendor.SubpassSampleLocations*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.SubpassSampleLocations>(PostSubpassSampleLocations.Length).ToPointer());
+                for(int index = 0; index < (uint)(PostSubpassSampleLocations.Length); index++)
+                {
+                    PostSubpassSampleLocations[index].MarshalTo(&fieldPointer[index]);
+                }
                 pointer->PostSubpassSampleLocations = fieldPointer;
             }
             else

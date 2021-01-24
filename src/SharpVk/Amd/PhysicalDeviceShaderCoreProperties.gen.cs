@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint ShaderArraysPerEngineCount
@@ -46,7 +46,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint ComputeUnitsPerShaderArray
@@ -54,7 +54,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SimdPerComputeUnit
@@ -62,7 +62,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint WavefrontsPerSimd
@@ -70,7 +70,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint WavefrontSize
@@ -78,7 +78,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SgprsPerSimd
@@ -86,7 +86,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MinSgprAllocation
@@ -94,7 +94,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxSgprAllocation
@@ -102,7 +102,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SgprAllocationGranularity
@@ -110,7 +110,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint VgprsPerSimd
@@ -118,7 +118,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MinVgprAllocation
@@ -126,7 +126,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxVgprAllocation
@@ -134,7 +134,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint VgprAllocationGranularity
@@ -142,14 +142,14 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderCoreProperties MarshalFrom(Interop.Amd.PhysicalDeviceShaderCoreProperties* pointer)
+        internal static unsafe PhysicalDeviceShaderCoreProperties MarshalFrom(SharpVk.Interop.Amd.PhysicalDeviceShaderCoreProperties* pointer)
         {
-            var result = default(PhysicalDeviceShaderCoreProperties);
+            PhysicalDeviceShaderCoreProperties result = default;
             result.ShaderEngineCount = pointer->ShaderEngineCount;
             result.ShaderArraysPerEngineCount = pointer->ShaderArraysPerEngineCount;
             result.ComputeUnitsPerShaderArray = pointer->ComputeUnitsPerShaderArray;

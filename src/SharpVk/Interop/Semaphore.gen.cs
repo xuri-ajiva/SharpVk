@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,23 +25,23 @@
 namespace SharpVk.Interop
 {
     /// <summary>
-    ///     Opaque handle to a semaphore object.
+    /// Opaque handle to a semaphore object.
     /// </summary>
     public struct Semaphore
     {
-        internal ulong Handle;
-
+        internal ulong Handle; 
+        
         /// <summary>
         /// </summary>
         public Semaphore(ulong handle)
         {
-            this.Handle = handle;
+            Handle = handle;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Semaphore Null => new(default);
-
+        public Semaphore Null => new Semaphore(default);
+        
         /// <summary>
         /// </summary>
         public ulong ToUInt64()

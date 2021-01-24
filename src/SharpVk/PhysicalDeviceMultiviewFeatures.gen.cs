@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool MultiviewGeometryShader
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool MultiviewTessellationShader
@@ -54,12 +54,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceMultiviewFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceMultiviewFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMultiviewFeaturesVersion;
             pointer->Next = null;
@@ -67,14 +67,14 @@ namespace SharpVk
             pointer->MultiviewGeometryShader = MultiviewGeometryShader;
             pointer->MultiviewTessellationShader = MultiviewTessellationShader;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMultiviewFeatures MarshalFrom(Interop.PhysicalDeviceMultiviewFeatures* pointer)
+        internal static unsafe PhysicalDeviceMultiviewFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceMultiviewFeatures* pointer)
         {
-            var result = default(PhysicalDeviceMultiviewFeatures);
+            PhysicalDeviceMultiviewFeatures result = default;
             result.Multiview = pointer->Multiview;
             result.MultiviewGeometryShader = pointer->MultiviewGeometryShader;
             result.MultiviewTessellationShader = pointer->MultiviewTessellationShader;

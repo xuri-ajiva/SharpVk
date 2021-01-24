@@ -55,7 +55,7 @@ namespace SharpVk
                 marshalledImageMemoryBarrier.DestinationQueueFamilyIndex = destinationQueueFamilyIndex;
                 marshalledImageMemoryBarrier.Image = image.Handle;
                 marshalledImageMemoryBarrier.SubresourceRange = subresourceRange;
-                var commandDelegate = CommandCache.GetCommandDelegate<VkCommandBufferPipelineBarrierDelegate>("vkCmdPipelineBarrier", "");
+                var commandDelegate = commandCache.GetCommandDelegate<VkCommandBufferPipelineBarrierDelegate>("vkCmdPipelineBarrier", "");
                 commandDelegate(Handle, sourceStageMask, destinationStageMask, dependencyFlags, 0, null, 0, null, 1, &marshalledImageMemoryBarrier);
             }
             finally

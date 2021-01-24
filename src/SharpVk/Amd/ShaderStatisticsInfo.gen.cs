@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShaderResourceUsage ResourceUsage
@@ -46,7 +46,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint NumPhysicalVgprs
@@ -54,7 +54,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint NumPhysicalSgprs
@@ -62,7 +62,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint NumAvailableVgprs
@@ -70,7 +70,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint NumAvailableSgprs
@@ -78,7 +78,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public (uint, uint, uint) ComputeWorkGroupSize
@@ -86,14 +86,14 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ShaderStatisticsInfo MarshalFrom(Interop.Amd.ShaderStatisticsInfo* pointer)
+        internal static unsafe ShaderStatisticsInfo MarshalFrom(SharpVk.Interop.Amd.ShaderStatisticsInfo* pointer)
         {
-            var result = default(ShaderStatisticsInfo);
+            ShaderStatisticsInfo result = default;
             result.ShaderStageMask = pointer->ShaderStageMask;
             result.ResourceUsage = pointer->ResourceUsage;
             result.NumPhysicalVgprs = pointer->NumPhysicalVgprs;

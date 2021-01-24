@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,56 +32,56 @@ namespace SharpVk.Interop
     public unsafe struct DeviceCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public DeviceCreateFlags Flags;
-
+        public DeviceCreateFlags Flags; 
+        
         /// <summary>
-        ///     The unsigned integer size of the pQueueCreateInfos array.
+        /// The unsigned integer size of the pQueueCreateInfos array.
         /// </summary>
-        public uint QueueCreateInfoCount;
-
+        public uint QueueCreateInfoCount; 
+        
         /// <summary>
-        ///     An array of DeviceQueueCreateInfo structures describing the queues
-        ///     that are requested to be created along with the logical device.
+        /// An array of DeviceQueueCreateInfo structures describing the queues
+        /// that are requested to be created along with the logical device.
         /// </summary>
-        public DeviceQueueCreateInfo* QueueCreateInfos;
-
+        public DeviceQueueCreateInfo* QueueCreateInfos; 
+        
         /// <summary>
-        ///     enabledLayerCount is deprecated and ignored.
+        /// enabledLayerCount is deprecated and ignored.
         /// </summary>
-        public uint EnabledLayerCount;
-
+        public uint EnabledLayerCount; 
+        
         /// <summary>
-        ///     ppEnabledLayerNames is deprecated and ignored.
+        /// ppEnabledLayerNames is deprecated and ignored.
         /// </summary>
-        public byte** EnabledLayerNames;
-
+        public byte** EnabledLayerNames; 
+        
         /// <summary>
-        ///     The number of device extensions to enable.
+        /// The number of device extensions to enable.
         /// </summary>
-        public uint EnabledExtensionCount;
-
+        public uint EnabledExtensionCount; 
+        
         /// <summary>
-        ///     An array of enabledExtensionCount strings containing the names of
-        ///     extensions to enable for the created device.
+        /// An array of enabledExtensionCount strings containing the names of
+        /// extensions to enable for the created device.
         /// </summary>
-        public byte** EnabledExtensionNames;
-
+        public byte** EnabledExtensionNames; 
+        
         /// <summary>
-        ///     Null or a PhysicalDeviceFeatures structure that contains boolean
-        ///     indicators of all the features to be enabled.
+        /// Null or a PhysicalDeviceFeatures structure that contains boolean
+        /// indicators of all the features to be enabled.
         /// </summary>
-        public PhysicalDeviceFeatures* EnabledFeatures;
+        public PhysicalDeviceFeatures* EnabledFeatures; 
     }
 }

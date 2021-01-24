@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,20 +38,23 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.WriteDescriptorSetInlineUniformBlock* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.WriteDescriptorSetInlineUniformBlock* pointer)
         {
             pointer->SType = StructureType.WriteDescriptorSetInlineUniformBlock;
             pointer->Next = null;
-            pointer->DataSize = HeapUtil.GetLength(Data);
+            pointer->DataSize = (uint)(Interop.HeapUtil.GetLength(Data));
             if (Data != null)
             {
-                var fieldPointer = (byte*)HeapUtil.AllocateAndClear<byte>(Data.Length).ToPointer();
-                for (var index = 0; index < (uint)Data.Length; index++) fieldPointer[index] = Data[index];
+                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(Data.Length).ToPointer());
+                for(int index = 0; index < (uint)(Data.Length); index++)
+                {
+                    fieldPointer[index] = Data[index];
+                }
                 pointer->Data = fieldPointer;
             }
             else
@@ -60,18 +62,21 @@ namespace SharpVk.Multivendor
                 pointer->Data = null;
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe WriteDescriptorSetInlineUniformBlock MarshalFrom(Interop.Multivendor.WriteDescriptorSetInlineUniformBlock* pointer)
+        internal static unsafe WriteDescriptorSetInlineUniformBlock MarshalFrom(SharpVk.Interop.Multivendor.WriteDescriptorSetInlineUniformBlock* pointer)
         {
-            var result = default(WriteDescriptorSetInlineUniformBlock);
+            WriteDescriptorSetInlineUniformBlock result = default;
             if (pointer->Data != null)
             {
-                var fieldPointer = new byte[pointer->DataSize];
-                for (var index = 0; index < pointer->DataSize; index++) fieldPointer[index] = pointer->Data[index];
+                var fieldPointer = new byte[(uint)(pointer->DataSize)];
+                for(int index = 0; index < (uint)(pointer->DataSize); index++)
+                {
+                    fieldPointer[index] = pointer->Data[index];
+                }
                 result.Data = fieldPointer;
             }
             else

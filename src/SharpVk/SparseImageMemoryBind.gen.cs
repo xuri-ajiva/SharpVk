@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,102 +27,106 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying sparse image memory bind.
+    /// Structure specifying sparse image memory bind.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseImageMemoryBind
     {
         /// <summary>
-        ///     The aspectMask and region of interest in the image.
+        /// The aspectMask and region of interest in the image.
         /// </summary>
         public ImageSubresource Subresource
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     offset are the coordinates of the first texel within the image
-        ///     subresource to bind.
+        /// offset are the coordinates of the first texel within the image
+        /// subresource to bind.
         /// </summary>
         public Offset3D Offset
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The size in texels of the region within the image subresource to
-        ///     bind. The extent must be a multiple of the sparse image block
-        ///     dimensions, except when binding sparse image blocks along the edge
-        ///     of an image subresource it can instead be such that any coordinate
-        ///     of [eq]#offset + extent# equals the corresponding dimensions of the
-        ///     image subresource.
+        /// The size in texels of the region within the image subresource to
+        /// bind. The extent must be a multiple of the sparse image block
+        /// dimensions, except when binding sparse image blocks along the edge
+        /// of an image subresource it can instead be such that any coordinate
+        /// of [eq]#offset + extent# equals the corresponding dimensions of the
+        /// image subresource.
         /// </summary>
         public Extent3D Extent
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The DeviceMemory object that the sparse image blocks of the image
-        ///     are bound to. If memory is null, the sparse image blocks are
-        ///     unbound.
+        /// The DeviceMemory object that the sparse image blocks of the image
+        /// are bound to. If memory is null, the sparse image blocks are
+        /// unbound.
         /// </summary>
         public DeviceMemory Memory
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An offset into DeviceMemory object. If memory is null, this value
-        ///     is ignored.
+        /// An offset into DeviceMemory object. If memory is null, this value
+        /// is ignored.
         /// </summary>
         public ulong MemoryOffset
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     flags are sparse memory binding flags.
+        /// flags are sparse memory binding flags.
         /// </summary>
         public SparseMemoryBindFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.SparseImageMemoryBind* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SparseImageMemoryBind* pointer)
         {
             pointer->Subresource = Subresource;
             pointer->Offset = Offset;
             pointer->Extent = Extent;
-            pointer->Memory = Memory?.Handle ?? default(Interop.DeviceMemory);
+            pointer->Memory = Memory?.Handle ?? default;
             pointer->MemoryOffset = MemoryOffset;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SparseImageMemoryBind MarshalFrom(Interop.SparseImageMemoryBind* pointer)
+        internal static unsafe SparseImageMemoryBind MarshalFrom(SharpVk.Interop.SparseImageMemoryBind* pointer)
         {
-            var result = default(SparseImageMemoryBind);
+            SparseImageMemoryBind result = default;
             result.Subresource = pointer->Subresource;
             result.Offset = pointer->Offset;
             result.Extent = pointer->Extent;
-            result.Memory = new(default, pointer->Memory);
+            result.Memory = new DeviceMemory(default, pointer->Memory);
             result.MemoryOffset = pointer->MemoryOffset;
             result.Flags = pointer->Flags;
             return result;

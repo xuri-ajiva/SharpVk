@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,62 +32,62 @@ namespace SharpVk.Interop
     public unsafe struct WriteDescriptorSet
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     The destination descriptor set to update.
+        /// The destination descriptor set to update.
         /// </summary>
-        public DescriptorSet DestinationSet;
-
+        public DescriptorSet DestinationSet; 
+        
         /// <summary>
-        ///     The descriptor binding within that set.
+        /// The descriptor binding within that set.
         /// </summary>
-        public uint DestinationBinding;
-
+        public uint DestinationBinding; 
+        
         /// <summary>
-        ///     The starting element in that array.
+        /// The starting element in that array.
         /// </summary>
-        public uint DestinationArrayElement;
-
+        public uint DestinationArrayElement; 
+        
         /// <summary>
-        ///     The number of descriptors to update (the number of elements in
-        ///     pImageInfo, pBufferInfo, or pTexelBufferView).
+        /// The number of descriptors to update (the number of elements in
+        /// pImageInfo, pBufferInfo, or pTexelBufferView).
         /// </summary>
-        public uint DescriptorCount;
-
+        public uint DescriptorCount; 
+        
         /// <summary>
-        ///     A DescriptorType specifying the type of each descriptor in
-        ///     pImageInfo, pBufferInfo, or pTexelBufferView, as described below.
-        ///     It must be the same type as that specified in
-        ///     DescriptorSetLayoutBinding for dstSet at dstBinding. The type of
-        ///     the descriptor also controls which array the descriptors are taken
-        ///     from.
+        /// A DescriptorType specifying the type of each descriptor in
+        /// pImageInfo, pBufferInfo, or pTexelBufferView, as described below.
+        /// It must be the same type as that specified in
+        /// DescriptorSetLayoutBinding for dstSet at dstBinding. The type of
+        /// the descriptor also controls which array the descriptors are taken
+        /// from.
         /// </summary>
-        public DescriptorType DescriptorType;
-
+        public DescriptorType DescriptorType; 
+        
         /// <summary>
-        ///     An array of DescriptorImageInfo structures or is ignored, as
-        ///     described below.
+        /// An array of DescriptorImageInfo structures or is ignored, as
+        /// described below.
         /// </summary>
-        public DescriptorImageInfo* ImageInfo;
-
+        public DescriptorImageInfo* ImageInfo; 
+        
         /// <summary>
-        ///     An array of DescriptorBufferInfo structures or is ignored, as
-        ///     described below.
+        /// An array of DescriptorBufferInfo structures or is ignored, as
+        /// described below.
         /// </summary>
-        public DescriptorBufferInfo* BufferInfo;
-
+        public DescriptorBufferInfo* BufferInfo; 
+        
         /// <summary>
-        ///     An array of BufferView handles as described in the Buffer Views
-        ///     section or is ignored, as described below.
+        /// An array of BufferView handles as described in the Buffer Views
+        /// section or is ignored, as described below.
         /// </summary>
-        public BufferView* TexelBufferView;
+        public BufferView* TexelBufferView; 
     }
 }

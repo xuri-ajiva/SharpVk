@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDeviceClock
@@ -46,26 +46,26 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderClockFeatures;
             pointer->Next = null;
             pointer->ShaderSubgroupClock = ShaderSubgroupClock;
             pointer->ShaderDeviceClock = ShaderDeviceClock;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderClockFeatures MarshalFrom(Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
+        internal static unsafe PhysicalDeviceShaderClockFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
         {
-            var result = default(PhysicalDeviceShaderClockFeatures);
+            PhysicalDeviceShaderClockFeatures result = default;
             result.ShaderSubgroupClock = pointer->ShaderSubgroupClock;
             result.ShaderDeviceClock = pointer->ShaderDeviceClock;
             return result;

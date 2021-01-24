@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,46 +32,46 @@ namespace SharpVk.Interop
     public unsafe struct ApplicationInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A string containing the name of the application.
+        /// A string containing the name of the application.
         /// </summary>
-        public byte* ApplicationName;
-
+        public byte* ApplicationName; 
+        
         /// <summary>
-        ///     The developer-supplied version number of the application.
+        /// The developer-supplied version number of the application.
         /// </summary>
-        public uint ApplicationVersion;
-
+        public uint ApplicationVersion; 
+        
         /// <summary>
-        ///     Astring containing the name of the engine (if any) used to create
-        ///     the application.
+        /// Astring containing the name of the engine (if any) used to create
+        /// the application.
         /// </summary>
-        public byte* EngineName;
-
+        public byte* EngineName; 
+        
         /// <summary>
-        ///     The developer-supplied version number of the engine used to create
-        ///     the application.
+        /// The developer-supplied version number of the engine used to create
+        /// the application.
         /// </summary>
-        public uint EngineVersion;
-
+        public uint EngineVersion; 
+        
         /// <summary>
-        ///     The version of the Vulkan API against which the application expects
-        ///     to run. If apiVersion is 0.0.0 the implementation must ignore it,
-        ///     otherwise if the implementation does not support the requested
-        ///     apiVersion it must throw IncompatibleDriverException. The patch
-        ///     version number specified in apiVersion is ignored when creating an
-        ///     instance object. Only the major and minor versions of the instance
-        ///     must match those requested in apiVersion.
+        /// The version of the Vulkan API against which the application expects
+        /// to run. If apiVersion is 0.0.0 the implementation must ignore it,
+        /// otherwise if the implementation does not support the requested
+        /// apiVersion it must throw IncompatibleDriverException. The patch
+        /// version number specified in apiVersion is ignored when creating an
+        /// instance object. Only the major and minor versions of the instance
+        /// must match those requested in apiVersion.
         /// </summary>
-        public uint ApiVersion;
+        public uint ApiVersion; 
     }
 }

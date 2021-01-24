@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -40,7 +39,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint DwAccess
@@ -48,7 +47,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public IntPtr Name
@@ -56,18 +55,18 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.ExportMemoryWin32HandleInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ExportMemoryWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ExportMemoryWin32HandleInfoKhr;
             pointer->Next = null;
             if (Attributes != null)
             {
-                pointer->Attributes = (SecurityAttributes*)HeapUtil.Allocate<SecurityAttributes>();
+                pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
                 *pointer->Attributes = Attributes.Value;
             }
             else

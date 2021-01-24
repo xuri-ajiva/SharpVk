@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,34 +29,34 @@ namespace SharpVk.Interop
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SparseMemoryBind
+    public unsafe struct SparseMemoryBind
     {
         /// <summary>
-        ///     The offset into the resource.
+        /// The offset into the resource.
         /// </summary>
-        public ulong ResourceOffset;
-
+        public ulong ResourceOffset; 
+        
         /// <summary>
-        ///     The size of the memory region to be bound.
+        /// The size of the memory region to be bound.
         /// </summary>
-        public ulong Size;
-
+        public ulong Size; 
+        
         /// <summary>
-        ///     The DeviceMemory object that the range of the resource is bound to.
-        ///     If memory is null, the range is unbound.
+        /// The DeviceMemory object that the range of the resource is bound to.
+        /// If memory is null, the range is unbound.
         /// </summary>
-        public DeviceMemory Memory;
-
+        public DeviceMemory Memory; 
+        
         /// <summary>
-        ///     The offset into the DeviceMemory object to bind the resource range
-        ///     to. If memory is null, this value is ignored.
+        /// The offset into the DeviceMemory object to bind the resource range
+        /// to. If memory is null, this value is ignored.
         /// </summary>
-        public ulong MemoryOffset;
-
+        public ulong MemoryOffset; 
+        
         /// <summary>
-        ///     A bitmask specifying usage of the binding operation. Bits which can
-        ///     be set include: + --
+        /// A bitmask specifying usage of the binding operation. Bits which can
+        /// be set include: + --
         /// </summary>
-        public SparseMemoryBindFlags Flags;
+        public SparseMemoryBindFlags Flags; 
     }
 }

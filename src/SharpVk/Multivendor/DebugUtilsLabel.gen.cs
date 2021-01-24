@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public (float, float, float, float) Color
@@ -47,30 +46,30 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.DebugUtilsLabel* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugUtilsLabel* pointer)
         {
             pointer->SType = StructureType.DebugUtilsLabel;
             pointer->Next = null;
-            pointer->LabelName = HeapUtil.MarshalTo(LabelName);
+            pointer->LabelName = Interop.HeapUtil.MarshalTo(LabelName);
             pointer->Color[0] = Color.Item1;
             pointer->Color[1] = Color.Item2;
             pointer->Color[2] = Color.Item3;
             pointer->Color[3] = Color.Item4;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DebugUtilsLabel MarshalFrom(Interop.Multivendor.DebugUtilsLabel* pointer)
+        internal static unsafe DebugUtilsLabel MarshalFrom(SharpVk.Interop.Multivendor.DebugUtilsLabel* pointer)
         {
-            var result = default(DebugUtilsLabel);
-            result.LabelName = HeapUtil.MarshalStringFrom(pointer->LabelName);
+            DebugUtilsLabel result = default;
+            result.LabelName = Interop.HeapUtil.MarshalStringFrom(pointer->LabelName);
             result.Color = (pointer->Color[0], pointer->Color[1], pointer->Color[2], pointer->Color[3]);
             return result;
         }

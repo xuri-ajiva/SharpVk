@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,45 +32,45 @@ namespace SharpVk.Interop
     public unsafe struct DescriptorUpdateTemplateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public DescriptorUpdateTemplateCreateFlags Flags;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint DescriptorUpdateEntryCount;
-
+        public DescriptorUpdateTemplateCreateFlags Flags; 
+        
         /// <summary>
         /// </summary>
-        public DescriptorUpdateTemplateEntry* DescriptorUpdateEntries;
-
+        public uint DescriptorUpdateEntryCount; 
+        
         /// <summary>
         /// </summary>
-        public DescriptorUpdateTemplateType TemplateType;
-
+        public DescriptorUpdateTemplateEntry* DescriptorUpdateEntries; 
+        
         /// <summary>
         /// </summary>
-        public DescriptorSetLayout DescriptorSetLayout;
-
+        public DescriptorUpdateTemplateType TemplateType; 
+        
         /// <summary>
         /// </summary>
-        public PipelineBindPoint PipelineBindPoint;
-
+        public DescriptorSetLayout DescriptorSetLayout; 
+        
         /// <summary>
         /// </summary>
-        public PipelineLayout PipelineLayout;
-
+        public PipelineBindPoint PipelineBindPoint; 
+        
         /// <summary>
         /// </summary>
-        public uint Set;
+        public PipelineLayout PipelineLayout; 
+        
+        /// <summary>
+        /// </summary>
+        public uint Set; 
     }
 }

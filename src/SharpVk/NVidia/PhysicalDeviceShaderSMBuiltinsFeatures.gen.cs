@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,35 +29,35 @@ namespace SharpVk.NVidia
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceShaderSmBuiltinsFeatures
+    public struct PhysicalDeviceShaderSMBuiltinsFeatures
     {
         /// <summary>
         /// </summary>
-        public bool ShaderSmBuiltins
+        public bool ShaderSMBuiltins
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceShaderSmBuiltinsFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderSmBuiltinsFeatures;
             pointer->Next = null;
-            pointer->ShaderSMBuiltins = ShaderSmBuiltins;
+            pointer->ShaderSMBuiltins = ShaderSMBuiltins;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderSmBuiltinsFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceShaderSmBuiltinsFeatures* pointer)
+        internal static unsafe PhysicalDeviceShaderSMBuiltinsFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures* pointer)
         {
-            var result = default(PhysicalDeviceShaderSmBuiltinsFeatures);
-            result.ShaderSmBuiltins = pointer->ShaderSMBuiltins;
+            PhysicalDeviceShaderSMBuiltinsFeatures result = default;
+            result.ShaderSMBuiltins = pointer->ShaderSMBuiltins;
             return result;
         }
     }

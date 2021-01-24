@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,46 +23,45 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Specify parameters of a command buffer marker region.
+    /// Specify parameters of a command buffer marker region.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DebugMarkerMarkerInfo
     {
         /// <summary>
-        ///     A string that contains the name of the marker.
+        /// A string that contains the name of the marker.
         /// </summary>
         public string MarkerName
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An optional RGBA color value that can be associated with the
-        ///     marker. A particular implementation may choose to ignore this color
-        ///     value. The values contain RGBA values in order, in the range 0.0 to
-        ///     1.0. If all elements in color are set to 0.0 then it is ignored.
+        /// An optional RGBA color value that can be associated with the
+        /// marker. A particular implementation may choose to ignore this color
+        /// value. The values contain RGBA values in order, in the range 0.0 to
+        /// 1.0. If all elements in color are set to 0.0 then it is ignored.
         /// </summary>
         public (float, float, float, float) Color
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.DebugMarkerMarkerInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerMarkerInfo;
             pointer->Next = null;
-            pointer->MarkerName = HeapUtil.MarshalTo(MarkerName);
+            pointer->MarkerName = Interop.HeapUtil.MarshalTo(MarkerName);
             pointer->Color[0] = Color.Item1;
             pointer->Color[1] = Color.Item2;
             pointer->Color[2] = Color.Item3;

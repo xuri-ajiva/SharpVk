@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying image format properties.
+    /// Structure specifying image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct FormatProperties
@@ -40,20 +40,20 @@ namespace SharpVk
             OptimalTilingFeatures = optimalTilingFeatures;
             BufferFeatures = bufferFeatures;
         }
-
+        
         /// <summary>
-        ///     Describes the features supported by ImageTiling.Linear.
+        /// Describes the features supported by ImageTiling.Linear.
         /// </summary>
-        public FormatFeatureFlags LinearTilingFeatures;
-
+        public FormatFeatureFlags LinearTilingFeatures; 
+        
         /// <summary>
-        ///     Describes the features supported by ImageTiling.Optimal.
+        /// Describes the features supported by ImageTiling.Optimal.
         /// </summary>
-        public FormatFeatureFlags OptimalTilingFeatures;
-
+        public FormatFeatureFlags OptimalTilingFeatures; 
+        
         /// <summary>
-        ///     Describes the features supported by buffers.
+        /// Describes the features supported by buffers.
         /// </summary>
-        public FormatFeatureFlags BufferFeatures;
+        public FormatFeatureFlags BufferFeatures; 
     }
 }

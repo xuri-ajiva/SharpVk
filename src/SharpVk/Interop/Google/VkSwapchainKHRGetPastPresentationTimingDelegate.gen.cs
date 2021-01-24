@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Google;
-using SharpVk.Interop.Khronos;
-
 namespace SharpVk.Interop.Google
 {
     /// <summary>
     /// </summary>
-    public unsafe delegate Result VkSwapchainKhrGetPastPresentationTimingDelegate(Device device, Swapchain swapchain, uint* presentationTimingCount, PastPresentationTiming* presentationTimings);
+    public unsafe delegate Result VkSwapchainKHRGetPastPresentationTimingDelegate(Device device, Khronos.Swapchain swapchain, uint* presentationTimingCount, SharpVk.Google.PastPresentationTiming* presentationTimings);
 }

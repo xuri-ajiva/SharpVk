@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,17 +39,17 @@ namespace SharpVk.Khronos
             Extent = extent;
             Layer = layer;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Offset2D Offset;
-
+        public Offset2D Offset; 
+        
         /// <summary>
         /// </summary>
-        public Extent2D Extent;
-
+        public Extent2D Extent; 
+        
         /// <summary>
         /// </summary>
-        public uint Layer;
+        public uint Layer; 
     }
 }

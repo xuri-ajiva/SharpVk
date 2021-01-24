@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk.Intel
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderIntegerFunctions2Features;
             pointer->Next = null;
             pointer->ShaderIntegerFunctions2 = ShaderIntegerFunctions2;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderIntegerFunctions2Features MarshalFrom(Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
+        internal static unsafe PhysicalDeviceShaderIntegerFunctions2Features MarshalFrom(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
         {
-            var result = default(PhysicalDeviceShaderIntegerFunctions2Features);
+            PhysicalDeviceShaderIntegerFunctions2Features result = default;
             result.ShaderIntegerFunctions2 = pointer->ShaderIntegerFunctions2;
             return result;
         }

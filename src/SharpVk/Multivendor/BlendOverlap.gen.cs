@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,14 +30,14 @@ namespace SharpVk.Multivendor
     {
         /// <summary>
         /// </summary>
-        Uncorrelated = 0,
-
+        Uncorrelated = 0, 
+        
         /// <summary>
         /// </summary>
-        Disjoint = 1,
-
+        Disjoint = 1, 
+        
         /// <summary>
         /// </summary>
-        Conjoint = 2
+        Conjoint = 2, 
     }
 }

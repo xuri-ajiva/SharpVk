@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Interop;
-
 namespace SharpVk.Intel
 {
     /// <summary>
@@ -33,23 +31,26 @@ namespace SharpVk.Intel
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Queue handle to extend.
+        /// The Queue handle to extend.
         /// </param>
         /// <param name="configuration">
         /// </param>
-        public static void SetPerformanceConfiguration(this Queue extendedHandle, PerformanceConfiguration configuration)
+        public static unsafe void SetPerformanceConfiguration(this Queue extendedHandle, PerformanceConfiguration configuration)
         {
             try
             {
-                var commandCache = default(CommandCache);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkQueueSetPerformanceConfigurationIntel;
-                var methodResult = commandDelegate(extendedHandle.Handle, configuration?.Handle ?? default(Interop.Intel.PerformanceConfiguration));
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                CommandCache commandCache = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Intel.VkQueueSetPerformanceConfigurationDelegate commandDelegate = commandCache.Cache.vkQueueSetPerformanceConfigurationINTEL;
+                Result methodResult = commandDelegate(extendedHandle.Handle, configuration?.Handle ?? default);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

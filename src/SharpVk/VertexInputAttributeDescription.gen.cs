@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying vertex input attribute description.
+    /// Structure specifying vertex input attribute description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct VertexInputAttributeDescription
@@ -41,26 +41,26 @@ namespace SharpVk
             Format = format;
             Offset = offset;
         }
-
+        
         /// <summary>
-        ///     The shader binding location number for this attribute.
+        /// The shader binding location number for this attribute.
         /// </summary>
-        public uint Location;
-
+        public uint Location; 
+        
         /// <summary>
-        ///     The binding number which this attribute takes its data from.
+        /// The binding number which this attribute takes its data from.
         /// </summary>
-        public uint Binding;
-
+        public uint Binding; 
+        
         /// <summary>
-        ///     The size and type of the vertex attribute data.
+        /// The size and type of the vertex attribute data.
         /// </summary>
-        public Format Format;
-
+        public Format Format; 
+        
         /// <summary>
-        ///     A byte offset of this attribute relative to the start of an element
-        ///     in the vertex input binding.
+        /// A byte offset of this attribute relative to the start of an element
+        /// in the vertex input binding.
         /// </summary>
-        public uint Offset;
+        public uint Offset; 
     }
 }

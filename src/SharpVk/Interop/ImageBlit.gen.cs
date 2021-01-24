@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,32 +29,32 @@ namespace SharpVk.Interop
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageBlit
+    public unsafe struct ImageBlit
     {
         /// <summary>
-        ///     The subresource to blit from.
+        /// The subresource to blit from.
         /// </summary>
-        public ImageSubresourceLayers SourceSubresource;
-
+        public ImageSubresourceLayers SourceSubresource; 
+        
         /// <summary>
         /// </summary>
-        public Offset3D SourceOffsets_0;
-
+        public Offset3D SourceOffsets_0; 
+        
         /// <summary>
         /// </summary>
-        public Offset3D SourceOffsets_1;
-
+        public Offset3D SourceOffsets_1; 
+        
         /// <summary>
-        ///     The subresource to blit into.
+        /// The subresource to blit into.
         /// </summary>
-        public ImageSubresourceLayers DestinationSubresource;
-
-        /// <summary>
-        /// </summary>
-        public Offset3D DestinationOffsets_0;
-
+        public ImageSubresourceLayers DestinationSubresource; 
+        
         /// <summary>
         /// </summary>
-        public Offset3D DestinationOffsets_1;
+        public Offset3D DestinationOffsets_0; 
+        
+        /// <summary>
+        /// </summary>
+        public Offset3D DestinationOffsets_1; 
     }
 }

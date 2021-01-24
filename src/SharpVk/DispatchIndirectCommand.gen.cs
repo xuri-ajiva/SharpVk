@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a dispatch indirect command.
+    /// Structure specifying a dispatch indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DispatchIndirectCommand
     {
         /// <summary>
         /// </summary>
-        public static DispatchIndirectCommand Zero => new();
-
+        public static DispatchIndirectCommand Zero => new DispatchIndirectCommand();
+        
         /// <summary>
         /// </summary>
         public DispatchIndirectCommand(uint x, uint y, uint z)
@@ -44,20 +44,20 @@ namespace SharpVk
             Y = y;
             Z = z;
         }
-
+        
         /// <summary>
-        ///     The number of local workgroups to dispatch in the X dimension.
+        /// The number of local workgroups to dispatch in the X dimension.
         /// </summary>
-        public uint X;
-
+        public uint X; 
+        
         /// <summary>
-        ///     The number of local workgroups to dispatch in the Y dimension.
+        /// The number of local workgroups to dispatch in the Y dimension.
         /// </summary>
-        public uint Y;
-
+        public uint Y; 
+        
         /// <summary>
-        ///     The number of local workgroups to dispatch in the Z dimension.
+        /// The number of local workgroups to dispatch in the Z dimension.
         /// </summary>
-        public uint Z;
+        public uint Z; 
     }
 }

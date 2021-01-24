@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,28 +27,28 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Specify a memory allocation priority
+    /// Specify a memory allocation priority
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MemoryPriorityAllocateInfo
     {
         /// <summary>
-        ///     A value between 0 and 1, indicating the priority of the allocation
-        ///     relative to other memory allocations. Larger values are higher
-        ///     priority. The granularity of the priorities is
-        ///     implementation-dependent.
+        /// A value between 0 and 1, indicating the priority of the allocation
+        /// relative to other memory allocations. Larger values are higher
+        /// priority. The granularity of the priorities is
+        /// implementation-dependent.
         /// </summary>
         public float Priority
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.MemoryPriorityAllocateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.MemoryPriorityAllocateInfo* pointer)
         {
             pointer->SType = StructureType.MemoryPriorityAllocateInfo;
             pointer->Next = null;

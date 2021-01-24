@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,21 +28,22 @@ namespace SharpVk
     /// </summary>
     public class DescriptorUpdateTemplate
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.DescriptorUpdateTemplate Handle;
-
-        internal readonly Device Parent;
-
-        internal DescriptorUpdateTemplate(Device parent, Interop.DescriptorUpdateTemplate handle)
+        internal readonly SharpVk.Interop.DescriptorUpdateTemplate Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly Device parent; 
+        
+        internal DescriptorUpdateTemplate(Device parent, SharpVk.Interop.DescriptorUpdateTemplate handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.DescriptorUpdateTemplate RawHandle => Handle;
+        public SharpVk.Interop.DescriptorUpdateTemplate RawHandle => Handle;
     }
 }

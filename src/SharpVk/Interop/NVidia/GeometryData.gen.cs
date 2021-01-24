@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,14 +29,14 @@ namespace SharpVk.Interop.NVidia
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct GeometryData
+    public unsafe struct GeometryData
     {
         /// <summary>
         /// </summary>
-        public GeometryTriangles Triangles;
-
+        public GeometryTriangles Triangles; 
+        
         /// <summary>
         /// </summary>
-        public GeometryAabb Aabbs;
+        public GeometryAABB Aabbs; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DeviceGroupPresentModeFlags Mode
@@ -47,20 +46,23 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.DeviceGroupPresentInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DeviceGroupPresentInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupPresentInfo;
             pointer->Next = null;
-            pointer->SwapchainCount = HeapUtil.GetLength(DeviceMasks);
+            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(DeviceMasks));
             if (DeviceMasks != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(DeviceMasks.Length).ToPointer();
-                for (var index = 0; index < (uint)DeviceMasks.Length; index++) fieldPointer[index] = DeviceMasks[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(DeviceMasks.Length).ToPointer());
+                for(int index = 0; index < (uint)(DeviceMasks.Length); index++)
+                {
+                    fieldPointer[index] = DeviceMasks[index];
+                }
                 pointer->DeviceMasks = fieldPointer;
             }
             else

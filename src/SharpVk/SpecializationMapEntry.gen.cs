@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,35 +27,35 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a specialization map entry.
+    /// Structure specifying a specialization map entry.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SpecializationMapEntry
     {
         /// <summary>
         /// </summary>
-        public SpecializationMapEntry(uint constantId, uint offset, HostSize size)
+        public SpecializationMapEntry(uint constantID, uint offset, HostSize size)
         {
-            ConstantID = constantId;
+            ConstantID = constantID;
             Offset = offset;
             Size = size;
         }
-
+        
         /// <summary>
-        ///     The ID of the specialization constant in SPIR-V.
+        /// The ID of the specialization constant in SPIR-V.
         /// </summary>
-        public uint ConstantID;
-
+        public uint ConstantID; 
+        
         /// <summary>
-        ///     The byte offset of the specialization constant value within the
-        ///     supplied data buffer.
+        /// The byte offset of the specialization constant value within the
+        /// supplied data buffer.
         /// </summary>
-        public uint Offset;
-
+        public uint Offset; 
+        
         /// <summary>
-        ///     The byte size of the specialization constant value within the
-        ///     supplied data buffer.
+        /// The byte size of the specialization constant value within the
+        /// supplied data buffer.
         /// </summary>
-        public HostSize Size;
+        public HostSize Size; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,8 +33,8 @@ namespace SharpVk.Multivendor
     {
         /// <summary>
         /// </summary>
-        public static VertexInputBindingDivisorDescription Zero => new();
-
+        public static VertexInputBindingDivisorDescription Zero => new VertexInputBindingDivisorDescription();
+        
         /// <summary>
         /// </summary>
         public VertexInputBindingDivisorDescription(uint binding, uint divisor)
@@ -42,13 +42,13 @@ namespace SharpVk.Multivendor
             Binding = binding;
             Divisor = divisor;
         }
-
+        
         /// <summary>
         /// </summary>
-        public uint Binding;
-
+        public uint Binding; 
+        
         /// <summary>
         /// </summary>
-        public uint Divisor;
+        public uint Divisor; 
     }
 }

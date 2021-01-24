@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,55 +23,54 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Specify parameters of a name to give to an object.
+    /// Specify parameters of a name to give to an object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DebugMarkerObjectNameInfo
     {
         /// <summary>
-        ///     A DebugReportObjectTypeEXT specifying the type of the object to be
-        ///     named.
+        /// A DebugReportObjectTypeEXT specifying the type of the object to be
+        /// named.
         /// </summary>
         public DebugReportObjectType ObjectType
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The object to be named.
+        /// The object to be named.
         /// </summary>
         public ulong Object
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A string specifying the name to apply to object.
+        /// A string specifying the name to apply to object.
         /// </summary>
         public string ObjectName
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.DebugMarkerObjectNameInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerObjectNameInfo;
             pointer->Next = null;
             pointer->ObjectType = ObjectType;
             pointer->Object = Object;
-            pointer->ObjectName = HeapUtil.MarshalTo(ObjectName);
+            pointer->ObjectName = Interop.HeapUtil.MarshalTo(ObjectName);
         }
     }
 }

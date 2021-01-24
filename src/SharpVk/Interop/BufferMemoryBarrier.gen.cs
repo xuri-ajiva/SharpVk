@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,53 +32,53 @@ namespace SharpVk.Interop
     public unsafe struct BufferMemoryBarrier
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     srcAccessMask defines a source access mask.
+        /// srcAccessMask defines a source access mask.
         /// </summary>
-        public AccessFlags SourceAccessMask;
-
+        public AccessFlags SourceAccessMask; 
+        
         /// <summary>
-        ///     dstAccessMask defines a destination access mask.
+        /// dstAccessMask defines a destination access mask.
         /// </summary>
-        public AccessFlags DestinationAccessMask;
-
+        public AccessFlags DestinationAccessMask; 
+        
         /// <summary>
-        ///     The source queue family for a queue family ownership transfer.
+        /// The source queue family for a queue family ownership transfer.
         /// </summary>
-        public uint SourceQueueFamilyIndex;
-
+        public uint SourceQueueFamilyIndex; 
+        
         /// <summary>
-        ///     The destination queue family for a queue family ownership transfer.
+        /// The destination queue family for a queue family ownership transfer.
         /// </summary>
-        public uint DestinationQueueFamilyIndex;
-
+        public uint DestinationQueueFamilyIndex; 
+        
         /// <summary>
-        ///     A handle to the buffer whose backing memory is affected by the
-        ///     barrier.
+        /// A handle to the buffer whose backing memory is affected by the
+        /// barrier.
         /// </summary>
-        public Buffer Buffer;
-
+        public Buffer Buffer; 
+        
         /// <summary>
-        ///     An offset in bytes into the backing memory for buffer; this is
-        ///     relative to the base offset as bound to the buffer (see
-        ///     flink:vkBindBufferMemory).
+        /// An offset in bytes into the backing memory for buffer; this is
+        /// relative to the base offset as bound to the buffer (see
+        /// flink:vkBindBufferMemory).
         /// </summary>
-        public ulong Offset;
-
+        public ulong Offset; 
+        
         /// <summary>
-        ///     A size in bytes of the affected area of backing memory for buffer,
-        ///     or Constants.WholeSize to use the range from offset to the end of
-        ///     the buffer.
+        /// A size in bytes of the affected area of backing memory for buffer,
+        /// or Constants.WholeSize to use the range from offset to the end of
+        /// the buffer.
         /// </summary>
-        public ulong Size;
+        public ulong Size; 
     }
 }

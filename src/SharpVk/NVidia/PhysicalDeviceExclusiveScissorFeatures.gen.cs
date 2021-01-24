@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceExclusiveScissorFeatures;
             pointer->Next = null;
             pointer->ExclusiveScissor = ExclusiveScissor;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceExclusiveScissorFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
+        internal static unsafe PhysicalDeviceExclusiveScissorFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
         {
-            var result = default(PhysicalDeviceExclusiveScissorFeatures);
+            PhysicalDeviceExclusiveScissorFeatures result = default;
             result.ExclusiveScissor = pointer->ExclusiveScissor;
             return result;
         }

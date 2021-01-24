@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,34 +38,34 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public GeometryAabb Aabbs
+        public GeometryAABB Aabbs
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.GeometryData* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.GeometryData* pointer)
         {
             Triangles.MarshalTo(&pointer->Triangles);
             Aabbs.MarshalTo(&pointer->Aabbs);
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe GeometryData MarshalFrom(Interop.NVidia.GeometryData* pointer)
+        internal static unsafe GeometryData MarshalFrom(SharpVk.Interop.NVidia.GeometryData* pointer)
         {
-            var result = default(GeometryData);
+            GeometryData result = default;
             result.Triangles = GeometryTriangles.MarshalFrom(&pointer->Triangles);
-            result.Aabbs = GeometryAabb.MarshalFrom(&pointer->Aabbs);
+            result.Aabbs = GeometryAABB.MarshalFrom(&pointer->Aabbs);
             return result;
         }
     }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,114 +27,122 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying command buffer inheritance info.
+    /// Structure specifying command buffer inheritance info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandBufferInheritanceInfo
     {
         /// <summary>
-        ///     A RenderPass object defining which render passes the CommandBuffer
-        ///     will be compatible with and can be executed within. If the
-        ///     CommandBuffer will not be executed within a render pass instance,
-        ///     renderPass is ignored.
+        /// A RenderPass object defining which render passes the CommandBuffer
+        /// will be compatible with and can be executed within. If the
+        /// CommandBuffer will not be executed within a render pass instance,
+        /// renderPass is ignored.
         /// </summary>
         public RenderPass RenderPass
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The index of the subpass within the render pass instance that the
-        ///     CommandBuffer will be executed within. If the CommandBuffer will
-        ///     not be executed within a render pass instance, subpass is ignored.
+        /// The index of the subpass within the render pass instance that the
+        /// CommandBuffer will be executed within. If the CommandBuffer will
+        /// not be executed within a render pass instance, subpass is ignored.
         /// </summary>
         public uint Subpass
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     framebuffer optionally refers to the Framebuffer object that the
-        ///     CommandBuffer will be rendering to if it is executed within a
-        ///     render pass instance. It can be null if the framebuffer is not
-        ///     known, or if the CommandBuffer will not be executed within a render
-        ///     pass instance. + [NOTE] .Note ==== Specifying the exact framebuffer
-        ///     that the secondary command buffer will be executed with may result
-        ///     in better performance at command buffer execution time. ====
+        /// framebuffer optionally refers to the Framebuffer object that the
+        /// CommandBuffer will be rendering to if it is executed within a
+        /// render pass instance. It can be null if the framebuffer is not
+        /// known, or if the CommandBuffer will not be executed within a render
+        /// pass instance. + [NOTE] .Note ==== Specifying the exact framebuffer
+        /// that the secondary command buffer will be executed with may result
+        /// in better performance at command buffer execution time. ====
         /// </summary>
         public Framebuffer Framebuffer
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     Indicates whether the command buffer can be executed while an
-        ///     occlusion query is active in the primary command buffer. If this is
-        ///     VK_TRUE, then this command buffer can be executed whether the
-        ///     primary command buffer has an occlusion query active or not. If
-        ///     this is VK_FALSE, then the primary command buffer must not have an
-        ///     occlusion query active.
+        /// Indicates whether the command buffer can be executed while an
+        /// occlusion query is active in the primary command buffer. If this is
+        /// VK_TRUE, then this command buffer can be executed whether the
+        /// primary command buffer has an occlusion query active or not. If
+        /// this is VK_FALSE, then the primary command buffer must not have an
+        /// occlusion query active.
         /// </summary>
         public bool OcclusionQueryEnable
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     Indicates the query flags that can be used by an active occlusion
-        ///     query in the primary command buffer when this secondary command
-        ///     buffer is executed. If this value includes the
-        ///     VK_QUERY_CONTROL_PRECISE_BIT bit, then the active query can return
-        ///     boolean results or actual sample counts. If this bit is not set,
-        ///     then the active query must not use the VK_QUERY_CONTROL_PRECISE_BIT
-        ///     bit.
+        /// Indicates the query flags that can be used by an active occlusion
+        /// query in the primary command buffer when this secondary command
+        /// buffer is executed. If this value includes the
+        /// VK_QUERY_CONTROL_PRECISE_BIT bit, then the active query can return
+        /// boolean results or actual sample counts. If this bit is not set,
+        /// then the active query must not use the VK_QUERY_CONTROL_PRECISE_BIT
+        /// bit.
         /// </summary>
         public QueryControlFlags? QueryFlags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     Indicates the set of pipeline statistics that can be counted by an
-        ///     active query in the primary command buffer when this secondary
-        ///     command buffer is executed. If this value includes a given bit,
-        ///     then this command buffer can be executed whether the primary
-        ///     command buffer has a pipeline statistics query active that includes
-        ///     this bit or not. If this value excludes a given bit, then the
-        ///     active pipeline statistics query must not be from a query pool that
-        ///     counts that statistic.
+        /// Indicates the set of pipeline statistics that can be counted by an
+        /// active query in the primary command buffer when this secondary
+        /// command buffer is executed. If this value includes a given bit,
+        /// then this command buffer can be executed whether the primary
+        /// command buffer has a pipeline statistics query active that includes
+        /// this bit or not. If this value excludes a given bit, then the
+        /// active pipeline statistics query must not be from a query pool that
+        /// counts that statistic.
         /// </summary>
         public QueryPipelineStatisticFlags? PipelineStatistics
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.CommandBufferInheritanceInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CommandBufferInheritanceInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferInheritanceInfo;
             pointer->Next = null;
-            pointer->RenderPass = RenderPass?.Handle ?? default(Interop.RenderPass);
+            pointer->RenderPass = RenderPass?.Handle ?? default;
             pointer->Subpass = Subpass;
-            pointer->Framebuffer = Framebuffer?.Handle ?? default(Interop.Framebuffer);
+            pointer->Framebuffer = Framebuffer?.Handle ?? default;
             pointer->OcclusionQueryEnable = OcclusionQueryEnable;
             if (QueryFlags != null)
+            {
                 pointer->QueryFlags = QueryFlags.Value;
+            }
             else
+            {
                 pointer->QueryFlags = default;
+            }
             if (PipelineStatistics != null)
+            {
                 pointer->PipelineStatistics = PipelineStatistics.Value;
+            }
             else
+            {
                 pointer->PipelineStatistics = default;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,86 +23,91 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure describing parameters of a queue presentation.
+    /// Structure describing parameters of a queue presentation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PresentInfo
     {
         /// <summary>
-        ///     If not Null, is an array of Semaphore objects with
-        ///     waitSemaphoreCount entries, and specifies the semaphores to wait
-        ///     for before issuing the present request.
+        /// If not Null, is an array of Semaphore objects with
+        /// waitSemaphoreCount entries, and specifies the semaphores to wait
+        /// for before issuing the present request.
         /// </summary>
         public Semaphore[] WaitSemaphores
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of SwapchainKHR objects with swapchainCount entries. A
-        ///     given swapchain must not appear in this list more than once.
+        /// An array of SwapchainKHR objects with swapchainCount entries. A
+        /// given swapchain must not appear in this list more than once.
         /// </summary>
         public Swapchain[] Swapchains
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of indices into the array of each swapchain's presentable
-        ///     images, with swapchainCount entries. Each entry in this array
-        ///     identifies the image to present on the corresponding entry in the
-        ///     pSwapchains array.
+        /// An array of indices into the array of each swapchain's presentable
+        /// images, with swapchainCount entries. Each entry in this array
+        /// identifies the image to present on the corresponding entry in the
+        /// pSwapchains array.
         /// </summary>
         public uint[] ImageIndices
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of Result typed elements with swapchainCount entries.
-        ///     Applications that do not need per-swapchain results can use Null
-        ///     for pResults. If non-Null, each entry in pResults will be set to
-        ///     the Result for presenting the swapchain corresponding to the same
-        ///     index in pSwapchains.
+        /// An array of Result typed elements with swapchainCount entries.
+        /// Applications that do not need per-swapchain results can use Null
+        /// for pResults. If non-Null, each entry in pResults will be set to
+        /// the Result for presenting the swapchain corresponding to the same
+        /// index in pSwapchains.
         /// </summary>
         public Result[] Results
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.PresentInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PresentInfo* pointer)
         {
             pointer->SType = StructureType.PresentInfo;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = HeapUtil.GetLength(WaitSemaphores);
+            pointer->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(WaitSemaphores));
             if (WaitSemaphores != null)
             {
-                var fieldPointer = (Interop.Semaphore*)HeapUtil.AllocateAndClear<Interop.Semaphore>(WaitSemaphores.Length).ToPointer();
-                for (var index = 0; index < (uint)WaitSemaphores.Length; index++) fieldPointer[index] = WaitSemaphores[index]?.Handle ?? default(Interop.Semaphore);
+                var fieldPointer = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Semaphore>(WaitSemaphores.Length).ToPointer());
+                for(int index = 0; index < (uint)(WaitSemaphores.Length); index++)
+                {
+                    fieldPointer[index] = WaitSemaphores[index]?.Handle ?? default;
+                }
                 pointer->WaitSemaphores = fieldPointer;
             }
             else
             {
                 pointer->WaitSemaphores = null;
             }
-            pointer->SwapchainCount = HeapUtil.GetLength(Swapchains);
+            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(Swapchains));
             if (Swapchains != null)
             {
-                var fieldPointer = (Interop.Khronos.Swapchain*)HeapUtil.AllocateAndClear<Interop.Khronos.Swapchain>(Swapchains.Length).ToPointer();
-                for (var index = 0; index < (uint)Swapchains.Length; index++) fieldPointer[index] = Swapchains[index]?.Handle ?? default(Interop.Khronos.Swapchain);
+                var fieldPointer = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Swapchain>(Swapchains.Length).ToPointer());
+                for(int index = 0; index < (uint)(Swapchains.Length); index++)
+                {
+                    fieldPointer[index] = Swapchains[index]?.Handle ?? default;
+                }
                 pointer->Swapchains = fieldPointer;
             }
             else
@@ -111,8 +116,11 @@ namespace SharpVk.Khronos
             }
             if (ImageIndices != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(ImageIndices.Length).ToPointer();
-                for (var index = 0; index < (uint)ImageIndices.Length; index++) fieldPointer[index] = ImageIndices[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(ImageIndices.Length).ToPointer());
+                for(int index = 0; index < (uint)(ImageIndices.Length); index++)
+                {
+                    fieldPointer[index] = ImageIndices[index];
+                }
                 pointer->ImageIndices = fieldPointer;
             }
             else
@@ -121,8 +129,11 @@ namespace SharpVk.Khronos
             }
             if (Results != null)
             {
-                var fieldPointer = (Result*)HeapUtil.AllocateAndClear<Result>(Results.Length).ToPointer();
-                for (var index = 0; index < (uint)Results.Length; index++) fieldPointer[index] = Results[index];
+                var fieldPointer = (Result*)(Interop.HeapUtil.AllocateAndClear<Result>(Results.Length).ToPointer());
+                for(int index = 0; index < (uint)(Results.Length); index++)
+                {
+                    fieldPointer[index] = Results[index];
+                }
                 pointer->Results = fieldPointer;
             }
             else

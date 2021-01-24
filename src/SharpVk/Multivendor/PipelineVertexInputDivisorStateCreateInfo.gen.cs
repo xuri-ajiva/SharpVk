@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,20 +38,23 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PipelineVertexInputDivisorStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineVertexInputDivisorStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineVertexInputDivisorStateCreateInfo;
             pointer->Next = null;
-            pointer->VertexBindingDivisorCount = HeapUtil.GetLength(VertexBindingDivisors);
+            pointer->VertexBindingDivisorCount = (uint)(Interop.HeapUtil.GetLength(VertexBindingDivisors));
             if (VertexBindingDivisors != null)
             {
-                var fieldPointer = (VertexInputBindingDivisorDescription*)HeapUtil.AllocateAndClear<VertexInputBindingDivisorDescription>(VertexBindingDivisors.Length).ToPointer();
-                for (var index = 0; index < (uint)VertexBindingDivisors.Length; index++) fieldPointer[index] = VertexBindingDivisors[index];
+                var fieldPointer = (VertexInputBindingDivisorDescription*)(Interop.HeapUtil.AllocateAndClear<VertexInputBindingDivisorDescription>(VertexBindingDivisors.Length).ToPointer());
+                for(int index = 0; index < (uint)(VertexBindingDivisors.Length); index++)
+                {
+                    fieldPointer[index] = VertexBindingDivisors[index];
+                }
                 pointer->VertexBindingDivisors = fieldPointer;
             }
             else

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a three-dimensional extent.
+    /// Structure specifying a three-dimensional extent.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Extent3D
     {
         /// <summary>
         /// </summary>
-        public static Extent3D Zero => new();
-
+        public static Extent3D Zero => new Extent3D();
+        
         /// <summary>
         /// </summary>
         public Extent3D(uint width, uint height, uint depth)
@@ -44,17 +44,17 @@ namespace SharpVk
             Height = height;
             Depth = depth;
         }
-
+        
         /// <summary>
         /// </summary>
-        public uint Width;
-
+        public uint Width; 
+        
         /// <summary>
         /// </summary>
-        public uint Height;
-
+        public uint Height; 
+        
         /// <summary>
         /// </summary>
-        public uint Depth;
+        public uint Depth; 
     }
 }

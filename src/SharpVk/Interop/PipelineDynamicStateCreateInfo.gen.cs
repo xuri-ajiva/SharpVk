@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,30 +32,30 @@ namespace SharpVk.Interop
     public unsafe struct PipelineDynamicStateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public PipelineDynamicStateCreateFlags Flags;
-
+        public PipelineDynamicStateCreateFlags Flags; 
+        
         /// <summary>
-        ///     The number of elements in the pDynamicStates array.
+        /// The number of elements in the pDynamicStates array.
         /// </summary>
-        public uint DynamicStateCount;
-
+        public uint DynamicStateCount; 
+        
         /// <summary>
-        ///     An array of DynamicState enums which indicate which pieces of
-        ///     pipeline state will use the values from dynamic state commands
-        ///     rather than from the pipeline state creation info.
+        /// An array of DynamicState enums which indicate which pieces of
+        /// pipeline state will use the values from dynamic state commands
+        /// rather than from the pipeline state creation info.
         /// </summary>
-        public DynamicState* DynamicStates;
+        public DynamicState* DynamicStates; 
     }
 }

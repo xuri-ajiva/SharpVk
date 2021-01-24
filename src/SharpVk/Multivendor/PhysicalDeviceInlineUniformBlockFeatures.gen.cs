@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool DescriptorBindingInlineUniformBlockUpdateAfterBind
@@ -46,26 +46,26 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceInlineUniformBlockFeatures;
             pointer->Next = null;
             pointer->InlineUniformBlock = InlineUniformBlock;
             pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind = DescriptorBindingInlineUniformBlockUpdateAfterBind;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceInlineUniformBlockFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
+        internal static unsafe PhysicalDeviceInlineUniformBlockFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
         {
-            var result = default(PhysicalDeviceInlineUniformBlockFeatures);
+            PhysicalDeviceInlineUniformBlockFeatures result = default;
             result.InlineUniformBlock = pointer->InlineUniformBlock;
             result.DescriptorBindingInlineUniformBlockUpdateAfterBind = pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind;
             return result;

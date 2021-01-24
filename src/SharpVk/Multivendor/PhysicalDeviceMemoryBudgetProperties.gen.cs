@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong[] HeapUsage
@@ -47,16 +46,16 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMemoryBudgetProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceMemoryBudgetProperties* pointer)
+        internal static unsafe PhysicalDeviceMemoryBudgetProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryBudgetProperties* pointer)
         {
-            var result = default(PhysicalDeviceMemoryBudgetProperties);
-            result.HeapBudget = HeapUtil.MarshalFrom(pointer->HeapBudget, Constants.MaxMemoryHeaps);
-            result.HeapUsage = HeapUtil.MarshalFrom(pointer->HeapUsage, Constants.MaxMemoryHeaps);
+            PhysicalDeviceMemoryBudgetProperties result = default;
+            result.HeapBudget = Interop.HeapUtil.MarshalFrom(pointer->HeapBudget, Constants.MaxMemoryHeaps);
+            result.HeapUsage = Interop.HeapUtil.MarshalFrom(pointer->HeapUsage, Constants.MaxMemoryHeaps);
             return result;
         }
     }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,46 +30,46 @@ namespace SharpVk.Khronos
     {
         /// <summary>
         /// </summary>
-        Generic = 0,
-
+        Generic = 0, 
+        
         /// <summary>
         /// </summary>
-        Percentage = 1,
-
+        Percentage = 1, 
+        
         /// <summary>
         /// </summary>
-        Nanoseconds = 2,
-
+        Nanoseconds = 2, 
+        
         /// <summary>
         /// </summary>
-        Bytes = 3,
-
+        Bytes = 3, 
+        
         /// <summary>
         /// </summary>
-        BytesPerSecond = 4,
-
+        BytesPerSecond = 4, 
+        
         /// <summary>
         /// </summary>
-        Kelvin = 5,
-
+        Kelvin = 5, 
+        
         /// <summary>
         /// </summary>
-        Watts = 6,
-
+        Watts = 6, 
+        
         /// <summary>
         /// </summary>
-        Volts = 7,
-
+        Volts = 7, 
+        
         /// <summary>
         /// </summary>
-        Amps = 8,
-
+        Amps = 8, 
+        
         /// <summary>
         /// </summary>
-        Hertz = 9,
-
+        Hertz = 9, 
+        
         /// <summary>
         /// </summary>
-        Cycles = 10
+        Cycles = 10, 
     }
 }

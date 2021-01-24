@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    ///     Bitmask controlling which components are written to the framebuffer.
+    /// Bitmask controlling which components are written to the framebuffer.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum ColorComponentFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
         /// </summary>
-        R = 1 << 0,
-
+        R = 1 << 0, 
+        
         /// <summary>
         /// </summary>
-        G = 1 << 1,
-
+        G = 1 << 1, 
+        
         /// <summary>
         /// </summary>
-        B = 1 << 2,
-
+        B = 1 << 2, 
+        
         /// <summary>
         /// </summary>
-        A = 1 << 3
+        A = 1 << 3, 
     }
 }

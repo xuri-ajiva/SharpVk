@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,57 +32,57 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct GeometryTriangles
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public Buffer VertexData;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public ulong VertexOffset;
-
+        public Buffer VertexData; 
+        
         /// <summary>
         /// </summary>
-        public uint VertexCount;
-
+        public ulong VertexOffset; 
+        
         /// <summary>
         /// </summary>
-        public ulong VertexStride;
-
+        public uint VertexCount; 
+        
         /// <summary>
         /// </summary>
-        public Format VertexFormat;
-
+        public ulong VertexStride; 
+        
         /// <summary>
         /// </summary>
-        public Buffer IndexData;
-
+        public Format VertexFormat; 
+        
         /// <summary>
         /// </summary>
-        public ulong IndexOffset;
-
+        public Buffer IndexData; 
+        
         /// <summary>
         /// </summary>
-        public uint IndexCount;
-
+        public ulong IndexOffset; 
+        
         /// <summary>
         /// </summary>
-        public IndexType IndexType;
-
+        public uint IndexCount; 
+        
         /// <summary>
         /// </summary>
-        public Buffer TransformData;
-
+        public IndexType IndexType; 
+        
         /// <summary>
         /// </summary>
-        public ulong TransformOffset;
+        public Buffer TransformData; 
+        
+        /// <summary>
+        /// </summary>
+        public ulong TransformOffset; 
     }
 }

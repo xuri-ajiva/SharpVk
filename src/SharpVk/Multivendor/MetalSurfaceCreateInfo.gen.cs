@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,47 +24,50 @@
 
 using System;
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created Metal surface object
+    /// Structure specifying parameters of a newly created Metal surface object
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MetalSurfaceCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public MetalSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A CAMetalLayer object that represents a renderable surface.
+        /// A CAMetalLayer object that represents a renderable surface.
         /// </summary>
         public IntPtr Layer
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.MetalSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.MetalSurfaceCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->Layer = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+            }
+            pointer->Layer = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->Layer = Layer;
         }
     }

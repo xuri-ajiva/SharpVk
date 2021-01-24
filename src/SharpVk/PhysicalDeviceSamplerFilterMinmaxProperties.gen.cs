@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FilterMinmaxImageComponentMapping
@@ -46,14 +46,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSamplerFilterMinmaxProperties MarshalFrom(Interop.PhysicalDeviceSamplerFilterMinmaxProperties* pointer)
+        internal static unsafe PhysicalDeviceSamplerFilterMinmaxProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSamplerFilterMinmaxProperties* pointer)
         {
-            var result = default(PhysicalDeviceSamplerFilterMinmaxProperties);
+            PhysicalDeviceSamplerFilterMinmaxProperties result = default;
             result.FilterMinmaxSingleComponentFormats = pointer->FilterMinmaxSingleComponentFormats;
             result.FilterMinmaxImageComponentMapping = pointer->FilterMinmaxImageComponentMapping;
             return result;

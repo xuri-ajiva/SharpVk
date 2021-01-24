@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,35 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created pipeline shader
-    ///     stage.
+    /// Structure specifying parameters of a newly created pipeline shader
+    /// stage.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineShaderStageCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public PipelineShaderStageCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     stage names a single pipeline stage. Bits which can be set include:
-        ///     + --
+        /// stage names a single pipeline stage. Bits which can be set include:
+        /// + --
         /// </summary>
         public ShaderStageFlags Stage
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShaderModule Module
@@ -60,7 +59,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string Name
@@ -68,7 +67,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SpecializationInfo? SpecializationInfo
@@ -76,25 +75,29 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PipelineShaderStageCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineShaderStageCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineShaderStageCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->Stage = Stage;
-            pointer->Module = Module?.Handle ?? default(Interop.ShaderModule);
-            pointer->Name = HeapUtil.MarshalTo(Name);
+            pointer->Module = Module?.Handle ?? default;
+            pointer->Name = Interop.HeapUtil.MarshalTo(Name);
             if (SpecializationInfo != null)
             {
-                pointer->SpecializationInfo = (Interop.SpecializationInfo*)HeapUtil.Allocate<Interop.SpecializationInfo>();
+                pointer->SpecializationInfo = (SharpVk.Interop.SpecializationInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SpecializationInfo>());
                 SpecializationInfo.Value.MarshalTo(pointer->SpecializationInfo);
             }
             else

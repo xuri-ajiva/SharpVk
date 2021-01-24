@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,26 +23,25 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created swapchain object.
+    /// Structure specifying parameters of a newly created swapchain object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SwapchainCreateInfo
     {
         /// <summary>
-        ///     A bitmask indicating parameters of swapchain creation. Bits which
-        ///     can be set include: + --
+        /// A bitmask indicating parameters of swapchain creation. Bits which
+        /// can be set include: + --
         /// </summary>
         public SwapchainCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Surface Surface
@@ -50,7 +49,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MinImageCount
@@ -58,7 +57,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Format ImageFormat
@@ -66,7 +65,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ColorSpace ImageColorSpace
@@ -74,7 +73,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Extent2D ImageExtent
@@ -82,7 +81,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint ImageArrayLayers
@@ -90,7 +89,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageUsageFlags ImageUsage
@@ -98,7 +97,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SharingMode ImageSharingMode
@@ -106,7 +105,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint[] QueueFamilyIndices
@@ -114,7 +113,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SurfaceTransformFlags PreTransform
@@ -122,7 +121,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public CompositeAlphaFlags CompositeAlpha
@@ -130,7 +129,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public PresentMode PresentMode
@@ -138,7 +137,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool Clipped
@@ -146,7 +145,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Swapchain OldSwapchain
@@ -154,20 +153,24 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.SwapchainCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SwapchainCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->Surface = Surface?.Handle ?? default(Interop.Khronos.Surface);
+            }
+            pointer->Surface = Surface?.Handle ?? default;
             pointer->MinImageCount = MinImageCount;
             pointer->ImageFormat = ImageFormat;
             pointer->ImageColorSpace = ImageColorSpace;
@@ -175,11 +178,14 @@ namespace SharpVk.Khronos
             pointer->ImageArrayLayers = ImageArrayLayers;
             pointer->ImageUsage = ImageUsage;
             pointer->ImageSharingMode = ImageSharingMode;
-            pointer->QueueFamilyIndexCount = HeapUtil.GetLength(QueueFamilyIndices);
+            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(QueueFamilyIndices));
             if (QueueFamilyIndices != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer();
-                for (var index = 0; index < (uint)QueueFamilyIndices.Length; index++) fieldPointer[index] = QueueFamilyIndices[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer());
+                for(int index = 0; index < (uint)(QueueFamilyIndices.Length); index++)
+                {
+                    fieldPointer[index] = QueueFamilyIndices[index];
+                }
                 pointer->QueueFamilyIndices = fieldPointer;
             }
             else
@@ -190,7 +196,7 @@ namespace SharpVk.Khronos
             pointer->CompositeAlpha = CompositeAlpha;
             pointer->PresentMode = PresentMode;
             pointer->Clipped = Clipped;
-            pointer->OldSwapchain = OldSwapchain?.Handle ?? default(Interop.Khronos.Swapchain);
+            pointer->OldSwapchain = OldSwapchain?.Handle ?? default;
         }
     }
 }

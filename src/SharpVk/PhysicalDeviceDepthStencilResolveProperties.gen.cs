@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ResolveModeFlags SupportedStencilResolveModes
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool IndependentResolveNone
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool IndependentResolve
@@ -62,14 +62,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDepthStencilResolveProperties MarshalFrom(Interop.PhysicalDeviceDepthStencilResolveProperties* pointer)
+        internal static unsafe PhysicalDeviceDepthStencilResolveProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDepthStencilResolveProperties* pointer)
         {
-            var result = default(PhysicalDeviceDepthStencilResolveProperties);
+            PhysicalDeviceDepthStencilResolveProperties result = default;
             result.SupportedDepthResolveModes = pointer->SupportedDepthResolveModes;
             result.SupportedStencilResolveModes = pointer->SupportedStencilResolveModes;
             result.IndependentResolveNone = pointer->IndependentResolveNone;

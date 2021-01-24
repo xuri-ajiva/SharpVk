@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong MaxMemoryAllocationSize
@@ -46,14 +46,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMaintenance3Properties MarshalFrom(Interop.PhysicalDeviceMaintenance3Properties* pointer)
+        internal static unsafe PhysicalDeviceMaintenance3Properties MarshalFrom(SharpVk.Interop.PhysicalDeviceMaintenance3Properties* pointer)
         {
-            var result = default(PhysicalDeviceMaintenance3Properties);
+            PhysicalDeviceMaintenance3Properties result = default;
             result.MaxPerSetDescriptors = pointer->MaxPerSetDescriptors;
             result.MaxMemoryAllocationSize = pointer->MaxMemoryAllocationSize;
             return result;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,77 +27,77 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created display plane
-    ///     surface object.
+    /// Structure specifying parameters of a newly created display plane
+    /// surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplaySurfaceCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use, and must be zero.
+        /// Reserved for future use, and must be zero.
         /// </summary>
         public DisplaySurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The mode to use when displaying this surface.
+        /// The mode to use when displaying this surface.
         /// </summary>
         public DisplayMode DisplayMode
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The plane on which this surface appears.
+        /// The plane on which this surface appears.
         /// </summary>
         public uint PlaneIndex
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The z-order of the plane.
+        /// The z-order of the plane.
         /// </summary>
         public uint PlaneStackIndex
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The transform to apply to the images as part of the scanout
-        ///     operation.
+        /// The transform to apply to the images as part of the scanout
+        /// operation.
         /// </summary>
         public SurfaceTransformFlags Transform
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The global alpha value. This value is ignored if alphaMode is not
-        ///     VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
+        /// The global alpha value. This value is ignored if alphaMode is not
+        /// VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
         /// </summary>
         public float GlobalAlpha
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The type of alpha blending to use.
+        /// The type of alpha blending to use.
         /// </summary>
         public DisplayPlaneAlphaFlags AlphaMode
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Extent2D ImageExtent
@@ -105,20 +105,24 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Khronos.DisplaySurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplaySurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.DisplaySurfaceCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->DisplayMode = DisplayMode?.Handle ?? default(Interop.Khronos.DisplayMode);
+            }
+            pointer->DisplayMode = DisplayMode?.Handle ?? default;
             pointer->PlaneIndex = PlaneIndex;
             pointer->PlaneStackIndex = PlaneStackIndex;
             pointer->Transform = Transform;

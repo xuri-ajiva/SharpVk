@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,6 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Interop;
-using SharpVk.Khronos;
-
 namespace SharpVk.Amd
 {
     /// <summary>
@@ -34,22 +31,22 @@ namespace SharpVk.Amd
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Swapchain handle to extend.
+        /// The Swapchain handle to extend.
         /// </param>
         /// <param name="localDimmingEnable">
         /// </param>
-        public static void SetLocalDimming(this Swapchain extendedHandle, bool localDimmingEnable)
+        public static unsafe void SetLocalDimming(this Khronos.Swapchain extendedHandle, bool localDimmingEnable)
         {
             try
             {
-                var commandCache = default(CommandCache);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkSetLocalDimmingAmd;
-                commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, localDimmingEnable);
+                CommandCache commandCache = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Amd.VkSwapchainKHRSetLocalDimmingDelegate commandDelegate = commandCache.Cache.vkSetLocalDimmingAMD;
+                commandDelegate(extendedHandle.parent.Handle, extendedHandle.Handle, localDimmingEnable);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,36 +27,40 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Specify that an image may be backed by external memory.
+    /// Specify that an image may be backed by external memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
-        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
-        ///     more external memory handle types. The types must all be compatible
-        ///     with each other and the other image creation parameters, as
-        ///     reported by
-        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
+        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or
+        /// more external memory handle types. The types must all be compatible
+        /// with each other and the other image creation parameters, as
+        /// reported by
+        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
         /// </summary>
         public ExternalMemoryHandleTypeFlags? HandleTypes
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.ExternalMemoryImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.ExternalMemoryImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ExternalMemoryImageCreateInfoNv;
             pointer->Next = null;
             if (HandleTypes != null)
+            {
                 pointer->HandleTypes = HandleTypes.Value;
+            }
             else
+            {
                 pointer->HandleTypes = default;
+            }
         }
     }
 }

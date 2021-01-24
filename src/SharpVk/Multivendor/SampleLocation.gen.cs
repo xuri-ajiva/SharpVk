@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,8 +33,8 @@ namespace SharpVk.Multivendor
     {
         /// <summary>
         /// </summary>
-        public static SampleLocation Zero => new();
-
+        public static SampleLocation Zero => new SampleLocation();
+        
         /// <summary>
         /// </summary>
         public SampleLocation(float x, float y)
@@ -42,13 +42,13 @@ namespace SharpVk.Multivendor
             X = x;
             Y = y;
         }
-
+        
         /// <summary>
         /// </summary>
-        public float X;
-
+        public float X; 
+        
         /// <summary>
         /// </summary>
-        public float Y;
+        public float Y; 
     }
 }

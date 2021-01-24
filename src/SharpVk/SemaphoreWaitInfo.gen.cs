@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Semaphore[] Semaphores
@@ -47,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong[] Values
@@ -55,24 +54,31 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.SemaphoreWaitInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SemaphoreWaitInfo* pointer)
         {
             pointer->SType = StructureType.SemaphoreWaitInfoVersion;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->SemaphoreCount = HeapUtil.GetLength(Semaphores);
+            }
+            pointer->SemaphoreCount = (uint)(Interop.HeapUtil.GetLength(Semaphores));
             if (Semaphores != null)
             {
-                var fieldPointer = (Interop.Semaphore*)HeapUtil.AllocateAndClear<Interop.Semaphore>(Semaphores.Length).ToPointer();
-                for (var index = 0; index < (uint)Semaphores.Length; index++) fieldPointer[index] = Semaphores[index]?.Handle ?? default(Interop.Semaphore);
+                var fieldPointer = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Semaphore>(Semaphores.Length).ToPointer());
+                for(int index = 0; index < (uint)(Semaphores.Length); index++)
+                {
+                    fieldPointer[index] = Semaphores[index]?.Handle ?? default;
+                }
                 pointer->Semaphores = fieldPointer;
             }
             else
@@ -81,8 +87,11 @@ namespace SharpVk
             }
             if (Values != null)
             {
-                var fieldPointer = (ulong*)HeapUtil.AllocateAndClear<ulong>(Values.Length).ToPointer();
-                for (var index = 0; index < (uint)Values.Length; index++) fieldPointer[index] = Values[index];
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(Values.Length).ToPointer());
+                for(int index = 0; index < (uint)(Values.Length); index++)
+                {
+                    fieldPointer[index] = Values[index];
+                }
                 pointer->Values = fieldPointer;
             }
             else

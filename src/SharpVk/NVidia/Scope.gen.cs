@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,18 +30,18 @@ namespace SharpVk.NVidia
     {
         /// <summary>
         /// </summary>
-        Device = 1,
-
+        Device = 1, 
+        
         /// <summary>
         /// </summary>
-        Workgroup = 2,
-
+        Workgroup = 2, 
+        
         /// <summary>
         /// </summary>
-        Subgroup = 3,
-
+        Subgroup = 3, 
+        
         /// <summary>
         /// </summary>
-        QueueFamily = 5
+        QueueFamily = 5, 
     }
 }

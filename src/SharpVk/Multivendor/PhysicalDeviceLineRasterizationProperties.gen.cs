@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,14 +38,14 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceLineRasterizationProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceLineRasterizationProperties* pointer)
+        internal static unsafe PhysicalDeviceLineRasterizationProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationProperties* pointer)
         {
-            var result = default(PhysicalDeviceLineRasterizationProperties);
+            PhysicalDeviceLineRasterizationProperties result = default;
             result.LineSubPixelPrecisionBits = pointer->LineSubPixelPrecisionBits;
             return result;
         }

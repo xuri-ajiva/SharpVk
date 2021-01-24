@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,72 +25,72 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Framebuffer logical operations.
+    /// Framebuffer logical operations.
     /// </summary>
     public enum LogicOp
     {
         /// <summary>
         /// </summary>
-        Clear = 0,
-
+        Clear = 0, 
+        
         /// <summary>
         /// </summary>
-        And = 1,
-
+        And = 1, 
+        
         /// <summary>
         /// </summary>
-        AndReverse = 2,
-
+        AndReverse = 2, 
+        
         /// <summary>
         /// </summary>
-        Copy = 3,
-
+        Copy = 3, 
+        
         /// <summary>
         /// </summary>
-        AndInverted = 4,
-
+        AndInverted = 4, 
+        
         /// <summary>
         /// </summary>
-        NoOp = 5,
-
+        NoOp = 5, 
+        
         /// <summary>
         /// </summary>
-        Xor = 6,
-
+        Xor = 6, 
+        
         /// <summary>
         /// </summary>
-        Or = 7,
-
+        Or = 7, 
+        
         /// <summary>
         /// </summary>
-        Nor = 8,
-
+        Nor = 8, 
+        
         /// <summary>
         /// </summary>
-        Equivalent = 9,
-
+        Equivalent = 9, 
+        
         /// <summary>
         /// </summary>
-        Invert = 10,
-
+        Invert = 10, 
+        
         /// <summary>
         /// </summary>
-        OrReverse = 11,
-
+        OrReverse = 11, 
+        
         /// <summary>
         /// </summary>
-        CopyInverted = 12,
-
+        CopyInverted = 12, 
+        
         /// <summary>
         /// </summary>
-        OrInverted = 13,
-
+        OrInverted = 13, 
+        
         /// <summary>
         /// </summary>
-        Nand = 14,
-
+        Nand = 14, 
+        
         /// <summary>
         /// </summary>
-        Set = 15
+        Set = 15, 
     }
 }

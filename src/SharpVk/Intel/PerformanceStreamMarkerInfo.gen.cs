@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,26 +27,26 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Intel
 {
     /// <summary>
-    ///     Structure specifying stream performance markers
+    /// Structure specifying stream performance markers
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PerformanceStreamMarkerInfo
     {
         /// <summary>
-        ///     The marker value that will be recorded into the reports consumed by
-        ///     an external application.
+        /// The marker value that will be recorded into the reports consumed by
+        /// an external application.
         /// </summary>
         public uint Marker
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Intel.PerformanceStreamMarkerInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceStreamMarkerInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceStreamMarkerInfo;
             pointer->Next = null;

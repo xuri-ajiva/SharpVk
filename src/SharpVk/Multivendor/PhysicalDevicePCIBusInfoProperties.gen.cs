@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,54 +27,54 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     The PCI bus information of a physical device
+    /// The PCI bus information of a physical device
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDevicePciBusInfoProperties
+    public struct PhysicalDevicePCIBusInfoProperties
     {
         /// <summary>
-        ///     The PCI bus domain
+        /// The PCI bus domain
         /// </summary>
         public uint PciDomain
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The PCI bus identifier
+        /// The PCI bus identifier
         /// </summary>
         public uint PciBus
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The PCI device identifier
+        /// The PCI device identifier
         /// </summary>
         public uint PciDevice
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The PCI device function identifier
+        /// The PCI device function identifier
         /// </summary>
         public uint PciFunction
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevicePciBusInfoProperties MarshalFrom(Interop.Multivendor.PhysicalDevicePciBusInfoProperties* pointer)
+        internal static unsafe PhysicalDevicePCIBusInfoProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDevicePCIBusInfoProperties* pointer)
         {
-            var result = default(PhysicalDevicePciBusInfoProperties);
+            PhysicalDevicePCIBusInfoProperties result = default;
             result.PciDomain = pointer->PciDomain;
             result.PciBus = pointer->PciBus;
             result.PciDevice = pointer->PciDevice;

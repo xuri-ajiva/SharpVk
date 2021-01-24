@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,31 +32,31 @@ namespace SharpVk
     public struct BaseOutStructure
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
         public StructureType SType
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.BaseOutStructure* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.BaseOutStructure* pointer)
         {
             pointer->SType = SType;
             pointer->Next = null;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe BaseOutStructure MarshalFrom(Interop.BaseOutStructure* pointer)
+        internal static unsafe BaseOutStructure MarshalFrom(SharpVk.Interop.BaseOutStructure* pointer)
         {
-            var result = default(BaseOutStructure);
+            BaseOutStructure result = default;
             result.SType = pointer->SType;
             return result;
         }

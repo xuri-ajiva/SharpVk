@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,36 +29,36 @@ namespace SharpVk.Interop
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceIdProperties
+    public unsafe struct PhysicalDeviceIDProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public fixed byte DeviceUUID[Constants.UuidSize];
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte DriverUUID[Constants.UuidSize];
-
+        public fixed byte DeviceUUID[Constants.UuidSize]; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte DeviceLUID[Constants.LuidSize];
-
+        public fixed byte DriverUUID[Constants.UuidSize]; 
+        
         /// <summary>
         /// </summary>
-        public uint DeviceNodeMask;
-
+        public fixed byte DeviceLUID[Constants.LuidSize]; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 DeviceLUIDValid;
+        public uint DeviceNodeMask; 
+        
+        /// <summary>
+        /// </summary>
+        public Bool32 DeviceLUIDValid; 
     }
 }

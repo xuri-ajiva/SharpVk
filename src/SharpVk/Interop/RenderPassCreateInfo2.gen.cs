@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,49 +32,49 @@ namespace SharpVk.Interop
     public unsafe struct RenderPassCreateInfo2
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public RenderPassCreateFlags Flags;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint AttachmentCount;
-
+        public RenderPassCreateFlags Flags; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentDescription2* Attachments;
-
+        public uint AttachmentCount; 
+        
         /// <summary>
         /// </summary>
-        public uint SubpassCount;
-
+        public AttachmentDescription2* Attachments; 
+        
         /// <summary>
         /// </summary>
-        public SubpassDescription2* Subpasses;
-
+        public uint SubpassCount; 
+        
         /// <summary>
         /// </summary>
-        public uint DependencyCount;
-
+        public SubpassDescription2* Subpasses; 
+        
         /// <summary>
         /// </summary>
-        public SubpassDependency2* Dependencies;
-
+        public uint DependencyCount; 
+        
         /// <summary>
         /// </summary>
-        public uint CorrelatedViewMaskCount;
-
+        public SubpassDependency2* Dependencies; 
+        
         /// <summary>
         /// </summary>
-        public uint* CorrelatedViewMasks;
+        public uint CorrelatedViewMaskCount; 
+        
+        /// <summary>
+        /// </summary>
+        public uint* CorrelatedViewMasks; 
     }
 }

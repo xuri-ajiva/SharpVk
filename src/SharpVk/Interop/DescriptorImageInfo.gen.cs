@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,30 +29,30 @@ namespace SharpVk.Interop
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorImageInfo
+    public unsafe struct DescriptorImageInfo
     {
         /// <summary>
-        ///     A sampler handle, and is used in descriptor updates for types
-        ///     DescriptorType.Sampler and DescriptorType.CombinedImageSampler if
-        ///     the binding being updated does not use immutable samplers.
+        /// A sampler handle, and is used in descriptor updates for types
+        /// DescriptorType.Sampler and DescriptorType.CombinedImageSampler if
+        /// the binding being updated does not use immutable samplers.
         /// </summary>
-        public Sampler Sampler;
-
+        public Sampler Sampler; 
+        
         /// <summary>
-        ///     An image view handle, and is used in descriptor updates for types
-        ///     DescriptorType.SampledImage, DescriptorType.StorageImage,
-        ///     DescriptorType.CombinedImageSampler, and
-        ///     DescriptorType.InputAttachment.
+        /// An image view handle, and is used in descriptor updates for types
+        /// DescriptorType.SampledImage, DescriptorType.StorageImage,
+        /// DescriptorType.CombinedImageSampler, and
+        /// DescriptorType.InputAttachment.
         /// </summary>
-        public ImageView ImageView;
-
+        public ImageView ImageView; 
+        
         /// <summary>
-        ///     The layout that the image will be in at the time this descriptor is
-        ///     accessed. imageLayout is used in descriptor updates for types
-        ///     DescriptorType.SampledImage, DescriptorType.StorageImage,
-        ///     DescriptorType.CombinedImageSampler, and
-        ///     DescriptorType.InputAttachment.
+        /// The layout that the image will be in at the time this descriptor is
+        /// accessed. imageLayout is used in descriptor updates for types
+        /// DescriptorType.SampledImage, DescriptorType.StorageImage,
+        /// DescriptorType.CombinedImageSampler, and
+        /// DescriptorType.InputAttachment.
         /// </summary>
-        public ImageLayout ImageLayout;
+        public ImageLayout ImageLayout; 
     }
 }

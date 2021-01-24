@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Interop;
-
 namespace SharpVk.Amd
 {
     /// <summary>
@@ -33,7 +31,7 @@ namespace SharpVk.Amd
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Pipeline handle to extend.
+        /// The Pipeline handle to extend.
         /// </param>
         /// <param name="shaderStage">
         /// </param>
@@ -43,20 +41,26 @@ namespace SharpVk.Amd
         {
             try
             {
-                var result = default(byte[]);
-                var marshalledInfoSize = default(HostSize);
-                var commandCache = default(CommandCache);
-                var marshalledInfo = default(byte*);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetShaderInfoAmd;
-                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, shaderStage, infoType, &marshalledInfoSize, marshalledInfo);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                marshalledInfo = (byte*)HeapUtil.Allocate<byte>((uint)marshalledInfoSize);
-                commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, shaderStage, infoType, &marshalledInfoSize, marshalledInfo);
+                byte[] result = default;
+                HostSize marshalledInfoSize = default;
+                CommandCache commandCache = default;
+                byte* marshalledInfo = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Amd.VkPipelineGetShaderInfoDelegate commandDelegate = commandCache.Cache.vkGetShaderInfoAMD;
+                Result methodResult = commandDelegate(extendedHandle.parent.Handle, extendedHandle.Handle, shaderStage, infoType, &marshalledInfoSize, marshalledInfo);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledInfo = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(marshalledInfoSize)));
+                commandDelegate(extendedHandle.parent.Handle, extendedHandle.Handle, shaderStage, infoType, &marshalledInfoSize, marshalledInfo);
                 if (marshalledInfo != null)
                 {
-                    var fieldPointer = new byte[(uint)marshalledInfoSize];
-                    for (var index = 0; index < (uint)marshalledInfoSize; index++) fieldPointer[index] = marshalledInfo[index];
+                    var fieldPointer = new byte[(uint)(marshalledInfoSize)];
+                    for(int index = 0; index < (uint)(marshalledInfoSize); index++)
+                    {
+                        fieldPointer[index] = marshalledInfo[index];
+                    }
                     result = fieldPointer;
                 }
                 else
@@ -67,7 +71,7 @@ namespace SharpVk.Amd
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

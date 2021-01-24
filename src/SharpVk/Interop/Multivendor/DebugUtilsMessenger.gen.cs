@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,19 +28,19 @@ namespace SharpVk.Interop.Multivendor
     /// </summary>
     public struct DebugUtilsMessenger
     {
-        internal ulong Handle;
-
+        internal ulong Handle; 
+        
         /// <summary>
         /// </summary>
         public DebugUtilsMessenger(ulong handle)
         {
-            this.Handle = handle;
+            Handle = handle;
         }
-
+        
         /// <summary>
         /// </summary>
-        public DebugUtilsMessenger Null => new(default);
-
+        public DebugUtilsMessenger Null => new DebugUtilsMessenger(default);
+        
         /// <summary>
         /// </summary>
         public ulong ToUInt64()

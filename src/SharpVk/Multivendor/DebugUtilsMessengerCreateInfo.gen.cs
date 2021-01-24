@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DebugUtilsMessageSeverityFlags MessageSeverity
@@ -47,7 +47,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DebugUtilsMessageTypeFlags MessageType
@@ -55,7 +55,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DebugUtilsMessengerCallbackDelegate UserCallback
@@ -63,7 +63,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public IntPtr? UserData
@@ -71,26 +71,34 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.DebugUtilsMessengerCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo* pointer)
         {
             pointer->SType = StructureType.DebugUtilsMessengerCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->MessageSeverity = MessageSeverity;
             pointer->MessageType = MessageType;
             pointer->UserCallback = Marshal.GetFunctionPointerForDelegate(UserCallback);
             if (UserData != null)
+            {
                 pointer->UserData = UserData.Value.ToPointer();
+            }
             else
+            {
                 pointer->UserData = default;
+            }
         }
     }
 }

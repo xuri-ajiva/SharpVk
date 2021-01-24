@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,29 +32,29 @@ namespace SharpVk.Interop
     public unsafe struct PhysicalDeviceDriverProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public DriverId DriverID;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte DriverName[Constants.MaxDriverNameSize];
-
+        public DriverId DriverID; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte DriverInfo[Constants.MaxDriverInfoSize];
-
+        public fixed byte DriverName[Constants.MaxDriverNameSize]; 
+        
         /// <summary>
         /// </summary>
-        public ConformanceVersion ConformanceVersion;
+        public fixed byte DriverInfo[Constants.MaxDriverInfoSize]; 
+        
+        /// <summary>
+        /// </summary>
+        public ConformanceVersion ConformanceVersion; 
     }
 }

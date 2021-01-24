@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,24 +29,24 @@ namespace SharpVk.Amd
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct TextureLodGatherFormatProperties
+    public struct TextureLODGatherFormatProperties
     {
         /// <summary>
         /// </summary>
-        public bool SupportsTextureGatherLodBias
+        public bool SupportsTextureGatherLODBias
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe TextureLodGatherFormatProperties MarshalFrom(Interop.Amd.TextureLodGatherFormatProperties* pointer)
+        internal static unsafe TextureLODGatherFormatProperties MarshalFrom(SharpVk.Interop.Amd.TextureLODGatherFormatProperties* pointer)
         {
-            var result = default(TextureLodGatherFormatProperties);
-            result.SupportsTextureGatherLodBias = pointer->SupportsTextureGatherLODBias;
+            TextureLODGatherFormatProperties result = default;
+            result.SupportsTextureGatherLODBias = pointer->SupportsTextureGatherLODBias;
             return result;
         }
     }

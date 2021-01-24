@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,26 +27,26 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Specify that an image is bound to a dedicated memory resource.
+    /// Specify that an image is bound to a dedicated memory resource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DedicatedAllocationImageCreateInfo
     {
         /// <summary>
-        ///     Indicates whether the image will have a dedicated allocation bound
-        ///     to it.
+        /// Indicates whether the image will have a dedicated allocation bound
+        /// to it.
         /// </summary>
         public bool DedicatedAllocation
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.DedicatedAllocationImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.DedicatedAllocationImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.DedicatedAllocationImageCreateInfo;
             pointer->Next = null;

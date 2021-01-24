@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,69 +32,69 @@ namespace SharpVk.Interop.Amd
     public unsafe struct PhysicalDeviceShaderCoreProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public uint ShaderEngineCount;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint ShaderArraysPerEngineCount;
-
+        public uint ShaderEngineCount; 
+        
         /// <summary>
         /// </summary>
-        public uint ComputeUnitsPerShaderArray;
-
+        public uint ShaderArraysPerEngineCount; 
+        
         /// <summary>
         /// </summary>
-        public uint SimdPerComputeUnit;
-
+        public uint ComputeUnitsPerShaderArray; 
+        
         /// <summary>
         /// </summary>
-        public uint WavefrontsPerSimd;
-
+        public uint SimdPerComputeUnit; 
+        
         /// <summary>
         /// </summary>
-        public uint WavefrontSize;
-
+        public uint WavefrontsPerSimd; 
+        
         /// <summary>
         /// </summary>
-        public uint SgprsPerSimd;
-
+        public uint WavefrontSize; 
+        
         /// <summary>
         /// </summary>
-        public uint MinSgprAllocation;
-
+        public uint SgprsPerSimd; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxSgprAllocation;
-
+        public uint MinSgprAllocation; 
+        
         /// <summary>
         /// </summary>
-        public uint SgprAllocationGranularity;
-
+        public uint MaxSgprAllocation; 
+        
         /// <summary>
         /// </summary>
-        public uint VgprsPerSimd;
-
+        public uint SgprAllocationGranularity; 
+        
         /// <summary>
         /// </summary>
-        public uint MinVgprAllocation;
-
+        public uint VgprsPerSimd; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxVgprAllocation;
-
+        public uint MinVgprAllocation; 
+        
         /// <summary>
         /// </summary>
-        public uint VgprAllocationGranularity;
+        public uint MaxVgprAllocation; 
+        
+        /// <summary>
+        /// </summary>
+        public uint VgprAllocationGranularity; 
     }
 }

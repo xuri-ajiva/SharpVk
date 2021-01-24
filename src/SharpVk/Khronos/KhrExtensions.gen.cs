@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,106 +30,122 @@ namespace SharpVk.Khronos
     {
         /// <summary>
         /// </summary>
-        public const string Surface = "VK_KHR_surface";
-
+        public const string Surface = "VK_KHR_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string Swapchain = "VK_KHR_swapchain";
-
+        public const string Swapchain = "VK_KHR_swapchain"; 
+        
         /// <summary>
         /// </summary>
-        public const string Display = "VK_KHR_display";
-
+        public const string Display = "VK_KHR_display"; 
+        
         /// <summary>
         /// </summary>
-        public const string DisplaySwapchain = "VK_KHR_display_swapchain";
-
+        public const string DisplaySwapchain = "VK_KHR_display_swapchain"; 
+        
         /// <summary>
         /// </summary>
-        public const string XlibSurface = "VK_KHR_xlib_surface";
-
+        public const string XlibSurface = "VK_KHR_xlib_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string XcbSurface = "VK_KHR_xcb_surface";
-
+        public const string XcbSurface = "VK_KHR_xcb_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string WaylandSurface = "VK_KHR_wayland_surface";
-
+        public const string WaylandSurface = "VK_KHR_wayland_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string AndroidSurface = "VK_KHR_android_surface";
-
+        public const string AndroidSurface = "VK_KHR_android_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string Win32Surface = "VK_KHR_win32_surface";
-
+        public const string Win32Surface = "VK_KHR_win32_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalMemoryWin32 = "VK_KHR_external_memory_win32";
-
+        public const string ExternalMemoryWin32 = "VK_KHR_external_memory_win32"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalMemoryFd = "VK_KHR_external_memory_fd";
-
+        public const string ExternalMemoryFd = "VK_KHR_external_memory_fd"; 
+        
         /// <summary>
         /// </summary>
-        public const string Win32KeyedMutex = "VK_KHR_win32_keyed_mutex";
-
+        public const string Win32KeyedMutex = "VK_KHR_win32_keyed_mutex"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalSemaphoreWin32 = "VK_KHR_external_semaphore_win32";
-
+        public const string ExternalSemaphoreWin32 = "VK_KHR_external_semaphore_win32"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalSemaphoreFd = "VK_KHR_external_semaphore_fd";
-
+        public const string ExternalSemaphoreFd = "VK_KHR_external_semaphore_fd"; 
+        
         /// <summary>
         /// </summary>
-        public const string PushDescriptor = "VK_KHR_push_descriptor";
-
+        public const string PushDescriptor = "VK_KHR_push_descriptor"; 
+        
         /// <summary>
         /// </summary>
-        public const string IncrementalPresent = "VK_KHR_incremental_present";
-
+        public const string IncrementalPresent = "VK_KHR_incremental_present"; 
+        
         /// <summary>
         /// </summary>
-        public const string SharedPresentableImage = "VK_KHR_shared_presentable_image";
-
+        public const string SharedPresentableImage = "VK_KHR_shared_presentable_image"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalFenceWin32 = "VK_KHR_external_fence_win32";
-
+        public const string ExternalFenceWin32 = "VK_KHR_external_fence_win32"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalFenceFd = "VK_KHR_external_fence_fd";
-
+        public const string ExternalFenceFd = "VK_KHR_external_fence_fd"; 
+        
         /// <summary>
         /// </summary>
-        public const string PerformanceQuery = "VK_KHR_performance_query";
-
+        public const string PerformanceQuery = "VK_KHR_performance_query"; 
+        
         /// <summary>
         /// </summary>
-        public const string GetSurfaceCapabilities2 = "VK_KHR_get_surface_capabilities2";
-
+        public const string GetSurfaceCapabilities2 = "VK_KHR_get_surface_capabilities2"; 
+        
         /// <summary>
         /// </summary>
-        public const string GetDisplayProperties2 = "VK_KHR_get_display_properties2";
-
+        public const string GetDisplayProperties2 = "VK_KHR_get_display_properties2"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderClock = "VK_KHR_shader_clock";
-
+        public const string RayTracing = "VK_KHR_ray_tracing"; 
+        
         /// <summary>
         /// </summary>
-        public const string SwapchainMutableFormat = "VK_KHR_swapchain_mutable_format";
-
+        public const string ShaderClock = "VK_KHR_shader_clock"; 
+        
         /// <summary>
         /// </summary>
-        public const string SurfaceProtectedCapabilities = "VK_KHR_surface_protected_capabilities";
-
+        public const string SwapchainMutableFormat = "VK_KHR_swapchain_mutable_format"; 
+        
         /// <summary>
         /// </summary>
-        public const string PipelineExecutableProperties = "VK_KHR_pipeline_executable_properties";
+        public const string SurfaceProtectedCapabilities = "VK_KHR_surface_protected_capabilities"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string DeferredHostOperations = "VK_KHR_deferred_host_operations"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string PipelineExecutableProperties = "VK_KHR_pipeline_executable_properties"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string PipelineLibrary = "VK_KHR_pipeline_library"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string ShaderNonSemanticInfo = "VK_KHR_shader_non_semantic_info"; 
     }
 }

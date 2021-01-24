@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxTaskWorkGroupInvocations
@@ -46,7 +46,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public (uint, uint, uint) MaxTaskWorkGroupSize
@@ -54,7 +54,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxTaskTotalMemorySize
@@ -62,7 +62,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxTaskOutputCount
@@ -70,7 +70,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMeshWorkGroupInvocations
@@ -78,7 +78,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public (uint, uint, uint) MaxMeshWorkGroupSize
@@ -86,7 +86,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMeshTotalMemorySize
@@ -94,7 +94,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMeshOutputVertices
@@ -102,7 +102,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMeshOutputPrimitives
@@ -110,7 +110,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMeshMultiviewViewCount
@@ -118,7 +118,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MeshOutputPerVertexGranularity
@@ -126,7 +126,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MeshOutputPerPrimitiveGranularity
@@ -134,14 +134,14 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMeshShaderProperties MarshalFrom(Interop.NVidia.PhysicalDeviceMeshShaderProperties* pointer)
+        internal static unsafe PhysicalDeviceMeshShaderProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderProperties* pointer)
         {
-            var result = default(PhysicalDeviceMeshShaderProperties);
+            PhysicalDeviceMeshShaderProperties result = default;
             result.MaxDrawMeshTasksCount = pointer->MaxDrawMeshTasksCount;
             result.MaxTaskWorkGroupInvocations = pointer->MaxTaskWorkGroupInvocations;
             result.MaxTaskWorkGroupSize = (pointer->MaxTaskWorkGroupSize[0], pointer->MaxTaskWorkGroupSize[1], pointer->MaxTaskWorkGroupSize[2]);

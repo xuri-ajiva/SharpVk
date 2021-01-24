@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a clear rectangle.
+    /// Structure specifying a clear rectangle.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ClearRect
@@ -40,20 +40,20 @@ namespace SharpVk
             BaseArrayLayer = baseArrayLayer;
             LayerCount = layerCount;
         }
-
+        
         /// <summary>
-        ///     The two-dimensional region to be cleared.
+        /// The two-dimensional region to be cleared.
         /// </summary>
-        public Rect2D Rect;
-
+        public Rect2D Rect; 
+        
         /// <summary>
-        ///     The first layer to be cleared.
+        /// The first layer to be cleared.
         /// </summary>
-        public uint BaseArrayLayer;
-
+        public uint BaseArrayLayer; 
+        
         /// <summary>
-        ///     The number of layers to clear.
+        /// The number of layers to clear.
         /// </summary>
-        public uint LayerCount;
+        public uint LayerCount; 
     }
 }

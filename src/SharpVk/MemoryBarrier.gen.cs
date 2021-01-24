@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,54 +27,62 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a global memory barrier.
+    /// Structure specifying a global memory barrier.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MemoryBarrier
     {
         /// <summary>
-        ///     srcAccessMask defines a source access mask.
+        /// srcAccessMask defines a source access mask.
         /// </summary>
         public AccessFlags? SourceAccessMask
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     dstAccessMask defines a destination access mask.
+        /// dstAccessMask defines a destination access mask.
         /// </summary>
         public AccessFlags? DestinationAccessMask
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.MemoryBarrier* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.MemoryBarrier* pointer)
         {
             pointer->SType = StructureType.MemoryBarrier;
             pointer->Next = null;
             if (SourceAccessMask != null)
+            {
                 pointer->SourceAccessMask = SourceAccessMask.Value;
+            }
             else
+            {
                 pointer->SourceAccessMask = default;
+            }
             if (DestinationAccessMask != null)
+            {
                 pointer->DestinationAccessMask = DestinationAccessMask.Value;
+            }
             else
+            {
                 pointer->DestinationAccessMask = default;
+            }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe MemoryBarrier MarshalFrom(Interop.MemoryBarrier* pointer)
+        internal static unsafe MemoryBarrier MarshalFrom(SharpVk.Interop.MemoryBarrier* pointer)
         {
-            var result = default(MemoryBarrier);
+            MemoryBarrier result = default;
             result.SourceAccessMask = pointer->SourceAccessMask;
             result.DestinationAccessMask = pointer->DestinationAccessMask;
             return result;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public PipelineCreationFeedback[] PipelineStageCreationFeedbacks
@@ -47,22 +46,25 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PipelineCreationFeedbackCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCreationFeedbackCreateInfo;
             pointer->Next = null;
-            pointer->PipelineCreationFeedback = (PipelineCreationFeedback*)HeapUtil.Allocate<PipelineCreationFeedback>();
+            pointer->PipelineCreationFeedback = (PipelineCreationFeedback*)(Interop.HeapUtil.Allocate<PipelineCreationFeedback>());
             *pointer->PipelineCreationFeedback = PipelineCreationFeedback;
-            pointer->PipelineStageCreationFeedbackCount = HeapUtil.GetLength(PipelineStageCreationFeedbacks);
+            pointer->PipelineStageCreationFeedbackCount = (uint)(Interop.HeapUtil.GetLength(PipelineStageCreationFeedbacks));
             if (PipelineStageCreationFeedbacks != null)
             {
-                var fieldPointer = (PipelineCreationFeedback*)HeapUtil.AllocateAndClear<PipelineCreationFeedback>(PipelineStageCreationFeedbacks.Length).ToPointer();
-                for (var index = 0; index < (uint)PipelineStageCreationFeedbacks.Length; index++) fieldPointer[index] = PipelineStageCreationFeedbacks[index];
+                var fieldPointer = (PipelineCreationFeedback*)(Interop.HeapUtil.AllocateAndClear<PipelineCreationFeedback>(PipelineStageCreationFeedbacks.Length).ToPointer());
+                for(int index = 0; index < (uint)(PipelineStageCreationFeedbacks.Length); index++)
+                {
+                    fieldPointer[index] = PipelineStageCreationFeedbacks[index];
+                }
                 pointer->PipelineStageCreationFeedbacks = fieldPointer;
             }
             else

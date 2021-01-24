@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint ActiveComputeUnitCount
@@ -46,14 +46,14 @@ namespace SharpVk.Amd
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderCoreProperties2 MarshalFrom(Interop.Amd.PhysicalDeviceShaderCoreProperties2* pointer)
+        internal static unsafe PhysicalDeviceShaderCoreProperties2 MarshalFrom(SharpVk.Interop.Amd.PhysicalDeviceShaderCoreProperties2* pointer)
         {
-            var result = default(PhysicalDeviceShaderCoreProperties2);
+            PhysicalDeviceShaderCoreProperties2 result = default;
             result.ShaderCoreFeatures = pointer->ShaderCoreFeatures;
             result.ActiveComputeUnitCount = pointer->ActiveComputeUnitCount;
             return result;

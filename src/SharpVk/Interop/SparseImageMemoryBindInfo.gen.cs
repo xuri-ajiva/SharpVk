@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,18 +32,18 @@ namespace SharpVk.Interop
     public unsafe struct SparseImageMemoryBindInfo
     {
         /// <summary>
-        ///     The Image object to be bound
+        /// The Image object to be bound
         /// </summary>
-        public Image Image;
-
+        public Image Image; 
+        
         /// <summary>
-        ///     The number of SparseImageMemoryBind structures in pBinds array
+        /// The number of SparseImageMemoryBind structures in pBinds array
         /// </summary>
-        public uint BindCount;
-
+        public uint BindCount; 
+        
         /// <summary>
-        ///     Array of SparseImageMemoryBind structures
+        /// Array of SparseImageMemoryBind structures
         /// </summary>
-        public SparseImageMemoryBind* Binds;
+        public SparseImageMemoryBind* Binds; 
     }
 }

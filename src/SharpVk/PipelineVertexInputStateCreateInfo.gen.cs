@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,72 +23,81 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created pipeline vertex
-    ///     input state.
+    /// Structure specifying parameters of a newly created pipeline vertex
+    /// input state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineVertexInputStateCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public PipelineVertexInputStateCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of VertexInputBindingDescription structures.
+        /// An array of VertexInputBindingDescription structures.
         /// </summary>
         public VertexInputBindingDescription[] VertexBindingDescriptions
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of VertexInputAttributeDescription structures.
+        /// An array of VertexInputAttributeDescription structures.
         /// </summary>
         public VertexInputAttributeDescription[] VertexAttributeDescriptions
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PipelineVertexInputStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineVertexInputStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineVertexInputStateCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->VertexBindingDescriptionCount = HeapUtil.GetLength(VertexBindingDescriptions);
+            }
+            pointer->VertexBindingDescriptionCount = (uint)(Interop.HeapUtil.GetLength(VertexBindingDescriptions));
             if (VertexBindingDescriptions != null)
             {
-                var fieldPointer = (VertexInputBindingDescription*)HeapUtil.AllocateAndClear<VertexInputBindingDescription>(VertexBindingDescriptions.Length).ToPointer();
-                for (var index = 0; index < (uint)VertexBindingDescriptions.Length; index++) fieldPointer[index] = VertexBindingDescriptions[index];
+                var fieldPointer = (VertexInputBindingDescription*)(Interop.HeapUtil.AllocateAndClear<VertexInputBindingDescription>(VertexBindingDescriptions.Length).ToPointer());
+                for(int index = 0; index < (uint)(VertexBindingDescriptions.Length); index++)
+                {
+                    fieldPointer[index] = VertexBindingDescriptions[index];
+                }
                 pointer->VertexBindingDescriptions = fieldPointer;
             }
             else
             {
                 pointer->VertexBindingDescriptions = null;
             }
-            pointer->VertexAttributeDescriptionCount = HeapUtil.GetLength(VertexAttributeDescriptions);
+            pointer->VertexAttributeDescriptionCount = (uint)(Interop.HeapUtil.GetLength(VertexAttributeDescriptions));
             if (VertexAttributeDescriptions != null)
             {
-                var fieldPointer = (VertexInputAttributeDescription*)HeapUtil.AllocateAndClear<VertexInputAttributeDescription>(VertexAttributeDescriptions.Length).ToPointer();
-                for (var index = 0; index < (uint)VertexAttributeDescriptions.Length; index++) fieldPointer[index] = VertexAttributeDescriptions[index];
+                var fieldPointer = (VertexInputAttributeDescription*)(Interop.HeapUtil.AllocateAndClear<VertexInputAttributeDescription>(VertexAttributeDescriptions.Length).ToPointer());
+                for(int index = 0; index < (uint)(VertexAttributeDescriptions.Length); index++)
+                {
+                    fieldPointer[index] = VertexAttributeDescriptions[index];
+                }
                 pointer->VertexAttributeDescriptions = fieldPointer;
             }
             else

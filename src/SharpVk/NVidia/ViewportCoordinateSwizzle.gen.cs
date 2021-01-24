@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,34 +30,34 @@ namespace SharpVk.NVidia
     {
         /// <summary>
         /// </summary>
-        PositiveX = 0,
-
+        PositiveX = 0, 
+        
         /// <summary>
         /// </summary>
-        NegativeX = 1,
-
+        NegativeX = 1, 
+        
         /// <summary>
         /// </summary>
-        PositiveY = 2,
-
+        PositiveY = 2, 
+        
         /// <summary>
         /// </summary>
-        NegativeY = 3,
-
+        NegativeY = 3, 
+        
         /// <summary>
         /// </summary>
-        PositiveZ = 4,
-
+        PositiveZ = 4, 
+        
         /// <summary>
         /// </summary>
-        NegativeZ = 5,
-
+        NegativeZ = 5, 
+        
         /// <summary>
         /// </summary>
-        PositiveW = 6,
-
+        PositiveW = 6, 
+        
         /// <summary>
         /// </summary>
-        NegativeW = 7
+        NegativeW = 7, 
     }
 }

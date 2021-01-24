@@ -1,0 +1,166 @@
+// The MIT License (MIT)
+// 
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+// This file was automatically generated and should not be edited directly.
+
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Khronos
+{
+    /// <summary>
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RayTracingPipelineCreateInfo
+    {
+        /// <summary>
+        /// </summary>
+        public PipelineCreateFlags? Flags
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public PipelineShaderStageCreateInfo[] Stages
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public RayTracingShaderGroupCreateInfo[] Groups
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public uint MaxRecursionDepth
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public PipelineLibraryCreateInfo Libraries
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public RayTracingPipelineInterfaceCreateInfo? LibraryInterface
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public PipelineLayout Layout
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public Pipeline BasePipelineHandle
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        public int BasePipelineIndex
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// </summary>
+        /// <param name="pointer">
+        /// </param>
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.RayTracingPipelineCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.RayTracingPipelineCreateInfoKhr;
+            pointer->Next = null;
+            if (Flags != null)
+            {
+                pointer->Flags = Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default;
+            }
+            pointer->StageCount = (uint)(Interop.HeapUtil.GetLength(Stages));
+            if (Stages != null)
+            {
+                var fieldPointer = (SharpVk.Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineShaderStageCreateInfo>(Stages.Length).ToPointer());
+                for(int index = 0; index < (uint)(Stages.Length); index++)
+                {
+                    Stages[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->Stages = fieldPointer;
+            }
+            else
+            {
+                pointer->Stages = null;
+            }
+            pointer->GroupCount = (uint)(Interop.HeapUtil.GetLength(Groups));
+            if (Groups != null)
+            {
+                var fieldPointer = (SharpVk.Interop.Khronos.RayTracingShaderGroupCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.RayTracingShaderGroupCreateInfo>(Groups.Length).ToPointer());
+                for(int index = 0; index < (uint)(Groups.Length); index++)
+                {
+                    Groups[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->Groups = fieldPointer;
+            }
+            else
+            {
+                pointer->Groups = null;
+            }
+            pointer->MaxRecursionDepth = MaxRecursionDepth;
+            Libraries.MarshalTo(&pointer->Libraries);
+            if (LibraryInterface != null)
+            {
+                pointer->LibraryInterface = (SharpVk.Interop.Khronos.RayTracingPipelineInterfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.RayTracingPipelineInterfaceCreateInfo>());
+                LibraryInterface.Value.MarshalTo(pointer->LibraryInterface);
+            }
+            else
+            {
+                pointer->LibraryInterface = default;
+            }
+            pointer->Layout = Layout?.Handle ?? default;
+            pointer->BasePipelineHandle = BasePipelineHandle?.Handle ?? default;
+            pointer->BasePipelineIndex = BasePipelineIndex;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool BufferDeviceAddressCaptureReplay
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool BufferDeviceAddressMultiDevice
@@ -54,12 +54,12 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceBufferDeviceAddressFeaturesExt;
             pointer->Next = null;
@@ -67,14 +67,14 @@ namespace SharpVk.Multivendor
             pointer->BufferDeviceAddressCaptureReplay = BufferDeviceAddressCaptureReplay;
             pointer->BufferDeviceAddressMultiDevice = BufferDeviceAddressMultiDevice;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceBufferDeviceAddressFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
+        internal static unsafe PhysicalDeviceBufferDeviceAddressFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
         {
-            var result = default(PhysicalDeviceBufferDeviceAddressFeatures);
+            PhysicalDeviceBufferDeviceAddressFeatures result = default;
             result.BufferDeviceAddress = pointer->BufferDeviceAddress;
             result.BufferDeviceAddressCaptureReplay = pointer->BufferDeviceAddressCaptureReplay;
             result.BufferDeviceAddressMultiDevice = pointer->BufferDeviceAddressMultiDevice;

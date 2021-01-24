@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint QueueFamilyIndex
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint QueueIndex
@@ -54,30 +54,34 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.DeviceQueueInfo2* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DeviceQueueInfo2* pointer)
         {
             pointer->SType = StructureType.DeviceQueueInfo2;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->QueueFamilyIndex = QueueFamilyIndex;
             pointer->QueueIndex = QueueIndex;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DeviceQueueInfo2 MarshalFrom(Interop.DeviceQueueInfo2* pointer)
+        internal static unsafe DeviceQueueInfo2 MarshalFrom(SharpVk.Interop.DeviceQueueInfo2* pointer)
         {
-            var result = default(DeviceQueueInfo2);
+            DeviceQueueInfo2 result = default;
             result.Flags = pointer->Flags;
             result.QueueFamilyIndex = pointer->QueueFamilyIndex;
             result.QueueIndex = pointer->QueueIndex;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,68 +23,67 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying layer properties.
+    /// Structure specifying layer properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct LayerProperties
     {
         /// <summary>
-        ///     A string specifying the name of the layer. Use this name in the
-        ///     ppEnabledLayerNames array passed in the InstanceCreateInfo
-        ///     structure to enable this layer for an instance.
+        /// A string specifying the name of the layer. Use this name in the
+        /// ppEnabledLayerNames array passed in the InstanceCreateInfo
+        /// structure to enable this layer for an instance.
         /// </summary>
         public string LayerName
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The Vulkan version the layer was written to, encoded as described
-        ///     in the API Version Numbers and Semantics section.
+        /// The Vulkan version the layer was written to, encoded as described
+        /// in the API Version Numbers and Semantics section.
         /// </summary>
         public Version SpecVersion
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The version of this layer. It is an integer, increasing with
-        ///     backward compatible changes.
+        /// The version of this layer. It is an integer, increasing with
+        /// backward compatible changes.
         /// </summary>
         public Version ImplementationVersion
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A string providing additional details that can be used by the
-        ///     application to identify the layer.
+        /// A string providing additional details that can be used by the
+        /// application to identify the layer.
         /// </summary>
         public string Description
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe LayerProperties MarshalFrom(Interop.LayerProperties* pointer)
+        internal static unsafe LayerProperties MarshalFrom(SharpVk.Interop.LayerProperties* pointer)
         {
-            var result = default(LayerProperties);
-            result.LayerName = HeapUtil.MarshalStringFrom(pointer->LayerName, Constants.MaxExtensionNameSize, true);
-            result.SpecVersion = pointer->SpecVersion;
-            result.ImplementationVersion = pointer->ImplementationVersion;
-            result.Description = HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
+            LayerProperties result = default;
+            result.LayerName = Interop.HeapUtil.MarshalStringFrom(pointer->LayerName, Constants.MaxExtensionNameSize, true);
+            result.SpecVersion = (Version)(pointer->SpecVersion);
+            result.ImplementationVersion = (Version)(pointer->ImplementationVersion);
+            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
             return result;
         }
     }

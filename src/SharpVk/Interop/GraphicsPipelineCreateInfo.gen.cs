@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,121 +32,121 @@ namespace SharpVk.Interop
     public unsafe struct GraphicsPipelineCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A bitmask of PipelineCreateFlagBits controlling how the pipeline
-        ///     will be generated, as described below.
+        /// A bitmask of PipelineCreateFlagBits controlling how the pipeline
+        /// will be generated, as described below.
         /// </summary>
-        public PipelineCreateFlags Flags;
-
+        public PipelineCreateFlags Flags; 
+        
         /// <summary>
-        ///     The number of entries in the pStages array.
+        /// The number of entries in the pStages array.
         /// </summary>
-        public uint StageCount;
-
+        public uint StageCount; 
+        
         /// <summary>
-        ///     An array of size stageCount structures of type
-        ///     PipelineShaderStageCreateInfo describing the set of the shader
-        ///     stages to be included in the graphics pipeline.
+        /// An array of size stageCount structures of type
+        /// PipelineShaderStageCreateInfo describing the set of the shader
+        /// stages to be included in the graphics pipeline.
         /// </summary>
-        public PipelineShaderStageCreateInfo* Stages;
-
+        public PipelineShaderStageCreateInfo* Stages; 
+        
         /// <summary>
-        ///     An instance of the PipelineVertexInputStateCreateInfo structure.
+        /// An instance of the PipelineVertexInputStateCreateInfo structure.
         /// </summary>
-        public PipelineVertexInputStateCreateInfo* VertexInputState;
-
+        public PipelineVertexInputStateCreateInfo* VertexInputState; 
+        
         /// <summary>
-        ///     An instance of the PipelineInputAssemblyStateCreateInfo structure
-        ///     which determines input assembly behavior.
+        /// An instance of the PipelineInputAssemblyStateCreateInfo structure
+        /// which determines input assembly behavior.
         /// </summary>
-        public PipelineInputAssemblyStateCreateInfo* InputAssemblyState;
-
+        public PipelineInputAssemblyStateCreateInfo* InputAssemblyState; 
+        
         /// <summary>
-        ///     An instance of the PipelineTessellationStateCreateInfo structure,
-        ///     or Null if the pipeline does not include a tessellation control
-        ///     shader stage and tessellation evaluation shader stage.
+        /// An instance of the PipelineTessellationStateCreateInfo structure,
+        /// or Null if the pipeline does not include a tessellation control
+        /// shader stage and tessellation evaluation shader stage.
         /// </summary>
-        public PipelineTessellationStateCreateInfo* TessellationState;
-
+        public PipelineTessellationStateCreateInfo* TessellationState; 
+        
         /// <summary>
-        ///     An instance of the PipelineViewportStateCreateInfo structure, or
-        ///     Null if the pipeline has rasterization disabled.
+        /// An instance of the PipelineViewportStateCreateInfo structure, or
+        /// Null if the pipeline has rasterization disabled.
         /// </summary>
-        public PipelineViewportStateCreateInfo* ViewportState;
-
+        public PipelineViewportStateCreateInfo* ViewportState; 
+        
         /// <summary>
-        ///     An instance of the PipelineRasterizationStateCreateInfo structure.
+        /// An instance of the PipelineRasterizationStateCreateInfo structure.
         /// </summary>
-        public PipelineRasterizationStateCreateInfo* RasterizationState;
-
+        public PipelineRasterizationStateCreateInfo* RasterizationState; 
+        
         /// <summary>
-        ///     An instance of the PipelineMultisampleStateCreateInfo, or Null if
-        ///     the pipeline has rasterization disabled.
+        /// An instance of the PipelineMultisampleStateCreateInfo, or Null if
+        /// the pipeline has rasterization disabled.
         /// </summary>
-        public PipelineMultisampleStateCreateInfo* MultisampleState;
-
+        public PipelineMultisampleStateCreateInfo* MultisampleState; 
+        
         /// <summary>
-        ///     An instance of the PipelineDepthStencilStateCreateInfo structure,
-        ///     or Null if the pipeline has rasterization disabled or if the
-        ///     subpass of the render pass the pipeline is created against does not
-        ///     use a depth/stencil attachment.
+        /// An instance of the PipelineDepthStencilStateCreateInfo structure,
+        /// or Null if the pipeline has rasterization disabled or if the
+        /// subpass of the render pass the pipeline is created against does not
+        /// use a depth/stencil attachment.
         /// </summary>
-        public PipelineDepthStencilStateCreateInfo* DepthStencilState;
-
+        public PipelineDepthStencilStateCreateInfo* DepthStencilState; 
+        
         /// <summary>
-        ///     An instance of the PipelineColorBlendStateCreateInfo structure, or
-        ///     Null if the pipeline has rasterization disabled or if the subpass
-        ///     of the render pass the pipeline is created against does not use any
-        ///     color attachments.
+        /// An instance of the PipelineColorBlendStateCreateInfo structure, or
+        /// Null if the pipeline has rasterization disabled or if the subpass
+        /// of the render pass the pipeline is created against does not use any
+        /// color attachments.
         /// </summary>
-        public PipelineColorBlendStateCreateInfo* ColorBlendState;
-
+        public PipelineColorBlendStateCreateInfo* ColorBlendState; 
+        
         /// <summary>
-        ///     A pointer to PipelineDynamicStateCreateInfo and is used to indicate
-        ///     which properties of the pipeline state object are dynamic and can
-        ///     be changed independently of the pipeline state. This can be Null,
-        ///     which means no state in the pipeline is considered dynamic.
+        /// A pointer to PipelineDynamicStateCreateInfo and is used to indicate
+        /// which properties of the pipeline state object are dynamic and can
+        /// be changed independently of the pipeline state. This can be Null,
+        /// which means no state in the pipeline is considered dynamic.
         /// </summary>
-        public PipelineDynamicStateCreateInfo* DynamicState;
-
+        public PipelineDynamicStateCreateInfo* DynamicState; 
+        
         /// <summary>
-        ///     The description of binding locations used by both the pipeline and
-        ///     descriptor sets used with the pipeline.
+        /// The description of binding locations used by both the pipeline and
+        /// descriptor sets used with the pipeline.
         /// </summary>
-        public PipelineLayout Layout;
-
+        public PipelineLayout Layout; 
+        
         /// <summary>
-        ///     A handle to a render pass object describing the environment in
-        ///     which the pipeline will be used; the pipeline must only be used
-        ///     with an instance of any render pass compatible with the one
-        ///     provided.
+        /// A handle to a render pass object describing the environment in
+        /// which the pipeline will be used; the pipeline must only be used
+        /// with an instance of any render pass compatible with the one
+        /// provided.
         /// </summary>
-        public RenderPass RenderPass;
-
+        public RenderPass RenderPass; 
+        
         /// <summary>
-        ///     The index of the subpass in the render pass where this pipeline
-        ///     will be used.
+        /// The index of the subpass in the render pass where this pipeline
+        /// will be used.
         /// </summary>
-        public uint Subpass;
-
+        public uint Subpass; 
+        
         /// <summary>
-        ///     A pipeline to derive from.
+        /// A pipeline to derive from.
         /// </summary>
-        public Pipeline BasePipelineHandle;
-
+        public Pipeline BasePipelineHandle; 
+        
         /// <summary>
-        ///     An index into the pCreateInfos parameter to use as a pipeline to
-        ///     derive from.
+        /// An index into the pCreateInfos parameter to use as a pipeline to
+        /// derive from.
         /// </summary>
-        public int BasePipelineIndex;
+        public int BasePipelineIndex; 
     }
 }

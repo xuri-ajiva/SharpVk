@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a subpass dependency.
+    /// Structure specifying a subpass dependency.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SubpassDependency
@@ -44,42 +44,42 @@ namespace SharpVk
             DestinationAccessMask = destinationAccessMask;
             DependencyFlags = dependencyFlags;
         }
-
+        
         /// <summary>
-        ///     The subpass index of the first subpass in the dependency, or
-        ///     VK_SUBPASS_EXTERNAL.
+        /// The subpass index of the first subpass in the dependency, or
+        /// VK_SUBPASS_EXTERNAL.
         /// </summary>
-        public uint SourceSubpass;
-
+        public uint SourceSubpass; 
+        
         /// <summary>
-        ///     The subpass index of the second subpass in the dependency, or
-        ///     VK_SUBPASS_EXTERNAL.
+        /// The subpass index of the second subpass in the dependency, or
+        /// VK_SUBPASS_EXTERNAL.
         /// </summary>
-        public uint DestinationSubpass;
-
+        public uint DestinationSubpass; 
+        
         /// <summary>
-        ///     srcStageMask defines a source stage mask.
+        /// srcStageMask defines a source stage mask.
         /// </summary>
-        public PipelineStageFlags SourceStageMask;
-
+        public PipelineStageFlags SourceStageMask; 
+        
         /// <summary>
-        ///     dstStageMask defines a destination stage mask.
+        /// dstStageMask defines a destination stage mask.
         /// </summary>
-        public PipelineStageFlags DestinationStageMask;
-
+        public PipelineStageFlags DestinationStageMask; 
+        
         /// <summary>
-        ///     srcAccessMask defines a source access mask.
+        /// srcAccessMask defines a source access mask.
         /// </summary>
-        public AccessFlags SourceAccessMask;
-
+        public AccessFlags SourceAccessMask; 
+        
         /// <summary>
-        ///     dstAccessMask defines a destination access mask.
+        /// dstAccessMask defines a destination access mask.
         /// </summary>
-        public AccessFlags DestinationAccessMask;
-
+        public AccessFlags DestinationAccessMask; 
+        
         /// <summary>
-        ///     A bitmask of DependencyFlagBits.
+        /// A bitmask of DependencyFlagBits.
         /// </summary>
-        public DependencyFlags DependencyFlags;
+        public DependencyFlags DependencyFlags; 
     }
 }

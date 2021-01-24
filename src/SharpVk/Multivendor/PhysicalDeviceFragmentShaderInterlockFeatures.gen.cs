@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FragmentShaderPixelInterlock
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FragmentShaderShadingRateInterlock
@@ -54,12 +54,12 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceFragmentShaderInterlockFeatures;
             pointer->Next = null;
@@ -67,14 +67,14 @@ namespace SharpVk.Multivendor
             pointer->FragmentShaderPixelInterlock = FragmentShaderPixelInterlock;
             pointer->FragmentShaderShadingRateInterlock = FragmentShaderShadingRateInterlock;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceFragmentShaderInterlockFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
+        internal static unsafe PhysicalDeviceFragmentShaderInterlockFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
         {
-            var result = default(PhysicalDeviceFragmentShaderInterlockFeatures);
+            PhysicalDeviceFragmentShaderInterlockFeatures result = default;
             result.FragmentShaderSampleInterlock = pointer->FragmentShaderSampleInterlock;
             result.FragmentShaderPixelInterlock = pointer->FragmentShaderPixelInterlock;
             result.FragmentShaderShadingRateInterlock = pointer->FragmentShaderShadingRateInterlock;

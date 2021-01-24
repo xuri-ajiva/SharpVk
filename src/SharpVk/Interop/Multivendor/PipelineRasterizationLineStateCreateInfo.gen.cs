@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
@@ -34,26 +33,26 @@ namespace SharpVk.Interop.Multivendor
     {
         /// <summary>
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public LineRasterizationMode LineRasterizationMode;
-
+        public SharpVk.Multivendor.LineRasterizationMode LineRasterizationMode; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 StippledLineEnable;
-
+        public Bool32 StippledLineEnable; 
+        
         /// <summary>
         /// </summary>
-        public uint LineStippleFactor;
-
+        public uint LineStippleFactor; 
+        
         /// <summary>
         /// </summary>
-        public ushort LineStipplePattern;
+        public ushort LineStipplePattern; 
     }
 }

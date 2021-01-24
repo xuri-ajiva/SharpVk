@@ -45,7 +45,7 @@ namespace SharpVk
                 DescriptorType = descriptorType
             };
 
-            var commandDelegate = CommandCache.GetCommandDelegate<VkDeviceUpdateDescriptorSetsDelegate>("vkUpdateDescriptorSets", "");
+            var commandDelegate = commandCache.GetCommandDelegate<VkDeviceUpdateDescriptorSetsDelegate>("vkUpdateDescriptorSets", "");
             commandDelegate(Handle, 1, &info, 0, null);
         }
 
@@ -90,7 +90,7 @@ namespace SharpVk
                 DescriptorType = descriptorType
             };
 
-            var commandDelegate = CommandCache.GetCommandDelegate<VkDeviceUpdateDescriptorSetsDelegate>("vkUpdateDescriptorSets", "");
+            var commandDelegate = commandCache.GetCommandDelegate<VkDeviceUpdateDescriptorSetsDelegate>("vkUpdateDescriptorSets", "");
             commandDelegate(Handle, 1, &info, 0, null);
         }
 
@@ -135,7 +135,7 @@ namespace SharpVk
                 DescriptorType = descriptorType
             };
 
-            var commandDelegate = CommandCache.GetCommandDelegate<VkDeviceUpdateDescriptorSetsDelegate>("vkUpdateDescriptorSets", "");
+            var commandDelegate = commandCache.GetCommandDelegate<VkDeviceUpdateDescriptorSetsDelegate>("vkUpdateDescriptorSets", "");
             commandDelegate(Handle, 1, &info, 0, null);
         }
     }

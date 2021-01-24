@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,10 +30,10 @@ namespace SharpVk.Intel
     {
         /// <summary>
         /// </summary>
-        public const string ShaderIntegerFunctions2 = "VK_INTEL_shader_integer_functions2";
-
+        public const string ShaderIntegerFunctions2 = "VK_INTEL_shader_integer_functions2"; 
+        
         /// <summary>
         /// </summary>
-        public const string PerformanceQuery = "VK_INTEL_performance_query";
+        public const string PerformanceQuery = "VK_INTEL_performance_query"; 
     }
 }

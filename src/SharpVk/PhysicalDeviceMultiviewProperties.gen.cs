@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMultiviewInstanceIndex
@@ -46,14 +46,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(Interop.PhysicalDeviceMultiviewProperties* pointer)
+        internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceMultiviewProperties* pointer)
         {
-            var result = default(PhysicalDeviceMultiviewProperties);
+            PhysicalDeviceMultiviewProperties result = default;
             result.MaxMultiviewViewCount = pointer->MaxMultiviewViewCount;
             result.MaxMultiviewInstanceIndex = pointer->MaxMultiviewInstanceIndex;
             return result;

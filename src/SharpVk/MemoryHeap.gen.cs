@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a memory heap.
+    /// Structure specifying a memory heap.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MemoryHeap
@@ -39,15 +39,15 @@ namespace SharpVk
             Size = size;
             Flags = flags;
         }
-
+        
         /// <summary>
-        ///     The total memory size in bytes in the heap.
+        /// The total memory size in bytes in the heap.
         /// </summary>
-        public ulong Size;
-
+        public ulong Size; 
+        
         /// <summary>
-        ///     A bitmask of attribute flags for the heap.
+        /// A bitmask of attribute flags for the heap.
         /// </summary>
-        public MemoryHeapFlags Flags;
+        public MemoryHeapFlags Flags; 
     }
 }

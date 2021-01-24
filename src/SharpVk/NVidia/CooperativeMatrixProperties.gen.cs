@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,88 +27,88 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Structure specifying cooperative matrix properties
+    /// Structure specifying cooperative matrix properties
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CooperativeMatrixProperties
     {
         /// <summary>
-        ///     The number of rows in matrices A, C, and D.
+        /// The number of rows in matrices A, C, and D.
         /// </summary>
         public uint MSize
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The number of columns in matrices B, C, D.
+        /// The number of columns in matrices B, C, D.
         /// </summary>
         public uint NSize
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The number of columns in matrix A and rows in matrix B.
+        /// The number of columns in matrix A and rows in matrix B.
         /// </summary>
         public uint KSize
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The component type of matrix A, of type VkComponentTypeNV.
+        /// The component type of matrix A, of type VkComponentTypeNV.
         /// </summary>
         public ComponentType AType
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The component type of matrix B, of type VkComponentTypeNV.
+        /// The component type of matrix B, of type VkComponentTypeNV.
         /// </summary>
         public ComponentType BType
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The component type of matrix C, of type VkComponentTypeNV.
+        /// The component type of matrix C, of type VkComponentTypeNV.
         /// </summary>
         public ComponentType CType
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The component type of matrix D, of type VkComponentTypeNV.
+        /// The component type of matrix D, of type VkComponentTypeNV.
         /// </summary>
         public ComponentType DType
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The scope of all the matrix types, of type VkScopeNV.
+        /// The scope of all the matrix types, of type VkScopeNV.
         /// </summary>
         public Scope Scope
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.CooperativeMatrixProperties* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.CooperativeMatrixProperties* pointer)
         {
             pointer->SType = StructureType.CooperativeMatrixProperties;
             pointer->Next = null;
@@ -121,14 +121,14 @@ namespace SharpVk.NVidia
             pointer->DType = DType;
             pointer->Scope = Scope;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe CooperativeMatrixProperties MarshalFrom(Interop.NVidia.CooperativeMatrixProperties* pointer)
+        internal static unsafe CooperativeMatrixProperties MarshalFrom(SharpVk.Interop.NVidia.CooperativeMatrixProperties* pointer)
         {
-            var result = default(CooperativeMatrixProperties);
+            CooperativeMatrixProperties result = default;
             result.MSize = pointer->MSize;
             result.NSize = pointer->NSize;
             result.KSize = pointer->KSize;

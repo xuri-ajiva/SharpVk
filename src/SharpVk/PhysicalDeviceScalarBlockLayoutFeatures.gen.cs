@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceScalarBlockLayoutFeaturesVersion;
             pointer->Next = null;
             pointer->ScalarBlockLayout = ScalarBlockLayout;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceScalarBlockLayoutFeatures MarshalFrom(Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
+        internal static unsafe PhysicalDeviceScalarBlockLayoutFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
         {
-            var result = default(PhysicalDeviceScalarBlockLayoutFeatures);
+            PhysicalDeviceScalarBlockLayoutFeatures result = default;
             result.ScalarBlockLayout = pointer->ScalarBlockLayout;
             return result;
         }

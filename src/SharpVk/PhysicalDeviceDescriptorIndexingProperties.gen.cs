@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderUniformBufferArrayNonUniformIndexingNative
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderSampledImageArrayNonUniformIndexingNative
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageBufferArrayNonUniformIndexingNative
@@ -62,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageArrayNonUniformIndexingNative
@@ -70,7 +70,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderInputAttachmentArrayNonUniformIndexingNative
@@ -78,7 +78,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool RobustBufferAccessUpdateAfterBind
@@ -86,7 +86,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool QuadDivergentImplicitLod
@@ -94,7 +94,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindSamplers
@@ -102,7 +102,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindUniformBuffers
@@ -110,7 +110,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindStorageBuffers
@@ -118,7 +118,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindSampledImages
@@ -126,7 +126,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindStorageImages
@@ -134,7 +134,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindInputAttachments
@@ -142,7 +142,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageUpdateAfterBindResources
@@ -150,7 +150,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindSamplers
@@ -158,7 +158,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindUniformBuffers
@@ -166,7 +166,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic
@@ -174,7 +174,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageBuffers
@@ -182,7 +182,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic
@@ -190,7 +190,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindSampledImages
@@ -198,7 +198,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageImages
@@ -206,7 +206,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindInputAttachments
@@ -214,14 +214,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceDescriptorIndexingProperties MarshalFrom(Interop.PhysicalDeviceDescriptorIndexingProperties* pointer)
+        internal static unsafe PhysicalDeviceDescriptorIndexingProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDescriptorIndexingProperties* pointer)
         {
-            var result = default(PhysicalDeviceDescriptorIndexingProperties);
+            PhysicalDeviceDescriptorIndexingProperties result = default;
             result.MaxUpdateAfterBindDescriptorsInAllPools = pointer->MaxUpdateAfterBindDescriptorsInAllPools;
             result.ShaderUniformBufferArrayNonUniformIndexingNative = pointer->ShaderUniformBufferArrayNonUniformIndexingNative;
             result.ShaderSampledImageArrayNonUniformIndexingNative = pointer->ShaderSampledImageArrayNonUniformIndexingNative;

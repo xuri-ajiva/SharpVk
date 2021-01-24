@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,62 +23,68 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created shader module.
+    /// Structure specifying parameters of a newly created shader module.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ShaderModuleCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public ShaderModuleCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The size, in bytes, of the code.
+        /// The size, in bytes, of the code.
         /// </summary>
         public HostSize CodeSize
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     Points to code that is used to create the shader module. The type
-        ///     and format of the code is determined from the content of the memory
-        ///     addressed.
+        /// Points to code that is used to create the shader module. The type
+        /// and format of the code is determined from the content of the memory
+        /// addressed.
         /// </summary>
         public uint[] Code
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.ShaderModuleCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ShaderModuleCreateInfo* pointer)
         {
             pointer->SType = StructureType.ShaderModuleCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->CodeSize = CodeSize;
             if (Code != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(Code.Length).ToPointer();
-                for (var index = 0; index < (uint)Code.Length; index++) fieldPointer[index] = Code[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Code.Length).ToPointer());
+                for(int index = 0; index < (uint)(Code.Length); index++)
+                {
+                    fieldPointer[index] = Code[index];
+                }
                 pointer->Code = fieldPointer;
             }
             else

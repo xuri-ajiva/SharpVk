@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,137 +27,145 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created pipeline
-    ///     rasterization state.
+    /// Structure specifying parameters of a newly created pipeline
+    /// rasterization state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineRasterizationStateCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public PipelineRasterizationStateCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     depthClampEnable controls whether to clamp the fragment's depth
-        ///     values instead of clipping primitives to the z planes of the
-        ///     frustum, as described in Primitive Clipping.
+        /// depthClampEnable controls whether to clamp the fragment's depth
+        /// values instead of clipping primitives to the z planes of the
+        /// frustum, as described in Primitive Clipping.
         /// </summary>
         public bool DepthClampEnable
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     rasterizerDiscardEnable controls whether primitives are discarded
-        ///     immediately before the rasterization stage.
+        /// rasterizerDiscardEnable controls whether primitives are discarded
+        /// immediately before the rasterization stage.
         /// </summary>
         public bool RasterizerDiscardEnable
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The triangle rendering mode. See PolygonMode.
+        /// The triangle rendering mode. See PolygonMode.
         /// </summary>
         public PolygonMode PolygonMode
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The triangle facing direction used for primitive culling. See
-        ///     CullModeFlagBits.
+        /// The triangle facing direction used for primitive culling. See
+        /// CullModeFlagBits.
         /// </summary>
         public CullModeFlags? CullMode
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The front-facing triangle orientation to be used for culling. See
-        ///     FrontFace.
+        /// The front-facing triangle orientation to be used for culling. See
+        /// FrontFace.
         /// </summary>
         public FrontFace FrontFace
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     depthBiasEnable controls whether to bias fragment depth values.
+        /// depthBiasEnable controls whether to bias fragment depth values.
         /// </summary>
         public bool DepthBiasEnable
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A scalar factor controlling the constant depth value added to each
-        ///     fragment.
+        /// A scalar factor controlling the constant depth value added to each
+        /// fragment.
         /// </summary>
         public float DepthBiasConstantFactor
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The maximum (or minimum) depth bias of a fragment.
+        /// The maximum (or minimum) depth bias of a fragment.
         /// </summary>
         public float DepthBiasClamp
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A scalar factor applied to a fragment's slope in depth bias
-        ///     calculations.
+        /// A scalar factor applied to a fragment's slope in depth bias
+        /// calculations.
         /// </summary>
         public float DepthBiasSlopeFactor
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The width of rasterized line segments.
+        /// The width of rasterized line segments.
         /// </summary>
         public float LineWidth
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PipelineRasterizationStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineRasterizationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationStateCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->DepthClampEnable = DepthClampEnable;
             pointer->RasterizerDiscardEnable = RasterizerDiscardEnable;
             pointer->PolygonMode = PolygonMode;
             if (CullMode != null)
+            {
                 pointer->CullMode = CullMode.Value;
+            }
             else
+            {
                 pointer->CullMode = default;
+            }
             pointer->FrontFace = FrontFace;
             pointer->DepthBiasEnable = DepthBiasEnable;
             pointer->DepthBiasConstantFactor = DepthBiasConstantFactor;

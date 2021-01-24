@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a two-dimensional offset.
+    /// Structure specifying a two-dimensional offset.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Offset2D
     {
         /// <summary>
         /// </summary>
-        public static Offset2D Zero => new();
-
+        public static Offset2D Zero => new Offset2D();
+        
         /// <summary>
         /// </summary>
         public Offset2D(int x, int y)
@@ -43,13 +43,13 @@ namespace SharpVk
             X = x;
             Y = y;
         }
-
+        
         /// <summary>
         /// </summary>
-        public int X;
-
+        public int X; 
+        
         /// <summary>
         /// </summary>
-        public int Y;
+        public int Y; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
@@ -39,20 +38,23 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PipelineViewportExclusiveScissorStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportExclusiveScissorStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportExclusiveScissorStateCreateInfo;
             pointer->Next = null;
-            pointer->ExclusiveScissorCount = HeapUtil.GetLength(ExclusiveScissors);
+            pointer->ExclusiveScissorCount = (uint)(Interop.HeapUtil.GetLength(ExclusiveScissors));
             if (ExclusiveScissors != null)
             {
-                var fieldPointer = (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>(ExclusiveScissors.Length).ToPointer();
-                for (var index = 0; index < (uint)ExclusiveScissors.Length; index++) fieldPointer[index] = ExclusiveScissors[index];
+                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(ExclusiveScissors.Length).ToPointer());
+                for(int index = 0; index < (uint)(ExclusiveScissors.Length); index++)
+                {
+                    fieldPointer[index] = ExclusiveScissors[index];
+                }
                 pointer->ExclusiveScissors = fieldPointer;
             }
             else

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,33 +29,33 @@ namespace SharpVk.NVidia
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceShaderSmBuiltinsProperties
+    public struct PhysicalDeviceShaderSMBuiltinsProperties
     {
         /// <summary>
         /// </summary>
-        public uint ShaderSmCount
+        public uint ShaderSMCount
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public uint ShaderWarpsPerSm
+        public uint ShaderWarpsPerSM
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceShaderSmBuiltinsProperties MarshalFrom(Interop.NVidia.PhysicalDeviceShaderSmBuiltinsProperties* pointer)
+        internal static unsafe PhysicalDeviceShaderSMBuiltinsProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsProperties* pointer)
         {
-            var result = default(PhysicalDeviceShaderSmBuiltinsProperties);
-            result.ShaderSmCount = pointer->ShaderSMCount;
-            result.ShaderWarpsPerSm = pointer->ShaderWarpsPerSM;
+            PhysicalDeviceShaderSMBuiltinsProperties result = default;
+            result.ShaderSMCount = pointer->ShaderSMCount;
+            result.ShaderWarpsPerSM = pointer->ShaderWarpsPerSM;
             return result;
         }
     }

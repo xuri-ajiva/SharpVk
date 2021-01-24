@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool MeshShader
@@ -46,26 +46,26 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMeshShaderFeatures;
             pointer->Next = null;
             pointer->TaskShader = TaskShader;
             pointer->MeshShader = MeshShader;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceMeshShaderFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
+        internal static unsafe PhysicalDeviceMeshShaderFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
         {
-            var result = default(PhysicalDeviceMeshShaderFeatures);
+            PhysicalDeviceMeshShaderFeatures result = default;
             result.TaskShader = pointer->TaskShader;
             result.MeshShader = pointer->MeshShader;
             return result;

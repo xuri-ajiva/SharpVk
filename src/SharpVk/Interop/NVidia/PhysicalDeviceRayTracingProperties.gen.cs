@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,45 +32,45 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct PhysicalDeviceRayTracingProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public uint ShaderGroupHandleSize;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxRecursionDepth;
-
+        public uint ShaderGroupHandleSize; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxShaderGroupStride;
-
+        public uint MaxRecursionDepth; 
+        
         /// <summary>
         /// </summary>
-        public uint ShaderGroupBaseAlignment;
-
+        public uint MaxShaderGroupStride; 
+        
         /// <summary>
         /// </summary>
-        public ulong MaxGeometryCount;
-
+        public uint ShaderGroupBaseAlignment; 
+        
         /// <summary>
         /// </summary>
-        public ulong MaxInstanceCount;
-
+        public ulong MaxGeometryCount; 
+        
         /// <summary>
         /// </summary>
-        public ulong MaxTriangleCount;
-
+        public ulong MaxInstanceCount; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxDescriptorSetAccelerationStructures;
+        public ulong MaxTriangleCount; 
+        
+        /// <summary>
+        /// </summary>
+        public uint MaxDescriptorSetAccelerationStructures; 
     }
 }

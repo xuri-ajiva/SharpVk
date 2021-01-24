@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool InheritedConditionalRendering
@@ -46,26 +46,26 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceConditionalRenderingFeatures;
             pointer->Next = null;
             pointer->ConditionalRendering = ConditionalRendering;
             pointer->InheritedConditionalRendering = InheritedConditionalRendering;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceConditionalRenderingFeatures MarshalFrom(Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
+        internal static unsafe PhysicalDeviceConditionalRenderingFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
         {
-            var result = default(PhysicalDeviceConditionalRenderingFeatures);
+            PhysicalDeviceConditionalRenderingFeatures result = default;
             result.ConditionalRendering = pointer->ConditionalRendering;
             result.InheritedConditionalRendering = pointer->InheritedConditionalRendering;
             return result;

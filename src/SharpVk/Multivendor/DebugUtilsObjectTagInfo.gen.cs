@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong ObjectHandle
@@ -47,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong TagName
@@ -55,7 +54,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public byte[] Tag
@@ -63,23 +62,26 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.DebugUtilsObjectTagInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugUtilsObjectTagInfo* pointer)
         {
             pointer->SType = StructureType.DebugUtilsObjectTagInfo;
             pointer->Next = null;
             pointer->ObjectType = ObjectType;
             pointer->ObjectHandle = ObjectHandle;
             pointer->TagName = TagName;
-            pointer->TagSize = HeapUtil.GetLength(Tag);
+            pointer->TagSize = (HostSize)(Interop.HeapUtil.GetLength(Tag));
             if (Tag != null)
             {
-                var fieldPointer = (byte*)HeapUtil.AllocateAndClear<byte>(Tag.Length).ToPointer();
-                for (var index = 0; index < (uint)Tag.Length; index++) fieldPointer[index] = Tag[index];
+                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(Tag.Length).ToPointer());
+                for(int index = 0; index < (uint)(Tag.Length); index++)
+                {
+                    fieldPointer[index] = Tag[index];
+                }
                 pointer->Tag = fieldPointer;
             }
             else

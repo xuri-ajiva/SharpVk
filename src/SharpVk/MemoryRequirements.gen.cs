@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying memory requirements.
+    /// Structure specifying memory requirements.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MemoryRequirements
@@ -40,25 +40,25 @@ namespace SharpVk
             Alignment = alignment;
             MemoryTypeBits = memoryTypeBits;
         }
-
+        
         /// <summary>
-        ///     The size, in bytes, of the memory allocation required: for the
-        ///     resource.
+        /// The size, in bytes, of the memory allocation required: for the
+        /// resource.
         /// </summary>
-        public ulong Size;
-
+        public ulong Size; 
+        
         /// <summary>
-        ///     The alignment, in bytes, of the offset within the allocation
-        ///     required: for the resource.
+        /// The alignment, in bytes, of the offset within the allocation
+        /// required: for the resource.
         /// </summary>
-        public ulong Alignment;
-
+        public ulong Alignment; 
+        
         /// <summary>
-        ///     A bitmask and contains one bit set for every supported memory type
-        ///     for the resource. Bit `i` is set if and only if the memory type `i`
-        ///     in the PhysicalDeviceMemoryProperties structure for the physical
-        ///     device is supported for the resource.
+        /// A bitmask and contains one bit set for every supported memory type
+        /// for the resource. Bit `i` is set if and only if the memory type `i`
+        /// in the PhysicalDeviceMemoryProperties structure for the physical
+        /// device is supported for the resource.
         /// </summary>
-        public uint MemoryTypeBits;
+        public uint MemoryTypeBits; 
     }
 }

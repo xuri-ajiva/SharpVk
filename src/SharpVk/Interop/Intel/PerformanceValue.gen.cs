@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,24 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Intel;
 
 namespace SharpVk.Interop.Intel
 {
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PerformanceValue
+    public unsafe struct PerformanceValue
     {
         /// <summary>
-        ///     An VkPerformanceValueDataINTEL union specifying the type of the
-        ///     returned data.
+        /// An VkPerformanceValueDataINTEL union specifying the type of the
+        /// returned data.
         /// </summary>
-        public PerformanceValueType Type;
-
+        public SharpVk.Intel.PerformanceValueType Type; 
+        
         /// <summary>
-        ///     An VkPerformanceValueDataINTEL union specifying the value of the
-        ///     returned data.
+        /// An VkPerformanceValueDataINTEL union specifying the value of the
+        /// returned data.
         /// </summary>
-        public PerformanceValueData Data;
+        public SharpVk.Intel.PerformanceValueData Data; 
     }
 }

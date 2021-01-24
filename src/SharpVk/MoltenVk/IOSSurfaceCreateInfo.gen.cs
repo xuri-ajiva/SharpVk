@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,43 +28,47 @@ using System.Runtime.InteropServices;
 namespace SharpVk.MoltenVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created iOS surface object.
+    /// Structure specifying parameters of a newly created iOS surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct IosSurfaceCreateInfo
+    public struct IOSSurfaceCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public IosSurfaceCreateFlags? Flags
+        public IOSSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A reference to a UIView object which will display this surface.
-        ///     This UIView must be backed by a CALayer instance of type
-        ///     CAMetalLayer.
+        /// A reference to a UIView object which will display this surface.
+        /// This UIView must be backed by a CALayer instance of type
+        /// CAMetalLayer.
         /// </summary>
         public IntPtr View
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.MoltenVk.IosSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.IosSurfaceCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->View = View.ToPointer();
         }
     }

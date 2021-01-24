@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Multivendor;
-
 namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// </summary>
-    public unsafe delegate void VkInstanceSubmitDebugUtilsMessageDelegate(Instance instance, DebugUtilsMessageSeverityFlags messageSeverity, DebugUtilsMessageTypeFlags messageTypes, DebugUtilsMessengerCallbackData* callbackData);
+    public unsafe delegate void VkInstanceSubmitDebugUtilsMessageDelegate(Instance instance, SharpVk.Multivendor.DebugUtilsMessageSeverityFlags messageSeverity, SharpVk.Multivendor.DebugUtilsMessageTypeFlags messageTypes, DebugUtilsMessengerCallbackData* callbackData);
 }

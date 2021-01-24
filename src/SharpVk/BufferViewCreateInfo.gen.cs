@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,75 +27,79 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created buffer view.
+    /// Structure specifying parameters of a newly created buffer view.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferViewCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public BufferViewCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A Buffer on which the view will be created.
+        /// A Buffer on which the view will be created.
         /// </summary>
         public Buffer Buffer
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A Format describing the format of the data elements in the buffer.
+        /// A Format describing the format of the data elements in the buffer.
         /// </summary>
         public Format Format
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An offset in bytes from the base address of the buffer. Accesses to
-        ///     the buffer view from shaders use addressing that is relative to
-        ///     this starting offset.
+        /// An offset in bytes from the base address of the buffer. Accesses to
+        /// the buffer view from shaders use addressing that is relative to
+        /// this starting offset.
         /// </summary>
         public ulong Offset
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A size in bytes of the buffer view. If range is equal to
-        ///     Constants.WholeSize, the range from offset to the end of the buffer
-        ///     is used. If Constants.WholeSize is used and the remaining size of
-        ///     the buffer is not a multiple of the element size of format, then
-        ///     the nearest smaller multiple is used.
+        /// A size in bytes of the buffer view. If range is equal to
+        /// Constants.WholeSize, the range from offset to the end of the buffer
+        /// is used. If Constants.WholeSize is used and the remaining size of
+        /// the buffer is not a multiple of the element size of format, then
+        /// the nearest smaller multiple is used.
         /// </summary>
         public ulong Range
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.BufferViewCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.BufferViewCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferViewCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->Buffer = Buffer?.Handle ?? default(Interop.Buffer);
+            }
+            pointer->Buffer = Buffer?.Handle ?? default;
             pointer->Format = Format;
             pointer->Offset = Offset;
             pointer->Range = Range;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,26 +23,25 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a command buffer begin operation.
+    /// Structure specifying a command buffer begin operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandBufferBeginInfo
     {
         /// <summary>
-        ///     A bitmask indicating usage behavior for the command buffer. Bits
-        ///     which can be set include: + --
+        /// A bitmask indicating usage behavior for the command buffer. Bits
+        /// which can be set include: + --
         /// </summary>
         public CommandBufferUsageFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public CommandBufferInheritanceInfo? InheritanceInfo
@@ -50,22 +49,26 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.CommandBufferBeginInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CommandBufferBeginInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferBeginInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             if (InheritanceInfo != null)
             {
-                pointer->InheritanceInfo = (Interop.CommandBufferInheritanceInfo*)HeapUtil.Allocate<Interop.CommandBufferInheritanceInfo>();
+                pointer->InheritanceInfo = (SharpVk.Interop.CommandBufferInheritanceInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBufferInheritanceInfo>());
                 InheritanceInfo.Value.MarshalTo(pointer->InheritanceInfo);
             }
             else

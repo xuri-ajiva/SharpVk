@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,21 +27,21 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created command pool.
+    /// Structure specifying parameters of a newly created command pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandPoolCreateInfo
     {
         /// <summary>
-        ///     A bitmask indicating usage behavior for the pool and command
-        ///     buffers allocated from it. Bits which can be set include: + --
+        /// A bitmask indicating usage behavior for the pool and command
+        /// buffers allocated from it. Bits which can be set include: + --
         /// </summary>
         public CommandPoolCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint QueueFamilyIndex
@@ -49,19 +49,23 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.CommandPoolCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CommandPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.CommandPoolCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->QueueFamilyIndex = QueueFamilyIndex;
         }
     }

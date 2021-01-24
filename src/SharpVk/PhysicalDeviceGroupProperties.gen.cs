@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SubsetAllocation
@@ -46,18 +46,21 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(Interop.PhysicalDeviceGroupProperties* pointer)
+        internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceGroupProperties* pointer)
         {
-            var result = default(PhysicalDeviceGroupProperties);
+            PhysicalDeviceGroupProperties result = default;
             if (pointer->PhysicalDeviceCount != 0)
             {
-                var fieldPointer = new PhysicalDevice[pointer->PhysicalDeviceCount];
-                for (var index = 0; index < pointer->PhysicalDeviceCount; index++) fieldPointer[index] = new(default, (&pointer->PhysicalDevices_0)[index]);
+                var fieldPointer = new PhysicalDevice[(uint)(pointer->PhysicalDeviceCount)];
+                for(int index = 0; index < (uint)(pointer->PhysicalDeviceCount); index++)
+                {
+                    fieldPointer[index] = new PhysicalDevice(default, (&(pointer->PhysicalDevices_0))[index]);
+                }
                 result.PhysicalDevices = fieldPointer;
             }
             else

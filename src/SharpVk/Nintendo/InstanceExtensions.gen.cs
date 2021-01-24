@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using SharpVk.Interop;
-using SharpVk.Khronos;
 
 namespace SharpVk.Nintendo
 {
@@ -33,59 +31,66 @@ namespace SharpVk.Nintendo
     public static class InstanceExtensions
     {
         /// <summary>
-        ///     Create a SurfaceKHR object for a VI layer.
+        /// Create a SurfaceKHR object for a VI layer.
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Instance handle to extend.
+        /// The Instance handle to extend.
         /// </param>
         /// <param name="flags">
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="window">
-        ///     The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
-        ///     associate the surface.
+        /// The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
+        /// associate the surface.
         /// </param>
         /// <param name="allocator">
-        ///     An optional AllocationCallbacks instance that controls host memory
-        ///     allocation.
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
         /// </param>
-        public static unsafe Surface CreateViSurface(this Instance extendedHandle, IntPtr window, ViSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
+        public static unsafe Khronos.Surface CreateViSurface(this Instance extendedHandle, IntPtr window, ViSurfaceCreateFlags? flags = default, AllocationCallbacks? allocator = default)
         {
             try
             {
-                var result = default(Surface);
-                var commandCache = default(CommandCache);
-                var marshalledCreateInfo = default(Interop.Nintendo.ViSurfaceCreateInfo*);
-                var vkViSurfaceCreateInfoNnNextPointer = default(void*);
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
-                var marshalledSurface = default(Interop.Khronos.Surface);
-                commandCache = extendedHandle.CommandCache;
-                marshalledCreateInfo = (Interop.Nintendo.ViSurfaceCreateInfo*)HeapUtil.Allocate<Interop.Nintendo.ViSurfaceCreateInfo>();
+                Khronos.Surface result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Nintendo.ViSurfaceCreateInfo* marshalledCreateInfo = default;
+                void* vkViSurfaceCreateInfoNNNextPointer = default;
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Nintendo.ViSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Nintendo.ViSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ViSurfaceCreateInfo;
-                marshalledCreateInfo->Next = vkViSurfaceCreateInfoNnNextPointer;
+                marshalledCreateInfo->Next = vkViSurfaceCreateInfoNNNextPointer;
                 if (flags != null)
+                {
                     marshalledCreateInfo->Flags = flags.Value;
+                }
                 else
+                {
                     marshalledCreateInfo->Flags = default;
+                }
                 marshalledCreateInfo->Window = window.ToPointer();
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = commandCache.Cache.VkCreateViSurfaceNn;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                result = new(extendedHandle, marshalledSurface);
+                SharpVk.Interop.Nintendo.VkInstanceCreateViSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateViSurfaceNN;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new Khronos.Surface(extendedHandle, marshalledSurface);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

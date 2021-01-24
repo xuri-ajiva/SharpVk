@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxRecursionDepth
@@ -46,7 +46,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxShaderGroupStride
@@ -54,7 +54,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint ShaderGroupBaseAlignment
@@ -62,7 +62,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong MaxGeometryCount
@@ -70,7 +70,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong MaxInstanceCount
@@ -78,7 +78,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong MaxTriangleCount
@@ -86,7 +86,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetAccelerationStructures
@@ -94,14 +94,14 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceRayTracingProperties MarshalFrom(Interop.NVidia.PhysicalDeviceRayTracingProperties* pointer)
+        internal static unsafe PhysicalDeviceRayTracingProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceRayTracingProperties* pointer)
         {
-            var result = default(PhysicalDeviceRayTracingProperties);
+            PhysicalDeviceRayTracingProperties result = default;
             result.ShaderGroupHandleSize = pointer->ShaderGroupHandleSize;
             result.MaxRecursionDepth = pointer->MaxRecursionDepth;
             result.MaxShaderGroupStride = pointer->MaxShaderGroupStride;

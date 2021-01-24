@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,21 +29,21 @@ namespace SharpVk.Interop.Khronos
     /// <summary>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayPlaneProperties
+    public unsafe struct DisplayPlaneProperties
     {
         /// <summary>
-        ///     The handle of the display the plane is currently associated with.
-        ///     If the plane is not currently attached to any displays, this will
-        ///     be null.
+        /// The handle of the display the plane is currently associated with.
+        /// If the plane is not currently attached to any displays, this will
+        /// be null.
         /// </summary>
-        public Display CurrentDisplay;
-
+        public Display CurrentDisplay; 
+        
         /// <summary>
-        ///     The current z-order of the plane. This will be between 0 and the
-        ///     value returned by
-        ///     fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in
-        ///     pPropertyCount.
+        /// The current z-order of the plane. This will be between 0 and the
+        /// value returned by
+        /// fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in
+        /// pPropertyCount.
         /// </summary>
-        public uint CurrentStackIndex;
+        public uint CurrentStackIndex; 
     }
 }

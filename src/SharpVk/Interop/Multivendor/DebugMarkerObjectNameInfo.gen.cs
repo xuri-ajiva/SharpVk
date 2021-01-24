@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
@@ -33,29 +32,29 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct DebugMarkerObjectNameInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A DebugReportObjectTypeEXT specifying the type of the object to be
-        ///     named.
+        /// A DebugReportObjectTypeEXT specifying the type of the object to be
+        /// named.
         /// </summary>
-        public DebugReportObjectType ObjectType;
-
+        public SharpVk.Multivendor.DebugReportObjectType ObjectType; 
+        
         /// <summary>
-        ///     The object to be named.
+        /// The object to be named.
         /// </summary>
-        public ulong Object;
-
+        public ulong Object; 
+        
         /// <summary>
-        ///     A string specifying the name to apply to object.
+        /// A string specifying the name to apply to object.
         /// </summary>
-        public byte* ObjectName;
+        public byte* ObjectName; 
     }
 }

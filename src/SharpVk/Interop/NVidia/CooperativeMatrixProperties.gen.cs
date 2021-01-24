@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
@@ -33,53 +32,53 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct CooperativeMatrixProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     The number of rows in matrices A, C, and D.
+        /// The number of rows in matrices A, C, and D.
         /// </summary>
-        public uint MSize;
-
+        public uint MSize; 
+        
         /// <summary>
-        ///     The number of columns in matrices B, C, D.
+        /// The number of columns in matrices B, C, D.
         /// </summary>
-        public uint NSize;
-
+        public uint NSize; 
+        
         /// <summary>
-        ///     The number of columns in matrix A and rows in matrix B.
+        /// The number of columns in matrix A and rows in matrix B.
         /// </summary>
-        public uint KSize;
-
+        public uint KSize; 
+        
         /// <summary>
-        ///     The component type of matrix A, of type VkComponentTypeNV.
+        /// The component type of matrix A, of type VkComponentTypeNV.
         /// </summary>
-        public ComponentType AType;
-
+        public SharpVk.NVidia.ComponentType AType; 
+        
         /// <summary>
-        ///     The component type of matrix B, of type VkComponentTypeNV.
+        /// The component type of matrix B, of type VkComponentTypeNV.
         /// </summary>
-        public ComponentType BType;
-
+        public SharpVk.NVidia.ComponentType BType; 
+        
         /// <summary>
-        ///     The component type of matrix C, of type VkComponentTypeNV.
+        /// The component type of matrix C, of type VkComponentTypeNV.
         /// </summary>
-        public ComponentType CType;
-
+        public SharpVk.NVidia.ComponentType CType; 
+        
         /// <summary>
-        ///     The component type of matrix D, of type VkComponentTypeNV.
+        /// The component type of matrix D, of type VkComponentTypeNV.
         /// </summary>
-        public ComponentType DType;
-
+        public SharpVk.NVidia.ComponentType DType; 
+        
         /// <summary>
-        ///     The scope of all the matrix types, of type VkScopeNV.
+        /// The scope of all the matrix types, of type VkScopeNV.
         /// </summary>
-        public Scope Scope;
+        public SharpVk.NVidia.Scope Scope; 
     }
 }

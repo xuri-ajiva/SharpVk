@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint DestinationSubpass
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public PipelineStageFlags SourceStageMask
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public PipelineStageFlags DestinationStageMask
@@ -62,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public AccessFlags? SourceAccessMask
@@ -70,7 +70,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public AccessFlags? DestinationAccessMask
@@ -78,7 +78,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DependencyFlags? DependencyFlags
@@ -86,7 +86,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public int? ViewOffset
@@ -94,12 +94,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.SubpassDependency2* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SubpassDependency2* pointer)
         {
             pointer->SType = StructureType.SubpassDependency2Version;
             pointer->Next = null;
@@ -108,30 +108,46 @@ namespace SharpVk
             pointer->SourceStageMask = SourceStageMask;
             pointer->DestinationStageMask = DestinationStageMask;
             if (SourceAccessMask != null)
+            {
                 pointer->SourceAccessMask = SourceAccessMask.Value;
+            }
             else
+            {
                 pointer->SourceAccessMask = default;
+            }
             if (DestinationAccessMask != null)
+            {
                 pointer->DestinationAccessMask = DestinationAccessMask.Value;
+            }
             else
+            {
                 pointer->DestinationAccessMask = default;
+            }
             if (DependencyFlags != null)
+            {
                 pointer->DependencyFlags = DependencyFlags.Value;
+            }
             else
+            {
                 pointer->DependencyFlags = default;
+            }
             if (ViewOffset != null)
+            {
                 pointer->ViewOffset = ViewOffset.Value;
+            }
             else
+            {
                 pointer->ViewOffset = default;
+            }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SubpassDependency2 MarshalFrom(Interop.SubpassDependency2* pointer)
+        internal static unsafe SubpassDependency2 MarshalFrom(SharpVk.Interop.SubpassDependency2* pointer)
         {
-            var result = default(SubpassDependency2);
+            SubpassDependency2 result = default;
             result.SourceSubpass = pointer->SourceSubpass;
             result.DestinationSubpass = pointer->DestinationSubpass;
             result.SourceStageMask = pointer->SourceStageMask;

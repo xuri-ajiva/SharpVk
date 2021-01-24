@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool AdvancedBlendIndependentBlend
@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool AdvancedBlendNonPremultipliedSourceColor
@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool AdvancedBlendNonPremultipliedDestinationColor
@@ -62,7 +62,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool AdvancedBlendCorrelatedOverlap
@@ -70,7 +70,7 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool AdvancedBlendAllOperations
@@ -78,14 +78,14 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceBlendOperationAdvancedProperties MarshalFrom(Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedProperties* pointer)
+        internal static unsafe PhysicalDeviceBlendOperationAdvancedProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedProperties* pointer)
         {
-            var result = default(PhysicalDeviceBlendOperationAdvancedProperties);
+            PhysicalDeviceBlendOperationAdvancedProperties result = default;
             result.AdvancedBlendMaxColorAttachments = pointer->AdvancedBlendMaxColorAttachments;
             result.AdvancedBlendIndependentBlend = pointer->AdvancedBlendIndependentBlend;
             result.AdvancedBlendNonPremultipliedSourceColor = pointer->AdvancedBlendNonPremultipliedSourceColor;

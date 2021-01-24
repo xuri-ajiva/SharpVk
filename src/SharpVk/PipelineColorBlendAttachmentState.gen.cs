@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,98 +27,98 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a pipeline color blend attachment state.
+    /// Structure specifying a pipeline color blend attachment state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineColorBlendAttachmentState
     {
         /// <summary>
-        ///     blendEnable controls whether blending is enabled for the
-        ///     corresponding color attachment. If blending is not enabled, the
-        ///     source fragment's color for that attachment is passed through
-        ///     unmodified.
+        /// blendEnable controls whether blending is enabled for the
+        /// corresponding color attachment. If blending is not enabled, the
+        /// source fragment's color for that attachment is passed through
+        /// unmodified.
         /// </summary>
         public bool BlendEnable
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     srcColorBlendFactor selects which blend factor is used to determine
-        ///     the source factors [eq]#(S~r~,S~g~,S~b~)#.
+        /// srcColorBlendFactor selects which blend factor is used to determine
+        /// the source factors [eq]#(S~r~,S~g~,S~b~)#.
         /// </summary>
         public BlendFactor SourceColorBlendFactor
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     dstColorBlendFactor selects which blend factor is used to determine
-        ///     the destination factors [eq]#(D~r~,D~g~,D~b~)#.
+        /// dstColorBlendFactor selects which blend factor is used to determine
+        /// the destination factors [eq]#(D~r~,D~g~,D~b~)#.
         /// </summary>
         public BlendFactor DestinationColorBlendFactor
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     colorBlendOp selects which blend operation is used to calculate the
-        ///     RGB values to write to the color attachment.
+        /// colorBlendOp selects which blend operation is used to calculate the
+        /// RGB values to write to the color attachment.
         /// </summary>
         public BlendOp ColorBlendOp
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     srcAlphaBlendFactor selects which blend factor is used to determine
-        ///     the source factor [eq]#S~a~#.
+        /// srcAlphaBlendFactor selects which blend factor is used to determine
+        /// the source factor [eq]#S~a~#.
         /// </summary>
         public BlendFactor SourceAlphaBlendFactor
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     dstAlphaBlendFactor selects which blend factor is used to determine
-        ///     the destination factor [eq]#D~a~#.
+        /// dstAlphaBlendFactor selects which blend factor is used to determine
+        /// the destination factor [eq]#D~a~#.
         /// </summary>
         public BlendFactor DestinationAlphaBlendFactor
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     alphaBlendOp selects which blend operation is use to calculate the
-        ///     alpha values to write to the color attachment.
+        /// alphaBlendOp selects which blend operation is use to calculate the
+        /// alpha values to write to the color attachment.
         /// </summary>
         public BlendOp AlphaBlendOp
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A bitmask selecting which of the R, G, B, and/or A components are
-        ///     enabled for writing, as described later in this chapter.
+        /// A bitmask selecting which of the R, G, B, and/or A components are
+        /// enabled for writing, as described later in this chapter.
         /// </summary>
         public ColorComponentFlags? ColorWriteMask
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PipelineColorBlendAttachmentState* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineColorBlendAttachmentState* pointer)
         {
             pointer->BlendEnable = BlendEnable;
             pointer->SourceColorBlendFactor = SourceColorBlendFactor;
@@ -128,18 +128,22 @@ namespace SharpVk
             pointer->DestinationAlphaBlendFactor = DestinationAlphaBlendFactor;
             pointer->AlphaBlendOp = AlphaBlendOp;
             if (ColorWriteMask != null)
+            {
                 pointer->ColorWriteMask = ColorWriteMask.Value;
+            }
             else
+            {
                 pointer->ColorWriteMask = default;
+            }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PipelineColorBlendAttachmentState MarshalFrom(Interop.PipelineColorBlendAttachmentState* pointer)
+        internal static unsafe PipelineColorBlendAttachmentState MarshalFrom(SharpVk.Interop.PipelineColorBlendAttachmentState* pointer)
         {
-            var result = default(PipelineColorBlendAttachmentState);
+            PipelineColorBlendAttachmentState result = default;
             result.BlendEnable = pointer->BlendEnable;
             result.SourceColorBlendFactor = pointer->SourceColorBlendFactor;
             result.DestinationColorBlendFactor = pointer->DestinationColorBlendFactor;

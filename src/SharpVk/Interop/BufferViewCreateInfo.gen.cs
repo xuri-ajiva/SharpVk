@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,44 +32,44 @@ namespace SharpVk.Interop
     public unsafe struct BufferViewCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public BufferViewCreateFlags Flags;
-
+        public BufferViewCreateFlags Flags; 
+        
         /// <summary>
-        ///     A Buffer on which the view will be created.
+        /// A Buffer on which the view will be created.
         /// </summary>
-        public Buffer Buffer;
-
+        public Buffer Buffer; 
+        
         /// <summary>
-        ///     A Format describing the format of the data elements in the buffer.
+        /// A Format describing the format of the data elements in the buffer.
         /// </summary>
-        public Format Format;
-
+        public Format Format; 
+        
         /// <summary>
-        ///     An offset in bytes from the base address of the buffer. Accesses to
-        ///     the buffer view from shaders use addressing that is relative to
-        ///     this starting offset.
+        /// An offset in bytes from the base address of the buffer. Accesses to
+        /// the buffer view from shaders use addressing that is relative to
+        /// this starting offset.
         /// </summary>
-        public ulong Offset;
-
+        public ulong Offset; 
+        
         /// <summary>
-        ///     A size in bytes of the buffer view. If range is equal to
-        ///     Constants.WholeSize, the range from offset to the end of the buffer
-        ///     is used. If Constants.WholeSize is used and the remaining size of
-        ///     the buffer is not a multiple of the element size of format, then
-        ///     the nearest smaller multiple is used.
+        /// A size in bytes of the buffer view. If range is equal to
+        /// Constants.WholeSize, the range from offset to the end of the buffer
+        /// is used. If Constants.WholeSize is used and the remaining size of
+        /// the buffer is not a multiple of the element size of format, then
+        /// the nearest smaller multiple is used.
         /// </summary>
-        public ulong Range;
+        public ulong Range; 
     }
 }

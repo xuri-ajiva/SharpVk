@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure describing a supported swapchain format-color space pair.
+    /// Structure describing a supported swapchain format-color space pair.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SurfaceFormat
@@ -39,15 +39,15 @@ namespace SharpVk.Khronos
             Format = format;
             ColorSpace = colorSpace;
         }
-
+        
         /// <summary>
-        ///     A Format that is compatible with the specified surface.
+        /// A Format that is compatible with the specified surface.
         /// </summary>
-        public Format Format;
-
+        public Format Format; 
+        
         /// <summary>
-        ///     A presentation ColorSpaceKHR that is compatible with the surface.
+        /// A presentation ColorSpaceKHR that is compatible with the surface.
         /// </summary>
-        public ColorSpace ColorSpace;
+        public ColorSpace ColorSpace; 
     }
 }

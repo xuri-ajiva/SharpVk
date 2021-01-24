@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a draw indirect command.
+    /// Structure specifying a draw indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DrawIndirectCommand
     {
         /// <summary>
         /// </summary>
-        public static DrawIndirectCommand Zero => new();
-
+        public static DrawIndirectCommand Zero => new DrawIndirectCommand();
+        
         /// <summary>
         /// </summary>
         public DrawIndirectCommand(uint vertexCount, uint instanceCount, uint firstVertex, uint firstInstance)
@@ -45,25 +45,25 @@ namespace SharpVk
             FirstVertex = firstVertex;
             FirstInstance = firstInstance;
         }
-
+        
         /// <summary>
-        ///     The number of vertices to draw.
+        /// The number of vertices to draw.
         /// </summary>
-        public uint VertexCount;
-
+        public uint VertexCount; 
+        
         /// <summary>
-        ///     The number of instances to draw.
+        /// The number of instances to draw.
         /// </summary>
-        public uint InstanceCount;
-
+        public uint InstanceCount; 
+        
         /// <summary>
-        ///     The index of the first vertex to draw.
+        /// The index of the first vertex to draw.
         /// </summary>
-        public uint FirstVertex;
-
+        public uint FirstVertex; 
+        
         /// <summary>
-        ///     The instance ID of the first instance to draw.
+        /// The instance ID of the first instance to draw.
         /// </summary>
-        public uint FirstInstance;
+        public uint FirstInstance; 
     }
 }

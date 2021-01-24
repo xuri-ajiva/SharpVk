@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,47 +32,47 @@ namespace SharpVk.Interop
     public unsafe struct PipelineColorBlendStateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public PipelineColorBlendStateCreateFlags Flags;
-
+        public PipelineColorBlendStateCreateFlags Flags; 
+        
         /// <summary>
-        ///     logicOpEnable controls whether to apply Logical Operations.
+        /// logicOpEnable controls whether to apply Logical Operations.
         /// </summary>
-        public Bool32 LogicOpEnable;
-
+        public Bool32 LogicOpEnable; 
+        
         /// <summary>
-        ///     logicOp selects which logical operation to apply.
+        /// logicOp selects which logical operation to apply.
         /// </summary>
-        public LogicOp LogicOp;
-
+        public LogicOp LogicOp; 
+        
         /// <summary>
-        ///     The number of PipelineColorBlendAttachmentState elements in
-        ///     pAttachments. This value must equal the colorAttachmentCount for
-        ///     the subpass in which this pipeline is used.
+        /// The number of PipelineColorBlendAttachmentState elements in
+        /// pAttachments. This value must equal the colorAttachmentCount for
+        /// the subpass in which this pipeline is used.
         /// </summary>
-        public uint AttachmentCount;
-
+        public uint AttachmentCount; 
+        
         /// <summary>
-        ///     pAttachments: is array of per target attachment states.
+        /// pAttachments: is array of per target attachment states.
         /// </summary>
-        public PipelineColorBlendAttachmentState* Attachments;
-
+        public PipelineColorBlendAttachmentState* Attachments; 
+        
         /// <summary>
-        ///     An array of four values used as the R, G, B, and A components of
-        ///     the blend constant that are used in blending, depending on the
-        ///     blend factor.
+        /// An array of four values used as the R, G, B, and A components of
+        /// the blend constant that are used in blending, depending on the
+        /// blend factor.
         /// </summary>
-        public fixed float BlendConstants[4];
+        public fixed float BlendConstants[4]; 
     }
 }

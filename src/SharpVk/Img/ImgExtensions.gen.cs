@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,10 +30,10 @@ namespace SharpVk.Img
     {
         /// <summary>
         /// </summary>
-        public const string FilterCubic = "VK_IMG_filter_cubic";
-
+        public const string FilterCubic = "VK_IMG_filter_cubic"; 
+        
         /// <summary>
         /// </summary>
-        public const string FormatPvrtc = "VK_IMG_format_pvrtc";
+        public const string FormatPvrtc = "VK_IMG_format_pvrtc"; 
     }
 }

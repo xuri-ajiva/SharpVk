@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,25 +38,25 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSeparateDepthStencilLayoutsFeaturesVersion;
             pointer->Next = null;
             pointer->SeparateDepthStencilLayouts = SeparateDepthStencilLayouts;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSeparateDepthStencilLayoutsFeatures MarshalFrom(Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
+        internal static unsafe PhysicalDeviceSeparateDepthStencilLayoutsFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
         {
-            var result = default(PhysicalDeviceSeparateDepthStencilLayoutsFeatures);
+            PhysicalDeviceSeparateDepthStencilLayoutsFeatures result = default;
             result.SeparateDepthStencilLayouts = pointer->SeparateDepthStencilLayouts;
             return result;
         }

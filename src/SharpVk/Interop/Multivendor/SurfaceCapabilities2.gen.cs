@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Khronos;
-using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
@@ -34,59 +32,59 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct SurfaceCapabilities2
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public uint MinImageCount;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxImageCount;
-
+        public uint MinImageCount; 
+        
         /// <summary>
         /// </summary>
-        public Extent2D CurrentExtent;
-
+        public uint MaxImageCount; 
+        
         /// <summary>
         /// </summary>
-        public Extent2D MinImageExtent;
-
+        public Extent2D CurrentExtent; 
+        
         /// <summary>
         /// </summary>
-        public Extent2D MaxImageExtent;
-
+        public Extent2D MinImageExtent; 
+        
         /// <summary>
         /// </summary>
-        public uint MaxImageArrayLayers;
-
+        public Extent2D MaxImageExtent; 
+        
         /// <summary>
         /// </summary>
-        public SurfaceTransformFlags SupportedTransforms;
-
+        public uint MaxImageArrayLayers; 
+        
         /// <summary>
         /// </summary>
-        public SurfaceTransformFlags CurrentTransform;
-
+        public SharpVk.Khronos.SurfaceTransformFlags SupportedTransforms; 
+        
         /// <summary>
         /// </summary>
-        public CompositeAlphaFlags SupportedCompositeAlpha;
-
+        public SharpVk.Khronos.SurfaceTransformFlags CurrentTransform; 
+        
         /// <summary>
         /// </summary>
-        public ImageUsageFlags SupportedUsageFlags;
-
+        public SharpVk.Khronos.CompositeAlphaFlags SupportedCompositeAlpha; 
+        
         /// <summary>
-        ///     A bitfield containing one bit set for each surface counter type
-        ///     supported.
         /// </summary>
-        public SurfaceCounterFlags SupportedSurfaceCounters;
+        public ImageUsageFlags SupportedUsageFlags; 
+        
+        /// <summary>
+        /// A bitfield containing one bit set for each surface counter type
+        /// supported.
+        /// </summary>
+        public SharpVk.Multivendor.SurfaceCounterFlags SupportedSurfaceCounters; 
     }
 }

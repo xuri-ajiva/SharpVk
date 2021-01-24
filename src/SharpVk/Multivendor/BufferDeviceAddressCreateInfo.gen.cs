@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,25 +27,25 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Request a specific address for a buffer
+    /// Request a specific address for a buffer
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferDeviceAddressCreateInfo
     {
         /// <summary>
-        ///     The device address requested for the buffer.
+        /// The device address requested for the buffer.
         /// </summary>
         public ulong DeviceAddress
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.BufferDeviceAddressCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.BufferDeviceAddressCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferDeviceAddressCreateInfo;
             pointer->Next = null;

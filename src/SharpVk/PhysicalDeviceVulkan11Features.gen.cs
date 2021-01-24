@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool UniformAndStorageBuffer16BitAccess
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StoragePushConstant16
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StorageInputOutput16
@@ -62,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool Multiview
@@ -70,7 +70,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool MultiviewGeometryShader
@@ -78,7 +78,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool MultiviewTessellationShader
@@ -86,7 +86,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool VariablePointersStorageBuffer
@@ -94,7 +94,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool VariablePointers
@@ -102,7 +102,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ProtectedMemory
@@ -110,7 +110,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SamplerYcbcrConversion
@@ -118,7 +118,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDrawParameters
@@ -126,12 +126,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceVulkan11Features* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkan11Features* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceVulkan11Features;
             pointer->Next = null;
@@ -148,14 +148,14 @@ namespace SharpVk
             pointer->SamplerYcbcrConversion = SamplerYcbcrConversion;
             pointer->ShaderDrawParameters = ShaderDrawParameters;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceVulkan11Features MarshalFrom(Interop.PhysicalDeviceVulkan11Features* pointer)
+        internal static unsafe PhysicalDeviceVulkan11Features MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkan11Features* pointer)
         {
-            var result = default(PhysicalDeviceVulkan11Features);
+            PhysicalDeviceVulkan11Features result = default;
             result.StorageBuffer16BitAccess = pointer->StorageBuffer16BitAccess;
             result.UniformAndStorageBuffer16BitAccess = pointer->UniformAndStorageBuffer16BitAccess;
             result.StoragePushConstant16 = pointer->StoragePushConstant16;

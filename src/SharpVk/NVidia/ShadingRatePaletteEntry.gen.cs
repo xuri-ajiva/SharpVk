@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,50 +30,50 @@ namespace SharpVk.NVidia
     {
         /// <summary>
         /// </summary>
-        NoInvocations = 0,
-
+        NoInvocations = 0, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry16InvocationsPerPixel = 1,
-
+        ShadingRatePaletteEntry16InvocationsPerPixel = 1, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry8InvocationsPerPixel = 2,
-
+        ShadingRatePaletteEntry8InvocationsPerPixel = 2, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry4InvocationsPerPixel = 3,
-
+        ShadingRatePaletteEntry4InvocationsPerPixel = 3, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry2InvocationsPerPixel = 4,
-
+        ShadingRatePaletteEntry2InvocationsPerPixel = 4, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry1InvocationPerPixel = 5,
-
+        ShadingRatePaletteEntry1InvocationPerPixel = 5, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry1InvocationPer2X1Pixels = 6,
-
+        ShadingRatePaletteEntry1InvocationPer2x1Pixels = 6, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry1InvocationPer1X2Pixels = 7,
-
+        ShadingRatePaletteEntry1InvocationPer1x2Pixels = 7, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry1InvocationPer2X2Pixels = 8,
-
+        ShadingRatePaletteEntry1InvocationPer2x2Pixels = 8, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry1InvocationPer4X2Pixels = 9,
-
+        ShadingRatePaletteEntry1InvocationPer4x2Pixels = 9, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry1InvocationPer2X4Pixels = 10,
-
+        ShadingRatePaletteEntry1InvocationPer2x4Pixels = 10, 
+        
         /// <summary>
         /// </summary>
-        ShadingRatePaletteEntry1InvocationPer4X4Pixels = 11
+        ShadingRatePaletteEntry1InvocationPer4x4Pixels = 11, 
     }
 }

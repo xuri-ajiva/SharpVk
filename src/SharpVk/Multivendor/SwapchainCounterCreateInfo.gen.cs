@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,33 +27,37 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Specify the surface counters desired.
+    /// Specify the surface counters desired.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SwapchainCounterCreateInfo
     {
         /// <summary>
-        ///     A bitmask containing a bit set for each surface counter to enable
-        ///     for the swapchain.
+        /// A bitmask containing a bit set for each surface counter to enable
+        /// for the swapchain.
         /// </summary>
         public SurfaceCounterFlags? SurfaceCounters
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.SwapchainCounterCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainCounterCreateInfo;
             pointer->Next = null;
             if (SurfaceCounters != null)
+            {
                 pointer->SurfaceCounters = SurfaceCounters.Value;
+            }
             else
+            {
                 pointer->SurfaceCounters = default;
+            }
         }
     }
 }

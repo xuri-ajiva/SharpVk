@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure describing display parameters associated with a display mode.
+    /// Structure describing display parameters associated with a display mode.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayModeParameters
@@ -39,16 +39,16 @@ namespace SharpVk.Khronos
             VisibleRegion = visibleRegion;
             RefreshRate = refreshRate;
         }
-
+        
         /// <summary>
-        ///     The 2D extents of the visible region.
+        /// The 2D extents of the visible region.
         /// </summary>
-        public Extent2D VisibleRegion;
-
+        public Extent2D VisibleRegion; 
+        
         /// <summary>
-        ///     A UInt32 that is the number of times the display is refreshed each
-        ///     second multiplied by 1000.
+        /// A UInt32 that is the number of times the display is refreshed each
+        /// second multiplied by 1000.
         /// </summary>
-        public uint RefreshRate;
+        public uint RefreshRate; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,54 +32,54 @@ namespace SharpVk.Interop
     public unsafe struct ImageMemoryBarrier
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Defines a source access mask.
+        /// Defines a source access mask.
         /// </summary>
-        public AccessFlags SourceAccessMask;
-
+        public AccessFlags SourceAccessMask; 
+        
         /// <summary>
-        ///     Defines a destination access mask.
+        /// Defines a destination access mask.
         /// </summary>
-        public AccessFlags DestinationAccessMask;
-
+        public AccessFlags DestinationAccessMask; 
+        
         /// <summary>
-        ///     The old layout in an image layout transition.
+        /// The old layout in an image layout transition.
         /// </summary>
-        public ImageLayout OldLayout;
-
+        public ImageLayout OldLayout; 
+        
         /// <summary>
-        ///     The new layout in an image layout transition.
+        /// The new layout in an image layout transition.
         /// </summary>
-        public ImageLayout NewLayout;
-
+        public ImageLayout NewLayout; 
+        
         /// <summary>
-        ///     The source queue family for a queue family ownership transfer.
+        /// The source queue family for a queue family ownership transfer.
         /// </summary>
-        public uint SourceQueueFamilyIndex;
-
+        public uint SourceQueueFamilyIndex; 
+        
         /// <summary>
-        ///     The destination queue family for a queue family ownership transfer.
+        /// The destination queue family for a queue family ownership transfer.
         /// </summary>
-        public uint DestinationQueueFamilyIndex;
-
+        public uint DestinationQueueFamilyIndex; 
+        
         /// <summary>
-        ///     A handle to the image affected by this barrier.
+        /// A handle to the image affected by this barrier.
         /// </summary>
-        public Image Image;
-
+        public Image Image; 
+        
         /// <summary>
-        ///     Describes the image subresource range within image that is affected
-        ///     by this barrier.
+        /// Describes the image subresource range within image that is affected
+        /// by this barrier.
         /// </summary>
-        public ImageSubresourceRange SubresourceRange;
+        public ImageSubresourceRange SubresourceRange; 
     }
 }

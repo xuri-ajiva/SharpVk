@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,20 +25,20 @@
 namespace SharpVk.Intel
 {
     /// <summary>
-    ///     Parameters that can be queried
+    /// Parameters that can be queried
     /// </summary>
     public enum PerformanceParameterType
     {
         /// <summary>
-        ///     Has a boolean result which tells whether hardware counters can be
-        ///     captured.
+        /// Has a boolean result which tells whether hardware counters can be
+        /// captured.
         /// </summary>
-        HwCountersSupported = 0,
-
+        HwCountersSupported = 0, 
+        
         /// <summary>
-        ///     Has a 32 bits integer result which tells how many bits can be
-        ///     written into the VkStreamPerformanceMarkerInfoINTEL value.
+        /// Has a 32 bits integer result which tells how many bits can be
+        /// written into the VkStreamPerformanceMarkerInfoINTEL value.
         /// </summary>
-        StreamMarkerValidBits = 1
+        StreamMarkerValidBits = 1, 
     }
 }

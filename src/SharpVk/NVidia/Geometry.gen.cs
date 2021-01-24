@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,12 +33,12 @@ namespace SharpVk.NVidia
     {
         /// <summary>
         /// </summary>
-        public GeometryType GeometryType
+        public Khronos.GeometryType GeometryType
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public GeometryData GeometryValue
@@ -46,38 +46,42 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public GeometryFlags? Flags
+        public SharpVk.Khronos.GeometryFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.Geometry* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Geometry* pointer)
         {
             pointer->SType = StructureType.Geometry;
             pointer->Next = null;
             pointer->GeometryType = GeometryType;
             GeometryValue.MarshalTo(&pointer->GeometryValue);
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe Geometry MarshalFrom(Interop.NVidia.Geometry* pointer)
+        internal static unsafe Geometry MarshalFrom(SharpVk.Interop.NVidia.Geometry* pointer)
         {
-            var result = default(Geometry);
+            Geometry result = default;
             result.GeometryType = pointer->GeometryType;
             result.GeometryValue = GeometryData.MarshalFrom(&pointer->GeometryValue);
             result.Flags = pointer->Flags;

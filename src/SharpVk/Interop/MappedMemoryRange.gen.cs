@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,30 +32,30 @@ namespace SharpVk.Interop
     public unsafe struct MappedMemoryRange
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     The memory object to which this range belongs.
+        /// The memory object to which this range belongs.
         /// </summary>
-        public DeviceMemory Memory;
-
+        public DeviceMemory Memory; 
+        
         /// <summary>
-        ///     The zero-based byte offset from the beginning of the memory object.
+        /// The zero-based byte offset from the beginning of the memory object.
         /// </summary>
-        public ulong Offset;
-
+        public ulong Offset; 
+        
         /// <summary>
-        ///     size is either the size of range, or Constants.WholeSize to affect
-        ///     the range from offset to the end of the current mapping of the
-        ///     allocation.
+        /// size is either the size of range, or Constants.WholeSize to affect
+        /// the range from offset to the end of the current mapping of the
+        /// allocation.
         /// </summary>
-        public ulong Size;
+        public ulong Size; 
     }
 }

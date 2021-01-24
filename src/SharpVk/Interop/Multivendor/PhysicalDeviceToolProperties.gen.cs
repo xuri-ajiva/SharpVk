@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Multivendor;
 
 namespace SharpVk.Interop.Multivendor
 {
@@ -34,30 +33,30 @@ namespace SharpVk.Interop.Multivendor
     {
         /// <summary>
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte Name[Constants.MaxExtensionNameSize];
-
+        public fixed byte Name[Constants.MaxExtensionNameSize]; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte Version[Constants.MaxExtensionNameSize];
-
+        public fixed byte Version[Constants.MaxExtensionNameSize]; 
+        
         /// <summary>
         /// </summary>
-        public ToolPurposeFlags Purposes;
-
+        public SharpVk.Multivendor.ToolPurposeFlags Purposes; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte Description[Constants.MaxDescriptionSize];
-
+        public fixed byte Description[Constants.MaxDescriptionSize]; 
+        
         /// <summary>
         /// </summary>
-        public fixed byte Layer[Constants.MaxExtensionNameSize];
+        public fixed byte Layer[Constants.MaxExtensionNameSize]; 
     }
 }

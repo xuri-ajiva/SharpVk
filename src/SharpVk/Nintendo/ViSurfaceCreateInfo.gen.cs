@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,42 +28,46 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Nintendo
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created VI surface object.
+    /// Structure specifying parameters of a newly created VI surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ViSurfaceCreateInfo
     {
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public ViSurfaceCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
-        ///     associate the surface.
+        /// The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
+        /// associate the surface.
         /// </summary>
         public IntPtr Window
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Nintendo.ViSurfaceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Nintendo.ViSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.ViSurfaceCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->Window = Window.ToPointer();
         }
     }

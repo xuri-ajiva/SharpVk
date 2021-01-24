@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,51 +23,53 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created pipeline viewport W
-    ///     scaling state.
+    /// Structure specifying parameters of a newly created pipeline viewport W
+    /// scaling state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineViewportWScalingStateCreateInfo
     {
         /// <summary>
-        ///     The enable for viewport W scaling
+        /// The enable for viewport W scaling
         /// </summary>
         public bool ViewportWScalingEnable
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of ViewportWScalingNV structures which define the W
-        ///     scaling parameters for the corresponding viewport. If the viewport
-        ///     W scaling state is dynamic, this member is ignored.
+        /// An array of ViewportWScalingNV structures which define the W
+        /// scaling parameters for the corresponding viewport. If the viewport
+        /// W scaling state is dynamic, this member is ignored.
         /// </summary>
         public ViewportWScaling[] ViewportWScalings
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PipelineViewportWScalingStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportWScalingStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfo;
             pointer->Next = null;
             pointer->ViewportWScalingEnable = ViewportWScalingEnable;
-            pointer->ViewportCount = HeapUtil.GetLength(ViewportWScalings);
+            pointer->ViewportCount = (uint)(Interop.HeapUtil.GetLength(ViewportWScalings));
             if (ViewportWScalings != null)
             {
-                var fieldPointer = (ViewportWScaling*)HeapUtil.AllocateAndClear<ViewportWScaling>(ViewportWScalings.Length).ToPointer();
-                for (var index = 0; index < (uint)ViewportWScalings.Length; index++) fieldPointer[index] = ViewportWScalings[index];
+                var fieldPointer = (ViewportWScaling*)(Interop.HeapUtil.AllocateAndClear<ViewportWScaling>(ViewportWScalings.Length).ToPointer());
+                for(int index = 0; index < (uint)(ViewportWScalings.Length); index++)
+                {
+                    fieldPointer[index] = ViewportWScalings[index];
+                }
                 pointer->ViewportWScalings = fieldPointer;
             }
             else

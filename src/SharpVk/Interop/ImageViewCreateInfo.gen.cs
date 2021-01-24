@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,46 +32,46 @@ namespace SharpVk.Interop
     public unsafe struct ImageViewCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public ImageViewCreateFlags Flags;
-
+        public ImageViewCreateFlags Flags; 
+        
         /// <summary>
-        ///     An Image on which the view will be created.
+        /// An Image on which the view will be created.
         /// </summary>
-        public Image Image;
-
+        public Image Image; 
+        
         /// <summary>
-        ///     The type of the image view.
+        /// The type of the image view.
         /// </summary>
-        public ImageViewType ViewType;
-
+        public ImageViewType ViewType; 
+        
         /// <summary>
-        ///     A Format describing the format and type used to interpret data
-        ///     elements in the image.
+        /// A Format describing the format and type used to interpret data
+        /// elements in the image.
         /// </summary>
-        public Format Format;
-
+        public Format Format; 
+        
         /// <summary>
-        ///     Specifies a remapping of color components (or of depth or stencil
-        ///     components after they have been converted into color components).
+        /// Specifies a remapping of color components (or of depth or stencil
+        /// components after they have been converted into color components).
         /// </summary>
-        public ComponentMapping Components;
-
+        public ComponentMapping Components; 
+        
         /// <summary>
-        ///     An ImageSubresourceRange selecting the set of mipmap levels and
-        ///     array layers to be accessible to the view.
+        /// An ImageSubresourceRange selecting the set of mipmap levels and
+        /// array layers to be accessible to the view.
         /// </summary>
-        public ImageSubresourceRange SubresourceRange;
+        public ImageSubresourceRange SubresourceRange; 
     }
 }

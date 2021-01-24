@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,22 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Surface-relative counter types.
+    /// Surface-relative counter types.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum SurfaceCounterFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
-        ///     A counter incrementing once every time a vblank period occurs on
-        ///     the display associated with the surface.
+        /// A counter incrementing once every time a vblank period occurs on
+        /// the display associated with the surface.
         /// </summary>
-        Vblank = 1 << 0
+        Vblank = 1 << 0, 
     }
 }

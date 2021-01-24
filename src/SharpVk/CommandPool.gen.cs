@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,98 +23,96 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Opaque handle to a command pool object.
+    /// Opaque handle to a command pool object.
     /// </summary>
     public class CommandPool
         : IDisposable
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.CommandPool Handle;
-
-        internal readonly Device Parent;
-
-        internal CommandPool(Device parent, Interop.CommandPool handle)
+        internal readonly SharpVk.Interop.CommandPool Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly Device parent; 
+        
+        internal CommandPool(Device parent, SharpVk.Interop.CommandPool handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.CommandPool RawHandle => Handle;
-
+        public SharpVk.Interop.CommandPool RawHandle => Handle;
+        
         /// <summary>
-        ///     Destroys the handles and releases any unmanaged resources
-        ///     associated with it.
-        /// </summary>
-        public void Dispose()
-        {
-            Destroy();
-        }
-
-        /// <summary>
-        ///     Destroy a command pool object.
+        /// Destroy a command pool object.
         /// </summary>
         /// <param name="allocator">
-        ///     An optional AllocationCallbacks instance that controls host memory
-        ///     allocation.
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
         /// </param>
         public unsafe void Destroy(AllocationCallbacks? allocator = default)
         {
             try
             {
-                var marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default;
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)HeapUtil.Allocate<Interop.AllocationCallbacks>();
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
                     marshalledAllocator = default;
                 }
-                var commandDelegate = CommandCache.Cache.VkDestroyCommandPool;
-                commandDelegate(Parent.Handle, Handle, marshalledAllocator);
+                Interop.VkCommandPoolDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyCommandPool;
+                commandDelegate(parent.Handle, Handle, marshalledAllocator);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Reset a command pool.
+        /// Reset a command pool.
         /// </summary>
         /// <param name="flags">
         /// </param>
-        public void Reset(CommandPoolResetFlags? flags = default)
+        public unsafe void Reset(CommandPoolResetFlags? flags = default)
         {
             try
             {
-                var marshalledFlags = default(CommandPoolResetFlags);
+                CommandPoolResetFlags marshalledFlags = default;
                 if (flags != null)
+                {
                     marshalledFlags = flags.Value;
+                }
                 else
+                {
                     marshalledFlags = default;
-                var commandDelegate = CommandCache.Cache.VkResetCommandPool;
-                var methodResult = commandDelegate(Parent.Handle, Handle, marshalledFlags);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                }
+                Interop.VkCommandPoolResetDelegate commandDelegate = commandCache.Cache.vkResetCommandPool;
+                Result methodResult = commandDelegate(parent.Handle, Handle, marshalledFlags);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Free command buffers.
+        /// Free command buffers.
         /// </summary>
         /// <param name="commandBuffers">
         /// </param>
@@ -122,7 +120,7 @@ namespace SharpVk
         {
             try
             {
-                var marshalledCommandBuffers = default(Interop.CommandBuffer*);
+                SharpVk.Interop.CommandBuffer* marshalledCommandBuffers = default;
                 if (commandBuffers.IsNull())
                 {
                     marshalledCommandBuffers = null;
@@ -131,45 +129,61 @@ namespace SharpVk
                 {
                     if (commandBuffers.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCommandBuffers = (Interop.CommandBuffer*)HeapUtil.Allocate<Interop.CommandBuffer>();
-                        *marshalledCommandBuffers = commandBuffers.Value.GetSingleValue()?.Handle ?? default(Interop.CommandBuffer);
+                        marshalledCommandBuffers = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBuffer>());
+                        *(SharpVk.Interop.CommandBuffer*)(marshalledCommandBuffers) = commandBuffers.Value.GetSingleValue()?.Handle ?? default;
                     }
                     else
                     {
-                        var fieldPointer = (Interop.CommandBuffer*)HeapUtil.AllocateAndClear<Interop.CommandBuffer>(HeapUtil.GetLength(commandBuffers.Value)).ToPointer();
-                        for (var index = 0; index < HeapUtil.GetLength(commandBuffers.Value); index++) fieldPointer[index] = commandBuffers.Value[index]?.Handle ?? default(Interop.CommandBuffer);
+                        var fieldPointer = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.CommandBuffer>(Interop.HeapUtil.GetLength(commandBuffers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(commandBuffers.Value)); index++)
+                        {
+                            fieldPointer[index] = commandBuffers.Value[index]?.Handle ?? default;
+                        }
                         marshalledCommandBuffers = fieldPointer;
                     }
                 }
-                var commandDelegate = CommandCache.Cache.VkFreeCommandBuffers;
-                commandDelegate(Parent.Handle, Handle, HeapUtil.GetLength(commandBuffers), marshalledCommandBuffers);
+                Interop.VkCommandPoolFreeCommandBuffersDelegate commandDelegate = commandCache.Cache.vkFreeCommandBuffers;
+                commandDelegate(parent.Handle, Handle, (uint)(Interop.HeapUtil.GetLength(commandBuffers)), marshalledCommandBuffers);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="flags">
         /// </param>
-        public void Trim(CommandPoolTrimFlags? flags = default)
+        public unsafe void Trim(CommandPoolTrimFlags? flags = default)
         {
             try
             {
-                var marshalledFlags = default(CommandPoolTrimFlags);
+                CommandPoolTrimFlags marshalledFlags = default;
                 if (flags != null)
+                {
                     marshalledFlags = flags.Value;
+                }
                 else
+                {
                     marshalledFlags = default;
-                var commandDelegate = CommandCache.Cache.VkTrimCommandPool;
-                commandDelegate(Parent.Handle, Handle, marshalledFlags);
+                }
+                Interop.VkCommandPoolTrimDelegate commandDelegate = commandCache.Cache.vkTrimCommandPool;
+                commandDelegate(parent.Handle, Handle, marshalledFlags);
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
+        /// </summary>
+        public void Dispose()
+        {
+            Destroy();
         }
     }
 }

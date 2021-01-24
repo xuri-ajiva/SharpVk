@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,55 +32,55 @@ namespace SharpVk.Interop
     public unsafe struct SubmitInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     The number of semaphores upon which to wait before executing the
-        ///     command buffers for the batch.
+        /// The number of semaphores upon which to wait before executing the
+        /// command buffers for the batch.
         /// </summary>
-        public uint WaitSemaphoreCount;
-
+        public uint WaitSemaphoreCount; 
+        
         /// <summary>
-        ///     An array of semaphores upon which to wait before the command
-        ///     buffers for this batch begin execution. If semaphores to wait on
-        ///     are provided, they define a semaphore wait operation.
+        /// An array of semaphores upon which to wait before the command
+        /// buffers for this batch begin execution. If semaphores to wait on
+        /// are provided, they define a semaphore wait operation.
         /// </summary>
-        public Semaphore* WaitSemaphores;
-
+        public Semaphore* WaitSemaphores; 
+        
         /// <summary>
-        ///     An array of pipeline stages at which each corresponding semaphore
-        ///     wait will occur.
+        /// An array of pipeline stages at which each corresponding semaphore
+        /// wait will occur.
         /// </summary>
-        public PipelineStageFlags* WaitDestinationStageMask;
-
+        public PipelineStageFlags* WaitDestinationStageMask; 
+        
         /// <summary>
-        ///     The number of command buffers to execute in the batch.
+        /// The number of command buffers to execute in the batch.
         /// </summary>
-        public uint CommandBufferCount;
-
+        public uint CommandBufferCount; 
+        
         /// <summary>
-        ///     An array of command buffers to execute in the batch.
+        /// An array of command buffers to execute in the batch.
         /// </summary>
-        public CommandBuffer* CommandBuffers;
-
+        public CommandBuffer* CommandBuffers; 
+        
         /// <summary>
-        ///     The number of semaphores to be signaled once the commands specified
-        ///     in pCommandBuffers have completed execution.
+        /// The number of semaphores to be signaled once the commands specified
+        /// in pCommandBuffers have completed execution.
         /// </summary>
-        public uint SignalSemaphoreCount;
-
+        public uint SignalSemaphoreCount; 
+        
         /// <summary>
-        ///     An array of semaphores which will be signaled when the command
-        ///     buffers for this batch have completed execution. If semaphores to
-        ///     be signaled are provided, they define a semaphore signal operation.
+        /// An array of semaphores which will be signaled when the command
+        /// buffers for this batch have completed execution. If semaphores to
+        /// be signaled are provided, they define a semaphore signal operation.
         /// </summary>
-        public Semaphore* SignalSemaphores;
+        public Semaphore* SignalSemaphores; 
     }
 }

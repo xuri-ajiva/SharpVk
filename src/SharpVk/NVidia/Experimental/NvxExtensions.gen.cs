@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,14 +30,10 @@ namespace SharpVk.NVidia.Experimental
     {
         /// <summary>
         /// </summary>
-        public const string ImageViewHandle = "VK_NVX_image_view_handle";
-
+        public const string ImageViewHandle = "VK_NVX_image_view_handle"; 
+        
         /// <summary>
         /// </summary>
-        public const string DeviceGeneratedCommands = "VK_NVX_device_generated_commands";
-
-        /// <summary>
-        /// </summary>
-        public const string MultiviewPerViewAttributes = "VK_NVX_multiview_per_view_attributes";
+        public const string MultiviewPerViewAttributes = "VK_NVX_multiview_per_view_attributes"; 
     }
 }

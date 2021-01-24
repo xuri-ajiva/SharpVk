@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,17 +25,17 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Specify how commands in the first subpass of a render pass are
-    ///     provided.
+    /// Specify how commands in the first subpass of a render pass are
+    /// provided.
     /// </summary>
     public enum SubpassContents
     {
         /// <summary>
         /// </summary>
-        Inline = 0,
-
+        Inline = 0, 
+        
         /// <summary>
         /// </summary>
-        SecondaryCommandBuffers = 1
+        SecondaryCommandBuffers = 1, 
     }
 }

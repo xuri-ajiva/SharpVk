@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a color component mapping.
+    /// Structure specifying a color component mapping.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ComponentMapping
@@ -41,29 +41,29 @@ namespace SharpVk
             B = b;
             A = a;
         }
-
+        
         /// <summary>
-        ///     r determines the component value placed in the R component of the
-        ///     output vector.
+        /// r determines the component value placed in the R component of the
+        /// output vector.
         /// </summary>
-        public ComponentSwizzle R;
-
+        public ComponentSwizzle R; 
+        
         /// <summary>
-        ///     g determines the component value placed in the G component of the
-        ///     output vector.
+        /// g determines the component value placed in the G component of the
+        /// output vector.
         /// </summary>
-        public ComponentSwizzle G;
-
+        public ComponentSwizzle G; 
+        
         /// <summary>
-        ///     b determines the component value placed in the B component of the
-        ///     output vector.
+        /// b determines the component value placed in the B component of the
+        /// output vector.
         /// </summary>
-        public ComponentSwizzle B;
-
+        public ComponentSwizzle B; 
+        
         /// <summary>
-        ///     a determines the component value placed in the A component of the
-        ///     output vector.
+        /// a determines the component value placed in the A component of the
+        /// output vector.
         /// </summary>
-        public ComponentSwizzle A;
+        public ComponentSwizzle A; 
     }
 }

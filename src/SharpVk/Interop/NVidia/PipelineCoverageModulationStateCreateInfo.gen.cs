@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.NVidia;
 
 namespace SharpVk.Interop.NVidia
 {
@@ -33,33 +32,33 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct PipelineCoverageModulationStateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public PipelineCoverageModulationStateCreateFlags Flags;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public CoverageModulationMode CoverageModulationMode;
-
+        public SharpVk.NVidia.PipelineCoverageModulationStateCreateFlags Flags; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 CoverageModulationTableEnable;
-
+        public SharpVk.NVidia.CoverageModulationMode CoverageModulationMode; 
+        
         /// <summary>
         /// </summary>
-        public uint CoverageModulationTableCount;
-
+        public Bool32 CoverageModulationTableEnable; 
+        
         /// <summary>
         /// </summary>
-        public float* CoverageModulationTable;
+        public uint CoverageModulationTableCount; 
+        
+        /// <summary>
+        /// </summary>
+        public float* CoverageModulationTable; 
     }
 }

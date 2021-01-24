@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Android;
 
 namespace SharpVk.Interop.Android
 {
@@ -33,33 +32,33 @@ namespace SharpVk.Interop.Android
     public unsafe struct NativeBuffer
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public void* Handle;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public int Stride;
-
+        public void* Handle; 
+        
         /// <summary>
         /// </summary>
-        public int Format;
-
+        public int Stride; 
+        
         /// <summary>
         /// </summary>
-        public int Usage;
-
+        public int Format; 
+        
         /// <summary>
         /// </summary>
-        public NativeBufferUsage2 Usage2;
+        public int Usage; 
+        
+        /// <summary>
+        /// </summary>
+        public SharpVk.Android.NativeBufferUsage2 Usage2; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,24 +32,24 @@ namespace SharpVk.Interop
     public unsafe struct SpecializationInfo
     {
         /// <summary>
-        ///     The number of entries in the pMapEntries array.
+        /// The number of entries in the pMapEntries array.
         /// </summary>
-        public uint MapEntryCount;
-
+        public uint MapEntryCount; 
+        
         /// <summary>
-        ///     An array of SpecializationMapEntry which maps constant IDs to
-        ///     offsets in pData.
+        /// An array of SpecializationMapEntry which maps constant IDs to
+        /// offsets in pData.
         /// </summary>
-        public SpecializationMapEntry* MapEntries;
-
+        public SpecializationMapEntry* MapEntries; 
+        
         /// <summary>
-        ///     The byte size of the pData buffer.
+        /// The byte size of the pData buffer.
         /// </summary>
-        public HostSize DataSize;
-
+        public HostSize DataSize; 
+        
         /// <summary>
-        ///     pData contains the actual constant values to specialize with.
+        /// pData contains the actual constant values to specialize with.
         /// </summary>
-        public byte* Data;
+        public byte* Data; 
     }
 }

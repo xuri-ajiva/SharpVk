@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,40 +32,40 @@ namespace SharpVk.Interop
     public unsafe struct PipelineVertexInputStateCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public PipelineVertexInputStateCreateFlags Flags;
-
+        public PipelineVertexInputStateCreateFlags Flags; 
+        
         /// <summary>
-        ///     The number of vertex binding descriptions provided in
-        ///     pVertexBindingDescriptions.
+        /// The number of vertex binding descriptions provided in
+        /// pVertexBindingDescriptions.
         /// </summary>
-        public uint VertexBindingDescriptionCount;
-
+        public uint VertexBindingDescriptionCount; 
+        
         /// <summary>
-        ///     An array of VertexInputBindingDescription structures.
+        /// An array of VertexInputBindingDescription structures.
         /// </summary>
-        public VertexInputBindingDescription* VertexBindingDescriptions;
-
+        public VertexInputBindingDescription* VertexBindingDescriptions; 
+        
         /// <summary>
-        ///     The number of vertex attribute descriptions provided in
-        ///     pVertexAttributeDescriptions.
+        /// The number of vertex attribute descriptions provided in
+        /// pVertexAttributeDescriptions.
         /// </summary>
-        public uint VertexAttributeDescriptionCount;
-
+        public uint VertexAttributeDescriptionCount; 
+        
         /// <summary>
-        ///     An array of VertexInputAttributeDescription structures.
+        /// An array of VertexInputAttributeDescription structures.
         /// </summary>
-        public VertexInputAttributeDescription* VertexAttributeDescriptions;
+        public VertexInputAttributeDescription* VertexAttributeDescriptions; 
     }
 }

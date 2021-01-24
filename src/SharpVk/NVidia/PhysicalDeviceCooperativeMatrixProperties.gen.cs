@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,32 +27,32 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Structure describing cooperative matrix properties supported by an
-    ///     implementation
+    /// Structure describing cooperative matrix properties supported by an
+    /// implementation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceCooperativeMatrixProperties
     {
         /// <summary>
-        ///     A bitfield of VkShaderStageFlagBits describing the shader stages
-        ///     that cooperative matrix instructions are supported in.
-        ///     cooperativeMatrixSupportedStages will have the
-        ///     VK_SHADER_STAGE_COMPUTE_BIT bit set if any of the physical device’s
-        ///     queues support VK_QUEUE_COMPUTE_BIT.
+        /// A bitfield of VkShaderStageFlagBits describing the shader stages
+        /// that cooperative matrix instructions are supported in.
+        /// cooperativeMatrixSupportedStages will have the
+        /// VK_SHADER_STAGE_COMPUTE_BIT bit set if any of the physical device’s
+        /// queues support VK_QUEUE_COMPUTE_BIT.
         /// </summary>
         public ShaderStageFlags CooperativeMatrixSupportedStages
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceCooperativeMatrixProperties MarshalFrom(Interop.NVidia.PhysicalDeviceCooperativeMatrixProperties* pointer)
+        internal static unsafe PhysicalDeviceCooperativeMatrixProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixProperties* pointer)
         {
-            var result = default(PhysicalDeviceCooperativeMatrixProperties);
+            PhysicalDeviceCooperativeMatrixProperties result = default;
             result.CooperativeMatrixSupportedStages = pointer->CooperativeMatrixSupportedStages;
             return result;
         }

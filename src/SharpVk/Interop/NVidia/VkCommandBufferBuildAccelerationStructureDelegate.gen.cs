@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,5 +26,5 @@ namespace SharpVk.Interop.NVidia
 {
     /// <summary>
     /// </summary>
-    public unsafe delegate void VkCommandBufferBuildAccelerationStructureDelegate(CommandBuffer commandBuffer, AccelerationStructureInfo* info, Buffer instanceData, ulong instanceOffset, Bool32 update, AccelerationStructure destination, AccelerationStructure source, Buffer scratch, ulong scratchOffset);
+    public unsafe delegate void VkCommandBufferBuildAccelerationStructureDelegate(CommandBuffer commandBuffer, AccelerationStructureInfo* info, Buffer instanceData, ulong instanceOffset, Bool32 update, Khronos.AccelerationStructure destination, Khronos.AccelerationStructure source, Buffer scratch, ulong scratchOffset);
 }

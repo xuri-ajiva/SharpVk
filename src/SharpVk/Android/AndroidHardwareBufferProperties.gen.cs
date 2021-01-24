@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MemoryTypeBits
@@ -46,14 +46,14 @@ namespace SharpVk.Android
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe AndroidHardwareBufferProperties MarshalFrom(Interop.Android.AndroidHardwareBufferProperties* pointer)
+        internal static unsafe AndroidHardwareBufferProperties MarshalFrom(SharpVk.Interop.Android.AndroidHardwareBufferProperties* pointer)
         {
-            var result = default(AndroidHardwareBufferProperties);
+            AndroidHardwareBufferProperties result = default;
             result.AllocationSize = pointer->AllocationSize;
             result.MemoryTypeBits = pointer->MemoryTypeBits;
             return result;

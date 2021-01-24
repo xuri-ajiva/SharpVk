@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,23 +25,23 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Specify filters used for texture lookups.
+    /// Specify filters used for texture lookups.
     /// </summary>
     public enum Filter
     {
         /// <summary>
-        ///     Specifies nearest filtering.
+        /// Specifies nearest filtering.
         /// </summary>
-        Nearest = 0,
-
+        Nearest = 0, 
+        
         /// <summary>
-        ///     Specifies linear filtering.
+        /// Specifies linear filtering.
         /// </summary>
-        Linear = 1,
-
+        Linear = 1, 
+        
         /// <summary>
-        ///     Specifies cubic filtering.
+        /// Specifies cubic filtering.
         /// </summary>
-        CubicImg = 1000015000
+        CubicImg = 1000015000, 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Khronos;
 
 namespace SharpVk.Interop.Khronos
 {
@@ -33,40 +32,40 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct DisplayProperties
     {
         /// <summary>
-        ///     A handle that is used to refer to the display described here. This
-        ///     handle will be valid for the lifetime of the Vulkan instance.
+        /// A handle that is used to refer to the display described here. This
+        /// handle will be valid for the lifetime of the Vulkan instance.
         /// </summary>
-        public Display Display;
-
+        public Display Display; 
+        
         /// <summary>
-        ///     A string containing the name of the display. Generally, this will
-        ///     be the name provided by the display's EDID. It can be Null if no
-        ///     suitable name is available.
+        /// A string containing the name of the display. Generally, this will
+        /// be the name provided by the display's EDID. It can be Null if no
+        /// suitable name is available.
         /// </summary>
-        public byte* DisplayName;
-
+        public byte* DisplayName; 
+        
         /// <summary>
-        ///     physicalDimensions describes the physical width and height of the
-        ///     visible portion of the display, in millimeters.
+        /// physicalDimensions describes the physical width and height of the
+        /// visible portion of the display, in millimeters.
         /// </summary>
-        public Extent2D PhysicalDimensions;
-
+        public Extent2D PhysicalDimensions; 
+        
         /// <summary>
-        ///     physicalResolution describes the physical, native, or preferred
-        ///     resolution of the display.
+        /// physicalResolution describes the physical, native, or preferred
+        /// resolution of the display.
         /// </summary>
-        public Extent2D PhysicalResolution;
-
-        /// <summary>
-        /// </summary>
-        public SurfaceTransformFlags SupportedTransforms;
-
+        public Extent2D PhysicalResolution; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 PlaneReorderPossible;
-
+        public SharpVk.Khronos.SurfaceTransformFlags SupportedTransforms; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 PersistentContent;
+        public Bool32 PlaneReorderPossible; 
+        
+        /// <summary>
+        /// </summary>
+        public Bool32 PersistentContent; 
     }
 }

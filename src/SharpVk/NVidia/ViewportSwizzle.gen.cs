@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Structure specifying a viewport swizzle.
+    /// Structure specifying a viewport swizzle.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ViewportSwizzle
@@ -41,25 +41,25 @@ namespace SharpVk.NVidia
             Z = z;
             W = w;
         }
-
+        
         /// <summary>
-        ///     The swizzle operation to apply to the x component of the primitive
+        /// The swizzle operation to apply to the x component of the primitive
         /// </summary>
-        public ViewportCoordinateSwizzle X;
-
+        public ViewportCoordinateSwizzle X; 
+        
         /// <summary>
-        ///     The swizzle operation to apply to the y component of the primitive
+        /// The swizzle operation to apply to the y component of the primitive
         /// </summary>
-        public ViewportCoordinateSwizzle Y;
-
+        public ViewportCoordinateSwizzle Y; 
+        
         /// <summary>
-        ///     The swizzle operation to apply to the z component of the primitive
+        /// The swizzle operation to apply to the z component of the primitive
         /// </summary>
-        public ViewportCoordinateSwizzle Z;
-
+        public ViewportCoordinateSwizzle Z; 
+        
         /// <summary>
-        ///     The swizzle operation to apply to the w component of the primitive
+        /// The swizzle operation to apply to the w component of the primitive
         /// </summary>
-        public ViewportCoordinateSwizzle W;
+        public ViewportCoordinateSwizzle W; 
     }
 }

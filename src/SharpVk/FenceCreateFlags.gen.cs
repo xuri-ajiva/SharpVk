@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +22,20 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    ///     Bitmask specifying initial state and behavior of a fence.
+    /// Bitmask specifying initial state and behavior of a fence.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum FenceCreateFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
         /// </summary>
-        Signaled = 1 << 0
+        Signaled = 1 << 0, 
     }
 }

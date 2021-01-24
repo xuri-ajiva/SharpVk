@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,28 +23,27 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying parameters of a newly created descriptor set
-    ///     layout.
+    /// Structure specifying parameters of a newly created descriptor set
+    /// layout.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DescriptorSetLayoutCreateInfo
     {
         /// <summary>
-        ///     flags provides options for descriptor set layout creation, and is
-        ///     of type DescriptorSetLayoutCreateFlags. Bits which can be set
-        ///     include: + --
+        /// flags provides options for descriptor set layout creation, and is
+        /// of type DescriptorSetLayoutCreateFlags. Bits which can be set
+        /// include: + --
         /// </summary>
         public DescriptorSetLayoutCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DescriptorSetLayoutBinding[] Bindings
@@ -52,24 +51,31 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
-            pointer->BindingCount = HeapUtil.GetLength(Bindings);
+            }
+            pointer->BindingCount = (uint)(Interop.HeapUtil.GetLength(Bindings));
             if (Bindings != null)
             {
-                var fieldPointer = (Interop.DescriptorSetLayoutBinding*)HeapUtil.AllocateAndClear<Interop.DescriptorSetLayoutBinding>(Bindings.Length).ToPointer();
-                for (var index = 0; index < (uint)Bindings.Length; index++) Bindings[index].MarshalTo(&fieldPointer[index]);
+                var fieldPointer = (SharpVk.Interop.DescriptorSetLayoutBinding*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayoutBinding>(Bindings.Length).ToPointer());
+                for(int index = 0; index < (uint)(Bindings.Length); index++)
+                {
+                    Bindings[index].MarshalTo(&fieldPointer[index]);
+                }
                 pointer->Bindings = fieldPointer;
             }
             else

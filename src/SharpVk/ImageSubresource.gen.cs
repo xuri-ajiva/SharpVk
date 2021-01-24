@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a image subresource.
+    /// Structure specifying a image subresource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageSubresource
@@ -40,20 +40,20 @@ namespace SharpVk
             MipLevel = mipLevel;
             ArrayLayer = arrayLayer;
         }
-
+        
         /// <summary>
-        ///     An ImageAspectFlags selecting the image aspect.
+        /// An ImageAspectFlags selecting the image aspect.
         /// </summary>
-        public ImageAspectFlags AspectMask;
-
+        public ImageAspectFlags AspectMask; 
+        
         /// <summary>
-        ///     Selects the mipmap level.
+        /// Selects the mipmap level.
         /// </summary>
-        public uint MipLevel;
-
+        public uint MipLevel; 
+        
         /// <summary>
-        ///     Selects the array layer.
+        /// Selects the array layer.
         /// </summary>
-        public uint ArrayLayer;
+        public uint ArrayLayer; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,40 +27,40 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Structure describing the coverage reduction mode features that can be
-    ///     supported by an implementation
+    /// Structure describing the coverage reduction mode features that can be
+    /// supported by an implementation
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceCoverageReductionModeFeatures
     {
         /// <summary>
-        ///     Indicates whether the implementation supports coverage reduction
-        ///     modes.
+        /// Indicates whether the implementation supports coverage reduction
+        /// modes.
         /// </summary>
         public bool CoverageReductionMode
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCoverageReductionModeFeatures;
             pointer->Next = null;
             pointer->CoverageReductionMode = CoverageReductionMode;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceCoverageReductionModeFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
+        internal static unsafe PhysicalDeviceCoverageReductionModeFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
         {
-            var result = default(PhysicalDeviceCoverageReductionModeFeatures);
+            PhysicalDeviceCoverageReductionModeFeatures result = default;
             result.CoverageReductionMode = pointer->CoverageReductionMode;
             return result;
         }

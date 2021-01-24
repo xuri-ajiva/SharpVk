@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,49 +23,51 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying the allocation parameters for descriptor sets.
+    /// Structure specifying the allocation parameters for descriptor sets.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DescriptorSetAllocateInfo
     {
         /// <summary>
-        ///     The pool which the sets will be allocated from.
+        /// The pool which the sets will be allocated from.
         /// </summary>
         public DescriptorPool DescriptorPool
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of descriptor set layouts, with each member specifying how
-        ///     the corresponding descriptor set is allocated.
+        /// An array of descriptor set layouts, with each member specifying how
+        /// the corresponding descriptor set is allocated.
         /// </summary>
         public DescriptorSetLayout[] SetLayouts
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.DescriptorSetAllocateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetAllocateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetAllocateInfo;
             pointer->Next = null;
-            pointer->DescriptorPool = DescriptorPool?.Handle ?? default(Interop.DescriptorPool);
-            pointer->DescriptorSetCount = HeapUtil.GetLength(SetLayouts);
+            pointer->DescriptorPool = DescriptorPool?.Handle ?? default;
+            pointer->DescriptorSetCount = (uint)(Interop.HeapUtil.GetLength(SetLayouts));
             if (SetLayouts != null)
             {
-                var fieldPointer = (Interop.DescriptorSetLayout*)HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(SetLayouts.Length).ToPointer();
-                for (var index = 0; index < (uint)SetLayouts.Length; index++) fieldPointer[index] = SetLayouts[index]?.Handle ?? default(Interop.DescriptorSetLayout);
+                var fieldPointer = (SharpVk.Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayout>(SetLayouts.Length).ToPointer());
+                for(int index = 0; index < (uint)(SetLayouts.Length); index++)
+                {
+                    fieldPointer[index] = SetLayouts[index]?.Handle ?? default;
+                }
                 pointer->SetLayouts = fieldPointer;
             }
             else

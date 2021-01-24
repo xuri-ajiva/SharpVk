@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,39 +32,39 @@ namespace SharpVk.Interop
     public unsafe struct DeviceQueueCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     Reserved for future use.
+        /// Reserved for future use.
         /// </summary>
-        public DeviceQueueCreateFlags Flags;
-
+        public DeviceQueueCreateFlags Flags; 
+        
         /// <summary>
-        ///     An unsigned integer indicating the index of the queue family to
-        ///     create on this device. This index corresponds to the index of an
-        ///     element of the pQueueFamilyProperties array that was returned by
-        ///     fname:vkGetPhysicalDeviceQueueFamilyProperties.
+        /// An unsigned integer indicating the index of the queue family to
+        /// create on this device. This index corresponds to the index of an
+        /// element of the pQueueFamilyProperties array that was returned by
+        /// fname:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
-        public uint QueueFamilyIndex;
-
+        public uint QueueFamilyIndex; 
+        
         /// <summary>
-        ///     An unsigned integer specifying the number of queues to create in
-        ///     the queue family indicated by queueFamilyIndex.
+        /// An unsigned integer specifying the number of queues to create in
+        /// the queue family indicated by queueFamilyIndex.
         /// </summary>
-        public uint QueueCount;
-
+        public uint QueueCount; 
+        
         /// <summary>
-        ///     An array of queueCount normalized floating point values, specifying
-        ///     priorities of work that will be submitted to each created queue.
-        ///     See Queue Priority for more information.
+        /// An array of queueCount normalized floating point values, specifying
+        /// priorities of work that will be submitted to each created queue.
+        /// See Queue Priority for more information.
         /// </summary>
-        public float* QueuePriorities;
+        public float* QueuePriorities; 
     }
 }

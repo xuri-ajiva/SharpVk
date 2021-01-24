@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,92 +32,92 @@ namespace SharpVk.Interop
     public unsafe struct ImageCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A bitmask describing additional parameters of the image. See
-        ///     ImageCreateFlagBits below for a description of the supported bits.
+        /// A bitmask describing additional parameters of the image. See
+        /// ImageCreateFlagBits below for a description of the supported bits.
         /// </summary>
-        public ImageCreateFlags Flags;
-
+        public ImageCreateFlags Flags; 
+        
         /// <summary>
-        ///     An ImageType specifying the basic dimensionality of the image, as
-        ///     described below. Layers in array textures do not count as a
-        ///     dimension for the purposes of the image type.
+        /// An ImageType specifying the basic dimensionality of the image, as
+        /// described below. Layers in array textures do not count as a
+        /// dimension for the purposes of the image type.
         /// </summary>
-        public ImageType ImageType;
-
+        public ImageType ImageType; 
+        
         /// <summary>
-        ///     A Format describing the format and type of the data elements that
-        ///     will be contained in the image.
+        /// A Format describing the format and type of the data elements that
+        /// will be contained in the image.
         /// </summary>
-        public Format Format;
-
+        public Format Format; 
+        
         /// <summary>
-        ///     A Extent3D describing the number of data elements in each dimension
-        ///     of the base level.
+        /// A Extent3D describing the number of data elements in each dimension
+        /// of the base level.
         /// </summary>
-        public Extent3D Extent;
-
+        public Extent3D Extent; 
+        
         /// <summary>
-        ///     mipLevels describes the number of levels of detail available for
-        ///     minified sampling of the image.
+        /// mipLevels describes the number of levels of detail available for
+        /// minified sampling of the image.
         /// </summary>
-        public uint MipLevels;
-
+        public uint MipLevels; 
+        
         /// <summary>
-        ///     The number of layers in the image.
+        /// The number of layers in the image.
         /// </summary>
-        public uint ArrayLayers;
-
+        public uint ArrayLayers; 
+        
         /// <summary>
-        ///     The number of sub-data element samples in the image as defined in
-        ///     SampleCountFlagBits. See Multisampling.
+        /// The number of sub-data element samples in the image as defined in
+        /// SampleCountFlagBits. See Multisampling.
         /// </summary>
-        public SampleCountFlags Samples;
-
+        public SampleCountFlags Samples; 
+        
         /// <summary>
-        ///     An ImageTiling specifying the tiling arrangement of the data
-        ///     elements in memory, as described below.
+        /// An ImageTiling specifying the tiling arrangement of the data
+        /// elements in memory, as described below.
         /// </summary>
-        public ImageTiling Tiling;
-
+        public ImageTiling Tiling; 
+        
         /// <summary>
-        ///     A bitmask describing the intended usage of the image. See
-        ///     ImageUsageFlagBits below for a description of the supported bits.
+        /// A bitmask describing the intended usage of the image. See
+        /// ImageUsageFlagBits below for a description of the supported bits.
         /// </summary>
-        public ImageUsageFlags Usage;
-
+        public ImageUsageFlags Usage; 
+        
         /// <summary>
-        ///     The sharing mode of the image when it will be accessed by multiple
-        ///     queue families, and must be one of the values described for
-        ///     SharingMode in the Resource Sharing section below.
+        /// The sharing mode of the image when it will be accessed by multiple
+        /// queue families, and must be one of the values described for
+        /// SharingMode in the Resource Sharing section below.
         /// </summary>
-        public SharingMode SharingMode;
-
+        public SharingMode SharingMode; 
+        
         /// <summary>
-        ///     The number of entries in the pQueueFamilyIndices array.
+        /// The number of entries in the pQueueFamilyIndices array.
         /// </summary>
-        public uint QueueFamilyIndexCount;
-
+        public uint QueueFamilyIndexCount; 
+        
         /// <summary>
-        ///     A list of queue families that will access this image (ignored if
-        ///     sharingMode is not VK_SHARING_MODE_CONCURRENT).
+        /// A list of queue families that will access this image (ignored if
+        /// sharingMode is not VK_SHARING_MODE_CONCURRENT).
         /// </summary>
-        public uint* QueueFamilyIndices;
-
+        public uint* QueueFamilyIndices; 
+        
         /// <summary>
-        ///     initialLayout selects the initial ImageLayout state of all image
-        ///     subresources of the image. See Image Layouts. initialLayout must be
-        ///     VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
+        /// initialLayout selects the initial ImageLayout state of all image
+        /// subresources of the image. See Image Layouts. initialLayout must be
+        /// VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
         /// </summary>
-        public ImageLayout InitialLayout;
+        public ImageLayout InitialLayout; 
     }
 }

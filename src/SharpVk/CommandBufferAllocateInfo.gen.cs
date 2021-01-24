@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,31 +27,31 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying the allocation parameters for command buffer
-    ///     object.
+    /// Structure specifying the allocation parameters for command buffer
+    /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandBufferAllocateInfo
     {
         /// <summary>
-        ///     The command pool from which the command buffers are allocated.
+        /// The command pool from which the command buffers are allocated.
         /// </summary>
         public CommandPool CommandPool
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     level determines whether the command buffers are primary or
-        ///     secondary command buffers. Possible values include: + --
+        /// level determines whether the command buffers are primary or
+        /// secondary command buffers. Possible values include: + --
         /// </summary>
         public CommandBufferLevel Level
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint CommandBufferCount
@@ -59,16 +59,16 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.CommandBufferAllocateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CommandBufferAllocateInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferAllocateInfo;
             pointer->Next = null;
-            pointer->CommandPool = CommandPool?.Handle ?? default(Interop.CommandPool);
+            pointer->CommandPool = CommandPool?.Handle ?? default;
             pointer->Level = Level;
             pointer->CommandBufferCount = CommandBufferCount;
         }

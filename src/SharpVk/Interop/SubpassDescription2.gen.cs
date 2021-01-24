@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,57 +32,57 @@ namespace SharpVk.Interop
     public unsafe struct SubpassDescription2
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public SubpassDescriptionFlags Flags;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public PipelineBindPoint PipelineBindPoint;
-
+        public SubpassDescriptionFlags Flags; 
+        
         /// <summary>
         /// </summary>
-        public uint ViewMask;
-
+        public PipelineBindPoint PipelineBindPoint; 
+        
         /// <summary>
         /// </summary>
-        public uint InputAttachmentCount;
-
+        public uint ViewMask; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference2* InputAttachments;
-
+        public uint InputAttachmentCount; 
+        
         /// <summary>
         /// </summary>
-        public uint ColorAttachmentCount;
-
+        public AttachmentReference2* InputAttachments; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference2* ColorAttachments;
-
+        public uint ColorAttachmentCount; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference2* ResolveAttachments;
-
+        public AttachmentReference2* ColorAttachments; 
+        
         /// <summary>
         /// </summary>
-        public AttachmentReference2* DepthStencilAttachment;
-
+        public AttachmentReference2* ResolveAttachments; 
+        
         /// <summary>
         /// </summary>
-        public uint PreserveAttachmentCount;
-
+        public AttachmentReference2* DepthStencilAttachment; 
+        
         /// <summary>
         /// </summary>
-        public uint* PreserveAttachments;
+        public uint PreserveAttachmentCount; 
+        
+        /// <summary>
+        /// </summary>
+        public uint* PreserveAttachments; 
     }
 }

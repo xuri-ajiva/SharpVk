@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a image subresource layers.
+    /// Structure specifying a image subresource layers.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageSubresourceLayers
@@ -41,26 +41,26 @@ namespace SharpVk
             BaseArrayLayer = baseArrayLayer;
             LayerCount = layerCount;
         }
-
+        
         /// <summary>
-        ///     A combination of ImageAspectFlagBits, selecting the color, depth
-        ///     and/or stencil aspects to be copied.
+        /// A combination of ImageAspectFlagBits, selecting the color, depth
+        /// and/or stencil aspects to be copied.
         /// </summary>
-        public ImageAspectFlags AspectMask;
-
+        public ImageAspectFlags AspectMask; 
+        
         /// <summary>
-        ///     The mipmap level to copy from.
+        /// The mipmap level to copy from.
         /// </summary>
-        public uint MipLevel;
-
+        public uint MipLevel; 
+        
         /// <summary>
-        ///     The starting layer to copy.
+        /// The starting layer to copy.
         /// </summary>
-        public uint BaseArrayLayer;
-
+        public uint BaseArrayLayer; 
+        
         /// <summary>
-        ///     The number of layers to copy
+        /// The number of layers to copy
         /// </summary>
-        public uint LayerCount;
+        public uint LayerCount; 
     }
 }

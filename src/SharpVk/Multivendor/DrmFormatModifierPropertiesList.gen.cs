@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,18 +38,21 @@ namespace SharpVk.Multivendor
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DrmFormatModifierPropertiesList MarshalFrom(Interop.Multivendor.DrmFormatModifierPropertiesList* pointer)
+        internal static unsafe DrmFormatModifierPropertiesList MarshalFrom(SharpVk.Interop.Multivendor.DrmFormatModifierPropertiesList* pointer)
         {
-            var result = default(DrmFormatModifierPropertiesList);
+            DrmFormatModifierPropertiesList result = default;
             if (pointer->DrmFormatModifierProperties != null)
             {
-                var fieldPointer = new DrmFormatModifierProperties[pointer->DrmFormatModifierCount];
-                for (var index = 0; index < pointer->DrmFormatModifierCount; index++) fieldPointer[index] = pointer->DrmFormatModifierProperties[index];
+                var fieldPointer = new DrmFormatModifierProperties[(uint)(pointer->DrmFormatModifierCount)];
+                for(int index = 0; index < (uint)(pointer->DrmFormatModifierCount); index++)
+                {
+                    fieldPointer[index] = pointer->DrmFormatModifierProperties[index];
+                }
                 result.DrmFormatModifierProperties = fieldPointer;
             }
             else

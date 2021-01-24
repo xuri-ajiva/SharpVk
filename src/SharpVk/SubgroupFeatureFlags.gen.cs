@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,53 +22,51 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum SubgroupFeatureFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
         /// </summary>
-        Basic = 1 << 0,
-
+        Basic = 1 << 0, 
+        
         /// <summary>
         /// </summary>
-        Vote = 1 << 1,
-
+        Vote = 1 << 1, 
+        
         /// <summary>
         /// </summary>
-        Arithmetic = 1 << 2,
-
+        Arithmetic = 1 << 2, 
+        
         /// <summary>
         /// </summary>
-        Ballot = 1 << 3,
-
+        Ballot = 1 << 3, 
+        
         /// <summary>
         /// </summary>
-        Shuffle = 1 << 4,
-
+        Shuffle = 1 << 4, 
+        
         /// <summary>
         /// </summary>
-        ShuffleRelative = 1 << 5,
-
+        ShuffleRelative = 1 << 5, 
+        
         /// <summary>
         /// </summary>
-        Clustered = 1 << 6,
-
+        Clustered = 1 << 6, 
+        
         /// <summary>
         /// </summary>
-        Quad = 1 << 7,
-
+        Quad = 1 << 7, 
+        
         /// <summary>
         /// </summary>
-        Partitioned = 1 << 8
+        Partitioned = 1 << 8, 
     }
 }

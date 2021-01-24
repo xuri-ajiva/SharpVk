@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageType Type
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageTiling Tiling
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageUsageFlags Usage
@@ -62,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageCreateFlags? Flags
@@ -70,12 +70,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceImageFormatInfo2* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceImageFormatInfo2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceImageFormatInfo2Version;
             pointer->Next = null;
@@ -84,18 +84,22 @@ namespace SharpVk
             pointer->Tiling = Tiling;
             pointer->Usage = Usage;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceImageFormatInfo2 MarshalFrom(Interop.PhysicalDeviceImageFormatInfo2* pointer)
+        internal static unsafe PhysicalDeviceImageFormatInfo2 MarshalFrom(SharpVk.Interop.PhysicalDeviceImageFormatInfo2* pointer)
         {
-            var result = default(PhysicalDeviceImageFormatInfo2);
+            PhysicalDeviceImageFormatInfo2 result = default;
             result.Format = pointer->Format;
             result.Type = pointer->Type;
             result.Tiling = pointer->Tiling;

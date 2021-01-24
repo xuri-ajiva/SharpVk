@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,54 +27,54 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying an image blit operation.
+    /// Structure specifying an image blit operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageBlit
     {
         /// <summary>
-        ///     The subresource to blit from.
+        /// The subresource to blit from.
         /// </summary>
         public ImageSubresourceLayers SourceSubresource
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of two Offset3D structures specifying the bounds of the
-        ///     source region within the source subresource.
+        /// An array of two Offset3D structures specifying the bounds of the
+        /// source region within the source subresource.
         /// </summary>
         public (Offset3D, Offset3D) SourceOffsets
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The subresource to blit into.
+        /// The subresource to blit into.
         /// </summary>
         public ImageSubresourceLayers DestinationSubresource
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of two Offset3D structures specifying the bounds of the
-        ///     destination region within the destination subresource.
+        /// An array of two Offset3D structures specifying the bounds of the
+        /// destination region within the destination subresource.
         /// </summary>
         public (Offset3D, Offset3D) DestinationOffsets
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.ImageBlit* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ImageBlit* pointer)
         {
             pointer->SourceSubresource = SourceSubresource;
             pointer->SourceOffsets_0 = SourceOffsets.Item1;
@@ -83,14 +83,14 @@ namespace SharpVk
             pointer->DestinationOffsets_0 = DestinationOffsets.Item1;
             pointer->DestinationOffsets_1 = DestinationOffsets.Item2;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe ImageBlit MarshalFrom(Interop.ImageBlit* pointer)
+        internal static unsafe ImageBlit MarshalFrom(SharpVk.Interop.ImageBlit* pointer)
         {
-            var result = default(ImageBlit);
+            ImageBlit result = default;
             result.SourceSubresource = pointer->SourceSubresource;
             result.SourceOffsets = (pointer->SourceOffsets_0, pointer->SourceOffsets_1);
             result.DestinationSubresource = pointer->DestinationSubresource;

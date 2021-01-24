@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    ///     Structure describing capabilities of a mode and plane combination.
+    /// Structure describing capabilities of a mode and plane combination.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayPlaneCapabilities
@@ -46,58 +46,58 @@ namespace SharpVk.Khronos
             MinDestinationExtent = minDestinationExtent;
             MaxDestinationExtent = maxDestinationExtent;
         }
-
+        
         /// <summary>
-        ///     A bitmask of DisplayPlaneAlphaFlagBitsKHR describing the supported
-        ///     alpha blending modes.
+        /// A bitmask of DisplayPlaneAlphaFlagBitsKHR describing the supported
+        /// alpha blending modes.
         /// </summary>
-        public DisplayPlaneAlphaFlags SupportedAlpha;
-
+        public DisplayPlaneAlphaFlags SupportedAlpha; 
+        
         /// <summary>
-        ///     The minimum source rectangle offset supported by this plane using
-        ///     the specified mode.
+        /// The minimum source rectangle offset supported by this plane using
+        /// the specified mode.
         /// </summary>
-        public Offset2D MinSourcePosition;
-
+        public Offset2D MinSourcePosition; 
+        
         /// <summary>
-        ///     The maximum source rectangle offset supported by this plane using
-        ///     the specified mode. The x and y components of maxSrcPosition must
-        ///     each be greater than or equal to the x and y components of
-        ///     minSrcPosition, respectively.
+        /// The maximum source rectangle offset supported by this plane using
+        /// the specified mode. The x and y components of maxSrcPosition must
+        /// each be greater than or equal to the x and y components of
+        /// minSrcPosition, respectively.
         /// </summary>
-        public Offset2D MaxSourcePosition;
-
+        public Offset2D MaxSourcePosition; 
+        
         /// <summary>
-        ///     The minimum source rectangle size supported by this plane using the
-        ///     specified mode.
+        /// The minimum source rectangle size supported by this plane using the
+        /// specified mode.
         /// </summary>
-        public Extent2D MinSourceExtent;
-
+        public Extent2D MinSourceExtent; 
+        
         /// <summary>
-        ///     The maximum source rectangle size supported by this plane using the
-        ///     specified mode.
+        /// The maximum source rectangle size supported by this plane using the
+        /// specified mode.
         /// </summary>
-        public Extent2D MaxSourceExtent;
-
+        public Extent2D MaxSourceExtent; 
+        
         /// <summary>
-        ///     minDstPosition, maxDstPosition, minDstExtent, maxDstExtent all have
-        ///     similar semantics to their corresponding "Src" equivalents, but
-        ///     apply to the output region within the mode rather than the input
-        ///     region within the source image. Unlike the "Src" offsets,
-        ///     minDstPosition and maxDstPosition may contain negative values.
+        /// minDstPosition, maxDstPosition, minDstExtent, maxDstExtent all have
+        /// similar semantics to their corresponding "Src" equivalents, but
+        /// apply to the output region within the mode rather than the input
+        /// region within the source image. Unlike the "Src" offsets,
+        /// minDstPosition and maxDstPosition may contain negative values.
         /// </summary>
-        public Offset2D MinDestinationPosition;
-
-        /// <summary>
-        /// </summary>
-        public Offset2D MaxDestinationPosition;
-
+        public Offset2D MinDestinationPosition; 
+        
         /// <summary>
         /// </summary>
-        public Extent2D MinDestinationExtent;
-
+        public Offset2D MaxDestinationPosition; 
+        
         /// <summary>
         /// </summary>
-        public Extent2D MaxDestinationExtent;
+        public Extent2D MinDestinationExtent; 
+        
+        /// <summary>
+        /// </summary>
+        public Extent2D MaxDestinationExtent; 
     }
 }

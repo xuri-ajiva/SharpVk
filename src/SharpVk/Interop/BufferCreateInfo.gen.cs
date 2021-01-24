@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,45 +32,45 @@ namespace SharpVk.Interop
     public unsafe struct BufferCreateInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A bitmask describing additional parameters of the buffer.
+        /// A bitmask describing additional parameters of the buffer.
         /// </summary>
-        public BufferCreateFlags Flags;
-
+        public BufferCreateFlags Flags; 
+        
         /// <summary>
-        ///     The size in bytes of the buffer to be created.
+        /// The size in bytes of the buffer to be created.
         /// </summary>
-        public ulong Size;
-
+        public ulong Size; 
+        
         /// <summary>
-        ///     A bitmask describing the allowed usages of the buffer.
+        /// A bitmask describing the allowed usages of the buffer.
         /// </summary>
-        public BufferUsageFlags Usage;
-
+        public BufferUsageFlags Usage; 
+        
         /// <summary>
-        ///     The sharing mode of the buffer when it will be accessed by multiple
-        ///     queue families.
+        /// The sharing mode of the buffer when it will be accessed by multiple
+        /// queue families.
         /// </summary>
-        public SharingMode SharingMode;
-
+        public SharingMode SharingMode; 
+        
         /// <summary>
-        ///     The number of entries in the queueFamilyIndices array.
+        /// The number of entries in the queueFamilyIndices array.
         /// </summary>
-        public uint QueueFamilyIndexCount;
-
+        public uint QueueFamilyIndexCount; 
+        
         /// <summary>
-        ///     A list of queue families that will access this buffer (ignored if
-        ///     sharingMode is not Concurrent).
+        /// A list of queue families that will access this buffer (ignored if
+        /// sharingMode is not Concurrent).
         /// </summary>
-        public uint* QueueFamilyIndices;
+        public uint* QueueFamilyIndices; 
     }
 }

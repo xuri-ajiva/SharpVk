@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,37 +33,37 @@ namespace SharpVk.Google
     {
         /// <summary>
         /// </summary>
-        public static PastPresentationTiming Zero => new();
-
+        public static PastPresentationTiming Zero => new PastPresentationTiming();
+        
         /// <summary>
         /// </summary>
-        public PastPresentationTiming(uint presentId, ulong desiredPresentTime, ulong actualPresentTime, ulong earliestPresentTime, ulong presentMargin)
+        public PastPresentationTiming(uint presentID, ulong desiredPresentTime, ulong actualPresentTime, ulong earliestPresentTime, ulong presentMargin)
         {
-            PresentID = presentId;
+            PresentID = presentID;
             DesiredPresentTime = desiredPresentTime;
             ActualPresentTime = actualPresentTime;
             EarliestPresentTime = earliestPresentTime;
             PresentMargin = presentMargin;
         }
-
+        
         /// <summary>
         /// </summary>
-        public uint PresentID;
-
+        public uint PresentID; 
+        
         /// <summary>
         /// </summary>
-        public ulong DesiredPresentTime;
-
+        public ulong DesiredPresentTime; 
+        
         /// <summary>
         /// </summary>
-        public ulong ActualPresentTime;
-
+        public ulong ActualPresentTime; 
+        
         /// <summary>
         /// </summary>
-        public ulong EarliestPresentTime;
-
+        public ulong EarliestPresentTime; 
+        
         /// <summary>
         /// </summary>
-        public ulong PresentMargin;
+        public ulong PresentMargin; 
     }
 }

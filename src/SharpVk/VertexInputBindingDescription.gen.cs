@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying vertex input binding description.
+    /// Structure specifying vertex input binding description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct VertexInputBindingDescription
@@ -40,23 +40,23 @@ namespace SharpVk
             Stride = stride;
             InputRate = inputRate;
         }
-
+        
         /// <summary>
-        ///     The binding number that this structure describes.
+        /// The binding number that this structure describes.
         /// </summary>
-        public uint Binding;
-
+        public uint Binding; 
+        
         /// <summary>
-        ///     The distance in bytes between two consecutive elements within the
-        ///     buffer.
+        /// The distance in bytes between two consecutive elements within the
+        /// buffer.
         /// </summary>
-        public uint Stride;
-
+        public uint Stride; 
+        
         /// <summary>
-        ///     Specifies whether vertex attribute addressing is a function of the
-        ///     vertex index or of the instance index. Possible values include: +
-        ///     --
+        /// Specifies whether vertex attribute addressing is a function of the
+        /// vertex index or of the instance index. Possible values include: +
+        /// --
         /// </summary>
-        public VertexInputRate InputRate;
+        public VertexInputRate InputRate; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool UniformAndStorageBuffer16BitAccess
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StoragePushConstant16
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool StorageInputOutput16
@@ -62,28 +62,28 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDevice16BitStorageFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDevice16BitStorageFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDevice16BitStorageFeaturesVersion;
+            pointer->SType = StructureType.PhysicalDevice16bitStorageFeaturesVersion;
             pointer->Next = null;
             pointer->StorageBuffer16BitAccess = StorageBuffer16BitAccess;
             pointer->UniformAndStorageBuffer16BitAccess = UniformAndStorageBuffer16BitAccess;
             pointer->StoragePushConstant16 = StoragePushConstant16;
             pointer->StorageInputOutput16 = StorageInputOutput16;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDevice16BitStorageFeatures MarshalFrom(Interop.PhysicalDevice16BitStorageFeatures* pointer)
+        internal static unsafe PhysicalDevice16BitStorageFeatures MarshalFrom(SharpVk.Interop.PhysicalDevice16BitStorageFeatures* pointer)
         {
-            var result = default(PhysicalDevice16BitStorageFeatures);
+            PhysicalDevice16BitStorageFeatures result = default;
             result.StorageBuffer16BitAccess = pointer->StorageBuffer16BitAccess;
             result.UniformAndStorageBuffer16BitAccess = pointer->UniformAndStorageBuffer16BitAccess;
             result.StoragePushConstant16 = pointer->StoragePushConstant16;

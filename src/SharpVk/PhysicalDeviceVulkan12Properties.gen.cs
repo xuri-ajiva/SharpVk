@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -34,12 +33,12 @@ namespace SharpVk
     {
         /// <summary>
         /// </summary>
-        public DriverId DriverId
+        public DriverId DriverID
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string DriverName
@@ -47,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public string DriverInfo
@@ -55,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ConformanceVersion ConformanceVersion
@@ -63,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShaderFloatControlsIndependence DenormBehaviorIndependence
@@ -71,7 +70,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShaderFloatControlsIndependence RoundingModeIndependence
@@ -79,7 +78,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderSignedZeroInfNanPreserveFloat16
@@ -87,7 +86,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderSignedZeroInfNanPreserveFloat32
@@ -95,7 +94,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderSignedZeroInfNanPreserveFloat64
@@ -103,7 +102,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDenormPreserveFloat16
@@ -111,7 +110,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDenormPreserveFloat32
@@ -119,7 +118,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDenormPreserveFloat64
@@ -127,7 +126,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDenormFlushToZeroFloat16
@@ -135,7 +134,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDenormFlushToZeroFloat32
@@ -143,7 +142,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderDenormFlushToZeroFloat64
@@ -151,55 +150,55 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool ShaderRoundingModeRteFloat16
+        public bool ShaderRoundingModeRTEFloat16
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool ShaderRoundingModeRteFloat32
+        public bool ShaderRoundingModeRTEFloat32
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool ShaderRoundingModeRteFloat64
+        public bool ShaderRoundingModeRTEFloat64
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool ShaderRoundingModeRtzFloat16
+        public bool ShaderRoundingModeRTZFloat16
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool ShaderRoundingModeRtzFloat32
+        public bool ShaderRoundingModeRTZFloat32
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool ShaderRoundingModeRtzFloat64
+        public bool ShaderRoundingModeRTZFloat64
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxUpdateAfterBindDescriptorsInAllPools
@@ -207,7 +206,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderUniformBufferArrayNonUniformIndexingNative
@@ -215,7 +214,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderSampledImageArrayNonUniformIndexingNative
@@ -223,7 +222,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageBufferArrayNonUniformIndexingNative
@@ -231,7 +230,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderStorageImageArrayNonUniformIndexingNative
@@ -239,7 +238,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ShaderInputAttachmentArrayNonUniformIndexingNative
@@ -247,7 +246,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool RobustBufferAccessUpdateAfterBind
@@ -255,7 +254,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool QuadDivergentImplicitLod
@@ -263,7 +262,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindSamplers
@@ -271,7 +270,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindUniformBuffers
@@ -279,7 +278,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindStorageBuffers
@@ -287,7 +286,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindSampledImages
@@ -295,7 +294,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindStorageImages
@@ -303,7 +302,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageDescriptorUpdateAfterBindInputAttachments
@@ -311,7 +310,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerStageUpdateAfterBindResources
@@ -319,7 +318,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindSamplers
@@ -327,7 +326,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindUniformBuffers
@@ -335,7 +334,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic
@@ -343,7 +342,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageBuffers
@@ -351,7 +350,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic
@@ -359,7 +358,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindSampledImages
@@ -367,7 +366,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindStorageImages
@@ -375,7 +374,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxDescriptorSetUpdateAfterBindInputAttachments
@@ -383,7 +382,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ResolveModeFlags SupportedDepthResolveModes
@@ -391,7 +390,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ResolveModeFlags SupportedStencilResolveModes
@@ -399,7 +398,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool IndependentResolveNone
@@ -407,7 +406,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool IndependentResolve
@@ -415,7 +414,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FilterMinmaxSingleComponentFormats
@@ -423,7 +422,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool FilterMinmaxImageComponentMapping
@@ -431,7 +430,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong MaxTimelineSemaphoreValueDifference
@@ -439,7 +438,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SampleCountFlags? FramebufferIntegerColorSampleCounts
@@ -447,80 +446,17 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceVulkan12Properties* pointer)
+        internal static unsafe PhysicalDeviceVulkan12Properties MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkan12Properties* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceVulkan12Properties;
-            pointer->Next = null;
-            pointer->DriverID = DriverId;
-            pointer->ConformanceVersion = ConformanceVersion;
-            pointer->DenormBehaviorIndependence = DenormBehaviorIndependence;
-            pointer->RoundingModeIndependence = RoundingModeIndependence;
-            pointer->ShaderSignedZeroInfNanPreserveFloat16 = ShaderSignedZeroInfNanPreserveFloat16;
-            pointer->ShaderSignedZeroInfNanPreserveFloat32 = ShaderSignedZeroInfNanPreserveFloat32;
-            pointer->ShaderSignedZeroInfNanPreserveFloat64 = ShaderSignedZeroInfNanPreserveFloat64;
-            pointer->ShaderDenormPreserveFloat16 = ShaderDenormPreserveFloat16;
-            pointer->ShaderDenormPreserveFloat32 = ShaderDenormPreserveFloat32;
-            pointer->ShaderDenormPreserveFloat64 = ShaderDenormPreserveFloat64;
-            pointer->ShaderDenormFlushToZeroFloat16 = ShaderDenormFlushToZeroFloat16;
-            pointer->ShaderDenormFlushToZeroFloat32 = ShaderDenormFlushToZeroFloat32;
-            pointer->ShaderDenormFlushToZeroFloat64 = ShaderDenormFlushToZeroFloat64;
-            pointer->ShaderRoundingModeRTEFloat16 = ShaderRoundingModeRteFloat16;
-            pointer->ShaderRoundingModeRTEFloat32 = ShaderRoundingModeRteFloat32;
-            pointer->ShaderRoundingModeRTEFloat64 = ShaderRoundingModeRteFloat64;
-            pointer->ShaderRoundingModeRTZFloat16 = ShaderRoundingModeRtzFloat16;
-            pointer->ShaderRoundingModeRTZFloat32 = ShaderRoundingModeRtzFloat32;
-            pointer->ShaderRoundingModeRTZFloat64 = ShaderRoundingModeRtzFloat64;
-            pointer->MaxUpdateAfterBindDescriptorsInAllPools = MaxUpdateAfterBindDescriptorsInAllPools;
-            pointer->ShaderUniformBufferArrayNonUniformIndexingNative = ShaderUniformBufferArrayNonUniformIndexingNative;
-            pointer->ShaderSampledImageArrayNonUniformIndexingNative = ShaderSampledImageArrayNonUniformIndexingNative;
-            pointer->ShaderStorageBufferArrayNonUniformIndexingNative = ShaderStorageBufferArrayNonUniformIndexingNative;
-            pointer->ShaderStorageImageArrayNonUniformIndexingNative = ShaderStorageImageArrayNonUniformIndexingNative;
-            pointer->ShaderInputAttachmentArrayNonUniformIndexingNative = ShaderInputAttachmentArrayNonUniformIndexingNative;
-            pointer->RobustBufferAccessUpdateAfterBind = RobustBufferAccessUpdateAfterBind;
-            pointer->QuadDivergentImplicitLod = QuadDivergentImplicitLod;
-            pointer->MaxPerStageDescriptorUpdateAfterBindSamplers = MaxPerStageDescriptorUpdateAfterBindSamplers;
-            pointer->MaxPerStageDescriptorUpdateAfterBindUniformBuffers = MaxPerStageDescriptorUpdateAfterBindUniformBuffers;
-            pointer->MaxPerStageDescriptorUpdateAfterBindStorageBuffers = MaxPerStageDescriptorUpdateAfterBindStorageBuffers;
-            pointer->MaxPerStageDescriptorUpdateAfterBindSampledImages = MaxPerStageDescriptorUpdateAfterBindSampledImages;
-            pointer->MaxPerStageDescriptorUpdateAfterBindStorageImages = MaxPerStageDescriptorUpdateAfterBindStorageImages;
-            pointer->MaxPerStageDescriptorUpdateAfterBindInputAttachments = MaxPerStageDescriptorUpdateAfterBindInputAttachments;
-            pointer->MaxPerStageUpdateAfterBindResources = MaxPerStageUpdateAfterBindResources;
-            pointer->MaxDescriptorSetUpdateAfterBindSamplers = MaxDescriptorSetUpdateAfterBindSamplers;
-            pointer->MaxDescriptorSetUpdateAfterBindUniformBuffers = MaxDescriptorSetUpdateAfterBindUniformBuffers;
-            pointer->MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic = MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic;
-            pointer->MaxDescriptorSetUpdateAfterBindStorageBuffers = MaxDescriptorSetUpdateAfterBindStorageBuffers;
-            pointer->MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic = MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic;
-            pointer->MaxDescriptorSetUpdateAfterBindSampledImages = MaxDescriptorSetUpdateAfterBindSampledImages;
-            pointer->MaxDescriptorSetUpdateAfterBindStorageImages = MaxDescriptorSetUpdateAfterBindStorageImages;
-            pointer->MaxDescriptorSetUpdateAfterBindInputAttachments = MaxDescriptorSetUpdateAfterBindInputAttachments;
-            pointer->SupportedDepthResolveModes = SupportedDepthResolveModes;
-            pointer->SupportedStencilResolveModes = SupportedStencilResolveModes;
-            pointer->IndependentResolveNone = IndependentResolveNone;
-            pointer->IndependentResolve = IndependentResolve;
-            pointer->FilterMinmaxSingleComponentFormats = FilterMinmaxSingleComponentFormats;
-            pointer->FilterMinmaxImageComponentMapping = FilterMinmaxImageComponentMapping;
-            pointer->MaxTimelineSemaphoreValueDifference = MaxTimelineSemaphoreValueDifference;
-            if (FramebufferIntegerColorSampleCounts != null)
-                pointer->FramebufferIntegerColorSampleCounts = FramebufferIntegerColorSampleCounts.Value;
-            else
-                pointer->FramebufferIntegerColorSampleCounts = default;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="pointer">
-        /// </param>
-        internal static unsafe PhysicalDeviceVulkan12Properties MarshalFrom(Interop.PhysicalDeviceVulkan12Properties* pointer)
-        {
-            var result = default(PhysicalDeviceVulkan12Properties);
-            result.DriverId = pointer->DriverID;
-            result.DriverName = HeapUtil.MarshalStringFrom(pointer->DriverName, Constants.MaxDriverNameSize, true);
-            result.DriverInfo = HeapUtil.MarshalStringFrom(pointer->DriverInfo, Constants.MaxDriverInfoSize, true);
+            PhysicalDeviceVulkan12Properties result = default;
+            result.DriverID = pointer->DriverID;
+            result.DriverName = Interop.HeapUtil.MarshalStringFrom(pointer->DriverName, Constants.MaxDriverNameSize, true);
+            result.DriverInfo = Interop.HeapUtil.MarshalStringFrom(pointer->DriverInfo, Constants.MaxDriverInfoSize, true);
             result.ConformanceVersion = pointer->ConformanceVersion;
             result.DenormBehaviorIndependence = pointer->DenormBehaviorIndependence;
             result.RoundingModeIndependence = pointer->RoundingModeIndependence;
@@ -533,12 +469,12 @@ namespace SharpVk
             result.ShaderDenormFlushToZeroFloat16 = pointer->ShaderDenormFlushToZeroFloat16;
             result.ShaderDenormFlushToZeroFloat32 = pointer->ShaderDenormFlushToZeroFloat32;
             result.ShaderDenormFlushToZeroFloat64 = pointer->ShaderDenormFlushToZeroFloat64;
-            result.ShaderRoundingModeRteFloat16 = pointer->ShaderRoundingModeRTEFloat16;
-            result.ShaderRoundingModeRteFloat32 = pointer->ShaderRoundingModeRTEFloat32;
-            result.ShaderRoundingModeRteFloat64 = pointer->ShaderRoundingModeRTEFloat64;
-            result.ShaderRoundingModeRtzFloat16 = pointer->ShaderRoundingModeRTZFloat16;
-            result.ShaderRoundingModeRtzFloat32 = pointer->ShaderRoundingModeRTZFloat32;
-            result.ShaderRoundingModeRtzFloat64 = pointer->ShaderRoundingModeRTZFloat64;
+            result.ShaderRoundingModeRTEFloat16 = pointer->ShaderRoundingModeRTEFloat16;
+            result.ShaderRoundingModeRTEFloat32 = pointer->ShaderRoundingModeRTEFloat32;
+            result.ShaderRoundingModeRTEFloat64 = pointer->ShaderRoundingModeRTEFloat64;
+            result.ShaderRoundingModeRTZFloat16 = pointer->ShaderRoundingModeRTZFloat16;
+            result.ShaderRoundingModeRTZFloat32 = pointer->ShaderRoundingModeRTZFloat32;
+            result.ShaderRoundingModeRTZFloat64 = pointer->ShaderRoundingModeRTZFloat64;
             result.MaxUpdateAfterBindDescriptorsInAllPools = pointer->MaxUpdateAfterBindDescriptorsInAllPools;
             result.ShaderUniformBufferArrayNonUniformIndexingNative = pointer->ShaderUniformBufferArrayNonUniformIndexingNative;
             result.ShaderSampledImageArrayNonUniformIndexingNative = pointer->ShaderSampledImageArrayNonUniformIndexingNative;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong VertexOffset
@@ -46,7 +46,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint VertexCount
@@ -54,7 +54,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong VertexStride
@@ -62,7 +62,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Format VertexFormat
@@ -70,7 +70,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Buffer IndexData
@@ -78,7 +78,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong IndexOffset
@@ -86,7 +86,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint IndexCount
@@ -94,7 +94,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public IndexType IndexType
@@ -102,7 +102,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public Buffer TransformData
@@ -110,7 +110,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong TransformOffset
@@ -118,45 +118,45 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.GeometryTriangles* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.GeometryTriangles* pointer)
         {
             pointer->SType = StructureType.GeometryTriangles;
             pointer->Next = null;
-            pointer->VertexData = VertexData?.Handle ?? default(Interop.Buffer);
+            pointer->VertexData = VertexData?.Handle ?? default;
             pointer->VertexOffset = VertexOffset;
             pointer->VertexCount = VertexCount;
             pointer->VertexStride = VertexStride;
             pointer->VertexFormat = VertexFormat;
-            pointer->IndexData = IndexData?.Handle ?? default(Interop.Buffer);
+            pointer->IndexData = IndexData?.Handle ?? default;
             pointer->IndexOffset = IndexOffset;
             pointer->IndexCount = IndexCount;
             pointer->IndexType = IndexType;
-            pointer->TransformData = TransformData?.Handle ?? default(Interop.Buffer);
+            pointer->TransformData = TransformData?.Handle ?? default;
             pointer->TransformOffset = TransformOffset;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe GeometryTriangles MarshalFrom(Interop.NVidia.GeometryTriangles* pointer)
+        internal static unsafe GeometryTriangles MarshalFrom(SharpVk.Interop.NVidia.GeometryTriangles* pointer)
         {
-            var result = default(GeometryTriangles);
-            result.VertexData = new(default, pointer->VertexData);
+            GeometryTriangles result = default;
+            result.VertexData = new Buffer(default, pointer->VertexData);
             result.VertexOffset = pointer->VertexOffset;
             result.VertexCount = pointer->VertexCount;
             result.VertexStride = pointer->VertexStride;
             result.VertexFormat = pointer->VertexFormat;
-            result.IndexData = new(default, pointer->IndexData);
+            result.IndexData = new Buffer(default, pointer->IndexData);
             result.IndexOffset = pointer->IndexOffset;
             result.IndexCount = pointer->IndexCount;
             result.IndexType = pointer->IndexType;
-            result.TransformData = new(default, pointer->TransformData);
+            result.TransformData = new Buffer(default, pointer->TransformData);
             result.TransformOffset = pointer->TransformOffset;
             return result;
         }

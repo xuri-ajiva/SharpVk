@@ -1,4 +1,6 @@
-﻿namespace SharpVk
+﻿using System.Linq;
+
+namespace SharpVk
 {
     public partial class DescriptorPool
     {
@@ -9,7 +11,7 @@
         /// </param>
         public DescriptorSet AllocateDescriptorSet(DescriptorSetLayout setLayout)
         {
-            return Parent.AllocateDescriptorSet(this, setLayout);
+            return parent.AllocateDescriptorSets(this, setLayout).Single(); //.AllocateDescriptorSet(this, setLayout);
         }
 
         /// <summary>
@@ -19,7 +21,7 @@
         /// </param>
         public DescriptorSet[] AllocateDescriptorSets(ArrayProxy<DescriptorSetLayout> setLayouts)
         {
-            return Parent.AllocateDescriptorSets(this, setLayouts);
+            return parent.AllocateDescriptorSets(this, setLayouts);
         }
     }
 }

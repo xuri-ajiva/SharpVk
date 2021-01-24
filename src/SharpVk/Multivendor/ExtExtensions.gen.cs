@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,206 +30,246 @@ namespace SharpVk.Multivendor
     {
         /// <summary>
         /// </summary>
-        public const string DebugReport = "VK_EXT_debug_report";
-
+        public const string DebugReport = "VK_EXT_debug_report"; 
+        
         /// <summary>
         /// </summary>
-        public const string DepthRangeUnrestricted = "VK_EXT_depth_range_unrestricted";
-
+        public const string DepthRangeUnrestricted = "VK_EXT_depth_range_unrestricted"; 
+        
         /// <summary>
         /// </summary>
-        public const string TransformFeedback = "VK_EXT_transform_feedback";
-
+        public const string TransformFeedback = "VK_EXT_transform_feedback"; 
+        
         /// <summary>
         /// </summary>
-        public const string ValidationFlags = "VK_EXT_validation_flags";
-
+        public const string ValidationFlags = "VK_EXT_validation_flags"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderSubgroupBallot = "VK_EXT_shader_subgroup_ballot";
-
+        public const string ShaderSubgroupBallot = "VK_EXT_shader_subgroup_ballot"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderSubgroupVote = "VK_EXT_shader_subgroup_vote";
-
+        public const string ShaderSubgroupVote = "VK_EXT_shader_subgroup_vote"; 
+        
         /// <summary>
         /// </summary>
-        public const string TextureCompressionAstcHdr = "VK_EXT_texture_compression_astc_hdr";
-
+        public const string TextureCompressionAstcHdr = "VK_EXT_texture_compression_astc_hdr"; 
+        
         /// <summary>
         /// </summary>
-        public const string AstcDecodeMode = "VK_EXT_astc_decode_mode";
-
+        public const string AstcDecodeMode = "VK_EXT_astc_decode_mode"; 
+        
         /// <summary>
         /// </summary>
-        public const string ConditionalRendering = "VK_EXT_conditional_rendering";
-
+        public const string ConditionalRendering = "VK_EXT_conditional_rendering"; 
+        
         /// <summary>
         /// </summary>
-        public const string DirectModeDisplay = "VK_EXT_direct_mode_display";
-
+        public const string DirectModeDisplay = "VK_EXT_direct_mode_display"; 
+        
         /// <summary>
         /// </summary>
-        public const string AcquireXlibDisplay = "VK_EXT_acquire_xlib_display";
-
+        public const string AcquireXlibDisplay = "VK_EXT_acquire_xlib_display"; 
+        
         /// <summary>
         /// </summary>
-        public const string DisplaySurfaceCounter = "VK_EXT_display_surface_counter";
-
+        public const string DisplaySurfaceCounter = "VK_EXT_display_surface_counter"; 
+        
         /// <summary>
         /// </summary>
-        public const string DisplayControl = "VK_EXT_display_control";
-
+        public const string DisplayControl = "VK_EXT_display_control"; 
+        
         /// <summary>
         /// </summary>
-        public const string DiscardRectangles = "VK_EXT_discard_rectangles";
-
+        public const string DiscardRectangles = "VK_EXT_discard_rectangles"; 
+        
         /// <summary>
         /// </summary>
-        public const string ConservativeRasterization = "VK_EXT_conservative_rasterization";
-
+        public const string ConservativeRasterization = "VK_EXT_conservative_rasterization"; 
+        
         /// <summary>
         /// </summary>
-        public const string DepthClipEnable = "VK_EXT_depth_clip_enable";
-
+        public const string DepthClipEnable = "VK_EXT_depth_clip_enable"; 
+        
         /// <summary>
         /// </summary>
-        public const string SwapchainColorspace = "VK_EXT_swapchain_colorspace";
-
+        public const string SwapchainColorspace = "VK_EXT_swapchain_colorspace"; 
+        
         /// <summary>
         /// </summary>
-        public const string HdrMetadata = "VK_EXT_hdr_metadata";
-
+        public const string HdrMetadata = "VK_EXT_hdr_metadata"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalMemoryDmaBuf = "VK_EXT_external_memory_dma_buf";
-
+        public const string ExternalMemoryDmaBuf = "VK_EXT_external_memory_dma_buf"; 
+        
         /// <summary>
         /// </summary>
-        public const string QueueFamilyForeign = "VK_EXT_queue_family_foreign";
-
+        public const string QueueFamilyForeign = "VK_EXT_queue_family_foreign"; 
+        
         /// <summary>
         /// </summary>
-        public const string DebugUtils = "VK_EXT_debug_utils";
-
+        public const string DebugUtils = "VK_EXT_debug_utils"; 
+        
         /// <summary>
         /// </summary>
-        public const string InlineUniformBlock = "VK_EXT_inline_uniform_block";
-
+        public const string InlineUniformBlock = "VK_EXT_inline_uniform_block"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderStencilExport = "VK_EXT_shader_stencil_export";
-
+        public const string ShaderStencilExport = "VK_EXT_shader_stencil_export"; 
+        
         /// <summary>
         /// </summary>
-        public const string SampleLocations = "VK_EXT_sample_locations";
-
+        public const string SampleLocations = "VK_EXT_sample_locations"; 
+        
         /// <summary>
         /// </summary>
-        public const string BlendOperationAdvanced = "VK_EXT_blend_operation_advanced";
-
+        public const string BlendOperationAdvanced = "VK_EXT_blend_operation_advanced"; 
+        
         /// <summary>
         /// </summary>
-        public const string PostDepthCoverage = "VK_EXT_post_depth_coverage";
-
+        public const string PostDepthCoverage = "VK_EXT_post_depth_coverage"; 
+        
         /// <summary>
         /// </summary>
-        public const string ImageDrmFormatModifier = "VK_EXT_image_drm_format_modifier";
-
+        public const string ImageDrmFormatModifier = "VK_EXT_image_drm_format_modifier"; 
+        
         /// <summary>
         /// </summary>
-        public const string ValidationCache = "VK_EXT_validation_cache";
-
+        public const string ValidationCache = "VK_EXT_validation_cache"; 
+        
         /// <summary>
         /// </summary>
-        public const string FilterCubic = "VK_EXT_filter_cubic";
-
+        public const string FilterCubic = "VK_EXT_filter_cubic"; 
+        
         /// <summary>
         /// </summary>
-        public const string GlobalPriority = "VK_EXT_global_priority";
-
+        public const string GlobalPriority = "VK_EXT_global_priority"; 
+        
         /// <summary>
         /// </summary>
-        public const string ExternalMemoryHost = "VK_EXT_external_memory_host";
-
+        public const string ExternalMemoryHost = "VK_EXT_external_memory_host"; 
+        
         /// <summary>
         /// </summary>
-        public const string CalibratedTimestamps = "VK_EXT_calibrated_timestamps";
-
+        public const string CalibratedTimestamps = "VK_EXT_calibrated_timestamps"; 
+        
         /// <summary>
         /// </summary>
-        public const string VertexAttributeDivisor = "VK_EXT_vertex_attribute_divisor";
-
+        public const string VertexAttributeDivisor = "VK_EXT_vertex_attribute_divisor"; 
+        
         /// <summary>
         /// </summary>
-        public const string PipelineCreationFeedback = "VK_EXT_pipeline_creation_feedback";
-
+        public const string PipelineCreationFeedback = "VK_EXT_pipeline_creation_feedback"; 
+        
         /// <summary>
         /// </summary>
-        public const string PciBusInfo = "VK_EXT_pci_bus_info";
-
+        public const string PciBusInfo = "VK_EXT_pci_bus_info"; 
+        
         /// <summary>
         /// </summary>
-        public const string MetalSurface = "VK_EXT_metal_surface";
-
+        public const string MetalSurface = "VK_EXT_metal_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string FragmentDensityMap = "VK_EXT_fragment_density_map";
-
+        public const string FragmentDensityMap = "VK_EXT_fragment_density_map"; 
+        
         /// <summary>
         /// </summary>
-        public const string SubgroupSizeControl = "VK_EXT_subgroup_size_control";
-
+        public const string SubgroupSizeControl = "VK_EXT_subgroup_size_control"; 
+        
         /// <summary>
         /// </summary>
-        public const string MemoryBudget = "VK_EXT_memory_budget";
-
+        public const string MemoryBudget = "VK_EXT_memory_budget"; 
+        
         /// <summary>
         /// </summary>
-        public const string MemoryPriority = "VK_EXT_memory_priority";
-
+        public const string MemoryPriority = "VK_EXT_memory_priority"; 
+        
         /// <summary>
         /// </summary>
-        public const string BufferDeviceAddress = "VK_EXT_buffer_device_address";
-
+        public const string BufferDeviceAddress = "VK_EXT_buffer_device_address"; 
+        
         /// <summary>
         /// </summary>
-        public const string ToolingInfo = "VK_EXT_tooling_info";
-
+        public const string ToolingInfo = "VK_EXT_tooling_info"; 
+        
         /// <summary>
         /// </summary>
-        public const string ValidationFeatures = "VK_EXT_validation_features";
-
+        public const string ValidationFeatures = "VK_EXT_validation_features"; 
+        
         /// <summary>
         /// </summary>
-        public const string FragmentShaderInterlock = "VK_EXT_fragment_shader_interlock";
-
+        public const string FragmentShaderInterlock = "VK_EXT_fragment_shader_interlock"; 
+        
         /// <summary>
         /// </summary>
-        public const string YcbcrImageArrays = "VK_EXT_ycbcr_image_arrays";
-
+        public const string YcbcrImageArrays = "VK_EXT_ycbcr_image_arrays"; 
+        
         /// <summary>
         /// </summary>
-        public const string FullScreenExclusive = "VK_EXT_full_screen_exclusive";
-
+        public const string FullScreenExclusive = "VK_EXT_full_screen_exclusive"; 
+        
         /// <summary>
         /// </summary>
-        public const string HeadlessSurface = "VK_EXT_headless_surface";
-
+        public const string HeadlessSurface = "VK_EXT_headless_surface"; 
+        
         /// <summary>
         /// </summary>
-        public const string LineRasterization = "VK_EXT_line_rasterization";
-
+        public const string LineRasterization = "VK_EXT_line_rasterization"; 
+        
         /// <summary>
         /// </summary>
-        public const string IndexTypeUint8 = "VK_EXT_index_type_uint8";
-
+        public const string ShaderAtomicFloat = "VK_EXT_shader_atomic_float"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderDemoteToHelperInvocation = "VK_EXT_shader_demote_to_helper_invocation";
-
+        public const string IndexTypeUint8 = "VK_EXT_index_type_uint8"; 
+        
         /// <summary>
         /// </summary>
-        public const string TexelBufferAlignment = "VK_EXT_texel_buffer_alignment";
+        public const string ExtendedDynamicState = "VK_EXT_extended_dynamic_state"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string ShaderDemoteToHelperInvocation = "VK_EXT_shader_demote_to_helper_invocation"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string TexelBufferAlignment = "VK_EXT_texel_buffer_alignment"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string Robustness2 = "VK_EXT_robustness2"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string CustomBorderColor = "VK_EXT_custom_border_color"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string PrivateData = "VK_EXT_private_data"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string PipelineCreationCacheControl = "VK_EXT_pipeline_creation_cache_control"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string FragmentDensityMap2 = "VK_EXT_fragment_density_map2"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string ImageRobustness = "VK_EXT_image_robustness"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string Ext4444Formats = "VK_EXT_4444_formats"; 
+        
+        /// <summary>
+        /// </summary>
+        public const string DirectfbSurface = "VK_EXT_directfb_surface"; 
     }
 }

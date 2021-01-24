@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Khronos
 {
@@ -39,7 +38,7 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public DeviceGroupPresentModeFlags Modes
@@ -47,15 +46,15 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(Interop.Khronos.DeviceGroupPresentCapabilities* pointer)
+        internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(SharpVk.Interop.Khronos.DeviceGroupPresentCapabilities* pointer)
         {
-            var result = default(DeviceGroupPresentCapabilities);
-            result.PresentMask = HeapUtil.MarshalFrom(pointer->PresentMask, Constants.MaxDeviceGroupSize);
+            DeviceGroupPresentCapabilities result = default;
+            result.PresentMask = Interop.HeapUtil.MarshalFrom(pointer->PresentMask, Constants.MaxDeviceGroupSize);
             result.Modes = pointer->Modes;
             return result;
         }

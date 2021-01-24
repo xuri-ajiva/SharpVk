@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,6 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Interop;
-using SharpVk.Khronos;
-
 namespace SharpVk.Google
 {
     /// <summary>
@@ -34,51 +31,60 @@ namespace SharpVk.Google
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Swapchain handle to extend.
+        /// The Swapchain handle to extend.
         /// </param>
-        public static unsafe RefreshCycleDuration GetRefreshCycleDuration(this Swapchain extendedHandle)
+        public static unsafe RefreshCycleDuration GetRefreshCycleDuration(this Khronos.Swapchain extendedHandle)
         {
             try
             {
-                var result = default(RefreshCycleDuration);
-                var commandCache = default(CommandCache);
-                var marshalledDisplayTimingProperties = default(RefreshCycleDuration);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetRefreshCycleDurationGoogle;
-                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, &marshalledDisplayTimingProperties);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                RefreshCycleDuration result = default;
+                CommandCache commandCache = default;
+                RefreshCycleDuration marshalledDisplayTimingProperties = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Google.VkSwapchainKHRGetRefreshCycleDurationDelegate commandDelegate = commandCache.Cache.vkGetRefreshCycleDurationGOOGLE;
+                Result methodResult = commandDelegate(extendedHandle.parent.Handle, extendedHandle.Handle, &marshalledDisplayTimingProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 result = marshalledDisplayTimingProperties;
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The Swapchain handle to extend.
+        /// The Swapchain handle to extend.
         /// </param>
-        public static unsafe PastPresentationTiming[] GetPastPresentationTiming(this Swapchain extendedHandle)
+        public static unsafe PastPresentationTiming[] GetPastPresentationTiming(this Khronos.Swapchain extendedHandle)
         {
             try
             {
-                var result = default(PastPresentationTiming[]);
-                var marshalledPresentationTimingCount = default(uint);
-                var commandCache = default(CommandCache);
-                var marshalledPresentationTimings = default(PastPresentationTiming*);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetPastPresentationTimingGoogle;
-                var methodResult = commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                marshalledPresentationTimings = (PastPresentationTiming*)HeapUtil.Allocate<PastPresentationTiming>(marshalledPresentationTimingCount);
-                commandDelegate(extendedHandle.Parent.Handle, extendedHandle.Handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
+                PastPresentationTiming[] result = default;
+                uint marshalledPresentationTimingCount = default;
+                CommandCache commandCache = default;
+                PastPresentationTiming* marshalledPresentationTimings = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Google.VkSwapchainKHRGetPastPresentationTimingDelegate commandDelegate = commandCache.Cache.vkGetPastPresentationTimingGOOGLE;
+                Result methodResult = commandDelegate(extendedHandle.parent.Handle, extendedHandle.Handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledPresentationTimings = (PastPresentationTiming*)(Interop.HeapUtil.Allocate<PastPresentationTiming>((uint)(marshalledPresentationTimingCount)));
+                commandDelegate(extendedHandle.parent.Handle, extendedHandle.Handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
                 if (marshalledPresentationTimings != null)
                 {
-                    var fieldPointer = new PastPresentationTiming[marshalledPresentationTimingCount];
-                    for (var index = 0; index < marshalledPresentationTimingCount; index++) fieldPointer[index] = marshalledPresentationTimings[index];
+                    var fieldPointer = new PastPresentationTiming[(uint)(marshalledPresentationTimingCount)];
+                    for(int index = 0; index < (uint)(marshalledPresentationTimingCount); index++)
+                    {
+                        fieldPointer[index] = marshalledPresentationTimings[index];
+                    }
                     result = fieldPointer;
                 }
                 else
@@ -89,7 +95,7 @@ namespace SharpVk.Google
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +28,20 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Import Win32 memory created on the same physical device.
+    /// Import Win32 memory created on the same physical device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImportMemoryWin32HandleInfo
     {
         /// <summary>
-        ///     A flag specifying the type of memory handle in handle.
+        /// A flag specifying the type of memory handle in handle.
         /// </summary>
         public ExternalMemoryHandleTypeFlags? HandleType
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public IntPtr? Handle
@@ -49,23 +49,31 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.ImportMemoryWin32HandleInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.ImportMemoryWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ImportMemoryWin32HandleInfoNv;
             pointer->Next = null;
             if (HandleType != null)
+            {
                 pointer->HandleType = HandleType.Value;
+            }
             else
+            {
                 pointer->HandleType = default;
+            }
             if (Handle != null)
+            {
                 pointer->Handle = Handle.Value;
+            }
             else
+            {
                 pointer->Handle = default;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying memory type.
+    /// Structure specifying memory type.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MemoryType
@@ -39,17 +39,17 @@ namespace SharpVk
             PropertyFlags = propertyFlags;
             HeapIndex = heapIndex;
         }
-
+        
         /// <summary>
-        ///     A bitmask of properties for this memory type.
+        /// A bitmask of properties for this memory type.
         /// </summary>
-        public MemoryPropertyFlags PropertyFlags;
-
+        public MemoryPropertyFlags PropertyFlags; 
+        
         /// <summary>
-        ///     heapIndex describes which memory heap this memory type corresponds
-        ///     to, and must be less than memoryHeapCount from the
-        ///     PhysicalDeviceMemoryProperties structure.
+        /// heapIndex describes which memory heap this memory type corresponds
+        /// to, and must be less than memoryHeapCount from the
+        /// PhysicalDeviceMemoryProperties structure.
         /// </summary>
-        public uint HeapIndex;
+        public uint HeapIndex; 
     }
 }

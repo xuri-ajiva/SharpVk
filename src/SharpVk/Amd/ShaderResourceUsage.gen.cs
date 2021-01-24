@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -41,25 +41,25 @@ namespace SharpVk.Amd
             LdsUsageSizeInBytes = ldsUsageSizeInBytes;
             ScratchMemUsageInBytes = scratchMemUsageInBytes;
         }
-
+        
         /// <summary>
         /// </summary>
-        public uint NumUsedVgprs;
-
+        public uint NumUsedVgprs; 
+        
         /// <summary>
         /// </summary>
-        public uint NumUsedSgprs;
-
+        public uint NumUsedSgprs; 
+        
         /// <summary>
         /// </summary>
-        public uint LdsSizePerLocalWorkGroup;
-
+        public uint LdsSizePerLocalWorkGroup; 
+        
         /// <summary>
         /// </summary>
-        public HostSize LdsUsageSizeInBytes;
-
+        public HostSize LdsUsageSizeInBytes; 
+        
         /// <summary>
         /// </summary>
-        public HostSize ScratchMemUsageInBytes;
+        public HostSize ScratchMemUsageInBytes; 
     }
 }

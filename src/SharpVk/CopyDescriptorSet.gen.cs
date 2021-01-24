@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,21 +27,21 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a copy descriptor set operation.
+    /// Structure specifying a copy descriptor set operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CopyDescriptorSet
     {
         /// <summary>
-        ///     srcSet, srcBinding, and srcArrayElement are the source set,
-        ///     binding, and array element, respectively.
+        /// srcSet, srcBinding, and srcArrayElement are the source set,
+        /// binding, and array element, respectively.
         /// </summary>
         public DescriptorSet SourceSet
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SourceBinding
@@ -49,7 +49,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SourceArrayElement
@@ -57,17 +57,17 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     dstSet, dstBinding, and dstArrayElement are the destination set,
-        ///     binding, and array element, respectively.
+        /// dstSet, dstBinding, and dstArrayElement are the destination set,
+        /// binding, and array element, respectively.
         /// </summary>
         public DescriptorSet DestinationSet
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint DestinationBinding
@@ -75,7 +75,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint DestinationArrayElement
@@ -83,48 +83,48 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The number of descriptors to copy from the source to destination.
-        ///     If descriptorCount is greater than the number of remaining array
-        ///     elements in the source or destination binding, those affect
-        ///     consecutive bindings in a manner similar to WriteDescriptorSet
-        ///     above.
+        /// The number of descriptors to copy from the source to destination.
+        /// If descriptorCount is greater than the number of remaining array
+        /// elements in the source or destination binding, those affect
+        /// consecutive bindings in a manner similar to WriteDescriptorSet
+        /// above.
         /// </summary>
         public uint DescriptorCount
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.CopyDescriptorSet* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CopyDescriptorSet* pointer)
         {
             pointer->SType = StructureType.CopyDescriptorSet;
             pointer->Next = null;
-            pointer->SourceSet = SourceSet?.Handle ?? default(Interop.DescriptorSet);
+            pointer->SourceSet = SourceSet?.Handle ?? default;
             pointer->SourceBinding = SourceBinding;
             pointer->SourceArrayElement = SourceArrayElement;
-            pointer->DestinationSet = DestinationSet?.Handle ?? default(Interop.DescriptorSet);
+            pointer->DestinationSet = DestinationSet?.Handle ?? default;
             pointer->DestinationBinding = DestinationBinding;
             pointer->DestinationArrayElement = DestinationArrayElement;
             pointer->DescriptorCount = DescriptorCount;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe CopyDescriptorSet MarshalFrom(Interop.CopyDescriptorSet* pointer)
+        internal static unsafe CopyDescriptorSet MarshalFrom(SharpVk.Interop.CopyDescriptorSet* pointer)
         {
-            var result = default(CopyDescriptorSet);
-            result.SourceSet = new(default, pointer->SourceSet);
+            CopyDescriptorSet result = default;
+            result.SourceSet = new DescriptorSet(default, pointer->SourceSet);
             result.SourceBinding = pointer->SourceBinding;
             result.SourceArrayElement = pointer->SourceArrayElement;
-            result.DestinationSet = new(default, pointer->DestinationSet);
+            result.DestinationSet = new DescriptorSet(default, pointer->DestinationSet);
             result.DestinationBinding = pointer->DestinationBinding;
             result.DestinationArrayElement = pointer->DestinationArrayElement;
             result.DescriptorCount = pointer->DescriptorCount;

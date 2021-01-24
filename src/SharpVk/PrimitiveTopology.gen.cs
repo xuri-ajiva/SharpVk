@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,52 +25,52 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Supported primitive topologies.
+    /// Supported primitive topologies.
     /// </summary>
     public enum PrimitiveTopology
     {
         /// <summary>
         /// </summary>
-        PointList = 0,
-
+        PointList = 0, 
+        
         /// <summary>
         /// </summary>
-        LineList = 1,
-
+        LineList = 1, 
+        
         /// <summary>
         /// </summary>
-        LineStrip = 2,
-
+        LineStrip = 2, 
+        
         /// <summary>
         /// </summary>
-        TriangleList = 3,
-
+        TriangleList = 3, 
+        
         /// <summary>
         /// </summary>
-        TriangleStrip = 4,
-
+        TriangleStrip = 4, 
+        
         /// <summary>
         /// </summary>
-        TriangleFan = 5,
-
+        TriangleFan = 5, 
+        
         /// <summary>
         /// </summary>
-        LineListWithAdjacency = 6,
-
+        LineListWithAdjacency = 6, 
+        
         /// <summary>
         /// </summary>
-        LineStripWithAdjacency = 7,
-
+        LineStripWithAdjacency = 7, 
+        
         /// <summary>
         /// </summary>
-        TriangleListWithAdjacency = 8,
-
+        TriangleListWithAdjacency = 8, 
+        
         /// <summary>
         /// </summary>
-        TriangleStripWithAdjacency = 9,
-
+        TriangleStripWithAdjacency = 9, 
+        
         /// <summary>
         /// </summary>
-        PatchList = 10
+        PatchList = 10, 
     }
 }

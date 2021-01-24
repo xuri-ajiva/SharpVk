@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,45 +32,45 @@ namespace SharpVk.Interop.Android
     public unsafe struct AndroidHardwareBufferFormatProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public Format Format;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public ulong ExternalFormat;
-
+        public Format Format; 
+        
         /// <summary>
         /// </summary>
-        public FormatFeatureFlags FormatFeatures;
-
+        public ulong ExternalFormat; 
+        
         /// <summary>
         /// </summary>
-        public ComponentMapping SamplerYcbcrConversionComponents;
-
+        public FormatFeatureFlags FormatFeatures; 
+        
         /// <summary>
         /// </summary>
-        public SamplerYcbcrModelConversion SuggestedYcbcrModel;
-
+        public ComponentMapping SamplerYcbcrConversionComponents; 
+        
         /// <summary>
         /// </summary>
-        public SamplerYcbcrRange SuggestedYcbcrRange;
-
+        public SamplerYcbcrModelConversion SuggestedYcbcrModel; 
+        
         /// <summary>
         /// </summary>
-        public ChromaLocation SuggestedXChromaOffset;
-
+        public SamplerYcbcrRange SuggestedYcbcrRange; 
+        
         /// <summary>
         /// </summary>
-        public ChromaLocation SuggestedYChromaOffset;
+        public ChromaLocation SuggestedXChromaOffset; 
+        
+        /// <summary>
+        /// </summary>
+        public ChromaLocation SuggestedYChromaOffset; 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -39,20 +38,23 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.DeviceGroupDeviceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupDeviceCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupDeviceCreateInfoVersion;
             pointer->Next = null;
-            pointer->PhysicalDeviceCount = HeapUtil.GetLength(PhysicalDevices);
+            pointer->PhysicalDeviceCount = (uint)(Interop.HeapUtil.GetLength(PhysicalDevices));
             if (PhysicalDevices != null)
             {
-                var fieldPointer = (Interop.PhysicalDevice*)HeapUtil.AllocateAndClear<Interop.PhysicalDevice>(PhysicalDevices.Length).ToPointer();
-                for (var index = 0; index < (uint)PhysicalDevices.Length; index++) fieldPointer[index] = PhysicalDevices[index]?.Handle ?? default(Interop.PhysicalDevice);
+                var fieldPointer = (SharpVk.Interop.PhysicalDevice*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PhysicalDevice>(PhysicalDevices.Length).ToPointer());
+                for(int index = 0; index < (uint)(PhysicalDevices.Length); index++)
+                {
+                    fieldPointer[index] = PhysicalDevices[index]?.Handle ?? default;
+                }
                 pointer->PhysicalDevices = fieldPointer;
             }
             else

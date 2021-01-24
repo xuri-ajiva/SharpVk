@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,6 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using SharpVk.Interop;
-using SharpVk.Khronos;
 
 namespace SharpVk.Multivendor
 {
@@ -33,125 +31,110 @@ namespace SharpVk.Multivendor
     public static class PhysicalDeviceExtensions
     {
         /// <summary>
-        ///     Release access to an acquired Display.
+        /// Acquire access to a Display using Xlib.
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
-        /// </param>
-        /// <param name="display">
-        /// </param>
-        public static void ReleaseDisplay(this PhysicalDevice extendedHandle, Display display)
-        {
-            try
-            {
-                var commandCache = default(CommandCache);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkReleaseDisplayExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, display?.Handle ?? default(Interop.Khronos.Display));
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-            }
-            finally
-            {
-                HeapUtil.FreeAll();
-            }
-        }
-
-        /// <summary>
-        ///     Acquire access to a Display using Xlib.
-        /// </summary>
-        /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
+        /// The PhysicalDevice handle to extend.
         /// </param>
         /// <param name="dpy">
-        ///     A connection to the X11 server that currently owns the display.
+        /// A connection to the X11 server that currently owns the display.
         /// </param>
         /// <param name="display">
-        ///     The display the caller wishes to control in Vulkan.
+        /// The display the caller wishes to control in Vulkan.
         /// </param>
-        public static unsafe void AcquireXlibDisplay(this PhysicalDevice extendedHandle, IntPtr dpy, Display display)
+        public static unsafe void AcquireXlibDisplay(this PhysicalDevice extendedHandle, IntPtr dpy, Khronos.Display display)
         {
             try
             {
-                var commandCache = default(CommandCache);
-                var marshalledDpy = default(IntPtr*);
-                commandCache = extendedHandle.CommandCache;
-                marshalledDpy = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+                CommandCache commandCache = default;
+                IntPtr* marshalledDpy = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledDpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledDpy = dpy;
-                var commandDelegate = commandCache.Cache.VkAcquireXlibDisplayExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledDpy, display?.Handle ?? default(Interop.Khronos.Display));
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceAcquireXlibDisplayDelegate commandDelegate = commandCache.Cache.vkAcquireXlibDisplayEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledDpy, display?.Handle ?? default);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Query the DisplayKHR corresponding to an X11 RandR Output.
+        /// Query the DisplayKHR corresponding to an X11 RandR Output.
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
+        /// The PhysicalDevice handle to extend.
         /// </param>
         /// <param name="dpy">
         /// </param>
         /// <param name="rrOutput">
         /// </param>
-        public static unsafe Display GetRandROutputDisplay(this PhysicalDevice extendedHandle, IntPtr dpy, IntPtr rrOutput)
+        public static unsafe Khronos.Display GetRandROutputDisplay(this PhysicalDevice extendedHandle, IntPtr dpy, IntPtr rrOutput)
         {
             try
             {
-                var result = default(Display);
-                var commandCache = default(CommandCache);
-                var marshalledDpy = default(IntPtr*);
-                var marshalledDisplay = default(Interop.Khronos.Display);
-                commandCache = extendedHandle.CommandCache;
-                marshalledDpy = (IntPtr*)HeapUtil.Allocate<IntPtr>();
+                Khronos.Display result = default;
+                CommandCache commandCache = default;
+                IntPtr* marshalledDpy = default;
+                SharpVk.Interop.Khronos.Display marshalledDisplay = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledDpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledDpy = dpy;
-                var commandDelegate = commandCache.Cache.VkGetRandROutputDisplayExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledDpy, rrOutput, &marshalledDisplay);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                result = new(marshalledDisplay);
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetRandROutputDisplayDelegate commandDelegate = commandCache.Cache.vkGetRandROutputDisplayEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledDpy, rrOutput, &marshalledDisplay);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new Khronos.Display(extendedHandle, marshalledDisplay);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Query surface capabilities.
+        /// Query surface capabilities.
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
+        /// The PhysicalDevice handle to extend.
         /// </param>
         /// <param name="surface">
         /// </param>
-        public static unsafe SurfaceCapabilities2 GetSurfaceCapabilities2(this PhysicalDevice extendedHandle, Surface surface)
+        public static unsafe SurfaceCapabilities2 GetSurfaceCapabilities2(this PhysicalDevice extendedHandle, Khronos.Surface surface)
         {
             try
             {
-                var result = default(SurfaceCapabilities2);
-                var commandCache = default(CommandCache);
-                var marshalledSurfaceCapabilities = default(Interop.Multivendor.SurfaceCapabilities2);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceSurfaceCapabilities2Ext;
-                var methodResult = commandDelegate(extendedHandle.Handle, surface?.Handle ?? default(Interop.Khronos.Surface), &marshalledSurfaceCapabilities);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
+                SurfaceCapabilities2 result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.SurfaceCapabilities2 marshalledSurfaceCapabilities = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfaceCapabilities2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfaceCapabilities2EXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, surface?.Handle ?? default, &marshalledSurfaceCapabilities);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 result = SurfaceCapabilities2.MarshalFrom(&marshalledSurfaceCapabilities);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
+        /// The PhysicalDevice handle to extend.
         /// </param>
         /// <param name="samples">
         /// </param>
@@ -159,44 +142,50 @@ namespace SharpVk.Multivendor
         {
             try
             {
-                var result = default(MultisampleProperties);
-                var commandCache = default(CommandCache);
-                var marshalledMultisampleProperties = default(Interop.Multivendor.MultisampleProperties);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceMultisamplePropertiesExt;
+                MultisampleProperties result = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.MultisampleProperties marshalledMultisampleProperties = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceMultisamplePropertiesEXT;
                 commandDelegate(extendedHandle.Handle, samples, &marshalledMultisampleProperties);
                 result = MultisampleProperties.MarshalFrom(&marshalledMultisampleProperties);
                 return result;
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
+        /// The PhysicalDevice handle to extend.
         /// </param>
         public static unsafe TimeDomain[] GetCalibrateableTimeDomains(this PhysicalDevice extendedHandle)
         {
             try
             {
-                var result = default(TimeDomain[]);
-                var marshalledTimeDomainCount = default(uint);
-                var commandCache = default(CommandCache);
-                var marshalledTimeDomains = default(TimeDomain*);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceCalibrateableTimeDomainsExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, &marshalledTimeDomainCount, marshalledTimeDomains);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                marshalledTimeDomains = (TimeDomain*)HeapUtil.Allocate<TimeDomain>(marshalledTimeDomainCount);
+                TimeDomain[] result = default;
+                uint marshalledTimeDomainCount = default;
+                CommandCache commandCache = default;
+                TimeDomain* marshalledTimeDomains = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceCalibrateableTimeDomainsEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, &marshalledTimeDomainCount, marshalledTimeDomains);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledTimeDomains = (TimeDomain*)(Interop.HeapUtil.Allocate<TimeDomain>((uint)(marshalledTimeDomainCount)));
                 commandDelegate(extendedHandle.Handle, &marshalledTimeDomainCount, marshalledTimeDomains);
                 if (marshalledTimeDomains != null)
                 {
-                    var fieldPointer = new TimeDomain[marshalledTimeDomainCount];
-                    for (var index = 0; index < marshalledTimeDomainCount; index++) fieldPointer[index] = marshalledTimeDomains[index];
+                    var fieldPointer = new TimeDomain[(uint)(marshalledTimeDomainCount)];
+                    for(int index = 0; index < (uint)(marshalledTimeDomainCount); index++)
+                    {
+                        fieldPointer[index] = marshalledTimeDomains[index];
+                    }
                     result = fieldPointer;
                 }
                 else
@@ -207,33 +196,39 @@ namespace SharpVk.Multivendor
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
+        /// The PhysicalDevice handle to extend.
         /// </param>
         public static unsafe PhysicalDeviceToolProperties[] GetToolProperties(this PhysicalDevice extendedHandle)
         {
             try
             {
-                var result = default(PhysicalDeviceToolProperties[]);
-                var marshalledToolCount = default(uint);
-                var commandCache = default(CommandCache);
-                var marshalledToolProperties = default(Interop.Multivendor.PhysicalDeviceToolProperties*);
-                commandCache = extendedHandle.CommandCache;
-                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceToolPropertiesExt;
-                var methodResult = commandDelegate(extendedHandle.Handle, &marshalledToolCount, marshalledToolProperties);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                marshalledToolProperties = (Interop.Multivendor.PhysicalDeviceToolProperties*)HeapUtil.Allocate<Interop.Multivendor.PhysicalDeviceToolProperties>(marshalledToolCount);
+                PhysicalDeviceToolProperties[] result = default;
+                uint marshalledToolCount = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties* marshalledToolProperties = default;
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetToolPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceToolPropertiesEXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, &marshalledToolCount, marshalledToolProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledToolProperties = (SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties>((uint)(marshalledToolCount)));
                 commandDelegate(extendedHandle.Handle, &marshalledToolCount, marshalledToolProperties);
                 if (marshalledToolProperties != null)
                 {
-                    var fieldPointer = new PhysicalDeviceToolProperties[marshalledToolCount];
-                    for (var index = 0; index < marshalledToolCount; index++) fieldPointer[index] = PhysicalDeviceToolProperties.MarshalFrom(&marshalledToolProperties[index]);
+                    var fieldPointer = new PhysicalDeviceToolProperties[(uint)(marshalledToolCount)];
+                    for(int index = 0; index < (uint)(marshalledToolCount); index++)
+                    {
+                        fieldPointer[index] = PhysicalDeviceToolProperties.MarshalFrom(&marshalledToolProperties[index]);
+                    }
                     result = fieldPointer;
                 }
                 else
@@ -244,42 +239,48 @@ namespace SharpVk.Multivendor
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
             }
         }
-
+        
         /// <summary>
-        ///     Query supported presentation modes
+        /// Query supported presentation modes
         /// </summary>
         /// <param name="extendedHandle">
-        ///     The PhysicalDevice handle to extend.
+        /// The PhysicalDevice handle to extend.
         /// </param>
         /// <param name="surfaceInfo">
-        ///     An instance of the VkPhysicalDeviceSurfaceInfo2KHR structure,
-        ///     describing the surface and other fixed parameters that would be
-        ///     consumed by vkCreateSwapchainKHR.
+        /// An instance of the VkPhysicalDeviceSurfaceInfo2KHR structure,
+        /// describing the surface and other fixed parameters that would be
+        /// consumed by vkCreateSwapchainKHR.
         /// </param>
-        public static unsafe PresentMode[] GetSurfacePresentModes2(this PhysicalDevice extendedHandle, PhysicalDeviceSurfaceInfo2 surfaceInfo)
+        public static unsafe Khronos.PresentMode[] GetSurfacePresentModes2(this PhysicalDevice extendedHandle, Khronos.PhysicalDeviceSurfaceInfo2 surfaceInfo)
         {
             try
             {
-                var result = default(PresentMode[]);
-                var marshalledPresentModeCount = default(uint);
-                var commandCache = default(CommandCache);
-                var marshalledSurfaceInfo = default(Interop.Khronos.PhysicalDeviceSurfaceInfo2*);
-                var marshalledPresentModes = default(PresentMode*);
-                commandCache = extendedHandle.CommandCache;
-                marshalledSurfaceInfo = (Interop.Khronos.PhysicalDeviceSurfaceInfo2*)HeapUtil.Allocate<Interop.Khronos.PhysicalDeviceSurfaceInfo2>();
+                Khronos.PresentMode[] result = default;
+                uint marshalledPresentModeCount = default;
+                CommandCache commandCache = default;
+                SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2* marshalledSurfaceInfo = default;
+                Khronos.PresentMode* marshalledPresentModes = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledSurfaceInfo = (SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2>());
                 surfaceInfo.MarshalTo(marshalledSurfaceInfo);
-                var commandDelegate = commandCache.Cache.VkGetPhysicalDeviceSurfacePresentModes2Ext;
-                var methodResult = commandDelegate(extendedHandle.Handle, marshalledSurfaceInfo, &marshalledPresentModeCount, marshalledPresentModes);
-                if (SharpVkException.IsError(methodResult)) throw SharpVkException.Create(methodResult);
-                marshalledPresentModes = (PresentMode*)HeapUtil.Allocate<PresentMode>(marshalledPresentModeCount);
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfacePresentModes2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfacePresentModes2EXT;
+                Result methodResult = commandDelegate(extendedHandle.Handle, marshalledSurfaceInfo, &marshalledPresentModeCount, marshalledPresentModes);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledPresentModes = (Khronos.PresentMode*)(Interop.HeapUtil.Allocate<Khronos.PresentMode>((uint)(marshalledPresentModeCount)));
                 commandDelegate(extendedHandle.Handle, marshalledSurfaceInfo, &marshalledPresentModeCount, marshalledPresentModes);
                 if (marshalledPresentModes != null)
                 {
-                    var fieldPointer = new PresentMode[marshalledPresentModeCount];
-                    for (var index = 0; index < marshalledPresentModeCount; index++) fieldPointer[index] = marshalledPresentModes[index];
+                    var fieldPointer = new Khronos.PresentMode[(uint)(marshalledPresentModeCount)];
+                    for(int index = 0; index < (uint)(marshalledPresentModeCount); index++)
+                    {
+                        fieldPointer[index] = marshalledPresentModes[index];
+                    }
                     result = fieldPointer;
                 }
                 else
@@ -290,7 +291,34 @@ namespace SharpVk.Multivendor
             }
             finally
             {
-                HeapUtil.FreeAll();
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
+        /// <param name="dfb">
+        /// </param>
+        public static unsafe void GetDirectFBPresentationSupport(this PhysicalDevice extendedHandle, uint queueFamilyIndex, IDirectFB dfb)
+        {
+            try
+            {
+                CommandCache commandCache = default;
+                IDirectFB* marshalledDfb = default;
+                commandCache = extendedHandle.commandCache;
+                marshalledDfb = (IDirectFB*)(Interop.HeapUtil.Allocate<IDirectFB>());
+                *marshalledDfb = dfb;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetDirectFBPresentationSupportDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceDirectFBPresentationSupportEXT;
+                commandDelegate(extendedHandle.Handle, queueFamilyIndex, marshalledDfb);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

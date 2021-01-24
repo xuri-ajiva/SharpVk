@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying a clear depth stencil value.
+    /// Structure specifying a clear depth stencil value.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ClearDepthStencilValue
     {
         /// <summary>
         /// </summary>
-        public static ClearDepthStencilValue Zero => new();
-
+        public static ClearDepthStencilValue Zero => new ClearDepthStencilValue();
+        
         /// <summary>
         /// </summary>
         public ClearDepthStencilValue(float depth, uint stencil)
@@ -43,19 +43,19 @@ namespace SharpVk
             Depth = depth;
             Stencil = stencil;
         }
-
+        
         /// <summary>
-        ///     The clear value for the depth aspect of the depth/stencil
-        ///     attachment. It is a floating-point value which is automatically
-        ///     converted to the attachment's format.
+        /// The clear value for the depth aspect of the depth/stencil
+        /// attachment. It is a floating-point value which is automatically
+        /// converted to the attachment's format.
         /// </summary>
-        public float Depth;
-
+        public float Depth; 
+        
         /// <summary>
-        ///     The clear value for the stencil aspect of the depth/stencil
-        ///     attachment. It is a 32-bit integer value which is converted to the
-        ///     attachment's format by taking the appropriate number of LSBs.
+        /// The clear value for the stencil aspect of the depth/stencil
+        /// attachment. It is a 32-bit integer value which is converted to the
+        /// attachment's format by taking the appropriate number of LSBs.
         /// </summary>
-        public uint Stencil;
+        public uint Stencil; 
     }
 }

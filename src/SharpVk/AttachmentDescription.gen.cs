@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying an attachment description.
+    /// Structure specifying an attachment description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AttachmentDescription
@@ -48,58 +48,58 @@ namespace SharpVk
         }
 
         /// <summary>
-        ///     A bitmask describing additional properties of the attachment.
+        /// A bitmask describing additional properties of the attachment.
         /// </summary>
         public AttachmentDescriptionFlags Flags;
 
         /// <summary>
-        ///     A Format value specifying the format of the image that will be used
-        ///     for the attachment.
+        /// A Format value specifying the format of the image that will be used
+        /// for the attachment.
         /// </summary>
         public Format Format;
 
         /// <summary>
-        ///     The number of samples of the image as defined in SampleCountFlags.
+        /// The number of samples of the image as defined in SampleCountFlags.
         /// </summary>
         public SampleCountFlags Samples;
 
         /// <summary>
-        ///     An AttachmentLoadOp value specifying how the contents of color and
-        ///     depth components of the attachment are treated at the beginning of
-        ///     the subpass where it is first used.
+        /// An AttachmentLoadOp value specifying how the contents of color and
+        /// depth components of the attachment are treated at the beginning of
+        /// the subpass where it is first used.
         /// </summary>
         public AttachmentLoadOp LoadOp;
 
         /// <summary>
-        ///     An AttachmentStoreOp value specifying how the contents of color and
-        ///     depth components of the attachment are treated at the end of the
-        ///     subpass where it is last used.
+        /// An AttachmentStoreOp value specifying how the contents of color and
+        /// depth components of the attachment are treated at the end of the
+        /// subpass where it is last used.
         /// </summary>
         public AttachmentStoreOp StoreOp;
 
         /// <summary>
-        ///     An AttachmentLoadOp value specifying how the contents of stencil
-        ///     components of the attachment are treated at the beginning of the
-        ///     subpass where it is first used.
+        /// An AttachmentLoadOp value specifying how the contents of stencil
+        /// components of the attachment are treated at the beginning of the
+        /// subpass where it is first used.
         /// </summary>
         public AttachmentLoadOp StencilLoadOp;
 
         /// <summary>
-        ///     An AttachmentStoreOp value specifying how the contents of stencil
-        ///     components of the attachment are treated at the end of the last
-        ///     subpass where it is used.
+        /// An AttachmentStoreOp value specifying how the contents of stencil
+        /// components of the attachment are treated at the end of the last
+        /// subpass where it is used.
         /// </summary>
         public AttachmentStoreOp StencilStoreOp;
 
         /// <summary>
-        ///     The layout the attachment image subresource will be in when a
-        ///     render pass instance begins.
+        /// The layout the attachment image subresource will be in when a
+        /// render pass instance begins.
         /// </summary>
         public ImageLayout InitialLayout;
 
         /// <summary>
-        ///     The layout the attachment image subresource will be transitioned to
-        ///     when a render pass instance ends.
+        /// The layout the attachment image subresource will be transitioned to
+        /// when a render pass instance ends.
         /// </summary>
         public ImageLayout FinalLayout;
     }

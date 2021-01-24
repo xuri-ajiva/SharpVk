@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,25 +25,26 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Opaque handle to a descriptor set object.
+    /// Opaque handle to a descriptor set object.
     /// </summary>
     public partial class DescriptorSet
     {
-        internal readonly CommandCache CommandCache;
-        internal readonly Interop.DescriptorSet Handle;
-
-        internal readonly DescriptorPool Parent;
-
-        internal DescriptorSet(DescriptorPool parent, Interop.DescriptorSet handle)
+        internal readonly SharpVk.Interop.DescriptorSet Handle; 
+        
+        internal readonly CommandCache commandCache; 
+        
+        internal readonly DescriptorPool parent; 
+        
+        internal DescriptorSet(DescriptorPool parent, SharpVk.Interop.DescriptorSet handle)
         {
-            this.Handle = handle;
-            this.Parent = parent;
-            CommandCache = parent.CommandCache;
+            Handle = handle;
+            this.parent = parent;
+            commandCache = parent.commandCache;
         }
-
+        
         /// <summary>
-        ///     The raw handle for this instance.
+        /// The raw handle for this instance.
         /// </summary>
-        public Interop.DescriptorSet RawHandle => Handle;
+        public SharpVk.Interop.DescriptorSet RawHandle => Handle;
     }
 }

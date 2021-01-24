@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,34 +22,32 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-
 namespace SharpVk
 {
     /// <summary>
-    ///     Bitmask specifying how and when query results are returned.
+    /// Bitmask specifying how and when query results are returned.
     /// </summary>
-    [Flags]
+    [System.Flags]
     public enum QueryResultFlags
     {
         /// <summary>
         /// </summary>
-        None = 0,
-
+        None = 0, 
+        
         /// <summary>
         /// </summary>
-        QueryResult64 = 1 << 0,
-
+        QueryResult64 = 1 << 0, 
+        
         /// <summary>
         /// </summary>
-        Wait = 1 << 1,
-
+        Wait = 1 << 1, 
+        
         /// <summary>
         /// </summary>
-        WithAvailability = 1 << 2,
-
+        WithAvailability = 1 << 2, 
+        
         /// <summary>
         /// </summary>
-        Partial = 1 << 3
+        Partial = 1 << 3, 
     }
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    ///     Structure specifying external image format properties.
+    /// Structure specifying external image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ExternalImageFormatProperties
@@ -41,40 +41,40 @@ namespace SharpVk.NVidia
             ExportFromImportedHandleTypes = exportFromImportedHandleTypes;
             CompatibleHandleTypes = compatibleHandleTypes;
         }
-
+        
         /// <summary>
-        ///     imageFormatProperties will be filled in as when calling
-        ///     flink:vkGetPhysicalDeviceImageFormatProperties, but the values
-        ///     returned may vary depending on the external handle type requested.
+        /// imageFormatProperties will be filled in as when calling
+        /// flink:vkGetPhysicalDeviceImageFormatProperties, but the values
+        /// returned may vary depending on the external handle type requested.
         /// </summary>
-        public ImageFormatProperties ImageFormatProperties;
-
+        public ImageFormatProperties ImageFormatProperties; 
+        
         /// <summary>
-        ///     A bitmask of ExternalMemoryFeatureFlagBitsNV indicating properties
-        ///     of the external memory handle type
-        ///     (flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType) being
-        ///     queried, or 0 if the external memory handle type is 0.
+        /// A bitmask of ExternalMemoryFeatureFlagBitsNV indicating properties
+        /// of the external memory handle type
+        /// (flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType) being
+        /// queried, or 0 if the external memory handle type is 0.
         /// </summary>
-        public ExternalMemoryFeatureFlags ExternalMemoryFeatures;
-
+        public ExternalMemoryFeatureFlags ExternalMemoryFeatures; 
+        
         /// <summary>
-        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
-        ///     set for every external handle type that may be used to create
-        ///     memory from which the handles of the type specified in
-        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType can
-        ///     be exported, or 0 if the external memory handle type is 0.
+        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
+        /// set for every external handle type that may be used to create
+        /// memory from which the handles of the type specified in
+        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType can
+        /// be exported, or 0 if the external memory handle type is 0.
         /// </summary>
-        public ExternalMemoryHandleTypeFlags ExportFromImportedHandleTypes;
-
+        public ExternalMemoryHandleTypeFlags ExportFromImportedHandleTypes; 
+        
         /// <summary>
-        ///     A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
-        ///     set for every external handle type that may be specified
-        ///     simultaneously with the handle type specified by
-        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType when
-        ///     calling flink:vkAllocateMemory, or 0 if the external memory handle
-        ///     type is 0. compatibleHandleTypes will always contain
-        ///     flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType
+        /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV containing a bit
+        /// set for every external handle type that may be specified
+        /// simultaneously with the handle type specified by
+        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType when
+        /// calling flink:vkAllocateMemory, or 0 if the external memory handle
+        /// type is 0. compatibleHandleTypes will always contain
+        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::externalHandleType
         /// </summary>
-        public ExternalMemoryHandleTypeFlags CompatibleHandleTypes;
+        public ExternalMemoryHandleTypeFlags CompatibleHandleTypes; 
     }
 }

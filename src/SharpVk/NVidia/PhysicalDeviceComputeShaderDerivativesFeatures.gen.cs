@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ComputeDerivativeGroupLinear
@@ -46,26 +46,26 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceComputeShaderDerivativesFeatures;
             pointer->Next = null;
             pointer->ComputeDerivativeGroupQuads = ComputeDerivativeGroupQuads;
             pointer->ComputeDerivativeGroupLinear = ComputeDerivativeGroupLinear;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceComputeShaderDerivativesFeatures MarshalFrom(Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
+        internal static unsafe PhysicalDeviceComputeShaderDerivativesFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceComputeShaderDerivativesFeatures* pointer)
         {
-            var result = default(PhysicalDeviceComputeShaderDerivativesFeatures);
+            PhysicalDeviceComputeShaderDerivativesFeatures result = default;
             result.ComputeDerivativeGroupQuads = pointer->ComputeDerivativeGroupQuads;
             result.ComputeDerivativeGroupLinear = pointer->ComputeDerivativeGroupLinear;
             return result;

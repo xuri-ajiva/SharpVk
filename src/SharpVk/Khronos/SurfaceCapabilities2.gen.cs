@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,14 +38,14 @@ namespace SharpVk.Khronos
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe SurfaceCapabilities2 MarshalFrom(Interop.Khronos.SurfaceCapabilities2* pointer)
+        internal static unsafe SurfaceCapabilities2 MarshalFrom(SharpVk.Interop.Khronos.SurfaceCapabilities2* pointer)
         {
-            var result = default(SurfaceCapabilities2);
+            SurfaceCapabilities2 result = default;
             result.SurfaceCapabilities = pointer->SurfaceCapabilities;
             return result;
         }

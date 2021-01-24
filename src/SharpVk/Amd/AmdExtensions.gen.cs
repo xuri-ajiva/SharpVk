@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,82 +30,82 @@ namespace SharpVk.Amd
     {
         /// <summary>
         /// </summary>
-        public const string RasterizationOrder = "VK_AMD_rasterization_order";
-
+        public const string RasterizationOrder = "VK_AMD_rasterization_order"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderTrinaryMinmax = "VK_AMD_shader_trinary_minmax";
-
+        public const string ShaderTrinaryMinmax = "VK_AMD_shader_trinary_minmax"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderExplicitVertexParameter = "VK_AMD_shader_explicit_vertex_parameter";
-
+        public const string ShaderExplicitVertexParameter = "VK_AMD_shader_explicit_vertex_parameter"; 
+        
         /// <summary>
         /// </summary>
-        public const string GcnShader = "VK_AMD_gcn_shader";
-
+        public const string GcnShader = "VK_AMD_gcn_shader"; 
+        
         /// <summary>
         /// </summary>
-        public const string NegativeViewportHeight = "VK_AMD_negative_viewport_height";
-
+        public const string NegativeViewportHeight = "VK_AMD_negative_viewport_height"; 
+        
         /// <summary>
         /// </summary>
-        public const string GpuShaderHalfFloat = "VK_AMD_gpu_shader_half_float";
-
+        public const string GpuShaderHalfFloat = "VK_AMD_gpu_shader_half_float"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderBallot = "VK_AMD_shader_ballot";
-
+        public const string ShaderBallot = "VK_AMD_shader_ballot"; 
+        
         /// <summary>
         /// </summary>
-        public const string TextureGatherBiasLod = "VK_AMD_texture_gather_bias_lod";
-
+        public const string TextureGatherBiasLod = "VK_AMD_texture_gather_bias_lod"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderInfo = "VK_AMD_shader_info";
-
+        public const string ShaderInfo = "VK_AMD_shader_info"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderImageLoadStoreLod = "VK_AMD_shader_image_load_store_lod";
-
+        public const string ShaderImageLoadStoreLod = "VK_AMD_shader_image_load_store_lod"; 
+        
         /// <summary>
         /// </summary>
-        public const string GpuShaderInt16 = "VK_AMD_gpu_shader_int16";
-
+        public const string GpuShaderInt16 = "VK_AMD_gpu_shader_int16"; 
+        
         /// <summary>
         /// </summary>
-        public const string MixedAttachmentSamples = "VK_AMD_mixed_attachment_samples";
-
+        public const string MixedAttachmentSamples = "VK_AMD_mixed_attachment_samples"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderFragmentMask = "VK_AMD_shader_fragment_mask";
-
+        public const string ShaderFragmentMask = "VK_AMD_shader_fragment_mask"; 
+        
         /// <summary>
         /// </summary>
-        public const string BufferMarker = "VK_AMD_buffer_marker";
-
+        public const string BufferMarker = "VK_AMD_buffer_marker"; 
+        
         /// <summary>
         /// </summary>
-        public const string PipelineCompilerControl = "VK_AMD_pipeline_compiler_control";
-
+        public const string PipelineCompilerControl = "VK_AMD_pipeline_compiler_control"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderCoreProperties = "VK_AMD_shader_core_properties";
-
+        public const string ShaderCoreProperties = "VK_AMD_shader_core_properties"; 
+        
         /// <summary>
         /// </summary>
-        public const string MemoryOverallocationBehavior = "VK_AMD_memory_overallocation_behavior";
-
+        public const string MemoryOverallocationBehavior = "VK_AMD_memory_overallocation_behavior"; 
+        
         /// <summary>
         /// </summary>
-        public const string DisplayNativeHdr = "VK_AMD_display_native_hdr";
-
+        public const string DisplayNativeHdr = "VK_AMD_display_native_hdr"; 
+        
         /// <summary>
         /// </summary>
-        public const string ShaderCoreProperties2 = "VK_AMD_shader_core_properties2";
-
+        public const string ShaderCoreProperties2 = "VK_AMD_shader_core_properties2"; 
+        
         /// <summary>
         /// </summary>
-        public const string DeviceCoherentMemory = "VK_AMD_device_coherent_memory";
+        public const string DeviceCoherentMemory = "VK_AMD_device_coherent_memory"; 
     }
 }

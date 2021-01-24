@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,22 +30,22 @@ namespace SharpVk
     {
         /// <summary>
         /// </summary>
-        RgbIdentity = 0,
-
+        RgbIdentity = 0, 
+        
         /// <summary>
         /// </summary>
-        YcbcrIdentity = 1,
-
+        YcbcrIdentity = 1, 
+        
         /// <summary>
         /// </summary>
-        Ycbcr709 = 2,
-
+        Ycbcr709 = 2, 
+        
         /// <summary>
         /// </summary>
-        Ycbcr601 = 3,
-
+        Ycbcr601 = 3, 
+        
         /// <summary>
         /// </summary>
-        Ycbcr2020 = 4
+        Ycbcr2020 = 4, 
     }
 }

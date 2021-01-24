@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,70 +23,72 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    ///     Specify parameters of a tag to attach to an object.
+    /// Specify parameters of a tag to attach to an object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DebugMarkerObjectTagInfo
     {
         /// <summary>
-        ///     A DebugReportObjectTypeEXT specifying the type of the object to be
-        ///     named.
+        /// A DebugReportObjectTypeEXT specifying the type of the object to be
+        /// named.
         /// </summary>
         public DebugReportObjectType ObjectType
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The object to be tagged.
+        /// The object to be tagged.
         /// </summary>
         public ulong Object
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A numerical identifier of the tag.
+        /// A numerical identifier of the tag.
         /// </summary>
         public ulong TagName
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     An array of tagSize bytes containing the data to be associated with
-        ///     the object.
+        /// An array of tagSize bytes containing the data to be associated with
+        /// the object.
         /// </summary>
         public byte[] Tag
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.Multivendor.DebugMarkerObjectTagInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugMarkerObjectTagInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerObjectTagInfo;
             pointer->Next = null;
             pointer->ObjectType = ObjectType;
             pointer->Object = Object;
             pointer->TagName = TagName;
-            pointer->TagSize = HeapUtil.GetLength(Tag);
+            pointer->TagSize = (HostSize)(Interop.HeapUtil.GetLength(Tag));
             if (Tag != null)
             {
-                var fieldPointer = (byte*)HeapUtil.AllocateAndClear<byte>(Tag.Length).ToPointer();
-                for (var index = 0; index < (uint)Tag.Length; index++) fieldPointer[index] = Tag[index];
+                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(Tag.Length).ToPointer());
+                for(int index = 0; index < (uint)(Tag.Length); index++)
+                {
+                    fieldPointer[index] = Tag[index];
+                }
                 pointer->Tag = fieldPointer;
             }
             else

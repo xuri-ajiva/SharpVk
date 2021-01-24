@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,37 +32,37 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct PhysicalDeviceBlendOperationAdvancedProperties
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
-        /// <summary>
-        /// </summary>
-        public uint AdvancedBlendMaxColorAttachments;
-
+        public void* Next; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 AdvancedBlendIndependentBlend;
-
+        public uint AdvancedBlendMaxColorAttachments; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 AdvancedBlendNonPremultipliedSourceColor;
-
+        public Bool32 AdvancedBlendIndependentBlend; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 AdvancedBlendNonPremultipliedDestinationColor;
-
+        public Bool32 AdvancedBlendNonPremultipliedSourceColor; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 AdvancedBlendCorrelatedOverlap;
-
+        public Bool32 AdvancedBlendNonPremultipliedDestinationColor; 
+        
         /// <summary>
         /// </summary>
-        public Bool32 AdvancedBlendAllOperations;
+        public Bool32 AdvancedBlendCorrelatedOverlap; 
+        
+        /// <summary>
+        /// </summary>
+        public Bool32 AdvancedBlendAllOperations; 
     }
 }

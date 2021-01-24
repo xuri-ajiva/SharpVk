@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,26 +32,26 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct DebugMarkerMarkerInfo
     {
         /// <summary>
-        ///     The type of this structure.
+        /// The type of this structure.
         /// </summary>
-        public StructureType SType;
-
+        public StructureType SType; 
+        
         /// <summary>
-        ///     Null or an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public void* Next;
-
+        public void* Next; 
+        
         /// <summary>
-        ///     A string that contains the name of the marker.
+        /// A string that contains the name of the marker.
         /// </summary>
-        public byte* MarkerName;
-
+        public byte* MarkerName; 
+        
         /// <summary>
-        ///     An optional RGBA color value that can be associated with the
-        ///     marker. A particular implementation may choose to ignore this color
-        ///     value. The values contain RGBA values in order, in the range 0.0 to
-        ///     1.0. If all elements in color are set to 0.0 then it is ignored.
+        /// An optional RGBA color value that can be associated with the
+        /// marker. A particular implementation may choose to ignore this color
+        /// value. The values contain RGBA values in order, in the range 0.0 to
+        /// 1.0. If all elements in color are set to 0.0 then it is ignored.
         /// </summary>
-        public fixed float Color[4];
+        public fixed float Color[4]; 
     }
 }

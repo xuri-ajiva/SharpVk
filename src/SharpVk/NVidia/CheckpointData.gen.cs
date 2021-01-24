@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public IntPtr CheckpointMarker
@@ -47,16 +47,16 @@ namespace SharpVk.NVidia
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe CheckpointData MarshalFrom(Interop.NVidia.CheckpointData* pointer)
+        internal static unsafe CheckpointData MarshalFrom(SharpVk.Interop.NVidia.CheckpointData* pointer)
         {
-            var result = default(CheckpointData);
+            CheckpointData result = default;
             result.Stage = pointer->Stage;
-            result.CheckpointMarker = new(pointer->CheckpointMarker);
+            result.CheckpointMarker = new IntPtr(pointer->CheckpointMarker);
             return result;
         }
     }

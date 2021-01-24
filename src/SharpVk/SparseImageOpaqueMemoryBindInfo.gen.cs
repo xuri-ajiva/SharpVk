@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,46 +23,48 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying sparse image opaque memory bind info.
+    /// Structure specifying sparse image opaque memory bind info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseImageOpaqueMemoryBindInfo
     {
         /// <summary>
-        ///     The Image object to be bound.
+        /// The Image object to be bound.
         /// </summary>
         public Image Image
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     Array of SparseMemoryBind structures.
+        /// Array of SparseMemoryBind structures.
         /// </summary>
         public SparseMemoryBind[] Binds
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.SparseImageOpaqueMemoryBindInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SparseImageOpaqueMemoryBindInfo* pointer)
         {
-            pointer->Image = Image?.Handle ?? default(Interop.Image);
-            pointer->BindCount = HeapUtil.GetLength(Binds);
+            pointer->Image = Image?.Handle ?? default;
+            pointer->BindCount = (uint)(Interop.HeapUtil.GetLength(Binds));
             if (Binds != null)
             {
-                var fieldPointer = (Interop.SparseMemoryBind*)HeapUtil.AllocateAndClear<Interop.SparseMemoryBind>(Binds.Length).ToPointer();
-                for (var index = 0; index < (uint)Binds.Length; index++) Binds[index].MarshalTo(&fieldPointer[index]);
+                var fieldPointer = (SharpVk.Interop.SparseMemoryBind*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseMemoryBind>(Binds.Length).ToPointer());
+                for(int index = 0; index < (uint)(Binds.Length); index++)
+                {
+                    Binds[index].MarshalTo(&fieldPointer[index]);
+                }
                 pointer->Binds = fieldPointer;
             }
             else

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShaderStageFlags SupportedStages
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SubgroupFeatureFlags SupportedOperations
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool QuadOperationsInAllStages
@@ -62,14 +62,14 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSubgroupProperties MarshalFrom(Interop.PhysicalDeviceSubgroupProperties* pointer)
+        internal static unsafe PhysicalDeviceSubgroupProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSubgroupProperties* pointer)
         {
-            var result = default(PhysicalDeviceSubgroupProperties);
+            PhysicalDeviceSubgroupProperties result = default;
             result.SubgroupSize = pointer->SubgroupSize;
             result.SupportedStages = pointer->SupportedStages;
             result.SupportedOperations = pointer->SupportedOperations;

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
@@ -35,28 +34,28 @@ namespace SharpVk
     {
         /// <summary>
         /// </summary>
-        public Guid DeviceUuid
+        public Guid DeviceUUID
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Guid DriverUuid
+        public Guid DriverUUID
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public Guid DeviceLuid
+        public Guid DeviceLUID
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint DeviceNodeMask
@@ -64,15 +63,15 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
-        public bool DeviceLuidValid
+        public bool DeviceLUIDValid
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint SubgroupSize
@@ -80,7 +79,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ShaderStageFlags SubgroupSupportedStages
@@ -88,7 +87,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SubgroupFeatureFlags SubgroupSupportedOperations
@@ -96,7 +95,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool SubgroupQuadOperationsInAllStages
@@ -104,7 +103,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public PointClippingBehavior PointClippingBehavior
@@ -112,7 +111,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMultiviewViewCount
@@ -120,7 +119,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxMultiviewInstanceIndex
@@ -128,7 +127,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public bool ProtectedNoFault
@@ -136,7 +135,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public uint MaxPerSetDescriptors
@@ -144,7 +143,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ulong MaxMemoryAllocationSize
@@ -152,44 +151,19 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceVulkan11Properties* pointer)
+        internal static unsafe PhysicalDeviceVulkan11Properties MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkan11Properties* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceVulkan11Properties;
-            pointer->Next = null;
-            HeapUtil.MarshalTo(DeviceUuid, Constants.UuidSize, pointer->DeviceUUID);
-            HeapUtil.MarshalTo(DriverUuid, Constants.UuidSize, pointer->DriverUUID);
-            HeapUtil.MarshalTo(DeviceLuid, Constants.LuidSize, pointer->DeviceLUID);
-            pointer->DeviceNodeMask = DeviceNodeMask;
-            pointer->DeviceLUIDValid = DeviceLuidValid;
-            pointer->SubgroupSize = SubgroupSize;
-            pointer->SubgroupSupportedStages = SubgroupSupportedStages;
-            pointer->SubgroupSupportedOperations = SubgroupSupportedOperations;
-            pointer->SubgroupQuadOperationsInAllStages = SubgroupQuadOperationsInAllStages;
-            pointer->PointClippingBehavior = PointClippingBehavior;
-            pointer->MaxMultiviewViewCount = MaxMultiviewViewCount;
-            pointer->MaxMultiviewInstanceIndex = MaxMultiviewInstanceIndex;
-            pointer->ProtectedNoFault = ProtectedNoFault;
-            pointer->MaxPerSetDescriptors = MaxPerSetDescriptors;
-            pointer->MaxMemoryAllocationSize = MaxMemoryAllocationSize;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="pointer">
-        /// </param>
-        internal static unsafe PhysicalDeviceVulkan11Properties MarshalFrom(Interop.PhysicalDeviceVulkan11Properties* pointer)
-        {
-            var result = default(PhysicalDeviceVulkan11Properties);
-            result.DeviceUuid = new(HeapUtil.MarshalFrom(pointer->DeviceUUID, Constants.UuidSize));
-            result.DriverUuid = new(HeapUtil.MarshalFrom(pointer->DriverUUID, Constants.UuidSize));
-            result.DeviceLuid = new(HeapUtil.MarshalFrom(pointer->DeviceLUID, Constants.LuidSize));
+            PhysicalDeviceVulkan11Properties result = default;
+            result.DeviceUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceUUID, Constants.UuidSize));
+            result.DriverUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DriverUUID, Constants.UuidSize));
+            result.DeviceLUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceLUID, Constants.LuidSize));
             result.DeviceNodeMask = pointer->DeviceNodeMask;
-            result.DeviceLuidValid = pointer->DeviceLUIDValid;
+            result.DeviceLUIDValid = pointer->DeviceLUIDValid;
             result.SubgroupSize = pointer->SubgroupSize;
             result.SubgroupSupportedStages = pointer->SubgroupSupportedStages;
             result.SubgroupSupportedOperations = pointer->SubgroupSupportedOperations;

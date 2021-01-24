@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,9 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using SharpVk.Khronos;
-
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
     /// </summary>
-    public unsafe delegate Result VkDisplayModeKhrGetDisplayPlaneCapabilitiesDelegate(PhysicalDevice physicalDevice, DisplayMode mode, uint planeIndex, DisplayPlaneCapabilities* capabilities);
+    public unsafe delegate Result VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate(PhysicalDevice physicalDevice, DisplayMode mode, uint planeIndex, SharpVk.Khronos.DisplayPlaneCapabilities* capabilities);
 }

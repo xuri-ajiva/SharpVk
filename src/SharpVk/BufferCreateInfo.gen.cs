@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,83 +23,89 @@
 // This file was automatically generated and should not be edited directly.
 
 using System.Runtime.InteropServices;
-using SharpVk.Interop;
 
 namespace SharpVk
 {
     /// <summary>
-    ///     Structure specifying the parameters of a newly created buffer object.
+    /// Structure specifying the parameters of a newly created buffer object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferCreateInfo
     {
         /// <summary>
-        ///     A bitmask describing additional parameters of the buffer.
+        /// A bitmask describing additional parameters of the buffer.
         /// </summary>
         public BufferCreateFlags? Flags
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The size in bytes of the buffer to be created.
+        /// The size in bytes of the buffer to be created.
         /// </summary>
         public ulong Size
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A bitmask describing the allowed usages of the buffer.
+        /// A bitmask describing the allowed usages of the buffer.
         /// </summary>
         public BufferUsageFlags Usage
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     The sharing mode of the buffer when it will be accessed by multiple
-        ///     queue families.
+        /// The sharing mode of the buffer when it will be accessed by multiple
+        /// queue families.
         /// </summary>
         public SharingMode SharingMode
         {
             get;
             set;
         }
-
+        
         /// <summary>
-        ///     A list of queue families that will access this buffer (ignored if
-        ///     sharingMode is not Concurrent).
+        /// A list of queue families that will access this buffer (ignored if
+        /// sharingMode is not Concurrent).
         /// </summary>
         public uint[] QueueFamilyIndices
         {
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.BufferCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.BufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferCreateInfo;
             pointer->Next = null;
             if (Flags != null)
+            {
                 pointer->Flags = Flags.Value;
+            }
             else
+            {
                 pointer->Flags = default;
+            }
             pointer->Size = Size;
             pointer->Usage = Usage;
             pointer->SharingMode = SharingMode;
-            pointer->QueueFamilyIndexCount = HeapUtil.GetLength(QueueFamilyIndices);
+            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(QueueFamilyIndices));
             if (QueueFamilyIndices != null)
             {
-                var fieldPointer = (uint*)HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer();
-                for (var index = 0; index < (uint)QueueFamilyIndices.Length; index++) fieldPointer[index] = QueueFamilyIndices[index];
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(QueueFamilyIndices.Length).ToPointer());
+                for(int index = 0; index < (uint)(QueueFamilyIndices.Length); index++)
+                {
+                    fieldPointer[index] = QueueFamilyIndices[index];
+                }
                 pointer->QueueFamilyIndices = fieldPointer;
             }
             else

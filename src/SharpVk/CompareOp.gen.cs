@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,48 +25,48 @@
 namespace SharpVk
 {
     /// <summary>
-    ///     Stencil comparison function.
+    /// Stencil comparison function.
     /// </summary>
     public enum CompareOp
     {
         /// <summary>
-        ///     The test never passes.
+        /// The test never passes.
         /// </summary>
-        Never = 0,
-
+        Never = 0, 
+        
         /// <summary>
-        ///     The test passes when [eq]#R &lt; S#.
+        /// The test passes when [eq]#R &lt; S#.
         /// </summary>
-        Less = 1,
-
+        Less = 1, 
+        
         /// <summary>
-        ///     The test passes when [eq]#R = S#.
+        /// The test passes when [eq]#R = S#.
         /// </summary>
-        Equal = 2,
-
+        Equal = 2, 
+        
         /// <summary>
-        ///     The test passes when [eq]#R {leq} S#.
+        /// The test passes when [eq]#R {leq} S#.
         /// </summary>
-        LessOrEqual = 3,
-
+        LessOrEqual = 3, 
+        
         /// <summary>
-        ///     The test passes when [eq]#R &gt; S#.
+        /// The test passes when [eq]#R &gt; S#.
         /// </summary>
-        Greater = 4,
-
+        Greater = 4, 
+        
         /// <summary>
-        ///     The test passes when [eq]#R {neq} S#.
+        /// The test passes when [eq]#R {neq} S#.
         /// </summary>
-        NotEqual = 5,
-
+        NotEqual = 5, 
+        
         /// <summary>
-        ///     The test passes when [eq]#R {geq} S#.
+        /// The test passes when [eq]#R {geq} S#.
         /// </summary>
-        GreaterOrEqual = 6,
-
+        GreaterOrEqual = 6, 
+        
         /// <summary>
-        ///     The test always passes.
+        /// The test always passes.
         /// </summary>
-        Always = 7
+        Always = 7, 
     }
 }

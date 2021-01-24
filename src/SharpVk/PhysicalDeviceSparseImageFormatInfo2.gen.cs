@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2020
+// Copyright (c) Andrew Armstrong/FacticiusVir & xuri 2021
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageType Type
@@ -46,7 +46,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public SampleCountFlags Samples
@@ -54,7 +54,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageUsageFlags Usage
@@ -62,7 +62,7 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         public ImageTiling Tiling
@@ -70,12 +70,12 @@ namespace SharpVk
             get;
             set;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSparseImageFormatInfo2Version;
             pointer->Next = null;
@@ -85,14 +85,14 @@ namespace SharpVk
             pointer->Usage = Usage;
             pointer->Tiling = Tiling;
         }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="pointer">
         /// </param>
-        internal static unsafe PhysicalDeviceSparseImageFormatInfo2 MarshalFrom(Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
+        internal static unsafe PhysicalDeviceSparseImageFormatInfo2 MarshalFrom(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
-            var result = default(PhysicalDeviceSparseImageFormatInfo2);
+            PhysicalDeviceSparseImageFormatInfo2 result = default;
             result.Format = pointer->Format;
             result.Type = pointer->Type;
             result.Samples = pointer->Samples;
