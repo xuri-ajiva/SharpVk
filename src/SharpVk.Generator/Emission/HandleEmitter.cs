@@ -58,11 +58,11 @@ namespace SharpVk.Generator.Emission
                     {
                         namespaceBuilder.EmitType(TypeKind.Struct, handle.Name, typeBuilder =>
                         {
-                            typeBuilder.EmitField(rawType, "handle", Internal);
+                            typeBuilder.EmitField(rawType, "Handle", Internal);
 
                             typeBuilder.EmitConstructor(body =>
                             {
-                                body.EmitAssignment(Member(This, "handle"), Variable("handle"));
+                                body.EmitAssignment(Member(This, "Handle"), Variable("handle"));
                             },
                             parameters =>
                             {
@@ -73,7 +73,7 @@ namespace SharpVk.Generator.Emission
 
                             typeBuilder.EmitMethod("ulong", "ToUInt64", body =>
                             {
-                                var returnValue = Member(This, "handle");
+                                var returnValue = Member(This, "Handle");
 
                                 if (handle.IsDispatch)
                                 {
@@ -99,7 +99,7 @@ namespace SharpVk.Generator.Emission
                     {
                         namespaceBuilder.EmitType(TypeKind.Class, handle.Name, typeBuilder =>
                         {
-                            typeBuilder.EmitField(interopTypeName, "handle", Internal, MemberModifier.Readonly);
+                            typeBuilder.EmitField(interopTypeName, "Handle", Internal, MemberModifier.Readonly);
                             typeBuilder.EmitField("CommandCache", "commandCache", Internal, MemberModifier.Readonly);
 
                             if (handle.Parent != null)
@@ -109,7 +109,7 @@ namespace SharpVk.Generator.Emission
 
                             typeBuilder.EmitConstructor(body =>
                             {
-                                body.EmitAssignment(Member(This, "handle"), Variable("handle"));
+                                body.EmitAssignment(Member(This, "Handle"), Variable("handle"));
 
                                 var commandCacheValue = Null;
 
@@ -147,7 +147,7 @@ namespace SharpVk.Generator.Emission
                                 parameters.EmitParam(interopTypeName, "handle");
                             }, Internal);
 
-                            typeBuilder.EmitProperty(interopTypeName, "RawHandle", Member(This, "handle"), Public, summary: new[] { "The raw handle for this instance." });
+                            typeBuilder.EmitProperty(interopTypeName, "RawHandle", Member(This, "Handle"), Public, summary: new[] { "The raw handle for this instance." });
 
                             foreach (var command in handle.Commands)
                             {

@@ -53,13 +53,13 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                 if (type.PointerType.IsPointer())
                 {
-                    info.BuildMarshalToValueExpression = (value, getHandle) => Member(value, "handle");
+                    info.BuildMarshalToValueExpression = (value, getHandle) => Member(value, "Handle");
                     info.MarshalToActionType = AssignActionType.AllocAndAssign;
                     handleExpressions.Add((value, getHandle) => Deref(value));
                 }
                 else
                 {
-                    info.BuildMarshalToValueExpression = (value, getHandle) => Coalesce(CoalesceMember(value, "handle"), Default(interopType));
+                    info.BuildMarshalToValueExpression = (value, getHandle) => Coalesce(CoalesceMember(value, "Handle"), Default(interopType));
                     handleExpressions.Add((value, getHandle) => value);
                 }
 

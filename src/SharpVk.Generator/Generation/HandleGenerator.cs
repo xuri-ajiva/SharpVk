@@ -522,7 +522,7 @@ namespace SharpVk.Generator.Generation
             }
             else
             {
-                marshalledValues.Add(Member(getHandle(parameter.Type.VkName), "handle"));
+                marshalledValues.Add(Member(getHandle(parameter.Type.VkName), "Handle"));
             }
 
             return result;
