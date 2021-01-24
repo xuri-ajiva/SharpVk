@@ -39,7 +39,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                     if (source.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
                     {
-                        length = source.Type.FixedLength.Value;
+                        length = source.Type.FixedLength.Value.TrimStart('[').TrimEnd(']').Replace("][" , "*");
                     }
                     else
                     {
@@ -164,7 +164,10 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                     if (source.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
                     {
-                        count = int.Parse(source.Type.FixedLength.Value);
+                        if (!int.TryParse(source.Type.FixedLength.Value, out count))
+                        {
+                            count = int.Parse(source.Type.FixedLength.Value.TrimStart('[').TrimEnd(']'));
+                        }
                     }
                     else
                     {
