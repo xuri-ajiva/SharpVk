@@ -135,6 +135,11 @@ namespace SharpVk.Generator.Collation
         {
             string digitsPrefix = JoinNameParts(enumeration.NameParts.TakeWhile(x => !digitsSuffix.Contains(x)));
 
+            if (value.NameParts.Length == 0)
+            {
+                value.NameParts = enumeration.NameParts;
+            }
+            
             int skipAtEnd = isBitmask && digitsSuffix.Contains(value.NameParts.Last())
                                 ? 1
                                 : 0;
