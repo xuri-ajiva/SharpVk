@@ -112,7 +112,8 @@ namespace SharpVk.Emit
 
         public void EmitDefault(string type)
         {
-            writer.Write($"default({type})");
+            writer.Write($"default");
+            //writer.Write($"default({type})");
         }
 
         public void EmitDefault()

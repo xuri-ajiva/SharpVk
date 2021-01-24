@@ -13,7 +13,9 @@ namespace SharpVk.Emit
 
             this.writer.WriteLine("/// <summary>");
             if (summary == null || !summary.Any())
-                this.writer.WriteLine("/// ");
+            {
+                //this.writer.WriteLine("/// ");
+            }
             else if (summary.Count() == 1)
                 EmitParagraph(summary.Single());
             else
