@@ -36,6 +36,17 @@ namespace SharpVk.Interop
             }
         }
 
+        ~NativeLibrary()
+        {
+            /*if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                 Kernel32.FreeLibrary(library);
+            }
+            else
+            {
+                throw new NotSupportedException($"{RuntimeInformation.OSDescription} is not a supported platform for SharpVK.");
+            }   */
+        }
         /// <summary>
         ///     Gets a function pointer for the specificed Vulkan command.
         /// </summary>
@@ -58,6 +69,8 @@ namespace SharpVk.Interop
 
         private static class Kernel32
         {
+            [DllImport("kernel32")]
+            public static extern bool FreeLibrary(IntPtr hModule);
             [DllImport("kernel32")]
             public static extern IntPtr LoadLibrary(string fileName);
 

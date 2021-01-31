@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SharpVk.Interop
 {
-    internal static unsafe class HeapUtil
+    public static unsafe class HeapUtil
     {
         private const int PerThreadSpace = 1 << 20;
 
@@ -26,6 +26,13 @@ namespace SharpVk.Interop
 
                 return allocateSpace;
             }
+        }
+
+        public static void FreeHGlobal()
+        {
+            if (allocateSpace == IntPtr.Zero) return;
+            Marshal.FreeHGlobal(allocateSpace);
+            allocateSpace = IntPtr.Zero;
         }
 
         internal static IntPtr Allocate<T>(HostSize count)
