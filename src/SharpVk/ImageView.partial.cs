@@ -2,11 +2,10 @@
 
 namespace SharpVk
 {
-    partial class Image
-        : IMemoryBinder, IEquatable<Image>
+    public partial class ImageView : IEquatable<ImageView>
     {
         /// <inheritdoc />
-        public bool Equals(Image other)
+        public bool Equals(ImageView other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -19,7 +18,7 @@ namespace SharpVk
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Image)obj);
+            return Equals((ImageView)obj);
         }
 
         /// <inheritdoc />

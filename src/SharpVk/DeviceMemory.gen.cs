@@ -29,7 +29,7 @@ namespace SharpVk
     /// <summary>
     /// Opaque handle to a device memory object.
     /// </summary>
-    public class DeviceMemory
+    public partial class DeviceMemory
     {
         internal readonly SharpVk.Interop.DeviceMemory Handle; 
         
