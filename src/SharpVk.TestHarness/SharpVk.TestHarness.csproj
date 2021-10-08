@@ -2,24 +2,9 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <ApplicationIcon />
-    <StartupObject />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>true</Prefer32Bit>
+    <TargetFramework>net5.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="glfw3.dll" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="glfw3.dll">
@@ -28,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GlmSharp" Version="0.9.8" />
+    <ProjectReference Include="..\..\..\GlmSharp\GlmSharp\GlmSharp\GlmSharp.csproj" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
