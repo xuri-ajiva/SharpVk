@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>CA1815,CA2225,CA1819,CA1700,CA1062,CA1032</NoWarn>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <PropertyGroup>
